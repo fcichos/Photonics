@@ -110,98 +110,98 @@
   {
     "objectID": "contents.html",
     "href": "contents.html",
-    "title": "Photonics",
+    "title": "PART I: FOUNDATIONS OF PHOTONICS",
     "section": "",
-    "text": "Course overview and historical perspective\nMultiple descriptions of light:\n\nRay optics: eikonal equation, Snell’s law, reflection\nWave optics: wave equation, superposition, interference\nElectromagnetic theory: overview of Maxwell’s equations\nQuantum nature: preview of photon concept\n\nComparative analysis of different light models and their domains of validity"
+    "text": "Course overview and historical perspective\nMultiple descriptions of light:\n\nRay optics: eikonal equation, Snell’s law, reflection\nWave optics: wave equation, superposition, interference\nElectromagnetic theory: overview of Maxwell’s equations\nQuantum nature: preview of photon concept\n\nComparative analysis of different light models and their domains of validity\n\n\n\n\n\nMaxwell’s equations and derivation of wave equation\nPlane waves and polarization states\nPoynting vector and energy transport\nReflection and transmission at interfaces\nFresnel equations and Brewster’s angle\nTotal internal reflection and evanescent waves\nWaveguides: basic principles\n\n\n\n\n\nPhotons and wave-particle duality\nQuantization of electromagnetic field\nPhoton statistics:\n\nPoissonian, sub-Poissonian, and super-Poissonian distributions\nSecond-order correlation functions\nHanbury Brown and Twiss experiment\n\nCoherent states, Fock states, and squeezed states\nSpontaneous and stimulated emission"
   },
   {
     "objectID": "contents.html#lecture-1-fundamental-theories-of-light",
     "href": "contents.html#lecture-1-fundamental-theories-of-light",
-    "title": "Photonics",
+    "title": "PART I: FOUNDATIONS OF PHOTONICS",
     "section": "",
     "text": "Course overview and historical perspective\nMultiple descriptions of light:\n\nRay optics: eikonal equation, Snell’s law, reflection\nWave optics: wave equation, superposition, interference\nElectromagnetic theory: overview of Maxwell’s equations\nQuantum nature: preview of photon concept\n\nComparative analysis of different light models and their domains of validity"
   },
   {
     "objectID": "contents.html#lecture-2-electromagnetic-theory-of-light",
     "href": "contents.html#lecture-2-electromagnetic-theory-of-light",
-    "title": "Photonics",
-    "section": "Lecture 2: Electromagnetic Theory of Light",
-    "text": "Lecture 2: Electromagnetic Theory of Light\n\nMaxwell’s equations and derivation of wave equation\nPlane waves and polarization states\nPoynting vector and energy transport\nReflection and transmission at interfaces\nFresnel equations and Brewster’s angle\nTotal internal reflection and evanescent waves\nWaveguides: basic principles"
+    "title": "PART I: FOUNDATIONS OF PHOTONICS",
+    "section": "",
+    "text": "Maxwell’s equations and derivation of wave equation\nPlane waves and polarization states\nPoynting vector and energy transport\nReflection and transmission at interfaces\nFresnel equations and Brewster’s angle\nTotal internal reflection and evanescent waves\nWaveguides: basic principles"
   },
   {
     "objectID": "contents.html#lecture-3-quantum-nature-of-light",
     "href": "contents.html#lecture-3-quantum-nature-of-light",
-    "title": "Photonics",
-    "section": "Lecture 3: Quantum Nature of Light",
-    "text": "Lecture 3: Quantum Nature of Light\n\nPhotons and wave-particle duality\nQuantization of electromagnetic field\nPhoton statistics:\n\nPoissonian, sub-Poissonian, and super-Poissonian distributions\nSecond-order correlation functions\nHanbury Brown and Twiss experiment\n\nCoherent states, Fock states, and squeezed states\nSpontaneous and stimulated emission"
+    "title": "PART I: FOUNDATIONS OF PHOTONICS",
+    "section": "",
+    "text": "Photons and wave-particle duality\nQuantization of electromagnetic field\nPhoton statistics:\n\nPoissonian, sub-Poissonian, and super-Poissonian distributions\nSecond-order correlation functions\nHanbury Brown and Twiss experiment\n\nCoherent states, Fock states, and squeezed states\nSpontaneous and stimulated emission"
   },
   {
     "objectID": "contents.html#lecture-4-introduction-to-fourier-optics",
     "href": "contents.html#lecture-4-introduction-to-fourier-optics",
-    "title": "Photonics",
+    "title": "PART I: FOUNDATIONS OF PHOTONICS",
     "section": "Lecture 4: Introduction to Fourier Optics",
     "text": "Lecture 4: Introduction to Fourier Optics\n\nMathematical foundations of 2D Fourier transforms\nSpatial frequency domain interpretation\nLinear systems theory in optics\nAmplitude and phase transfer functions\nConvolution theorem and its optical significance\nSpatial filtering concepts"
   },
   {
     "objectID": "contents.html#lecture-5-diffraction-theory-in-fourier-framework",
     "href": "contents.html#lecture-5-diffraction-theory-in-fourier-framework",
-    "title": "Photonics",
+    "title": "PART I: FOUNDATIONS OF PHOTONICS",
     "section": "Lecture 5: Diffraction Theory in Fourier Framework",
     "text": "Lecture 5: Diffraction Theory in Fourier Framework\n\nFraunhofer and Fresnel diffraction\nDiffraction integral as a Fourier relationship\nFar-field diffraction patterns\nDiffraction-limited systems\nAperture functions and their Fourier transforms\nMultiple aperture systems and interference"
   },
   {
     "objectID": "contents.html#lecture-6-optical-imaging-systems-and-modern-microscopy",
     "href": "contents.html#lecture-6-optical-imaging-systems-and-modern-microscopy",
-    "title": "Photonics",
+    "title": "PART I: FOUNDATIONS OF PHOTONICS",
     "section": "Lecture 6: Optical Imaging Systems and Modern Microscopy",
     "text": "Lecture 6: Optical Imaging Systems and Modern Microscopy\n\nPoint spread function and optical transfer function\nResolution limits and Abbe’s theory\nFrequency space representation of imaging\nCoherent vs. incoherent imaging\nModern microscopy techniques overview\nSuper-resolution concepts and approaches"
   },
   {
     "objectID": "contents.html#lecture-7-advanced-microscopy-sim-and-computational-imaging",
     "href": "contents.html#lecture-7-advanced-microscopy-sim-and-computational-imaging",
-    "title": "Photonics",
+    "title": "PART I: FOUNDATIONS OF PHOTONICS",
     "section": "Lecture 7: Advanced Microscopy: SIM and Computational Imaging",
     "text": "Lecture 7: Advanced Microscopy: SIM and Computational Imaging\n\nStructured Illumination Microscopy (SIM) theory\nFrequency space extension in SIM\nComputational imaging fundamentals\nPhase retrieval and ptychography\nFourier ptychographic microscopy\nMachine learning in computational imaging\nComparison of different super-resolution techniques"
   },
   {
     "objectID": "contents.html#lecture-8-nonlinear-optics-i",
     "href": "contents.html#lecture-8-nonlinear-optics-i",
-    "title": "Photonics",
+    "title": "PART I: FOUNDATIONS OF PHOTONICS",
     "section": "Lecture 8: Nonlinear Optics I",
     "text": "Lecture 8: Nonlinear Optics I\n\nOptical nonlinearity origins\nNonlinear susceptibility tensors\nSecond-order nonlinear effects\nSecond harmonic generation\nSum and difference frequency generation\nPhase matching conditions and techniques\nApplications in frequency conversion"
   },
   {
     "objectID": "contents.html#lecture-9-nonlinear-optics-ii",
     "href": "contents.html#lecture-9-nonlinear-optics-ii",
-    "title": "Photonics",
+    "title": "PART I: FOUNDATIONS OF PHOTONICS",
     "section": "Lecture 9: Nonlinear Optics II",
     "text": "Lecture 9: Nonlinear Optics II\n\nThird-order nonlinear effects\nSelf-phase modulation and self-focusing\nFour-wave mixing processes\nOptical Kerr effect\nNonlinear absorption phenomena\nApplications in optical switching and computing\nNonlinear microscopy techniques"
   },
   {
     "objectID": "contents.html#lecture-10-nonlinear-optics-iii",
     "href": "contents.html#lecture-10-nonlinear-optics-iii",
-    "title": "Photonics",
+    "title": "PART I: FOUNDATIONS OF PHOTONICS",
     "section": "Lecture 10: Nonlinear Optics III",
-    "text": "Lecture 10: Nonlinear Optics III\n\nRaman and Brillouin scattering\nMultiphoton processes\nUltrafast phenomena\nOptical solitons\nHigh harmonic generation\nExtreme nonlinear optics\nNonlinear optics with structured light"
+    "text": "Lecture 10: Nonlinear Optics III\n\nRaman and Brillouin scattering\nMultiphoton processes\nHigh harmonic generation\nNonlinear optics with structured light"
   },
   {
     "objectID": "contents.html#lecture-11-acousto-optics",
     "href": "contents.html#lecture-11-acousto-optics",
-    "title": "Photonics",
+    "title": "PART I: FOUNDATIONS OF PHOTONICS",
     "section": "Lecture 11: Acousto-Optics",
     "text": "Lecture 11: Acousto-Optics\n\nSound waves and their interaction with light\nAcousto-optic effect theory\nRaman-Nath and Bragg diffraction regimes\nAcousto-optic devices:\n\nModulators and deflectors\nTunable filters\nFrequency shifters\n\nApplications in imaging and signal processing"
   },
   {
     "objectID": "contents.html#lecture-12-plasmonics",
     "href": "contents.html#lecture-12-plasmonics",
-    "title": "Photonics",
+    "title": "PART I: FOUNDATIONS OF PHOTONICS",
     "section": "Lecture 12: Plasmonics",
     "text": "Lecture 12: Plasmonics\n\nIntroduction to plasmons and electron plasma oscillations\nSurface plasmon polaritons: theory and dispersion relations\nExcitation methods (prism, grating)\nLocalized surface plasmons in nanostructures\nField enhancement effects\nPlasmon resonance sensing\nNear-field enhancement applications"
   },
   {
     "objectID": "contents.html#lecture-13-advanced-topics-and-future-directions",
     "href": "contents.html#lecture-13-advanced-topics-and-future-directions",
-    "title": "Photonics",
+    "title": "PART I: FOUNDATIONS OF PHOTONICS",
     "section": "Lecture 13: Advanced Topics and Future Directions",
     "text": "Lecture 13: Advanced Topics and Future Directions\n\nIntegrated photonics overview\nPhotonic crystals and metamaterials\nQuantum photonic technologies\nOptical computing advances\nRecent breakthroughs in microscopy\nEmerging trends in nanophotonics\nCourse summary and comprehensive review"
   },
