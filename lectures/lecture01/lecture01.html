@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Theories of Light – Photonics1</title>
+<title>Theories of Light – Photonics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -135,7 +135,7 @@ window.Quarto = {
 };
 </script>
 
-<link rel="stylesheet" href="assets/styles.css">
+<link rel="stylesheet" href="../../assets/styles.css">
 </head>
 
 <body class="nav-sidebar floating nav-fixed">
@@ -146,7 +146,7 @@ window.Quarto = {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../../index.html">
-    <span class="navbar-title">Photonics1</span>
+    <span class="navbar-title">Photonics</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -186,7 +186,7 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
       <a href="../../index.html" class="sidebar-logo-link">
-      <img src="../../mona_logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      <img src="../../assets/images/mona_logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
       </div>
     <div class="sidebar-menu-container"> 
@@ -209,13 +209,13 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../course-info/intructors.qmd" class="sidebar-item-text sidebar-link">
+  <a href="../../course-info/intructors.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Instructor</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../course-info/schedule.qmd" class="sidebar-item-text sidebar-link">
+  <a href="../../course-info/schedule.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Schedule</span></a>
   </div>
 </li>
@@ -227,13 +227,13 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../course-info/assignments.qmd" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Assignments</span></a>
+  <a href="../../course-info/labcourse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lab Course</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../course-info/exam.qmd" class="sidebar-item-text sidebar-link">
+  <a href="../../course-info/exam.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Exams</span></a>
   </div>
 </li>
@@ -312,7 +312,7 @@ window.Quarto = {
 <p>The cornerstone of ray optics is <strong>Fermat’s Principle</strong>, which states that light follows the path that minimizes the optical path length or, equivalently, the time of travel between two points. Mathematically, if we consider a path <span class="math inline">\(C\)</span> connecting points A and B, Fermat’s Principle requires:</p>
 <p><span class="math display">\[\delta\int_C n(s)ds = 0\]</span></p>
 <p>where <span class="math inline">\(n(s)\)</span> is the refractive index along the path and <span class="math inline">\(ds\)</span> is the differential path length. This variational principle leads directly to the laws of reflection and refraction.</p>
-<div id="eafc39de" class="cell" data-execution_count="2">
+<div id="39bb83a6" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calculate_path_length(x, start, end):</span>
@@ -411,7 +411,7 @@ window.Quarto = {
 <p>where <span class="math inline">\(x\)</span> is the position of P. After calculus manipulation, this yields the familiar law of reflection:</p>
 <p><span class="math display">\[\theta_i = \theta_r\]</span></p>
 <p>where <span class="math inline">\(\theta_i\)</span> is the angle of incidence and <span class="math inline">\(\theta_r\)</span> is the angle of reflection, both measured from the normal to the surface.</p>
-<div id="5499274f" class="cell" data-execution_count="3">
+<div id="0be25c3f" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calculate_optical_path(x, start, end, n1, n2):</span>
@@ -538,7 +538,7 @@ window.Quarto = {
 <p><span class="math display">\[\frac{1}{s_o} + \frac{1}{s_i} = \frac{1}{f}\]</span></p>
 <p>This equation enables us to predict image formation characteristics in optical instruments such as cameras, microscopes, and telescopes.</p>
 <p>Despite its power, ray optics has limitations. It cannot explain phenomena like diffraction, which occurs when light encounters obstacles or apertures comparable to its wavelength. Here, we need wave optics for a complete description. Additionally, ray optics fails to account for the finite width of beams and the existence of evanescent waves.</p>
-<div id="2221c14a" class="cell" data-execution_count="4">
+<div id="9548f98b" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set up the figure</span></span>
@@ -671,7 +671,7 @@ Destructive Interference of Non-Minimal Paths
 <p><span class="math display">\[A = e^{ikL_0}\sqrt{\frac{\pi}{k\alpha}}e^{i\pi/4}\]</span></p>
 <p>The key insight is that the amplitude scales as <span class="math inline">\(1/\sqrt{k\alpha}\)</span>, which means that as the curvature <span class="math inline">\(\alpha\)</span> of the path length function increases (as happens far from the minimal path), the contribution to the total amplitude diminishes. This mathematically proves why non-minimal path regions contribute negligibly to the overall path integral.</p>
 <p>This cancellation mechanism explains why light appears to follow only the path of least time in ray optics. The mathematics shows that constructive interference occurs only for paths very close to the minimal path, while all other paths destructively interfere with their neighbors. This phenomenon emerges naturally from wave properties without requiring quantum mechanical constants like ℏ. We can express this classically by setting <span class="math inline">\(S = kL\)</span> and observing how path differences relative to the wavelength create interference patterns.</p>
-<div id="b679f0d0" class="cell" data-execution_count="5">
+<div id="a809a819" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -868,7 +868,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
+      var filterRegex = new RegExp("https:\/\/fcichos\.github\.io\/Photonics\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }

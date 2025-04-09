@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Resources for Introduction to Photonics – Photonics</title>
+<title>Lab Course – Photonics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../course-info/labcourse.html" rel="next">
-<link href="../course-info/schedule.html" rel="prev">
+<link href="../course-info/exam.html" rel="next">
+<link href="../course-info/resources.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -74,7 +74,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
 
 
-<link rel="stylesheet" href="../assets/styles.css">
+<link rel="stylesheet" href="assets/styles.css">
 </head>
 
 <body class="nav-sidebar floating nav-fixed">
@@ -113,7 +113,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../course-info/intructors.html">Course Info</a></li><li class="breadcrumb-item"><a href="../course-info/resources.html">Ressources</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../course-info/intructors.html">Course Info</a></li><li class="breadcrumb-item"><a href="../course-info/assignments.html">Assignments</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -125,7 +125,7 @@ ul.task-list li input[type="checkbox"] {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
       <a href="../index.html" class="sidebar-logo-link">
-      <img src="../assets/images/mona_logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      <img src="../mona_logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
       </div>
     <div class="sidebar-menu-container"> 
@@ -160,14 +160,14 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../course-info/resources.html" class="sidebar-item-text sidebar-link active">
+  <a href="../course-info/resources.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Ressources</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../course-info/labcourse.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Lab Course</span></a>
+  <a href="../course-info/assignments.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Assignments</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -212,15 +212,21 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#lab-course-on-fourier-optics" id="toc-lab-course-on-fourier-optics" class="nav-link active" data-scroll-target="#lab-course-on-fourier-optics">Lab Course on Fourier Optics</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../course-info/intructors.html">Course Info</a></li><li class="breadcrumb-item"><a href="../course-info/resources.html">Ressources</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../course-info/intructors.html">Course Info</a></li><li class="breadcrumb-item"><a href="../course-info/assignments.html">Assignments</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Resources for Introduction to Photonics</h1>
+<h1 class="title">Lab Course</h1>
 </div>
 
 
@@ -237,19 +243,13 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>I will refer in the lecture to several resources from which I have listed here some useful books. The most comprehensive one is Fundamentals of Photonics by Saleh and Teich.</p>
-<ul>
-<li>Fundamentals of Photonics, Saleh/Teich</li>
-<li>Optics, Hecht</li>
-<li>Classical Electrodynamics, Jackson</li>
-<li><a href="https://archive.org/details/GoodmanFourierOptics/mode/2up">Introduction to Fourier Optics, Goodman</a></li>
-<li>Optical Coherence and Quantum Optics, Mandel/Wolf</li>
-<li>Nonlinear Optics, Bloembergen</li>
-<li>Nonlinear Optics, Boyd</li>
-<li>Plasmonics: Fundamentals and Applications, Maier</li>
-<li>Principles of Nano-Optics, Hecht/Nowotny</li>
-</ul>
-<p>Besides that, the field of photonics is full of interesting research articles that will appear here as we go:</p>
+<section id="lab-course-on-fourier-optics" class="level2">
+<h2 class="anchored" data-anchor-id="lab-course-on-fourier-optics">Lab Course on Fourier Optics</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/images/lecture01/setup.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
 
 
 <script type="ojs-module-contents">
@@ -266,6 +266,7 @@ eyJjb250ZW50cyI6W119
 <script type="vfs-file">
 W10=
 </script>
+</section>
 
 </main> <!-- /main -->
 <script type="ojs-module-contents">
@@ -369,7 +370,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/fcichos\.github\.io\/Photonics\/");
+      var filterRegex = new RegExp('/' + window.location.host + '/');
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
@@ -698,13 +699,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../course-info/schedule.html" class="pagination-link" aria-label="Schedule">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Schedule</span>
+      <a href="../course-info/resources.html" class="pagination-link" aria-label="Ressources">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Ressources</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../course-info/labcourse.html" class="pagination-link" aria-label="Lab Course">
-        <span class="nav-page-text">Lab Course</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../course-info/exam.html" class="pagination-link" aria-label="Exams">
+        <span class="nav-page-text">Exams</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
