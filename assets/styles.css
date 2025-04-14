@@ -28,7 +28,7 @@
 }
 
 body {
-    font-weight: 100; /* Normal weight */
+    font-weight: 300; /* Normal weight */
 }
 
 h1,
@@ -37,7 +37,7 @@ h3,
 h4,
 h5,
 h6 {
-    font-weight: 200; /* Bold weight for headings */
+    font-weight: 400; /* Bold weight for headings */
 }
 
 .quarto-container {
