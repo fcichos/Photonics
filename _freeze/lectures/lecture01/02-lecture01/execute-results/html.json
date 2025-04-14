@@ -1,0 +1,12 @@
+{
+  "hash": "23ec59e9d740739c1cccb1005a044453",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "---\ntitle: Optical Elements Part II\njupyter: python3\nformat:\n  html:\n    code-fold: true\ncrossref:\n  fig-title: Figure     # (default is \"Figure\")\n  tbl-title: Tbl     # (default is \"Table\")\n  title-delim: \"—\"   # (default is \":\")\n  fig-prefix: \"Figure\"\n  eq-prefix: Eq.\n  chapters: true\n---\n\n\n\n::: {#cell-fig-wavelength-dependence .cell cold-fold='true' execution_count=2}\n``` {.python .cell-code}\nbk7=pd.read_csv(\"data/BK7.csv\",delimiter=\",\")\nsf10=pd.read_csv(\"data/SF10.csv\",delimiter=\",\")\nfk51a=pd.read_csv(\"data/FK51A.csv\",delimiter=\",\")\nplt.figure(figsize=(4,4))\nplt.plot(bk7.wl*1000,bk7.n,label=\"BK7\")\nplt.plot(sf10.wl*1000,sf10.n,label=\"SF10\")\nplt.plot(fk51a.wl*1000,fk51a.n,label=\"FK51A\")\nplt.xlim(300,900)\nplt.xlabel(\"wavelength [nm]\")\nplt.ylabel(\"refractive index n\")\nplt.legend()\nplt.show()\n```\n\n::: {.cell-output .cell-output-display}\n![Refractive index of different glasses as a function of the wavelength.](02-lecture01_files/figure-html/fig-wavelength-dependence-output-1.png){#fig-wavelength-dependence width=393 height=356 fig-align='center'}\n:::\n:::\n\n\n",
+    "supporting": [
+      "02-lecture01_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}

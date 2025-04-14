@@ -1,6 +1,17 @@
 project:
   type: website
 
+format:
+  html:
+    theme: cosmo
+    css: assets/css/styles.css
+    toc: true
+    toc-depth: 3
+    code-fold: true
+
+execute:
+  freeze: auto
+
 website:
   search: true
   title: "Photonics"
@@ -41,11 +52,3 @@ website:
                 href: lectures/lecture01/01-lecture01.qmd
               - text: Theories of Light
                 href: lectures/lecture01/02-lecture01.qmd
-
-format:
-  html:
-    theme: cosmo
-    css: assets/styles.css
-    toc: true
-    toc-depth: 3
-    code-fold: true
