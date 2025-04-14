@@ -50,5 +50,3 @@ website:
             contents:
               - text: Theories of Light
                 href: lectures/lecture01/01-lecture01.qmd
-              - text: Theories of Light
-                href: lectures/lecture01/02-lecture01.qmd
