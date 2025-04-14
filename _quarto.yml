@@ -1,0 +1,49 @@
+project:
+  type: website
+
+website:
+  search: true
+  title: "Photonics"
+  page-navigation: true
+  navbar:
+    background: primary
+    search: true
+    right:
+      - href: index.qmd
+        text: Home
+      - about.qmd
+  sidebar:
+    style: "floating" # Options: "floating", "sticky"
+    logo: assets/images/mona_logo.png
+    collapse-level: 3
+    contents:
+      - text: Home
+        href: index.qmd
+      - text: "---" # This creates a divider
+      - section: "Course Info"
+        contents:
+          - text: Instructor
+            href: course-info/intructors.qmd
+          - text: Schedule
+            href: course-info/schedule.qmd
+          - text: Ressources
+            href: course-info/resources.qmd
+          - text: Lab Course
+            href: course-info/labcourse.qmd
+          - text: Exams
+            href: course-info/exam.qmd
+      - text: "---" # This creates a divider
+      - section: Python Basics
+        contents:
+          - section: "Lecture 1"
+            contents:
+              - text: Theories of Light
+                href: lectures/lecture01/01-lecture01.qmd
+
+format:
+  html:
+    theme: cosmo
+    css: assets/styles.css
+    toc: true
+    toc-depth: 3
+    code-fold: true

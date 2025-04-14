@@ -1,0 +1,120 @@
+# PART I: FOUNDATIONS OF PHOTONICS
+
+## Lecture 1: Fundamental Theories of Light
+- Course overview and historical perspective
+- Multiple descriptions of light:
+  - Ray optics: eikonal equation, Snell's law, reflection
+  - Wave optics: wave equation, superposition, interference
+  - Electromagnetic theory: overview of Maxwell's equations
+  - Quantum nature: preview of photon concept
+- Comparative analysis of different light models and their domains of validity
+
+## Lecture 2: Electromagnetic Theory of Light
+- Maxwell's equations and derivation of wave equation
+- Plane waves and polarization states
+- Poynting vector and energy transport
+- Reflection and transmission at interfaces
+- Fresnel equations and Brewster's angle
+- Total internal reflection and evanescent waves
+- Waveguides: basic principles
+
+## Lecture 3: Quantum Nature of Light
+- Photons and wave-particle duality
+- Quantization of electromagnetic field
+- Photon statistics:
+  - Poissonian, sub-Poissonian, and super-Poissonian distributions
+  - Second-order correlation functions
+  - Hanbury Brown and Twiss experiment
+- Coherent states, Fock states, and squeezed states
+- Spontaneous and stimulated emission
+
+# PART II: FOURIER OPTICS AND IMAGING
+
+## Lecture 4: Introduction to Fourier Optics
+- Mathematical foundations of 2D Fourier transforms
+- Spatial frequency domain interpretation
+- Linear systems theory in optics
+- Amplitude and phase transfer functions
+- Convolution theorem and its optical significance
+- Spatial filtering concepts
+
+## Lecture 5: Diffraction Theory in Fourier Framework
+- Fraunhofer and Fresnel diffraction
+- Diffraction integral as a Fourier relationship
+- Far-field diffraction patterns
+- Diffraction-limited systems
+- Aperture functions and their Fourier transforms
+- Multiple aperture systems and interference
+
+## Lecture 6: Optical Imaging Systems and Modern Microscopy
+- Point spread function and optical transfer function
+- Resolution limits and Abbe's theory
+- Frequency space representation of imaging
+- Coherent vs. incoherent imaging
+- Modern microscopy techniques overview
+- Super-resolution concepts and approaches
+
+## Lecture 7: Advanced Microscopy: SIM and Computational Imaging
+- Structured Illumination Microscopy (SIM) theory
+- Frequency space extension in SIM
+- Computational imaging fundamentals
+- Phase retrieval and ptychography
+- Fourier ptychographic microscopy
+- Machine learning in computational imaging
+- Comparison of different super-resolution techniques
+
+# PART III: NONLINEAR AND ADVANCED OPTICS
+
+## Lecture 8: Nonlinear Optics I
+- Optical nonlinearity origins
+- Nonlinear susceptibility tensors
+- Second-order nonlinear effects
+- Second harmonic generation
+- Sum and difference frequency generation
+- Phase matching conditions and techniques
+- Applications in frequency conversion
+
+## Lecture 9: Nonlinear Optics II
+- Third-order nonlinear effects
+- Self-phase modulation and self-focusing
+- Four-wave mixing processes
+- Optical Kerr effect
+- Nonlinear absorption phenomena
+- Applications in optical switching and computing
+- Nonlinear microscopy techniques
+
+## Lecture 10: Nonlinear Optics III
+- Raman and Brillouin scattering
+- Multiphoton processes
+- High harmonic generation
+- Nonlinear optics with structured light
+
+# PART IV: EMERGING TECHNOLOGIES AND APPLICATIONS
+
+## Lecture 11: Acousto-Optics
+- Sound waves and their interaction with light
+- Acousto-optic effect theory
+- Raman-Nath and Bragg diffraction regimes
+- Acousto-optic devices:
+  - Modulators and deflectors
+  - Tunable filters
+  - Frequency shifters
+- Applications in imaging and signal processing
+
+## Lecture 12: Plasmonics
+- Introduction to plasmons and electron plasma oscillations
+- Surface plasmon polaritons: theory and dispersion relations
+- Excitation methods (prism, grating)
+- Localized surface plasmons in nanostructures
+- Field enhancement effects
+- Plasmon resonance sensing
+- Near-field enhancement applications
+
+## Lecture 13: Advanced Topics and Future Directions
+- Integrated photonics overview
+- Photonic crystals and metamaterials
+- Quantum photonic technologies
+- Optical computing advances
+- Recent breakthroughs in microscopy
+- Emerging trends in nanophotonics
+- Course summary and comprehensive review

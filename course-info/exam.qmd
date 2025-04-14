@@ -1,0 +1,15 @@
+---
+title: "Exam"
+---
+
+
+
+::: {.callout-note}
+## Exam Format
+This course will end with an **oral exam** of **30 minutes** duration. The exams will be held at after the end of the course during the reading period and the week after.
+:::
+
+::: {.callout-important}
+## Exam Eligibility
+There are no preconditions for taking the exam.
+:::

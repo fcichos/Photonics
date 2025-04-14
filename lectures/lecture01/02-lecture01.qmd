@@ -1,0 +1,106 @@
+---
+title: Optical Elements Part II
+jupyter: python3
+format:
+  html:
+    code-fold: true
+crossref:
+  fig-title: Figure     # (default is "Figure")
+  tbl-title: Tbl     # (default is "Table")
+  title-delim: "—"   # (default is ":")
+  fig-prefix: "Figure"
+  eq-prefix: Eq.
+  chapters: true
+---
+
+
+```{python}
+# | echo: false
+## just for plotting later
+#
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+def wavelength_to_rgb(wavelength, gamma=0.8):
+
+    '''This converts a given wavelength of light to an
+    approximate RGB color value. The wavelength must be given
+    in nanometers in the range from 380 nm through 750 nm
+    (789 THz through 400 THz).
+
+    Based on code by Dan Bruton
+    http://www.physics.sfasu.edu/astro/color/spectra.html
+    '''
+
+    wavelength = float(wavelength)
+    if wavelength >= 380 and wavelength <= 440:
+        attenuation = 0.3 + 0.7 * (wavelength - 380) / (440 - 380)
+        R = ((-(wavelength - 440) / (440 - 380)) * attenuation) ** gamma
+        G = 0.0
+        B = (1.0 * attenuation) ** gamma
+    elif wavelength >= 440 and wavelength <= 490:
+        R = 0.0
+        G = ((wavelength - 440) / (490 - 440)) ** gamma
+        B = 1.0
+    elif wavelength >= 490 and wavelength <= 510:
+        R = 0.0
+        G = 1.0
+        B = (-(wavelength - 510) / (510 - 490)) ** gamma
+    elif wavelength >= 510 and wavelength <= 580:
+        R = ((wavelength - 510) / (580 - 510)) ** gamma
+        G = 1.0
+        B = 0.0
+    elif wavelength >= 580 and wavelength <= 645:
+        R = 1.0
+        G = (-(wavelength - 645) / (645 - 580)) ** gamma
+        B = 0.0
+    elif wavelength >= 645 and wavelength <= 750:
+        attenuation = 0.3 + 0.7 * (750 - wavelength) / (750 - 645)
+        R = (1.0 * attenuation) ** gamma
+        G = 0.0
+        B = 0.0
+    else:
+        R = 0.0
+        G = 0.0
+        B = 0.0
+#    R *= 255
+#    G *= 255
+#    B *= 255
+    return (R, G, B)
+plt.rcParams.update({'font.size': 12,
+                     'axes.titlesize': 18,
+                     'axes.labelsize': 12,
+                     'lines.linewidth': 1,
+                     'lines.markersize': 10,
+                     'xtick.labelsize' : 12,
+                     'ytick.labelsize' : 12,
+                     'xtick.top' : True,
+                     'xtick.direction' : 'in',
+                     'ytick.right' : True,
+                     'ytick.direction' : 'in',
+})
+```
+
+
+
+```{python}
+#| cold-fold: true
+#| fig-align: center
+#| fig-cap: "Refractive index of different glasses as a function of the wavelength."
+#| label: fig-wavelength-dependence
+
+
+bk7=pd.read_csv("data/BK7.csv",delimiter=",")
+sf10=pd.read_csv("data/SF10.csv",delimiter=",")
+fk51a=pd.read_csv("data/FK51A.csv",delimiter=",")
+plt.figure(figsize=(4,4))
+plt.plot(bk7.wl*1000,bk7.n,label="BK7")
+plt.plot(sf10.wl*1000,sf10.n,label="SF10")
+plt.plot(fk51a.wl*1000,fk51a.n,label="FK51A")
+plt.xlim(300,900)
+plt.xlabel("wavelength [nm]")
+plt.ylabel("refractive index n")
+plt.legend()
+plt.show()
+```

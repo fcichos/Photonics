@@ -1,0 +1,19 @@
+---
+title: "Resources for Introduction to Photonics"
+---
+
+I will refer in the lecture to several resources from which I have listed here some useful books. The most comprehensive one is Fundamentals of Photonics by Saleh and Teich.
+
+- Fundamentals of Photonics, Saleh/Teich
+- Optics, Hecht
+- Classical Electrodynamics, Jackson
+- [Introduction to Fourier Optics, Goodman](https://archive.org/details/GoodmanFourierOptics/mode/2up)
+- Optical Coherence and Quantum Optics, Mandel/Wolf
+- Nonlinear Optics, Bloembergen
+- Nonlinear Optics, Boyd
+- Plasmonics: Fundamentals and Applications, Maier
+- Principles of Nano-Optics, Hecht/Nowotny
+
+
+
+Besides that, the field of photonics is full of interesting research articles that will appear here as we go:

@@ -1,0 +1,14 @@
+---
+title: "Lab Course"
+---
+
+At the end of the course, we will conduct a block lab course where students will have the opportunity to apply the principles of Fourier Optics in a hands-on setting. Students should form groups of 4-5 people, and each group will be allocated two days for experimentation.
+
+The lab course is designed to promote free experimentation. Each group will:
+
+- On the first day: Brainstorm and develop ideas for experiments using the provided optical equipment, start with experiments
+- On the second day: Carry out the planned experiments and write up the results in the afternoon
+
+We will provide a set of optical equipment for each group to explore concepts from Fourier Optics in a practical way. Possible dates for the lab course will be published in the second half of the semester. A sign-up form will be made available for registration.
+
+![](../assets/images/lecture01/setup.png){fig-align="center"}

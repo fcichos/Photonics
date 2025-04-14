@@ -1,0 +1,27 @@
+---
+title: "Instructors"
+---
+
+## Lectures
+### Prof. Dr. Frank Cichos
+
+- Linnéstr. 5, 04103 Leipzig
+- Office: 322
+- Phone: +49 341 97 32571
+- Email: *lastname@physik.uni-leipzig.de*
+
+
+## Lab Course
+
+### Felix Patzschke
+
+- Linnéstr. 5, 04103 Leipzig
+- Office: 318
+- Phone: +49 341 97 32572
+
+
+### Lisa Rohde
+
+- Linnéstr. 5, 04103 Leipzig
+- Office: 127
+- Phone: +49 341 97 32581

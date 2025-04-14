@@ -1,0 +1,10 @@
+---
+title: "Photonics"
+author: Frank Cichos
+---
+
+![Photonics Logo](assets/images/photonics_banner.png)
+
+Photonics is a field of science that is manipulating the flow of light. It contains many facets of research involving light propgation from fundamentals involving light matter interaction to applications involving photonic computing with disordered media or single light quanta to adaptive superresolution microscopy. It is one of the fastest growing fields.
+
+In this course we will introduce into the field of optics and photonics. We will start with simple but powerful descriptions of light propagation using ray optics to more advanced physics using electromagnetic waves. We will explore Fourier optics, anisotropic media and non-linear optics to lay the foundation to more complex topics in advanced lecture series.

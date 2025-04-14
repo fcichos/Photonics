@@ -1,0 +1,23 @@
+
+
+## Electromagnetic Theory (15 minutes)
+- Maxwell's equations overview
+- Light as electromagnetic waves
+- Key properties: polarization, dispersion
+- Speed of light derivation
+- Electromagnetic spectrum
+- Connection between wave optics and electromagnetic theory
+
+## Quantum Nature of Light (15 minutes)
+- Wave-particle duality introduction
+- Photon concept preview
+- Energy quantization
+- Brief mention of photon statistics
+- Modern quantum optics applications
+
+## Comparative Analysis and Conclusion (5 minutes)
+- Domains of validity for different light models
+- When to use which description
+- Unified perspective on the nature of light
+- Preview of upcoming lectures
+- Q&A

@@ -1,0 +1,16 @@
+---
+title: "Course Schedule"
+---
+
+## Lectures
+
+The course will be held in two weekly lectures, starting **09.04.2025**. The course will be held in English.
+
+::: {.callout-note}
+## Lecture Times
+- Wednesday 15:15 am – 16:45 pm SR532
+:::
+
+## Lab Course
+
+Possible dates for the lab course will be published in the second half of the semester. A sign-up form will be made available for registration.
