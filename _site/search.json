@@ -4,7 +4,13 @@
     "href": "lectures/lecture01/02-lecture01.html",
     "title": "Optical Elements Part II",
     "section": "",
-    "text": "Code\nbk7=pd.read_csv(\"data/BK7.csv\",delimiter=\",\")\nsf10=pd.read_csv(\"data/SF10.csv\",delimiter=\",\")\nfk51a=pd.read_csv(\"data/FK51A.csv\",delimiter=\",\")\nplt.figure(figsize=(4,4))\nplt.plot(bk7.wl*1000,bk7.n,label=\"BK7\")\nplt.plot(sf10.wl*1000,sf10.n,label=\"SF10\")\nplt.plot(fk51a.wl*1000,fk51a.n,label=\"FK51A\")\nplt.xlim(300,900)\nplt.xlabel(\"wavelength [nm]\")\nplt.ylabel(\"refractive index n\")\nplt.legend()\nplt.show()\n\n\n\n\n\n\n\n\nFigure 1— Refractive index of different glasses as a function of the wavelength."
+    "text": "Code\nbk7=pd.read_csv(\"data/BK7.csv\",delimiter=\",\")\nsf10=pd.read_csv(\"data/SF10.csv\",delimiter=\",\")\nfk51a=pd.read_csv(\"data/FK51A.csv\",delimiter=\",\")\nplt.figure(figsize=(4,4))\nplt.plot(bk7.wl*1000,bk7.n,label=\"BK7\")\nplt.plot(sf10.wl*1000,sf10.n,label=\"SF10\")\nplt.plot(fk51a.wl*1000,fk51a.n,label=\"FK51A\")\nplt.xlim(300,900)\nplt.xlabel(\"wavelength [nm]\")\nplt.ylabel(\"refractive index n\")\nplt.legend()\nplt.show()\n\n\n\n\n\n\n\n\nFigure 1— Refractive index of different glasses as a function of the wavelength.",
+    "crumbs": [
+      "Home",
+      "Python Basics",
+      "Lecture 1",
+      "Theories of Light"
+    ]
   },
   {
     "objectID": "lectures/lecture01/lecture1_outline.html",
