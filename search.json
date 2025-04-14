@@ -1,5 +1,40 @@
 [
   {
+    "objectID": "lectures/lecture01/introduction.html",
+    "href": "lectures/lecture01/introduction.html",
+    "title": "Introduction",
+    "section": "",
+    "text": "RC Time Constants: As circuit dimensions shrink, the RC time constant doesn’t scale favorably, creating a fundamental speed limit for electronic signal propagation.\nJoule Heating: Current flow through resistive elements produces heat proportional to I²R, which becomes increasingly problematic as device density increases according to Moore’s Law.\nSkin Effect: At high frequencies, current flows primarily near conductor surfaces due to electromagnetic field penetration limitations, increasing effective resistance.\nElectromagnetic Interference: Current-carrying wires act as both transmitters and receivers of electromagnetic radiation, creating cross-talk issues that worsen with frequency."
+  },
+  {
+    "objectID": "lectures/lecture01/introduction.html#fundamental-physical-limitations-of-electronics",
+    "href": "lectures/lecture01/introduction.html#fundamental-physical-limitations-of-electronics",
+    "title": "Introduction",
+    "section": "",
+    "text": "RC Time Constants: As circuit dimensions shrink, the RC time constant doesn’t scale favorably, creating a fundamental speed limit for electronic signal propagation.\nJoule Heating: Current flow through resistive elements produces heat proportional to I²R, which becomes increasingly problematic as device density increases according to Moore’s Law.\nSkin Effect: At high frequencies, current flows primarily near conductor surfaces due to electromagnetic field penetration limitations, increasing effective resistance.\nElectromagnetic Interference: Current-carrying wires act as both transmitters and receivers of electromagnetic radiation, creating cross-talk issues that worsen with frequency."
+  },
+  {
+    "objectID": "lectures/lecture01/introduction.html#advantages-from-maxwells-equations-perspective",
+    "href": "lectures/lecture01/introduction.html#advantages-from-maxwells-equations-perspective",
+    "title": "Introduction",
+    "section": "Advantages from Maxwell’s Equations Perspective",
+    "text": "Advantages from Maxwell’s Equations Perspective\n\nPhoton vs. Electron Energy: Photons at optical frequencies (~10^14 Hz) have energies of ~1-2 eV, while electronic transitions in semiconductors operate at much lower energies, enabling fundamentally higher information bandwidth.\nWave-Particle Nature: Light’s dual nature allows it to be guided, focused, and manipulated without the scattering mechanisms that limit electron transport in solids.\nDispersion Relations: The dispersion relation for photons in waveguides can be engineered more flexibly than electronic band structures in semiconductors."
+  },
+  {
+    "objectID": "lectures/lecture01/introduction.html#quantitative-comparisons",
+    "href": "lectures/lecture01/introduction.html#quantitative-comparisons",
+    "title": "Introduction",
+    "section": "Quantitative Comparisons",
+    "text": "Quantitative Comparisons\n\nInformation Capacity: According to Shannon’s theorem, channel capacity increases linearly with bandwidth. Optical frequencies (~100 THz) offer approximately 10,000 times more bandwidth than the highest practical electronic frequencies (~10 GHz).\nPropagation Losses: Modern optical fibers achieve losses of ~0.2 dB/km, while electronic transmission lines typically experience losses of 10-100 dB/km at high frequencies.\nEnergy Per Bit: Theoretical minimum energy to transmit one bit optically is orders of magnitude lower than electronic transmission (~10^-18 J vs ~10^-15 J)."
+  },
+  {
+    "objectID": "lectures/lecture01/introduction.html#quantum-mechanical-considerations",
+    "href": "lectures/lecture01/introduction.html#quantum-mechanical-considerations",
+    "title": "Introduction",
+    "section": "Quantum Mechanical Considerations",
+    "text": "Quantum Mechanical Considerations\n\nCoherence Properties: Photons maintain quantum coherence over much longer distances than electrons in solid-state environments, enabling quantum information applications.\nNon-interacting Bosons: Unlike electrons (fermions), photons don’t directly interact with each other, allowing signals to cross without interference."
+  },
+  {
     "objectID": "lectures/lecture01/02-lecture01.html",
     "href": "lectures/lecture01/02-lecture01.html",
     "title": "Optical Elements Part II",
@@ -10,125 +45,6 @@
       "Python Basics",
       "Lecture 1",
       "Theories of Light"
-    ]
-  },
-  {
-    "objectID": "lectures/lecture01/lecture1_outline.html",
-    "href": "lectures/lecture01/lecture1_outline.html",
-    "title": "Photonics",
-    "section": "",
-    "text": "Maxwell’s equations overview\nLight as electromagnetic waves\nKey properties: polarization, dispersion\nSpeed of light derivation\nElectromagnetic spectrum\nConnection between wave optics and electromagnetic theory"
-  },
-  {
-    "objectID": "lectures/lecture01/lecture1_outline.html#electromagnetic-theory-15-minutes",
-    "href": "lectures/lecture01/lecture1_outline.html#electromagnetic-theory-15-minutes",
-    "title": "Photonics",
-    "section": "",
-    "text": "Maxwell’s equations overview\nLight as electromagnetic waves\nKey properties: polarization, dispersion\nSpeed of light derivation\nElectromagnetic spectrum\nConnection between wave optics and electromagnetic theory"
-  },
-  {
-    "objectID": "lectures/lecture01/lecture1_outline.html#quantum-nature-of-light-15-minutes",
-    "href": "lectures/lecture01/lecture1_outline.html#quantum-nature-of-light-15-minutes",
-    "title": "Photonics",
-    "section": "Quantum Nature of Light (15 minutes)",
-    "text": "Quantum Nature of Light (15 minutes)\n\nWave-particle duality introduction\nPhoton concept preview\nEnergy quantization\nBrief mention of photon statistics\nModern quantum optics applications"
-  },
-  {
-    "objectID": "lectures/lecture01/lecture1_outline.html#comparative-analysis-and-conclusion-5-minutes",
-    "href": "lectures/lecture01/lecture1_outline.html#comparative-analysis-and-conclusion-5-minutes",
-    "title": "Photonics",
-    "section": "Comparative Analysis and Conclusion (5 minutes)",
-    "text": "Comparative Analysis and Conclusion (5 minutes)\n\nDomains of validity for different light models\nWhen to use which description\nUnified perspective on the nature of light\nPreview of upcoming lectures\nQ&A"
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "About this site"
-  },
-  {
-    "objectID": "course-info/schedule.html",
-    "href": "course-info/schedule.html",
-    "title": "Course Schedule",
-    "section": "",
-    "text": "The course will be held in two weekly lectures, starting 09.04.2025. The course will be held in English.\n\n\n\n\n\n\nLecture Times\n\n\n\n\nWednesday 15:15 am – 16:45 pm SR532",
-    "crumbs": [
-      "Home",
-      "Course Info",
-      "Schedule"
-    ]
-  },
-  {
-    "objectID": "course-info/schedule.html#lectures",
-    "href": "course-info/schedule.html#lectures",
-    "title": "Course Schedule",
-    "section": "",
-    "text": "The course will be held in two weekly lectures, starting 09.04.2025. The course will be held in English.\n\n\n\n\n\n\nLecture Times\n\n\n\n\nWednesday 15:15 am – 16:45 pm SR532",
-    "crumbs": [
-      "Home",
-      "Course Info",
-      "Schedule"
-    ]
-  },
-  {
-    "objectID": "course-info/schedule.html#lab-course",
-    "href": "course-info/schedule.html#lab-course",
-    "title": "Course Schedule",
-    "section": "Lab Course",
-    "text": "Lab Course\nPossible dates for the lab course will be published in the second half of the semester. A sign-up form will be made available for registration.",
-    "crumbs": [
-      "Home",
-      "Course Info",
-      "Schedule"
-    ]
-  },
-  {
-    "objectID": "course-info/exam.html",
-    "href": "course-info/exam.html",
-    "title": "Exam",
-    "section": "",
-    "text": "Exam Format\n\n\n\nThis course will end with an oral exam of 30 minutes duration. The exams will be held at after the end of the course during the reading period and the week after.\n\n\n\n\n\n\n\n\nExam Eligibility\n\n\n\nThere are no preconditions for taking the exam.",
-    "crumbs": [
-      "Home",
-      "Course Info",
-      "Exams"
-    ]
-  },
-  {
-    "objectID": "course-info/intructors.html",
-    "href": "course-info/intructors.html",
-    "title": "Instructors",
-    "section": "",
-    "text": "Linnéstr. 5, 04103 Leipzig\nOffice: 322\nPhone: +49 341 97 32571\nEmail: lastname@physik.uni-leipzig.de",
-    "crumbs": [
-      "Home",
-      "Course Info",
-      "Instructor"
-    ]
-  },
-  {
-    "objectID": "course-info/intructors.html#lectures",
-    "href": "course-info/intructors.html#lectures",
-    "title": "Instructors",
-    "section": "",
-    "text": "Linnéstr. 5, 04103 Leipzig\nOffice: 322\nPhone: +49 341 97 32571\nEmail: lastname@physik.uni-leipzig.de",
-    "crumbs": [
-      "Home",
-      "Course Info",
-      "Instructor"
-    ]
-  },
-  {
-    "objectID": "course-info/intructors.html#lab-course",
-    "href": "course-info/intructors.html#lab-course",
-    "title": "Instructors",
-    "section": "Lab Course",
-    "text": "Lab Course\n\nFelix Patzschke\n\nLinnéstr. 5, 04103 Leipzig\nOffice: 318\nPhone: +49 341 97 32572\n\n\n\nLisa Rohde\n\nLinnéstr. 5, 04103 Leipzig\nOffice: 127\nPhone: +49 341 97 32581",
-    "crumbs": [
-      "Home",
-      "Course Info",
-      "Instructor"
     ]
   },
   {
@@ -230,15 +146,92 @@
     "text": "Lecture 13: Advanced Topics and Future Directions\n\nIntegrated photonics overview\nPhotonic crystals and metamaterials\nQuantum photonic technologies\nOptical computing advances\nRecent breakthroughs in microscopy\nEmerging trends in nanophotonics\nCourse summary and comprehensive review"
   },
   {
-    "objectID": "course-info/labcourse.html",
-    "href": "course-info/labcourse.html",
-    "title": "Lab Course",
+    "objectID": "course-info/schedule.html",
+    "href": "course-info/schedule.html",
+    "title": "Course Schedule",
     "section": "",
-    "text": "At the end of the course, we will conduct a block lab course where students will have the opportunity to apply the principles of Fourier Optics in a hands-on setting. Students should form groups of 4-5 people, and each group will be allocated two days for experimentation.\nThe lab course is designed to promote free experimentation. Each group will:\n\nOn the first day: Brainstorm and develop ideas for experiments using the provided optical equipment, start with experiments\nOn the second day: Carry out the planned experiments and write up the results in the afternoon\n\nWe will provide a set of optical equipment for each group to explore concepts from Fourier Optics in a practical way. Possible dates for the lab course will be published in the second half of the semester. A sign-up form will be made available for registration.",
+    "text": "The course will be held in two weekly lectures, starting 09.04.2025. The course will be held in English.\n\n\n\n\n\n\nLecture Times\n\n\n\n\nWednesday 15:15 am – 16:45 pm SR532",
     "crumbs": [
       "Home",
       "Course Info",
-      "Lab Course"
+      "Schedule"
+    ]
+  },
+  {
+    "objectID": "course-info/schedule.html#lectures",
+    "href": "course-info/schedule.html#lectures",
+    "title": "Course Schedule",
+    "section": "",
+    "text": "The course will be held in two weekly lectures, starting 09.04.2025. The course will be held in English.\n\n\n\n\n\n\nLecture Times\n\n\n\n\nWednesday 15:15 am – 16:45 pm SR532",
+    "crumbs": [
+      "Home",
+      "Course Info",
+      "Schedule"
+    ]
+  },
+  {
+    "objectID": "course-info/schedule.html#lab-course",
+    "href": "course-info/schedule.html#lab-course",
+    "title": "Course Schedule",
+    "section": "Lab Course",
+    "text": "Lab Course\nPossible dates for the lab course will be published in the second half of the semester. A sign-up form will be made available for registration.",
+    "crumbs": [
+      "Home",
+      "Course Info",
+      "Schedule"
+    ]
+  },
+  {
+    "objectID": "course-info/intructors.html",
+    "href": "course-info/intructors.html",
+    "title": "Instructors",
+    "section": "",
+    "text": "Linnéstr. 5, 04103 Leipzig\nOffice: 322\nPhone: +49 341 97 32571\nEmail: lastname@physik.uni-leipzig.de",
+    "crumbs": [
+      "Home",
+      "Course Info",
+      "Instructor"
+    ]
+  },
+  {
+    "objectID": "course-info/intructors.html#lectures",
+    "href": "course-info/intructors.html#lectures",
+    "title": "Instructors",
+    "section": "",
+    "text": "Linnéstr. 5, 04103 Leipzig\nOffice: 322\nPhone: +49 341 97 32571\nEmail: lastname@physik.uni-leipzig.de",
+    "crumbs": [
+      "Home",
+      "Course Info",
+      "Instructor"
+    ]
+  },
+  {
+    "objectID": "course-info/intructors.html#lab-course",
+    "href": "course-info/intructors.html#lab-course",
+    "title": "Instructors",
+    "section": "Lab Course",
+    "text": "Lab Course\n\nFelix Patzschke\n\nLinnéstr. 5, 04103 Leipzig\nOffice: 318\nPhone: +49 341 97 32572\n\n\n\nLisa Rohde\n\nLinnéstr. 5, 04103 Leipzig\nOffice: 127\nPhone: +49 341 97 32581",
+    "crumbs": [
+      "Home",
+      "Course Info",
+      "Instructor"
+    ]
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Photonics",
+    "section": "",
+    "text": "Photonics Logo\n\n\nPhotonics is a field of science that is manipulating the flow of light. It contains many facets of research involving light propgation from fundamentals involving light matter interaction to applications involving photonic computing with disordered media or single light quanta to adaptive superresolution microscopy. It is one of the fastest growing fields.\nIn this course we will introduce into the field of optics and photonics. We will start with simple but powerful descriptions of light propagation using ray optics to more advanced physics using electromagnetic waves. We will explore Fourier optics, anisotropic media and non-linear optics to lay the foundation to more complex topics in advanced lecture series.",
+    "crumbs": [
+      "Home"
     ]
   },
   {
@@ -254,49 +247,56 @@
     ]
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Photonics",
+    "objectID": "course-info/labcourse.html",
+    "href": "course-info/labcourse.html",
+    "title": "Lab Course",
     "section": "",
-    "text": "Photonics Logo\n\n\nPhotonics is a field of science that is manipulating the flow of light. It contains many facets of research involving light propgation from fundamentals involving light matter interaction to applications involving photonic computing with disordered media or single light quanta to adaptive superresolution microscopy. It is one of the fastest growing fields.\nIn this course we will introduce into the field of optics and photonics. We will start with simple but powerful descriptions of light propagation using ray optics to more advanced physics using electromagnetic waves. We will explore Fourier optics, anisotropic media and non-linear optics to lay the foundation to more complex topics in advanced lecture series.",
+    "text": "At the end of the course, we will conduct a block lab course where students will have the opportunity to apply the principles of Fourier Optics in a hands-on setting. Students should form groups of 4-5 people, and each group will be allocated two days for experimentation.\nThe lab course is designed to promote free experimentation. Each group will:\n\nOn the first day: Brainstorm and develop ideas for experiments using the provided optical equipment, start with experiments\nOn the second day: Carry out the planned experiments and write up the results in the afternoon\n\nWe will provide a set of optical equipment for each group to explore concepts from Fourier Optics in a practical way. Possible dates for the lab course will be published in the second half of the semester. A sign-up form will be made available for registration.",
     "crumbs": [
-      "Home"
+      "Home",
+      "Course Info",
+      "Lab Course"
     ]
   },
   {
-    "objectID": "lectures/lecture01/introduction.html",
-    "href": "lectures/lecture01/introduction.html",
-    "title": "Introduction",
+    "objectID": "course-info/exam.html",
+    "href": "course-info/exam.html",
+    "title": "Exam",
     "section": "",
-    "text": "RC Time Constants: As circuit dimensions shrink, the RC time constant doesn’t scale favorably, creating a fundamental speed limit for electronic signal propagation.\nJoule Heating: Current flow through resistive elements produces heat proportional to I²R, which becomes increasingly problematic as device density increases according to Moore’s Law.\nSkin Effect: At high frequencies, current flows primarily near conductor surfaces due to electromagnetic field penetration limitations, increasing effective resistance.\nElectromagnetic Interference: Current-carrying wires act as both transmitters and receivers of electromagnetic radiation, creating cross-talk issues that worsen with frequency."
+    "text": "Exam Format\n\n\n\nThis course will end with an oral exam of 30 minutes duration. The exams will be held at after the end of the course during the reading period and the week after.\n\n\n\n\n\n\n\n\nExam Eligibility\n\n\n\nThere are no preconditions for taking the exam.",
+    "crumbs": [
+      "Home",
+      "Course Info",
+      "Exams"
+    ]
   },
   {
-    "objectID": "lectures/lecture01/introduction.html#fundamental-physical-limitations-of-electronics",
-    "href": "lectures/lecture01/introduction.html#fundamental-physical-limitations-of-electronics",
-    "title": "Introduction",
+    "objectID": "lectures/lecture01/lecture1_outline.html",
+    "href": "lectures/lecture01/lecture1_outline.html",
+    "title": "Photonics",
     "section": "",
-    "text": "RC Time Constants: As circuit dimensions shrink, the RC time constant doesn’t scale favorably, creating a fundamental speed limit for electronic signal propagation.\nJoule Heating: Current flow through resistive elements produces heat proportional to I²R, which becomes increasingly problematic as device density increases according to Moore’s Law.\nSkin Effect: At high frequencies, current flows primarily near conductor surfaces due to electromagnetic field penetration limitations, increasing effective resistance.\nElectromagnetic Interference: Current-carrying wires act as both transmitters and receivers of electromagnetic radiation, creating cross-talk issues that worsen with frequency."
+    "text": "Maxwell’s equations overview\nLight as electromagnetic waves\nKey properties: polarization, dispersion\nSpeed of light derivation\nElectromagnetic spectrum\nConnection between wave optics and electromagnetic theory"
   },
   {
-    "objectID": "lectures/lecture01/introduction.html#advantages-from-maxwells-equations-perspective",
-    "href": "lectures/lecture01/introduction.html#advantages-from-maxwells-equations-perspective",
-    "title": "Introduction",
-    "section": "Advantages from Maxwell’s Equations Perspective",
-    "text": "Advantages from Maxwell’s Equations Perspective\n\nPhoton vs. Electron Energy: Photons at optical frequencies (~10^14 Hz) have energies of ~1-2 eV, while electronic transitions in semiconductors operate at much lower energies, enabling fundamentally higher information bandwidth.\nWave-Particle Nature: Light’s dual nature allows it to be guided, focused, and manipulated without the scattering mechanisms that limit electron transport in solids.\nDispersion Relations: The dispersion relation for photons in waveguides can be engineered more flexibly than electronic band structures in semiconductors."
+    "objectID": "lectures/lecture01/lecture1_outline.html#electromagnetic-theory-15-minutes",
+    "href": "lectures/lecture01/lecture1_outline.html#electromagnetic-theory-15-minutes",
+    "title": "Photonics",
+    "section": "",
+    "text": "Maxwell’s equations overview\nLight as electromagnetic waves\nKey properties: polarization, dispersion\nSpeed of light derivation\nElectromagnetic spectrum\nConnection between wave optics and electromagnetic theory"
   },
   {
-    "objectID": "lectures/lecture01/introduction.html#quantitative-comparisons",
-    "href": "lectures/lecture01/introduction.html#quantitative-comparisons",
-    "title": "Introduction",
-    "section": "Quantitative Comparisons",
-    "text": "Quantitative Comparisons\n\nInformation Capacity: According to Shannon’s theorem, channel capacity increases linearly with bandwidth. Optical frequencies (~100 THz) offer approximately 10,000 times more bandwidth than the highest practical electronic frequencies (~10 GHz).\nPropagation Losses: Modern optical fibers achieve losses of ~0.2 dB/km, while electronic transmission lines typically experience losses of 10-100 dB/km at high frequencies.\nEnergy Per Bit: Theoretical minimum energy to transmit one bit optically is orders of magnitude lower than electronic transmission (~10^-18 J vs ~10^-15 J)."
+    "objectID": "lectures/lecture01/lecture1_outline.html#quantum-nature-of-light-15-minutes",
+    "href": "lectures/lecture01/lecture1_outline.html#quantum-nature-of-light-15-minutes",
+    "title": "Photonics",
+    "section": "Quantum Nature of Light (15 minutes)",
+    "text": "Quantum Nature of Light (15 minutes)\n\nWave-particle duality introduction\nPhoton concept preview\nEnergy quantization\nBrief mention of photon statistics\nModern quantum optics applications"
   },
   {
-    "objectID": "lectures/lecture01/introduction.html#quantum-mechanical-considerations",
-    "href": "lectures/lecture01/introduction.html#quantum-mechanical-considerations",
-    "title": "Introduction",
-    "section": "Quantum Mechanical Considerations",
-    "text": "Quantum Mechanical Considerations\n\nCoherence Properties: Photons maintain quantum coherence over much longer distances than electrons in solid-state environments, enabling quantum information applications.\nNon-interacting Bosons: Unlike electrons (fermions), photons don’t directly interact with each other, allowing signals to cross without interference."
+    "objectID": "lectures/lecture01/lecture1_outline.html#comparative-analysis-and-conclusion-5-minutes",
+    "href": "lectures/lecture01/lecture1_outline.html#comparative-analysis-and-conclusion-5-minutes",
+    "title": "Photonics",
+    "section": "Comparative Analysis and Conclusion (5 minutes)",
+    "text": "Comparative Analysis and Conclusion (5 minutes)\n\nDomains of validity for different light models\nWhen to use which description\nUnified perspective on the nature of light\nPreview of upcoming lectures\nQ&A"
   },
   {
     "objectID": "lectures/lecture01/01-lecture01.html",
