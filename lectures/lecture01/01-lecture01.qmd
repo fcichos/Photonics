@@ -1,5 +1,5 @@
 ---
-title: "Theories of Light"
+#title: "Theories of Light"
 jupyter: python3
 format:
   html:
@@ -46,15 +46,38 @@ def get_size(w,h):
 
 <!-- ## Ray Optics (20 minutes) -->
 
-## Ray Optics
+## Theories for light
+
+Light has been described through increasingly sophisticated theoretical frameworks throughout the history of physics. The simplest framework is *Ray Optics* or *Geometrical Optics*, which treats light as rays traveling along straight paths and applies geometrical principles to describe interactions with optical elements like lenses and mirrors. Moving beyond this approximation, *Wave Optics* introduces the wave nature of light, explaining phenomena such as interference and diffraction that ray optics cannot address. *Electromagnetic Optics* further refines our understanding by treating light as electromagnetic waves governed by Maxwell's equations, providing a complete classical description of light-matter interactions. For intense light sources, *Nonlinear Optics* becomes essential, describing how materials respond nonlinearly to strong electromagnetic fields, giving rise to frequency conversion and other novel effects. Finally, at the most fundamental level, *Quantum Optics* treats light as consisting of photons—quantum mechanical particles exhibiting both wave and particle properties—essential for understanding phenomena like spontaneous emission, entanglement, and the quantum nature of light-matter interactions. This course will progressively build your understanding through these increasingly sophisticated frameworks.
+
+### Ray Optics
 
 Ray optics, or geometric optics, provides a powerful framework for understanding light propagation when the wavelength is much **smaller than the dimensions of optical elements** involved. In this approach, light travels along straight lines called rays in homogeneous media, with well-defined paths that can be mathematically traced. This description serves as the foundation for analyzing many optical systems, from simple mirrors to complex microscopes and telescopes.
 
-The cornerstone of ray optics is **Fermat's Principle**, which states that light follows the path that minimizes the optical path length or, equivalently, the time of travel between two points. Mathematically, if we consider a path $C$ connecting points A and B, Fermat's Principle requires:
+#### Fermat's Principle: Integral and Differential Forms
+
+**Fermat's Principle** forms the foundation of ray optics, stating that light travels along the route that minimizes the total optical path length between any two points. This optical path length, expressed mathematically as $\int_C n(s)ds$, represents the effective distance light traverses through media of varying refractive indices. When this quantity is divided by the vacuum speed of light $c_0$, it yields the total travel time required for light to journey between those points.
+
+In its integral form:
 
 $$\delta\int_C n(s)ds = 0$$
 
-where $n(s)$ is the refractive index along the path and $ds$ is the differential path length. This variational principle leads directly to the laws of reflection and refraction.
+where $n(s)$ is the refractive index along path $C$ and $ds$ is the differential path length.
+
+
+The same principle can be expressed as a differential equation that describes how light bends in media with varying refractive indices:
+
+$$\frac{d}{ds}\left(n\frac{d\mathbf{r}}{ds}\right) = \nabla n$$
+
+This equation shows that rays bend toward regions of higher refractive index. In homogeneous media ($\nabla n = 0$), it simplifies to $\frac{d^2\mathbf{r}}{ds^2} = 0$, confirming that light follows straight lines.
+
+#### Optical Laws Derived from Fermat's Principle
+
+**Reflection**: At a planar interface, Fermat's Principle directly yields the law of reflection:
+
+$$\theta_i = \theta_r$$
+
+where $\theta_i$ is the angle of incidence and $\theta_r$ is the angle of reflection, both measured from the normal to the surface.
 
 ```{python}
 #| echo: true
@@ -145,16 +168,13 @@ plt.tight_layout()
 plt.show()
 ```
 
-**Reflection** For reflection at a planar interface, we can derive the law of reflection by considering a ray traveling from point A to point B via reflection at point P on a mirror. The total path length is $L = |AP| + |PB|$. According to Fermat's Principle, the actual path minimizes $L$, so we set:
 
-$$\frac{dL}{dx} = 0$$
 
-where $x$ is the position of P. After calculus manipulation, this yields the familiar law of reflection:
+**Refraction**: Between media with different refractive indices, Fermat's Principle yields Snell's law:
 
-$$\theta_i = \theta_r$$
+$$n_1\sin\theta_1 = n_2\sin\theta_2$$
 
-where $\theta_i$ is the angle of incidence and $\theta_r$ is the angle of reflection, both measured from the normal to the surface.
-
+where $\theta_1$ and $\theta_2$ are the angles of incidence and refraction, respectively.
 
 
 ```{python}
@@ -270,231 +290,31 @@ plt.tight_layout()
 plt.show()
 ```
 
+
 ::: {.callout-note collapse="true"}
-### Destructive Interference of Non-Minimal Paths
-We can demonstrate that all paths except the shortest one interfere destructively using Feynman's path integral formulation. In this approach, light takes all possible paths between points A and B, with each path contributing an amplitude with phase $e^{iS/\hbar}$, where $S$ is the action proportional to the optical path length: $S = kL$ where $k = 2\pi/\lambda$ is the wave number.
+### Detailed Derivations from Fermat's Principle
 
-To understand why non-minimal paths cancel out, let's denote the minimal path as $x_0(t)$ and nearby paths as $x_0(t) + \delta x(t)$, where $\delta x(t)$ represents small deviations. The action for these perturbed paths expands as:
-$$S[x_0 + \delta x] = S[x_0] + \frac{\delta S}{\delta x}\bigg|_{x_0} \delta x + \frac{1}{2}\frac{\delta^2 S}{\delta x^2}\bigg|_{x_0} (\delta x)^2 + ...$$
+#### Reflection Law Derivation
+For reflection at a planar interface, we consider a ray traveling from point A to point B via reflection at point P on a mirror. The total path length is $L = |AP| + |PB|$. According to Fermat's Principle, the actual path minimizes $L$, so we set:
 
-Since $x_0$ is the extremal path (according to Fermat's principle), we have $\frac{\delta S}{\delta x}\bigg|_{x_0} = 0$. This means the first-order term vanishes, leaving the quadratic term as the leading contribution to the phase difference:
+$$\frac{dL}{dx} = 0$$
 
-$$\Delta\phi = S[x] - S[x_0] \approx \frac{1}{2}\frac{\delta^2 S}{\delta x^2}\bigg|_{x_0} (\delta x)^2$$
+where $x$ is the position of P along the mirror. This leads to the condition that the angle of incidence equals the angle of reflection.
 
-This quadratic dependence is crucial: as we move away from the minimal path, the phase difference increases as the square of the deviation $\delta x$. When we consider a specific deviation $\delta x_c$ where $\Delta\phi = \pi$, paths will contribute with exactly opposite phases compared to the minimal path, leading to destructive interference:
+**Law of Reflection**: The angle of incidence equals the angle of reflection.
+$$\theta_i = \theta_r$$
 
-$$\frac{1}{2}\frac{\delta^2 S}{\delta x^2}\bigg|_{x_0} (\delta x_c)^2 = \pi$$
-
-For even larger deviations, the phase differences continue to increase, creating alternating bands of constructive and destructive interference. When summed over all possible paths, these rapidly varying phases cancel each other out.
-
-For paths far from the minimal one, the destructive interference is even more pronounced. Mathematically, we can demonstrate this by considering a continuous distribution of paths with optical path lengths $L$. The total amplitude contribution from these paths is given by:
-
-$$A = \int e^{ikL(x)} dx$$
-
-For non-minimal paths, we can parametrize the path length as $L(x) = L_0 + \alpha(x-x_0)^2$ for some constant $\alpha$, where $x_0$ corresponds to the minimal path. The amplitude becomes:
-
-$$A = \int e^{ik(L_0 + \alpha(x-x_0)^2)} dx = e^{ikL_0}\int e^{ik\alpha(x-x_0)^2} dx$$
-
-This integral evaluates to:
-
-$$A = e^{ikL_0}\sqrt{\frac{\pi}{k\alpha}}e^{i\pi/4}$$
-
-The key insight is that the amplitude scales as $1/\sqrt{k\alpha}$, which means that as the curvature $\alpha$ of the path length function increases (as happens far from the minimal path), the contribution to the total amplitude diminishes. This mathematically proves why non-minimal path regions contribute negligibly to the overall path integral.
-
-This cancellation mechanism explains why light appears to follow only the path of least time in ray optics. The mathematics shows that constructive interference occurs only for paths very close to the minimal path, while all other paths destructively interfere with their neighbors. This phenomenon emerges naturally from wave properties without requiring quantum mechanical constants like ℏ. We can express this classically by setting $S = kL$ and observing how path differences relative to the wavelength create interference patterns.
-
-```{python}
-# | echo: true
-# | code-fold: true
-# | label: fig-phase
-# | fig-cap: Visualization of path phases in Fermat's principle. The figure shows how the phase varies with path deviation from the minimal path (marked by the vertical red line at zero). The quadratic relationship between phase and path deviation demonstrates why paths near the minimal one constructively interfere (similar phases), while non-minimal paths tend to cancel through destructive interference (rapidly varying phases).
-
-from matplotlib import cm
-
-# Parameters
-num_paths = 100
-min_path_index = num_paths // 2
-path_deviation = np.linspace(-2, 2, num_paths)  # Deviation from minimal path
-alpha = 5  # Curvature parameter controlling phase variation rate
-
-# Calculate phase for each path (quadratic dependence on deviation)
-phases = alpha * path_deviation**2
-
-# Set up the figure
-fig, ax = plt.subplots(figsize=get_size(14, 8))
-
-# Plot phase vs path deviation with a simple blue line and points
-ax.plot(path_deviation, phases, '-', color='blue', linewidth=2)
-
-# Highlight the minimal path
-ax.axvline(x=0, color='r', linestyle='--', linewidth=2, label='Minimal path')
-
-# Highlight paths near minimal path
-near_minimal = np.abs(path_deviation) < 0.3
-#ax.scatter(path_deviation[near_minimal], phases[near_minimal],
-#          color='green', s=70, label='Near minimal path', zorder=3)
-
-# Set labels and grid
-ax.set_xlabel('path deviation')
-ax.set_ylabel('phase [rad]')
-
-
-# Add horizontal lines at multiples of π to show constructive/destructive interference
-for i in range(int(np.max(phases)/np.pi) + 1):
-    if i == 0:
-        ax.axhline(y=i*np.pi, color='k', linestyle='-', alpha=0.2,
-                  label='Constructive interference')
-    elif i % 2 == 0:
-        ax.axhline(y=i*np.pi, color='k', linestyle='-', alpha=0.2)
-    else:
-        ax.axhline(y=i*np.pi, color='k', linestyle='--', alpha=0.2,
-                  label='Destructive interference' if i==1 else None)
-
-plt.tight_layout()
-plt.show()
-```
-:::
-
-
-**Refraction** Similarly, for refraction between two media with refractive indices $n_1$ and $n_2$, the optical path length is:
+#### Refraction Law Derivation
+For refraction between two media, the optical path length is:
 
 $$L = n_1|AP| + n_2|PB|$$
 
-Applying Fermat's Principle and solving the resulting equation leads to Snell's law:
+Applying the minimization condition $\frac{dL}{dx} = 0$ yields Snell's law.
 
+**Snell's Law**: The ratio of the sines of the angles of incidence and refraction equals the reciprocal of the ratio of the refractive indices.
 $$n_1\sin\theta_1 = n_2\sin\theta_2$$
 
-where $\theta_1$ and $\theta_2$ are the angles of incidence and refraction, respectively.
-
-These fundamental laws allow us to analyze the formation of images by various optical systems. For instance, in a thin lens with focal length $f$, we can establish the relationship between object distance $s_o$, image distance $s_i$, and focal length through the lens equation:
-
-$$\frac{1}{s_o} + \frac{1}{s_i} = \frac{1}{f}$$
-
-This equation enables us to predict image formation characteristics in optical instruments such as cameras, microscopes, and telescopes.
-
-Despite its power, ray optics has limitations. It cannot explain phenomena like diffraction, which occurs when light encounters obstacles or apertures comparable to its wavelength. Here, we need wave optics for a complete description. Additionally, ray optics fails to account for the finite width of beams and the existence of evanescent waves.
-
-
-
-```{python}
-#| echo: true
-#| code-fold: true
-#| label: fig-lens
-#| fig-cap: Ray diagram for a thin lens showing object and image formation
-
-# Set up the figure
-fig, ax = plt.subplots(figsize=get_size(18,7))
-
-# Define lens parameters
-f = 2  # focal length
-h_obj = 1.5  # object height
-s_o = 6  # object distance
-s_i = 1/(1/f - 1/s_o)  # image distance from lens formula
-h_img = -h_obj * s_i/s_o  # image height
-
-# Plot optical axis
-ax.axhline(y=0, color='black', linestyle='-')
-
-# Plot lens
-lens_height = 3
-ax.plot([0, 0], [-lens_height/2, lens_height/2], 'k-')
-# Add curved edges to represent a lens
-curve_x = np.linspace(-0.1, 0, 20)
-curve_y1 = lens_height/2 * np.sqrt(1 - (curve_x/0.1)**2)
-curve_y2 = -lens_height/2 * np.sqrt(1 - (curve_x/0.1)**2)
-ax.plot(curve_x, curve_y1, 'k-')
-ax.plot(curve_x, curve_y2, 'k-')
-
-# Plot focal points
-ax.plot(f, 0, 'ko', markersize=4)
-ax.plot(-f, 0, 'ko', markersize=4)
-ax.text(f, -0.4, r'$F$', fontsize=10)
-ax.text(-f, -0.4, r"$F'$", fontsize=10)
-
-# Plot object and image
-ax.arrow(-s_o, 0, 0, h_obj-0.1, head_width=0.1, head_length=0.1, fc='blue', ec='blue')
-ax.arrow(s_i, 0, 0, h_img+0.1, head_width=0.1, head_length=0.1, fc='red', ec='red')
-ax.text(-s_o+0.1, h_obj/2, r'object', color='blue', fontsize=9)
-ax.text(s_i+0.1, h_img/2, r'image', color='red', fontsize=9)
-
-# Principal rays
-# Ray 1: Parallel to axis, through focal point
-ax.plot([-s_o, 0], [h_obj, h_obj], 'b-', label='parallel to axis → through F')
-ax.plot([0, s_i], [h_obj, h_img], 'b-')
-
-# Ray 2: Through center, unchanged direction
-ax.plot([-s_o, s_i], [h_obj, h_img], 'g-',  label='through center')
-
-# Ray 3: Through focal point, parallel to axis
-ax.plot([-s_o, 0], [h_obj, 0], 'r-', label='through F → parallel to axis')
-ax.plot([0, s_i], [0, h_img], 'r-')
-
-# Add lens equation
-equation_text = r"$\frac{1}{s_o} + \frac{1}{s_i} = \frac{1}{f}$"
-ax.text(-5, -1.5, equation_text, fontsize=14, bbox=dict(facecolor='white', lw=0,
-    alpha=0.7))
-
-# Labels showing values
-ax.text(-s_o/2, 0.2, f"$s_o = {s_o}$")
-ax.text(s_i/2, 0.4, f"$s_i = {s_i:.2f}$")
-ax.text(0, -2, f"$f = {f}$")
-
-# Set plot limits and aspect ratio
-ax.set_xlim(-s_o-1, s_i+1)
-ax.set_ylim(-2.5, 2.5)
-#ax.set_aspect('equal')
-
-# Axis labels
-ax.set_xlabel('position')
-ax.set_ylabel('height')
-
-# Add legend for principal rays
-#ax.legend(loc='upper center', bbox_to_anchor=(0.5, -0.15), ncol=3, fontsize=8)
-
-plt.tight_layout()
-plt.show()
-```
-
-<!-- ## Wave Optics (20 minutes)
-- Wave equation derivation
-- Harmonic waves and their properties
-- Wave parameters: wavelength, frequency, amplitude
-- Superposition principle
-- Interference phenomena
-  - Constructive and destructive interference
-  - Young's double-slit experiment
-- Wave optics applications
-- Eikonal Theory and its applications
--->
-
-
-### Differential Description of Fermat's Principle
-
-While we've discussed Fermat's principle in its integral form, it can also be expressed as a differential equation that describes the path of light rays. This approach reveals how ray trajectories emerge from the underlying variational principle.
-
-Starting with Fermat's principle that light follows the path of least optical path length:
-
-$$\delta\int_C n(s)ds = 0$$
-
-We can derive the differential equation governing the ray path. If we parametrize the ray path as $\mathbf{r}(s)$ where $s$ is the arc length, then the ray equation becomes:
-
-$$\frac{d}{ds}\left(n\frac{d\mathbf{r}}{ds}\right) = \nabla n$$
-
-This equation states that the rate of change of the momentum vector ($n\frac{d\mathbf{r}}{ds}$) equals the gradient of the refractive index. In a medium with constant refractive index ($\nabla n = 0$), this simplifies to:
-
-$$\frac{d^2\mathbf{r}}{ds^2} = 0$$
-
-This confirms that light rays follow straight lines in homogeneous media.
-
-For a medium with a continuously varying refractive index $n(x,y,z)$, the ray equation becomes:
-
-$$\frac{d}{ds}\left(n\frac{d\mathbf{r}}{ds}\right) = \nabla n$$
-
-This differential form of Fermat's principle is particularly useful in gradient-index optics, where the refractive index changes continuously throughout the medium, causing light rays to follow curved paths. Examples include optical fibers with graded-index profiles and the atmosphere where temperature gradients create mirages.
-
-::: {.callout-note collapse="true"}
-### Deriving the Differential Form from the Integral Principle
-
+#### Differential Form Derivation
 To derive the differential ray equation from Fermat's integral principle, we apply the calculus of variations. Starting with the optical path length functional:
 
 $$L = \int_C n(s)ds = \int_{t_1}^{t_2} n(\mathbf{r}(t)) \left|\frac{d\mathbf{r}}{dt}\right| dt$$
@@ -513,9 +333,237 @@ Since this must hold for any variation $\mathbf{\eta}$, we obtain the Euler-Lagr
 
 $$\frac{d}{ds}\left(n\frac{d\mathbf{r}}{ds}\right) = \nabla n$$
 
-This is the ray equation in differential form. It shows that rays bend toward regions of higher refractive index, directly analogous to how a mechanical particle's trajectory is affected by a potential field in classical mechanics.
+This shows that rays bend toward regions of higher refractive index, directly analogous to how a mechanical particle's trajectory is affected by a potential field in classical mechanics.
 :::
 
+
+### Lenses
+
+The most important optical elements are lenses, which come in many different flavors. They consist of curved surfaces, which most commonly have the shape of a part of a spherical cap. It is, therefore, useful to have a look at the refraction at spherical surfaces.
+
+#### Refraction at spherical surfaces
+
+For our calculations of the refraction at spherical surfaces, we consider the sketch below.
+
+::: {#fig-curved-surface fig-align="center"}
+![](img/curved_surface.png){width=80%}
+
+Refraction at a curved surface.
+:::
+
+To derive an imaging equation for a lens, we aim to calculate the distance $b$ and angle $\theta_2$ at which a ray crosses the optical axis, given its origin at distance $a$ and angle $\theta_1$. We begin with Snell's law for the geometry:
+
+$$n_{1}\sin(\alpha+\theta_1)=n_{2}\sin(\alpha-\theta_2)$$
+
+We define key relationships:
+
+$$\sin(\alpha)=\frac{y}{R}, \quad \tan(\theta_1)=\frac{y}{a}, \quad \tan(\theta_2)=\frac{y}{b}$$
+
+To simplify this, we employ the **paraxial approximation**, which assumes all angles are small. This allows us to use first-order approximations of trigonometric functions, effectively linearizing them:
+
+$$\sin(\theta) \approx \theta+ O(\theta^{3}), \quad \tan(\theta) \approx \theta + O(\theta^{3}),\quad \cos(\theta)\approx 1 + O(\theta^{2})$$
+
+This approach, common in optics, significantly simplifies our calculations while maintaining accuracy for most practical scenarios involving lenses.
+
+With the help of these approximations we can write Snell's law for the curved surface as
+
+$$n_1(\alpha+\theta_1)=n_2(\alpha-\theta_2).$$
+
+With some slight transformation which you will find in the video of the online lecture we obtain, therefore,
+
+$$\theta_2=\frac{n_2-n_1}{n_2 R}y -\frac{n_1}{n_2}\theta_1,$$
+
+which is a purely linear equation in $y$ and $\theta_1$.
+
+::: {.callout-note collapse="true" #paraxial-approximation}
+### Paraxial Approximation
+
+The paraxial approximation is a fundamental simplification in optics that assumes all angles are small. This allows us to use linear approximations for trigonometric functions, significantly simplifying calculations while maintaining accuracy for most practical scenarios involving lenses.
+
+To visualize the validity of this approximation, let's examine two plots:
+
+1. The first plot compares sin(θ) (blue line) with its linear approximation θ (red dashed line) for angles ranging from 0 to π/2 radians.
+2. The second plot shows the absolute error between sin(θ) and θ.
+
+These plots demonstrate that:
+
+1. For small angles (roughly up to 0.5 radians or about 30 degrees), the approximation is very close to the actual sine function.
+2. The error increases rapidly for larger angles, indicating the limitations of the paraxial approximation.
+
+In most optical systems, especially those involving lenses, the angles of incident and refracted rays are typically small enough for this approximation to be valid. However, it's important to be aware of its limitations when dealing with wide-angle optical systems or scenarios where precision is critical.
+
+```{python}
+#| code-fold: true
+#| fig-cap: "Visualization of the paraxial approximation plotting the $\\sin(\\theta)$ and the linear approximation $\\theta$ (dashed line) for angles ranging from 0 to $\\pi/2$ radians."
+import numpy as np
+import matplotlib.pyplot as plt
+# Define the range of angles (in radians)
+theta = np.linspace(0, np.pi/2, 1000)
+
+# Calculate sin(theta) and theta (linear approximation)
+sin_theta = np.sin(theta)
+linear_approx = theta
+
+# Calculate the absolute error
+error = np.abs(sin_theta - linear_approx)
+
+# Create the plot with two subplots side by side
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(7.5, 4))
+
+# Plot sin(theta) and theta on the first subplot
+ax1.plot(theta, sin_theta, label='sin(θ)', color='blue')
+ax1.plot(theta, linear_approx, label='θ', color='red', linestyle='--')
+ax1.set_xlabel(r'$\theta$ [rad]')
+ax1.set_ylabel(r'$\sin(x),x$')
+ax1.legend()
+
+# Plot the error on the second subplot
+ax2.plot(theta, error, label='Absolute Error', color='green')
+ax2.set_xlabel(r'$\theta$ [rad]')
+ax2.set_ylabel('|sin(θ) - θ|')
+ax2.legend()
+
+# Adjust the layout and display the plot
+plt.tight_layout()
+plt.show()
+```
+:::
+
+Consider light originating from a point at distance $y$ from the optical axis. We'll analyze two rays: one traveling parallel to the optical axis and hitting the spherical surface at height $y$, and another incident at $y=0$.
+
+::: {#fig-image-curved fig-align="center"}
+![](img/image_curved.png){width=80%}
+
+Image formation at a curved surface.
+:::
+
+Applying our derived formula to these two cases:
+
+For the parallel ray ($\theta_1=0$):
+
+$$\theta_2=\frac{n_2-n_1}{n_2}\frac{y}{R}$$
+$$\theta_2=\frac{y+\Delta y}{b}$$
+
+Equating these expressions:
+
+$$\frac{y+\Delta y}{b}=\frac{n_2-n_1}{n_2}\frac{y}{R}$$
+
+For the ray through the center ($y=0$):
+
+$$n_2\frac{\Delta y}{b}=n_1\frac{y}{a}$$
+
+Combining these equations yields the imaging equation for a curved surface:
+
+$$\frac{n_1}{a}+\frac{n_2}{b}=\frac{n_2-n_1}{R}$$
+
+We can define a new quantity, the **focal length**, which depends only on the properties of the curved surface:
+
+$$f=\frac{n_2}{n_2-n_1}R$$
+
+::: {.callout-note}
+## Imaging Equation for Spherical Refracting Surface
+
+The sum of the inverse object and image distances equals the inverse focal length of the spherical refracting surface:
+
+$$\frac{n_1}{a}+\frac{n_2}{b}\approx\frac{n_2}{f}$$
+
+where the focal length of the refracting surface is given by:
+
+$$f=\frac{n_2}{n_2-n_1}R$$
+
+in the paraxial approximation.
+:::
+
+### Thin lens
+
+In our previous calculation we have found a linear relation between the incident angle $\theta_1$ with the optical axis, the incident height of the ray $y$ and the outgoing angle $\theta_2$:
+
+Analyzing refraction in a lens involves two spherical surfaces. Light initially travels from a medium with refractive index $n_1$ into the lens material with index $n_2$. The first surface's radius, $R_1$, is typically positive for a convex surface facing the incident light.
+
+At the second surface, the outgoing angle from the first refraction becomes the incident angle for the second refraction. Here, light travels from $n_2$ back into $n_1$. The radius $R_2$ of this surface often has a negative value in a converging lens due to its opposite curvature relative to the optical axis.
+
+::: {#fig-thin-lens-refraction fig-align="center"}
+![](img/thin_lens.png){width=60%}
+
+Refraction on two spherical surfaces.
+:::
+
+For thin lenses, where the thickness $d$ is much smaller than $R_1$ and $R_2$ ($d \ll R_1, R_2$), we can simplify our analysis. We assume that the height of the ray at both surfaces is approximately equal ($y \approx y'$), neglecting the displacement inside the lens.
+
+This simplification allows us to treat all refraction as occurring on a single plane at the lens center, known as the **principal plane**. This concept, illustrated by the dashed line in the figure, greatly simplifies optical calculations and ray tracing for thin lenses.
+
+The radii's sign convention (positive for convex surfaces facing incident light, negative for concave) and this two-surface analysis form the basis for the thin lens formula. This formula relates object distance, image distance, and focal length, encapsulating the lens's imaging properties.
+
+The result of the above calculation is leading to the imaging equation for the thin lens.
+
+::: {.callout-note}
+## Imaging Equation for Thin Lens
+
+The sum of the inverse object and image distances equals the inverse focal length of the thin lens:
+
+$$\frac{1}{a}+\frac{1}{b}\approx\frac{n_2-n_1}{n_1}\left (\frac{1}{R_1}-\frac{1}{R_2}\right )=\frac{1}{f}$$
+:::
+
+::: {.callout-note}
+## Lensmaker equation
+The focal length of a thin lens is calculated by the **lensmaker equation**:
+$$f=\frac{n_1}{n_2-n_1}\left ( \frac{R_1 R_2}{R_2 -R_1}\right)$$
+
+in the paraxial approximation.
+:::
+
+
+
+#### Image Construction
+
+Images of objects can be now constructed if we refer to rays which do not emerge from a position on the optical axis only. In this case, we consider three different rays (two are actually enough). If we use as in the case of a concave mirror a central and a parallel ray, we will find a position where all rays cross on the other side. The conversion of the rays is exactly the same as in the case of a spherical mirror. The relation between the position of the object and the image along the optical axis is described by the imaging equation.
+
+::: {#fig-thin-lens-imaging fig-align="center"}
+![](img/thin_lens_imaging.png){width=60%}
+
+Image construction on a thin lens.
+:::
+
+Similar to the concave mirror, we may now also find out the image size or the magnification of the lens.
+
+::: {.callout-note}
+## Magnification of a Lens
+
+The magnification is given by:
+
+$$M=\frac{h_{\rm image}}{h_{\rm object}}=-\frac{b}{a}=\frac{f}{f-a}$$
+
+where the negative sign is the result of the reverse orientation of the real images created by a lens.
+:::
+
+According to our previous consideration $M<0$ corresponds to a reversed image, while it is upright as the object for $M>0$. We, therefore, easily see the following:
+
+| Object Position | Image Characteristics | Magnification (M) | Image Type |
+|-----------------|------------------------|-------------------|------------|
+| $a < f$         | Upright and magnified  | $M > 0$           | Virtual    |
+| $f < a < 2f$    | Reversed and magnified | $M < -1$          | Real       |
+| $a = 2f$        | Reversed, same size    | $M = -1$          | Real       |
+| $a > 2f$        | Reversed and shrunk    | $-1 < M < 0$      | Real       |
+| $a = f$         | Appears at infinity    | $M = \infty$      | -          |
+
+
+The image below illustrates the construction of images in 4 of the above cases for a bi-convex lens, including the generation of a virtual image.
+
+|<img src="img/image_construction.png" width="100%">|
+|-|
+|**Fig.:** Image construction on a biconvex lens with a parallel and a central ray for different object distances.|
+
+### Thick lens
+
+For a thin lens, the displacement of the beam in height ($y,y^{\prime}$) due to the thickness has been neglected. That means that we can reduce all refracting action of the lens to a single plane, which we call a principle plane. This approximation is (independent of the paraxial approximation) not anymore true for lenses if the displacement $\Delta$ of the ray as in the image below cannot be neglected. Such lenses are called **thick lenses** and they do not have a single principle plane anymore. In fact, the principle plane splits up into two principle planes at a distance $h$.
+
+::: {#fig-thick-lens-planes fig-align="center"}
+![](img/thick_lens.png){width=80%}
+
+Thick lens principal planes.
+:::
+
+As indicated in the sketch above, an incident ray which is not deflected can be extended to its intersection with the optical axis at a point, which is a distance $h_1$ behind the lens surface. This is the location for the first principle plane. The position of the second principle plane at a distance $h_2$ before the back surface is found for by reversing the ray path. According to that, both principle planes have a distance $h=d-h_1+h_2$ (mind the sign of the $h$). Using some mathematical effort, one can show that the same imaging equation as for a thins lens can be used with a new definition of the focal length and taking into account that object and image distances refer to their principle planes.
 
 
 ### Thin Lenses and Fermat's Principle
@@ -631,4 +679,250 @@ The lens thus acts as a path equalizer - rays taking different paths through the
 
 
 
+::: {.callout-note collapse="true"}
+## Matrix Optics
+The above derived equations for a single spherical surface yield a linear relation between the input variables $y_1$ and $\theta_1$ and the output variables $y_2$ and $\theta_2$.
+The linear relation yields a great opportunity to express optical elements in terms of linear transformations (matrices). This is the basis of **matrix optics**. The matrix representation of a lens is given by
+
+$$\begin{pmatrix} y_2 \\ \theta_2 \end{pmatrix} = \begin{pmatrix} 1 & 0 \\ -\frac{1}{f} & 1 \end{pmatrix} \begin{pmatrix} y_1 \\ \theta_1 \end{pmatrix}$$
+
+where the matrix is called the **ABCD matrix** of the lens. Due to the linearization of Snells law w can write down more generally
+
+$$\begin{pmatrix} y_2 \\
+\theta_2 \end{pmatrix} = \begin{pmatrix} A & B \\ C & D \end{pmatrix} \begin{pmatrix} y_1 \\ \theta_1 \end{pmatrix}$$
+
+and one can obtain a Matrix for all types of optical elements such as free space of dustance $d$.
+
+$$\begin{bmatrix}
+A & B\\
+C & D
+\end{bmatrix}
+=
+\begin{bmatrix}
+1 & d\\
+0 & 1
+\end{bmatrix}
+$$
+
+Here are some useful matrices for optical elements:
+
+
+$$
+\mathbf{M}=\left[\begin{array}{ll}
+1 & d \\
+0 & 1
+\end{array}\right] \tag{Free space}
+$$
+
+
+$$
+\mathbf{M}=\left[\begin{array}{cc}
+1 & 0 \\
+0 & \frac{n_1}{n_2}
+\end{array}\right] \tag{Planar interface}
+$$
+
+
+$$
+\mathbf{M}=\left[\begin{array}{cc}
+1 & 0 \\
+-\frac{\left(n_2-n_1\right)}{n_2 R} & \frac{n_1}{n_2}
+\end{array}\right] \tag{Spherical Boundary}
+$$
+
+$$
+\mathbf{M}=\left[\begin{array}{cc}
+1 & 0 \\
+-\frac{1}{f} & 1
+\end{array}\right] \tag{Tin Lens}
+$$
+
+If we have now a system of optical elements, we can multiply the matrices of the individual elements to obtain the matrix of the whole system.
+
+$$
+\rightarrow \mathrm{M}_1 \rightarrow \mathrm{M}_2 \rightarrow \mathrm{M}_N \rightarrow \mathrm{M}=\mathbf{M}_N \ldots \mathrm{M}_2 \mathbf{M}_1 \text {. }
+$$
+
+This is a very powerful tool to analyze optical systems.
+:::
+
+
 <!-- ## Wave Optics (20 minutes)-->
+
+
+
+<!-- ## Wave Optics (20 minutes)
+- Wave equation derivation
+- Harmonic waves and their properties
+- Wave parameters: wavelength, frequency, amplitude
+- Superposition principle
+- Interference phenomena
+  - Constructive and destructive interference
+  - Young's double-slit experiment
+- Wave optics applications
+- Eikonal Theory and its applications
+-->
+
+
+## Fermat's Principle for Spherical Surfaces
+
+The power of Fermat's principle becomes particularly evident when applied to spherical refracting surfaces. Consider a spherical boundary of radius $R$ between two media with refractive indices $n_1$ and $n_2$. According to Fermat's principle, light will follow the path that minimizes the total optical path length.
+
+For a ray traveling from point $A$ in medium 1 to point $B$ in medium 2, refracted at point $P$ on the spherical surface, the total optical path length is:
+
+$$L = n_1|AP| + n_2|PB|$$
+
+For the actual path taken by light, we require:
+
+$$\frac{dL}{d\phi} = 0$$
+
+where $\phi$ is the angular position of point $P$ on the spherical surface.
+
+```{python}
+#| echo: true
+#| code-fold: true
+#| label: fig-fermat-spherical
+#| fig-cap: Fermat's principle applied to a spherical refracting surface
+
+import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib.patches import Arc, Wedge
+import matplotlib.patches as patches
+
+# Set up the figure
+fig, ax = plt.subplots(figsize=get_size(15, 10))
+
+# Parameters
+R = 3  # Radius of the spherical surface
+n1 = 1.0  # Refractive index of first medium
+n2 = 1.5  # Refractive index of second medium
+arc_angle = 100  # Arc angle in degrees
+center_x = 3  # Center of arc is to the right of the boundary
+
+# Define the center of the sphere
+center = (center_x, 0)
+
+# Calculate arc angles in radians
+start_angle = 180 - arc_angle/2
+end_angle = 180 + arc_angle/2
+
+# Draw the spherical surface as an arc
+arc = Arc(center, 2*R, 2*R, theta1=start_angle, theta2=end_angle,
+          color='black', linewidth=1.5)
+ax.add_patch(arc)
+
+# Calculate the x-coordinate of the leftmost point of the arc
+boundary_x = center_x - R * np.cos(np.radians(90 - arc_angle/2))
+
+# Draw the media boundary
+ax.fill_between([-8, boundary_x], [-8, -8], [8, 8], color='lightblue', alpha=0.2)
+ax.fill_between([boundary_x, 8], [-8, -8], [8, 8], color='lightgreen', alpha=0.2)
+ax.axvline(x=boundary_x, color='black', linestyle='-', linewidth=1)
+
+# Add labels for the media
+ax.text(boundary_x-2, 6, f"n₁ = {n1}", fontsize=12)
+ax.text(boundary_x+2, 6, f"n₂ = {n2}", fontsize=12)
+
+# Mark object and image points
+object_point = (boundary_x-3, 0)
+image_point = (center_x+6, 0)
+ax.plot(object_point[0], object_point[1], 'bo', markersize=8, label='Object (A)')
+ax.plot(image_point[0], image_point[1], 'ro', markersize=8, label='Image (B)')
+
+# Calculate different potential paths along the arc
+theta_rad = np.linspace(np.radians(start_angle), np.radians(end_angle), 15)
+paths = []
+optical_lengths = []
+
+for theta in theta_rad:
+    # Position on the arc
+    x = center_x + R * np.cos(theta)
+    y = R * np.sin(theta)
+
+    # Calculate distances
+    d1 = np.sqrt((x - object_point[0])**2 + (y - object_point[1])**2)
+    d2 = np.sqrt((x - image_point[0])**2 + (y - image_point[1])**2)
+
+    # Calculate optical path length
+    optical_length = n1 * d1 + n2 * d2
+
+    paths.append((x, y))
+    optical_lengths.append(optical_length)
+
+# Find the minimum optical path
+min_index = np.argmin(optical_lengths)
+min_path = paths[min_index]
+
+# Plot all potential paths
+for i, (x, y) in enumerate(paths):
+    if i == min_index:
+        continue
+    ax.plot([object_point[0], x, image_point[0]], [object_point[1], y, image_point[1]],
+             'gray', linestyle='--', alpha=0.5, linewidth=0.8)
+
+# Plot the path of minimum optical length (Fermat's principle)
+ax.plot([object_point[0], min_path[0], image_point[0]], [object_point[1], min_path[1], image_point[1]],
+         'red', linewidth=2, label='Minimum optical path')
+
+
+# Set up the main plot
+ax.set_xlim(-4, 12)
+ax.set_ylim(-4, 4)
+ax.set_xlabel('Position')
+ax.set_ylabel('Height')
+ax.grid(True, alpha=0.3)
+ax.axhline(y=0, color='gray', linestyle='--', alpha=0.7)
+ax.legend(loc='lower right')
+
+plt.tight_layout()
+plt.show()
+```
+
+Under the paraxial approximation, we can express coordinates using small-angle approximations. If we place the origin at the center of the spherical surface, with objects at distance $a$ from the surface and images at distance $b$, the minimization condition leads to:
+
+$$n_1 \sin \theta_1 = n_2 \sin \theta_2$$
+
+Where $\theta_1$ and $\theta_2$ are the angles with respect to the normal at point $P$.
+
+Using the paraxial approximation $\sin \theta \approx \theta$ and geometric relations at the spherical surface, this simplifies to:
+
+$$\frac{n_1}{a} + \frac{n_2}{b} = \frac{n_2-n_1}{R}$$
+
+This is precisely the imaging equation for a spherical refracting surface that we derived earlier. The remarkable aspect is that Fermat's principle—the requirement that light follow the path of least time—naturally yields the same result as our geometric derivation.
+
+### Deriving the Thin Lens Equation from Fermat's Principle
+
+To derive the thin lens equation, we apply Fermat's principle to the two spherical surfaces that make up a lens. Consider a lens with refractive index $n_2$ in a medium of index $n_1$, with surface radii $R_1$ and $R_2$.
+
+The total optical path for a ray passing through the lens at height $y$ from the optical axis is:
+- Path from object to first surface: $n_1 s_1$
+- Path through the lens: $n_2 s_2$
+- Path from second surface to image: $n_1 s_3$
+
+For a thin lens, the optical path length simplifies to:
+
+$$L(y) = n_1 \sqrt{a^2 + y^2} + n_2 d(y) + n_1 \sqrt{b^2 + y^2}$$
+
+Where $d(y)$ is the thickness of the lens at height $y$, which can be approximated as:
+
+$$d(y) \approx d_0 + \frac{y^2}{2}\left(\frac{1}{R_1}-\frac{1}{R_2}\right)$$
+
+Applying Fermat's principle ($\frac{dL}{dy} = 0$) and using the paraxial approximation:
+
+$$\frac{n_1 y}{\sqrt{a^2 + y^2}} + n_2 y \left(\frac{1}{R_1}-\frac{1}{R_2}\right) + \frac{n_1 y}{\sqrt{b^2 + y^2}} = 0$$
+
+In the paraxial limit ($y \ll a, y \ll b$), this becomes:
+
+$$\frac{n_1 y}{a} + n_2 y \left(\frac{1}{R_1}-\frac{1}{R_2}\right) + \frac{n_1 y}{b} = 0$$
+
+Dividing by $y$ and rearranging:
+
+$$\frac{1}{a} + \frac{1}{b} = \frac{n_2-n_1}{n_1}\left(\frac{1}{R_1}-\frac{1}{R_2}\right) = \frac{1}{f}$$
+
+This is the thin lens equation with the focal length given by the lensmaker's equation:
+
+$$f = \frac{n_1}{n_2-n_1}\left(\frac{R_1 R_2}{R_2-R_1}\right)$$
+
+Thus, both the imaging equation and the lensmaker equation emerge naturally from Fermat's principle applied to the geometry of a thin lens, showing that light follows paths of equal optical length from object to image when passing through any part of the lens.
+
+From a wave perspective, what makes a lens focus light to a point is that all paths from object to image through any part of the lens have equal optical path lengths (to first order in the paraxial approximation), ensuring constructive interference at the image point.
