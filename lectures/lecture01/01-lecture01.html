@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Theories of Light – Photonics</title>
+<title>lecture01 – Photonics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -274,43 +274,49 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#ray-optics" id="toc-ray-optics" class="nav-link active" data-scroll-target="#ray-optics">Ray Optics</a>
+  <li><a href="#theories-for-light" id="toc-theories-for-light" class="nav-link active" data-scroll-target="#theories-for-light">Theories for light</a>
   <ul class="collapse">
-  <li><a href="#differential-description-of-fermats-principle" id="toc-differential-description-of-fermats-principle" class="nav-link" data-scroll-target="#differential-description-of-fermats-principle">Differential Description of Fermat’s Principle</a></li>
+  <li><a href="#ray-optics" id="toc-ray-optics" class="nav-link" data-scroll-target="#ray-optics">Ray Optics</a></li>
+  <li><a href="#lenses" id="toc-lenses" class="nav-link" data-scroll-target="#lenses">Lenses</a></li>
+  <li><a href="#thin-lens" id="toc-thin-lens" class="nav-link" data-scroll-target="#thin-lens">Thin lens</a></li>
+  <li><a href="#thick-lens" id="toc-thick-lens" class="nav-link" data-scroll-target="#thick-lens">Thick lens</a></li>
   <li><a href="#thin-lenses-and-fermats-principle" id="toc-thin-lenses-and-fermats-principle" class="nav-link" data-scroll-target="#thin-lenses-and-fermats-principle">Thin Lenses and Fermat’s Principle</a></li>
+  </ul></li>
+  <li><a href="#fermats-principle-for-spherical-surfaces" id="toc-fermats-principle-for-spherical-surfaces" class="nav-link" data-scroll-target="#fermats-principle-for-spherical-surfaces">Fermat’s Principle for Spherical Surfaces</a>
+  <ul class="collapse">
+  <li><a href="#deriving-the-thin-lens-equation-from-fermats-principle" id="toc-deriving-the-thin-lens-equation-from-fermats-principle" class="nav-link" data-scroll-target="#deriving-the-thin-lens-equation-from-fermats-principle">Deriving the Thin Lens Equation from Fermat’s Principle</a></li>
   </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Python Basics</li><li class="breadcrumb-item"><a href="../../lectures/lecture01/01-lecture01.html">Lecture 1</a></li><li class="breadcrumb-item"><a href="../../lectures/lecture01/01-lecture01.html">Theories of Light</a></li></ol></nav>
-<div class="quarto-title">
-<h1 class="title">Theories of Light</h1>
-</div>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Python Basics</li><li class="breadcrumb-item"><a href="../../lectures/lecture01/01-lecture01.html">Lecture 1</a></li><li class="breadcrumb-item"><a href="../../lectures/lecture01/01-lecture01.html">Theories of Light</a></li></ol></nav></header>
 
 
-
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-
-</header>
 
 
 <!-- ## Ray Optics (20 minutes) -->
-<section id="ray-optics" class="level2">
-<h2 class="anchored" data-anchor-id="ray-optics">Ray Optics</h2>
+<section id="theories-for-light" class="level2">
+<h2 class="anchored" data-anchor-id="theories-for-light">Theories for light</h2>
+<p>Light has been described through increasingly sophisticated theoretical frameworks throughout the history of physics. The simplest framework is <em>Ray Optics</em> or <em>Geometrical Optics</em>, which treats light as rays traveling along straight paths and applies geometrical principles to describe interactions with optical elements like lenses and mirrors. Moving beyond this approximation, <em>Wave Optics</em> introduces the wave nature of light, explaining phenomena such as interference and diffraction that ray optics cannot address. <em>Electromagnetic Optics</em> further refines our understanding by treating light as electromagnetic waves governed by Maxwell’s equations, providing a complete classical description of light-matter interactions. For intense light sources, <em>Nonlinear Optics</em> becomes essential, describing how materials respond nonlinearly to strong electromagnetic fields, giving rise to frequency conversion and other novel effects. Finally, at the most fundamental level, <em>Quantum Optics</em> treats light as consisting of photons—quantum mechanical particles exhibiting both wave and particle properties—essential for understanding phenomena like spontaneous emission, entanglement, and the quantum nature of light-matter interactions. This course will progressively build your understanding through these increasingly sophisticated frameworks.</p>
+<section id="ray-optics" class="level3">
+<h3 class="anchored" data-anchor-id="ray-optics">Ray Optics</h3>
 <p>Ray optics, or geometric optics, provides a powerful framework for understanding light propagation when the wavelength is much <strong>smaller than the dimensions of optical elements</strong> involved. In this approach, light travels along straight lines called rays in homogeneous media, with well-defined paths that can be mathematically traced. This description serves as the foundation for analyzing many optical systems, from simple mirrors to complex microscopes and telescopes.</p>
-<p>The cornerstone of ray optics is <strong>Fermat’s Principle</strong>, which states that light follows the path that minimizes the optical path length or, equivalently, the time of travel between two points. Mathematically, if we consider a path <span class="math inline">\(C\)</span> connecting points A and B, Fermat’s Principle requires:</p>
+<section id="fermats-principle-integral-and-differential-forms" class="level4">
+<h4 class="anchored" data-anchor-id="fermats-principle-integral-and-differential-forms">Fermat’s Principle: Integral and Differential Forms</h4>
+<p><strong>Fermat’s Principle</strong> forms the foundation of ray optics, stating that light travels along the route that minimizes the total optical path length between any two points. This optical path length, expressed mathematically as <span class="math inline">\(\int_C n(s)ds\)</span>, represents the effective distance light traverses through media of varying refractive indices. When this quantity is divided by the vacuum speed of light <span class="math inline">\(c_0\)</span>, it yields the total travel time required for light to journey between those points.</p>
+<p>In its integral form:</p>
 <p><span class="math display">\[\delta\int_C n(s)ds = 0\]</span></p>
-<p>where <span class="math inline">\(n(s)\)</span> is the refractive index along the path and <span class="math inline">\(ds\)</span> is the differential path length. This variational principle leads directly to the laws of reflection and refraction.</p>
+<p>where <span class="math inline">\(n(s)\)</span> is the refractive index along path <span class="math inline">\(C\)</span> and <span class="math inline">\(ds\)</span> is the differential path length.</p>
+<p>The same principle can be expressed as a differential equation that describes how light bends in media with varying refractive indices:</p>
+<p><span class="math display">\[\frac{d}{ds}\left(n\frac{d\mathbf{r}}{ds}\right) = \nabla n\]</span></p>
+<p>This equation shows that rays bend toward regions of higher refractive index. In homogeneous media (<span class="math inline">\(\nabla n = 0\)</span>), it simplifies to <span class="math inline">\(\frac{d^2\mathbf{r}}{ds^2} = 0\)</span>, confirming that light follows straight lines.</p>
+</section>
+<section id="optical-laws-derived-from-fermats-principle" class="level4">
+<h4 class="anchored" data-anchor-id="optical-laws-derived-from-fermats-principle">Optical Laws Derived from Fermat’s Principle</h4>
+<p><strong>Reflection</strong>: At a planar interface, Fermat’s Principle directly yields the law of reflection:</p>
+<p><span class="math display">\[\theta_i = \theta_r\]</span></p>
+<p>where <span class="math inline">\(\theta_i\)</span> is the angle of incidence and <span class="math inline">\(\theta_r\)</span> is the angle of reflection, both measured from the normal to the surface.</p>
 <div id="cell-fig-fermat-reflection" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
@@ -409,11 +415,9 @@ Figure&nbsp;1— Fermat’s principle for reflection of light at an interface
 </div>
 </div>
 </div>
-<p><strong>Reflection</strong> For reflection at a planar interface, we can derive the law of reflection by considering a ray traveling from point A to point B via reflection at point P on a mirror. The total path length is <span class="math inline">\(L = |AP| + |PB|\)</span>. According to Fermat’s Principle, the actual path minimizes <span class="math inline">\(L\)</span>, so we set:</p>
-<p><span class="math display">\[\frac{dL}{dx} = 0\]</span></p>
-<p>where <span class="math inline">\(x\)</span> is the position of P. After calculus manipulation, this yields the familiar law of reflection:</p>
-<p><span class="math display">\[\theta_i = \theta_r\]</span></p>
-<p>where <span class="math inline">\(\theta_i\)</span> is the angle of incidence and <span class="math inline">\(\theta_r\)</span> is the angle of reflection, both measured from the normal to the surface.</p>
+<p><strong>Refraction</strong>: Between media with different refractive indices, Fermat’s Principle yields Snell’s law:</p>
+<p><span class="math display">\[n_1\sin\theta_1 = n_2\sin\theta_2\]</span></p>
+<p>where <span class="math inline">\(\theta_1\)</span> and <span class="math inline">\(\theta_2\)</span> are the angles of incidence and refraction, respectively.</p>
 <div id="cell-fig-fermat-refraction" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
@@ -542,83 +546,136 @@ Figure&nbsp;2— Snell’s Law from Fermat’s Principle
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Destructive Interference of Non-Minimal Paths
+Detailed Derivations from Fermat’s Principle
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>We can demonstrate that all paths except the shortest one interfere destructively using Feynman’s path integral formulation. In this approach, light takes all possible paths between points A and B, with each path contributing an amplitude with phase <span class="math inline">\(e^{iS/\hbar}\)</span>, where <span class="math inline">\(S\)</span> is the action proportional to the optical path length: <span class="math inline">\(S = kL\)</span> where <span class="math inline">\(k = 2\pi/\lambda\)</span> is the wave number.</p>
-<p>To understand why non-minimal paths cancel out, let’s denote the minimal path as <span class="math inline">\(x_0(t)\)</span> and nearby paths as <span class="math inline">\(x_0(t) + \delta x(t)\)</span>, where <span class="math inline">\(\delta x(t)\)</span> represents small deviations. The action for these perturbed paths expands as: <span class="math display">\[S[x_0 + \delta x] = S[x_0] + \frac{\delta S}{\delta x}\bigg|_{x_0} \delta x + \frac{1}{2}\frac{\delta^2 S}{\delta x^2}\bigg|_{x_0} (\delta x)^2 + ...\]</span></p>
-<p>Since <span class="math inline">\(x_0\)</span> is the extremal path (according to Fermat’s principle), we have <span class="math inline">\(\frac{\delta S}{\delta x}\bigg|_{x_0} = 0\)</span>. This means the first-order term vanishes, leaving the quadratic term as the leading contribution to the phase difference:</p>
-<p><span class="math display">\[\Delta\phi = S[x] - S[x_0] \approx \frac{1}{2}\frac{\delta^2 S}{\delta x^2}\bigg|_{x_0} (\delta x)^2\]</span></p>
-<p>This quadratic dependence is crucial: as we move away from the minimal path, the phase difference increases as the square of the deviation <span class="math inline">\(\delta x\)</span>. When we consider a specific deviation <span class="math inline">\(\delta x_c\)</span> where <span class="math inline">\(\Delta\phi = \pi\)</span>, paths will contribute with exactly opposite phases compared to the minimal path, leading to destructive interference:</p>
-<p><span class="math display">\[\frac{1}{2}\frac{\delta^2 S}{\delta x^2}\bigg|_{x_0} (\delta x_c)^2 = \pi\]</span></p>
-<p>For even larger deviations, the phase differences continue to increase, creating alternating bands of constructive and destructive interference. When summed over all possible paths, these rapidly varying phases cancel each other out.</p>
-<p>For paths far from the minimal one, the destructive interference is even more pronounced. Mathematically, we can demonstrate this by considering a continuous distribution of paths with optical path lengths <span class="math inline">\(L\)</span>. The total amplitude contribution from these paths is given by:</p>
-<p><span class="math display">\[A = \int e^{ikL(x)} dx\]</span></p>
-<p>For non-minimal paths, we can parametrize the path length as <span class="math inline">\(L(x) = L_0 + \alpha(x-x_0)^2\)</span> for some constant <span class="math inline">\(\alpha\)</span>, where <span class="math inline">\(x_0\)</span> corresponds to the minimal path. The amplitude becomes:</p>
-<p><span class="math display">\[A = \int e^{ik(L_0 + \alpha(x-x_0)^2)} dx = e^{ikL_0}\int e^{ik\alpha(x-x_0)^2} dx\]</span></p>
-<p>This integral evaluates to:</p>
-<p><span class="math display">\[A = e^{ikL_0}\sqrt{\frac{\pi}{k\alpha}}e^{i\pi/4}\]</span></p>
-<p>The key insight is that the amplitude scales as <span class="math inline">\(1/\sqrt{k\alpha}\)</span>, which means that as the curvature <span class="math inline">\(\alpha\)</span> of the path length function increases (as happens far from the minimal path), the contribution to the total amplitude diminishes. This mathematically proves why non-minimal path regions contribute negligibly to the overall path integral.</p>
-<p>This cancellation mechanism explains why light appears to follow only the path of least time in ray optics. The mathematics shows that constructive interference occurs only for paths very close to the minimal path, while all other paths destructively interfere with their neighbors. This phenomenon emerges naturally from wave properties without requiring quantum mechanical constants like ℏ. We can express this classically by setting <span class="math inline">\(S = kL\)</span> and observing how path differences relative to the wavelength create interference patterns.</p>
-<div id="cell-fig-phase" class="cell" data-execution_count="4">
+<section id="reflection-law-derivation" class="level4">
+<h4 class="anchored" data-anchor-id="reflection-law-derivation">Reflection Law Derivation</h4>
+<p>For reflection at a planar interface, we consider a ray traveling from point A to point B via reflection at point P on a mirror. The total path length is <span class="math inline">\(L = |AP| + |PB|\)</span>. According to Fermat’s Principle, the actual path minimizes <span class="math inline">\(L\)</span>, so we set:</p>
+<p><span class="math display">\[\frac{dL}{dx} = 0\]</span></p>
+<p>where <span class="math inline">\(x\)</span> is the position of P along the mirror. This leads to the condition that the angle of incidence equals the angle of reflection.</p>
+<p><strong>Law of Reflection</strong>: The angle of incidence equals the angle of reflection. <span class="math display">\[\theta_i = \theta_r\]</span></p>
+</section>
+<section id="refraction-law-derivation" class="level4">
+<h4 class="anchored" data-anchor-id="refraction-law-derivation">Refraction Law Derivation</h4>
+<p>For refraction between two media, the optical path length is:</p>
+<p><span class="math display">\[L = n_1|AP| + n_2|PB|\]</span></p>
+<p>Applying the minimization condition <span class="math inline">\(\frac{dL}{dx} = 0\)</span> yields Snell’s law.</p>
+<p><strong>Snell’s Law</strong>: The ratio of the sines of the angles of incidence and refraction equals the reciprocal of the ratio of the refractive indices. <span class="math display">\[n_1\sin\theta_1 = n_2\sin\theta_2\]</span></p>
+</section>
+<section id="differential-form-derivation" class="level4">
+<h4 class="anchored" data-anchor-id="differential-form-derivation">Differential Form Derivation</h4>
+<p>To derive the differential ray equation from Fermat’s integral principle, we apply the calculus of variations. Starting with the optical path length functional:</p>
+<p><span class="math display">\[L = \int_C n(s)ds = \int_{t_1}^{t_2} n(\mathbf{r}(t)) \left|\frac{d\mathbf{r}}{dt}\right| dt\]</span></p>
+<p>Where <span class="math inline">\(\mathbf{r}(t)\)</span> parametrizes the path. The term <span class="math inline">\(\left|\frac{d\mathbf{r}}{dt}\right|\)</span> represents the differential element of arc length <span class="math inline">\(ds\)</span> along the path, so <span class="math inline">\(ds = \left|\frac{d\mathbf{r}}{dt}\right| dt\)</span>. This parametrization allows us to convert the path integral over the curve <span class="math inline">\(C\)</span> into a definite integral over the parameter <span class="math inline">\(t\)</span>. According to Fermat’s principle, the true path makes this integral stationary (δL = 0).</p>
+<p>Consider a small variation in the path: <span class="math inline">\(\mathbf{r}(t) \rightarrow \mathbf{r}(t) + \epsilon\mathbf{\eta}(t)\)</span> where <span class="math inline">\(\mathbf{\eta}(t_1) = \mathbf{\eta}(t_2) = 0\)</span> (fixed endpoints). Expanding the variation of the integral to first order in ε:</p>
+<p><span class="math display">\[\delta L = \frac{d}{d\epsilon}\bigg|_{\epsilon=0} \int_{t_1}^{t_2} n(\mathbf{r}(t) + \epsilon\mathbf{\eta}(t)) \left|\frac{d}{dt}(\mathbf{r}(t) + \epsilon\mathbf{\eta}(t))\right| dt\]</span></p>
+<p>Using the chain rule and reparametrizing with arc length <span class="math inline">\(s\)</span> (where <span class="math inline">\(\frac{d\mathbf{r}}{ds}\)</span> is a unit vector), the stationarity condition leads to:</p>
+<p><span class="math display">\[\int_C \left[ \nabla n \cdot \mathbf{\eta} - \frac{d}{ds}\left(n\frac{d\mathbf{r}}{ds}\right) \cdot \mathbf{\eta} \right] ds = 0\]</span></p>
+<p>Since this must hold for any variation <span class="math inline">\(\mathbf{\eta}\)</span>, we obtain the Euler-Lagrange equation:</p>
+<p><span class="math display">\[\frac{d}{ds}\left(n\frac{d\mathbf{r}}{ds}\right) = \nabla n\]</span></p>
+<p>This shows that rays bend toward regions of higher refractive index, directly analogous to how a mechanical particle’s trajectory is affected by a potential field in classical mechanics.</p>
+</section>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="lenses" class="level3">
+<h3 class="anchored" data-anchor-id="lenses">Lenses</h3>
+<p>The most important optical elements are lenses, which come in many different flavors. They consist of curved surfaces, which most commonly have the shape of a part of a spherical cap. It is, therefore, useful to have a look at the refraction at spherical surfaces.</p>
+<section id="refraction-at-spherical-surfaces" class="level4">
+<h4 class="anchored" data-anchor-id="refraction-at-spherical-surfaces">Refraction at spherical surfaces</h4>
+<p>For our calculations of the refraction at spherical surfaces, we consider the sketch below.</p>
+<div id="fig-curved-surface" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-curved-surface-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="img/curved_surface.png" class="img-fluid figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-curved-surface-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3— Refraction at a curved surface.
+</figcaption>
+</figure>
+</div>
+<p>To derive an imaging equation for a lens, we aim to calculate the distance <span class="math inline">\(b\)</span> and angle <span class="math inline">\(\theta_2\)</span> at which a ray crosses the optical axis, given its origin at distance <span class="math inline">\(a\)</span> and angle <span class="math inline">\(\theta_1\)</span>. We begin with Snell’s law for the geometry:</p>
+<p><span class="math display">\[n_{1}\sin(\alpha+\theta_1)=n_{2}\sin(\alpha-\theta_2)\]</span></p>
+<p>We define key relationships:</p>
+<p><span class="math display">\[\sin(\alpha)=\frac{y}{R}, \quad \tan(\theta_1)=\frac{y}{a}, \quad \tan(\theta_2)=\frac{y}{b}\]</span></p>
+<p>To simplify this, we employ the <strong>paraxial approximation</strong>, which assumes all angles are small. This allows us to use first-order approximations of trigonometric functions, effectively linearizing them:</p>
+<p><span class="math display">\[\sin(\theta) \approx \theta+ O(\theta^{3}), \quad \tan(\theta) \approx \theta + O(\theta^{3}),\quad \cos(\theta)\approx 1 + O(\theta^{2})\]</span></p>
+<p>This approach, common in optics, significantly simplifies our calculations while maintaining accuracy for most practical scenarios involving lenses.</p>
+<p>With the help of these approximations we can write Snell’s law for the curved surface as</p>
+<p><span class="math display">\[n_1(\alpha+\theta_1)=n_2(\alpha-\theta_2).\]</span></p>
+<p>With some slight transformation which you will find in the video of the online lecture we obtain, therefore,</p>
+<p><span class="math display">\[\theta_2=\frac{n_2-n_1}{n_2 R}y -\frac{n_1}{n_2}\theta_1,\]</span></p>
+<p>which is a purely linear equation in <span class="math inline">\(y\)</span> and <span class="math inline">\(\theta_1\)</span>.</p>
+<div id="paraxial-approximation" class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Paraxial Approximation
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>The paraxial approximation is a fundamental simplification in optics that assumes all angles are small. This allows us to use linear approximations for trigonometric functions, significantly simplifying calculations while maintaining accuracy for most practical scenarios involving lenses.</p>
+<p>To visualize the validity of this approximation, let’s examine two plots:</p>
+<ol type="1">
+<li>The first plot compares sin(θ) (blue line) with its linear approximation θ (red dashed line) for angles ranging from 0 to π/2 radians.</li>
+<li>The second plot shows the absolute error between sin(θ) and θ.</li>
+</ol>
+<p>These plots demonstrate that:</p>
+<ol type="1">
+<li>For small angles (roughly up to 0.5 radians or about 30 degrees), the approximation is very close to the actual sine function.</li>
+<li>The error increases rapidly for larger angles, indicating the limitations of the paraxial approximation.</li>
+</ol>
+<p>In most optical systems, especially those involving lenses, the angles of incident and refracted rays are typically small enough for this approximation to be valid. However, it’s important to be aware of its limitations when dealing with wide-angle optical systems or scenarios where precision is critical.</p>
+<div id="8c8b4830" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> cm</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Parameters</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>num_paths <span class="op">=</span> <span class="dv">100</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>min_path_index <span class="op">=</span> num_paths <span class="op">//</span> <span class="dv">2</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>path_deviation <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">2</span>, <span class="dv">2</span>, num_paths)  <span class="co"># Deviation from minimal path</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>alpha <span class="op">=</span> <span class="dv">5</span>  <span class="co"># Curvature parameter controlling phase variation rate</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate phase for each path (quadratic dependence on deviation)</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>phases <span class="op">=</span> alpha <span class="op">*</span> path_deviation<span class="op">**</span><span class="dv">2</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Set up the figure</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>get_size(<span class="dv">14</span>, <span class="dv">8</span>))</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot phase vs path deviation with a simple blue line and points</span></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>ax.plot(path_deviation, phases, <span class="st">'-'</span>, color<span class="op">=</span><span class="st">'blue'</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Highlight the minimal path</span></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>ax.axvline(x<span class="op">=</span><span class="dv">0</span>, color<span class="op">=</span><span class="st">'r'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">'Minimal path'</span>)</span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Highlight paths near minimal path</span></span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>near_minimal <span class="op">=</span> np.<span class="bu">abs</span>(path_deviation) <span class="op">&lt;</span> <span class="fl">0.3</span></span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="co">#ax.scatter(path_deviation[near_minimal], phases[near_minimal],</span></span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="co">#          color='green', s=70, label='Near minimal path', zorder=3)</span></span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Set labels and grid</span></span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'path deviation'</span>)</span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'phase [rad]'</span>)</span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Add horizontal lines at multiples of π to show constructive/destructive interference</span></span>
-<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">int</span>(np.<span class="bu">max</span>(phases)<span class="op">/</span>np.pi) <span class="op">+</span> <span class="dv">1</span>):</span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> i <span class="op">==</span> <span class="dv">0</span>:</span>
-<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>        ax.axhline(y<span class="op">=</span>i<span class="op">*</span>np.pi, color<span class="op">=</span><span class="st">'k'</span>, linestyle<span class="op">=</span><span class="st">'-'</span>, alpha<span class="op">=</span><span class="fl">0.2</span>,</span>
-<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>                  label<span class="op">=</span><span class="st">'Constructive interference'</span>)</span>
-<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> i <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span>:</span>
-<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>        ax.axhline(y<span class="op">=</span>i<span class="op">*</span>np.pi, color<span class="op">=</span><span class="st">'k'</span>, linestyle<span class="op">=</span><span class="st">'-'</span>, alpha<span class="op">=</span><span class="fl">0.2</span>)</span>
-<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
-<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>        ax.axhline(y<span class="op">=</span>i<span class="op">*</span>np.pi, color<span class="op">=</span><span class="st">'k'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.2</span>,</span>
-<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>                  label<span class="op">=</span><span class="st">'Destructive interference'</span> <span class="cf">if</span> i<span class="op">==</span><span class="dv">1</span> <span class="cf">else</span> <span class="va">None</span>)</span>
-<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the range of angles (in radians)</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>theta <span class="op">=</span> np.linspace(<span class="dv">0</span>, np.pi<span class="op">/</span><span class="dv">2</span>, <span class="dv">1000</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate sin(theta) and theta (linear approximation)</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>sin_theta <span class="op">=</span> np.sin(theta)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>linear_approx <span class="op">=</span> theta</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the absolute error</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>error <span class="op">=</span> np.<span class="bu">abs</span>(sin_theta <span class="op">-</span> linear_approx)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the plot with two subplots side by side</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>fig, (ax1, ax2) <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="fl">7.5</span>, <span class="dv">4</span>))</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot sin(theta) and theta on the first subplot</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>ax1.plot(theta, sin_theta, label<span class="op">=</span><span class="st">'sin(θ)'</span>, color<span class="op">=</span><span class="st">'blue'</span>)</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>ax1.plot(theta, linear_approx, label<span class="op">=</span><span class="st">'θ'</span>, color<span class="op">=</span><span class="st">'red'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>)</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>ax1.set_xlabel(<span class="vs">r'$\theta$ [rad]'</span>)</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>ax1.set_ylabel(<span class="vs">r'$\sin(x),x$'</span>)</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>ax1.legend()</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the error on the second subplot</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>ax2.plot(theta, error, label<span class="op">=</span><span class="st">'Absolute Error'</span>, color<span class="op">=</span><span class="st">'green'</span>)</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>ax2.set_xlabel(<span class="vs">r'$\theta$ [rad]'</span>)</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>ax2.set_ylabel(<span class="st">'|sin(θ) - θ|'</span>)</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>ax2.legend()</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Adjust the layout and display the plot</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
-<div id="fig-phase" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-phase-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="01-lecture01_files/figure-html/fig-phase-output-1.svg" class="img-fluid figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-phase-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3— Visualization of path phases in Fermat’s principle. The figure shows how the phase varies with path deviation from the minimal path (marked by the vertical red line at zero). The quadratic relationship between phase and path deviation demonstrates why paths near the minimal one constructively interfere (similar phases), while non-minimal paths tend to cancel through destructive interference (rapidly varying phases).
-</figcaption>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="01-lecture01_files/figure-html/cell-5-output-1.svg" class="img-fluid figure-img"></p>
+<figcaption>Visualization of the paraxial approximation plotting the <span class="math inline">\(\sin(\theta)\)</span> and the linear approximation <span class="math inline">\(\theta\)</span> (dashed line) for angles ranging from 0 to <span class="math inline">\(\pi/2\)</span> radians.</figcaption>
 </figure>
 </div>
 </div>
@@ -626,103 +683,377 @@ Figure&nbsp;3— Visualization of path phases in Fermat’s principle. The figur
 </div>
 </div>
 </div>
-<p><strong>Refraction</strong> Similarly, for refraction between two media with refractive indices <span class="math inline">\(n_1\)</span> and <span class="math inline">\(n_2\)</span>, the optical path length is:</p>
-<p><span class="math display">\[L = n_1|AP| + n_2|PB|\]</span></p>
-<p>Applying Fermat’s Principle and solving the resulting equation leads to Snell’s law:</p>
-<p><span class="math display">\[n_1\sin\theta_1 = n_2\sin\theta_2\]</span></p>
-<p>where <span class="math inline">\(\theta_1\)</span> and <span class="math inline">\(\theta_2\)</span> are the angles of incidence and refraction, respectively.</p>
-<p>These fundamental laws allow us to analyze the formation of images by various optical systems. For instance, in a thin lens with focal length <span class="math inline">\(f\)</span>, we can establish the relationship between object distance <span class="math inline">\(s_o\)</span>, image distance <span class="math inline">\(s_i\)</span>, and focal length through the lens equation:</p>
-<p><span class="math display">\[\frac{1}{s_o} + \frac{1}{s_i} = \frac{1}{f}\]</span></p>
-<p>This equation enables us to predict image formation characteristics in optical instruments such as cameras, microscopes, and telescopes.</p>
-<p>Despite its power, ray optics has limitations. It cannot explain phenomena like diffraction, which occurs when light encounters obstacles or apertures comparable to its wavelength. Here, we need wave optics for a complete description. Additionally, ray optics fails to account for the finite width of beams and the existence of evanescent waves.</p>
-<div id="cell-fig-lens" class="cell" data-execution_count="5">
+<p>Consider light originating from a point at distance <span class="math inline">\(y\)</span> from the optical axis. We’ll analyze two rays: one traveling parallel to the optical axis and hitting the spherical surface at height <span class="math inline">\(y\)</span>, and another incident at <span class="math inline">\(y=0\)</span>.</p>
+<div id="fig-image-curved" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-image-curved-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="img/image_curved.png" class="img-fluid figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-image-curved-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4— Image formation at a curved surface.
+</figcaption>
+</figure>
+</div>
+<p>Applying our derived formula to these two cases:</p>
+<p>For the parallel ray (<span class="math inline">\(\theta_1=0\)</span>):</p>
+<p><span class="math display">\[\theta_2=\frac{n_2-n_1}{n_2}\frac{y}{R}\]</span> <span class="math display">\[\theta_2=\frac{y+\Delta y}{b}\]</span></p>
+<p>Equating these expressions:</p>
+<p><span class="math display">\[\frac{y+\Delta y}{b}=\frac{n_2-n_1}{n_2}\frac{y}{R}\]</span></p>
+<p>For the ray through the center (<span class="math inline">\(y=0\)</span>):</p>
+<p><span class="math display">\[n_2\frac{\Delta y}{b}=n_1\frac{y}{a}\]</span></p>
+<p>Combining these equations yields the imaging equation for a curved surface:</p>
+<p><span class="math display">\[\frac{n_1}{a}+\frac{n_2}{b}=\frac{n_2-n_1}{R}\]</span></p>
+<p>We can define a new quantity, the <strong>focal length</strong>, which depends only on the properties of the curved surface:</p>
+<p><span class="math display">\[f=\frac{n_2}{n_2-n_1}R\]</span></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Imaging Equation for Spherical Refracting Surface
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The sum of the inverse object and image distances equals the inverse focal length of the spherical refracting surface:</p>
+<p><span class="math display">\[\frac{n_1}{a}+\frac{n_2}{b}\approx\frac{n_2}{f}\]</span></p>
+<p>where the focal length of the refracting surface is given by:</p>
+<p><span class="math display">\[f=\frac{n_2}{n_2-n_1}R\]</span></p>
+<p>in the paraxial approximation.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="thin-lens" class="level3">
+<h3 class="anchored" data-anchor-id="thin-lens">Thin lens</h3>
+<p>In our previous calculation we have found a linear relation between the incident angle <span class="math inline">\(\theta_1\)</span> with the optical axis, the incident height of the ray <span class="math inline">\(y\)</span> and the outgoing angle <span class="math inline">\(\theta_2\)</span>:</p>
+<p>Analyzing refraction in a lens involves two spherical surfaces. Light initially travels from a medium with refractive index <span class="math inline">\(n_1\)</span> into the lens material with index <span class="math inline">\(n_2\)</span>. The first surface’s radius, <span class="math inline">\(R_1\)</span>, is typically positive for a convex surface facing the incident light.</p>
+<p>At the second surface, the outgoing angle from the first refraction becomes the incident angle for the second refraction. Here, light travels from <span class="math inline">\(n_2\)</span> back into <span class="math inline">\(n_1\)</span>. The radius <span class="math inline">\(R_2\)</span> of this surface often has a negative value in a converging lens due to its opposite curvature relative to the optical axis.</p>
+<div id="fig-thin-lens-refraction" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-thin-lens-refraction-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="img/thin_lens.png" class="img-fluid figure-img" style="width:60.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-thin-lens-refraction-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5— Refraction on two spherical surfaces.
+</figcaption>
+</figure>
+</div>
+<p>For thin lenses, where the thickness <span class="math inline">\(d\)</span> is much smaller than <span class="math inline">\(R_1\)</span> and <span class="math inline">\(R_2\)</span> (<span class="math inline">\(d \ll R_1, R_2\)</span>), we can simplify our analysis. We assume that the height of the ray at both surfaces is approximately equal (<span class="math inline">\(y \approx y'\)</span>), neglecting the displacement inside the lens.</p>
+<p>This simplification allows us to treat all refraction as occurring on a single plane at the lens center, known as the <strong>principal plane</strong>. This concept, illustrated by the dashed line in the figure, greatly simplifies optical calculations and ray tracing for thin lenses.</p>
+<p>The radii’s sign convention (positive for convex surfaces facing incident light, negative for concave) and this two-surface analysis form the basis for the thin lens formula. This formula relates object distance, image distance, and focal length, encapsulating the lens’s imaging properties.</p>
+<p>The result of the above calculation is leading to the imaging equation for the thin lens.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Imaging Equation for Thin Lens
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The sum of the inverse object and image distances equals the inverse focal length of the thin lens:</p>
+<p><span class="math display">\[\frac{1}{a}+\frac{1}{b}\approx\frac{n_2-n_1}{n_1}\left (\frac{1}{R_1}-\frac{1}{R_2}\right )=\frac{1}{f}\]</span></p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Lensmaker equation
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The focal length of a thin lens is calculated by the <strong>lensmaker equation</strong>: <span class="math display">\[f=\frac{n_1}{n_2-n_1}\left ( \frac{R_1 R_2}{R_2 -R_1}\right)\]</span></p>
+<p>in the paraxial approximation.</p>
+</div>
+</div>
+<section id="image-construction" class="level4">
+<h4 class="anchored" data-anchor-id="image-construction">Image Construction</h4>
+<p>Images of objects can be now constructed if we refer to rays which do not emerge from a position on the optical axis only. In this case, we consider three different rays (two are actually enough). If we use as in the case of a concave mirror a central and a parallel ray, we will find a position where all rays cross on the other side. The conversion of the rays is exactly the same as in the case of a spherical mirror. The relation between the position of the object and the image along the optical axis is described by the imaging equation.</p>
+<div id="fig-thin-lens-imaging" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-thin-lens-imaging-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="img/thin_lens_imaging.png" class="img-fluid figure-img" style="width:60.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-thin-lens-imaging-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6— Image construction on a thin lens.
+</figcaption>
+</figure>
+</div>
+<p>Similar to the concave mirror, we may now also find out the image size or the magnification of the lens.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Magnification of a Lens
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The magnification is given by:</p>
+<p><span class="math display">\[M=\frac{h_{\rm image}}{h_{\rm object}}=-\frac{b}{a}=\frac{f}{f-a}\]</span></p>
+<p>where the negative sign is the result of the reverse orientation of the real images created by a lens.</p>
+</div>
+</div>
+<p>According to our previous consideration <span class="math inline">\(M&lt;0\)</span> corresponds to a reversed image, while it is upright as the object for <span class="math inline">\(M&gt;0\)</span>. We, therefore, easily see the following:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 23%">
+<col style="width: 33%">
+<col style="width: 26%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Object Position</th>
+<th>Image Characteristics</th>
+<th>Magnification (M)</th>
+<th>Image Type</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(a &lt; f\)</span></td>
+<td>Upright and magnified</td>
+<td><span class="math inline">\(M &gt; 0\)</span></td>
+<td>Virtual</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(f &lt; a &lt; 2f\)</span></td>
+<td>Reversed and magnified</td>
+<td><span class="math inline">\(M &lt; -1\)</span></td>
+<td>Real</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(a = 2f\)</span></td>
+<td>Reversed, same size</td>
+<td><span class="math inline">\(M = -1\)</span></td>
+<td>Real</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(a &gt; 2f\)</span></td>
+<td>Reversed and shrunk</td>
+<td><span class="math inline">\(-1 &lt; M &lt; 0\)</span></td>
+<td>Real</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(a = f\)</span></td>
+<td>Appears at infinity</td>
+<td><span class="math inline">\(M = \infty\)</span></td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<p>The image below illustrates the construction of images in 4 of the above cases for a bi-convex lens, including the generation of a virtual image.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><img src="img/image_construction.png" width="100%"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Fig.:</strong> Image construction on a biconvex lens with a parallel and a central ray for different object distances.</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="thick-lens" class="level3">
+<h3 class="anchored" data-anchor-id="thick-lens">Thick lens</h3>
+<p>For a thin lens, the displacement of the beam in height (<span class="math inline">\(y,y^{\prime}\)</span>) due to the thickness has been neglected. That means that we can reduce all refracting action of the lens to a single plane, which we call a principle plane. This approximation is (independent of the paraxial approximation) not anymore true for lenses if the displacement <span class="math inline">\(\Delta\)</span> of the ray as in the image below cannot be neglected. Such lenses are called <strong>thick lenses</strong> and they do not have a single principle plane anymore. In fact, the principle plane splits up into two principle planes at a distance <span class="math inline">\(h\)</span>.</p>
+<div id="fig-thick-lens-planes" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-thick-lens-planes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="img/thick_lens.png" class="img-fluid figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-thick-lens-planes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7— Thick lens principal planes.
+</figcaption>
+</figure>
+</div>
+<p>As indicated in the sketch above, an incident ray which is not deflected can be extended to its intersection with the optical axis at a point, which is a distance <span class="math inline">\(h_1\)</span> behind the lens surface. This is the location for the first principle plane. The position of the second principle plane at a distance <span class="math inline">\(h_2\)</span> before the back surface is found for by reversing the ray path. According to that, both principle planes have a distance <span class="math inline">\(h=d-h_1+h_2\)</span> (mind the sign of the <span class="math inline">\(h\)</span>). Using some mathematical effort, one can show that the same imaging equation as for a thins lens can be used with a new definition of the focal length and taking into account that object and image distances refer to their principle planes.</p>
+</section>
+<section id="thin-lenses-and-fermats-principle" class="level3">
+<h3 class="anchored" data-anchor-id="thin-lenses-and-fermats-principle">Thin Lenses and Fermat’s Principle</h3>
+<p>We can show that a thin lens obeys Fermat’s principle by considering the optical path length for rays passing through different points of the lens. For a thin lens with a biconvex spherical surface of radius <span class="math inline">\(R\)</span>, the thickness <span class="math inline">\(d(y)\)</span> varies with the distance <span class="math inline">\(y\)</span> from the optical axis according to:</p>
+<p><span class="math display">\[d(y) \approx d_0 - \frac{y^2}{2R}\]</span></p>
+<p>where <span class="math inline">\(d_0\)</span> is the thickness at the center. For a converging lens, the thickness decreases as we move away from the optical axis.</p>
+<p>Let’s consider a ray from object point <span class="math inline">\(O\)</span> passing through the lens at height <span class="math inline">\(y\)</span> and reaching the image point <span class="math inline">\(I\)</span>. The total optical path length is:</p>
+<p><span class="math display">\[L(y) = n_1 \cdot |OP| + n_2 \cdot d(y) + n_1 \cdot |PI|\]</span></p>
+<p>where <span class="math inline">\(n_1\)</span> is the refractive index of the surrounding medium (usually air, <span class="math inline">\(n_1 \approx 1\)</span>) and <span class="math inline">\(n_2\)</span> is the refractive index of the lens material.</p>
+<div id="cell-fig-lens-fermat" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set up the figure</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>get_size(<span class="dv">18</span>,<span class="dv">7</span>))</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>get_size(<span class="dv">18</span>, <span class="dv">8</span>))</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Define lens parameters</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Define parameters</span></span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> <span class="dv">2</span>  <span class="co"># focal length</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>h_obj <span class="op">=</span> <span class="fl">1.5</span>  <span class="co"># object height</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>s_o <span class="op">=</span> <span class="dv">6</span>  <span class="co"># object distance</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>s_i <span class="op">=</span> <span class="dv">1</span><span class="op">/</span>(<span class="dv">1</span><span class="op">/</span>f <span class="op">-</span> <span class="dv">1</span><span class="op">/</span>s_o)  <span class="co"># image distance from lens formula</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>h_img <span class="op">=</span> <span class="op">-</span>h_obj <span class="op">*</span> s_i<span class="op">/</span>s_o  <span class="co"># image height</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>n_lens <span class="op">=</span> <span class="fl">1.5</span>  <span class="co"># refractive index of lens</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>d0 <span class="op">=</span> <span class="fl">0.1</span>  <span class="co"># thickness at center</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>object_distance <span class="op">=</span> <span class="dv">4</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>image_distance <span class="op">=</span> <span class="dv">1</span><span class="op">/</span>(<span class="dv">1</span><span class="op">/</span>f <span class="op">-</span> <span class="dv">1</span><span class="op">/</span>object_distance)  <span class="co"># from lens equation</span></span>
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot optical axis</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>ax.axhline(y<span class="op">=</span><span class="dv">0</span>, color<span class="op">=</span><span class="st">'black'</span>, linestyle<span class="op">=</span><span class="st">'-'</span>)</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot lens</span></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>lens_height <span class="op">=</span> <span class="dv">3</span></span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>ax.plot([<span class="dv">0</span>, <span class="dv">0</span>], [<span class="op">-</span>lens_height<span class="op">/</span><span class="dv">2</span>, lens_height<span class="op">/</span><span class="dv">2</span>], <span class="st">'k-'</span>)</span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Add curved edges to represent a lens</span></span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>curve_x <span class="op">=</span> np.linspace(<span class="op">-</span><span class="fl">0.1</span>, <span class="dv">0</span>, <span class="dv">20</span>)</span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>curve_y1 <span class="op">=</span> lens_height<span class="op">/</span><span class="dv">2</span> <span class="op">*</span> np.sqrt(<span class="dv">1</span> <span class="op">-</span> (curve_x<span class="op">/</span><span class="fl">0.1</span>)<span class="op">**</span><span class="dv">2</span>)</span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>curve_y2 <span class="op">=</span> <span class="op">-</span>lens_height<span class="op">/</span><span class="dv">2</span> <span class="op">*</span> np.sqrt(<span class="dv">1</span> <span class="op">-</span> (curve_x<span class="op">/</span><span class="fl">0.1</span>)<span class="op">**</span><span class="dv">2</span>)</span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>ax.plot(curve_x, curve_y1, <span class="st">'k-'</span>)</span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>ax.plot(curve_x, curve_y2, <span class="st">'k-'</span>)</span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot focal points</span></span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>ax.plot(f, <span class="dv">0</span>, <span class="st">'ko'</span>, markersize<span class="op">=</span><span class="dv">4</span>)</span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>ax.plot(<span class="op">-</span>f, <span class="dv">0</span>, <span class="st">'ko'</span>, markersize<span class="op">=</span><span class="dv">4</span>)</span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>ax.text(f, <span class="op">-</span><span class="fl">0.4</span>, <span class="vs">r'$F$'</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
-<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="op">-</span>f, <span class="op">-</span><span class="fl">0.4</span>, <span class="vs">r"$F'$"</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
-<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot object and image</span></span>
-<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>ax.arrow(<span class="op">-</span>s_o, <span class="dv">0</span>, <span class="dv">0</span>, h_obj<span class="op">-</span><span class="fl">0.1</span>, head_width<span class="op">=</span><span class="fl">0.1</span>, head_length<span class="op">=</span><span class="fl">0.1</span>, fc<span class="op">=</span><span class="st">'blue'</span>, ec<span class="op">=</span><span class="st">'blue'</span>)</span>
-<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>ax.arrow(s_i, <span class="dv">0</span>, <span class="dv">0</span>, h_img<span class="op">+</span><span class="fl">0.1</span>, head_width<span class="op">=</span><span class="fl">0.1</span>, head_length<span class="op">=</span><span class="fl">0.1</span>, fc<span class="op">=</span><span class="st">'red'</span>, ec<span class="op">=</span><span class="st">'red'</span>)</span>
-<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="op">-</span>s_o<span class="op">+</span><span class="fl">0.1</span>, h_obj<span class="op">/</span><span class="dv">2</span>, <span class="vs">r'object'</span>, color<span class="op">=</span><span class="st">'blue'</span>, fontsize<span class="op">=</span><span class="dv">9</span>)</span>
-<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>ax.text(s_i<span class="op">+</span><span class="fl">0.1</span>, h_img<span class="op">/</span><span class="dv">2</span>, <span class="vs">r'image'</span>, color<span class="op">=</span><span class="st">'red'</span>, fontsize<span class="op">=</span><span class="dv">9</span>)</span>
-<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a><span class="co"># Principal rays</span></span>
-<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Ray 1: Parallel to axis, through focal point</span></span>
-<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>ax.plot([<span class="op">-</span>s_o, <span class="dv">0</span>], [h_obj, h_obj], <span class="st">'b-'</span>, label<span class="op">=</span><span class="st">'parallel to axis → through F'</span>)</span>
-<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>ax.plot([<span class="dv">0</span>, s_i], [h_obj, h_img], <span class="st">'b-'</span>)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to calculate optical path length through lens at height y</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> optical_path(y, obj_dist, img_dist, n, d0, f):</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Approximate lens thickness at height y</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    d_y <span class="op">=</span> d0 <span class="op">*</span> (<span class="dv">1</span> <span class="op">+</span> y<span class="op">**</span><span class="dv">2</span><span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>f<span class="op">*</span>d0<span class="op">*</span>(n<span class="op">-</span><span class="dv">1</span>)))</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Distance from object to lens entry point</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    d1 <span class="op">=</span> np.sqrt(obj_dist<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> y<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Distance from lens exit point to image</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    d2 <span class="op">=</span> np.sqrt(img_dist<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> y<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Total path length (air + lens + air)</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> d1 <span class="op">+</span> (n<span class="op">-</span><span class="dv">1</span>)<span class="op">*</span>d_y <span class="op">+</span> d2</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate optical paths for different heights</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>y_values <span class="op">=</span> np.linspace(<span class="op">-</span><span class="fl">1.5</span>, <span class="fl">1.5</span>, <span class="dv">30</span>)</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>path_lengths <span class="op">=</span> [optical_path(y, object_distance, image_distance, n_lens, d0, f) <span class="cf">for</span> y <span class="kw">in</span> y_values]</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Find minimum path</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>min_index <span class="op">=</span> np.argmin(path_lengths)</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>path_diff <span class="op">=</span> np.array(path_lengths) <span class="op">-</span> <span class="bu">min</span>(path_lengths)</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot lens shape (exaggerated for visibility)</span></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>lens_width <span class="op">=</span> <span class="fl">0.2</span></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>x_lens <span class="op">=</span> np.linspace(<span class="op">-</span>lens_width<span class="op">/</span><span class="dv">2</span>, lens_width<span class="op">/</span><span class="dv">2</span>, <span class="dv">100</span>)</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>y_lens <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">100</span>)</span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>XX, YY <span class="op">=</span> np.meshgrid(x_lens, y_lens)</span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>lens_shape <span class="op">=</span> d0 <span class="op">+</span> YY<span class="op">**</span><span class="dv">2</span><span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>f<span class="op">*</span>d0<span class="op">*</span>(n_lens<span class="op">-</span><span class="dv">1</span>))</span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>lens_shape <span class="op">=</span> lens_shape <span class="op">*</span> lens_width<span class="op">/</span>lens_shape.<span class="bu">max</span>()</span>
 <span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a><span class="co"># Ray 2: Through center, unchanged direction</span></span>
-<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>ax.plot([<span class="op">-</span>s_o, s_i], [h_obj, h_img], <span class="st">'g-'</span>,  label<span class="op">=</span><span class="st">'through center'</span>)</span>
-<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a><span class="co"># Ray 3: Through focal point, parallel to axis</span></span>
-<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>ax.plot([<span class="op">-</span>s_o, <span class="dv">0</span>], [h_obj, <span class="dv">0</span>], <span class="st">'r-'</span>, label<span class="op">=</span><span class="st">'through F → parallel to axis'</span>)</span>
-<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>ax.plot([<span class="dv">0</span>, s_i], [<span class="dv">0</span>, h_img], <span class="st">'r-'</span>)</span>
-<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a><span class="co"># Add lens equation</span></span>
-<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>equation_text <span class="op">=</span> <span class="vs">r"$\frac</span><span class="sc">{1}{s_o}</span><span class="vs"> + \frac</span><span class="sc">{1}{s_i}</span><span class="vs"> = \frac</span><span class="sc">{1}{f}</span><span class="vs">$"</span></span>
-<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="op">-</span><span class="dv">5</span>, <span class="op">-</span><span class="fl">1.5</span>, equation_text, fontsize<span class="op">=</span><span class="dv">14</span>, bbox<span class="op">=</span><span class="bu">dict</span>(facecolor<span class="op">=</span><span class="st">'white'</span>, lw<span class="op">=</span><span class="dv">0</span>,</span>
-<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a>    alpha<span class="op">=</span><span class="fl">0.7</span>))</span>
-<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a><span class="co"># Labels showing values</span></span>
-<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="op">-</span>s_o<span class="op">/</span><span class="dv">2</span>, <span class="fl">0.2</span>, <span class="ss">f"$s_o = </span><span class="sc">{</span>s_o<span class="sc">}</span><span class="ss">$"</span>)</span>
-<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a>ax.text(s_i<span class="op">/</span><span class="dv">2</span>, <span class="fl">0.4</span>, <span class="ss">f"$s_i = </span><span class="sc">{</span>s_i<span class="sc">:.2f}</span><span class="ss">$"</span>)</span>
-<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="dv">0</span>, <span class="op">-</span><span class="dv">2</span>, <span class="ss">f"$f = </span><span class="sc">{</span>f<span class="sc">}</span><span class="ss">$"</span>)</span>
-<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a><span class="co"># Set plot limits and aspect ratio</span></span>
-<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="op">-</span>s_o<span class="op">-</span><span class="dv">1</span>, s_i<span class="op">+</span><span class="dv">1</span>)</span>
-<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="op">-</span><span class="fl">2.5</span>, <span class="fl">2.5</span>)</span>
-<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a><span class="co">#ax.set_aspect('equal')</span></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a><span class="co"># Draw lens</span></span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>ax.fill_between([<span class="op">-</span>lens_shape.<span class="bu">max</span>()<span class="op">/</span><span class="dv">2</span>, lens_shape.<span class="bu">max</span>()<span class="op">/</span><span class="dv">2</span>], [<span class="op">-</span><span class="dv">2</span>, <span class="op">-</span><span class="dv">2</span>], [<span class="dv">2</span>, <span class="dv">2</span>], color<span class="op">=</span><span class="st">'lightblue'</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>ax.plot([<span class="op">-</span>lens_width<span class="op">/</span><span class="dv">4</span>, lens_width<span class="op">/</span><span class="dv">4</span>], [<span class="dv">0</span>, <span class="dv">0</span>], <span class="st">'b-'</span>, linewidth<span class="op">=</span><span class="dv">2</span>)  <span class="co"># Optical axis</span></span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot object and image points</span></span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>ax.plot(<span class="op">-</span>object_distance, <span class="dv">0</span>, <span class="st">'bo'</span>, markersize<span class="op">=</span><span class="dv">8</span>, label<span class="op">=</span><span class="st">'object'</span>)</span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>ax.plot(image_distance, <span class="dv">0</span>, <span class="st">'ro'</span>, markersize<span class="op">=</span><span class="dv">8</span>, label<span class="op">=</span><span class="st">'image'</span>)</span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a><span class="co"># Draw some example rays</span></span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, y <span class="kw">in</span> <span class="bu">enumerate</span>(y_values[::<span class="dv">5</span>]):</span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> i <span class="op">==</span> <span class="bu">len</span>(y_values[::<span class="dv">5</span>])<span class="op">//</span><span class="dv">2</span>:  <span class="co"># Highlight central ray</span></span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a>        color <span class="op">=</span> <span class="st">'green'</span></span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a>        lw <span class="op">=</span> <span class="dv">2</span></span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a>        label1 <span class="op">=</span> <span class="st">'minimal path'</span></span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a>        color <span class="op">=</span> <span class="st">'gray'</span></span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a>        lw <span class="op">=</span> <span class="fl">0.8</span></span>
+<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a>        label1 <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Draw ray from object through lens to image</span></span>
+<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a>    ax.plot([<span class="op">-</span>object_distance, <span class="dv">0</span>, image_distance], [<span class="dv">0</span>, y, <span class="dv">0</span>], color<span class="op">=</span>color, linewidth<span class="op">=</span>lw, label<span class="op">=</span>label1)</span>
 <span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a><span class="co"># Axis labels</span></span>
-<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'position'</span>)</span>
-<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'height'</span>)</span>
-<span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a><span class="co"># Add legend for principal rays</span></span>
-<span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a><span class="co">#ax.legend(loc='upper center', bbox_to_anchor=(0.5, -0.15), ncol=3, fontsize=8)</span></span>
-<span id="cb4-69"><a href="#cb4-69" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-70"><a href="#cb4-70" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb4-71"><a href="#cb4-71" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot optical path length vs height - moved to bottom-right corner with more room</span></span>
+<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a>ax2 <span class="op">=</span> ax.inset_axes([<span class="fl">0.7</span>, <span class="fl">0.75</span>, <span class="fl">0.28</span>, <span class="fl">0.22</span>])  <span class="co"># Adjusted position and size</span></span>
+<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a>ax2.plot(y_values, path_diff <span class="op">*</span> <span class="dv">1000</span>, <span class="st">'k-'</span>)  <span class="co"># Convert to mm for visibility</span></span>
+<span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a>ax2.set_xlabel(<span class="st">'height on lens (y)'</span>, fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a>ax2.set_ylabel(<span class="vs">r'$\Delta L$ (mm)'</span>, fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a>ax2.tick_params(axis<span class="op">=</span><span class="st">'both'</span>, which<span class="op">=</span><span class="st">'major'</span>, labelsize<span class="op">=</span><span class="dv">7</span>)</span>
+<span id="cb4-69"><a href="#cb4-69" aria-hidden="true" tabindex="-1"></a>ax2.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb4-70"><a href="#cb4-70" aria-hidden="true" tabindex="-1"></a>ax2.axhline(y<span class="op">=</span><span class="dv">0</span>, color<span class="op">=</span><span class="st">'r'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb4-71"><a href="#cb4-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-72"><a href="#cb4-72" aria-hidden="true" tabindex="-1"></a><span class="co"># Set main plot properties</span></span>
+<span id="cb4-73"><a href="#cb4-73" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="op">-</span>object_distance<span class="op">*</span><span class="fl">1.1</span>, image_distance<span class="op">*</span><span class="fl">1.1</span>)</span>
+<span id="cb4-74"><a href="#cb4-74" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="op">-</span><span class="fl">2.5</span>, <span class="fl">2.5</span>)</span>
+<span id="cb4-75"><a href="#cb4-75" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'position along optical axis'</span>)</span>
+<span id="cb4-76"><a href="#cb4-76" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'height'</span>)</span>
+<span id="cb4-77"><a href="#cb4-77" aria-hidden="true" tabindex="-1"></a>ax.axvline(x<span class="op">=</span><span class="dv">0</span>, color<span class="op">=</span><span class="st">'k'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)  <span class="co"># Mark lens position</span></span>
+<span id="cb4-78"><a href="#cb4-78" aria-hidden="true" tabindex="-1"></a><span class="co">#ax.text(0.5, 2, "n = " + str(n_lens))</span></span>
+<span id="cb4-79"><a href="#cb4-79" aria-hidden="true" tabindex="-1"></a>ax.legend(loc<span class="op">=</span><span class="st">'upper left'</span>)  <span class="co"># Moved legend to upper left to avoid overlap</span></span>
+<span id="cb4-80"><a href="#cb4-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-81"><a href="#cb4-81" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
-<div id="fig-lens" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-lens-fermat" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-lens-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="01-lecture01_files/figure-html/fig-lens-output-1.svg" class="img-fluid figure-img">
+<div aria-describedby="fig-lens-fermat-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="01-lecture01_files/figure-html/fig-lens-fermat-output-1.svg" class="img-fluid figure-img">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-lens-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;4— Ray diagram for a thin lens showing object and image formation
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-lens-fermat-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8— Demonstration of Fermat’s principle in a thin lens
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
+<p>Applying Fermat’s principle, we require that <span class="math inline">\(\frac{dL}{dy} = 0\)</span> for the actual ray path. After differentiation and algebraic manipulation, we arrive at:</p>
+<p><span class="math display">\[\frac{y}{|OP|} + \frac{y}{|PI|} = \frac{y(n_2-n_1)}{R}\]</span></p>
+<p>This is equivalent to the lens maker’s formula when combined with the small-angle approximation. The parabolic thickness profile of the lens ensures that all rays from the object point arrive at the image point with the same optical path length (to first order), satisfying Fermat’s principle.</p>
+<p>The lens thus acts as a path equalizer - rays taking different paths through the lens all require the same travel time, which creates the focusing effect. This is why a properly designed lens can form a perfect image: it ensures constructive interference of all waves at the image point by making all optical paths equal.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Matrix Optics
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>The above derived equations for a single spherical surface yield a linear relation between the input variables <span class="math inline">\(y_1\)</span> and <span class="math inline">\(\theta_1\)</span> and the output variables <span class="math inline">\(y_2\)</span> and <span class="math inline">\(\theta_2\)</span>. The linear relation yields a great opportunity to express optical elements in terms of linear transformations (matrices). This is the basis of <strong>matrix optics</strong>. The matrix representation of a lens is given by</p>
+<p><span class="math display">\[\begin{pmatrix} y_2 \\ \theta_2 \end{pmatrix} = \begin{pmatrix} 1 &amp; 0 \\ -\frac{1}{f} &amp; 1 \end{pmatrix} \begin{pmatrix} y_1 \\ \theta_1 \end{pmatrix}\]</span></p>
+<p>where the matrix is called the <strong>ABCD matrix</strong> of the lens. Due to the linearization of Snells law w can write down more generally</p>
+<p><span class="math display">\[\begin{pmatrix} y_2 \\
+\theta_2 \end{pmatrix} = \begin{pmatrix} A &amp; B \\ C &amp; D \end{pmatrix} \begin{pmatrix} y_1 \\ \theta_1 \end{pmatrix}\]</span></p>
+<p>and one can obtain a Matrix for all types of optical elements such as free space of dustance <span class="math inline">\(d\)</span>.</p>
+<p><span class="math display">\[\begin{bmatrix}
+A &amp; B\\
+C &amp; D
+\end{bmatrix}
+=
+\begin{bmatrix}
+1 &amp; d\\
+0 &amp; 1
+\end{bmatrix}
+\]</span></p>
+<p>Here are some useful matrices for optical elements:</p>
+<p><span class="math display">\[
+\mathbf{M}=\left[\begin{array}{ll}
+1 &amp; d \\
+0 &amp; 1
+\end{array}\right] \tag{Free space}
+\]</span></p>
+<p><span class="math display">\[
+\mathbf{M}=\left[\begin{array}{cc}
+1 &amp; 0 \\
+0 &amp; \frac{n_1}{n_2}
+\end{array}\right] \tag{Planar interface}
+\]</span></p>
+<p><span class="math display">\[
+\mathbf{M}=\left[\begin{array}{cc}
+1 &amp; 0 \\
+-\frac{\left(n_2-n_1\right)}{n_2 R} &amp; \frac{n_1}{n_2}
+\end{array}\right] \tag{Spherical Boundary}
+\]</span></p>
+<p><span class="math display">\[
+\mathbf{M}=\left[\begin{array}{cc}
+1 &amp; 0 \\
+-\frac{1}{f} &amp; 1
+\end{array}\right] \tag{Tin Lens}
+\]</span></p>
+<p>If we have now a system of optical elements, we can multiply the matrices of the individual elements to obtain the matrix of the whole system.</p>
+<p><span class="math display">\[
+\rightarrow \mathrm{M}_1 \rightarrow \mathrm{M}_2 \rightarrow \mathrm{M}_N \rightarrow \mathrm{M}=\mathbf{M}_N \ldots \mathrm{M}_2 \mathbf{M}_1 \text {. }
+\]</span></p>
+<p>This is a very powerful tool to analyze optical systems.</p>
+</div>
+</div>
+</div>
+<!-- ## Wave Optics (20 minutes)-->
 <!-- ## Wave Optics (20 minutes)
 - Wave equation derivation
 - Harmonic waves and their properties
@@ -734,156 +1065,149 @@ Figure&nbsp;4— Ray diagram for a thin lens showing object and image formation
 - Wave optics applications
 - Eikonal Theory and its applications
 -->
-<section id="differential-description-of-fermats-principle" class="level3">
-<h3 class="anchored" data-anchor-id="differential-description-of-fermats-principle">Differential Description of Fermat’s Principle</h3>
-<p>While we’ve discussed Fermat’s principle in its integral form, it can also be expressed as a differential equation that describes the path of light rays. This approach reveals how ray trajectories emerge from the underlying variational principle.</p>
-<p>Starting with Fermat’s principle that light follows the path of least optical path length:</p>
-<p><span class="math display">\[\delta\int_C n(s)ds = 0\]</span></p>
-<p>We can derive the differential equation governing the ray path. If we parametrize the ray path as <span class="math inline">\(\mathbf{r}(s)\)</span> where <span class="math inline">\(s\)</span> is the arc length, then the ray equation becomes:</p>
-<p><span class="math display">\[\frac{d}{ds}\left(n\frac{d\mathbf{r}}{ds}\right) = \nabla n\]</span></p>
-<p>This equation states that the rate of change of the momentum vector (<span class="math inline">\(n\frac{d\mathbf{r}}{ds}\)</span>) equals the gradient of the refractive index. In a medium with constant refractive index (<span class="math inline">\(\nabla n = 0\)</span>), this simplifies to:</p>
-<p><span class="math display">\[\frac{d^2\mathbf{r}}{ds^2} = 0\]</span></p>
-<p>This confirms that light rays follow straight lines in homogeneous media.</p>
-<p>For a medium with a continuously varying refractive index <span class="math inline">\(n(x,y,z)\)</span>, the ray equation becomes:</p>
-<p><span class="math display">\[\frac{d}{ds}\left(n\frac{d\mathbf{r}}{ds}\right) = \nabla n\]</span></p>
-<p>This differential form of Fermat’s principle is particularly useful in gradient-index optics, where the refractive index changes continuously throughout the medium, causing light rays to follow curved paths. Examples include optical fibers with graded-index profiles and the atmosphere where temperature gradients create mirages.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Deriving the Differential Form from the Integral Principle
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>To derive the differential ray equation from Fermat’s integral principle, we apply the calculus of variations. Starting with the optical path length functional:</p>
-<p><span class="math display">\[L = \int_C n(s)ds = \int_{t_1}^{t_2} n(\mathbf{r}(t)) \left|\frac{d\mathbf{r}}{dt}\right| dt\]</span></p>
-<p>Where <span class="math inline">\(\mathbf{r}(t)\)</span> parametrizes the path. The term <span class="math inline">\(\left|\frac{d\mathbf{r}}{dt}\right|\)</span> represents the differential element of arc length <span class="math inline">\(ds\)</span> along the path, so <span class="math inline">\(ds = \left|\frac{d\mathbf{r}}{dt}\right| dt\)</span>. This parametrization allows us to convert the path integral over the curve <span class="math inline">\(C\)</span> into a definite integral over the parameter <span class="math inline">\(t\)</span>. According to Fermat’s principle, the true path makes this integral stationary (δL = 0).</p>
-<p>Consider a small variation in the path: <span class="math inline">\(\mathbf{r}(t) \rightarrow \mathbf{r}(t) + \epsilon\mathbf{\eta}(t)\)</span> where <span class="math inline">\(\mathbf{\eta}(t_1) = \mathbf{\eta}(t_2) = 0\)</span> (fixed endpoints). Expanding the variation of the integral to first order in ε:</p>
-<p><span class="math display">\[\delta L = \frac{d}{d\epsilon}\bigg|_{\epsilon=0} \int_{t_1}^{t_2} n(\mathbf{r}(t) + \epsilon\mathbf{\eta}(t)) \left|\frac{d}{dt}(\mathbf{r}(t) + \epsilon\mathbf{\eta}(t))\right| dt\]</span></p>
-<p>Using the chain rule and reparametrizing with arc length <span class="math inline">\(s\)</span> (where <span class="math inline">\(\frac{d\mathbf{r}}{ds}\)</span> is a unit vector), the stationarity condition leads to:</p>
-<p><span class="math display">\[\int_C \left[ \nabla n \cdot \mathbf{\eta} - \frac{d}{ds}\left(n\frac{d\mathbf{r}}{ds}\right) \cdot \mathbf{\eta} \right] ds = 0\]</span></p>
-<p>Since this must hold for any variation <span class="math inline">\(\mathbf{\eta}\)</span>, we obtain the Euler-Lagrange equation:</p>
-<p><span class="math display">\[\frac{d}{ds}\left(n\frac{d\mathbf{r}}{ds}\right) = \nabla n\]</span></p>
-<p>This is the ray equation in differential form. It shows that rays bend toward regions of higher refractive index, directly analogous to how a mechanical particle’s trajectory is affected by a potential field in classical mechanics.</p>
-</div>
-</div>
-</div>
 </section>
-<section id="thin-lenses-and-fermats-principle" class="level3">
-<h3 class="anchored" data-anchor-id="thin-lenses-and-fermats-principle">Thin Lenses and Fermat’s Principle</h3>
-<p>We can show that a thin lens obeys Fermat’s principle by considering the optical path length for rays passing through different points of the lens. For a thin lens with a biconvex spherical surface of radius <span class="math inline">\(R\)</span>, the thickness <span class="math inline">\(d(y)\)</span> varies with the distance <span class="math inline">\(y\)</span> from the optical axis according to:</p>
-<p><span class="math display">\[d(y) \approx d_0 - \frac{y^2}{2R}\]</span></p>
-<p>where <span class="math inline">\(d_0\)</span> is the thickness at the center. For a converging lens, the thickness decreases as we move away from the optical axis.</p>
-<p>Let’s consider a ray from object point <span class="math inline">\(O\)</span> passing through the lens at height <span class="math inline">\(y\)</span> and reaching the image point <span class="math inline">\(I\)</span>. The total optical path length is:</p>
-<p><span class="math display">\[L(y) = n_1 \cdot |OP| + n_2 \cdot d(y) + n_1 \cdot |PI|\]</span></p>
-<p>where <span class="math inline">\(n_1\)</span> is the refractive index of the surrounding medium (usually air, <span class="math inline">\(n_1 \approx 1\)</span>) and <span class="math inline">\(n_2\)</span> is the refractive index of the lens material.</p>
-<div id="cell-fig-lens-fermat" class="cell" data-execution_count="6">
+</section>
+<section id="fermats-principle-for-spherical-surfaces" class="level2">
+<h2 class="anchored" data-anchor-id="fermats-principle-for-spherical-surfaces">Fermat’s Principle for Spherical Surfaces</h2>
+<p>The power of Fermat’s principle becomes particularly evident when applied to spherical refracting surfaces. Consider a spherical boundary of radius <span class="math inline">\(R\)</span> between two media with refractive indices <span class="math inline">\(n_1\)</span> and <span class="math inline">\(n_2\)</span>. According to Fermat’s principle, light will follow the path that minimizes the total optical path length.</p>
+<p>For a ray traveling from point <span class="math inline">\(A\)</span> in medium 1 to point <span class="math inline">\(B\)</span> in medium 2, refracted at point <span class="math inline">\(P\)</span> on the spherical surface, the total optical path length is:</p>
+<p><span class="math display">\[L = n_1|AP| + n_2|PB|\]</span></p>
+<p>For the actual path taken by light, we require:</p>
+<p><span class="math display">\[\frac{dL}{d\phi} = 0\]</span></p>
+<p>where <span class="math inline">\(\phi\)</span> is the angular position of point <span class="math inline">\(P\)</span> on the spherical surface.</p>
+<div id="cell-fig-fermat-spherical" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set up the figure</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>get_size(<span class="dv">18</span>, <span class="dv">8</span>))</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Define parameters</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> <span class="dv">2</span>  <span class="co"># focal length</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>n_lens <span class="op">=</span> <span class="fl">1.5</span>  <span class="co"># refractive index of lens</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>d0 <span class="op">=</span> <span class="fl">0.1</span>  <span class="co"># thickness at center</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>object_distance <span class="op">=</span> <span class="dv">4</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>image_distance <span class="op">=</span> <span class="dv">1</span><span class="op">/</span>(<span class="dv">1</span><span class="op">/</span>f <span class="op">-</span> <span class="dv">1</span><span class="op">/</span>object_distance)  <span class="co"># from lens equation</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to calculate optical path length through lens at height y</span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> optical_path(y, obj_dist, img_dist, n, d0, f):</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Approximate lens thickness at height y</span></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    d_y <span class="op">=</span> d0 <span class="op">*</span> (<span class="dv">1</span> <span class="op">+</span> y<span class="op">**</span><span class="dv">2</span><span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>f<span class="op">*</span>d0<span class="op">*</span>(n<span class="op">-</span><span class="dv">1</span>)))</span>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib.patches <span class="im">import</span> Arc, Wedge</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.patches <span class="im">as</span> patches</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Set up the figure</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>get_size(<span class="dv">15</span>, <span class="dv">10</span>))</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Parameters</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>R <span class="op">=</span> <span class="dv">3</span>  <span class="co"># Radius of the spherical surface</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>n1 <span class="op">=</span> <span class="fl">1.0</span>  <span class="co"># Refractive index of first medium</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>n2 <span class="op">=</span> <span class="fl">1.5</span>  <span class="co"># Refractive index of second medium</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>arc_angle <span class="op">=</span> <span class="dv">100</span>  <span class="co"># Arc angle in degrees</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>center_x <span class="op">=</span> <span class="dv">3</span>  <span class="co"># Center of arc is to the right of the boundary</span></span>
 <span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Distance from object to lens entry point</span></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    d1 <span class="op">=</span> np.sqrt(obj_dist<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> y<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the center of the sphere</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>center <span class="op">=</span> (center_x, <span class="dv">0</span>)</span>
 <span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Distance from lens exit point to image</span></span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    d2 <span class="op">=</span> np.sqrt(img_dist<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> y<span class="op">**</span><span class="dv">2</span>)</span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Total path length (air + lens + air)</span></span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> d1 <span class="op">+</span> (n<span class="op">-</span><span class="dv">1</span>)<span class="op">*</span>d_y <span class="op">+</span> d2</span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate optical paths for different heights</span></span>
-<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>y_values <span class="op">=</span> np.linspace(<span class="op">-</span><span class="fl">1.5</span>, <span class="fl">1.5</span>, <span class="dv">30</span>)</span>
-<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>path_lengths <span class="op">=</span> [optical_path(y, object_distance, image_distance, n_lens, d0, f) <span class="cf">for</span> y <span class="kw">in</span> y_values]</span>
-<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Find minimum path</span></span>
-<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>min_index <span class="op">=</span> np.argmin(path_lengths)</span>
-<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>path_diff <span class="op">=</span> np.array(path_lengths) <span class="op">-</span> <span class="bu">min</span>(path_lengths)</span>
-<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot lens shape (exaggerated for visibility)</span></span>
-<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>lens_width <span class="op">=</span> <span class="fl">0.2</span></span>
-<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>x_lens <span class="op">=</span> np.linspace(<span class="op">-</span>lens_width<span class="op">/</span><span class="dv">2</span>, lens_width<span class="op">/</span><span class="dv">2</span>, <span class="dv">100</span>)</span>
-<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>y_lens <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">100</span>)</span>
-<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>XX, YY <span class="op">=</span> np.meshgrid(x_lens, y_lens)</span>
-<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>lens_shape <span class="op">=</span> d0 <span class="op">+</span> YY<span class="op">**</span><span class="dv">2</span><span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>f<span class="op">*</span>d0<span class="op">*</span>(n_lens<span class="op">-</span><span class="dv">1</span>))</span>
-<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>lens_shape <span class="op">=</span> lens_shape <span class="op">*</span> lens_width<span class="op">/</span>lens_shape.<span class="bu">max</span>()</span>
-<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a><span class="co"># Draw lens</span></span>
-<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>ax.fill_between([<span class="op">-</span>lens_shape.<span class="bu">max</span>()<span class="op">/</span><span class="dv">2</span>, lens_shape.<span class="bu">max</span>()<span class="op">/</span><span class="dv">2</span>], [<span class="op">-</span><span class="dv">2</span>, <span class="op">-</span><span class="dv">2</span>], [<span class="dv">2</span>, <span class="dv">2</span>], color<span class="op">=</span><span class="st">'lightblue'</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
-<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>ax.plot([<span class="op">-</span>lens_width<span class="op">/</span><span class="dv">4</span>, lens_width<span class="op">/</span><span class="dv">4</span>], [<span class="dv">0</span>, <span class="dv">0</span>], <span class="st">'b-'</span>, linewidth<span class="op">=</span><span class="dv">2</span>)  <span class="co"># Optical axis</span></span>
-<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot object and image points</span></span>
-<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a>ax.plot(<span class="op">-</span>object_distance, <span class="dv">0</span>, <span class="st">'bo'</span>, markersize<span class="op">=</span><span class="dv">8</span>, label<span class="op">=</span><span class="st">'object'</span>)</span>
-<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a>ax.plot(image_distance, <span class="dv">0</span>, <span class="st">'ro'</span>, markersize<span class="op">=</span><span class="dv">8</span>, label<span class="op">=</span><span class="st">'image'</span>)</span>
-<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a><span class="co"># Draw some example rays</span></span>
-<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, y <span class="kw">in</span> <span class="bu">enumerate</span>(y_values[::<span class="dv">5</span>]):</span>
-<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> i <span class="op">==</span> <span class="bu">len</span>(y_values[::<span class="dv">5</span>])<span class="op">//</span><span class="dv">2</span>:  <span class="co"># Highlight central ray</span></span>
-<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a>        color <span class="op">=</span> <span class="st">'green'</span></span>
-<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a>        lw <span class="op">=</span> <span class="dv">2</span></span>
-<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a>        label1 <span class="op">=</span> <span class="st">'minimal path'</span></span>
-<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
-<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a>        color <span class="op">=</span> <span class="st">'gray'</span></span>
-<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a>        lw <span class="op">=</span> <span class="fl">0.8</span></span>
-<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a>        label1 <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate arc angles in radians</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>start_angle <span class="op">=</span> <span class="dv">180</span> <span class="op">-</span> arc_angle<span class="op">/</span><span class="dv">2</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>end_angle <span class="op">=</span> <span class="dv">180</span> <span class="op">+</span> arc_angle<span class="op">/</span><span class="dv">2</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Draw the spherical surface as an arc</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>arc <span class="op">=</span> Arc(center, <span class="dv">2</span><span class="op">*</span>R, <span class="dv">2</span><span class="op">*</span>R, theta1<span class="op">=</span>start_angle, theta2<span class="op">=</span>end_angle,</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>          color<span class="op">=</span><span class="st">'black'</span>, linewidth<span class="op">=</span><span class="fl">1.5</span>)</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>ax.add_patch(arc)</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the x-coordinate of the leftmost point of the arc</span></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>boundary_x <span class="op">=</span> center_x <span class="op">-</span> R <span class="op">*</span> np.cos(np.radians(<span class="dv">90</span> <span class="op">-</span> arc_angle<span class="op">/</span><span class="dv">2</span>))</span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Draw the media boundary</span></span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>ax.fill_between([<span class="op">-</span><span class="dv">8</span>, boundary_x], [<span class="op">-</span><span class="dv">8</span>, <span class="op">-</span><span class="dv">8</span>], [<span class="dv">8</span>, <span class="dv">8</span>], color<span class="op">=</span><span class="st">'lightblue'</span>, alpha<span class="op">=</span><span class="fl">0.2</span>)</span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>ax.fill_between([boundary_x, <span class="dv">8</span>], [<span class="op">-</span><span class="dv">8</span>, <span class="op">-</span><span class="dv">8</span>], [<span class="dv">8</span>, <span class="dv">8</span>], color<span class="op">=</span><span class="st">'lightgreen'</span>, alpha<span class="op">=</span><span class="fl">0.2</span>)</span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>ax.axvline(x<span class="op">=</span>boundary_x, color<span class="op">=</span><span class="st">'black'</span>, linestyle<span class="op">=</span><span class="st">'-'</span>, linewidth<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a><span class="co"># Add labels for the media</span></span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>ax.text(boundary_x<span class="op">-</span><span class="dv">2</span>, <span class="dv">6</span>, <span class="ss">f"n₁ = </span><span class="sc">{</span>n1<span class="sc">}</span><span class="ss">"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>ax.text(boundary_x<span class="op">+</span><span class="dv">2</span>, <span class="dv">6</span>, <span class="ss">f"n₂ = </span><span class="sc">{</span>n2<span class="sc">}</span><span class="ss">"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a><span class="co"># Mark object and image points</span></span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>object_point <span class="op">=</span> (boundary_x<span class="op">-</span><span class="dv">3</span>, <span class="dv">0</span>)</span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>image_point <span class="op">=</span> (center_x<span class="op">+</span><span class="dv">6</span>, <span class="dv">0</span>)</span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>ax.plot(object_point[<span class="dv">0</span>], object_point[<span class="dv">1</span>], <span class="st">'bo'</span>, markersize<span class="op">=</span><span class="dv">8</span>, label<span class="op">=</span><span class="st">'Object (A)'</span>)</span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a>ax.plot(image_point[<span class="dv">0</span>], image_point[<span class="dv">1</span>], <span class="st">'ro'</span>, markersize<span class="op">=</span><span class="dv">8</span>, label<span class="op">=</span><span class="st">'Image (B)'</span>)</span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate different potential paths along the arc</span></span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a>theta_rad <span class="op">=</span> np.linspace(np.radians(start_angle), np.radians(end_angle), <span class="dv">15</span>)</span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>paths <span class="op">=</span> []</span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a>optical_lengths <span class="op">=</span> []</span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> theta <span class="kw">in</span> theta_rad:</span>
+<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Position on the arc</span></span>
+<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> center_x <span class="op">+</span> R <span class="op">*</span> np.cos(theta)</span>
+<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> R <span class="op">*</span> np.sin(theta)</span>
+<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Calculate distances</span></span>
+<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a>    d1 <span class="op">=</span> np.sqrt((x <span class="op">-</span> object_point[<span class="dv">0</span>])<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> (y <span class="op">-</span> object_point[<span class="dv">1</span>])<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a>    d2 <span class="op">=</span> np.sqrt((x <span class="op">-</span> image_point[<span class="dv">0</span>])<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> (y <span class="op">-</span> image_point[<span class="dv">1</span>])<span class="op">**</span><span class="dv">2</span>)</span>
 <span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Draw ray from object through lens to image</span></span>
-<span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a>    ax.plot([<span class="op">-</span>object_distance, <span class="dv">0</span>, image_distance], [<span class="dv">0</span>, y, <span class="dv">0</span>], color<span class="op">=</span>color, linewidth<span class="op">=</span>lw, label<span class="op">=</span>label1)</span>
+<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Calculate optical path length</span></span>
+<span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a>    optical_length <span class="op">=</span> n1 <span class="op">*</span> d1 <span class="op">+</span> n2 <span class="op">*</span> d2</span>
 <span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot optical path length vs height - moved to bottom-right corner with more room</span></span>
-<span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a>ax2 <span class="op">=</span> ax.inset_axes([<span class="fl">0.7</span>, <span class="fl">0.75</span>, <span class="fl">0.28</span>, <span class="fl">0.22</span>])  <span class="co"># Adjusted position and size</span></span>
-<span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a>ax2.plot(y_values, path_diff <span class="op">*</span> <span class="dv">1000</span>, <span class="st">'k-'</span>)  <span class="co"># Convert to mm for visibility</span></span>
-<span id="cb5-66"><a href="#cb5-66" aria-hidden="true" tabindex="-1"></a>ax2.set_xlabel(<span class="st">'height on lens (y)'</span>, fontsize<span class="op">=</span><span class="dv">8</span>)</span>
-<span id="cb5-67"><a href="#cb5-67" aria-hidden="true" tabindex="-1"></a>ax2.set_ylabel(<span class="vs">r'$\Delta L$ (mm)'</span>, fontsize<span class="op">=</span><span class="dv">8</span>)</span>
-<span id="cb5-68"><a href="#cb5-68" aria-hidden="true" tabindex="-1"></a>ax2.tick_params(axis<span class="op">=</span><span class="st">'both'</span>, which<span class="op">=</span><span class="st">'major'</span>, labelsize<span class="op">=</span><span class="dv">7</span>)</span>
-<span id="cb5-69"><a href="#cb5-69" aria-hidden="true" tabindex="-1"></a>ax2.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
-<span id="cb5-70"><a href="#cb5-70" aria-hidden="true" tabindex="-1"></a>ax2.axhline(y<span class="op">=</span><span class="dv">0</span>, color<span class="op">=</span><span class="st">'r'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
-<span id="cb5-71"><a href="#cb5-71" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-72"><a href="#cb5-72" aria-hidden="true" tabindex="-1"></a><span class="co"># Set main plot properties</span></span>
-<span id="cb5-73"><a href="#cb5-73" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="op">-</span>object_distance<span class="op">*</span><span class="fl">1.1</span>, image_distance<span class="op">*</span><span class="fl">1.1</span>)</span>
-<span id="cb5-74"><a href="#cb5-74" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="op">-</span><span class="fl">2.5</span>, <span class="fl">2.5</span>)</span>
-<span id="cb5-75"><a href="#cb5-75" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'position along optical axis'</span>)</span>
-<span id="cb5-76"><a href="#cb5-76" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'height'</span>)</span>
-<span id="cb5-77"><a href="#cb5-77" aria-hidden="true" tabindex="-1"></a>ax.axvline(x<span class="op">=</span><span class="dv">0</span>, color<span class="op">=</span><span class="st">'k'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)  <span class="co"># Mark lens position</span></span>
-<span id="cb5-78"><a href="#cb5-78" aria-hidden="true" tabindex="-1"></a><span class="co">#ax.text(0.5, 2, "n = " + str(n_lens))</span></span>
-<span id="cb5-79"><a href="#cb5-79" aria-hidden="true" tabindex="-1"></a>ax.legend(loc<span class="op">=</span><span class="st">'upper left'</span>)  <span class="co"># Moved legend to upper left to avoid overlap</span></span>
+<span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a>    paths.append((x, y))</span>
+<span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a>    optical_lengths.append(optical_length)</span>
+<span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-66"><a href="#cb5-66" aria-hidden="true" tabindex="-1"></a><span class="co"># Find the minimum optical path</span></span>
+<span id="cb5-67"><a href="#cb5-67" aria-hidden="true" tabindex="-1"></a>min_index <span class="op">=</span> np.argmin(optical_lengths)</span>
+<span id="cb5-68"><a href="#cb5-68" aria-hidden="true" tabindex="-1"></a>min_path <span class="op">=</span> paths[min_index]</span>
+<span id="cb5-69"><a href="#cb5-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-70"><a href="#cb5-70" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot all potential paths</span></span>
+<span id="cb5-71"><a href="#cb5-71" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, (x, y) <span class="kw">in</span> <span class="bu">enumerate</span>(paths):</span>
+<span id="cb5-72"><a href="#cb5-72" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> i <span class="op">==</span> min_index:</span>
+<span id="cb5-73"><a href="#cb5-73" aria-hidden="true" tabindex="-1"></a>        <span class="cf">continue</span></span>
+<span id="cb5-74"><a href="#cb5-74" aria-hidden="true" tabindex="-1"></a>    ax.plot([object_point[<span class="dv">0</span>], x, image_point[<span class="dv">0</span>]], [object_point[<span class="dv">1</span>], y, image_point[<span class="dv">1</span>]],</span>
+<span id="cb5-75"><a href="#cb5-75" aria-hidden="true" tabindex="-1"></a>             <span class="st">'gray'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>, linewidth<span class="op">=</span><span class="fl">0.8</span>)</span>
+<span id="cb5-76"><a href="#cb5-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-77"><a href="#cb5-77" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the path of minimum optical length (Fermat's principle)</span></span>
+<span id="cb5-78"><a href="#cb5-78" aria-hidden="true" tabindex="-1"></a>ax.plot([object_point[<span class="dv">0</span>], min_path[<span class="dv">0</span>], image_point[<span class="dv">0</span>]], [object_point[<span class="dv">1</span>], min_path[<span class="dv">1</span>], image_point[<span class="dv">1</span>]],</span>
+<span id="cb5-79"><a href="#cb5-79" aria-hidden="true" tabindex="-1"></a>         <span class="st">'red'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">'Minimum optical path'</span>)</span>
 <span id="cb5-80"><a href="#cb5-80" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-81"><a href="#cb5-81" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-81"><a href="#cb5-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-82"><a href="#cb5-82" aria-hidden="true" tabindex="-1"></a><span class="co"># Set up the main plot</span></span>
+<span id="cb5-83"><a href="#cb5-83" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="op">-</span><span class="dv">4</span>, <span class="dv">12</span>)</span>
+<span id="cb5-84"><a href="#cb5-84" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="op">-</span><span class="dv">4</span>, <span class="dv">4</span>)</span>
+<span id="cb5-85"><a href="#cb5-85" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Position'</span>)</span>
+<span id="cb5-86"><a href="#cb5-86" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Height'</span>)</span>
+<span id="cb5-87"><a href="#cb5-87" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb5-88"><a href="#cb5-88" aria-hidden="true" tabindex="-1"></a>ax.axhline(y<span class="op">=</span><span class="dv">0</span>, color<span class="op">=</span><span class="st">'gray'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb5-89"><a href="#cb5-89" aria-hidden="true" tabindex="-1"></a>ax.legend(loc<span class="op">=</span><span class="st">'lower right'</span>)</span>
+<span id="cb5-90"><a href="#cb5-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-91"><a href="#cb5-91" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb5-92"><a href="#cb5-92" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
-<div id="fig-lens-fermat" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-fermat-spherical" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-lens-fermat-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="01-lecture01_files/figure-html/fig-lens-fermat-output-1.svg" class="img-fluid figure-img">
+<div aria-describedby="fig-fermat-spherical-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="01-lecture01_files/figure-html/fig-fermat-spherical-output-1.svg" class="img-fluid figure-img">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-lens-fermat-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5— Demonstration of Fermat’s principle in a thin lens
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fermat-spherical-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9— Fermat’s principle applied to a spherical refracting surface
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Applying Fermat’s principle, we require that <span class="math inline">\(\frac{dL}{dy} = 0\)</span> for the actual ray path. After differentiation and algebraic manipulation, we arrive at:</p>
-<p><span class="math display">\[\frac{y}{|OP|} + \frac{y}{|PI|} = \frac{y(n_2-n_1)}{R}\]</span></p>
-<p>This is equivalent to the lens maker’s formula when combined with the small-angle approximation. The parabolic thickness profile of the lens ensures that all rays from the object point arrive at the image point with the same optical path length (to first order), satisfying Fermat’s principle.</p>
-<p>The lens thus acts as a path equalizer - rays taking different paths through the lens all require the same travel time, which creates the focusing effect. This is why a properly designed lens can form a perfect image: it ensures constructive interference of all waves at the image point by making all optical paths equal.</p>
-<!-- ## Wave Optics (20 minutes)-->
+<p>Under the paraxial approximation, we can express coordinates using small-angle approximations. If we place the origin at the center of the spherical surface, with objects at distance <span class="math inline">\(a\)</span> from the surface and images at distance <span class="math inline">\(b\)</span>, the minimization condition leads to:</p>
+<p><span class="math display">\[n_1 \sin \theta_1 = n_2 \sin \theta_2\]</span></p>
+<p>Where <span class="math inline">\(\theta_1\)</span> and <span class="math inline">\(\theta_2\)</span> are the angles with respect to the normal at point <span class="math inline">\(P\)</span>.</p>
+<p>Using the paraxial approximation <span class="math inline">\(\sin \theta \approx \theta\)</span> and geometric relations at the spherical surface, this simplifies to:</p>
+<p><span class="math display">\[\frac{n_1}{a} + \frac{n_2}{b} = \frac{n_2-n_1}{R}\]</span></p>
+<p>This is precisely the imaging equation for a spherical refracting surface that we derived earlier. The remarkable aspect is that Fermat’s principle—the requirement that light follow the path of least time—naturally yields the same result as our geometric derivation.</p>
+<section id="deriving-the-thin-lens-equation-from-fermats-principle" class="level3">
+<h3 class="anchored" data-anchor-id="deriving-the-thin-lens-equation-from-fermats-principle">Deriving the Thin Lens Equation from Fermat’s Principle</h3>
+<p>To derive the thin lens equation, we apply Fermat’s principle to the two spherical surfaces that make up a lens. Consider a lens with refractive index <span class="math inline">\(n_2\)</span> in a medium of index <span class="math inline">\(n_1\)</span>, with surface radii <span class="math inline">\(R_1\)</span> and <span class="math inline">\(R_2\)</span>.</p>
+<p>The total optical path for a ray passing through the lens at height <span class="math inline">\(y\)</span> from the optical axis is: - Path from object to first surface: <span class="math inline">\(n_1 s_1\)</span> - Path through the lens: <span class="math inline">\(n_2 s_2\)</span> - Path from second surface to image: <span class="math inline">\(n_1 s_3\)</span></p>
+<p>For a thin lens, the optical path length simplifies to:</p>
+<p><span class="math display">\[L(y) = n_1 \sqrt{a^2 + y^2} + n_2 d(y) + n_1 \sqrt{b^2 + y^2}\]</span></p>
+<p>Where <span class="math inline">\(d(y)\)</span> is the thickness of the lens at height <span class="math inline">\(y\)</span>, which can be approximated as:</p>
+<p><span class="math display">\[d(y) \approx d_0 + \frac{y^2}{2}\left(\frac{1}{R_1}-\frac{1}{R_2}\right)\]</span></p>
+<p>Applying Fermat’s principle (<span class="math inline">\(\frac{dL}{dy} = 0\)</span>) and using the paraxial approximation:</p>
+<p><span class="math display">\[\frac{n_1 y}{\sqrt{a^2 + y^2}} + n_2 y \left(\frac{1}{R_1}-\frac{1}{R_2}\right) + \frac{n_1 y}{\sqrt{b^2 + y^2}} = 0\]</span></p>
+<p>In the paraxial limit (<span class="math inline">\(y \ll a, y \ll b\)</span>), this becomes:</p>
+<p><span class="math display">\[\frac{n_1 y}{a} + n_2 y \left(\frac{1}{R_1}-\frac{1}{R_2}\right) + \frac{n_1 y}{b} = 0\]</span></p>
+<p>Dividing by <span class="math inline">\(y\)</span> and rearranging:</p>
+<p><span class="math display">\[\frac{1}{a} + \frac{1}{b} = \frac{n_2-n_1}{n_1}\left(\frac{1}{R_1}-\frac{1}{R_2}\right) = \frac{1}{f}\]</span></p>
+<p>This is the thin lens equation with the focal length given by the lensmaker’s equation:</p>
+<p><span class="math display">\[f = \frac{n_1}{n_2-n_1}\left(\frac{R_1 R_2}{R_2-R_1}\right)\]</span></p>
+<p>Thus, both the imaging equation and the lensmaker equation emerge naturally from Fermat’s principle applied to the geometry of a thin lens, showing that light follows paths of equal optical length from object to image when passing through any part of the lens.</p>
+<p>From a wave perspective, what makes a lens focus light to a point is that all paths from object to image through any part of the lens have equal optical path lengths (to first order in the paraxial approximation), ensuring constructive interference at the image point.</p>
 
 
 </section>
