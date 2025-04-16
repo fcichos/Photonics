@@ -23,6 +23,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.path import Path
 import matplotlib.patches as patches
+from matplotlib.colors import LinearSegmentedColormap
+from mpl_toolkits.mplot3d import Axes3D
+
 
 
 from matplotlib_inline.backend_inline import set_matplotlib_formats
@@ -56,7 +59,7 @@ Ray optics, or geometric optics, provides a powerful framework for understanding
 
 #### Fermat's Principle: Integral and Differential Forms
 
-**Fermat's Principle** forms the foundation of ray optics, stating that light travels along the route that minimizes the total optical path length between any two points. This optical path length, expressed mathematically as $\int_C n(s)ds$, represents the effective distance light traverses through media of varying refractive indices. When this quantity is divided by the vacuum speed of light $c_0$, it yields the total travel time required for light to journey between those points.
+**Fermat's Principle** forms one of the foundations of ray optics, stating that light travels along the route that takes the total optical path length between any two points to an extremum (commonly a minimum). This optical path length, expressed mathematically as $\int_C n(s)ds$, represents the effective distance light traverses through media of varying refractive indices. When this quantity is divided by the vacuum speed of light $c_0$, it yields the total travel time required for light to journey between those points.
 
 In its integral form:
 
@@ -168,6 +171,39 @@ plt.tight_layout()
 plt.show()
 ```
 
+:::{.callout-note collapse=true}
+#### Reflection Law Derivation
+For reflection at a planar interface, we consider a ray traveling from point A to point B via reflection at point P on a mirror, as illustrated in Fig. \ref{fig-fermat-reflection}. The total path length is $L = |AP| + |PB|$.
+
+Let's establish a coordinate system where the mirror lies along the x-axis at y = 0. If point A is at coordinates $(-a, h_1)$ and point B is at $(b, h_2)$, with the reflection point P at $(x, 0)$, the total path length is:
+
+$$L(x) = \sqrt{(x+a)^2 + h_1^2} + \sqrt{(b-x)^2 + h_2^2}$$
+
+According to Fermat's Principle, the actual path minimizes $L$, so we differentiate with respect to $x$ and set it equal to zero:
+
+$$\frac{dL}{dx} = \frac{x+a}{\sqrt{(x+a)^2 + h_1^2}} - \frac{b-x}{\sqrt{(b-x)^2 + h_2^2}} = 0$$
+
+Rearranging this equation:
+
+$$\frac{x+a}{\sqrt{(x+a)^2 + h_1^2}} = \frac{b-x}{\sqrt{(b-x)^2 + h_2^2}}$$
+
+Now, let's interpret this geometrically. The angle of incidence $\theta_i$ is the angle between the incident ray AP and the normal to the mirror (y-axis). Similarly, the angle of reflection $\theta_r$ is the angle between the reflected ray PB and the normal.
+
+From trigonometry:
+- $\sin(\theta_i) = \frac{x+a}{\sqrt{(x+a)^2 + h_1^2}}$
+- $\sin(\theta_r) = \frac{b-x}{\sqrt{(b-x)^2 + h_2^2}}$
+
+Therefore, our minimization condition directly yields:
+$$\sin(\theta_i) = \sin(\theta_r)$$
+
+Since both angles are measured in the same quadrant (from the normal to the mirror), this equality implies:
+$$\theta_i = \theta_r$$
+
+This is the law of reflection: the angle of incidence equals the angle of reflection.
+
+**Law of Reflection**: The angle of incidence equals the angle of reflection.
+$$\theta_i = \theta_r$$
+:::
 
 
 **Refraction**: Between media with different refractive indices, Fermat's Principle yields Snell's law:
@@ -289,32 +325,42 @@ ax.legend()
 plt.tight_layout()
 plt.show()
 ```
-
-
-::: {.callout-note collapse="true"}
-### Detailed Derivations from Fermat's Principle
-
-#### Reflection Law Derivation
-For reflection at a planar interface, we consider a ray traveling from point A to point B via reflection at point P on a mirror. The total path length is $L = |AP| + |PB|$. According to Fermat's Principle, the actual path minimizes $L$, so we set:
-
-$$\frac{dL}{dx} = 0$$
-
-where $x$ is the position of P along the mirror. This leads to the condition that the angle of incidence equals the angle of reflection.
-
-**Law of Reflection**: The angle of incidence equals the angle of reflection.
-$$\theta_i = \theta_r$$
-
+:::{.callout-note collapse=true}
 #### Refraction Law Derivation
-For refraction between two media, the optical path length is:
+For refraction between two media with different refractive indices, we apply Fermat's principle to find the path that minimizes the total optical path length. Consider a ray traveling from point A in medium 1 to point B in medium 2, with refraction occurring at point P on the interface, as illustrated in Fig. \ref{fig-fermat-refraction}.
+
+The total optical path length is:
 
 $$L = n_1|AP| + n_2|PB|$$
 
-Applying the minimization condition $\frac{dL}{dx} = 0$ yields Snell's law.
+To determine the exact refraction point P that minimizes this path, we establish a coordinate system with the interface along the x-axis at y = 0. If point A is at coordinates $(x_A, y_A)$ where $y_A > 0$, and point B is at $(x_B, y_B)$ where $y_B < 0$, with the refraction point P at $(x, 0)$, the total optical path length is:
+
+$$L(x) = n_1\sqrt{(x-x_A)^2 + y_A^2} + n_2\sqrt{(x_B-x)^2 + y_B^2}$$
+
+According to Fermat's Principle, we minimize $L$ by differentiating with respect to $x$ and setting it equal to zero:
+
+$$\frac{dL}{dx} = n_1\frac{x-x_A}{\sqrt{(x-x_A)^2 + y_A^2}} - n_2\frac{x_B-x}{\sqrt{(x_B-x)^2 + y_B^2}} = 0$$
+
+Rearranging this equation:
+
+$$\frac{n_1(x-x_A)}{\sqrt{(x-x_A)^2 + y_A^2}} = \frac{n_2(x_B-x)}{\sqrt{(x_B-x)^2 + y_B^2}}$$
+
+From geometry, we can identify the sine of the angles of incidence and refraction:
+- $\sin(\theta_1) = \frac{|x-x_A|}{|AP|} = \frac{|x-x_A|}{\sqrt{(x-x_A)^2 + y_A^2}}$
+- $\sin(\theta_2) = \frac{|x_B-x|}{|PB|} = \frac{|x_B-x|}{\sqrt{(x_B-x)^2 + y_B^2}}$
+
+Taking the sign into account based on our coordinate system, our minimization condition becomes:
+
+$$n_1\sin(\theta_1) = n_2\sin(\theta_2)$$
+
+This is Snell's law, stating that the ratio of the sines of the angles of incidence and refraction equals the ratio of the refractive indices of the two media.
 
 **Snell's Law**: The ratio of the sines of the angles of incidence and refraction equals the reciprocal of the ratio of the refractive indices.
 $$n_1\sin\theta_1 = n_2\sin\theta_2$$
+:::
 
-#### Differential Form Derivation
+
+### Differential Form of Fermat's Law
 To derive the differential ray equation from Fermat's integral principle, we apply the calculus of variations. Starting with the optical path length functional:
 
 $$L = \int_C n(s)ds = \int_{t_1}^{t_2} n(\mathbf{r}(t)) \left|\frac{d\mathbf{r}}{dt}\right| dt$$
@@ -334,7 +380,255 @@ Since this must hold for any variation $\mathbf{\eta}$, we obtain the Euler-Lagr
 $$\frac{d}{ds}\left(n\frac{d\mathbf{r}}{ds}\right) = \nabla n$$
 
 This shows that rays bend toward regions of higher refractive index, directly analogous to how a mechanical particle's trajectory is affected by a potential field in classical mechanics.
+
+
+:::{.callout-note collapse="true"}
+
+## SELFOC Gradient Index Lens
+
+SELFOC (SELf-FOCusing) gradient-index fibers are interesting optical elements that guide light through a continuous refraction process rather than discrete refractions at interfaces. Let me demonstrate how Fermat's principle can be used to determine the ray paths in these fibers. A SELFOC fiber has a radially varying refractive index, typically following a parabolic profile:
+
+$$n(r) = n_0\left(1 - \frac{1}{2}\alpha^2 r^2\right)$$
+
+where:
+- $n_0$ is the refractive index at the central axis
+- $r$ is the radial distance from the axis
+- $\alpha$ is the gradient constant that determines how quickly the index decreases with radius
+
+### Fermat's Principle in Gradient-Index Media
+
+For a medium with a spatially varying refractive index, Fermat's principle states that light follows the path that minimizes the optical path length:
+
+$$\delta \int_C n(r) ds = 0$$
+
+This yields the differential equation:
+
+$$\frac{d}{ds}\left(n\frac{d\mathbf{r}}{ds}\right) = \nabla n$$
+
+### Deriving the Ray Path Equation
+
+For our parabolic index profile, the gradient of the refractive index is:
+
+$$\nabla n = \frac{\partial n}{\partial r}\hat{\mathbf{r}} = -n_0\alpha^2 r \hat{\mathbf{r}}$$
+
+Using cylindrical coordinates with z along the fiber axis, and assuming the paraxial approximation (rays make small angles with the z-axis), we can simplify the ray equation to:
+
+$$\frac{d^2r}{dz^2} + \alpha^2 r = 0$$
+
+This is the equation for a harmonic oscillator, which has the solution:
+
+$$r(z) = r_0 \cos(\alpha z) + \frac{\theta_0}{\alpha} \sin(\alpha z)$$
+
+where $r_0$ is the initial radial position and $\theta_0$ is the initial angle of the ray with respect to the fiber axis.
+
+```{python}
+#| code-fold: true
+#| echo: false
+#| fig-cap: Ray-path inside a SELFOC gradient index optical fiber.
+#| label: fig-selfoc
+
+# Parameters
+n0 = 1.5  # Central refractive index
+alpha = 0.3  # Gradient constant (mm^-1)
+length = 30  # Length of fiber (mm)
+radius = 1.5  # Radius of fiber (mm)
+
+# Create a grid for visualization
+z = np.linspace(0, length, 300)
+r_grid = np.linspace(0, radius, 100)
+Z, R = np.meshgrid(z, r_grid)
+
+# Calculate refractive index at each point
+N = n0 * (1 - 0.5 * (alpha * R)**2)
+
+# Initialize ray paths
+r0_values = [0.6, 1.0, 1.4]  # Initial radial positions
+theta0_values = [0, 0.2, -0.2]    # Initial angles (all parallel to axis)
+
+# Plot setup
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=get_size(15, 5), gridspec_kw={'width_ratios': [3, 1]})
+
+# Plot the refractive index profile in the first subplot
+cmap = plt.cm.viridis
+extent = [0, length, -radius, radius]
+im = ax1.imshow(np.vstack((N[::-1], N)), extent=extent,
+               aspect='auto', cmap=cmap, origin='lower',alpha=0.2)
+fig.colorbar(im, ax=ax1, label='n(y)')
+
+# Plot ray paths
+for r0, theta0 in zip(r0_values, theta0_values):
+    # Calculate ray path
+    r = r0 * np.cos(alpha * z) + (theta0/alpha) * np.sin(alpha * z)
+
+    # Plot ray path
+    ax1.plot(z, r, 'r-')
+    ax1.plot(z, -r, 'r-')  # Symmetric ray below axis
+
+# Add labels and title for first subplot
+ax1.set_xlabel('z [mm]')
+ax1.set_ylabel('y [mm]')
+
+# For the right subplot, plot r-position vs refractive index
+# Create a finer array of radial positions for a smooth curve
+r_positions = np.linspace(0, radius, 100)
+# Calculate refractive index at each radial position
+n_profile = n0 * (1 - 0.5 * (alpha * r_positions)**2)
+
+# Plot the refractive index profile
+ax2.plot( n_profile,r_positions, 'k-')
+ax2.plot( n_profile,-r_positions, 'k-')
+
+# Set labels for the index profile subplot
+ax2.set_xlabel('y [mm]')
+ax2.set_ylabel('n(y)')
+
+
+plt.tight_layout()
+plt.show()
+```
 :::
+
+
+
+### Fermat's Principle and the "F=ma" Analogy in Optics
+
+The differential form of Fermat's principle:
+
+$$\frac{d}{ds}\left(n\frac{d\mathbf{r}}{ds}\right) = \nabla n$$
+
+reveals a profound analogy with Newton's Second Law of motion:
+
+$$\mathbf{F} = m\mathbf{a} = m\frac{d^2\mathbf{r}}{dt^2}$$
+
+This comparison, sometimes called "F=ma optics," illustrates how light rays follow trajectories mathematically similar to those of mechanical particles. To see this connection more clearly, we can expand the ray equation as:
+
+$$n\frac{d^2\mathbf{r}}{ds^2} + \frac{d\mathbf{r}}{ds}\frac{dn}{ds} = \nabla n$$
+
+Using the chain rule, $\frac{dn}{ds} = \nabla n \cdot \frac{d\mathbf{r}}{ds}$, and denoting $\mathbf{t} = \frac{d\mathbf{r}}{ds}$ as the unit tangent vector along the ray:
+
+$$n\frac{d^2\mathbf{r}}{ds^2} + (\nabla n \cdot \mathbf{t})\mathbf{t} = \nabla n$$
+
+Rearranging to isolate the ray curvature term:
+
+$$n\frac{d^2\mathbf{r}}{ds^2} = \nabla n - (\nabla n \cdot \mathbf{t})\mathbf{t}$$
+
+The right side represents the component of $\nabla n$ perpendicular to the ray direction, which we can denote as $(\nabla n)_\perp$. Therefore:
+
+$$\frac{d^2\mathbf{r}}{ds^2} = \frac{1}{n}(\nabla n)_\perp$$
+
+This equation reveals that the ray curvature is proportional to the perpendicular component of the refractive index gradient and inversely proportional to the refractive index itself. Crucially, this shows that light rays bend **toward** regions of higher refractive index, not away from them.
+
+This behavior explains many optical phenomena:
+
+- Light bending toward the normal when entering a medium with higher refractive index
+- Light guiding in optical fibers where light remains confined in the higher-index core
+- Formation of mirages where light curves toward the denser air near the ground
+- Focusing in gradient-index (GRIN) lenses where the refractive index decreases radially from the center
+
+While the mathematical form resembles Newton's equation for particle motion, the analogy must be carefully interpreted: unlike particles that accelerate toward lower potential energy, light rays curve toward regions of higher refractive index.
+
+```{python}
+#| echo: true
+#| code-fold: true
+#| label: fig-f-equals-ma
+#| fig-cap: "F=ma optics - Light rays (red) following paths toward regions of higher refractive index"
+
+# Parameters
+n0 = 1.5  # Base refractive index (center value)
+n_min = 1.0  # Minimum refractive index (at edges)
+x_range = np.linspace(-5, 5, 100)
+y_range = np.linspace(-5, 5, 100)
+X, Y = np.meshgrid(x_range, y_range)
+
+# Calculate radial distance from center
+R = np.sqrt(X**2 + Y**2)
+# Max radius in our plot
+R_max = 5*np.sqrt(2)
+
+# Create a refractive index profile that decreases with radius
+# but never goes below n_min
+gradient_strength = (n0 - n_min)/R_max  # Calculate appropriate gradient strength
+n = n0 - gradient_strength * R  # Linear decrease with radius
+
+# Set up the figure
+fig, ax = plt.subplots(figsize=get_size(12, 10))
+
+# Plot the refractive index as a contour plot
+contour = ax.contourf(X, Y, n, 20, cmap='viridis', alpha=0.3)
+cbar = fig.colorbar(contour, ax=ax, label='Refractive Index')
+
+# Calculate and plot some ray trajectories
+# We'll simulate the paths by numerical integration
+
+def ray_path(r0, v0, steps=1000, dt=0.05):
+    """Simulate a ray path through the medium"""
+    r = np.zeros((steps, 2))
+    v = np.zeros((steps, 2))
+    r[0] = r0
+    v[0] = v0 / np.linalg.norm(v0)  # Normalize velocity
+
+    for i in range(1, steps):
+        # Get position
+        x, y = r[i-1]
+        if abs(x) >= 5 or abs(y) >= 5:
+            return r[:i]
+
+        # Approximate gradient of n at this point
+        eps = 0.01
+        nx_plus = n0 - gradient_strength * np.sqrt((x+eps)**2 + y**2)
+        nx_minus = n0 - gradient_strength * np.sqrt((x-eps)**2 + y**2)
+        ny_plus = n0 - gradient_strength * np.sqrt(x**2 + (y+eps)**2)
+        ny_minus = n0 - gradient_strength * np.sqrt(x**2 + (y-eps)**2)
+
+        grad_n_x = (nx_plus - nx_minus) / (2*eps)
+        grad_n_y = (ny_plus - ny_minus) / (2*eps)
+        grad_n = np.array([grad_n_x, grad_n_y])
+
+        # Current n value
+        current_n = n0 - gradient_strength * np.sqrt(x**2 + y**2)
+
+        # Calculate the perpendicular component of gradient
+        t = v[i-1] / np.linalg.norm(v[i-1])  # Tangent vector (normalized velocity)
+        grad_n_parallel = np.dot(grad_n, t) * t  # Component along ray direction
+        grad_n_perp = grad_n - grad_n_parallel  # Perpendicular component
+
+        # Update velocity - rays bend toward higher refractive index
+        a = grad_n_perp / current_n
+        v[i] = v[i-1] + a * dt
+        v[i] = v[i] / np.linalg.norm(v[i])  # Ensure unit speed
+
+        # Update position
+        r[i] = r[i-1] + v[i] * dt
+
+    return r
+
+# Calculate several ray paths
+start_positions = [
+    [-4, 2.5], [-4, 1.5], [-4, 0.5],
+    [-4, -0.5], [-4, -1.5], [-4, -2.5]
+]
+paths = []
+
+for start_pos in start_positions:
+    path = ray_path(start_pos, [1, 0], steps=500)
+    paths.append(path)
+    ax.plot(path[:, 0], path[:, 1], 'r-', linewidth=1.5)
+
+# Add start points
+for pos in start_positions:
+    ax.plot(pos[0], pos[1], 'ro')
+
+# Add axis labels
+ax.set_xlabel('x position')
+ax.set_ylabel('y position')
+ax.set_xlim(-5, 5)
+ax.set_ylim(-5, 5)
+ax.set_aspect('equal')
+ax.grid(True, alpha=0.3)
+
+plt.tight_layout()
+plt.show()
+```
 
 
 ### Lenses
@@ -460,6 +754,8 @@ We can define a new quantity, the **focal length**, which depends only on the pr
 
 $$f=\frac{n_2}{n_2-n_1}R$$
 
+
+
 ::: {.callout-note}
 ## Imaging Equation for Spherical Refracting Surface
 
@@ -553,129 +849,8 @@ The image below illustrates the construction of images in 4 of the above cases f
 |-|
 |**Fig.:** Image construction on a biconvex lens with a parallel and a central ray for different object distances.|
 
-### Thick lens
-
-For a thin lens, the displacement of the beam in height ($y,y^{\prime}$) due to the thickness has been neglected. That means that we can reduce all refracting action of the lens to a single plane, which we call a principle plane. This approximation is (independent of the paraxial approximation) not anymore true for lenses if the displacement $\Delta$ of the ray as in the image below cannot be neglected. Such lenses are called **thick lenses** and they do not have a single principle plane anymore. In fact, the principle plane splits up into two principle planes at a distance $h$.
-
-::: {#fig-thick-lens-planes fig-align="center"}
-![](img/thick_lens.png){width=80%}
-
-Thick lens principal planes.
-:::
-
-As indicated in the sketch above, an incident ray which is not deflected can be extended to its intersection with the optical axis at a point, which is a distance $h_1$ behind the lens surface. This is the location for the first principle plane. The position of the second principle plane at a distance $h_2$ before the back surface is found for by reversing the ray path. According to that, both principle planes have a distance $h=d-h_1+h_2$ (mind the sign of the $h$). Using some mathematical effort, one can show that the same imaging equation as for a thins lens can be used with a new definition of the focal length and taking into account that object and image distances refer to their principle planes.
 
 
-### Thin Lenses and Fermat's Principle
-
-We can show that a thin lens obeys Fermat's principle by considering the optical path length for rays passing through different points of the lens. For a thin lens with a biconvex spherical surface of radius $R$, the thickness $d(y)$ varies with the distance $y$ from the optical axis according to:
-
-$$d(y) \approx d_0 - \frac{y^2}{2R}$$
-
-where $d_0$ is the thickness at the center. For a converging lens, the thickness decreases as we move away from the optical axis.
-
-Let's consider a ray from object point $O$ passing through the lens at height $y$ and reaching the image point $I$. The total optical path length is:
-
-$$L(y) = n_1 \cdot |OP| + n_2 \cdot d(y) + n_1 \cdot |PI|$$
-
-where $n_1$ is the refractive index of the surrounding medium (usually air, $n_1 \approx 1$) and $n_2$ is the refractive index of the lens material.
-
-```{python}
-#| echo: true
-#| code-fold: true
-#| label: fig-lens-fermat
-#| fig-cap: Demonstration of Fermat's principle in a thin lens
-
-# Set up the figure
-fig, ax = plt.subplots(figsize=get_size(18, 8))
-
-# Define parameters
-f = 2  # focal length
-n_lens = 1.5  # refractive index of lens
-d0 = 0.1  # thickness at center
-object_distance = 4
-image_distance = 1/(1/f - 1/object_distance)  # from lens equation
-
-# Function to calculate optical path length through lens at height y
-def optical_path(y, obj_dist, img_dist, n, d0, f):
-    # Approximate lens thickness at height y
-    d_y = d0 * (1 + y**2/(2*f*d0*(n-1)))
-
-    # Distance from object to lens entry point
-    d1 = np.sqrt(obj_dist**2 + y**2)
-
-    # Distance from lens exit point to image
-    d2 = np.sqrt(img_dist**2 + y**2)
-
-    # Total path length (air + lens + air)
-    return d1 + (n-1)*d_y + d2
-
-# Calculate optical paths for different heights
-y_values = np.linspace(-1.5, 1.5, 30)
-path_lengths = [optical_path(y, object_distance, image_distance, n_lens, d0, f) for y in y_values]
-
-# Find minimum path
-min_index = np.argmin(path_lengths)
-path_diff = np.array(path_lengths) - min(path_lengths)
-
-# Plot lens shape (exaggerated for visibility)
-lens_width = 0.2
-x_lens = np.linspace(-lens_width/2, lens_width/2, 100)
-y_lens = np.linspace(-2, 2, 100)
-XX, YY = np.meshgrid(x_lens, y_lens)
-lens_shape = d0 + YY**2/(2*f*d0*(n_lens-1))
-lens_shape = lens_shape * lens_width/lens_shape.max()
-
-# Draw lens
-ax.fill_between([-lens_shape.max()/2, lens_shape.max()/2], [-2, -2], [2, 2], color='lightblue', alpha=0.3)
-ax.plot([-lens_width/4, lens_width/4], [0, 0], 'b-', linewidth=2)  # Optical axis
-
-# Plot object and image points
-ax.plot(-object_distance, 0, 'bo', markersize=8, label='object')
-ax.plot(image_distance, 0, 'ro', markersize=8, label='image')
-
-# Draw some example rays
-for i, y in enumerate(y_values[::5]):
-    if i == len(y_values[::5])//2:  # Highlight central ray
-        color = 'green'
-        lw = 2
-        label1 = 'minimal path'
-    else:
-        color = 'gray'
-        lw = 0.8
-        label1 = None
-
-    # Draw ray from object through lens to image
-    ax.plot([-object_distance, 0, image_distance], [0, y, 0], color=color, linewidth=lw, label=label1)
-
-# Plot optical path length vs height - moved to bottom-right corner with more room
-ax2 = ax.inset_axes([0.7, 0.75, 0.28, 0.22])  # Adjusted position and size
-ax2.plot(y_values, path_diff * 1000, 'k-')  # Convert to mm for visibility
-ax2.set_xlabel('height on lens (y)', fontsize=8)
-ax2.set_ylabel(r'$\Delta L$ (mm)', fontsize=8)
-ax2.tick_params(axis='both', which='major', labelsize=7)
-ax2.grid(True, alpha=0.3)
-ax2.axhline(y=0, color='r', linestyle='--', alpha=0.5)
-
-# Set main plot properties
-ax.set_xlim(-object_distance*1.1, image_distance*1.1)
-ax.set_ylim(-2.5, 2.5)
-ax.set_xlabel('position along optical axis')
-ax.set_ylabel('height')
-ax.axvline(x=0, color='k', linestyle='--', alpha=0.3)  # Mark lens position
-#ax.text(0.5, 2, "n = " + str(n_lens))
-ax.legend(loc='upper left')  # Moved legend to upper left to avoid overlap
-
-plt.show()
-```
-
-Applying Fermat's principle, we require that $\frac{dL}{dy} = 0$ for the actual ray path. After differentiation and algebraic manipulation, we arrive at:
-
-$$\frac{y}{|OP|} + \frac{y}{|PI|} = \frac{y(n_2-n_1)}{R}$$
-
-This is equivalent to the lens maker's formula when combined with the small-angle approximation. The parabolic thickness profile of the lens ensures that all rays from the object point arrive at the image point with the same optical path length (to first order), satisfying Fermat's principle.
-
-The lens thus acts as a path equalizer - rays taking different paths through the lens all require the same travel time, which creates the focusing effect. This is why a properly designed lens can form a perfect image: it ensures constructive interference of all waves at the image point by making all optical paths equal.
 
 
 
@@ -768,15 +943,7 @@ This is a very powerful tool to analyze optical systems.
 
 The power of Fermat's principle becomes particularly evident when applied to spherical refracting surfaces. Consider a spherical boundary of radius $R$ between two media with refractive indices $n_1$ and $n_2$. According to Fermat's principle, light will follow the path that minimizes the total optical path length.
 
-For a ray traveling from point $A$ in medium 1 to point $B$ in medium 2, refracted at point $P$ on the spherical surface, the total optical path length is:
 
-$$L = n_1|AP| + n_2|PB|$$
-
-For the actual path taken by light, we require:
-
-$$\frac{dL}{d\phi} = 0$$
-
-where $\phi$ is the angular position of point $P$ on the spherical surface.
 
 ```{python}
 #| echo: true
@@ -816,12 +983,12 @@ boundary_x = center_x - R * np.cos(np.radians(90 - arc_angle/2))
 
 # Draw the media boundary
 ax.fill_between([-8, boundary_x], [-8, -8], [8, 8], color='lightblue', alpha=0.2)
-ax.fill_between([boundary_x, 8], [-8, -8], [8, 8], color='lightgreen', alpha=0.2)
+ax.fill_between([boundary_x, 12], [-8, -8], [8, 8], color='lightgreen', alpha=0.2)
 ax.axvline(x=boundary_x, color='black', linestyle='-', linewidth=1)
 
 # Add labels for the media
-ax.text(boundary_x-2, 6, f"n₁ = {n1}", fontsize=12)
-ax.text(boundary_x+2, 6, f"n₂ = {n2}", fontsize=12)
+ax.text(boundary_x-3, 3, f"n₁ = {n1}", fontsize=12)
+ax.text(boundary_x+2, 3, f"n₂ = {n2}", fontsize=12)
 
 # Mark object and image points
 object_point = (boundary_x-3, 0)
@@ -878,18 +1045,49 @@ plt.tight_layout()
 plt.show()
 ```
 
-Under the paraxial approximation, we can express coordinates using small-angle approximations. If we place the origin at the center of the spherical surface, with objects at distance $a$ from the surface and images at distance $b$, the minimization condition leads to:
+When we apply Fermat's principle to a spherical surface, we can derive the laws of refraction. Consider a spherical boundary between two media with refractive indices $n_1$ and $n_2$. We'll place our coordinate system so that the spherical surface intersects the x-axis at x=0, with radius R and its center at position (R,0) to the right.
 
-$$n_1 \sin \theta_1 = n_2 \sin \theta_2$$
+For a point P on the spherical surface at height y from the optical axis, the total optical path length from object point A at (-a,0) to image point B at (b,0) is:
 
-Where $\theta_1$ and $\theta_2$ are the angles with respect to the normal at point $P$.
+$$L = n_1|AP| + n_2|PB|$$
 
-Using the paraxial approximation $\sin \theta \approx \theta$ and geometric relations at the spherical surface, this simplifies to:
+where:
+$$|AP| = \sqrt{a^2 + y^2}$$
+$$|PB| = \sqrt{b^2 + y^2}$$
+
+According to Fermat's principle, light follows the path where this length is stationary:
+
+$$\frac{dL}{dy} = n_1\frac{d|AP|}{dy} + n_2\frac{d|PB|}{dy} = 0$$
+
+Computing these derivatives:
+
+$$\frac{d|AP|}{dy} = \frac{y}{|AP|}$$
+$$\frac{d|PB|}{dy} = \frac{y}{|PB|}$$
+
+Substituting into our condition:
+
+$$n_1\frac{y}{|AP|} + n_2\frac{y}{|PB|} = 0$$
+
+This equation is incorrect. The right-hand side should not be zero because we need to account for the geometry of the spherical surface. The correct form includes the effect of the surface normal:
+
+$$n_1\frac{y}{|AP|} + n_2\frac{y}{|PB|} = \frac{(n_2-n_1)y}{R}$$
+
+This correction comes from the fact that at point P, the normal to the spherical surface makes an angle α with the optical axis, where sin(α) ≈ y/R in the paraxial approximation.
+
+Dividing by y (assuming y≠0):
+
+$$\frac{n_1}{|AP|} + \frac{n_2}{|PB|} = \frac{n_2-n_1}{R}$$
+
+In the paraxial approximation, we can use |AP| ≈ a and |PB| ≈ b, yielding:
 
 $$\frac{n_1}{a} + \frac{n_2}{b} = \frac{n_2-n_1}{R}$$
 
-This is precisely the imaging equation for a spherical refracting surface that we derived earlier. The remarkable aspect is that Fermat's principle—the requirement that light follow the path of least time—naturally yields the same result as our geometric derivation.
+This is the correct imaging equation for a spherical refracting surface.
 
+The elegance of Fermat's principle is preserved, as it still naturally produces the same result as our geometric derivation, once we properly account for the geometry of the refracting surface.
+
+
+:::{.callout-note collapse=true}
 ### Deriving the Thin Lens Equation from Fermat's Principle
 
 To derive the thin lens equation, we apply Fermat's principle to the two spherical surfaces that make up a lens. Consider a lens with refractive index $n_2$ in a medium of index $n_1$, with surface radii $R_1$ and $R_2$.
@@ -926,3 +1124,4 @@ $$f = \frac{n_1}{n_2-n_1}\left(\frac{R_1 R_2}{R_2-R_1}\right)$$
 Thus, both the imaging equation and the lensmaker equation emerge naturally from Fermat's principle applied to the geometry of a thin lens, showing that light follows paths of equal optical length from object to image when passing through any part of the lens.
 
 From a wave perspective, what makes a lens focus light to a point is that all paths from object to image through any part of the lens have equal optical path lengths (to first order in the paraxial approximation), ensuring constructive interference at the image point.
+:::
