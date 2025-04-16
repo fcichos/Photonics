@@ -172,7 +172,7 @@ window.Quarto = {
   <li><a href="#differential-form-of-fermats-law" id="toc-differential-form-of-fermats-law" class="nav-link" data-scroll-target="#differential-form-of-fermats-law"><span class="header-section-number">2.0.2</span> Differential Form of Fermat’s Law</a></li>
   <li><a href="#fermats-principle-and-the-fma-analogy-in-optics" id="toc-fermats-principle-and-the-fma-analogy-in-optics" class="nav-link" data-scroll-target="#fermats-principle-and-the-fma-analogy-in-optics"><span class="header-section-number">2.0.5</span> Fermat’s Principle and the “F=ma” Analogy in Optics</a></li>
   <li><a href="#lenses" id="toc-lenses" class="nav-link" data-scroll-target="#lenses"><span class="header-section-number">2.0.6</span> Lenses</a></li>
-  <li><a href="#thin-lens" id="toc-thin-lens" class="nav-link" data-scroll-target="#thin-lens"><span class="header-section-number">2.0.7</span> Thin lens</a></li>
+  <li><a href="#thin-lens" id="toc-thin-lens" class="nav-link" data-scroll-target="#thin-lens"><span class="header-section-number">2.0.7</span> Thin Lens</a></li>
   <li><a href="#fermats-principle-for-spherical-surfaces" id="toc-fermats-principle-for-spherical-surfaces" class="nav-link" data-scroll-target="#fermats-principle-for-spherical-surfaces"><span class="header-section-number">2.1</span> Fermat’s Principle for Spherical Surfaces</a></li>
   </ul>
 </nav>
@@ -307,6 +307,96 @@ Refraction Law Derivation
 </div>
 </div>
 </div>
+<div id="cell-fig-snells-combinations" class="cell" data-execution_count="4">
+<div class="cell-output cell-output-display">
+<div id="fig-snells-combinations" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-snells-combinations-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="01-lecture01_files/figure-html/fig-snells-combinations-output-1.png" width="366" height="366" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-snells-combinations-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.3— Snell’s law for different combinations of refractive indices. The plots show the relationship between incident angle (<span class="math inline">\(\theta_1\)</span>) and refracted angle (<span class="math inline">\(\theta_2\)</span>) for three scenarios: (a) light passing from air to glass, (b) light passing from glass to air, and (c) a comparison of both cases. Note how the curves differ when light moves into a medium with higher refractive index versus a lower refractive index.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<section id="total-internal-reflection" class="level5" data-number="2.0.1.2.1">
+<h5 data-number="2.0.1.2.1" class="anchored" data-anchor-id="total-internal-reflection"><span class="header-section-number">2.0.1.2.1</span> Total Internal Reflection</h5>
+<p>When light travels from a medium with a higher refractive index (<span class="math inline">\(n_1\)</span>) to one with a lower refractive index (<span class="math inline">\(n_2\)</span>), a fascinating phenomenon can occur. As the angle of incidence increases, the refracted ray bends away from the normal until, at a critical angle, it travels along the boundary between the two media. Beyond this critical angle, light can no longer pass into the second medium and is instead completely reflected back into the first medium. This phenomenon is known as <strong>total internal reflection</strong> (TIR).</p>
+<p>From Snell’s law, the critical angle <span class="math inline">\(\theta_c\)</span> occurs when the refracted angle <span class="math inline">\(\theta_2 = 90°\)</span>:</p>
+<p><span class="math display">\[n_1\sin\theta_c = n_2\sin(90°) = n_2\]</span></p>
+<p>Therefore:</p>
+<p><span class="math display">\[\theta_c = \arcsin\left(\frac{n_2}{n_1}\right)\]</span></p>
+<p>For total internal reflection to occur, two conditions must be satisfied: 1. Light must travel from a higher to a lower refractive index medium (<span class="math inline">\(n_1 &gt; n_2\)</span>) 2. The angle of incidence must exceed the critical angle (<span class="math inline">\(\theta_1 &gt; \theta_c\)</span>)</p>
+<p>From Fermat’s principle perspective, total internal reflection represents a scenario where no physical path through the second medium can satisfy the minimum optical path length requirement. Instead, the path of least time becomes the reflected path within the original medium. This phenomenon has numerous practical applications, including:</p>
+<ul>
+<li><strong>Fiber optic communication</strong>: Light signals travel long distances through optical fibers via successive total internal reflections with minimal loss</li>
+<li><strong>Prisms and reflectors</strong>: Total internal reflection in prisms provides perfect reflection without needing reflective coatings</li>
+<li><strong>Gemstones</strong>: The brilliance of diamonds results from light being trapped through multiple internal reflections</li>
+<li><strong>Optical instruments</strong>: Binoculars, periscopes, and endoscopes use prisms with TIR to redirect light</li>
+</ul>
+<p>Total internal reflection demonstrates how Fermat’s principle enforces an absolute constraint on light’s behavior—when no path through the second medium can minimize the optical path length, light must remain in the first medium, following the path of least time.</p>
+<p><strong>Optical Fibers and Total Internal Reflection</strong></p>
+<p>Total internal reflection plays a crucial role in modern telecommunications, particularly in optical fibers, which are also part of many experimental setups. These fibers are essentially ultra-thin glass wires, ranging in diameter from a few micrometers to several hundred micrometers, designed to transport light over long distances with minimal loss.</p>
+<p>The structure of an optical fiber is key to its function:</p>
+<ol type="1">
+<li>Core: A central glass core with a refractive index <span class="math inline">\(n_1\)</span></li>
+<li>Cladding: A surrounding layer with a slightly lower refractive index <span class="math inline">\(n_2\)</span></li>
+</ol>
+<p>This difference in refractive indices is what allows total internal reflection to occur within the fiber.</p>
+<div id="fig-optical-fiber" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-optical-fiber-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="img/fiber.png" class="img-fluid figure-img" style="width:59.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-optical-fiber-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.4— Total internal reflection in an optical fiber and a glass rod.
+</figcaption>
+</figure>
+</div>
+<p>For light to propagate effectively through the fiber, it must enter at an angle that ensures total internal reflection at the core-cladding interface. This leads to the concept of the acceptance angle, <span class="math inline">\(\theta_a\)</span>, which is the maximum angle at which light can enter the fiber and still undergo total internal reflection.</p>
+<p>To characterize this acceptance angle, optical engineers use a parameter called the <strong>Numerical Aperture (NA)</strong>.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Numerical Aperture
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The Numerical Aperture of a fiber is defined as the sine of the maximum acceptance angle:</p>
+<p><span class="math display">\[\begin{equation}
+NA = \sin(\theta_a) = \sqrt{n_1^2 - n_2^2}
+\end{equation}\]</span></p>
+</div>
+</div>
+<p>This equation relates the NA directly to the refractive indices of the core and cladding. The derivation of this formula involves applying Snell’s law at the air-fiber interface and at the core-cladding interface, then using the condition for total internal reflection.</p>
+<p>In practice, typical values for the refractive indices might be <span class="math inline">\(n_1 = 1.475\)</span> for the core and <span class="math inline">\(n_2 = 1.46\)</span> for the cladding. Plugging these into our equation:</p>
+<p><span class="math display">\[\begin{equation}
+NA = \sqrt{1.475^2 - 1.46^2} \approx 0.2
+\end{equation}\]</span></p>
+<p>This means that light entering the fiber within a cone of about 11.5° (arcsin(0.2)) from the fiber’s axis will be transmitted through the fiber via total internal reflection.</p>
+<p>The NA is an important parameter in fiber optic design:</p>
+<ol type="1">
+<li>It determines the light-gathering ability of the fiber.</li>
+<li>It affects the fiber’s bandwidth and its susceptibility to certain types of signal distortion.</li>
+<li>It influences how easily the fiber can be coupled to light sources and other fibers.</li>
+</ol>
+<p>Optical fibers come in various types, each optimized for different applications. Some fibers are designed to transmit light over long distances with minimal loss, while others are engineered for specific wavelengths or to guide light in unusual ways. The figure below shows a few examples of optical fiber types.</p>
+<div id="fig-optical-fiber" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-optical-fiber-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="img/fibers.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-optical-fiber-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.5— Rendering of different optical fibers types (from left to right): Hollow core optical fiber, hollow core bragg fiber, photonic crystal fiber, conventional fiber
+</figcaption>
+</figure>
+</div>
+</section>
 </section>
 </section>
 <section id="differential-form-of-fermats-law" class="level3" data-number="2.0.2">
@@ -322,7 +412,7 @@ Refraction Law Derivation
 <p><span class="math display">\[\frac{d}{ds}\left(n\frac{d\mathbf{r}}{ds}\right) = \nabla n\]</span></p>
 <p>This shows that rays bend toward regions of higher refractive index, directly analogous to how a mechanical particle’s trajectory is affected by a potential field in classical mechanics.</p>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -331,7 +421,7 @@ SELFOC Gradient Index Lens
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>SELFOC (SELf-FOCusing) gradient-index fibers are interesting optical elements that guide light through a continuous refraction process rather than discrete refractions at interfaces. Let me demonstrate how Fermat’s principle can be used to determine the ray paths in these fibers. A SELFOC fiber has a radially varying refractive index, typically following a parabolic profile:</p>
 <p><span class="math display">\[n(r) = n_0\left(1 - \frac{1}{2}\alpha^2 r^2\right)\]</span></p>
@@ -352,7 +442,7 @@ SELFOC Gradient Index Lens
 <p>This is the equation for a harmonic oscillator, which has the solution:</p>
 <p><span class="math display">\[r(z) = r_0 \cos(\alpha z) + \frac{\theta_0}{\alpha} \sin(\alpha z)\]</span></p>
 <p>where <span class="math inline">\(r_0\)</span> is the initial radial position and <span class="math inline">\(\theta_0\)</span> is the initial angle of the ray with respect to the fiber axis.</p>
-<div id="cell-fig-selfoc" class="cell" data-execution_count="4">
+<div id="cell-fig-selfoc" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-display">
 <div id="fig-selfoc" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -360,7 +450,7 @@ SELFOC Gradient Index Lens
 <img src="01-lecture01_files/figure-html/fig-selfoc-output-1.png" width="552" height="175" class="figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-selfoc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.3— Ray-path inside a SELFOC gradient index optical fiber.
+Figure&nbsp;2.6— Ray-path inside a SELFOC gradient index optical fiber.
 </figcaption>
 </figure>
 </div>
@@ -394,7 +484,7 @@ Figure&nbsp;2.3— Ray-path inside a SELFOC gradient index optical fiber.
 <li>Focusing in gradient-index (GRIN) lenses where the refractive index decreases radially from the center</li>
 </ul>
 <p>While the mathematical form resembles Newton’s equation for particle motion, the analogy must be carefully interpreted: unlike particles that accelerate toward lower potential energy, light rays curve toward regions of higher refractive index.</p>
-<div id="cell-fig-f-equals-ma" class="cell" data-execution_count="5">
+<div id="cell-fig-f-equals-ma" class="cell" data-execution_count="6">
 <div class="cell-output cell-output-display">
 <div id="fig-f-equals-ma" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -402,7 +492,7 @@ Figure&nbsp;2.3— Ray-path inside a SELFOC gradient index optical fiber.
 <img src="01-lecture01_files/figure-html/fig-f-equals-ma-output-1.png" width="442" height="349" class="figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-f-equals-ma-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.4— F=ma optics - Light rays (red) following paths toward regions of higher refractive index
+Figure&nbsp;2.7— F=ma optics - Light rays (red) following paths toward regions of higher refractive index
 </figcaption>
 </figure>
 </div>
@@ -411,34 +501,32 @@ Figure&nbsp;2.4— F=ma optics - Light rays (red) following paths toward regions
 </section>
 <section id="lenses" class="level3" data-number="2.0.6">
 <h3 data-number="2.0.6" class="anchored" data-anchor-id="lenses"><span class="header-section-number">2.0.6</span> Lenses</h3>
-<p>The most important optical elements are lenses, which come in many different flavors. They consist of curved surfaces, which most commonly have the shape of a part of a spherical cap. It is, therefore, useful to have a look at the refraction at spherical surfaces.</p>
+<p>Lenses are among the most fundamental optical elements in photonics, using curved surfaces (typically spherical) to manipulate light paths. Understanding how lenses work requires analyzing refraction at spherical surfaces and applying this to the thin lens model.</p>
 <section id="refraction-at-spherical-surfaces" class="level4" data-number="2.0.6.1">
-<h4 data-number="2.0.6.1" class="anchored" data-anchor-id="refraction-at-spherical-surfaces"><span class="header-section-number">2.0.6.1</span> Refraction at spherical surfaces</h4>
-<p>For our calculations of the refraction at spherical surfaces, we consider the sketch below.</p>
+<h4 data-number="2.0.6.1" class="anchored" data-anchor-id="refraction-at-spherical-surfaces"><span class="header-section-number">2.0.6.1</span> Refraction at Spherical Surfaces</h4>
+<p>When light encounters a spherical boundary between two media, we can analyze its path using Snell’s law and geometric considerations as shown below:</p>
 <div id="fig-curved-surface" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-curved-surface-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="img/curved_surface.png" class="img-fluid figure-img" style="width:80.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-curved-surface-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.5— Refraction at a curved surface.
+Figure&nbsp;2.8— Refraction at a curved surface.
 </figcaption>
 </figure>
 </div>
-<p>To derive an imaging equation for a lens, we aim to calculate the distance <span class="math inline">\(b\)</span> and angle <span class="math inline">\(\theta_2\)</span> at which a ray crosses the optical axis, given its origin at distance <span class="math inline">\(a\)</span> and angle <span class="math inline">\(\theta_1\)</span>. We begin with Snell’s law for the geometry:</p>
+<p>To determine how an image forms, we need to find where rays originating from a point at distance <span class="math inline">\(a\)</span> from the surface will converge after refraction. Using Snell’s law for a ray hitting the surface at angle <span class="math inline">\(\alpha+\theta_1\)</span>:</p>
 <p><span class="math display">\[n_{1}\sin(\alpha+\theta_1)=n_{2}\sin(\alpha-\theta_2)\]</span></p>
-<p>We define key relationships:</p>
-<p><span class="math display">\[\sin(\alpha)=\frac{y}{R}, \quad \tan(\theta_1)=\frac{y}{a}, \quad \tan(\theta_2)=\frac{y}{b}\]</span></p>
-<p>To simplify this, we employ the <strong>paraxial approximation</strong>, which assumes all angles are small. This allows us to use first-order approximations of trigonometric functions, effectively linearizing them:</p>
+<p>Where: <span class="math display">\[\sin(\alpha)=\frac{y}{R}, \quad \tan(\theta_1)=\frac{y}{a}, \quad \tan(\theta_2)=\frac{y}{b}\]</span></p>
+<p>For practical optical systems, we employ the <strong>paraxial approximation</strong>, where all angles are assumed small enough that:</p>
 <p><span class="math display">\[\sin(\theta) \approx \theta+ O(\theta^{3}), \quad \tan(\theta) \approx \theta + O(\theta^{3}),\quad \cos(\theta)\approx 1 + O(\theta^{2})\]</span></p>
-<p>This approach, common in optics, significantly simplifies our calculations while maintaining accuracy for most practical scenarios involving lenses.</p>
-<p>With the help of these approximations we can write Snell’s law for the curved surface as</p>
-<p><span class="math display">\[n_1(\alpha+\theta_1)=n_2(\alpha-\theta_2).\]</span></p>
-<p>With some slight transformation which you will find in the video of the online lecture we obtain, therefore,</p>
-<p><span class="math display">\[\theta_2=\frac{n_2-n_1}{n_2 R}y -\frac{n_1}{n_2}\theta_1,\]</span></p>
-<p>which is a purely linear equation in <span class="math inline">\(y\)</span> and <span class="math inline">\(\theta_1\)</span>.</p>
+<p>This simplifies Snell’s law to:</p>
+<p><span class="math display">\[n_1(\alpha+\theta_1)=n_2(\alpha-\theta_2)\]</span></p>
+<p>After appropriate transformations (detailed in the online lecture), we obtain:</p>
+<p><span class="math display">\[\theta_2=\frac{n_2-n_1}{n_2 R}y -\frac{n_1}{n_2}\theta_1\]</span></p>
+<p>This linear relationship between input (<span class="math inline">\(y\)</span>, <span class="math inline">\(\theta_1\)</span>) and output (<span class="math inline">\(\theta_2\)</span>) parameters is a hallmark of paraxial optics.</p>
 <div id="paraxial-approximation" class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -447,7 +535,7 @@ Paraxial Approximation
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>The paraxial approximation is a fundamental simplification in optics that assumes all angles are small. This allows us to use linear approximations for trigonometric functions, significantly simplifying calculations while maintaining accuracy for most practical scenarios involving lenses.</p>
 <p>To visualize the validity of this approximation, let’s examine two plots:</p>
@@ -461,11 +549,11 @@ Paraxial Approximation
 <li>The error increases rapidly for larger angles, indicating the limitations of the paraxial approximation.</li>
 </ol>
 <p>In most optical systems, especially those involving lenses, the angles of incident and refracted rays are typically small enough for this approximation to be valid. However, it’s important to be aware of its limitations when dealing with wide-angle optical systems or scenarios where precision is critical.</p>
-<div id="46c48fc1" class="cell" data-execution_count="6">
+<div id="39fb01d9" class="cell" data-execution_count="7">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="01-lecture01_files/figure-html/cell-7-output-1.png" width="703" height="368" class="figure-img"></p>
+<p><img src="01-lecture01_files/figure-html/cell-8-output-1.png" width="703" height="368" class="figure-img"></p>
 <figcaption>Visualization of the paraxial approximation plotting the <span class="math inline">\(\sin(\theta)\)</span> and the linear approximation <span class="math inline">\(\theta\)</span> (dashed line) for angles ranging from 0 to <span class="math inline">\(\pi/2\)</span> radians.</figcaption>
 </figure>
 </div>
@@ -474,27 +562,24 @@ Paraxial Approximation
 </div>
 </div>
 </div>
-<p>Consider light originating from a point at distance <span class="math inline">\(y\)</span> from the optical axis. We’ll analyze two rays: one traveling parallel to the optical axis and hitting the spherical surface at height <span class="math inline">\(y\)</span>, and another incident at <span class="math inline">\(y=0\)</span>.</p>
+<p>To derive the imaging equation, we analyze how light from a point object forms an image after refraction. Consider two special rays from an off-axis point:</p>
 <div id="fig-image-curved" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-image-curved-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="img/image_curved.png" class="img-fluid figure-img" style="width:80.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-image-curved-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.6— Image formation at a curved surface.
+Figure&nbsp;2.9— Image formation at a curved surface.
 </figcaption>
 </figure>
 </div>
-<p>Applying our derived formula to these two cases:</p>
-<p>For the parallel ray (<span class="math inline">\(\theta_1=0\)</span>):</p>
-<p><span class="math display">\[\theta_2=\frac{n_2-n_1}{n_2}\frac{y}{R}\]</span> <span class="math display">\[\theta_2=\frac{y+\Delta y}{b}\]</span></p>
-<p>Equating these expressions:</p>
-<p><span class="math display">\[\frac{y+\Delta y}{b}=\frac{n_2-n_1}{n_2}\frac{y}{R}\]</span></p>
-<p>For the ray through the center (<span class="math inline">\(y=0\)</span>):</p>
+<p>For a ray parallel to the optical axis (<span class="math inline">\(\theta_1=0\)</span>):</p>
+<p><span class="math display">\[\theta_2=\frac{n_2-n_1}{n_2}\frac{y}{R}=\frac{y+\Delta y}{b}\]</span></p>
+<p>For a ray through the center of curvature (<span class="math inline">\(y=0\)</span>):</p>
 <p><span class="math display">\[n_2\frac{\Delta y}{b}=n_1\frac{y}{a}\]</span></p>
-<p>Combining these equations yields the imaging equation for a curved surface:</p>
+<p>Combining these equations yields the fundamental imaging equation for a spherical surface:</p>
 <p><span class="math display">\[\frac{n_1}{a}+\frac{n_2}{b}=\frac{n_2-n_1}{R}\]</span></p>
-<p>We can define a new quantity, the <strong>focal length</strong>, which depends only on the properties of the curved surface:</p>
+<p>From this, we define the <strong>focal length</strong> of the spherical surface:</p>
 <p><span class="math display">\[f=\frac{n_2}{n_2-n_1}R\]</span></p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -516,24 +601,20 @@ Imaging Equation for Spherical Refracting Surface
 </section>
 </section>
 <section id="thin-lens" class="level3" data-number="2.0.7">
-<h3 data-number="2.0.7" class="anchored" data-anchor-id="thin-lens"><span class="header-section-number">2.0.7</span> Thin lens</h3>
-<p>In our previous calculation we have found a linear relation between the incident angle <span class="math inline">\(\theta_1\)</span> with the optical axis, the incident height of the ray <span class="math inline">\(y\)</span> and the outgoing angle <span class="math inline">\(\theta_2\)</span>:</p>
-<p>Analyzing refraction in a lens involves two spherical surfaces. Light initially travels from a medium with refractive index <span class="math inline">\(n_1\)</span> into the lens material with index <span class="math inline">\(n_2\)</span>. The first surface’s radius, <span class="math inline">\(R_1\)</span>, is typically positive for a convex surface facing the incident light.</p>
-<p>At the second surface, the outgoing angle from the first refraction becomes the incident angle for the second refraction. Here, light travels from <span class="math inline">\(n_2\)</span> back into <span class="math inline">\(n_1\)</span>. The radius <span class="math inline">\(R_2\)</span> of this surface often has a negative value in a converging lens due to its opposite curvature relative to the optical axis.</p>
+<h3 data-number="2.0.7" class="anchored" data-anchor-id="thin-lens"><span class="header-section-number">2.0.7</span> Thin Lens</h3>
+<p>A lens consists of two spherical surfaces in close proximity. To analyze how a lens forms images, we consider refraction at both surfaces:</p>
 <div id="fig-thin-lens-refraction" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-thin-lens-refraction-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="img/thin_lens.png" class="img-fluid figure-img" style="width:60.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-thin-lens-refraction-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.7— Refraction on two spherical surfaces.
+Figure&nbsp;2.10— Refraction on two spherical surfaces.
 </figcaption>
 </figure>
 </div>
-<p>For thin lenses, where the thickness <span class="math inline">\(d\)</span> is much smaller than <span class="math inline">\(R_1\)</span> and <span class="math inline">\(R_2\)</span> (<span class="math inline">\(d \ll R_1, R_2\)</span>), we can simplify our analysis. We assume that the height of the ray at both surfaces is approximately equal (<span class="math inline">\(y \approx y'\)</span>), neglecting the displacement inside the lens.</p>
-<p>This simplification allows us to treat all refraction as occurring on a single plane at the lens center, known as the <strong>principal plane</strong>. This concept, illustrated by the dashed line in the figure, greatly simplifies optical calculations and ray tracing for thin lenses.</p>
-<p>The radii’s sign convention (positive for convex surfaces facing incident light, negative for concave) and this two-surface analysis form the basis for the thin lens formula. This formula relates object distance, image distance, and focal length, encapsulating the lens’s imaging properties.</p>
-<p>The result of the above calculation is leading to the imaging equation for the thin lens.</p>
+<p>When the lens thickness <span class="math inline">\(d\)</span> is much smaller than the radii of curvature (<span class="math inline">\(d \ll R_1, R_2\)</span>), we can apply the <strong>thin lens approximation</strong>. This assumes: 1. The ray height at both surfaces is approximately equal (<span class="math inline">\(y \approx y'\)</span>) 2. All refraction effectively occurs at a single plane (the <strong>principal plane</strong>) 3. The change in angle is additive from both surfaces</p>
+<p>This approximation, combined with the sign convention for radii (positive for convex surfaces facing incoming light, negative for concave), leads to the thin lens formula:</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -545,37 +626,41 @@ Imaging Equation for Thin Lens
 </div>
 <div class="callout-body-container callout-body">
 <p>The sum of the inverse object and image distances equals the inverse focal length of the thin lens:</p>
-<p><span class="math display">\[\frac{1}{a}+\frac{1}{b}\approx\frac{n_2-n_1}{n_1}\left (\frac{1}{R_1}-\frac{1}{R_2}\right )=\frac{1}{f}\]</span></p>
+<p><span class="math display">\[\frac{1}{a}+\frac{1}{b}=\frac{1}{f}\]</span></p>
+<p>where:</p>
+<p><span class="math display">\[\frac{1}{f}=\frac{n_2-n_1}{n_1}\left(\frac{1}{R_1}-\frac{1}{R_2}\right)\]</span></p>
 </div>
 </div>
+<p>This can be rearranged to give the <strong>lensmaker equation</strong>:</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Lensmaker equation
+Lensmaker Equation
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The focal length of a thin lens is calculated by the <strong>lensmaker equation</strong>: <span class="math display">\[f=\frac{n_1}{n_2-n_1}\left ( \frac{R_1 R_2}{R_2 -R_1}\right)\]</span></p>
+<p>The focal length of a thin lens is calculated by: <span class="math display">\[f=\frac{n_1}{n_2-n_1}\left(\frac{R_1 R_2}{R_2-R_1}\right)\]</span></p>
 <p>in the paraxial approximation.</p>
 </div>
 </div>
-<section id="image-construction" class="level4" data-number="2.0.7.1">
-<h4 data-number="2.0.7.1" class="anchored" data-anchor-id="image-construction"><span class="header-section-number">2.0.7.1</span> Image Construction</h4>
-<p>Images of objects can be now constructed if we refer to rays which do not emerge from a position on the optical axis only. In this case, we consider three different rays (two are actually enough). If we use as in the case of a concave mirror a central and a parallel ray, we will find a position where all rays cross on the other side. The conversion of the rays is exactly the same as in the case of a spherical mirror. The relation between the position of the object and the image along the optical axis is described by the imaging equation.</p>
+<section id="image-construction-and-magnification" class="level4" data-number="2.0.7.1">
+<h4 data-number="2.0.7.1" class="anchored" data-anchor-id="image-construction-and-magnification"><span class="header-section-number">2.0.7.1</span> Image Construction and Magnification</h4>
+<p>To construct the image formed by a lens, we typically trace two or three special rays: 1. A ray parallel to the optical axis, which passes through the far focal point after refraction 2. A ray through the center of the lens, which passes undeflected 3. A ray through the near focal point, which emerges parallel to the optical axis</p>
+<p>The intersection of these rays locates the image position:</p>
 <div id="fig-thin-lens-imaging" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-thin-lens-imaging-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="img/thin_lens_imaging.png" class="img-fluid figure-img" style="width:60.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-thin-lens-imaging-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.8— Image construction on a thin lens.
+Figure&nbsp;2.11— Image construction on a thin lens.
 </figcaption>
 </figure>
 </div>
-<p>Similar to the concave mirror, we may now also find out the image size or the magnification of the lens.</p>
+<p>The ratio of image height to object height defines the <strong>magnification</strong>:</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -588,10 +673,10 @@ Magnification of a Lens
 <div class="callout-body-container callout-body">
 <p>The magnification is given by:</p>
 <p><span class="math display">\[M=\frac{h_{\rm image}}{h_{\rm object}}=-\frac{b}{a}=\frac{f}{f-a}\]</span></p>
-<p>where the negative sign is the result of the reverse orientation of the real images created by a lens.</p>
+<p>where the negative sign indicates image inversion for real images.</p>
 </div>
 </div>
-<p>According to our previous consideration <span class="math inline">\(M&lt;0\)</span> corresponds to a reversed image, while it is upright as the object for <span class="math inline">\(M&gt;0\)</span>. We, therefore, easily see the following:</p>
+<p>The image characteristics depend on the object distance relative to the focal length:</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 23%">
@@ -616,31 +701,31 @@ Magnification of a Lens
 </tr>
 <tr class="even">
 <td><span class="math inline">\(f &lt; a &lt; 2f\)</span></td>
-<td>Reversed and magnified</td>
+<td>Inverted and magnified</td>
 <td><span class="math inline">\(M &lt; -1\)</span></td>
 <td>Real</td>
 </tr>
 <tr class="odd">
 <td><span class="math inline">\(a = 2f\)</span></td>
-<td>Reversed, same size</td>
+<td>Inverted, same size</td>
 <td><span class="math inline">\(M = -1\)</span></td>
 <td>Real</td>
 </tr>
 <tr class="even">
 <td><span class="math inline">\(a &gt; 2f\)</span></td>
-<td>Reversed and shrunk</td>
+<td>Inverted and reduced</td>
 <td><span class="math inline">\(-1 &lt; M &lt; 0\)</span></td>
 <td>Real</td>
 </tr>
 <tr class="odd">
 <td><span class="math inline">\(a = f\)</span></td>
-<td>Appears at infinity</td>
+<td>Image at infinity</td>
 <td><span class="math inline">\(M = \infty\)</span></td>
 <td>-</td>
 </tr>
 </tbody>
 </table>
-<p>The image below illustrates the construction of images in 4 of the above cases for a bi-convex lens, including the generation of a virtual image.</p>
+<p>The diagram below illustrates these various imaging scenarios for a biconvex lens:</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 100%">
@@ -657,7 +742,7 @@ Magnification of a Lens
 </tbody>
 </table>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -666,7 +751,7 @@ Matrix Optics
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>The above derived equations for a single spherical surface yield a linear relation between the input variables <span class="math inline">\(y_1\)</span> and <span class="math inline">\(\theta_1\)</span> and the output variables <span class="math inline">\(y_2\)</span> and <span class="math inline">\(\theta_2\)</span>. The linear relation yields a great opportunity to express optical elements in terms of linear transformations (matrices). This is the basis of <strong>matrix optics</strong>. The matrix representation of a lens is given by</p>
 <p><span class="math display">\[\begin{pmatrix} y_2 \\ \theta_2 \end{pmatrix} = \begin{pmatrix} 1 &amp; 0 \\ -\frac{1}{f} &amp; 1 \end{pmatrix} \begin{pmatrix} y_1 \\ \theta_1 \end{pmatrix}\]</span></p>
@@ -734,7 +819,7 @@ C &amp; D
 <section id="fermats-principle-for-spherical-surfaces" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="fermats-principle-for-spherical-surfaces"><span class="header-section-number">2.1</span> Fermat’s Principle for Spherical Surfaces</h2>
 <p>The power of Fermat’s principle becomes particularly evident when applied to spherical refracting surfaces. Consider a spherical boundary of radius <span class="math inline">\(R\)</span> between two media with refractive indices <span class="math inline">\(n_1\)</span> and <span class="math inline">\(n_2\)</span>. According to Fermat’s principle, light will follow the path that minimizes the total optical path length.</p>
-<div id="cell-fig-fermat-spherical" class="cell" data-execution_count="7">
+<div id="cell-fig-fermat-spherical" class="cell" data-execution_count="8">
 <div class="cell-output cell-output-display">
 <div id="fig-fermat-spherical" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -742,7 +827,7 @@ C &amp; D
 <img src="01-lecture01_files/figure-html/fig-fermat-spherical-output-1.png" width="552" height="364" class="figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fermat-spherical-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.9— Fermat’s principle applied to a spherical refracting surface
+Figure&nbsp;2.12— Fermat’s principle applied to a spherical refracting surface
 </figcaption>
 </figure>
 </div>
@@ -768,7 +853,7 @@ Figure&nbsp;2.9— Fermat’s principle applied to a spherical refracting surfac
 <p>This is the correct imaging equation for a spherical refracting surface.</p>
 <p>The elegance of Fermat’s principle is preserved, as it still naturally produces the same result as our geometric derivation, once we properly account for the geometry of the refracting surface.</p>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -777,7 +862,7 @@ Deriving the Thin Lens Equation from Fermat’s Principle
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>To derive the thin lens equation, we apply Fermat’s principle to the two spherical surfaces that make up a lens. Consider a lens with refractive index <span class="math inline">\(n_2\)</span> in a medium of index <span class="math inline">\(n_1\)</span>, with surface radii <span class="math inline">\(R_1\)</span> and <span class="math inline">\(R_2\)</span>.</p>
 <p>The total optical path for a ray passing through the lens at height <span class="math inline">\(y\)</span> from the optical axis is: - Path from object to first surface: <span class="math inline">\(n_1 s_1\)</span> - Path through the lens: <span class="math inline">\(n_2 s_2\)</span> - Path from second surface to image: <span class="math inline">\(n_1 s_3\)</span></p>
