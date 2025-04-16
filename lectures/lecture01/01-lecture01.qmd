@@ -28,8 +28,8 @@ from mpl_toolkits.mplot3d import Axes3D
 
 
 
-from matplotlib_inline.backend_inline import set_matplotlib_formats
-set_matplotlib_formats('svg')
+#from matplotlib_inline.backend_inline import set_matplotlib_formats
+#set_matplotlib_formats('svg')
 
 plt.rcParams.update({'font.size': 12,
                      'axes.titlesize': 12,
@@ -83,8 +83,6 @@ $$\theta_i = \theta_r$$
 where $\theta_i$ is the angle of incidence and $\theta_r$ is the angle of reflection, both measured from the normal to the surface.
 
 ```{python}
-#| echo: true
-#| code-fold: true
 #| label: fig-fermat-reflection
 #| fig-cap: Fermat's principle for reflection of light at an interface
 
@@ -214,8 +212,6 @@ where $\theta_1$ and $\theta_2$ are the angles of incidence and refraction, resp
 
 
 ```{python}
-#| echo: true
-#| code-fold: true
 #| label: fig-fermat-refraction
 #| fig-cap: Snell's Law from Fermat's Principle
 
@@ -422,8 +418,6 @@ $$r(z) = r_0 \cos(\alpha z) + \frac{\theta_0}{\alpha} \sin(\alpha z)$$
 where $r_0$ is the initial radial position and $\theta_0$ is the initial angle of the ray with respect to the fiber axis.
 
 ```{python}
-#| code-fold: true
-#| echo: false
 #| fig-cap: Ray-path inside a SELFOC gradient index optical fiber.
 #| label: fig-selfoc
 
@@ -528,8 +522,7 @@ This behavior explains many optical phenomena:
 While the mathematical form resembles Newton's equation for particle motion, the analogy must be carefully interpreted: unlike particles that accelerate toward lower potential energy, light rays curve toward regions of higher refractive index.
 
 ```{python}
-#| echo: true
-#| code-fold: true
+
 #| label: fig-f-equals-ma
 #| fig-cap: "F=ma optics - Light rays (red) following paths toward regions of higher refractive index"
 
@@ -946,8 +939,6 @@ The power of Fermat's principle becomes particularly evident when applied to sph
 
 
 ```{python}
-#| echo: true
-#| code-fold: true
 #| label: fig-fermat-spherical
 #| fig-cap: Fermat's principle applied to a spherical refracting surface
 
