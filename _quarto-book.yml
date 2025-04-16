@@ -1,0 +1,32 @@
+project:
+  type: book
+  output-dir: pdf_output
+execute:
+  echo: false # This will hide the code
+  output: true # This will show the output
+  freeze: false # This will freeze the output
+
+book:
+  search: true
+  title: "Introduction to Photonics"
+  page-navigation: true
+  date: "2025-04-10"
+  chapters:
+    - index.qmd
+    - part: "Theories for Light"
+      chapters:
+        - lectures/lecture01/01-lecture01.qmd
+
+format:
+  pdf:
+    documentclass: book
+    papersize: a4
+    toc: true
+    number-sections: true
+    number-depth: 1
+    colorlinks: true
+    geometry:
+      - top=30mm
+      - left=20mm
+      - right=20mm
+      - bottom=30mm
