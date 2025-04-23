@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>3&nbsp; Theories for light – Introduction to Photonics</title>
+<title>4&nbsp; Theories for light – Introduction to Photonics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -31,7 +31,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
 <link href="../../lectures/lecture02/03-lecture02.html" rel="next">
-<link href="../../lectures/lecture01/01-lecture01.html" rel="prev">
+<link href="../../lectures/lecture02/01-lecture02.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -111,7 +111,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../lectures/lecture01/01-lecture01.html">Theories for Light</a></li><li class="breadcrumb-item"><a href="../../lectures/lecture02/02-lecture02.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">| echo: false</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../lectures/lecture02/01-lecture02.html">Lecture 2</a></li><li class="breadcrumb-item"><a href="../../lectures/lecture02/02-lecture02.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">| echo: false</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -145,7 +145,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Theories for Light</span></a>
+ <span class="menu-text">Lecture 1</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -157,16 +157,33 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">| echo: false</span></span></a>
   </div>
 </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Lecture 2</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../lectures/lecture02/02-lecture02.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../lectures/lecture02/01-lecture02.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">| echo: false</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture02/02-lecture02.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">| echo: false</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../lectures/lecture02/03-lecture02.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">just for plotting later</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">just for plotting later</span></span></a>
   </div>
 </li>
       </ul>
@@ -181,26 +198,26 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#wave-optics" id="toc-wave-optics" class="nav-link active" data-scroll-target="#wave-optics"><span class="header-section-number">3.0.1</span> Wave Optics</a></li>
-  <li><a href="#postulates-of-wave-optics" id="toc-postulates-of-wave-optics" class="nav-link" data-scroll-target="#postulates-of-wave-optics"><span class="header-section-number">3.1</span> Postulates of Wave Optics</a>
+  <li><a href="#wave-optics" id="toc-wave-optics" class="nav-link active" data-scroll-target="#wave-optics"><span class="header-section-number">4.0.1</span> Wave Optics</a></li>
+  <li><a href="#postulates-of-wave-optics" id="toc-postulates-of-wave-optics" class="nav-link" data-scroll-target="#postulates-of-wave-optics"><span class="header-section-number">4.1</span> Postulates of Wave Optics</a>
   <ul class="collapse">
-  <li><a href="#wave-equation" id="toc-wave-equation" class="nav-link" data-scroll-target="#wave-equation"><span class="header-section-number">3.1.1</span> Wave equation</a></li>
-  <li><a href="#monochromatic-wave" id="toc-monochromatic-wave" class="nav-link" data-scroll-target="#monochromatic-wave"><span class="header-section-number">3.1.2</span> Monochromatic Wave</a></li>
+  <li><a href="#wave-equation" id="toc-wave-equation" class="nav-link" data-scroll-target="#wave-equation"><span class="header-section-number">4.1.1</span> Wave equation</a></li>
+  <li><a href="#monochromatic-wave" id="toc-monochromatic-wave" class="nav-link" data-scroll-target="#monochromatic-wave"><span class="header-section-number">4.1.2</span> Monochromatic Wave</a></li>
   </ul></li>
-  <li><a href="#plane-waves" id="toc-plane-waves" class="nav-link" data-scroll-target="#plane-waves"><span class="header-section-number">3.2</span> Plane Waves</a></li>
-  <li><a href="#dispersion-relation" id="toc-dispersion-relation" class="nav-link" data-scroll-target="#dispersion-relation"><span class="header-section-number">3.3</span> Dispersion Relation</a></li>
-  <li><a href="#propagation-in-a-medium" id="toc-propagation-in-a-medium" class="nav-link" data-scroll-target="#propagation-in-a-medium"><span class="header-section-number">3.4</span> Propagation in a Medium</a></li>
-  <li><a href="#snells-law" id="toc-snells-law" class="nav-link" data-scroll-target="#snells-law"><span class="header-section-number">3.5</span> Snells Law</a></li>
-  <li><a href="#spherical-waves" id="toc-spherical-waves" class="nav-link" data-scroll-target="#spherical-waves"><span class="header-section-number">3.6</span> Spherical Waves</a></li>
+  <li><a href="#plane-waves" id="toc-plane-waves" class="nav-link" data-scroll-target="#plane-waves"><span class="header-section-number">4.2</span> Plane Waves</a></li>
+  <li><a href="#dispersion-relation" id="toc-dispersion-relation" class="nav-link" data-scroll-target="#dispersion-relation"><span class="header-section-number">4.3</span> Dispersion Relation</a></li>
+  <li><a href="#propagation-in-a-medium" id="toc-propagation-in-a-medium" class="nav-link" data-scroll-target="#propagation-in-a-medium"><span class="header-section-number">4.4</span> Propagation in a Medium</a></li>
+  <li><a href="#snells-law" id="toc-snells-law" class="nav-link" data-scroll-target="#snells-law"><span class="header-section-number">4.5</span> Snells Law</a></li>
+  <li><a href="#spherical-waves" id="toc-spherical-waves" class="nav-link" data-scroll-target="#spherical-waves"><span class="header-section-number">4.6</span> Spherical Waves</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../lectures/lecture01/01-lecture01.html">Theories for Light</a></li><li class="breadcrumb-item"><a href="../../lectures/lecture02/02-lecture02.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">| echo: false</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../lectures/lecture02/01-lecture02.html">Lecture 2</a></li><li class="breadcrumb-item"><a href="../../lectures/lecture02/02-lecture02.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">| echo: false</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Theories for light</span></h1>
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Theories for light</span></h1>
 </div>
 
 
@@ -217,8 +234,8 @@ window.Quarto = {
 </header>
 
 
-<section id="wave-optics" class="level3" data-number="3.0.1">
-<h3 data-number="3.0.1" class="anchored" data-anchor-id="wave-optics"><span class="header-section-number">3.0.1</span> Wave Optics</h3>
+<section id="wave-optics" class="level3" data-number="4.0.1">
+<h3 data-number="4.0.1" class="anchored" data-anchor-id="wave-optics"><span class="header-section-number">4.0.1</span> Wave Optics</h3>
 <p>Wave optics extends our understanding beyond the limitations of geometric optics by treating light as a wave phenomenon. This approach explains effects that cannot be accounted for by ray tracing alone, such as:</p>
 <ul>
 <li>Interference (the combination of waves)</li>
@@ -232,14 +249,14 @@ window.Quarto = {
 <img src="img/spectrum.png" class="img-fluid figure-img" style="width:70.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-spectrum-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.1— Electromagnetic Spectrum with its different regions
+Figure&nbsp;4.1— Electromagnetic Spectrum with its different regions
 </figcaption>
 </figure>
 </div>
 <p>In the following, we would like to introduce wave by discarding the fact, that light is related to electric and magnetic fields. This is useful as the vectorial nature of the electric and magnetic field further complicates the calculations, but we do not need those yet. Accordingly we also do not understand how light really interacts with matter and we therefore have to introduce some postulates as well.</p>
 </section>
-<section id="postulates-of-wave-optics" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="postulates-of-wave-optics"><span class="header-section-number">3.1</span> Postulates of Wave Optics</h2>
+<section id="postulates-of-wave-optics" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="postulates-of-wave-optics"><span class="header-section-number">4.1</span> Postulates of Wave Optics</h2>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -253,8 +270,8 @@ Wave
 <p>A wave corresponds to a physical quantity which oscillates in space and time. Its energy current density is related to the square magnitude of the amplitude. A wave satisfies the wave equation.</p>
 </div>
 </div>
-<section id="wave-equation" class="level3" data-number="3.1.1">
-<h3 data-number="3.1.1" class="anchored" data-anchor-id="wave-equation"><span class="header-section-number">3.1.1</span> Wave equation</h3>
+<section id="wave-equation" class="level3" data-number="4.1.1">
+<h3 data-number="4.1.1" class="anchored" data-anchor-id="wave-equation"><span class="header-section-number">4.1.1</span> Wave equation</h3>
 <p><span class="math display">\[
 \nabla^2 u - \frac{1}{c^2}\frac{\partial^2 u}{\partial t^2}=0
 \]</span></p>
@@ -268,8 +285,8 @@ u(\mathbf{r},t)=a_1u_1(\mathbf{r},t)+a_2u_2(\mathbf{r},t)
 \]</span></p>
 <p>is also a solution, where <span class="math inline">\(a_1\)</span> and <span class="math inline">\(a_2\)</span> are arbitrary constants.</p>
 </section>
-<section id="monochromatic-wave" class="level3" data-number="3.1.2">
-<h3 data-number="3.1.2" class="anchored" data-anchor-id="monochromatic-wave"><span class="header-section-number">3.1.2</span> Monochromatic Wave</h3>
+<section id="monochromatic-wave" class="level3" data-number="4.1.2">
+<h3 data-number="4.1.2" class="anchored" data-anchor-id="monochromatic-wave"><span class="header-section-number">4.1.2</span> Monochromatic Wave</h3>
 <p>A monochromatic wave consists of a single frequency <span class="math inline">\(\omega\)</span>. By definition, such a wave must be infinite in time and free from phase disturbances (such as sudden jumps). The mathematical expression for a monochromatic wave is:</p>
 <p><span class="math display">\[u(\mathbf{r},t)=a(\mathbf{r})\cos(\omega t + \phi(\mathbf{r}))\]</span></p>
 <p>where:</p>
@@ -284,12 +301,12 @@ u(\mathbf{r},t)=a_1u_1(\mathbf{r},t)+a_2u_2(\mathbf{r},t)
 <img src="img/wave.png" class="img-fluid figure-img" style="width:50.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-wave-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.2— Representation of a wavefunction over time (constant position) denoting the phase <span class="math inline">\(\phi\)</span> and the period <span class="math inline">\(T=1/\nu\)</span>
+Figure&nbsp;4.2— Representation of a wavefunction over time (constant position) denoting the phase <span class="math inline">\(\phi\)</span> and the period <span class="math inline">\(T=1/\nu\)</span>
 </figcaption>
 </figure>
 </div>
-<section id="complex-amplitude" class="level4" data-number="3.1.2.1">
-<h4 data-number="3.1.2.1" class="anchored" data-anchor-id="complex-amplitude"><span class="header-section-number">3.1.2.1</span> Complex Amplitude</h4>
+<section id="complex-amplitude" class="level4" data-number="4.1.2.1">
+<h4 data-number="4.1.2.1" class="anchored" data-anchor-id="complex-amplitude"><span class="header-section-number">4.1.2.1</span> Complex Amplitude</h4>
 <p>The wave can be represented in complex form as:</p>
 <p><span class="math display">\[
 U(\mathbf{r},t)=a(\mathbf{r})e^{i\phi(\mathbf{r})}e^{i\omega t}
@@ -301,7 +318,7 @@ U(\mathbf{r},t)=a(\mathbf{r})e^{i\phi(\mathbf{r})}e^{i\omega t}
 <img src="img/complex_rep.png" class="img-fluid figure-img" style="width:70.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-complex-rep-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.3— Phasor diagram of the complex amplitude <span class="math inline">\(U(\mathbf{r})\)</span> (left) and <span class="math inline">\(U(t)\)</span> (right)
+Figure&nbsp;4.3— Phasor diagram of the complex amplitude <span class="math inline">\(U(\mathbf{r})\)</span> (left) and <span class="math inline">\(U(t)\)</span> (right)
 </figcaption>
 </figure>
 </div>
@@ -340,8 +357,8 @@ U(\mathbf{r})=a(\mathbf{r})e^{i\phi(\mathbf{r})}
 <p><span class="math display">\[\nabla^2 U(\mathbf{r}) + k^2U(\mathbf{r}) = 0\]</span></p>
 <p>where <span class="math inline">\(k = \omega/c\)</span> is the wave number. This equation describes the spatial behavior of monochromatic waves.</p>
 </section>
-<section id="intensity-of-waves" class="level4" data-number="3.1.2.2">
-<h4 data-number="3.1.2.2" class="anchored" data-anchor-id="intensity-of-waves"><span class="header-section-number">3.1.2.2</span> Intensity of Waves</h4>
+<section id="intensity-of-waves" class="level4" data-number="4.1.2.2">
+<h4 data-number="4.1.2.2" class="anchored" data-anchor-id="intensity-of-waves"><span class="header-section-number">4.1.2.2</span> Intensity of Waves</h4>
 <p>The intensity of a wave at position <span class="math inline">\(\mathbf{r}\)</span> and time <span class="math inline">\(t\)</span> is defined as:</p>
 <p><span class="math display">\[
 I(\mathbf{r},t)=2\langle u^2(\mathbf{r},t)\rangle
@@ -357,8 +374,8 @@ I(\mathbf{r})=|U(\mathbf{r})|^2
 \]</span></p>
 <p>Thus the physical quantity forming the spatial and temporal oscillation of the wavefunction is also providing the intensity of the wave when its magnitude is squared. This is a fundamental property of wavefunctions and for example not the case when temperature oscillates in space and time in a medium.</p>
 </section>
-<section id="wavefronts" class="level4" data-number="3.1.2.3">
-<h4 data-number="3.1.2.3" class="anchored" data-anchor-id="wavefronts"><span class="header-section-number">3.1.2.3</span> Wavefronts</h4>
+<section id="wavefronts" class="level4" data-number="4.1.2.3">
+<h4 data-number="4.1.2.3" class="anchored" data-anchor-id="wavefronts"><span class="header-section-number">4.1.2.3</span> Wavefronts</h4>
 <p>Wavefronts are surfaces in space where the phase is constant:</p>
 <p><span class="math display">\[
 \phi(\mathbf{r})=\text{const}
@@ -376,8 +393,8 @@ I(\mathbf{r})=|U(\mathbf{r})|^2
 </section>
 </section>
 </section>
-<section id="plane-waves" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="plane-waves"><span class="header-section-number">3.2</span> Plane Waves</h2>
+<section id="plane-waves" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="plane-waves"><span class="header-section-number">4.2</span> Plane Waves</h2>
 <p>A plane wave represents a fundamental solution of the homogeneous wave equation. In its complex form, it is expressed as:</p>
 <p><span class="math display">\[\begin{equation}
 U(\mathbf{r},t)=Ae^{-i\mathbf{k}\cdot \mathbf{r}}e^{i\omega t}
@@ -412,15 +429,15 @@ k_{0z}\\
 <img src="02-lecture02_files/figure-html/fig-plane-output-1.png" width="370" height="360" class="figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-plane-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.4— Plane wave propagating along the z-direction
+Figure&nbsp;4.4— Plane wave propagating along the z-direction
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
 </section>
-<section id="dispersion-relation" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="dispersion-relation"><span class="header-section-number">3.3</span> Dispersion Relation</h2>
+<section id="dispersion-relation" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="dispersion-relation"><span class="header-section-number">4.3</span> Dispersion Relation</h2>
 <p>Using the plane wave solution</p>
 <p><span class="math display">\[\begin{equation}
 U(\mathbf{r},t)=Ae^{-i\mathbf{k}\cdot \mathbf{r}}e^{i\omega t}
@@ -470,8 +487,8 @@ Note
 \]</span></p>
 <p>which means that if you observe the wavepropagation not in the direction of the wavevector, the phase velocity is actually bigger than the speed of light and even tends to infinity if the angle between the wavevector and the observation direction tends to 90°.</p>
 </section>
-<section id="propagation-in-a-medium" class="level2" data-number="3.4">
-<h2 data-number="3.4" class="anchored" data-anchor-id="propagation-in-a-medium"><span class="header-section-number">3.4</span> Propagation in a Medium</h2>
+<section id="propagation-in-a-medium" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="propagation-in-a-medium"><span class="header-section-number">4.4</span> Propagation in a Medium</h2>
 <p>When a wave propagates through a medium:</p>
 <ol type="1">
 <li>The frequency <span class="math inline">\(\omega\)</span> remains constant (determined by the source)</li>
@@ -489,8 +506,8 @@ k=nk_0
 \]</span></p></li>
 </ul>
 </section>
-<section id="snells-law" class="level2" data-number="3.5">
-<h2 data-number="3.5" class="anchored" data-anchor-id="snells-law"><span class="header-section-number">3.5</span> Snells Law</h2>
+<section id="snells-law" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="snells-law"><span class="header-section-number">4.5</span> Snells Law</h2>
 <p>The change in the length of the wavevector has some simple consequence for Snells law. We can write Snells law as</p>
 <p><span class="math display">\[
 n_1k_0\sin(\theta_1)=n_2k_0\sin(\theta_2)
@@ -503,9 +520,9 @@ k_1\sin(\theta_1)=k_2\sin(\theta_2)
 <div>
 
 </div>
-<div class="quarto-layout-panel" data-column-width-right="20%" data-layout-ncol="3" data-column-width-middle="20%" data-column-width-left="40%">
+<div class="quarto-layout-panel" data-column-width-right="20%" data-layout-ncol="3" data-column-width-left="40%" data-column-width-middle="20%">
 <div class="quarto-layout-row">
-<div id="56447f0a" class="cell quarto-layout-cell" data-execution_count="3" style="flex-basis: 33.3%;justify-content: flex-start;">
+<div id="8ccf8271" class="cell quarto-layout-cell" data-execution_count="3" style="flex-basis: 33.3%;justify-content: flex-start;">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -535,8 +552,8 @@ k_1\sin(\theta_1)=k_2\sin(\theta_2)
 </div>
 <p>Isofrequency surfaces can have non-spherical shape. In anisotropic media, they can be ellipsoids. In photonic crystals, i.e.&nbsp;crystals with a periodic structure on the scale of the wavelength, they can have a more complex shape.</p>
 </section>
-<section id="spherical-waves" class="level2" data-number="3.6">
-<h2 data-number="3.6" class="anchored" data-anchor-id="spherical-waves"><span class="header-section-number">3.6</span> Spherical Waves</h2>
+<section id="spherical-waves" class="level2" data-number="4.6">
+<h2 data-number="4.6" class="anchored" data-anchor-id="spherical-waves"><span class="header-section-number">4.6</span> Spherical Waves</h2>
 <p>A spherical wave, like a plane wave, consists of spatial and temporal components, but with wavefronts forming spherical surfaces. For spherical waves, <span class="math inline">\(|\mathbf{k}||\mathbf{r}|=kr=\text{const}\)</span>. Given a source at position <span class="math inline">\(\mathbf{r}_0\)</span>, the spherical wave can be expressed as:</p>
 <p><span class="math display">\[\begin{equation}
 U=\frac{A}{|\mathbf{r}-\mathbf{r}_0|}e^{-ik|\mathbf{r}-\mathbf{r}_0|} e^{i\omega t}
@@ -562,7 +579,7 @@ Important
 <img src="02-lecture02_files/figure-html/fig-sphere-output-1.png" class="quarto-figure quarto-figure-center figure-img" width="331" height="314">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sphere-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.5— Spherical wave propagation. The wave is emitted from the origin and propagates in the positive z-direction. The wavefronts are spherical surfaces. The wave is visualized in the xz-plane.
+Figure&nbsp;4.5— Spherical wave propagation. The wave is emitted from the origin and propagates in the positive z-direction. The wavefronts are spherical surfaces. The wave is visualized in the xz-plane.
 </figcaption>
 </figure>
 </div>
@@ -993,13 +1010,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../lectures/lecture01/01-lecture01.html" class="pagination-link" aria-label="| echo: false">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">| echo: false</span></span>
+      <a href="../../lectures/lecture02/01-lecture02.html" class="pagination-link" aria-label="| echo: false">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">| echo: false</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../../lectures/lecture02/03-lecture02.html" class="pagination-link" aria-label="just for plotting later">
-        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">just for plotting later</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">just for plotting later</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

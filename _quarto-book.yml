@@ -13,9 +13,12 @@ book:
   date: "2025-04-10"
   chapters:
     - index.qmd
-    - part: "Theories for Light"
+    - part: "Lecture 1"
       chapters:
         - lectures/lecture01/01-lecture01.qmd
+    - part: " Lecture 2"
+      chapters:
+        - lectures/lecture02/01-lecture02.qmd
         - lectures/lecture02/02-lecture02.qmd
         - lectures/lecture02/03-lecture02.qmd
 format:
