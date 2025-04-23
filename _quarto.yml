@@ -45,9 +45,17 @@ website:
           - text: Exams
             href: course-info/exam.qmd
       - text: "---" # This creates a divider
-      - section: Python Basics
+      - section: FOUNDATIONS OF PHOTONICS
         contents:
           - section: "Lecture 1"
             contents:
-              - text: Theories of Light
+              - text: Ray Optics
                 href: lectures/lecture01/01-lecture01.qmd
+          - section: "Lecture 2"
+            contents:
+              - text: Matrix Optics
+                href: lectures/lecture02/01-lecture02.qmd
+              - text: Wave Optics Introduction
+                href: lectures/lecture02/02-lecture02.qmd
+              - text: Interference
+                href: lectures/lecture02/03-lecture02.qmd

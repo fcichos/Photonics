@@ -1,0 +1,36 @@
+spec_data: RDM [] [False]
+spec_data: LEN [] ['VERSION: 10.7       LENS VERSION: 80       Creation Date: 16-Jul-2015']
+spec_data: TIT [] ['Double Gauss F/2 -  Available Glasses']
+pupil_spec_data: EPD 50.000000
+spec_data: DIM [] ['M']
+spec_data: INI [] [' ']
+field_spec_data: XAN [] [0.0, 0.0, 0.0]
+field_spec_data: YAN [] [0.0, 10.0000000023, 14.0000000032]
+field_spec_data: WTF [] [1.0, 1.0, 1.0]
+field_spec_data: VUY [] [0.0, 0.2, 0.4]
+field_spec_data: VLY [] [0.0, 0.25, 0.4]
+Line 17: Command CCY not supported
+Line 19: Command CCY not supported
+Line 21: Command CCY not supported
+Line 24: Command CCY not supported
+Line 25: Command THC not supported
+Line 27: Command THC not supported
+surface_data: STO [] []
+Line 30: Command CCY not supported
+Line 33: Command CCY not supported
+Line 35: Command CCY not supported
+Line 37: Command CCY not supported
+Line 38: Command PIM not supported
+Line 40: Command THC not supported
+Line 41: Command DER not supported
+Line 42: Command DER not supported
+Line 43: Command DER not supported
+Line 44: Command DER not supported
+Line 45: Command DER not supported
+Line 46: Command DER not supported
+Line 47: Command DER not supported
+Line 48: Command DER not supported
+Line 49: Command DER not supported
+Line 50: Command DER not supported
+Line 51: Command DER not supported
+Line 52: Command GO not supported

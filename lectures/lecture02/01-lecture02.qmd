@@ -1,0 +1,519 @@
+---
+#title: "Theories of Light"
+jupyter: python3
+format:
+  html:
+    toc: true
+    toc-location: right
+    fig-cap-location: bottom
+crossref:
+  fig-title: Figure
+  tbl-title: Table
+  title-delim: "—"
+  fig-prefix: Figure
+  eq-prefix: Equation
+  chapters: true
+  fig-labels: arabic
+---
+
+
+```{python}
+# | echo: false
+## just for plotting later
+import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib.path import Path
+import matplotlib.patches as patches
+from matplotlib.colors import LinearSegmentedColormap
+from mpl_toolkits.mplot3d import Axes3D
+import sympy as sp
+from IPython.display import Markdown
+
+#from matplotlib_inline.backend_inline import set_matplotlib_formats
+#set_matplotlib_formats('svg')
+
+plt.rcParams.update({'font.size': 12,
+                     'axes.titlesize': 10,
+                     'axes.labelsize': 10,
+                     'lines.linewidth': 1,
+                     'lines.markersize': 5,
+                     'xtick.labelsize' : 10,
+                     'ytick.labelsize' : 10,
+                     'xtick.top' : True,
+                     'xtick.direction' : 'in',
+                     'ytick.right' : True,
+                     'ytick.direction' : 'in'})
+
+def get_size(w,h):
+    return((w/2.54,h/2.54))
+```
+
+
+## Theories for light
+
+### Refraction at Spherical Surfaces
+
+When light encounters a spherical boundary between two media, we can analyze its path using Snell's law and geometric considerations as shown below:
+
+::: {#fig-curved-surface fig-align="center"}
+![](img/curved_surface.png){width=80%}
+
+Refraction at a curved surface.
+:::
+
+To determine how an image forms, we need to find where rays originating from a point at distance $a$ from the surface will converge after refraction. Using Snell's law for a ray hitting the surface at angle $\alpha+\theta_1$:
+
+$$n_{1}\sin(\alpha+\theta_1)=n_{2}\sin(\alpha-\theta_2)$$
+
+Where:
+$$\sin(\alpha)=\frac{y}{R}, \quad \tan(\theta_1)=\frac{y}{a}, \quad \tan(\theta_2)=\frac{y}{b}$$
+
+For practical optical systems, we employ the **paraxial approximation**, where all angles are assumed small enough that:
+
+$$\sin(\theta) \approx \theta+ O(\theta^{3}), \quad \tan(\theta) \approx \theta + O(\theta^{3}),\quad \cos(\theta)\approx 1 + O(\theta^{2})$$
+
+This simplifies Snell's law to:
+
+$$n_1(\alpha+\theta_1)=n_2(\alpha-\theta_2)$$
+
+After appropriate transformations (detailed in the online lecture), we obtain:
+
+$$\theta_2=\frac{n_2-n_1}{n_2 R}y -\frac{n_1}{n_2}\theta_1$$
+
+and
+
+$$y=y_1=y_2$$
+
+
+This linear relationship between input ($y$, $\theta_1$) and output ($y$,$\theta_2$) parameters is a hallmark of paraxial optics and a result of the linearization of Snells law.
+
+### Matrix Optics
+
+The linear relation between input and output parameters allows us to express optical elements as linear transformations (matrices). This approach forms the foundation of **matrix optics**. For a lens, the matrix representation is:
+
+$$\begin{pmatrix} y_2 \\ \theta_2 \end{pmatrix} = \begin{pmatrix} 1 & 0 \\ -\frac{1}{f} & 1 \end{pmatrix} \begin{pmatrix} y_1 \\ \theta_1 \end{pmatrix}$$
+
+This 2×2 matrix is called the **ABCD matrix** of the lens. Thanks to the linearization of Snell's law, we can generalize this to any optical element:
+
+$$\begin{pmatrix} y_2 \\
+\theta_2 \end{pmatrix} = \begin{pmatrix} A & B \\ C & D \end{pmatrix} \begin{pmatrix} y_1 \\ \theta_1 \end{pmatrix}$$
+
+Each element in the ABCD matrix has a specific physical meaning:
+
+| Matrix Element | Physical Meaning |
+|----------------|------------------|
+| A | Magnification - relates output position to input position |
+| B | Position-to-angle conversion - relates output position to input angle |
+| C | Focusing power - relates output angle to input position |
+| D | Angular magnification - relates output angle to input angle |
+
+Every optical element can be characterized by these parameters. For example, a lens has C = -1/f (focusing power), while free space has B = d (position-dependent angle change). An important property is that the determinant of the matrix equals the ratio of refractive indices: det(M) = n₁/n₂, which equals 1 in a single medium.
+
+Here are the ABCD matrices for common optical elements:
+
+$$
+\mathbf{M}=\begin{bmatrix}
+A & B\\
+C & D
+\end{bmatrix} =\left[\begin{array}{ll}
+1 & d \\
+0 & 1
+\end{array}\right] \tag{Free space}
+$$
+
+$$
+\mathbf{M}=\left[\begin{array}{cc}
+1 & 0 \\
+0 & \frac{n_1}{n_2}
+\end{array}\right] \tag{Planar interface}
+$$
+
+$$
+\mathbf{M}=\left[\begin{array}{cc}
+1 & 0 \\
+-\frac{\left(n_2-n_1\right)}{n_2 R} & \frac{n_1}{n_2}
+\end{array}\right] \tag{Spherical Boundary}
+$$
+
+$$
+\mathbf{M}=\left[\begin{array}{cc}
+1 & 0 \\
+-\frac{1}{f} & 1
+\end{array}\right] \tag{Thin Lens}
+$$
+
+For a system containing multiple optical elements, we simply multiply their matrices in the order that light passes through them:
+
+$$
+\mathrm{M}=\mathbf{M}_N \cdots \mathbf{M}_2 \mathbf{M}_1
+$$
+
+A ray entering the first optical element at a height $y_1$ at an angle $\theta_1$ is transformed according to the matrix $\mathbf{M}$ by the whole system. This elegant approach provides a powerful tool for analyzing complex optical systems efficiently.
+
+
+::: {.callout-note collapse=true}
+### Example: Optical Cloaking with Lens Systems
+
+Optical cloaking refers to making objects "invisible" by guiding light rays around them such that to an observer, it appears as if the rays traveled through free space without encountering any object. Using matrix optics, we can design such a system.
+
+::: {#fig-cloaking fig-align="center"}
+![](img/cloacking.png){width=80%}
+
+Example of a practical paraxial cloak. (a)–(c) A hand is cloaked for varying directions, while the background image is transmitted properly.(d) On-axis view of the ray optics cloaking device. (e) Setup using practical, easy to obtain optics, for demonstrating paraxial cloaking principles. (Photos by J. Adam Fenster, videos by Matthew Mann / University of Rochester) [Source](https://opg.optica.org/oe/fulltext.cfm?uri=oe-22-24-29465&id=304785)
+:::
+
+
+For perfect optical cloaking, the ABCD matrix of our system must be equivalent to that of free space:
+
+$$
+\mathbf{M}_{cloaking} = \left[\begin{array}{cc}
+1 & d \\
+0 & 1
+\end{array}\right]
+$$
+
+Where $d$ is the total effective optical path length. Let's explore why we need exactly 4 lenses to achieve this.
+
+#### Analysis of Different Lens Configurations
+
+**1. Single Lens Configuration**
+
+For a single lens with focal length $f$, the ABCD matrix is:
+
+$$
+\mathbf{M}_{single} = \left[\begin{array}{cc}
+1 & 0 \\
+-\frac{1}{f} & 1
+\end{array}\right]
+$$
+
+This clearly cannot match the free space matrix due to the non-zero $C$ element.
+
+**2. Two-Lens Configuration**
+
+For two lenses with focal lengths $f_1$ and $f_2$ separated by distance $d_{12}$:
+
+$$
+\mathbf{M}_{two} = \left[\begin{array}{cc}
+1 & 0 \\
+-\frac{1}{f_2} & 1
+\end{array}\right]
+\left[\begin{array}{cc}
+1 & d_{12} \\
+0 & 1
+\end{array}\right]
+\left[\begin{array}{cc}
+1 & 0 \\
+-\frac{1}{f_1} & 1
+\end{array}\right]
+$$
+
+When $d_{12} = f_1 + f_2$ (telescopic arrangement), this simplifies to:
+
+$$
+\mathbf{M}_{two} = \left[\begin{array}{cc}
+-\frac{f_1}{f_2} & 0 \\
+0 & -\frac{f_2}{f_1}
+\end{array}\right]
+$$
+
+Since both magnification ($A$) and angular magnification ($D$) cannot simultaneously equal 1 while maintaining $\det(\mathbf{M}) = 1$, two lenses are insufficient.
+
+**3. Three-Lens Configuration**
+
+With three lenses, we have more parameters but still need to determine if we can satisfy all constraints simultaneously. For a three-lens system with focal lengths $f_1$, $f_2$, and $f_3$, separated by distances $d_{12}$ and $d_{23}$, the system matrix would be:
+
+$$
+\mathbf{M}_{three} =
+\left[\begin{array}{cc}
+1 & 0 \\
+-\frac{1}{f_3} & 1
+\end{array}\right]
+\left[\begin{array}{cc}
+1 & d_{23} \\
+0 & 1
+\end{array}\right]
+\left[\begin{array}{cc}
+1 & 0 \\
+-\frac{1}{f_2} & 1
+\end{array}\right]
+\left[\begin{array}{cc}
+1 & d_{12} \\
+0 & 1
+\end{array}\right]
+\left[\begin{array}{cc}
+1 & 0 \\
+-\frac{1}{f_1} & 1
+\end{array}\right]
+$$
+
+When multiplied out, the focusing power (C element) of the system is:
+
+$$C = -\frac{1}{f_3} - \frac{1}{f_2} - \frac{1}{f_1} + \frac{d_{12}}{f_1f_2} + \frac{d_{23}}{f_2f_3} + \frac{d_{12}d_{23}}{f_1f_2f_3}$$
+
+The magnification (A element) of the system is:
+
+$$A = 1 - \frac{d_{12}}{f_1} - \frac{d_{23}}{f_2} + \frac{d_{12}d_{23}}{f_1f_2}$$
+
+For perfect cloaking, we need both C = 0 and A = 1. From A = 1, we can derive:
+
+$$\frac{d_{12}}{f_1} + \frac{d_{23}}{f_2} - \frac{d_{12}d_{23}}{f_1f_2} = 0$$
+
+Solving for $d_{23}$, we get:
+
+$$d_{23} = \frac{d_{12}/f_1}{1/f_2 - d_{12}/(f_1f_2)}$$
+
+Substituting this into the condition for C = 0, we obtain a complex expression that places constraints on the possible values of $f_1$, $f_2$, and $f_3$. For typical lens configurations, this results in values that are difficult to realize physically, as it often requires either negative separations or negative focal lengths.
+
+While the three-lens system provides more parameters to work with than the two-lens system, the mathematical constraints of simultaneously achieving zero focusing power (C = 0) and unit magnification (A = 1) still make perfect cloaking challenging with conventional optical elements.
+
+
+**4. Four-Lens Configuration: The Solution**
+
+We can arrange four lenses in two pairs:
+
+- First pair (lenses 1 and 2): A beam compressor
+- Second pair (lenses 3 and 4): A beam expander
+
+For the beam compressor, with lenses at their combined focal length apart:
+
+$$
+\mathbf{M}_{comp} = \left[\begin{array}{cc}
+-\frac{f_1}{f_2} & 0 \\
+0 & -\frac{f_2}{f_1}
+\end{array}\right]
+$$
+
+Similarly, for the beam expander:
+
+$$
+\mathbf{M}_{exp} = \left[\begin{array}{cc}
+-\frac{f_3}{f_4} & 0 \\
+0 & -\frac{f_4}{f_3}
+\end{array}\right]
+$$
+
+The combined system matrix is:
+
+$$
+\mathbf{M}_{total} = \mathbf{M}_{exp} \times \mathbf{M}_{comp} = \left[\begin{array}{cc}
+\frac{f_1}{f_2} \times \frac{f_3}{f_4} & 0 \\
+0 & \frac{f_2}{f_1} \times \frac{f_4}{f_3}
+\end{array}\right]
+$$
+
+For perfect cloaking, we need:
+- $\frac{f_1}{f_2} \times \frac{f_3}{f_4} = 1$
+- $\frac{f_2}{f_1} \times \frac{f_4}{f_3} = 1$
+
+This is satisfied when $f_1 = f_4$ and $f_2 = f_3$.
+
+With the lenses properly spaced and an additional free space distance $d_0$ between the two pairs, the complete system matrix becomes:
+
+$$
+\mathbf{M}_{cloaking} = \left[\begin{array}{cc}
+1 & d_0 \\
+0 & 1
+\end{array}\right]
+$$
+
+Which perfectly mimics free space propagation, creating the optical cloaking effect.
+
+
+```{python}
+# Example of optical cloaking with four lenses using raytracing
+from raytracing import *
+
+# Define focal lengths (in mm)
+f1 = 200
+f2 = 75
+f3 = f2  # f3 = f2 = 75
+f4 = f1  # f4 = f1 = 200
+
+# Create an optical path
+path = ImagingPath()
+
+# Add the four lenses with proper spacing
+path.append(Space(d=100))  # Initial space before first lens
+path.append(Lens(f=f1, label=f"f₁={f1}mm"))
+path.append(Space(d=f1+f2))  # Distance between lens 1 and 2
+path.append(Lens(f=f2, label=f"f₂={f2}mm"))
+path.append(Space(d=100))  # Distance between lens pairs (d₀)
+path.append(Lens(f=f3, label=f"f₃={f3}mm"))
+path.append(Space(d=f3+f4))  # Distance between lens 3 and 4
+path.append(Lens(f=f4, label=f"f₄={f4}mm"))
+path.append(Space(d=100))  # Final space after last lens
+
+# Display the ray path with custom figure size
+
+path.display(raysList=[
+    [Ray(y=5, theta=0)],
+    [Ray(y=-5, theta=0)]
+], interactive=False)
+
+```
+:::
+
+
+### Multifocal Imaging
+
+We would like to explore the concept of multifocal imaging to obtain 3D resolution from a single image.
+In a microscope, an objective lens together with a tube lens is used to focus light from a sample onto a detector. Either the tube lens is no modified to shift the focal plane of the objective lens or one uses multiple tube lenses with different focal lengths with a single objective lens.
+
+
+::: {#fig-multifocal-adapter fig-align="center"}
+![](img/multifocal_imaging.png){width=80%}
+
+The multifocal adapter. (a) Composition of the multifocal imaging setup. The multifocal adapter (MFA) is inserted into the light path between a standard dark-field microscope and a camera. (b) Composition of the multifocal adapter. Incoming light from the microscope is infinity projected by the lens f1 and split by three consecutive beam-splitters (b1 = 25/75; b2 = 33/67; b3 = 50/50). Five mirrors (m) guide the light into four separate optical paths. The lens f5 projects the four images onto the camera chip. The inter-plane distance is set by lenses of different focal length (f1 - f4). (c, d) Experimentally acquired (c) and simulated (d) (see Methods) multifocal dark-field images (planes 1 - 4, 20x objective) of a calibration grid at the four focal positions (indicated on the left side), where one of the four focal planes maps the grid sharply. Scale bar represents 20 µm. Experiment was performed six times with similar results. [Source](https://www.nature.com/articles/s41467-021-24768-4)
+:::
+
+
+```{python}
+# | echo: false
+# | code-fold: true
+# Define symbols for our variables
+f1, ft, Delta_ft, d, s = sp.symbols('f_1 f_t Delta_ft d s', real=True)
+
+# Define matrices for each optical element
+M_object_to_obj = sp.Matrix([[1, s], [0, 1]])  # Free space from object to objective lens
+M_obj_lens = sp.Matrix([[1, 0], [-1/f1, 1]])  # Objective lens with focal length f1
+M_obj_to_tube = sp.Matrix([[1, d], [0, 1]])  # Free space between objective and tube lens
+M_tube_lens = sp.Matrix([[1, 0], [-1/(ft + Delta_ft), 1]])  # Modified tube lens
+M_tube_to_camera = sp.Matrix([[1, ft], [0, 1]])  # Free space from tube lens to camera
+
+# Calculate the system matrix
+M_system = M_tube_to_camera * M_tube_lens * M_obj_to_tube * M_obj_lens * M_object_to_obj
+
+# For sharp imaging, the B element (position-to-angle conversion) must be zero
+B = M_system[0, 1]
+B_simplified = sp.simplify(B)
+
+# Solve for object distance s that gives perfect focusing
+s_solution = sp.solve(B_simplified, s)[0]
+s_solution = sp.simplify(s_solution)
+
+# Display the solution
+s_latex = sp.latex(s_solution)
+
+```
+
+In the simplest configuration of an objective lens and a tube lens, the light first travels from the object to the objective lens in free space for a distance $s$, which is represented by
+
+```{python}
+#| echo: false
+
+Markdown(f'$$\nM_1={sp.latex(M_object_to_obj)}\n$$')
+```
+
+Then it is passing the objective lens with
+
+```{python}
+#| echo: false
+
+Markdown(f'$$\nM_2={sp.latex(M_obj_lens)}\n$$')
+```
+traveling further through free space with distance $d$
+
+```{python}
+#| echo: false
+Markdown(f'$$\nM_3={sp.latex(M_obj_to_tube)}\n$$')
+```
+
+and then hitting the tube lens with
+
+```{python}
+#| echo: false
+
+Markdown(f'$$\nM_4={sp.latex(M_tube_lens)}\n$$')
+```
+
+where $\Delta_ft$ is a parameter modifying the original tube lens focal distance $f_t$.
+Finally, the light will propagate to the detector at distance $f_t$ from the tube lens
+
+```{python}
+#| echo: false
+
+Markdown(f'$$\nM_s={sp.latex(M_tube_to_camera)}\n$$')
+```
+gicing for the whole system:
+
+
+$$
+M_t=M_4 M_3 M_2 M_1
+$$
+
+The final matrix has again 4 parameters $A,B,C$ and $D$. For sharp imaging the parameter $B$ of the system must be equal to zero, as the outgoing light should be independent of the incoming angle. This is achieved
+
+
+```{python}
+#| echo: false
+
+Markdown(f'$$\\delta s={sp.latex(s_solution)}-s_0\n$$')
+```
+
+
+
+```{python}
+#| echo: false
+#| label: fig-shift
+#| fig-cap: "Plot of the solution with specific parameter values"
+# Plot the solution with specific parameter values
+f1_val = 0.18  # cm
+ft_val = 18.0  # cm
+d_val = 20.0   # cm
+
+# Create a function to evaluate s_solution with these parameters
+s_func = sp.lambdify(Delta_ft, s_solution.subs({f1: f1_val, ft: ft_val, d: d_val}))
+
+# Generate data for plotting
+delta_ft_range = np.linspace(-5, 5, 1000)  # Range of Delta_ft from -5 to 5 cm
+s_values = [s_func(delta) for delta in delta_ft_range]
+
+# Create the plot
+plt.figure(figsize=get_size(10, 8),dpi=150)
+plt.plot(delta_ft_range, (np.array(s_values)-0.18)*10*1000)
+plt.axhline(y=0, color='r', linestyle='--', label=f'$f_1$ = {f1_val} cm')
+plt.xlabel(r'$\Delta_{ft}$ [cm]')
+plt.ylabel(r'$\delta s [µm]$')
+
+plt.tight_layout()
+plt.show()
+```
+
+
+::: {.callout-note collapse=true}
+## The B Parameter
+
+The **B parameter** is the most direct indicator of a sharp image in matrix optics.
+For an optical system with ABCD matrix:
+$$
+\begin{pmatrix} y_2 \\ \theta_2 \end{pmatrix} =
+\begin{pmatrix} A & B \\ C & D \end{pmatrix}
+\begin{pmatrix} y_1 \\ \theta_1 \end{pmatrix}
+$$
+
+The output position is given by:
+$$y_2 = Ay_1 + B\theta_1$$
+
+For an image to be sharp, all rays originating from the same object point must converge to a single image point, regardless of their initial angles. This means that for a given $y_1$ (object position), the final position $y_2$ must be independent of the initial angle $\theta_1$.
+
+This condition is satisfied when **B = 0**.
+
+When B = 0:
+- The final position depends only on the initial position ($y_2 = Ay_1$)
+- All rays from a point source converge to a single point in the image plane
+- The imaging is "stigmatic" (point-to-point mapping)
+
+In our lens example, the system matrix was:
+$$
+\mathbf{M}_{system} =
+\left[\begin{array}{cc}
+1-\frac{d}{f} & d \\
+-\frac{1}{f} & 1
+\end{array}\right]
+$$
+
+For parallel input rays (different $y_1$ but all $\theta_1 = 0$), we needed A = 0 to make them all converge to a single point, which happened when d = f.
+
+But for general imaging of points (not just parallel rays), the B = 0 condition is what determines whether the image is sharp. This is why, in optical design, finding conjugate planes (where B = 0) is essential for sharp imaging.
+:::

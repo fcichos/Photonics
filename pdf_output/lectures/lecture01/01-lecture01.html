@@ -30,6 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
+<link href="../../lectures/lecture02/02-lecture02.html" rel="next">
 <link href="../../index.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -156,6 +157,18 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">| echo: false</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture02/02-lecture02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">| echo: false</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture02/03-lecture02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">just for plotting later</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -253,7 +266,11 @@ Reflection Law Derivation
 <p>Rearranging this equation:</p>
 <p><span class="math display">\[\frac{x+a}{\sqrt{(x+a)^2 + h_1^2}} = \frac{b-x}{\sqrt{(b-x)^2 + h_2^2}}\]</span></p>
 <p>Now, let’s interpret this geometrically. The angle of incidence <span class="math inline">\(\theta_i\)</span> is the angle between the incident ray AP and the normal to the mirror (y-axis). Similarly, the angle of reflection <span class="math inline">\(\theta_r\)</span> is the angle between the reflected ray PB and the normal.</p>
-<p>From trigonometry: - <span class="math inline">\(\sin(\theta_i) = \frac{x+a}{\sqrt{(x+a)^2 + h_1^2}}\)</span> - <span class="math inline">\(\sin(\theta_r) = \frac{b-x}{\sqrt{(b-x)^2 + h_2^2}}\)</span></p>
+<p>From trigonometry:</p>
+<ul>
+<li><span class="math inline">\(\sin(\theta_i) = \frac{x+a}{\sqrt{(x+a)^2 + h_1^2}}\)</span></li>
+<li><span class="math inline">\(\sin(\theta_r) = \frac{b-x}{\sqrt{(b-x)^2 + h_2^2}}\)</span></li>
+</ul>
 <p>Therefore, our minimization condition directly yields: <span class="math display">\[\sin(\theta_i) = \sin(\theta_r)\]</span></p>
 <p>Since both angles are measured in the same quadrant (from the normal to the mirror), this equality implies: <span class="math display">\[\theta_i = \theta_r\]</span></p>
 <p>This is the law of reflection: the angle of incidence equals the angle of reflection.</p>
@@ -299,7 +316,11 @@ Refraction Law Derivation
 <p><span class="math display">\[\frac{dL}{dx} = n_1\frac{x-x_A}{\sqrt{(x-x_A)^2 + y_A^2}} - n_2\frac{x_B-x}{\sqrt{(x_B-x)^2 + y_B^2}} = 0\]</span></p>
 <p>Rearranging this equation:</p>
 <p><span class="math display">\[\frac{n_1(x-x_A)}{\sqrt{(x-x_A)^2 + y_A^2}} = \frac{n_2(x_B-x)}{\sqrt{(x_B-x)^2 + y_B^2}}\]</span></p>
-<p>From geometry, we can identify the sine of the angles of incidence and refraction: - <span class="math inline">\(\sin(\theta_1) = \frac{|x-x_A|}{|AP|} = \frac{|x-x_A|}{\sqrt{(x-x_A)^2 + y_A^2}}\)</span> - <span class="math inline">\(\sin(\theta_2) = \frac{|x_B-x|}{|PB|} = \frac{|x_B-x|}{\sqrt{(x_B-x)^2 + y_B^2}}\)</span></p>
+<p>From geometry, we can identify the sine of the angles of incidence and refraction:</p>
+<ul>
+<li><span class="math inline">\(\sin(\theta_1) = \frac{|x-x_A|}{|AP|} = \frac{|x-x_A|}{\sqrt{(x-x_A)^2 + y_A^2}}\)</span></li>
+<li><span class="math inline">\(\sin(\theta_2) = \frac{|x_B-x|}{|PB|} = \frac{|x_B-x|}{\sqrt{(x_B-x)^2 + y_B^2}}\)</span></li>
+</ul>
 <p>Taking the sign into account based on our coordinate system, our minimization condition becomes:</p>
 <p><span class="math display">\[n_1\sin(\theta_1) = n_2\sin(\theta_2)\]</span></p>
 <p>This is Snell’s law, stating that the ratio of the sines of the angles of incidence and refraction equals the ratio of the refractive indices of the two media.</p>
@@ -328,7 +349,11 @@ Figure&nbsp;2.3— Snell’s law for different combinations of refractive indice
 <p><span class="math display">\[n_1\sin\theta_c = n_2\sin(90°) = n_2\]</span></p>
 <p>Therefore:</p>
 <p><span class="math display">\[\theta_c = \arcsin\left(\frac{n_2}{n_1}\right)\]</span></p>
-<p>For total internal reflection to occur, two conditions must be satisfied: 1. Light must travel from a higher to a lower refractive index medium (<span class="math inline">\(n_1 &gt; n_2\)</span>) 2. The angle of incidence must exceed the critical angle (<span class="math inline">\(\theta_1 &gt; \theta_c\)</span>)</p>
+<p>For total internal reflection to occur, two conditions must be satisfied:</p>
+<ol type="1">
+<li>Light must travel from a higher to a lower refractive index medium (<span class="math inline">\(n_1 &gt; n_2\)</span>)</li>
+<li>The angle of incidence must exceed the critical angle (<span class="math inline">\(\theta_1 &gt; \theta_c\)</span>)</li>
+</ol>
 <p>From Fermat’s principle perspective, total internal reflection represents a scenario where no physical path through the second medium can satisfy the minimum optical path length requirement. Instead, the path of least time becomes the reflected path within the original medium. This phenomenon has numerous practical applications, including:</p>
 <ul>
 <li><strong>Fiber optic communication</strong>: Light signals travel long distances through optical fibers via successive total internal reflections with minimal loss</li>
@@ -351,7 +376,7 @@ Figure&nbsp;2.3— Snell’s law for different combinations of refractive indice
 <img src="img/fiber.png" class="img-fluid figure-img" style="width:59.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-optical-fiber-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.4— Total internal reflection in an optical fiber and a glass rod.
+Figure&nbsp;2.4— Total internal reflection in an optical fiber.
 </figcaption>
 </figure>
 </div>
@@ -549,7 +574,7 @@ Paraxial Approximation
 <li>The error increases rapidly for larger angles, indicating the limitations of the paraxial approximation.</li>
 </ol>
 <p>In most optical systems, especially those involving lenses, the angles of incident and refracted rays are typically small enough for this approximation to be valid. However, it’s important to be aware of its limitations when dealing with wide-angle optical systems or scenarios where precision is critical.</p>
-<div id="39fb01d9" class="cell" data-execution_count="7">
+<div id="e43aae26" class="cell" data-execution_count="7">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -1312,6 +1337,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="../../lectures/lecture02/02-lecture02.html" class="pagination-link" aria-label="| echo: false">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">| echo: false</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

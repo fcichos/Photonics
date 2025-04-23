@@ -1,0 +1,85 @@
+## Transmission through optical components
+
+We would like to describe the wavefront deformation caused by samples or optical components, as it would happen for example in an optical microscope. Let a plane wave be incident on a slab of a material of refractive index $n$ and thickness $d$. The plane wave propagates along the z-axis.
+
+::: {#fig-slab-delay}
+![](img/slab_delay.png){width=50%}
+
+Plane wave propagating through a slab of material with refractive index $n$ and thickness $d$, showing phase delay
+:::
+
+We can write down the wavefront deformation using the amplitude transmittance:
+
+$$
+t(x,y)=\frac{U(x,y,d)}{U(x,y,0)}
+$$
+
+which is just the ratio of the amplitude after the object to the amplitude before the object.
+Inserting the plane wave and the wavenumber $k=n k_0$, where $k_0$ is the wave number in vacuum, we get:
+
+$$
+t(x,y)=\frac{U(x,y,d)}{U(x,y,0)}=\frac{\exp(i n k_0 d)}{\exp(i k_0 \cdot 0)}=\exp(i n k_0 d)
+$$
+
+
+
+::: {#fig-slab-delay}
+![](img/arb_slab.png){width=20%}
+
+Plane wave propagating through an arbitrary slab of material with refractive index $n$ and thickness $d_0$, showing phase delay
+:::
+
+We can generalize that to an object of arbitrary shape but with a bounding box of thickness $d_0$ and refractive index $n$. The wave then travels a distance $d_0-d(x,y)$ through vacuum and $d(x,y)$ through the object. The complex transmittance is given by:
+
+$$
+t(x,y)=\frac{U(x,y,d_0)}{U(x,y,0)}=\exp(i n k_0 d(x,y)) \exp(i k_0 [d_0-d(x,y)])
+$$
+
+which can be written as
+
+$$
+t(x,y)= h_0 \cdot \exp(i(n-1) k_0d(x,y))
+$$
+
+with
+
+$$
+h_0=\exp(i k_0 d_0)
+$$
+
+::: {#fig-slab-delay}
+![](img/lens_delay.png){width=50%}
+
+Plane wave propagating through a planoconvex lens with refractive index $n$, thickness $d_0$ and a radius $R$.
+:::
+
+
+We can apply that for example to a spherical lens of radius $R$ and refractive index $n$ with a planar back side. The lens has a thickness $d_0$
+
+The distance the light has to travel through the lens is then given by
+
+$$
+d(x,y)=d_0 -\lbrace R-\sqrt{R^2-(x^2+y^2)}\rbrace
+$$
+
+for $x^2+y^2<R^2$ we can write
+
+$$
+R-\sqrt{R^2-(x^2+y^2)}\approx \frac{x^2+y^2}{2R}
+$$
+
+such that
+
+$$
+t(x,y)\approx h_0 \cdot \exp(i(n-1) k_0 d_0) \cdot \exp(-i(n-1)k_0 \frac{x^2+y^2}{2R})
+$$
+
+With $h_0'=\exp(i n k_0 d_0)$ and the focal distance $f=R/(n-1)$, this becomes:
+
+$$
+t(x,y)\approx h_0' \exp(-i k_0 \frac{x^2+y^2}{2f})
+$$
+
+The plane wavefronts are thus bending into paraboloidal wavefronts with a center at $f$.
+
+This mathematical framework of amplitude transmittance functions will be crucial when we explore Fourier optics and its applications in microscopy. In particular, these transmittance expressions allow us to predict how wavefronts transform through complex optical systems and how microscope images form. The quadratic phase factors we derived for lenses will play a central role in understanding image formation, resolution limits, and the point spread function in microscopy systems. They also provide the foundation for analyzing more advanced techniques such as phase-contrast microscopy and optical transfer functions.

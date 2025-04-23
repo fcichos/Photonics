@@ -16,7 +16,8 @@ book:
     - part: "Theories for Light"
       chapters:
         - lectures/lecture01/01-lecture01.qmd
-
+        - lectures/lecture02/02-lecture02.qmd
+        - lectures/lecture02/03-lecture02.qmd
 format:
   pdf:
     documentclass: book

@@ -50,3 +50,9 @@ h6 {
     background-color: white;
 }
 */
+
+.math.display {
+    overflow-y: visible !important;
+    max-height: none !important;
+    padding-bottom: 1em; /* Add some space below tall equations */
+}
