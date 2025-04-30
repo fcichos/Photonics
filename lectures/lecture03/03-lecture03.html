@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.42">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>lecture03 – Photonics</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-6685f57f7611d95a701d58b4cc6878c0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../assets/css/styles.css">
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Photonics</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../../index.html" aria-current="page"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Introduction to Photon Statistics and Quantum Optics</li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="../../index.html" class="sidebar-logo-link">
+      <img src="../../assets/images/mona_logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home</span></a>
+  </div>
+</li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Course Info</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-info/intructors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Instructor</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-info/schedule.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Schedule</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-info/resources.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Ressources</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-info/labcourse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lab Course</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-info/exam.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exams</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">FOUNDATIONS OF PHOTONICS</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Lecture 1</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture01/01-lecture01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Ray Optics</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Lecture 2</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture02/01-lecture02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Matrix Optics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture02/02-lecture02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wave Optics Introduction</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Lecture 3</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture03/01-lecture03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Interference</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture03/02-lecture03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Gaussian Beams</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture03/02-lecture03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Photon Streams &amp; Quantum Optics</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#photon-number-statistics" id="toc-photon-number-statistics" class="nav-link active" data-scroll-target="#photon-number-statistics">1. Photon Number Statistics</a>
+  <ul class="collapse">
+  <li><a href="#random-photon-streams-and-poisson-statistics" id="toc-random-photon-streams-and-poisson-statistics" class="nav-link" data-scroll-target="#random-photon-streams-and-poisson-statistics">1.1 Random Photon Streams and Poisson Statistics</a></li>
+  <li><a href="#beam-splitters-and-photon-statistics" id="toc-beam-splitters-and-photon-statistics" class="nav-link" data-scroll-target="#beam-splitters-and-photon-statistics">1.2 Beam Splitters and Photon Statistics</a></li>
+  <li><a href="#thermal-light-and-exponential-statistics" id="toc-thermal-light-and-exponential-statistics" class="nav-link" data-scroll-target="#thermal-light-and-exponential-statistics">1.3 Thermal Light and Exponential Statistics</a></li>
+  </ul></li>
+  <li><a href="#from-classical-fields-to-quantum-optics" id="toc-from-classical-fields-to-quantum-optics" class="nav-link" data-scroll-target="#from-classical-fields-to-quantum-optics">2. From Classical Fields to Quantum Optics</a>
+  <ul class="collapse">
+  <li><a href="#quantization-of-the-electromagnetic-field" id="toc-quantization-of-the-electromagnetic-field" class="nav-link" data-scroll-target="#quantization-of-the-electromagnetic-field">2.1 Quantization of the Electromagnetic Field</a></li>
+  <li><a href="#photon-states-and-quadrature-components" id="toc-photon-states-and-quadrature-components" class="nav-link" data-scroll-target="#photon-states-and-quadrature-components">2.2 Photon States and Quadrature Components</a></li>
+  </ul></li>
+  <li><a href="#photon-entanglement-on-a-beam-splitter" id="toc-photon-entanglement-on-a-beam-splitter" class="nav-link" data-scroll-target="#photon-entanglement-on-a-beam-splitter">3. Photon Entanglement on a Beam Splitter</a>
+  <ul class="collapse">
+  <li><a href="#quantum-operator-approach-to-entanglement" id="toc-quantum-operator-approach-to-entanglement" class="nav-link" data-scroll-target="#quantum-operator-approach-to-entanglement">3.1 Quantum Operator Approach to Entanglement</a></li>
+  <li><a href="#probability-amplitude-approach-to-entanglement" id="toc-probability-amplitude-approach-to-entanglement" class="nav-link" data-scroll-target="#probability-amplitude-approach-to-entanglement">3.2 Probability Amplitude Approach to Entanglement</a></li>
+  </ul></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Introduction to Photon Statistics and Quantum Optics</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="photon-number-statistics" class="level2">
+<h2 class="anchored" data-anchor-id="photon-number-statistics">1. Photon Number Statistics</h2>
+<p>In classical optics, light is treated as an electromagnetic wave. However, at the quantum level, light consists of discrete energy packets called photons. The statistical distribution of these photons provides profound insights into the nature of light sources.</p>
+<section id="random-photon-streams-and-poisson-statistics" class="level3">
+<h3 class="anchored" data-anchor-id="random-photon-streams-and-poisson-statistics">1.1 Random Photon Streams and Poisson Statistics</h3>
+<section id="photon-streams-and-time-bins" class="level4">
+<h4 class="anchored" data-anchor-id="photon-streams-and-time-bins">Photon Streams and Time Bins</h4>
+<p>To understand photon statistics, we first need to conceptualize light as a stream of discrete photons arriving at a detector over time. Let’s develop a model where we divide our total observation time <span class="math inline">\(T\)</span> into <span class="math inline">\(M\)</span> equal time bins, each of duration <span class="math inline">\(\Delta t = T/M\)</span>.</p>
+<p>For a light source with average intensity <span class="math inline">\(I\)</span>, the average number of photons expected in the entire observation period is <span class="math inline">\(\bar{n} = \alpha T\)</span>, where <span class="math inline">\(\alpha\)</span> is proportional to the intensity. The average number of photons per time bin is therefore <span class="math inline">\(\mu = \bar{n}/M = \alpha \Delta t\)</span>.</p>
+<p>In a random photon stream, the arrival of each photon is an independent event with no memory of previous arrivals. This means that for small enough time bins, each bin has: - A probability <span class="math inline">\(p = \mu\)</span> of containing exactly one photon - A probability <span class="math inline">\(1-p\)</span> of containing no photons - A negligible probability of containing more than one photon (for sufficiently small <span class="math inline">\(\Delta t\)</span>)</p>
+</section>
+<section id="from-time-bins-to-binomial-distribution" class="level4">
+<h4 class="anchored" data-anchor-id="from-time-bins-to-binomial-distribution">From Time Bins to Binomial Distribution</h4>
+<p>Given these properties, we can calculate the probability <span class="math inline">\(P(n,M)\)</span> of detecting exactly <span class="math inline">\(n\)</span> photons in <span class="math inline">\(M\)</span> time bins. This is equivalent to asking: what is the probability of having exactly <span class="math inline">\(n\)</span> successes in <span class="math inline">\(M\)</span> independent trials, where the probability of success in each trial is <span class="math inline">\(p = \mu\)</span>?</p>
+<p>This is precisely the binomial distribution:</p>
+<p><span class="math display">\[P(n,M) = \binom{M}{n} p^n (1-p)^{M-n} = \binom{M}{n} \mu^n (1-\mu)^{M-n}\]</span></p>
+<p>where <span class="math inline">\(\binom{M}{n} = \frac{M!}{n!(M-n)!}\)</span> is the binomial coefficient representing the number of ways to choose <span class="math inline">\(n\)</span> time bins from <span class="math inline">\(M\)</span> total bins.</p>
+</section>
+<section id="the-poisson-limit" class="level4">
+<h4 class="anchored" data-anchor-id="the-poisson-limit">The Poisson Limit</h4>
+<p>Now, let’s consider what happens as we make our time bins smaller and more numerous. In the limit where <span class="math inline">\(M \to \infty\)</span> and <span class="math inline">\(\Delta t \to 0\)</span>, while keeping the total observation time <span class="math inline">\(T\)</span> and the average photon number <span class="math inline">\(\bar{n}\)</span> constant:</p>
+<ol type="1">
+<li>The number of bins <span class="math inline">\(M\)</span> increases</li>
+<li>The probability per bin <span class="math inline">\(\mu = \bar{n}/M\)</span> decreases</li>
+<li>The product <span class="math inline">\(M\mu = \bar{n}\)</span> remains constant</li>
+</ol>
+<p>In this limit, the binomial distribution approaches the Poisson distribution. To see this, we substitute <span class="math inline">\(\mu = \bar{n}/M\)</span> into the binomial formula:</p>
+<p><span class="math display">\[P(n,M) = \binom{M}{n} \left(\frac{\bar{n}}{M}\right)^n \left(1-\frac{\bar{n}}{M}\right)^{M-n}\]</span></p>
+<p>Rearranging:</p>
+<p><span class="math display">\[P(n,M) = \frac{M!}{n!(M-n)!} \cdot \frac{\bar{n}^n}{M^n} \cdot \left(1-\frac{\bar{n}}{M}\right)^{M-n}\]</span></p>
+<p>As <span class="math inline">\(M \to \infty\)</span>, we can use the following approximations:</p>
+<p><span class="math display">\[\frac{M!}{(M-n)!M^n} \approx 1\]</span></p>
+<p>for large <span class="math inline">\(M\)</span> and fixed <span class="math inline">\(n\)</span>, and:</p>
+<p><span class="math display">\[\left(1-\frac{\bar{n}}{M}\right)^{M-n} \approx \left(1-\frac{\bar{n}}{M}\right)^M \approx e^{-\bar{n}}\]</span></p>
+<p>applying the limit definition of the exponential function.</p>
+<p>This gives us the Poisson distribution:</p>
+<p><span class="math display">\[P(n) = \lim_{M \to \infty} P(n,M) = \frac{\bar{n}^n e^{-\bar{n}}}{n!}\]</span></p>
+<p>where <span class="math inline">\(\bar{n}\)</span> is the mean photon number in the interval.</p>
+</section>
+<section id="properties-of-the-poisson-distribution" class="level4">
+<h4 class="anchored" data-anchor-id="properties-of-the-poisson-distribution">Properties of the Poisson Distribution</h4>
+<p>The Poisson distribution has the remarkable property that its variance equals its mean:</p>
+<p><span class="math display">\[\langle (\Delta n)^2 \rangle = \langle n \rangle = \bar{n}\]</span></p>
+<p>This equal mean and variance is a signature of the randomness in the photon arrival process, where events occur independently and at a constant average rate.</p>
+<p>To verify this property, we can calculate the mean and variance directly from the probability distribution:</p>
+<p>The mean: <span class="math inline">\(\langle n \rangle = \sum_{n=0}^{\infty} n P(n) = \bar{n}\)</span></p>
+<p>The variance: <span class="math inline">\(\langle (\Delta n)^2 \rangle = \sum_{n=0}^{\infty} (n-\bar{n})^2 P(n) = \bar{n}\)</span></p>
+</section>
+<section id="signal-to-noise-ratio-for-random-light" class="level4">
+<h4 class="anchored" data-anchor-id="signal-to-noise-ratio-for-random-light">Signal-to-Noise Ratio for Random Light</h4>
+<p>The signal-to-noise ratio (SNR) is a crucial metric in experimental physics, quantifying our ability to distinguish a signal from the background noise. For a measurement, the SNR is defined as the ratio of the mean signal to the standard deviation of the noise:</p>
+<p><span class="math display">\[\text{SNR} = \frac{\text{signal}}{\text{noise}} = \frac{\langle n \rangle}{\sqrt{\langle (\Delta n)^2 \rangle}}\]</span></p>
+<p>For random light following Poisson statistics, we have:</p>
+<p><span class="math display">\[\text{SNR} = \frac{\bar{n}}{\sqrt{\bar{n}}} = \sqrt{\bar{n}}\]</span></p>
+<p>This relationship reveals an important property of random light: the SNR scales as the square root of the mean photon number. This is known as the “shot noise limit” and represents a fundamental quantum limit to measurement precision with coherent light. To improve the SNR by a factor of 2, we need to increase the light intensity (or integration time) by a factor of 4.</p>
+<p>This <span class="math inline">\(\sqrt{\bar{n}}\)</span> scaling of SNR is a direct consequence of the statistical independence of photon arrivals in coherent light and plays a crucial role in determining the sensitivity limits of optical measurements, from astronomical observations to laser-based communications.</p>
+<p>This statistical behavior is characteristic of coherent light sources such as ideal lasers, where photon emission events are independent of each other.</p>
+</section>
+</section>
+<section id="beam-splitters-and-photon-statistics" class="level3">
+<h3 class="anchored" data-anchor-id="beam-splitters-and-photon-statistics">1.2 Beam Splitters and Photon Statistics</h3>
+<p>A beam splitter is an optical component that splits an incident beam into two parts. For a 50:50 beam splitter, an incoming photon has equal probability of being transmitted or reflected. Interestingly, when random (Poissonian) light is incident on a beam splitter, the statistics of the output beams remain Poissonian.</p>
+<p>To understand why, consider that each photon in the input beam makes an independent decision to be transmitted or reflected. If the input beam has Poisson statistics with mean <span class="math inline">\(\bar{n}\)</span>, the transmitted beam will have a mean of <span class="math inline">\(\bar{n}_T = R\bar{n}\)</span> and the reflected beam will have a mean of <span class="math inline">\(\bar{n}_R = T\bar{n}\)</span>, where <span class="math inline">\(R\)</span> and <span class="math inline">\(T\)</span> are the reflection and transmission coefficients (<span class="math inline">\(R + T = 1\)</span>).</p>
+<p>The independence of photon behavior ensures that both output beams maintain Poisson statistics, just with scaled means. This is mathematically represented as:</p>
+<p><span class="math display">\[P_T(n_T) = \frac{(R\bar{n})^{n_T} e^{-R\bar{n}}}{n_T!}\]</span></p>
+<p><span class="math display">\[P_R(n_R) = \frac{(T\bar{n})^{n_R} e^{-T\bar{n}}}{n_R!}\]</span></p>
+<p>This preservation of statistics is a direct consequence of the binomial sampling of the original Poisson distribution, which yields another Poisson distribution.</p>
+</section>
+<section id="thermal-light-and-exponential-statistics" class="level3">
+<h3 class="anchored" data-anchor-id="thermal-light-and-exponential-statistics">1.3 Thermal Light and Exponential Statistics</h3>
+<p>Thermal light, such as that emitted by incandescent bulbs or stars, exhibits different statistical properties. The emission process in thermal sources involves atoms transitioning between energy levels due to thermal excitation. This process leads to what we call “bunching” of photons.</p>
+<p>For thermal light, the probability distribution of photons follows:</p>
+<p><span class="math display">\[P(n) = \frac{\bar{n}^n}{(1+\bar{n})^{n+1}}\]</span></p>
+<p>This distribution results in a variance that exceeds the mean:</p>
+<p><span class="math display">\[\langle (\Delta n)^2 \rangle = \langle n \rangle + \langle n \rangle^2 = \bar{n} + \bar{n}^2\]</span></p>
+<p>The photon number fluctuations are larger than in coherent light, reflecting the bunching tendency of thermal photons. This bunching arises from the Bose-Einstein statistics governing photons, which encourages multiple photons to occupy the same mode.</p>
+<p>The intensity fluctuations of thermal light follow an exponential distribution:</p>
+<p><span class="math display">\[P(I) = \frac{1}{\langle I \rangle} e^{-I/\langle I \rangle}\]</span></p>
+<p>This exponential behavior is a direct consequence of the random nature of thermal emission processes, where the radiation field is built up from the contributions of many independent atomic emitters.</p>
+<section id="signal-to-noise-ratio-for-thermal-light" class="level4">
+<h4 class="anchored" data-anchor-id="signal-to-noise-ratio-for-thermal-light">Signal-to-Noise Ratio for Thermal Light</h4>
+<p>The signal-to-noise ratio for thermal light differs significantly from that of coherent light due to the different statistical distribution of photons. Using the definition of SNR as the ratio of mean signal to the standard deviation of noise:</p>
+<p><span class="math display">\[\text{SNR} = \frac{\langle n \rangle}{\sqrt{\langle (\Delta n)^2 \rangle}}\]</span></p>
+<p>For thermal light, with <span class="math inline">\(\langle (\Delta n)^2 \rangle = \bar{n} + \bar{n}^2\)</span>, we have:</p>
+<p><span class="math display">\[\text{SNR} = \frac{\bar{n}}{\sqrt{\bar{n} + \bar{n}^2}} = \frac{\bar{n}}{\bar{n}\sqrt{\frac{1}{\bar{n}} + 1}}\]</span></p>
+<p>In the limit of large photon numbers (<span class="math inline">\(\bar{n} \gg 1\)</span>), which is common for thermal light sources, this simplifies to:</p>
+<p><span class="math display">\[\text{SNR} \approx \frac{\bar{n}}{\bar{n}} = 1\]</span></p>
+<p>This is a striking result: for thermal light at high intensities, the SNR approaches a constant value of 1, regardless of how much we increase the intensity. This is in stark contrast to the coherent light case where SNR increases as <span class="math inline">\(\sqrt{\bar{n}}\)</span>.</p>
+<p>This fundamental limitation on the SNR of thermal light is due to the inherent “excess noise” from photon bunching. It explains why many precision optical measurements preferentially use laser sources (with Poisson statistics) rather than thermal sources, even when high intensities are available.</p>
+<p>The comparison between thermal light (SNR ~ 1) and coherent light (SNR ~ <span class="math inline">\(\sqrt{\bar{n}}\)</span>) provides a clear example of how the quantum statistical properties of a light source directly impact measurement sensitivity in practical applications.</p>
+</section>
+</section>
+</section>
+<section id="from-classical-fields-to-quantum-optics" class="level2">
+<h2 class="anchored" data-anchor-id="from-classical-fields-to-quantum-optics">2. From Classical Fields to Quantum Optics</h2>
+<section id="quantization-of-the-electromagnetic-field" class="level3">
+<h3 class="anchored" data-anchor-id="quantization-of-the-electromagnetic-field">2.1 Quantization of the Electromagnetic Field</h3>
+<p>To transition from classical optics to quantum optics, we need to quantize the electromagnetic field. We start with Maxwell’s equations in vacuum and consider a single mode of the field in a cavity of volume <span class="math inline">\(V\)</span>.</p>
+<p>The classical electric and magnetic fields for a mode with wavevector <span class="math inline">\(\vec{k}\)</span> and polarization <span class="math inline">\(\vec{\epsilon}\)</span> can be written as:</p>
+<p><span class="math display">\[\vec{E}(\vec{r},t) = E_0(a(t)\vec{\epsilon}e^{i\vec{k}\cdot\vec{r}} + a^*(t)\vec{\epsilon}^*e^{-i\vec{k}\cdot\vec{r}})\]</span> <span class="math display">\[\vec{B}(\vec{r},t) = B_0(a(t)(\vec{k}\times\vec{\epsilon})e^{i\vec{k}\cdot\vec{r}} + a^*(t)(\vec{k}\times\vec{\epsilon})^*e^{-i\vec{k}\cdot\vec{r}})\]</span></p>
+<p>where <span class="math inline">\(E_0\)</span> and <span class="math inline">\(B_0\)</span> are constants, and <span class="math inline">\(a(t)\)</span> and <span class="math inline">\(a^*(t)\)</span> are complex amplitudes.</p>
+<p>The energy of this field is:</p>
+<p><span class="math display">\[H = \frac{1}{2}\int_V (\epsilon_0 E^2 + \frac{1}{\mu_0}B^2)d^3r = \hbar\omega(a^*a + \frac{1}{2})\]</span></p>
+<p>Observe that this has the same form as the Hamiltonian of a quantum harmonic oscillator. This suggests replacing the complex amplitudes <span class="math inline">\(a\)</span> and <span class="math inline">\(a^*\)</span> with operators <span class="math inline">\(\hat{a}\)</span> and <span class="math inline">\(\hat{a}^\dagger\)</span> that satisfy the commutation relation:</p>
+<p><span class="math display">\[[\hat{a}, \hat{a}^\dagger] = 1\]</span></p>
+<p>The Hamiltonian then becomes:</p>
+<p><span class="math display">\[\hat{H} = \hbar\omega(\hat{a}^\dagger\hat{a} + \frac{1}{2})\]</span></p>
+<p>This is precisely the Hamiltonian of a quantum harmonic oscillator, where <span class="math inline">\(\hat{a}^\dagger\hat{a}\)</span> is the number operator <span class="math inline">\(\hat{n}\)</span> that counts the number of photons in the mode.</p>
+</section>
+<section id="photon-states-and-quadrature-components" class="level3">
+<h3 class="anchored" data-anchor-id="photon-states-and-quadrature-components">2.2 Photon States and Quadrature Components</h3>
+<p>The energy eigenstates of this quantum harmonic oscillator are the Fock states <span class="math inline">\(|n\rangle\)</span>, which represent states with exactly <span class="math inline">\(n\)</span> photons. The action of the creation and annihilation operators on these states is:</p>
+<p><span class="math display">\[\hat{a}^\dagger|n\rangle = \sqrt{n+1}|n+1\rangle\]</span> <span class="math display">\[\hat{a}|n\rangle = \sqrt{n}|n-1\rangle\]</span></p>
+<p>Just as in a mechanical harmonic oscillator with position <span class="math inline">\(x\)</span> and momentum <span class="math inline">\(p\)</span>, we can define quadrature components for the quantized electromagnetic field:</p>
+<p><span class="math display">\[\hat{X} = \frac{1}{\sqrt{2}}(\hat{a} + \hat{a}^\dagger)\]</span> <span class="math display">\[\hat{P} = \frac{i}{\sqrt{2}}(\hat{a}^\dagger - \hat{a})\]</span></p>
+<p>These operators are analogous to the position and momentum operators of a mechanical oscillator and satisfy the commutation relation:</p>
+<p><span class="math display">\[[\hat{X}, \hat{P}] = i\]</span></p>
+<p>The physical interpretation of these quadratures becomes clear when we look at the expectation value of the electric field operator in a coherent state <span class="math inline">\(|\alpha\rangle\)</span> (which is the quantum state that most closely resembles a classical electromagnetic wave):</p>
+<p><span class="math display">\[\langle\alpha|\hat{E}(\vec{r},t)|\alpha\rangle \propto \langle\alpha|(\hat{a}e^{-i\omega t} + \hat{a}^\dagger e^{i\omega t})|\alpha\rangle = 2|\alpha|\cos(\omega t - \phi)\]</span></p>
+<p>where <span class="math inline">\(\alpha = |\alpha|e^{i\phi}\)</span>.</p>
+<p>We can see that <span class="math inline">\(\hat{X}\)</span> and <span class="math inline">\(\hat{P}\)</span> correspond to the amplitude and phase quadratures of the field, respectively. They are the quantum analogs of the in-phase and out-of-phase components of a classical electromagnetic wave.</p>
+<p>The uncertainty principle for these quadratures,</p>
+<p><span class="math display">\[\Delta X \cdot \Delta P \geq \frac{1}{2}\]</span></p>
+<p>implies fundamental limits on our ability to simultaneously determine both quadratures with arbitrary precision. This leads to interesting quantum states of light such as squeezed states, where the uncertainty in one quadrature is reduced below the standard quantum limit at the expense of increased uncertainty in the conjugate quadrature.</p>
+</section>
+</section>
+<section id="photon-entanglement-on-a-beam-splitter" class="level2">
+<h2 class="anchored" data-anchor-id="photon-entanglement-on-a-beam-splitter">3. Photon Entanglement on a Beam Splitter</h2>
+<section id="quantum-operator-approach-to-entanglement" class="level3">
+<h3 class="anchored" data-anchor-id="quantum-operator-approach-to-entanglement">3.1 Quantum Operator Approach to Entanglement</h3>
+<p>One of the most fascinating phenomena in quantum optics is the creation of entangled photon states. A beam splitter, beyond its classical role, can actually generate quantum entanglement under specific conditions.</p>
+<p>Consider a situation where two identical photons simultaneously enter a 50:50 beam splitter from different input ports. Quantum mechanically, we denote the creation operators for the input ports as <span class="math inline">\(\hat{a}^\dagger\)</span> and <span class="math inline">\(\hat{b}^\dagger\)</span>, and for the output ports as <span class="math inline">\(\hat{c}^\dagger\)</span> and <span class="math inline">\(\hat{d}^\dagger\)</span>.</p>
+<p>The beam splitter transformation can be written as:</p>
+<p><span class="math display">\[\hat{c}^\dagger = \frac{1}{\sqrt{2}}(\hat{a}^\dagger + \hat{b}^\dagger)\]</span> <span class="math display">\[\hat{d}^\dagger = \frac{1}{\sqrt{2}}(\hat{a}^\dagger - \hat{b}^\dagger)\]</span></p>
+<p>The initial state with one photon in each input port is <span class="math inline">\(|1_a, 1_b\rangle = \hat{a}^\dagger \hat{b}^\dagger |0\rangle\)</span>. After passing through the beam splitter, this state becomes:</p>
+<p><span class="math display">\[\hat{a}^\dagger \hat{b}^\dagger |0\rangle \rightarrow \frac{1}{2}(\hat{c}^\dagger + \hat{d}^\dagger)(\hat{c}^\dagger - \hat{d}^\dagger)|0\rangle = \frac{1}{2}((\hat{c}^\dagger)^2 - (\hat{d}^\dagger)^2)|0\rangle\]</span></p>
+<p>Simplifying, we get:</p>
+<p><span class="math display">\[\frac{1}{\sqrt{2}}(|2_c, 0_d\rangle - |0_c, 2_d\rangle)\]</span></p>
+<p>This is an entangled state where either both photons exit through port <span class="math inline">\(c\)</span> or both exit through port <span class="math inline">\(d\)</span>, with no possibility of one photon in each output port. This phenomenon, known as the Hong-Ou-Mandel effect, is a direct manifestation of quantum interference and photon indistinguishability.</p>
+<p>The entanglement is evident because the state cannot be factorized into a product of states for the two output modes. This non-classical correlation is a resource for quantum information processing and quantum communication protocols.</p>
+</section>
+<section id="probability-amplitude-approach-to-entanglement" class="level3">
+<h3 class="anchored" data-anchor-id="probability-amplitude-approach-to-entanglement">3.2 Probability Amplitude Approach to Entanglement</h3>
+<p>We can also understand photon entanglement through the language of probability amplitudes and phase factors, which may be more intuitive for visualizing what happens at a beam splitter.</p>
+<p>When a single photon encounters a beam splitter, there are two possible outcomes: reflection or transmission. In quantum mechanics, we associate probability amplitudes with each outcome:</p>
+<ul>
+<li>For reflection: amplitude <span class="math inline">\(r = \sqrt{R}e^{i\phi_r}\)</span>, where <span class="math inline">\(R\)</span> is the reflection probability and <span class="math inline">\(\phi_r\)</span> is a phase factor</li>
+<li>For transmission: amplitude <span class="math inline">\(t = \sqrt{T}e^{i\phi_t}\)</span>, where <span class="math inline">\(T\)</span> is the transmission probability and <span class="math inline">\(\phi_t\)</span> is a phase factor</li>
+</ul>
+<p>For a 50:50 beam splitter, <span class="math inline">\(R = T = 1/2\)</span>. Importantly, the phase relationship between reflection and transmission must satisfy <span class="math inline">\(\phi_r - \phi_t = \pi/2\)</span> for energy conservation, which is typically implemented as <span class="math inline">\(r = 1/\sqrt{2}\)</span> and <span class="math inline">\(t = i/\sqrt{2}\)</span>, where the imaginary unit <span class="math inline">\(i\)</span> represents a 90u00b0 phase shift.</p>
+<p>Now, consider two photons entering the beam splitter from different input ports (let’s call them 1 and 2). There are four possible outcomes:</p>
+<ol type="1">
+<li>Both photons are reflected: Amplitude = <span class="math inline">\(r_1 r_2 = 1/2\)</span></li>
+<li>Both photons are transmitted: Amplitude = <span class="math inline">\(t_1 t_2 = (i/\sqrt{2})^2 = i^2/2 = -1/2\)</span></li>
+<li>Photon 1 reflected, Photon 2 transmitted: Amplitude = <span class="math inline">\(r_1 t_2 = (1/\sqrt{2})(i/\sqrt{2}) = i/2\)</span></li>
+<li>Photon 1 transmitted, Photon 2 reflected: Amplitude = <span class="math inline">\(t_1 r_2 = (i/\sqrt{2})(1/\sqrt{2}) = i/2\)</span></li>
+</ol>
+<p>The key insight comes when we consider the output ports (let’s call them 3 and 4). For both photons to exit through port 3, either both must be reflected or both must be transmitted. The combined amplitude is:</p>
+<p><span class="math display">\[A_{both~in~3} = r_1 r_2 + t_1 t_2 = 1/2 + (-1/2) = 0\]</span></p>
+<p>Similarly, for both photons to exit through port 4:</p>
+<p><span class="math display">\[A_{both~in~4} = t_1 r_2 + r_1 t_2 = i/2 + i/2 = i\]</span></p>
+<p>For one photon in each output port, the amplitude is zero due to destructive interference.</p>
+<p>Squaring these amplitudes to get probabilities:</p>
+<ul>
+<li>Probability of both photons in port 3: <span class="math inline">\(|0|^2 = 0\)</span></li>
+<li>Probability of both photons in port 4: <span class="math inline">\(|i|^2 = 1\)</span></li>
+<li>Probability of one photon in each port: <span class="math inline">\(0\)</span></li>
+</ul>
+<p>This means the photons always exit together through the same port (in this case, port 4), never one in each port. The two photons are now entangled - they behave as a single entity rather than two independent particles.</p>
+<p>If we adjust our phase convention slightly to maintain symmetry between the ports, we get the state:</p>
+<p><span class="math display">\[\frac{1}{\sqrt{2}}(|2_3, 0_4\rangle - |0_3, 2_4\rangle)\]</span></p>
+<p>which matches our result from the operator formalism.</p>
+<p>This phase-dependent quantum interference demonstrates how the simple process of reflection and transmission, combined with the wave nature of quantum particles, leads to complex phenomena like entanglement. The phase factors are crucial - without the <span class="math inline">\(\pi/2\)</span> phase difference between reflection and transmission, this entanglement would not occur.</p>
+</section>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>This introduction has taken us from the statistical nature of photons to the quantum description of the electromagnetic field. We’ve seen how random photon streams lead to Poisson statistics, how beam splitters interact with these statistics, and how thermal light exhibits exponential intensity distribution due to the bunching of photons.</p>
+<p>We’ve also established the connection between Maxwell’s equations and the quantum harmonic oscillator, introducing the concept of photon number states and field quadratures. Finally, we’ve explored how beam splitters can create quantum entanglement between photons, demonstrating the non-classical nature of light.</p>
+<p>These foundations of quantum optics open the door to a rich field of study, including quantum information processing, quantum metrology, and quantum communication, where the quantum properties of light are harnessed for technological applications beyond the capabilities of classical systems.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/fcichos\.github\.io\/Photonics\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
