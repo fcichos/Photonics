@@ -20,7 +20,11 @@ book:
       chapters:
         - lectures/lecture02/01-lecture02.qmd
         - lectures/lecture02/02-lecture02.qmd
-        - lectures/lecture02/03-lecture02.qmd
+    - part: " Lecture 3"
+      chapters:
+        - lectures/lecture03/01-lecture03.qmd
+        - lectures/lecture03/02-lecture03.qmd
+        - lectures/lecture03/03-lecture03.qmd
 format:
   pdf:
     documentclass: book

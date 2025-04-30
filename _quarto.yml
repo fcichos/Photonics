@@ -57,5 +57,11 @@ website:
                 href: lectures/lecture02/01-lecture02.qmd
               - text: Wave Optics Introduction
                 href: lectures/lecture02/02-lecture02.qmd
+          - section: "Lecture 3"
+            contents:
               - text: Interference
-                href: lectures/lecture02/03-lecture02.qmd
+                href: lectures/lecture03/01-lecture03.qmd
+              - text: Gaussian Beams
+                href: lectures/lecture03/02-lecture03.qmd
+              - text: Photon Streams & Quantum Optics
+                href: lectures/lecture03/02-lecture03.qmd
