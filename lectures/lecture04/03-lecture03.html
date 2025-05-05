@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>introduction_to_quantum_optics – Photonics</title>
+<title>lecture03 – Photonics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,23 +23,23 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-0815c480559380816a4d1ea211a47e91.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-9344fb9851b4da3cab95007ef9d770dc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-0815c480559380816a4d1ea211a47e91.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-9344fb9851b4da3cab95007ef9d770dc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -98,7 +98,7 @@ window.Quarto = {
 };
 </script>
 
-<link rel="stylesheet" href="assets/css/styles.css">
+<link rel="stylesheet" href="../../assets/css/styles.css">
 </head>
 
 <body class="nav-sidebar floating nav-fixed quarto-light">
@@ -108,7 +108,7 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Photonics</span>
     </a>
   </div>
@@ -119,11 +119,11 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link active" href="../../index.html" aria-current="page"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
 </ul>
@@ -137,7 +137,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Introduction to Photon Statistics and Quantum Optics</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -148,15 +148,15 @@ window.Quarto = {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
-      <a href="./index.html" class="sidebar-logo-link">
-      <img src="./assets/images/mona_logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      <a href="../../index.html" class="sidebar-logo-link">
+      <img src="../../assets/images/mona_logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
       </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Home</span></a>
   </div>
 </li>
@@ -172,31 +172,31 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./course-info/intructors.html" class="sidebar-item-text sidebar-link">
+  <a href="../../course-info/intructors.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Instructor</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./course-info/schedule.html" class="sidebar-item-text sidebar-link">
+  <a href="../../course-info/schedule.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Schedule</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./course-info/resources.html" class="sidebar-item-text sidebar-link">
+  <a href="../../course-info/resources.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Ressources</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./course-info/labcourse.html" class="sidebar-item-text sidebar-link">
+  <a href="../../course-info/labcourse.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lab Course</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./course-info/exam.html" class="sidebar-item-text sidebar-link">
+  <a href="../../course-info/exam.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Exams</span></a>
   </div>
 </li>
@@ -223,7 +223,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lecture01/01-lecture01.html" class="sidebar-item-text sidebar-link">
+  <a href="../../lectures/lecture01/01-lecture01.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Ray Optics</span></a>
   </div>
 </li>
@@ -240,13 +240,13 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lecture02/01-lecture02.html" class="sidebar-item-text sidebar-link">
+  <a href="../../lectures/lecture02/01-lecture02.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Matrix Optics</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lecture02/02-lecture02.html" class="sidebar-item-text sidebar-link">
+  <a href="../../lectures/lecture02/02-lecture02.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Wave Optics Introduction</span></a>
   </div>
 </li>
@@ -263,13 +263,13 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lecture03/01-lecture03.html" class="sidebar-item-text sidebar-link">
+  <a href="../../lectures/lecture03/01-lecture03.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Interference</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lecture03/02-lecture03.html" class="sidebar-item-text sidebar-link">
+  <a href="../../lectures/lecture03/02-lecture03.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Gaussian Beams</span></a>
   </div>
 </li>
@@ -287,42 +287,53 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#introduction-to-photon-statistics-and-quantum-optics" id="toc-introduction-to-photon-statistics-and-quantum-optics" class="nav-link active" data-scroll-target="#introduction-to-photon-statistics-and-quantum-optics">Introduction to Photon Statistics and Quantum Optics</a>
+  <li><a href="#photon-number-statistics" id="toc-photon-number-statistics" class="nav-link active" data-scroll-target="#photon-number-statistics">Photon Number Statistics</a>
   <ul class="collapse">
-  <li><a href="#photon-number-statistics" id="toc-photon-number-statistics" class="nav-link" data-scroll-target="#photon-number-statistics">1. Photon Number Statistics</a>
-  <ul class="collapse">
-  <li><a href="#random-photon-streams-and-poisson-statistics" id="toc-random-photon-streams-and-poisson-statistics" class="nav-link" data-scroll-target="#random-photon-streams-and-poisson-statistics">1.1 Random Photon Streams and Poisson Statistics</a></li>
-  <li><a href="#beam-splitters-and-photon-statistics" id="toc-beam-splitters-and-photon-statistics" class="nav-link" data-scroll-target="#beam-splitters-and-photon-statistics">1.2 Beam Splitters and Photon Statistics</a></li>
-  <li><a href="#thermal-light-and-exponential-statistics" id="toc-thermal-light-and-exponential-statistics" class="nav-link" data-scroll-target="#thermal-light-and-exponential-statistics">1.3 Thermal Light and Exponential Statistics</a></li>
+  <li><a href="#random-photon-streams-and-poisson-statistics" id="toc-random-photon-streams-and-poisson-statistics" class="nav-link" data-scroll-target="#random-photon-streams-and-poisson-statistics">Random Photon Streams and Poisson Statistics</a></li>
+  <li><a href="#beam-splitters-and-photon-statistics" id="toc-beam-splitters-and-photon-statistics" class="nav-link" data-scroll-target="#beam-splitters-and-photon-statistics">Beam Splitters and Photon Statistics</a></li>
+  <li><a href="#thermal-light-and-exponential-statistics" id="toc-thermal-light-and-exponential-statistics" class="nav-link" data-scroll-target="#thermal-light-and-exponential-statistics">Thermal Light and Exponential Statistics</a></li>
   </ul></li>
-  <li><a href="#from-classical-fields-to-quantum-optics" id="toc-from-classical-fields-to-quantum-optics" class="nav-link" data-scroll-target="#from-classical-fields-to-quantum-optics">2. From Classical Fields to Quantum Optics</a>
+  <li><a href="#from-classical-fields-to-quantum-optics" id="toc-from-classical-fields-to-quantum-optics" class="nav-link" data-scroll-target="#from-classical-fields-to-quantum-optics">From Classical Fields to Quantum Optics</a>
   <ul class="collapse">
-  <li><a href="#quantization-of-the-electromagnetic-field" id="toc-quantization-of-the-electromagnetic-field" class="nav-link" data-scroll-target="#quantization-of-the-electromagnetic-field">2.1 Quantization of the Electromagnetic Field</a></li>
-  <li><a href="#photon-states-and-quadrature-components" id="toc-photon-states-and-quadrature-components" class="nav-link" data-scroll-target="#photon-states-and-quadrature-components">2.2 Photon States and Quadrature Components</a></li>
+  <li><a href="#quantization-of-the-electromagnetic-field" id="toc-quantization-of-the-electromagnetic-field" class="nav-link" data-scroll-target="#quantization-of-the-electromagnetic-field">Quantization of the Electromagnetic Field</a></li>
+  <li><a href="#photon-states-and-quadrature-components" id="toc-photon-states-and-quadrature-components" class="nav-link" data-scroll-target="#photon-states-and-quadrature-components">Photon States and Quadrature Components</a></li>
   </ul></li>
-  <li><a href="#photon-entanglement-on-a-beam-splitter" id="toc-photon-entanglement-on-a-beam-splitter" class="nav-link" data-scroll-target="#photon-entanglement-on-a-beam-splitter">3. Photon Entanglement on a Beam Splitter</a>
+  <li><a href="#photon-entanglement-on-a-beam-splitter" id="toc-photon-entanglement-on-a-beam-splitter" class="nav-link" data-scroll-target="#photon-entanglement-on-a-beam-splitter">Photon Entanglement on a Beam Splitter</a>
   <ul class="collapse">
-  <li><a href="#quantum-operator-approach-to-entanglement" id="toc-quantum-operator-approach-to-entanglement" class="nav-link" data-scroll-target="#quantum-operator-approach-to-entanglement">3.1 Quantum Operator Approach to Entanglement</a></li>
-  <li><a href="#probability-amplitude-approach-to-entanglement" id="toc-probability-amplitude-approach-to-entanglement" class="nav-link" data-scroll-target="#probability-amplitude-approach-to-entanglement">3.2 Probability Amplitude Approach to Entanglement</a></li>
+  <li><a href="#quantum-operator-approach-to-entanglement" id="toc-quantum-operator-approach-to-entanglement" class="nav-link" data-scroll-target="#quantum-operator-approach-to-entanglement">Quantum Operator Approach to Entanglement</a></li>
+  <li><a href="#probability-amplitude-approach-to-entanglement" id="toc-probability-amplitude-approach-to-entanglement" class="nav-link" data-scroll-target="#probability-amplitude-approach-to-entanglement">Probability Amplitude Approach to Entanglement</a></li>
   </ul></li>
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
-  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Introduction to Photon Statistics and Quantum Optics</h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
 
-<section id="introduction-to-photon-statistics-and-quantum-optics" class="level1">
-<h1>Introduction to Photon Statistics and Quantum Optics</h1>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
 <section id="photon-number-statistics" class="level2">
-<h2 class="anchored" data-anchor-id="photon-number-statistics">1. Photon Number Statistics</h2>
+<h2 class="anchored" data-anchor-id="photon-number-statistics">Photon Number Statistics</h2>
 <p>In classical optics, light is treated as an electromagnetic wave. However, at the quantum level, light consists of discrete energy packets called photons. The statistical distribution of these photons provides profound insights into the nature of light sources.</p>
 <section id="random-photon-streams-and-poisson-statistics" class="level3">
-<h3 class="anchored" data-anchor-id="random-photon-streams-and-poisson-statistics">1.1 Random Photon Streams and Poisson Statistics</h3>
+<h3 class="anchored" data-anchor-id="random-photon-streams-and-poisson-statistics">Random Photon Streams and Poisson Statistics</h3>
 <section id="photon-streams-and-time-bins" class="level4">
 <h4 class="anchored" data-anchor-id="photon-streams-and-time-bins">Photon Streams and Time Bins</h4>
 <p>To understand photon statistics, we first need to conceptualize light as a stream of discrete photons arriving at a detector over time. Let’s develop a model where we divide our total observation time <span class="math inline">\(T\)</span> into <span class="math inline">\(M\)</span> equal time bins, each of duration <span class="math inline">\(\Delta t = T/M\)</span>.</p>
@@ -378,7 +389,7 @@ window.Quarto = {
 </section>
 </section>
 <section id="beam-splitters-and-photon-statistics" class="level3">
-<h3 class="anchored" data-anchor-id="beam-splitters-and-photon-statistics">1.2 Beam Splitters and Photon Statistics</h3>
+<h3 class="anchored" data-anchor-id="beam-splitters-and-photon-statistics">Beam Splitters and Photon Statistics</h3>
 <p>A beam splitter is an optical component that splits an incident beam into two parts. For a 50:50 beam splitter, an incoming photon has equal probability of being transmitted or reflected. Interestingly, when random (Poissonian) light is incident on a beam splitter, the statistics of the output beams remain Poissonian.</p>
 <p>To understand why, consider that each photon in the input beam makes an independent decision to be transmitted or reflected. If the input beam has Poisson statistics with mean <span class="math inline">\(\bar{n}\)</span>, the transmitted beam will have a mean of <span class="math inline">\(\bar{n}_T = R\bar{n}\)</span> and the reflected beam will have a mean of <span class="math inline">\(\bar{n}_R = T\bar{n}\)</span>, where <span class="math inline">\(R\)</span> and <span class="math inline">\(T\)</span> are the reflection and transmission coefficients (<span class="math inline">\(R + T = 1\)</span>).</p>
 <p>The independence of photon behavior ensures that both output beams maintain Poisson statistics, just with scaled means. This is mathematically represented as:</p>
@@ -387,7 +398,7 @@ window.Quarto = {
 <p>This preservation of statistics is a direct consequence of the binomial sampling of the original Poisson distribution, which yields another Poisson distribution.</p>
 </section>
 <section id="thermal-light-and-exponential-statistics" class="level3">
-<h3 class="anchored" data-anchor-id="thermal-light-and-exponential-statistics">1.3 Thermal Light and Exponential Statistics</h3>
+<h3 class="anchored" data-anchor-id="thermal-light-and-exponential-statistics">Thermal Light and Exponential Statistics</h3>
 <p>Thermal light, such as that emitted by incandescent bulbs or stars, exhibits different statistical properties. The emission process in thermal sources involves atoms transitioning between energy levels due to thermal excitation. This process leads to what we call “bunching” of photons.</p>
 <p>For thermal light, the probability distribution of photons follows:</p>
 <p><span class="math display">\[P(n) = \frac{\bar{n}^n}{(1+\bar{n})^{n+1}}\]</span></p>
@@ -412,9 +423,9 @@ window.Quarto = {
 </section>
 </section>
 <section id="from-classical-fields-to-quantum-optics" class="level2">
-<h2 class="anchored" data-anchor-id="from-classical-fields-to-quantum-optics">2. From Classical Fields to Quantum Optics</h2>
+<h2 class="anchored" data-anchor-id="from-classical-fields-to-quantum-optics">From Classical Fields to Quantum Optics</h2>
 <section id="quantization-of-the-electromagnetic-field" class="level3">
-<h3 class="anchored" data-anchor-id="quantization-of-the-electromagnetic-field">2.1 Quantization of the Electromagnetic Field</h3>
+<h3 class="anchored" data-anchor-id="quantization-of-the-electromagnetic-field">Quantization of the Electromagnetic Field</h3>
 <p>To transition from classical optics to quantum optics, we need to quantize the electromagnetic field. We start with Maxwell’s equations in vacuum and consider a single mode of the field in a cavity of volume <span class="math inline">\(V\)</span>.</p>
 <p>The classical electric and magnetic fields for a mode with wavevector <span class="math inline">\(\vec{k}\)</span> and polarization <span class="math inline">\(\vec{\epsilon}\)</span> can be written as:</p>
 <p><span class="math display">\[\vec{E}(\vec{r},t) = E_0(a(t)\vec{\epsilon}e^{i\vec{k}\cdot\vec{r}} + a^*(t)\vec{\epsilon}^*e^{-i\vec{k}\cdot\vec{r}})\]</span> <span class="math display">\[\vec{B}(\vec{r},t) = B_0(a(t)(\vec{k}\times\vec{\epsilon})e^{i\vec{k}\cdot\vec{r}} + a^*(t)(\vec{k}\times\vec{\epsilon})^*e^{-i\vec{k}\cdot\vec{r}})\]</span></p>
@@ -428,7 +439,7 @@ window.Quarto = {
 <p>This is precisely the Hamiltonian of a quantum harmonic oscillator, where <span class="math inline">\(\hat{a}^\dagger\hat{a}\)</span> is the number operator <span class="math inline">\(\hat{n}\)</span> that counts the number of photons in the mode.</p>
 </section>
 <section id="photon-states-and-quadrature-components" class="level3">
-<h3 class="anchored" data-anchor-id="photon-states-and-quadrature-components">2.2 Photon States and Quadrature Components</h3>
+<h3 class="anchored" data-anchor-id="photon-states-and-quadrature-components">Photon States and Quadrature Components</h3>
 <p>The energy eigenstates of this quantum harmonic oscillator are the Fock states <span class="math inline">\(|n\rangle\)</span>, which represent states with exactly <span class="math inline">\(n\)</span> photons. The action of the creation and annihilation operators on these states is:</p>
 <p><span class="math display">\[\hat{a}^\dagger|n\rangle = \sqrt{n+1}|n+1\rangle\]</span> <span class="math display">\[\hat{a}|n\rangle = \sqrt{n}|n-1\rangle\]</span></p>
 <p>Just as in a mechanical harmonic oscillator with position <span class="math inline">\(x\)</span> and momentum <span class="math inline">\(p\)</span>, we can define quadrature components for the quantized electromagnetic field:</p>
@@ -445,9 +456,9 @@ window.Quarto = {
 </section>
 </section>
 <section id="photon-entanglement-on-a-beam-splitter" class="level2">
-<h2 class="anchored" data-anchor-id="photon-entanglement-on-a-beam-splitter">3. Photon Entanglement on a Beam Splitter</h2>
+<h2 class="anchored" data-anchor-id="photon-entanglement-on-a-beam-splitter">Photon Entanglement on a Beam Splitter</h2>
 <section id="quantum-operator-approach-to-entanglement" class="level3">
-<h3 class="anchored" data-anchor-id="quantum-operator-approach-to-entanglement">3.1 Quantum Operator Approach to Entanglement</h3>
+<h3 class="anchored" data-anchor-id="quantum-operator-approach-to-entanglement">Quantum Operator Approach to Entanglement</h3>
 <p>One of the most fascinating phenomena in quantum optics is the creation of entangled photon states. A beam splitter, beyond its classical role, can actually generate quantum entanglement under specific conditions.</p>
 <p>Consider a situation where two identical photons simultaneously enter a 50:50 beam splitter from different input ports. Quantum mechanically, we denote the creation operators for the input ports as <span class="math inline">\(\hat{a}^\dagger\)</span> and <span class="math inline">\(\hat{b}^\dagger\)</span>, and for the output ports as <span class="math inline">\(\hat{c}^\dagger\)</span> and <span class="math inline">\(\hat{d}^\dagger\)</span>.</p>
 <p>The beam splitter transformation can be written as:</p>
@@ -460,7 +471,7 @@ window.Quarto = {
 <p>The entanglement is evident because the state cannot be factorized into a product of states for the two output modes. This non-classical correlation is a resource for quantum information processing and quantum communication protocols.</p>
 </section>
 <section id="probability-amplitude-approach-to-entanglement" class="level3">
-<h3 class="anchored" data-anchor-id="probability-amplitude-approach-to-entanglement">3.2 Probability Amplitude Approach to Entanglement</h3>
+<h3 class="anchored" data-anchor-id="probability-amplitude-approach-to-entanglement">Probability Amplitude Approach to Entanglement</h3>
 <p>We can also understand photon entanglement through the language of probability amplitudes and phase factors, which may be more intuitive for visualizing what happens at a beam splitter.</p>
 <p>When a single photon encounters a beam splitter, there are two possible outcomes: reflection or transmission. In quantum mechanics, we associate probability amplitudes with each outcome:</p>
 <ul>
@@ -500,7 +511,6 @@ window.Quarto = {
 <p>These foundations of quantum optics open the door to a rich field of study, including quantum information processing, quantum metrology, and quantum communication, where the quantum properties of light are harnessed for technological applications beyond the capabilities of classical systems.</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
