@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Optical Elements Part II – Photonics</title>
+<title>Supplementary Materials: Fourier Optics – Photonics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -103,6 +103,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../assets/css/styles.css">
 </head>
@@ -143,7 +172,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Optical Elements Part II</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Supplementary Materials: Fourier Optics</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -325,18 +354,43 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
     </ul>
     </div>
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#fourier-transform-review" id="toc-fourier-transform-review" class="nav-link active" data-scroll-target="#fourier-transform-review">1. Fourier Transform Review</a>
+  <ul class="collapse">
+  <li><a href="#basic-definitions" id="toc-basic-definitions" class="nav-link" data-scroll-target="#basic-definitions">1.1 Basic Definitions</a></li>
+  <li><a href="#important-properties" id="toc-important-properties" class="nav-link" data-scroll-target="#important-properties">1.2 Important Properties</a></li>
+  <li><a href="#common-fourier-transform-pairs" id="toc-common-fourier-transform-pairs" class="nav-link" data-scroll-target="#common-fourier-transform-pairs">1.3 Common Fourier Transform Pairs</a></li>
+  <li><a href="#application-to-optics" id="toc-application-to-optics" class="nav-link" data-scroll-target="#application-to-optics">1.4 Application to Optics</a></li>
+  </ul></li>
+  <li><a href="#worked-examples" id="toc-worked-examples" class="nav-link" data-scroll-target="#worked-examples">2. Worked Examples</a>
+  <ul class="collapse">
+  <li><a href="#transmission-examples" id="toc-transmission-examples" class="nav-link" data-scroll-target="#transmission-examples">2.1 Transmission Examples</a></li>
+  <li><a href="#wave-propagation-examples" id="toc-wave-propagation-examples" class="nav-link" data-scroll-target="#wave-propagation-examples">2.2 Wave Propagation Examples</a></li>
+  <li><a href="#spatial-frequency-examples" id="toc-spatial-frequency-examples" class="nav-link" data-scroll-target="#spatial-frequency-examples">2.3 Spatial Frequency Examples</a></li>
+  </ul></li>
+  <li><a href="#angular-spectrum-visualizations" id="toc-angular-spectrum-visualizations" class="nav-link" data-scroll-target="#angular-spectrum-visualizations">3. Angular Spectrum Visualizations</a>
+  <ul class="collapse">
+  <li><a href="#conceptual-visualization" id="toc-conceptual-visualization" class="nav-link" data-scroll-target="#conceptual-visualization">3.1 Conceptual Visualization</a></li>
+  <li><a href="#interactive-visualization-code" id="toc-interactive-visualization-code" class="nav-link" data-scroll-target="#interactive-visualization-code">3.2 Interactive Visualization Code</a></li>
+  <li><a href="#physical-interpretation" id="toc-physical-interpretation" class="nav-link" data-scroll-target="#physical-interpretation">3.3 Physical Interpretation</a></li>
+  </ul></li>
+  </ul>
+</nav>
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Optical Elements Part II</h1>
+<h1 class="title">Supplementary Materials: Fourier Optics</h1>
+<p class="subtitle lead">Additional examples, review, and visualizations</p>
 </div>
 
 
@@ -353,37 +407,266 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<div id="cell-fig-wavelength-dependence" class="cell" data-cold-fold="true" data-execution_count="2">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>bk7<span class="op">=</span>pd.read_csv(<span class="st">"data/BK7.csv"</span>,delimiter<span class="op">=</span><span class="st">","</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>sf10<span class="op">=</span>pd.read_csv(<span class="st">"data/SF10.csv"</span>,delimiter<span class="op">=</span><span class="st">","</span>)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>fk51a<span class="op">=</span>pd.read_csv(<span class="st">"data/FK51A.csv"</span>,delimiter<span class="op">=</span><span class="st">","</span>)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">4</span>,<span class="dv">4</span>))</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>plt.plot(bk7.wl<span class="op">*</span><span class="dv">1000</span>,bk7.n,label<span class="op">=</span><span class="st">"BK7"</span>)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>plt.plot(sf10.wl<span class="op">*</span><span class="dv">1000</span>,sf10.n,label<span class="op">=</span><span class="st">"SF10"</span>)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>plt.plot(fk51a.wl<span class="op">*</span><span class="dv">1000</span>,fk51a.n,label<span class="op">=</span><span class="st">"FK51A"</span>)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>plt.xlim(<span class="dv">300</span>,<span class="dv">900</span>)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"wavelength [nm]"</span>)</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"refractive index n"</span>)</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-display">
-<div id="fig-wavelength-dependence" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-wavelength-dependence-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="02-lecture01_files/figure-html/fig-wavelength-dependence-output-1.png" class="quarto-figure quarto-figure-center figure-img" width="393" height="356">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-wavelength-dependence-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1— Refractive index of different glasses as a function of the wavelength.
-</figcaption>
+<section id="fourier-transform-review" class="level2">
+<h2 class="anchored" data-anchor-id="fourier-transform-review">1. Fourier Transform Review</h2>
+<section id="basic-definitions" class="level3">
+<h3 class="anchored" data-anchor-id="basic-definitions">1.1 Basic Definitions</h3>
+<p>The Fourier transform decomposes a function into its constituent frequencies. For a function <span class="math inline">\(f(x)\)</span>, its Fourier transform <span class="math inline">\(F(k)\)</span> is defined as:</p>
+<p><span class="math display">\[F(k) = \int_{-\infty}^{\infty} f(x) e^{-i2\pi kx} dx\]</span></p>
+<p>The inverse Fourier transform reconstructs the original function:</p>
+<p><span class="math display">\[f(x) = \int_{-\infty}^{\infty} F(k) e^{i2\pi kx} dk\]</span></p>
+<p>In optics, <span class="math inline">\(x\)</span> typically represents spatial coordinates and <span class="math inline">\(k\)</span> represents spatial frequencies.</p>
+</section>
+<section id="important-properties" class="level3">
+<h3 class="anchored" data-anchor-id="important-properties">1.2 Important Properties</h3>
+<ol type="1">
+<li><p><strong>Linearity</strong>: <span class="math inline">\(\mathcal{F}\{af(x) + bg(x)\} = aF(k) + bG(k)\)</span></p></li>
+<li><p><strong>Shift Theorem</strong>: <span class="math inline">\(\mathcal{F}\{f(x-a)\} = e^{-i2\pi ka}F(k)\)</span></p></li>
+<li><p><strong>Convolution Theorem</strong>: <span class="math inline">\(\mathcal{F}\{f * g\} = F(k) \cdot G(k)\)</span></p></li>
+<li><p><strong>Parseval’s Theorem</strong>: <span class="math inline">\(\int |f(x)|^2 dx = \int |F(k)|^2 dk\)</span></p></li>
+</ol>
+</section>
+<section id="common-fourier-transform-pairs" class="level3">
+<h3 class="anchored" data-anchor-id="common-fourier-transform-pairs">1.3 Common Fourier Transform Pairs</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 34%">
+<col style="width: 65%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Function</th>
+<th>Fourier Transform</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(\delta(x)\)</span> (Delta function)</td>
+<td><span class="math inline">\(1\)</span> (constant)</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(1\)</span> (constant)</td>
+<td><span class="math inline">\(\delta(k)\)</span> (Delta function)</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\text{rect}(x)\)</span> (Rectangle function)</td>
+<td><span class="math inline">\(\text{sinc}(k)\)</span> (Sinc function)</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(e^{-\pi x^2}\)</span> (Gaussian)</td>
+<td><span class="math inline">\(e^{-\pi k^2}\)</span> (Gaussian)</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\cos(2\pi ax)\)</span></td>
+<td><span class="math inline">\(\frac{1}{2}[\delta(k-a) + \delta(k+a)]\)</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="application-to-optics" class="level3">
+<h3 class="anchored" data-anchor-id="application-to-optics">1.4 Application to Optics</h3>
+<p>In optics, the Fourier transform relates: - The field distribution in real space to its spatial frequency spectrum - The field at one plane to its distribution in the focal plane of a lens - The aperture function to its diffraction pattern in the far field</p>
+</section>
+</section>
+<section id="worked-examples" class="level2">
+<h2 class="anchored" data-anchor-id="worked-examples">2. Worked Examples</h2>
+<section id="transmission-examples" class="level3">
+<h3 class="anchored" data-anchor-id="transmission-examples">2.1 Transmission Examples</h3>
+<section id="example-1-thin-lens-transmission-function" class="level4">
+<h4 class="anchored" data-anchor-id="example-1-thin-lens-transmission-function">Example 1: Thin Lens Transmission Function</h4>
+<p><strong>Problem:</strong> Calculate the transmission function for a thin biconvex lens with focal length <span class="math inline">\(f = 100\)</span> mm at wavelength <span class="math inline">\(\lambda = 633\)</span> nm.</p>
+<p><strong>Solution:</strong></p>
+<p>For a thin lens, the transmission function is purely a phase modulation:</p>
+<p><span class="math display">\[t(x,y) = e^{-i\frac{k}{2f}(x^2+y^2)}\]</span></p>
+<p>With <span class="math inline">\(k = \frac{2\pi}{\lambda} = \frac{2\pi}{633 \times 10^{-9}} \approx 9.92 \times 10^6\)</span> rad/m:</p>
+<p><span class="math display">\[t(x,y) = e^{-i\frac{9.92 \times 10^6}{2 \times 0.1}(x^2+y^2)} = e^{-i 4.96 \times 10^7 (x^2+y^2)}\]</span></p>
+<p>The phase shift at position <span class="math inline">\((x,y) = (1 \text{ mm}, 0) = (10^{-3} \text{ m}, 0)\)</span> is:</p>
+<p><span class="math display">\[\phi = -4.96 \times 10^7 \times (10^{-3})^2 = -49.6 \text{ rad} \approx -15.8\pi \text{ rad}\]</span></p>
+<p>This represents approximately 8 complete phase cycles at just 1 mm from the center.</p>
+</section>
+<section id="example-2-phase-grating" class="level4">
+<h4 class="anchored" data-anchor-id="example-2-phase-grating">Example 2: Phase Grating</h4>
+<p><strong>Problem:</strong> A phase grating has a transmission function <span class="math inline">\(t(x) = e^{i\alpha\sin(2\pi x/d)}\)</span> where <span class="math inline">\(d = 10\)</span> μm and <span class="math inline">\(\alpha = \pi/2\)</span>. Determine the amplitudes of the diffraction orders.</p>
+<p><strong>Solution:</strong></p>
+<p>This is a sinusoidal phase grating. Using the Jacobi-Anger expansion:</p>
+<p><span class="math display">\[e^{i\alpha\sin\theta} = \sum_{n=-\infty}^{\infty} J_n(\alpha)e^{in\theta}\]</span></p>
+<p>Where <span class="math inline">\(J_n\)</span> is the Bessel function of the first kind.</p>
+<p>For our grating:</p>
+<p><span class="math display">\[t(x) = e^{i(\pi/2)\sin(2\pi x/d)} = \sum_{n=-\infty}^{\infty} J_n(\pi/2)e^{in(2\pi x/d)}\]</span></p>
+<p>Each term in this expansion corresponds to a diffraction order with amplitude <span class="math inline">\(J_n(\pi/2)\)</span>.</p>
+<p>For the first few orders: - 0th order: <span class="math inline">\(J_0(\pi/2) \approx 0.568\)</span> - ±1st order: <span class="math inline">\(J_{\pm1}(\pi/2) \approx 0.382\)</span> - ±2nd order: <span class="math inline">\(J_{\pm2}(\pi/2) \approx 0.129\)</span> - ±3rd order: <span class="math inline">\(J_{\pm3}(\pi/2) \approx 0.019\)</span></p>
+</section>
+</section>
+<section id="wave-propagation-examples" class="level3">
+<h3 class="anchored" data-anchor-id="wave-propagation-examples">2.2 Wave Propagation Examples</h3>
+<section id="example-3-fresnel-propagation" class="level4">
+<h4 class="anchored" data-anchor-id="example-3-fresnel-propagation">Example 3: Fresnel Propagation</h4>
+<p><strong>Problem:</strong> A uniformly illuminated circular aperture of diameter <span class="math inline">\(D = 2\)</span> mm is placed at <span class="math inline">\(z = 0\)</span>. Calculate the intensity at the center of the diffraction pattern at distance <span class="math inline">\(z = 1\)</span> m for light with wavelength <span class="math inline">\(\lambda = 500\)</span> nm.</p>
+<p><strong>Solution:</strong></p>
+<p>For Fresnel diffraction, we need to evaluate:</p>
+<p><span class="math display">\[U(x,y,z) = \frac{e^{ikz}}{i\lambda z}e^{i\frac{k}{2z}(x^2+y^2)} \iint U(x',y',0)e^{i\frac{k}{2z}(x'^2+y'^2)}e^{-i\frac{k}{z}(xx'+yy')}dx'dy'\]</span></p>
+<p>For the center of the pattern <span class="math inline">\((x=0, y=0)\)</span> with uniform illumination <span class="math inline">\(U(x',y',0) = U_0\)</span> within the aperture:</p>
+<p><span class="math display">\[U(0,0,z) = \frac{e^{ikz}}{i\lambda z} \iint_{aperture} U_0 e^{i\frac{k}{2z}(x'^2+y'^2)}dx'dy'\]</span></p>
+<p>For a circular aperture of radius <span class="math inline">\(a = D/2 = 1\)</span> mm, using polar coordinates:</p>
+<p><span class="math display">\[U(0,0,z) = \frac{U_0 e^{ikz}}{i\lambda z} \int_0^{2\pi}\int_0^a e^{i\frac{k}{2z}r'^2}r'dr'd\theta'\]</span></p>
+<p><span class="math display">\[U(0,0,z) = \frac{2\pi U_0 e^{ikz}}{i\lambda z} \int_0^a e^{i\frac{k}{2z}r'^2}r'dr'\]</span></p>
+<p>Evaluating this integral:</p>
+<p><span class="math display">\[U(0,0,z) = \frac{2\pi U_0 e^{ikz}}{i\lambda z} \cdot \frac{z}{ik}(1-e^{i\frac{k}{2z}a^2})\]</span></p>
+<p><span class="math display">\[U(0,0,z) = \frac{2\pi U_0 e^{ikz}}{k} \cdot (1-e^{i\frac{k}{2z}a^2})\]</span></p>
+<p>For our values: <span class="math inline">\(k = 2\pi/\lambda = 2\pi/(500 \times 10^{-9}) = 1.26 \times 10^7\)</span>, <span class="math inline">\(z = 1\)</span> m, <span class="math inline">\(a = 10^{-3}\)</span> m:</p>
+<p><span class="math display">\[\frac{k}{2z}a^2 = \frac{1.26 \times 10^7}{2 \times 1}(10^{-3})^2 = 6.28\]</span></p>
+<p>Therefore: <span class="math display">\[U(0,0,z) = \frac{2\pi U_0 e^{ikz}}{k} \cdot (1-e^{i\cdot 6.28})\]</span></p>
+<p>Since <span class="math inline">\(e^{i\cdot 6.28} \approx e^{i\cdot 2\pi} = 1\)</span>, we get: <span class="math display">\[U(0,0,z) \approx 0\]</span></p>
+<p>This indicates a dark spot at the center, as expected from Fresnel diffraction for these parameters.</p>
+</section>
+</section>
+<section id="spatial-frequency-examples" class="level3">
+<h3 class="anchored" data-anchor-id="spatial-frequency-examples">2.3 Spatial Frequency Examples</h3>
+<section id="example-4-resolution-limit" class="level4">
+<h4 class="anchored" data-anchor-id="example-4-resolution-limit">Example 4: Resolution Limit</h4>
+<p><strong>Problem:</strong> A microscope objective has a numerical aperture NA = 0.65. Calculate the smallest resolvable feature size according to the Abbe diffraction limit for light with wavelength <span class="math inline">\(\lambda = 488\)</span> nm.</p>
+<p><strong>Solution:</strong></p>
+<p>The Abbe diffraction limit states that the smallest resolvable feature has a spatial frequency of:</p>
+<p><span class="math display">\[\nu_{max} = \frac{2\text{NA}}{\lambda}\]</span></p>
+<p>For NA = 0.65 and <span class="math inline">\(\lambda = 488\)</span> nm:</p>
+<p><span class="math display">\[\nu_{max} = \frac{2 \times 0.65}{488 \times 10^{-9}} = 2.66 \times 10^6 \text{ cycles/m}\]</span></p>
+<p>The corresponding minimum resolvable feature size is:</p>
+<p><span class="math display">\[d_{min} = \frac{1}{2\nu_{max}} = \frac{\lambda}{2\text{NA}} = \frac{488 \times 10^{-9}}{2 \times 0.65} = 375 \text{ nm}\]</span></p>
+</section>
+<section id="example-5-angular-spectrum-filtering" class="level4">
+<h4 class="anchored" data-anchor-id="example-5-angular-spectrum-filtering">Example 5: Angular Spectrum Filtering</h4>
+<p><strong>Problem:</strong> A spatial filter blocks all spatial frequencies above <span class="math inline">\(\nu_{cutoff} = 100\)</span> cycles/mm. What is the minimum spot size achievable after this filter for light with wavelength <span class="math inline">\(\lambda = 600\)</span> nm?</p>
+<p><strong>Solution:</strong></p>
+<p>The minimum spot size is related to the highest spatial frequency that can pass through the filter:</p>
+<p><span class="math display">\[w_{min} = \frac{1}{2\nu_{cutoff}} = \frac{1}{2 \times 100 \times 10^3} = \frac{1}{2 \times 10^5} = 5 \times 10^{-6} \text{ m} = 5 \text{ μm}\]</span></p>
+<p>The corresponding numerical aperture that this filter effectively creates is:</p>
+<p><span class="math display">\[\text{NA} = \lambda \times \nu_{cutoff} = 600 \times 10^{-9} \times 100 \times 10^3 = 0.06\]</span></p>
+</section>
+</section>
+</section>
+<section id="angular-spectrum-visualizations" class="level2">
+<h2 class="anchored" data-anchor-id="angular-spectrum-visualizations">3. Angular Spectrum Visualizations</h2>
+<section id="conceptual-visualization" class="level3">
+<h3 class="anchored" data-anchor-id="conceptual-visualization">3.1 Conceptual Visualization</h3>
+<p>The angular spectrum representation can be visualized through several complementary perspectives:</p>
+<ol type="1">
+<li><p><strong>Plane Wave Decomposition</strong>: Each spatial frequency component corresponds to a plane wave traveling at a specific angle.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="angular_spectrum_planes.png" class="img-fluid figure-img"></p>
+<figcaption>Plane Wave Decomposition</figcaption>
 </figure>
-</div>
-</div>
-</div>
+</div></li>
+<li><p><strong>Fourier Space Representation</strong>: The 2D Fourier transform of a field shows its angular spectrum.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="angular_spectrum_fourier.png" class="img-fluid figure-img"></p>
+<figcaption>Fourier Space</figcaption>
+</figure>
+</div></li>
+<li><p><strong>Evanescent Waves</strong>: Spatial frequencies beyond <span class="math inline">\(1/\lambda\)</span> correspond to evanescent waves that decay exponentially away from the source.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="evanescent_waves.png" class="img-fluid figure-img"></p>
+<figcaption>Evanescent Waves</figcaption>
+</figure>
+</div></li>
+</ol>
+</section>
+<section id="interactive-visualization-code" class="level3">
+<h3 class="anchored" data-anchor-id="interactive-visualization-code">3.2 Interactive Visualization Code</h3>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib.widgets <span class="im">import</span> Slider</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Setup the figure</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">8</span>))</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>ax1 <span class="op">=</span> fig.add_subplot(<span class="dv">211</span>)  <span class="co"># Field at z=0</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>ax2 <span class="op">=</span> fig.add_subplot(<span class="dv">212</span>)  <span class="co"># Propagated field</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Parameters</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>Nx <span class="op">=</span> <span class="dv">512</span>  <span class="co"># Number of spatial points</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> <span class="fl">10e-3</span>  <span class="co"># Size of window in meters</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>dx <span class="op">=</span> L<span class="op">/</span>Nx  <span class="co"># Spatial step size</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="op">-</span>L<span class="op">/</span><span class="dv">2</span>, L<span class="op">/</span><span class="dv">2</span>, Nx)  <span class="co"># Spatial coordinates</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>kx <span class="op">=</span> <span class="dv">2</span><span class="op">*</span>np.pi<span class="op">*</span>np.fft.fftshift(np.fft.fftfreq(Nx, dx))  <span class="co"># Spatial frequencies</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>wavelength <span class="op">=</span> <span class="fl">633e-9</span>  <span class="co"># Wavelength in meters</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>k0 <span class="op">=</span> <span class="dv">2</span><span class="op">*</span>np.pi<span class="op">/</span>wavelength  <span class="co"># Wavenumber</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Initial field at z=0 (Gaussian beam)</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>w0 <span class="op">=</span> <span class="fl">0.5e-3</span>  <span class="co"># Beam waist</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>initial_field <span class="op">=</span> np.exp(<span class="op">-</span>(x<span class="op">**</span><span class="dv">2</span>)<span class="op">/</span>(w0<span class="op">**</span><span class="dv">2</span>))</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate Angular Spectrum</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>angular_spectrum <span class="op">=</span> np.fft.fftshift(np.fft.fft(initial_field))</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to propagate the field</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> propagate_field(z):</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Propagation phase factor</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>    kz <span class="op">=</span> np.sqrt(k0<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> kx<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="ot">0j</span>)  <span class="co"># +0j to ensure complex sqrt</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Set evanescent waves where kx &gt; k0</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>    kz[np.<span class="bu">abs</span>(kx) <span class="op">&gt;</span> k0] <span class="op">=</span> <span class="ot">1j</span><span class="op">*</span>np.sqrt(kx[np.<span class="bu">abs</span>(kx) <span class="op">&gt;</span> k0]<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> k0<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    propagator <span class="op">=</span> np.exp(<span class="ot">1j</span><span class="op">*</span>kz<span class="op">*</span>z)</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Apply propagator to angular spectrum</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>    propagated_spectrum <span class="op">=</span> angular_spectrum <span class="op">*</span> propagator</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Inverse transform to get propagated field</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>    propagated_field <span class="op">=</span> np.fft.ifft(np.fft.ifftshift(propagated_spectrum))</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> propagated_field</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="co"># Initial plot</span></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>z_init <span class="op">=</span> <span class="fl">0.1</span>  <span class="co"># Initial propagation distance</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>propagated_field <span class="op">=</span> propagate_field(z_init)</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot initial field</span></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>line1, <span class="op">=</span> ax1.plot(x<span class="op">*</span><span class="fl">1e3</span>, np.<span class="bu">abs</span>(initial_field)<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>ax1.set_title(<span class="st">'Initial Intensity at z=0'</span>)</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>ax1.set_xlabel(<span class="st">'Position (mm)'</span>)</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>ax1.set_ylabel(<span class="st">'Intensity'</span>)</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot propagated field</span></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>line2, <span class="op">=</span> ax2.plot(x<span class="op">*</span><span class="fl">1e3</span>, np.<span class="bu">abs</span>(propagated_field)<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>ax2.set_title(<span class="ss">f'Propagated Intensity at z=</span><span class="sc">{</span>z_init<span class="op">*</span><span class="fl">1e2</span><span class="sc">:.1f}</span><span class="ss"> cm'</span>)</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>ax2.set_xlabel(<span class="st">'Position (mm)'</span>)</span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>ax2.set_ylabel(<span class="st">'Intensity'</span>)</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a><span class="co"># Add slider for propagation distance</span></span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>axz <span class="op">=</span> plt.axes([<span class="fl">0.2</span>, <span class="fl">0.02</span>, <span class="fl">0.65</span>, <span class="fl">0.03</span>])</span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>z_slider <span class="op">=</span> Slider(axz, <span class="st">'z (cm)'</span>, <span class="dv">0</span>, <span class="dv">50</span>, valinit<span class="op">=</span>z_init<span class="op">*</span><span class="fl">1e2</span>)</span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a><span class="co"># Update function for slider</span></span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> update(val):</span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>    z <span class="op">=</span> z_slider.val <span class="op">*</span> <span class="fl">1e-2</span>  <span class="co"># Convert cm to m</span></span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>    propagated_field <span class="op">=</span> propagate_field(z)</span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a>    line2.set_ydata(np.<span class="bu">abs</span>(propagated_field)<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>    ax2.set_title(<span class="ss">f'Propagated Intensity at z=</span><span class="sc">{</span>z<span class="op">*</span><span class="fl">1e2</span><span class="sc">:.1f}</span><span class="ss"> cm'</span>)</span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a>    fig.canvas.draw_idle()</span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a>z_slider.on_changed(update)</span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a>plt.subplots_adjust(bottom<span class="op">=</span><span class="fl">0.15</span>)  <span class="co"># Make room for slider</span></span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="physical-interpretation" class="level3">
+<h3 class="anchored" data-anchor-id="physical-interpretation">3.3 Physical Interpretation</h3>
+<p>When light passes through an aperture, we can interpret the resulting diffraction in two equivalent ways:</p>
+<ol type="1">
+<li><p><strong>Spatial Domain</strong>: The aperture creates a new light source that diffracts according to the Huygens-Fresnel principle.</p></li>
+<li><p><strong>Frequency Domain</strong>: The aperture acts as a spatial filter, selectively transmitting certain angular components (spatial frequencies).</p></li>
+</ol>
+<p>The angular spectrum approach provides a rigorous mathematical framework that connects these two viewpoints. It shows that:</p>
+<ul>
+<li>Each spatial frequency corresponds to a plane wave traveling at a specific angle</li>
+<li>These plane waves propagate independently in free space</li>
+<li>The complete field at any plane is the coherent superposition of all these plane waves</li>
+<li>The maximum angle of propagation determines the system’s resolution limit</li>
+</ul>
+<p>This perspective elegantly explains why: - Smaller apertures produce wider diffraction patterns (they filter out high spatial frequencies) - Optical systems have finite resolution (they cannot capture infinitely high spatial frequencies) - Evanescent waves decay exponentially (they correspond to “trapped” light that doesn’t propagate)</p>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

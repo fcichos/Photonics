@@ -1,0 +1,16 @@
+---
+jupyter: python3
+format:
+  html:
+    toc: true
+    toc-location: right
+    fig-cap-location: bottom
+crossref:
+  fig-title: Figure
+  tbl-title: Table
+  title-delim: "—"
+  fig-prefix: Figure
+  eq-prefix: Equation
+  chapters: true
+  fig-labels: arabic
+---

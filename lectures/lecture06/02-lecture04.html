@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Optical Elements Part II – Photonics</title>
+<title>lecture04 – Photonics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -103,6 +103,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../assets/css/styles.css">
 </head>
@@ -143,7 +172,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Optical Elements Part II</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Photon Number Statistics</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -328,15 +357,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#random-photon-streams-and-poisson-statistics" id="toc-random-photon-streams-and-poisson-statistics" class="nav-link active" data-scroll-target="#random-photon-streams-and-poisson-statistics">Random Photon Streams and Poisson Statistics</a></li>
+  <li><a href="#beam-splitters-and-photon-statistics" id="toc-beam-splitters-and-photon-statistics" class="nav-link" data-scroll-target="#beam-splitters-and-photon-statistics">Beam Splitters and Photon Statistics</a></li>
+  <li><a href="#thermal-light-and-exponential-statistics" id="toc-thermal-light-and-exponential-statistics" class="nav-link" data-scroll-target="#thermal-light-and-exponential-statistics">Thermal Light and Exponential Statistics</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Optical Elements Part II</h1>
+<h1 class="title">Photon Number Statistics</h1>
 </div>
 
 
@@ -353,37 +390,169 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<div id="cell-fig-wavelength-dependence" class="cell" data-cold-fold="true" data-execution_count="2">
+<p>In classical optics, light is treated as an electromagnetic wave. However, at the quantum level, light consists of discrete energy packets called photons. The statistical distribution of these photons provides profound insights into the nature of light sources.</p>
+<section id="random-photon-streams-and-poisson-statistics" class="level3">
+<h3 class="anchored" data-anchor-id="random-photon-streams-and-poisson-statistics">Random Photon Streams and Poisson Statistics</h3>
+<section id="photon-streams-and-time-bins" class="level4">
+<h4 class="anchored" data-anchor-id="photon-streams-and-time-bins">Photon Streams and Time Bins</h4>
+<p>To understand photon statistics, we first need to conceptualize light as a stream of discrete photons arriving at a detector over time. Let’s develop a model where we divide our total observation time <span class="math inline">\(T\)</span> into <span class="math inline">\(M\)</span> equal time bins, each of duration <span class="math inline">\(\Delta t = T/M\)</span>.</p>
+<p>For a light source with average intensity <span class="math inline">\(I\)</span>, the average number of photons expected in the entire observation period is <span class="math inline">\(\bar{n} = \alpha T\)</span>, where <span class="math inline">\(\alpha\)</span> is proportional to the intensity. The average number of photons per time bin is therefore <span class="math inline">\(\mu = \bar{n}/M = \alpha \Delta t\)</span>.</p>
+<p>In a random photon stream, the arrival of each photon is an independent event with no memory of previous arrivals. This means that for small enough time bins, each bin has: - A probability <span class="math inline">\(p = \mu\)</span> of containing exactly one photon - A probability <span class="math inline">\(1-p\)</span> of containing no photons - A negligible probability of containing more than one photon (for sufficiently small <span class="math inline">\(\Delta t\)</span>)</p>
+<div id="cell-fig-photon-stream" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>bk7<span class="op">=</span>pd.read_csv(<span class="st">"data/BK7.csv"</span>,delimiter<span class="op">=</span><span class="st">","</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>sf10<span class="op">=</span>pd.read_csv(<span class="st">"data/SF10.csv"</span>,delimiter<span class="op">=</span><span class="st">","</span>)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>fk51a<span class="op">=</span>pd.read_csv(<span class="st">"data/FK51A.csv"</span>,delimiter<span class="op">=</span><span class="st">","</span>)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">4</span>,<span class="dv">4</span>))</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>plt.plot(bk7.wl<span class="op">*</span><span class="dv">1000</span>,bk7.n,label<span class="op">=</span><span class="st">"BK7"</span>)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>plt.plot(sf10.wl<span class="op">*</span><span class="dv">1000</span>,sf10.n,label<span class="op">=</span><span class="st">"SF10"</span>)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>plt.plot(fk51a.wl<span class="op">*</span><span class="dv">1000</span>,fk51a.n,label<span class="op">=</span><span class="st">"FK51A"</span>)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>plt.xlim(<span class="dv">300</span>,<span class="dv">900</span>)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"wavelength [nm]"</span>)</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"refractive index n"</span>)</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate a random photon stream</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)  <span class="co"># For reproducibility</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>total_time <span class="op">=</span> <span class="dv">10</span>     <span class="co"># Total observation time T</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>num_bins <span class="op">=</span> <span class="dv">200</span>      <span class="co"># Increased number of time bins M to ensure at most 1 photon per bin</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>dt <span class="op">=</span> total_time <span class="op">/</span> num_bins  <span class="co"># Width of each time bin</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Average photon rate (mean photons per unit time)</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>photon_rate <span class="op">=</span> <span class="dv">2</span>  <span class="co"># Reduced alpha in the notes to ensure fewer photons</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>mean_photons <span class="op">=</span> photon_rate <span class="op">*</span> total_time  <span class="co"># Total mean photon number over time T</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>mu <span class="op">=</span> mean_photons <span class="op">/</span> num_bins  <span class="co"># Probability of photon per bin</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate random photons based on probability mu for each bin</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Ensuring at most one photon per bin</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>photon_events <span class="op">=</span> np.random.random(num_bins) <span class="op">&lt;</span> mu</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate random positions within each bin for the photons</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>photon_times <span class="op">=</span> []</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> bin_idx <span class="kw">in</span> np.where(photon_events)[<span class="dv">0</span>]:</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Place photon randomly within its bin, not at the edge</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    rand_position <span class="op">=</span> bin_idx <span class="op">*</span> dt <span class="op">+</span> np.random.random() <span class="op">*</span> dt</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    photon_times.append(rand_position)</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>photon_times <span class="op">=</span> np.array(photon_times)</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Verify no bin has more than one photon</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>bin_counts <span class="op">=</span> np.histogram(photon_times, bins<span class="op">=</span>num_bins, <span class="bu">range</span><span class="op">=</span>(<span class="dv">0</span>, total_time))[<span class="dv">0</span>]</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>max_photons_per_bin <span class="op">=</span> np.<span class="bu">max</span>(bin_counts)</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the figure</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>get_size(<span class="dv">12</span>, <span class="dv">5</span>))</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot vertical lines for each photon</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> t <span class="kw">in</span> photon_times:</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>    ax.plot([t, t], [<span class="dv">0</span>, <span class="dv">1</span>], <span class="st">'b-'</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="co"># Add grid lines to show time bins</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(num_bins <span class="op">+</span> <span class="dv">1</span>):</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> i <span class="op">%</span> <span class="dv">10</span> <span class="op">==</span> <span class="dv">0</span>:  <span class="co"># Only show every 10th grid line to avoid clutter</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>        ax.axvline(i <span class="op">*</span> dt, color<span class="op">=</span><span class="st">'lightgray'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="co"># Set axis limits and labels</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="dv">0</span>, total_time)</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="dv">0</span>, <span class="dv">2</span>)</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>ax.set_yticks([])</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Time'</span>)</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="co"># Add text showing statistics</span></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>actual_count <span class="op">=</span> <span class="bu">len</span>(photon_times)</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="fl">0.02</span>, <span class="fl">0.95</span>,</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"Mean photons: </span><span class="sc">{</span>mean_photons<span class="sc">:.1f}</span><span class="ch">\n</span><span class="ss">Actual count: </span><span class="sc">{</span>actual_count<span class="sc">}</span><span class="ch">\n</span><span class="ss">Max photons per bin: </span><span class="sc">{</span>max_photons_per_bin<span class="sc">}</span><span class="ss">"</span>,</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>        transform<span class="op">=</span>ax.transAxes, backgroundcolor<span class="op">=</span><span class="st">'white'</span>, fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
-<div id="fig-wavelength-dependence" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<div id="fig-photon-stream" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-wavelength-dependence-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="02-lecture01_files/figure-html/fig-wavelength-dependence-output-1.png" class="quarto-figure quarto-figure-center figure-img" width="393" height="356">
+<div aria-describedby="fig-photon-stream-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="02-lecture04_files/figure-html/fig-photon-stream-output-1.png" width="684" height="273" class="figure-img">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-wavelength-dependence-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1— Refractive index of different glasses as a function of the wavelength.
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-photon-stream-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1— Random photon stream showing individual photons (vertical lines) arriving at random times. The time axis is divided into bins of width <span class="math inline">\(\Delta t\)</span>. Each bin contains either 0 or 1 photons in this simplified model, with the probability of finding a photon in any given bin being equal to <span class="math inline">\(\mu = \bar{n}/M\)</span>.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
+</section>
+<section id="from-time-bins-to-binomial-distribution" class="level4">
+<h4 class="anchored" data-anchor-id="from-time-bins-to-binomial-distribution">From Time Bins to Binomial Distribution</h4>
+<p>Given these properties, we can calculate the probability <span class="math inline">\(P(n,M)\)</span> of detecting exactly <span class="math inline">\(n\)</span> photons in <span class="math inline">\(M\)</span> time bins. This is equivalent to asking: what is the probability of having exactly <span class="math inline">\(n\)</span> successes in <span class="math inline">\(M\)</span> independent trials, where the probability of success in each trial is <span class="math inline">\(p = \mu\)</span>?</p>
+<p>This is precisely the binomial distribution:</p>
+<p><span class="math display">\[P(n,M) = \binom{M}{n} p^n (1-p)^{M-n} = \binom{M}{n} \mu^n (1-\mu)^{M-n}\]</span></p>
+<p>where <span class="math inline">\(\binom{M}{n} = \frac{M!}{n!(M-n)!}\)</span> is the binomial coefficient representing the number of ways to choose <span class="math inline">\(n\)</span> time bins from <span class="math inline">\(M\)</span> total bins.</p>
+</section>
+<section id="the-poisson-limit" class="level4">
+<h4 class="anchored" data-anchor-id="the-poisson-limit">The Poisson Limit</h4>
+<p>Now, let’s consider what happens as we make our time bins smaller and more numerous. In the limit where <span class="math inline">\(M \to \infty\)</span> and <span class="math inline">\(\Delta t \to 0\)</span>, while keeping the total observation time <span class="math inline">\(T\)</span> and the average photon number <span class="math inline">\(\bar{n}\)</span> constant:</p>
+<ol type="1">
+<li>The number of bins <span class="math inline">\(M\)</span> increases</li>
+<li>The probability per bin <span class="math inline">\(\mu = \bar{n}/M\)</span> decreases</li>
+<li>The product <span class="math inline">\(M\mu = \bar{n}\)</span> remains constant</li>
+</ol>
+<p>In this limit, the binomial distribution approaches the Poisson distribution. To see this, we substitute <span class="math inline">\(\mu = \bar{n}/M\)</span> into the binomial formula:</p>
+<p><span class="math display">\[P(n,M) = \binom{M}{n} \left(\frac{\bar{n}}{M}\right)^n \left(1-\frac{\bar{n}}{M}\right)^{M-n}\]</span></p>
+<p>Rearranging:</p>
+<p><span class="math display">\[P(n,M) = \frac{M!}{n!(M-n)!} \cdot \frac{\bar{n}^n}{M^n} \cdot \left(1-\frac{\bar{n}}{M}\right)^{M-n}\]</span></p>
+<p>As <span class="math inline">\(M \to \infty\)</span>, we can use the following approximations:</p>
+<p><span class="math display">\[\frac{M!}{(M-n)!M^n} \approx 1\]</span></p>
+<p>for large <span class="math inline">\(M\)</span> and fixed <span class="math inline">\(n\)</span>, and:</p>
+<p><span class="math display">\[\left(1-\frac{\bar{n}}{M}\right)^{M-n} \approx \left(1-\frac{\bar{n}}{M}\right)^M \approx e^{-\bar{n}}\]</span></p>
+<p>applying the limit definition of the exponential function.</p>
+<p>This gives us the Poisson distribution:</p>
+<p><span class="math display">\[P(n) = \lim_{M \to \infty} P(n,M) = \frac{\bar{n}^n e^{-\bar{n}}}{n!}\]</span></p>
+<p>where <span class="math inline">\(\bar{n}\)</span> is the mean photon number in the interval.</p>
+</section>
+<section id="properties-of-the-poisson-distribution" class="level4">
+<h4 class="anchored" data-anchor-id="properties-of-the-poisson-distribution">Properties of the Poisson Distribution</h4>
+<p>The Poisson distribution has the remarkable property that its variance equals its mean:</p>
+<p><span class="math display">\[\langle (\Delta n)^2 \rangle = \langle n \rangle = \bar{n}\]</span></p>
+<p>This equal mean and variance is a signature of the randomness in the photon arrival process, where events occur independently and at a constant average rate.</p>
+<p>To verify this property, we can calculate the mean and variance directly from the probability distribution:</p>
+<p>The mean: <span class="math inline">\(\langle n \rangle = \sum_{n=0}^{\infty} n P(n) = \bar{n}\)</span></p>
+<p>The variance: <span class="math inline">\(\langle (\Delta n)^2 \rangle = \sum_{n=0}^{\infty} (n-\bar{n})^2 P(n) = \bar{n}\)</span></p>
+</section>
+<section id="signal-to-noise-ratio-for-random-light" class="level4">
+<h4 class="anchored" data-anchor-id="signal-to-noise-ratio-for-random-light">Signal-to-Noise Ratio for Random Light</h4>
+<p>The signal-to-noise ratio (SNR) is a crucial metric in experimental physics, quantifying our ability to distinguish a signal from the background noise. For a measurement, the SNR is defined as the ratio of the mean signal to the standard deviation of the noise:</p>
+<p><span class="math display">\[\text{SNR} = \frac{\text{signal}}{\text{noise}} = \frac{\langle n \rangle}{\sqrt{\langle (\Delta n)^2 \rangle}}\]</span></p>
+<p>For random light following Poisson statistics, we have:</p>
+<p><span class="math display">\[\text{SNR} = \frac{\bar{n}}{\sqrt{\bar{n}}} = \sqrt{\bar{n}}\]</span></p>
+<p>This relationship reveals an important property of random light: the SNR scales as the square root of the mean photon number. This is known as the “shot noise limit” and represents a fundamental quantum limit to measurement precision with coherent light. To improve the SNR by a factor of 2, we need to increase the light intensity (or integration time) by a factor of 4.</p>
+<p>This <span class="math inline">\(\sqrt{\bar{n}}\)</span> scaling of SNR is a direct consequence of the statistical independence of photon arrivals in coherent light and plays a crucial role in determining the sensitivity limits of optical measurements, from astronomical observations to laser-based communications.</p>
+<p>This statistical behavior is characteristic of coherent light sources such as ideal lasers, where photon emission events are independent of each other.</p>
+</section>
+</section>
+<section id="beam-splitters-and-photon-statistics" class="level3">
+<h3 class="anchored" data-anchor-id="beam-splitters-and-photon-statistics">Beam Splitters and Photon Statistics</h3>
+<p>A beam splitter is an optical component that splits an incident beam into two parts. For a 50:50 beam splitter, an incoming photon has equal probability of being transmitted or reflected. Interestingly, when random (Poissonian) light is incident on a beam splitter, the statistics of the output beams remain Poissonian.</p>
+<p>To understand why, consider that each photon in the input beam makes an independent decision to be transmitted or reflected. If the input beam has Poisson statistics with mean <span class="math inline">\(\bar{n}\)</span>, the transmitted beam will have a mean of <span class="math inline">\(\bar{n}_T = R\bar{n}\)</span> and the reflected beam will have a mean of <span class="math inline">\(\bar{n}_R = T\bar{n}\)</span>, where <span class="math inline">\(R\)</span> and <span class="math inline">\(T\)</span> are the reflection and transmission coefficients (<span class="math inline">\(R + T = 1\)</span>).</p>
+<p>The independence of photon behavior ensures that both output beams maintain Poisson statistics, just with scaled means. This is mathematically represented as:</p>
+<p><span class="math display">\[P_T(n_T) = \frac{(R\bar{n})^{n_T} e^{-R\bar{n}}}{n_T!}\]</span></p>
+<p><span class="math display">\[P_R(n_R) = \frac{(T\bar{n})^{n_R} e^{-T\bar{n}}}{n_R!}\]</span></p>
+<p>This preservation of statistics is a direct consequence of the binomial sampling of the original Poisson distribution, which yields another Poisson distribution.</p>
+</section>
+<section id="thermal-light-and-exponential-statistics" class="level3">
+<h3 class="anchored" data-anchor-id="thermal-light-and-exponential-statistics">Thermal Light and Exponential Statistics</h3>
+<p>Thermal light, such as that emitted by incandescent bulbs or stars, exhibits different statistical properties. The emission process in thermal sources involves atoms transitioning between energy levels due to thermal excitation. This process leads to what we call “bunching” of photons.</p>
+<p>For thermal light, the probability distribution of photons follows:</p>
+<p><span class="math display">\[P(n) = \frac{\bar{n}^n}{(1+\bar{n})^{n+1}}\]</span></p>
+<p>This distribution results in a variance that exceeds the mean:</p>
+<p><span class="math display">\[\langle (\Delta n)^2 \rangle = \langle n \rangle + \langle n \rangle^2 = \bar{n} + \bar{n}^2\]</span></p>
+<p>The photon number fluctuations are larger than in coherent light, reflecting the bunching tendency of thermal photons. This bunching arises from the Bose-Einstein statistics governing photons, which encourages multiple photons to occupy the same mode.</p>
+<p>The intensity fluctuations of thermal light follow an exponential distribution:</p>
+<p><span class="math display">\[P(I) = \frac{1}{\langle I \rangle} e^{-I/\langle I \rangle}\]</span></p>
+<p>This exponential behavior is a direct consequence of the random nature of thermal emission processes, where the radiation field is built up from the contributions of many independent atomic emitters.</p>
+<section id="signal-to-noise-ratio-for-thermal-light" class="level4">
+<h4 class="anchored" data-anchor-id="signal-to-noise-ratio-for-thermal-light">Signal-to-Noise Ratio for Thermal Light</h4>
+<p>The signal-to-noise ratio for thermal light differs significantly from that of coherent light due to the different statistical distribution of photons. Using the definition of SNR as the ratio of mean signal to the standard deviation of noise:</p>
+<p><span class="math display">\[\text{SNR} = \frac{\langle n \rangle}{\sqrt{\langle (\Delta n)^2 \rangle}}\]</span></p>
+<p>For thermal light, with <span class="math inline">\(\langle (\Delta n)^2 \rangle = \bar{n} + \bar{n}^2\)</span>, we have:</p>
+<p><span class="math display">\[\text{SNR} = \frac{\bar{n}}{\sqrt{\bar{n} + \bar{n}^2}} = \frac{\bar{n}}{\bar{n}\sqrt{\frac{1}{\bar{n}} + 1}}\]</span></p>
+<p>In the limit of large photon numbers (<span class="math inline">\(\bar{n} \gg 1\)</span>), which is common for thermal light sources, this simplifies to:</p>
+<p><span class="math display">\[\text{SNR} \approx \frac{\bar{n}}{\bar{n}} = 1\]</span></p>
+<p>This is a striking result: for thermal light at high intensities, the SNR approaches a constant value of 1, regardless of how much we increase the intensity. This is in stark contrast to the coherent light case where SNR increases as <span class="math inline">\(\sqrt{\bar{n}}\)</span>.</p>
+<p>This fundamental limitation on the SNR of thermal light is due to the inherent “excess noise” from photon bunching. It explains why many precision optical measurements preferentially use laser sources (with Poisson statistics) rather than thermal sources, even when high intensities are available.</p>
+<p>The comparison between thermal light (SNR ~ 1) and coherent light (SNR ~ <span class="math inline">\(\sqrt{\bar{n}}\)</span>) provides a clear example of how the quantum statistical properties of a light source directly impact measurement sensitivity in practical applications.</p>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

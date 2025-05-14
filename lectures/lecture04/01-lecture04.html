@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>lecture02 – Photonics</title>
+<title>lecture04 – Photonics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,41 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -65,8 +30,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../lectures/lecture02/02-lecture02.html" rel="next">
-<link href="../../lectures/lecture01/01-lecture01.html" rel="prev">
+<link href="../../lectures/lecture03/01-lecture03.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -174,7 +138,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">FOUNDATIONS OF PHOTONICS</li><li class="breadcrumb-item"><a href="../../lectures/lecture02/01-lecture02.html">Lecture 2</a></li><li class="breadcrumb-item"><a href="../../lectures/lecture02/01-lecture02.html">Matrix Optics</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">FOUNDATIONS OF PHOTONICS</li><li class="breadcrumb-item"><a href="../../lectures/lecture04/01-lecture04.html">Lecture 4</a></li><li class="breadcrumb-item"><a href="../../lectures/lecture04/01-lecture04.html">Gaussian Beams</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -277,7 +241,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../lectures/lecture02/01-lecture02.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../lectures/lecture02/01-lecture02.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Matrix Optics</span></a>
   </div>
 </li>
@@ -317,7 +281,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../lectures/lecture04/01-lecture04.html" class="sidebar-item-text sidebar-link">
+  <a href="../../lectures/lecture04/01-lecture04.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Gaussian Beams</span></a>
   </div>
 </li>
@@ -364,18 +328,19 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#refraction-at-spherical-surfaces" id="toc-refraction-at-spherical-surfaces" class="nav-link active" data-scroll-target="#refraction-at-spherical-surfaces">Refraction at Spherical Surfaces</a></li>
-  <li><a href="#matrix-optics" id="toc-matrix-optics" class="nav-link" data-scroll-target="#matrix-optics">Matrix Optics</a></li>
-  <li><a href="#multifocal-imaging" id="toc-multifocal-imaging" class="nav-link" data-scroll-target="#multifocal-imaging">Multifocal Imaging</a></li>
+  <li><a href="#derivation-from-the-helmholtz-equation" id="toc-derivation-from-the-helmholtz-equation" class="nav-link active" data-scroll-target="#derivation-from-the-helmholtz-equation">Derivation from the Helmholtz Equation</a></li>
+  <li><a href="#the-paraxial-approximation" id="toc-the-paraxial-approximation" class="nav-link" data-scroll-target="#the-paraxial-approximation">The Paraxial Approximation</a></li>
+  <li><a href="#gaussian-beam-transformation-through-optical-systems" id="toc-gaussian-beam-transformation-through-optical-systems" class="nav-link" data-scroll-target="#gaussian-beam-transformation-through-optical-systems">Gaussian Beam Transformation Through Optical Systems</a></li>
+  <li><a href="#higher-order-gaussian-modes" id="toc-higher-order-gaussian-modes" class="nav-link" data-scroll-target="#higher-order-gaussian-modes">Higher-Order Gaussian Modes</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">FOUNDATIONS OF PHOTONICS</li><li class="breadcrumb-item"><a href="../../lectures/lecture02/01-lecture02.html">Lecture 2</a></li><li class="breadcrumb-item"><a href="../../lectures/lecture02/01-lecture02.html">Matrix Optics</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">FOUNDATIONS OF PHOTONICS</li><li class="breadcrumb-item"><a href="../../lectures/lecture04/01-lecture04.html">Lecture 4</a></li><li class="breadcrumb-item"><a href="../../lectures/lecture04/01-lecture04.html">Gaussian Beams</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Theories for light</h1>
+<h1 class="title">Introduction to Gaussian Beams</h1>
 </div>
 
 
@@ -392,406 +357,279 @@ window.Quarto = {
 </header>
 
 
-<section id="refraction-at-spherical-surfaces" class="level3">
-<h3 class="anchored" data-anchor-id="refraction-at-spherical-surfaces">Refraction at Spherical Surfaces</h3>
-<p>When light encounters a spherical boundary between two media, we can analyze its path using Snell’s law and geometric considerations as shown below:</p>
-<div id="fig-curved-surface" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-curved-surface-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="img/curved_surface.png" class="img-fluid figure-img" style="width:80.0%">
+<p>In optics and laser physics, Gaussian beams represent one of the most fundamental and important mathematical descriptions of laser light propagation. They are particularly relevant for understanding laser resonators, optical systems, and coherent light behavior. This section introduces Gaussian beams from first principles and explores their mathematical description.</p>
+<section id="derivation-from-the-helmholtz-equation" class="level3">
+<h3 class="anchored" data-anchor-id="derivation-from-the-helmholtz-equation">Derivation from the Helmholtz Equation</h3>
+<p>We begin with the Helmholtz equation, which describes monochromatic electromagnetic waves in a homogeneous medium:</p>
+<p><span class="math display">\[\nabla^2 U + k^2 U = 0\]</span></p>
+<p>where <span class="math inline">\(U\)</span> represents the electric field component, <span class="math inline">\(k = 2\pi/\lambda\)</span> is the wave number, and <span class="math inline">\(\lambda\)</span> is the wavelength of light. For a wave predominantly traveling along the <span class="math inline">\(z\)</span>-axis, we can express the electric field as:</p>
+<p><span class="math display">\[U(x,y,z) = u(x,y,z)e^{-ikz}\]</span></p>
+<p>Here, <span class="math inline">\(u(x,y,z)\)</span> is a complex amplitude function that varies slowly with <span class="math inline">\(z\)</span> compared to the wavelength. Substituting this into the Helmholtz equation and expanding the Laplacian operator yields:</p>
+<p><span class="math display">\[\left(\frac{\partial^2}{\partial x^2} + \frac{\partial^2}{\partial y^2} + \frac{\partial^2}{\partial z^2}\right)(u e^{-ikz}) + k^2 (u e^{-ikz}) = 0\]</span></p>
+<p>Computing the derivatives and simplifying:</p>
+<p><span class="math display">\[\frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} + \frac{\partial^2 u}{\partial z^2} - 2ik\frac{\partial u}{\partial z} = 0\]</span></p>
+</section>
+<section id="the-paraxial-approximation" class="level3">
+<h3 class="anchored" data-anchor-id="the-paraxial-approximation">The Paraxial Approximation</h3>
+<p>The paraxial approximation applies when the beam’s angular spread is small, meaning the wavefronts are nearly perpendicular to the propagation axis. Mathematically, this means that the amplitude <span class="math inline">\(u\)</span> varies slowly along the propagation direction compared to transverse directions:</p>
+<p><span class="math display">\[\left|\frac{\partial^2 u}{\partial z^2}\right| \ll \left|2k\frac{\partial u}{\partial z}\right|\]</span></p>
+<p>Under this approximation, the Helmholtz equation simplifies to the paraxial Helmholtz equation:</p>
+<p><span class="math display">\[\frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} - 2ik\frac{\partial u}{\partial z} = 0\]</span></p>
+<p>To solve this equation, we propose the ansatz:</p>
+<p><span class="math display">\[u(x,y,z) = A(z)\exp\left[-\frac{k}{2q(z)}(x^2 + y^2)\right]\]</span></p>
+<p>where <span class="math inline">\(A(z)\)</span> and <span class="math inline">\(q(z)\)</span> are complex functions to be determined. Substituting this into the paraxial equation and solving the resulting differential equations:</p>
+<p><span class="math display">\[\frac{dq}{dz} = 1 \quad \text{and} \quad \frac{dA}{dz} = -\frac{A}{q}\]</span></p>
+<p>These yield solutions <span class="math inline">\(q(z) = q_0 + z\)</span> and <span class="math inline">\(A(z) = \frac{A_0}{q(z)}\)</span>, where <span class="math inline">\(q_0\)</span> and <span class="math inline">\(A_0\)</span> are constants.</p>
+<p>The complex beam parameter <span class="math inline">\(q(z)\)</span> relates to physical parameters through:</p>
+<p><span class="math display">\[\frac{1}{q(z)} = \frac{1}{R(z)} - i\frac{\lambda}{\pi w^2(z)}\]</span></p>
+<p>where <span class="math inline">\(R(z)\)</span> is the radius of curvature of the wavefront and <span class="math inline">\(w(z)\)</span> is the beam radius at which the intensity falls to <span class="math inline">\(1/e^2\)</span> of its axial value.</p>
+<p>Setting <span class="math inline">\(q_0 = iz_0\)</span> where <span class="math inline">\(z_0\)</span> is the Rayleigh range, we can express these parameters as:</p>
+<p><span class="math display">\[w(z) = w_0\sqrt{1 + \left(\frac{z}{z_0}\right)^2}\]</span></p>
+<p><span class="math display">\[R(z) = z\left[1 + \left(\frac{z_0}{z}\right)^2\right]\]</span></p>
+<p>where <span class="math inline">\(w_0 = \sqrt{\frac{\lambda z_0}{\pi}}\)</span> is the beam waist (minimum beam radius).</p>
+<p>The complete Gaussian beam solution is:</p>
+<p><span class="math display">\[U(x,y,z) = U_0 \frac{w_0}{w(z)} \exp\left[-\frac{x^2 + y^2}{w^2(z)}\right] \exp\left[-ikz - ik\frac{x^2 + y^2}{2R(z)} + i\phi(z)\right]\]</span></p>
+<p>where <span class="math inline">\(\phi(z) = \arctan(z/z_0)\)</span> is the Gouy phase shift, representing an additional phase beyond that of a plane wave.</p>
+<p>In scalar wave theory, the intensity of the Gaussian beam is proportional to the square of the amplitude. It can be calculated as:</p>
+<p><span class="math display">\[I(x,y,z) = |U(x,y,z)|^2 = I_0\frac{w_0^2}{w^2(z)}\exp\left[-\frac{2(x^2+y^2)}{w^2(z)}\right]\]</span></p>
+<p>where <span class="math inline">\(I_0 = |U_0|^2\)</span> is the peak intensity at the beam waist. This expression shows that the intensity has a Gaussian profile in any transverse plane, with its peak on the beam axis. The intensity falls to <span class="math inline">\(1/e^2\)</span> of its axial value at a radial distance <span class="math inline">\(r = w(z)\)</span> from the axis, which defines the beam radius. The total power carried by the beam is conserved during propagation, but the peak intensity decreases as <span class="math inline">\(w(z)\)</span> increases with distance from the waist.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-curved-surface-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1— Refraction at a curved surface.
+<div class="callout-title-container flex-fill">
+Gaussian Beam Propagation in the x-z Plane
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>We can visualize how a Gaussian beam’s intensity varies across both the propagation direction (z-axis) and transverse direction (x-axis) simultaneously using a 2D contour plot.</p>
+<div id="cell-fig-gaussian-beam-2d" class="cell" data-execution_count="2">
+<div class="cell-output cell-output-display">
+<div id="fig-gaussian-beam-2d" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-gaussian-beam-2d-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="01-lecture04_files/figure-html/fig-gaussian-beam-2d-output-1.png" width="575" height="286" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gaussian-beam-2d-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1— Gaussian Beam Intensity Distribution in the x-z Plane for a wavelength of 632.8 nm and a beam waist of <span class="math inline">\(w_0=0.1\, \text{mm}\)</span>
 </figcaption>
 </figure>
 </div>
-<p>To determine how an image forms, we need to find where rays originating from a point at distance <span class="math inline">\(a\)</span> from the surface will converge after refraction. Using Snell’s law for a ray hitting the surface at angle <span class="math inline">\(\alpha+\theta_1\)</span>:</p>
-<p><span class="math display">\[n_{1}\sin(\alpha+\theta_1)=n_{2}\sin(\alpha-\theta_2)\]</span></p>
-<p>Where: <span class="math display">\[\sin(\alpha)=\frac{y}{R}, \quad \tan(\theta_1)=\frac{y}{a}, \quad \tan(\theta_2)=\frac{y}{b}\]</span></p>
-<p>For practical optical systems, we employ the <strong>paraxial approximation</strong>, where all angles are assumed small enough that:</p>
-<p><span class="math display">\[\sin(\theta) \approx \theta+ O(\theta^{3}), \quad \tan(\theta) \approx \theta + O(\theta^{3}),\quad \cos(\theta)\approx 1 + O(\theta^{2})\]</span></p>
-<p>This simplifies Snell’s law to:</p>
-<p><span class="math display">\[n_1(\alpha+\theta_1)=n_2(\alpha-\theta_2)\]</span></p>
-<p>After appropriate transformations (detailed in the online lecture), we obtain:</p>
-<p><span class="math display">\[\theta_2=\frac{n_2-n_1}{n_2 R}y -\frac{n_1}{n_2}\theta_1\]</span></p>
-<p>and</p>
-<p><span class="math display">\[y=y_1=y_2\]</span></p>
-<p>This linear relationship between input (<span class="math inline">\(y\)</span>, <span class="math inline">\(\theta_1\)</span>) and output (<span class="math inline">\(y\)</span>,<span class="math inline">\(\theta_2\)</span>) parameters is a hallmark of paraxial optics and a result of the linearization of Snells law.</p>
-</section>
-<section id="matrix-optics" class="level3">
-<h3 class="anchored" data-anchor-id="matrix-optics">Matrix Optics</h3>
-<p>The linear relation between input and output parameters allows us to express optical elements as linear transformations (matrices). This approach forms the foundation of <strong>matrix optics</strong>. For a lens, the matrix representation is:</p>
-<p><span class="math display">\[\begin{pmatrix} y_2 \\ \theta_2 \end{pmatrix} = \begin{pmatrix} 1 &amp; 0 \\ -\frac{1}{f} &amp; 1 \end{pmatrix} \begin{pmatrix} y_1 \\ \theta_1 \end{pmatrix}\]</span></p>
-<p>This 2×2 matrix is called the <strong>ABCD matrix</strong> of the lens. Thanks to the linearization of Snell’s law, we can generalize this to any optical element:</p>
-<p><span class="math display">\[\begin{pmatrix} y_2 \\
-\theta_2 \end{pmatrix} = \begin{pmatrix} A &amp; B \\ C &amp; D \end{pmatrix} \begin{pmatrix} y_1 \\ \theta_1 \end{pmatrix}\]</span></p>
-<p>Each element in the ABCD matrix has a specific physical meaning:</p>
+</div>
+</div>
+<p>This contour plot illustrates how the Gaussian beam intensity distribution evolves as it propagates. The horizontal axis represents the normalized propagation distance (z/z₀), while the vertical axis shows the normalized transverse distance (x/w₀). The color gradient indicates intensity values, with brighter colors representing higher intensities.</p>
+<p>The white dashed lines trace the beam width w(z), where the intensity falls to 1/e² (approximately 13.5%) of its value on the beam axis. Note how the beam width reaches its minimum at the beam waist (z=0) and expands as the beam propagates away from the focus.</p>
+<p>The plot clearly shows that the highest intensity occurs at the beam waist, with the intensity decreasing both as we move away from the center axis and as the beam propagates away from the focal point.</p>
+</div>
+</div>
+<section id="key-gaussian-beam-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="key-gaussian-beam-parameters">Key Gaussian Beam Parameters</h4>
+<p>The following table summarizes the important parameters that characterize a Gaussian beam:</p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 47%">
-<col style="width: 52%">
+<col style="width: 30%">
+<col style="width: 33%">
+<col style="width: 36%">
 </colgroup>
 <thead>
 <tr class="header">
-<th>Matrix Element</th>
-<th>Physical Meaning</th>
+<th>Parameter</th>
+<th>Expression</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>A</td>
-<td>Magnification - relates output position to input position</td>
+<td>Beam waist (<span class="math inline">\(w_0\)</span>)</td>
+<td></td>
+<td>Minimum beam radius at focus (<span class="math inline">\(z=0\)</span>)</td>
 </tr>
 <tr class="even">
-<td>B</td>
-<td>Position-to-angle conversion - relates output position to input angle</td>
+<td>Beam width (<span class="math inline">\(w(z)\)</span>)</td>
+<td><span class="math inline">\(w(z) = w_0\sqrt{1 + \left(\frac{z}{z_0}\right)^2}\)</span></td>
+<td>Beam radius at position <span class="math inline">\(z\)</span></td>
 </tr>
 <tr class="odd">
-<td>C</td>
-<td>Focusing power - relates output angle to input position</td>
+<td>Rayleigh length (<span class="math inline">\(z_0\)</span>)</td>
+<td><span class="math inline">\(z_0 = \frac{\pi w_0^2}{\lambda}\)</span></td>
+<td>Distance over which beam area doubles</td>
 </tr>
 <tr class="even">
-<td>D</td>
-<td>Angular magnification - relates output angle to input angle</td>
+<td>Radius of curvature (<span class="math inline">\(R(z)\)</span>)</td>
+<td><span class="math inline">\(R(z) = z\left[1 + \left(\frac{z_0}{z}\right)^2\right]\)</span></td>
+<td>Radius of wavefront curvature</td>
+</tr>
+<tr class="odd">
+<td>Divergence angle (<span class="math inline">\(\theta\)</span>)</td>
+<td><span class="math inline">\(\theta = \frac{\lambda}{\pi w_0}\)</span></td>
+<td>Far-field half-angle of beam spread</td>
+</tr>
+<tr class="even">
+<td>Gouy phase (<span class="math inline">\(\phi(z)\)</span>)</td>
+<td><span class="math inline">\(\phi(z) = \arctan\left(\frac{z}{z_0}\right)\)</span></td>
+<td>Additional phase beyond plane wave</td>
+</tr>
+<tr class="odd">
+<td>Complex beam parameter (<span class="math inline">\(q(z)\)</span>)</td>
+<td><span class="math inline">\(q(z) = z + iz_0\)</span></td>
+<td>Combined parameter for beam properties</td>
 </tr>
 </tbody>
 </table>
-<p>Every optical element can be characterized by these parameters. For example, a lens has C = -1/f (focusing power), while free space has B = d (position-dependent angle change). An important property is that the determinant of the matrix equals the ratio of refractive indices: det(M) = n₁/n₂, which equals 1 in a single medium.</p>
-<p>Here are the ABCD matrices for common optical elements:</p>
-<p><span class="math display">\[
-\mathbf{M}=\begin{bmatrix}
-A &amp; B\\
-C &amp; D
-\end{bmatrix} =\left[\begin{array}{ll}
-1 &amp; d \\
-0 &amp; 1
-\end{array}\right] \tag{Free space}
-\]</span></p>
-<p><span class="math display">\[
-\mathbf{M}=\left[\begin{array}{cc}
-1 &amp; 0 \\
-0 &amp; \frac{n_1}{n_2}
-\end{array}\right] \tag{Planar interface}
-\]</span></p>
-<p><span class="math display">\[
-\mathbf{M}=\left[\begin{array}{cc}
-1 &amp; 0 \\
--\frac{\left(n_2-n_1\right)}{n_2 R} &amp; \frac{n_1}{n_2}
-\end{array}\right] \tag{Spherical Boundary}
-\]</span></p>
-<p><span class="math display">\[
-\mathbf{M}=\left[\begin{array}{cc}
-1 &amp; 0 \\
--\frac{1}{f} &amp; 1
-\end{array}\right] \tag{Thin Lens}
-\]</span></p>
-<p>For a system containing multiple optical elements, we simply multiply their matrices in the order that light passes through them:</p>
-<p><span class="math display">\[
-\mathrm{M}=\mathbf{M}_N \cdots \mathbf{M}_2 \mathbf{M}_1
-\]</span></p>
-<p>A ray entering the first optical element at a height <span class="math inline">\(y_1\)</span> at an angle <span class="math inline">\(\theta_1\)</span> is transformed according to the matrix <span class="math inline">\(\mathbf{M}\)</span> by the whole system. This elegant approach provides a powerful tool for analyzing complex optical systems efficiently.</p>
+<p>These parameters are interrelated, forming a complete description of how a Gaussian beam propagates. The Rayleigh length <span class="math inline">\(z_0\)</span> is particularly important as it defines the transition between the near field (where the beam is approximately collimated) and the far field (where the beam diverges linearly). At a distance of one Rayleigh length from the waist, the beam width increases by a factor of <span class="math inline">\(\sqrt{2}\)</span> and the intensity drops to half its maximum value.</p>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Example: Optical Cloaking with Lens Systems
+Gaussian Beam Intensity Profiles
 </div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Optical cloaking refers to making objects “invisible” by guiding light rays around them such that to an observer, it appears as if the rays traveled through free space without encountering any object. Using matrix optics, we can design such a system.</p>
-<div id="fig-cloaking" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<p>To better understand the spatial distribution of intensity in a Gaussian beam, it’s helpful to visualize how the intensity varies along different directions. Here we explore two fundamental cross-sections: the axial intensity along the beam propagation path, and the transverse intensity profile at the beam waist.</p>
+<div id="cell-fig-gaussian-beam-intensity" class="cell" data-execution_count="3">
+<div class="cell-output cell-output-display">
+<div id="fig-gaussian-beam-intensity" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-cloaking-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="img/cloacking.png" class="img-fluid figure-img" style="width:80.0%">
+<div aria-describedby="fig-gaussian-beam-intensity-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="01-lecture04_files/figure-html/fig-gaussian-beam-intensity-output-1.png" width="587" height="285" class="figure-img">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cloaking-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2— Example of a practical paraxial cloak. (a)–(c) A hand is cloaked for varying directions, while the background image is transmitted properly.(d) On-axis view of the ray optics cloaking device. (e) Setup using practical, easy to obtain optics, for demonstrating paraxial cloaking principles. (Photos by J. Adam Fenster, videos by Matthew Mann / University of Rochester) <a href="https://opg.optica.org/oe/fulltext.cfm?uri=oe-22-24-29465&amp;id=304785">Source</a>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gaussian-beam-intensity-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2— Gaussian Beam Intensity Profiles for a wavelenght of 632.8 nm and a beam waist of <span class="math inline">\(w_0=0.1\, m\)</span>
 </figcaption>
 </figure>
 </div>
-<p>For perfect optical cloaking, the ABCD matrix of our system must be equivalent to that of free space:</p>
-<p><span class="math display">\[
-\mathbf{M}_{cloaking} = \left[\begin{array}{cc}
-1 &amp; d \\
-0 &amp; 1
-\end{array}\right]
-\]</span></p>
-<p>Where <span class="math inline">\(d\)</span> is the total effective optical path length. Let’s explore why we need exactly 4 lenses to achieve this.</p>
-<section id="analysis-of-different-lens-configurations" class="level4">
-<h4 class="anchored" data-anchor-id="analysis-of-different-lens-configurations">Analysis of Different Lens Configurations</h4>
-<p><strong>1. Single Lens Configuration</strong></p>
-<p>For a single lens with focal length <span class="math inline">\(f\)</span>, the ABCD matrix is:</p>
-<p><span class="math display">\[
-\mathbf{M}_{single} = \left[\begin{array}{cc}
-1 &amp; 0 \\
--\frac{1}{f} &amp; 1
-\end{array}\right]
-\]</span></p>
-<p>This clearly cannot match the free space matrix due to the non-zero <span class="math inline">\(C\)</span> element.</p>
-<p><strong>2. Two-Lens Configuration</strong></p>
-<p>For two lenses with focal lengths <span class="math inline">\(f_1\)</span> and <span class="math inline">\(f_2\)</span> separated by distance <span class="math inline">\(d_{12}\)</span>:</p>
-<p><span class="math display">\[
-\mathbf{M}_{two} = \left[\begin{array}{cc}
-1 &amp; 0 \\
--\frac{1}{f_2} &amp; 1
-\end{array}\right]
-\left[\begin{array}{cc}
-1 &amp; d_{12} \\
-0 &amp; 1
-\end{array}\right]
-\left[\begin{array}{cc}
-1 &amp; 0 \\
--\frac{1}{f_1} &amp; 1
-\end{array}\right]
-\]</span></p>
-<p>When <span class="math inline">\(d_{12} = f_1 + f_2\)</span> (telescopic arrangement), this simplifies to:</p>
-<p><span class="math display">\[
-\mathbf{M}_{two} = \left[\begin{array}{cc}
--\frac{f_1}{f_2} &amp; 0 \\
-0 &amp; -\frac{f_2}{f_1}
-\end{array}\right]
-\]</span></p>
-<p>Since both magnification (<span class="math inline">\(A\)</span>) and angular magnification (<span class="math inline">\(D\)</span>) cannot simultaneously equal 1 while maintaining <span class="math inline">\(\det(\mathbf{M}) = 1\)</span>, two lenses are insufficient.</p>
-<p><strong>3. Three-Lens Configuration</strong></p>
-<p>With three lenses, we have more parameters but still need to determine if we can satisfy all constraints simultaneously. For a three-lens system with focal lengths <span class="math inline">\(f_1\)</span>, <span class="math inline">\(f_2\)</span>, and <span class="math inline">\(f_3\)</span>, separated by distances <span class="math inline">\(d_{12}\)</span> and <span class="math inline">\(d_{23}\)</span>, the system matrix would be:</p>
-<p><span class="math display">\[
-\mathbf{M}_{three} =
-\left[\begin{array}{cc}
-1 &amp; 0 \\
--\frac{1}{f_3} &amp; 1
-\end{array}\right]
-\left[\begin{array}{cc}
-1 &amp; d_{23} \\
-0 &amp; 1
-\end{array}\right]
-\left[\begin{array}{cc}
-1 &amp; 0 \\
--\frac{1}{f_2} &amp; 1
-\end{array}\right]
-\left[\begin{array}{cc}
-1 &amp; d_{12} \\
-0 &amp; 1
-\end{array}\right]
-\left[\begin{array}{cc}
-1 &amp; 0 \\
--\frac{1}{f_1} &amp; 1
-\end{array}\right]
-\]</span></p>
-<p>When multiplied out, the focusing power (C element) of the system is:</p>
-<p><span class="math display">\[C = -\frac{1}{f_3} - \frac{1}{f_2} - \frac{1}{f_1} + \frac{d_{12}}{f_1f_2} + \frac{d_{23}}{f_2f_3} + \frac{d_{12}d_{23}}{f_1f_2f_3}\]</span></p>
-<p>The magnification (A element) of the system is:</p>
-<p><span class="math display">\[A = 1 - \frac{d_{12}}{f_1} - \frac{d_{23}}{f_2} + \frac{d_{12}d_{23}}{f_1f_2}\]</span></p>
-<p>For perfect cloaking, we need both C = 0 and A = 1. From A = 1, we can derive:</p>
-<p><span class="math display">\[\frac{d_{12}}{f_1} + \frac{d_{23}}{f_2} - \frac{d_{12}d_{23}}{f_1f_2} = 0\]</span></p>
-<p>Solving for <span class="math inline">\(d_{23}\)</span>, we get:</p>
-<p><span class="math display">\[d_{23} = \frac{d_{12}/f_1}{1/f_2 - d_{12}/(f_1f_2)}\]</span></p>
-<p>Substituting this into the condition for C = 0, we obtain a complex expression that places constraints on the possible values of <span class="math inline">\(f_1\)</span>, <span class="math inline">\(f_2\)</span>, and <span class="math inline">\(f_3\)</span>. For typical lens configurations, this results in values that are difficult to realize physically, as it often requires either negative separations or negative focal lengths.</p>
-<p>While the three-lens system provides more parameters to work with than the two-lens system, the mathematical constraints of simultaneously achieving zero focusing power (C = 0) and unit magnification (A = 1) still make perfect cloaking challenging with conventional optical elements.</p>
-<p><strong>4. Four-Lens Configuration: The Solution</strong></p>
-<p>We can arrange four lenses in two pairs:</p>
-<ul>
-<li>First pair (lenses 1 and 2): A beam compressor</li>
-<li>Second pair (lenses 3 and 4): A beam expander</li>
-</ul>
-<p>For the beam compressor, with lenses at their combined focal length apart:</p>
-<p><span class="math display">\[
-\mathbf{M}_{comp} = \left[\begin{array}{cc}
--\frac{f_1}{f_2} &amp; 0 \\
-0 &amp; -\frac{f_2}{f_1}
-\end{array}\right]
-\]</span></p>
-<p>Similarly, for the beam expander:</p>
-<p><span class="math display">\[
-\mathbf{M}_{exp} = \left[\begin{array}{cc}
--\frac{f_3}{f_4} &amp; 0 \\
-0 &amp; -\frac{f_4}{f_3}
-\end{array}\right]
-\]</span></p>
-<p>The combined system matrix is:</p>
-<p><span class="math display">\[
-\mathbf{M}_{total} = \mathbf{M}_{exp} \times \mathbf{M}_{comp} = \left[\begin{array}{cc}
-\frac{f_1}{f_2} \times \frac{f_3}{f_4} &amp; 0 \\
-0 &amp; \frac{f_2}{f_1} \times \frac{f_4}{f_3}
-\end{array}\right]
-\]</span></p>
-<p>For perfect cloaking, we need: - <span class="math inline">\(\frac{f_1}{f_2} \times \frac{f_3}{f_4} = 1\)</span> - <span class="math inline">\(\frac{f_2}{f_1} \times \frac{f_4}{f_3} = 1\)</span></p>
-<p>This is satisfied when <span class="math inline">\(f_1 = f_4\)</span> and <span class="math inline">\(f_2 = f_3\)</span>.</p>
-<p>With the lenses properly spaced and an additional free space distance <span class="math inline">\(d_0\)</span> between the two pairs, the complete system matrix becomes:</p>
-<p><span class="math display">\[
-\mathbf{M}_{cloaking} = \left[\begin{array}{cc}
-1 &amp; d_0 \\
-0 &amp; 1
-\end{array}\right]
-\]</span></p>
-<p>Which perfectly mimics free space propagation, creating the optical cloaking effect.</p>
-<div id="07e5d298" class="cell" data-execution_count="2">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example of optical cloaking with four lenses using raytracing</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> raytracing <span class="im">import</span> <span class="op">*</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Define focal lengths (in mm)</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>f1 <span class="op">=</span> <span class="dv">200</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>f2 <span class="op">=</span> <span class="dv">75</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>f3 <span class="op">=</span> f2  <span class="co"># f3 = f2 = 75</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>f4 <span class="op">=</span> f1  <span class="co"># f4 = f1 = 200</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Create an optical path</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>path <span class="op">=</span> ImagingPath()</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Add the four lenses with proper spacing</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>path.append(Space(d<span class="op">=</span><span class="dv">100</span>))  <span class="co"># Initial space before first lens</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>path.append(Lens(f<span class="op">=</span>f1, label<span class="op">=</span><span class="ss">f"f₁=</span><span class="sc">{</span>f1<span class="sc">}</span><span class="ss">mm"</span>))</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>path.append(Space(d<span class="op">=</span>f1<span class="op">+</span>f2))  <span class="co"># Distance between lens 1 and 2</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>path.append(Lens(f<span class="op">=</span>f2, label<span class="op">=</span><span class="ss">f"f₂=</span><span class="sc">{</span>f2<span class="sc">}</span><span class="ss">mm"</span>))</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>path.append(Space(d<span class="op">=</span><span class="dv">100</span>))  <span class="co"># Distance between lens pairs (d₀)</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>path.append(Lens(f<span class="op">=</span>f3, label<span class="op">=</span><span class="ss">f"f₃=</span><span class="sc">{</span>f3<span class="sc">}</span><span class="ss">mm"</span>))</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>path.append(Space(d<span class="op">=</span>f3<span class="op">+</span>f4))  <span class="co"># Distance between lens 3 and 4</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>path.append(Lens(f<span class="op">=</span>f4, label<span class="op">=</span><span class="ss">f"f₄=</span><span class="sc">{</span>f4<span class="sc">}</span><span class="ss">mm"</span>))</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>path.append(Space(d<span class="op">=</span><span class="dv">100</span>))  <span class="co"># Final space after last lens</span></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the ray path with custom figure size</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>path.display(raysList<span class="op">=</span>[</span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    [Ray(y<span class="op">=</span><span class="dv">5</span>, theta<span class="op">=</span><span class="dv">0</span>)],</span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    [Ray(y<span class="op">=-</span><span class="dv">5</span>, theta<span class="op">=</span><span class="dv">0</span>)]</span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>], interactive<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stderr">
-<pre><code>BeginnerHint [in figure.py]: Infinite field of view: cannot use limitObjectToFieldOfView=True. The object height is instead set to the default value of 10.0.
-BeginnerHint [in imagingpath.py]: Field of view is infinite. You can pass useObject=True to use the finite objectHeight.
-BeginnerHint [in figure.py]: No aperture stop in the system: cannot use onlyPrincipalAndAxialRays=True since they are not defined. Showing the default ObjectRays instead. </code></pre>
 </div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Gaussian Beam Propagation
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>To better understand the spatial evolution of a Gaussian beam as it propagates, we can visualize how two key parameters change with distance: the beam width <span class="math inline">\(w(z)\)</span> and the wavefront radius of curvature <span class="math inline">\(R(z)\)</span>.</p>
+<div id="cell-fig-gaussian-beam-properties" class="cell" data-execution_count="4">
 <div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="01-lecture02_files/figure-html/cell-3-output-2.png" width="850" height="589" class="figure-img"></p>
+<div id="fig-gaussian-beam-properties" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-gaussian-beam-properties-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="01-lecture04_files/figure-html/fig-gaussian-beam-properties-output-1.png" width="587" height="285" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gaussian-beam-properties-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3— Gaussian Beam Width and Wavefront Curvature for a wavelength of 632.8 nm and a beam waist of <span class="math inline">\(w_0=0.1\, \text{mm}\)</span>
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The left plot shows how the beam width <span class="math inline">\(w(z)\)</span> evolves with distance from the beam waist. At <span class="math inline">\(z = 0\)</span>, the beam is at its narrowest point <span class="math inline">\(w_0\)</span>. At the Rayleigh range (<span class="math inline">\(z = ±z_0\)</span>), the width increases to <span class="math inline">\(\sqrt{2}w_0\)</span>. For <span class="math inline">\(|z| \gg z_0\)</span>, the beam width increases approximately linearly with distance, corresponding to a constant far-field divergence angle <span class="math inline">\(\theta = \lambda/(\pi w_0)\)</span>.</p>
+<p>The right plot illustrates the wavefront radius of curvature <span class="math inline">\(R(z)\)</span>. At the beam waist, the wavefronts are flat (<span class="math inline">\(R = \infty\)</span>). The curvature reaches its minimum absolute value of <span class="math inline">\(2z_0\)</span> at <span class="math inline">\(z = ±z_0\)</span>. For <span class="math inline">\(z &gt; 0\)</span>, <span class="math inline">\(R(z)\)</span> is positive (converging wavefronts), while for <span class="math inline">\(z &lt; 0\)</span>, <span class="math inline">\(R(z)\)</span> is negative (diverging wavefronts). As <span class="math inline">\(|z|\)</span> increases, <span class="math inline">\(R(z)\)</span> approaches the asymptotic behavior of a spherical wave, where <span class="math inline">\(R(z) \approx z\)</span>.</p>
+<p>These parameters together provide a complete description of how the Gaussian beam transforms from a tightly focused wave near the waist to an approximately spherical wave in the far field.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="gaussian-beam-transformation-through-optical-systems" class="level3">
+<h3 class="anchored" data-anchor-id="gaussian-beam-transformation-through-optical-systems">Gaussian Beam Transformation Through Optical Systems</h3>
+<section id="the-abcd-matrix-formalism" class="level4">
+<h4 class="anchored" data-anchor-id="the-abcd-matrix-formalism">The ABCD Matrix Formalism</h4>
+<p>The propagation of Gaussian beams through optical systems can be elegantly described using the ABCD matrix formalism from ray optics. While ray optics typically tracks the position and angle of rays, for Gaussian beams we track the transformation of the complex beam parameter <span class="math inline">\(q(z)\)</span>.</p>
+<p>When a Gaussian beam passes through an optical system characterized by an ABCD matrix, the complex beam parameter transforms according to:</p>
+<p><span class="math display">\[q_2 = \frac{Aq_1 + B}{Cq_1 + D}\]</span></p>
+<p>where <span class="math inline">\(q_1\)</span> is the initial complex beam parameter and <span class="math inline">\(q_2\)</span> is the transformed parameter. This remarkable result, known as the ABCD law for Gaussian beams, allows us to determine how the beam waist and wavefront curvature change through arbitrary optical systems.</p>
+</section>
+<section id="common-optical-elements" class="level4">
+<h4 class="anchored" data-anchor-id="common-optical-elements">Common Optical Elements</h4>
+<p>Different optical elements transform Gaussian beams in characteristic ways:</p>
+<ol type="1">
+<li><p><strong>Free-space propagation</strong> over distance <span class="math inline">\(d\)</span> is represented by:</p>
+<p><span class="math display">\[\begin{pmatrix} A &amp; B \\ C &amp; D \end{pmatrix} = \begin{pmatrix} 1 &amp; d \\ 0 &amp; 1 \end{pmatrix}\]</span></p>
+<p>This matrix describes how the beam naturally diverges as it propagates.</p></li>
+<li><p><strong>Thin lens</strong> with focal length <span class="math inline">\(f\)</span>:</p>
+<p><span class="math display">\[\begin{pmatrix} A &amp; B \\ C &amp; D \end{pmatrix} = \begin{pmatrix} 1 &amp; 0 \\ -1/f &amp; 1 \end{pmatrix}\]</span></p>
+<p>A lens modifies the wavefront curvature without changing the beam diameter at the lens location.</p></li>
+<li><p><strong>Curved interface</strong> between media with refractive indices <span class="math inline">\(n_1\)</span> and <span class="math inline">\(n_2\)</span> and radius of curvature <span class="math inline">\(R\)</span>:</p>
+<p><span class="math display">\[\begin{pmatrix} A &amp; B \\ C &amp; D \end{pmatrix} = \begin{pmatrix} 1 &amp; 0 \\ -\frac{n_2-n_1}{n_2 R} &amp; \frac{n_1}{n_2} \end{pmatrix}\]</span></p></li>
+</ol>
+<p>Multiple optical elements can be analyzed by multiplying their respective ABCD matrices in the order encountered by the beam.</p>
+</section>
+<section id="focusing-of-gaussian-beams" class="level4">
+<h4 class="anchored" data-anchor-id="focusing-of-gaussian-beams">Focusing of Gaussian Beams</h4>
+<p>A particularly important case is the focusing of a Gaussian beam by a lens. If a collimated Gaussian beam with waist <span class="math inline">\(w_0\)</span> is incident on a lens with focal length <span class="math inline">\(f\)</span>, the focused beam will have a new waist:</p>
+<p><span class="math display">\[w_0' = \frac{\lambda f}{\pi w_0}\]</span></p>
+<p>located approximately at the focal point. This equation highlights the fundamental diffraction limit of focusing: smaller focal spots require larger input beam diameters relative to the wavelength.</p>
+<p>When a Gaussian beam is focused by a lens, the Rayleigh range of the focused beam also changes. For a collimated input beam, the new Rayleigh range after focusing is:</p>
+<p><span class="math display">\[z_0' = \frac{\pi {w_0'}^2}{\lambda} = \frac{\lambda f^2}{\pi w_0^2}\]</span></p>
+<p>This means that tightly focused beams (small <span class="math inline">\(w_0'\)</span>) have correspondingly shorter Rayleigh ranges, resulting in more rapid divergence beyond the focal point. This inverse relationship between spot size and Rayleigh range represents a fundamental trade-off in beam focusing: achieving a smaller spot size necessarily results in a beam that diverges more quickly after the focus.</p>
+<p>The divergence angle of the focused beam is also affected, increasing as the spot size decreases:</p>
+<p><span class="math display">\[\theta' = \frac{\lambda}{\pi w_0'} = \frac{w_0}{f}\]</span></p>
+<p>This relationship shows that the focused beam’s divergence is inversely proportional to the input beam width. A wider input beam produces a more tightly focused spot with greater divergence, while a narrower input beam creates a larger focal spot with less divergence.</p>
+<p>The transformation matrices enable us to design optical systems that reshape Gaussian beams to desired specifications—expanding, collimating, or focusing them for specific applications. This matrix approach bridges ray optics and wave optics, providing a powerful tool for optical system design with coherent light sources.</p>
+</section>
+</section>
+<section id="higher-order-gaussian-modes" class="level3">
+<h3 class="anchored" data-anchor-id="higher-order-gaussian-modes">Higher-Order Gaussian Modes</h3>
+<section id="hermite-gaussian-beams" class="level4">
+<h4 class="anchored" data-anchor-id="hermite-gaussian-beams">Hermite-Gaussian Beams</h4>
+<p>Hermite-Gaussian modes form a complete set of solutions to the paraxial wave equation in Cartesian coordinates. They can be expressed as:</p>
+<p><span class="math display">\[U_{nm}(x,y,z) = U_0\frac{w_0}{w(z)}H_n\left(\frac{\sqrt{2}x}{w(z)}\right)H_m\left(\frac{\sqrt{2}y}{w(z)}\right) \exp\left[-\frac{x^2 + y^2}{w^2(z)}\right]\]</span> <span class="math display">\[\times \exp\left[-ikz - ik\frac{x^2 + y^2}{2R(z)} + i(n+m+1)\phi(z)\right]\]</span></p>
+<p>where <span class="math inline">\(H_n\)</span> and <span class="math inline">\(H_m\)</span> are Hermite polynomials of orders <span class="math inline">\(n\)</span> and <span class="math inline">\(m\)</span>. The indices <span class="math inline">\(n,m = 0,1,2,...\)</span> determine the number of nodes in the intensity pattern along <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> directions. The fundamental Gaussian beam corresponds to <span class="math inline">\(n=m=0\)</span>.</p>
+<p>These modes naturally arise in laser resonators with rectangular symmetry and maintain their intensity pattern during propagation, though they scale in size. Each higher-order mode experiences an additional Gouy phase shift, causing different modes to accumulate phase at different rates during propagation.</p>
+<div id="cell-fig-hermite-gaussian" class="cell" data-execution_count="5">
+<div class="cell-output cell-output-display">
+<div id="fig-hermite-gaussian" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-hermite-gaussian-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="01-lecture04_files/figure-html/fig-hermite-gaussian-output-1.png" width="662" height="285" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-hermite-gaussian-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4— Intensity (top row) and phase (bottom row) distributions of the first four Hermite-Gaussian modes in the xy-plane at z=1z₀: (a) HG₀₀, (b) HG₁₀, (c) HG₀₁, and (d) HG₁₁. Higher-order modes clearly show multiple intensity peaks.
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
 </section>
-</div>
-</div>
-</div>
-</section>
-<section id="multifocal-imaging" class="level3">
-<h3 class="anchored" data-anchor-id="multifocal-imaging">Multifocal Imaging</h3>
-<p>We would like to explore the concept of multifocal imaging to obtain 3D resolution from a single image. In a microscope, an objective lens together with a tube lens is used to focus light from a sample onto a detector. Either the tube lens is no modified to shift the focal plane of the objective lens or one uses multiple tube lenses with different focal lengths with a single objective lens.</p>
-<div id="fig-multifocal-adapter" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-multifocal-adapter-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="img/multifocal_imaging.png" class="img-fluid figure-img" style="width:80.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-multifocal-adapter-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3— The multifocal adapter. (a) Composition of the multifocal imaging setup. The multifocal adapter (MFA) is inserted into the light path between a standard dark-field microscope and a camera. (b) Composition of the multifocal adapter. Incoming light from the microscope is infinity projected by the lens f1 and split by three consecutive beam-splitters (b1 = 25/75; b2 = 33/67; b3 = 50/50). Five mirrors (m) guide the light into four separate optical paths. The lens f5 projects the four images onto the camera chip. The inter-plane distance is set by lenses of different focal length (f1 - f4). (c, d) Experimentally acquired (c) and simulated (d) (see Methods) multifocal dark-field images (planes 1 - 4, 20x objective) of a calibration grid at the four focal positions (indicated on the left side), where one of the four focal planes maps the grid sharply. Scale bar represents 20 µm. Experiment was performed six times with similar results. <a href="https://www.nature.com/articles/s41467-021-24768-4">Source</a>
-</figcaption>
-</figure>
-</div>
-<p>In the simplest configuration of an objective lens and a tube lens, the light first travels from the object to the objective lens in free space for a distance <span class="math inline">\(s\)</span>, which is represented by</p>
-<div id="a5c525d8" class="cell" data-execution_count="4">
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="4">
-<p><span class="math display">\[
-M_1=\left[\begin{matrix}1 &amp; s\\0 &amp; 1\end{matrix}\right]
-\]</span></p>
-</div>
-</div>
-<p>Then it is passing the objective lens with</p>
-<div id="c6e1c956" class="cell" data-execution_count="5">
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="5">
-<p><span class="math display">\[
-M_2=\left[\begin{matrix}1 &amp; 0\\- \frac{1}{f_{1}} &amp; 1\end{matrix}\right]
-\]</span></p>
-</div>
-</div>
-<p>traveling further through free space with distance <span class="math inline">\(d\)</span></p>
-<div id="3e49ca3c" class="cell" data-execution_count="6">
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="6">
-<p><span class="math display">\[
-M_3=\left[\begin{matrix}1 &amp; d\\0 &amp; 1\end{matrix}\right]
-\]</span></p>
-</div>
-</div>
-<p>and then hitting the tube lens with</p>
-<div id="46a75f3b" class="cell" data-execution_count="7">
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="7">
-<p><span class="math display">\[
-M_4=\left[\begin{matrix}1 &amp; 0\\- \frac{1}{\Delta_{ft} + f_{t}} &amp; 1\end{matrix}\right]
-\]</span></p>
-</div>
-</div>
-<p>where <span class="math inline">\(\Delta_ft\)</span> is a parameter modifying the original tube lens focal distance <span class="math inline">\(f_t\)</span>. Finally, the light will propagate to the detector at distance <span class="math inline">\(f_t\)</span> from the tube lens</p>
-<div id="cab21ef1" class="cell" data-execution_count="8">
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="8">
-<p><span class="math display">\[
-M_s=\left[\begin{matrix}1 &amp; f_{t}\\0 &amp; 1\end{matrix}\right]
-\]</span></p>
-</div>
-</div>
-<p>gicing for the whole system:</p>
-<p><span class="math display">\[
-M_t=M_4 M_3 M_2 M_1
-\]</span></p>
-<p>The final matrix has again 4 parameters <span class="math inline">\(A,B,C\)</span> and <span class="math inline">\(D\)</span>. For sharp imaging the parameter <span class="math inline">\(B\)</span> of the system must be equal to zero, as the outgoing light should be independent of the incoming angle. This is achieved</p>
-<div id="ce839259" class="cell" data-execution_count="9">
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="9">
-<p><span class="math display">\[\delta s=\frac{f_{1} \left(\Delta_{ft} d + \Delta_{ft} f_{t} + f_{t}^{2}\right)}{\Delta_{ft} d - \Delta_{ft} f_{1} + \Delta_{ft} f_{t} + f_{t}^{2}}-s_0
-\]</span></p>
-</div>
-</div>
-<div id="cell-fig-shift" class="cell" data-execution_count="10">
+<section id="laguerre-gaussian-beams" class="level4">
+<h4 class="anchored" data-anchor-id="laguerre-gaussian-beams">Laguerre-Gaussian Beams</h4>
+<p>In systems with cylindrical symmetry, Laguerre-Gaussian modes provide a more natural description. In cylindrical coordinates <span class="math inline">\((r,\theta,z)\)</span>, they are given by:</p>
+<p><span class="math display">\[U_{pl}(r,\theta,z) = U_0\frac{w_0}{w(z)}\left(\frac{\sqrt{2}r}{w(z)}\right)^{|l|}L_p^{|l|}\left(\frac{2r^2}{w^2(z)}\right) \exp\left[-\frac{r^2}{w^2(z)}\right]\]</span> <span class="math display">\[\times \exp\left[-ikz - ik\frac{r^2}{2R(z)} + i(2p+|l|+1)\phi(z) + il\theta\right]\]</span></p>
+<p>where <span class="math inline">\(L_p^{|l|}\)</span> are the associated Laguerre polynomials, <span class="math inline">\(p \geq 0\)</span> is the radial index determining the number of radial nodes, and <span class="math inline">\(l\)</span> is the azimuthal index that determines the helical structure of the wavefront.</p>
+<p>A remarkable property of Laguerre-Gaussian modes with <span class="math inline">\(l \neq 0\)</span> is that they carry orbital angular momentum (OAM) of <span class="math inline">\(l\hbar\)</span> per photon. This OAM arises from the helical phase structure represented by the term <span class="math inline">\(\exp(il\theta)\)</span>, which creates a twisted wavefront resembling a spiral staircase. The intensity distribution forms a ring-like pattern with a dark center for <span class="math inline">\(l \neq 0\)</span> due to the phase singularity along the beam axis. As <span class="math inline">\(p\)</span> increases, additional concentric rings appear in the intensity pattern.</p>
+<div id="cell-fig-laguerre-gaussian" class="cell" data-execution_count="6">
 <div class="cell-output cell-output-display">
-<div id="fig-shift" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-laguerre-gaussian" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-shift-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="01-lecture02_files/figure-html/fig-shift-output-1.png" width="565" height="447" class="figure-img">
+<div aria-describedby="fig-laguerre-gaussian-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="01-lecture04_files/figure-html/fig-laguerre-gaussian-output-1.png" width="662" height="285" class="figure-img">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-shift-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;4— Plot of the solution with specific parameter values
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-laguerre-gaussian-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5— Intensity (top row) and phase (bottom row) distributions of the first four Laguerre-Gaussian modes in the xy-plane at z=0.1z₀: (a) LG₀₀, (b) LG₀₁, (c) LG₁₀, and (d) LG₁₁. Note the ring-like intensity patterns and spiral phase structures in modes with non-zero azimuthal index l.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-The B Parameter
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>The <strong>B parameter</strong> is the most direct indicator of a sharp image in matrix optics. For an optical system with ABCD matrix: <span class="math display">\[
-\begin{pmatrix} y_2 \\ \theta_2 \end{pmatrix} =
-\begin{pmatrix} A &amp; B \\ C &amp; D \end{pmatrix}
-\begin{pmatrix} y_1 \\ \theta_1 \end{pmatrix}
-\]</span></p>
-<p>The output position is given by: <span class="math display">\[y_2 = Ay_1 + B\theta_1\]</span></p>
-<p>For an image to be sharp, all rays originating from the same object point must converge to a single image point, regardless of their initial angles. This means that for a given <span class="math inline">\(y_1\)</span> (object position), the final position <span class="math inline">\(y_2\)</span> must be independent of the initial angle <span class="math inline">\(\theta_1\)</span>.</p>
-<p>This condition is satisfied when <strong>B = 0</strong>.</p>
-<p>When B = 0: - The final position depends only on the initial position (<span class="math inline">\(y_2 = Ay_1\)</span>) - All rays from a point source converge to a single point in the image plane - The imaging is “stigmatic” (point-to-point mapping)</p>
-<p>In our lens example, the system matrix was: <span class="math display">\[
-\mathbf{M}_{system} =
-\left[\begin{array}{cc}
-1-\frac{d}{f} &amp; d \\
--\frac{1}{f} &amp; 1
-\end{array}\right]
-\]</span></p>
-<p>For parallel input rays (different <span class="math inline">\(y_1\)</span> but all <span class="math inline">\(\theta_1 = 0\)</span>), we needed A = 0 to make them all converge to a single point, which happened when d = f.</p>
-<p>But for general imaging of points (not just parallel rays), the B = 0 condition is what determines whether the image is sharp. This is why, in optical design, finding conjugate planes (where B = 0) is essential for sharp imaging.</p>
-</div>
-</div>
-</div>
+<p>The orbital angular momentum of light is distinct from spin angular momentum (SAM), which is associated with circular polarization (±<span class="math inline">\(\hbar\)</span> per photon). While SAM relates to the polarization state of light, OAM relates to the spatial structure of the wavefront. Importantly, these two forms of angular momentum can interact through spin-orbit coupling in certain optical systems, particularly in anisotropic or inhomogeneous media, at interfaces, or when light experiences strong focusing. Such spin-orbit coupling enables novel phenomena like spin-to-orbital angular momentum conversion, where the polarization state can influence the spatial structure of the beam and vice versa. This coupling mechanism has found specific applications in:</p>
+<ol type="1">
+<li><p><strong>Optical tweezers</strong> - Spin-orbit coupling allows precise control of trapped particles by converting polarization changes into rotational motion, enabling manipulation of microscopic objects with unprecedented precision.</p></li>
+<li><p><strong>Quantum cryptography</strong> - The coupling between SAM and OAM creates additional degrees of freedom for encoding quantum information, enhancing the security and information capacity of quantum key distribution protocols.</p></li>
+<li><p><strong>Optical vortex metrology</strong> - Using the phase singularities created by spin-orbit interactions to detect nanoscale surface imperfections with superior sensitivity compared to conventional techniques.</p></li>
+<li><p><strong>Chiral spectroscopy</strong> - The interaction between polarization and spatial modes enables enhanced detection of chiral molecules by amplifying the difference in light-matter interactions between enantiomers.</p></li>
+<li><p><strong>Structured light microscopy</strong> - Coupling between SAM and OAM generates complex field patterns that improve resolution beyond the diffraction limit in specific imaging configurations.</p></li>
+</ol>
+<p>Both families of higher-order modes are important in modern optics applications, including optical manipulation, quantum information processing, and mode-division multiplexing in optical communications. They represent different orthogonal bases of the same solution space and can be transformed into each other through appropriate optical systems.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -1196,14 +1034,11 @@ The B Parameter
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../lectures/lecture01/01-lecture01.html" class="pagination-link" aria-label="Ray Optics">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Ray Optics</span>
+      <a href="../../lectures/lecture03/01-lecture03.html" class="pagination-link" aria-label="Interference">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Interference</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../lectures/lecture02/02-lecture02.html" class="pagination-link" aria-label="Wave Optics Introduction">
-        <span class="nav-page-text">Wave Optics Introduction</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->

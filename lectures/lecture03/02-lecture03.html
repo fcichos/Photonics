@@ -30,6 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
+<link href="../../lectures/lecture04/01-lecture04.html" rel="next">
 <link href="../../lectures/lecture03/01-lecture03.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -276,6 +277,29 @@ window.Quarto = {
 </li>
       </ul>
   </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Lecture 4</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture04/01-lecture04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Photon Streams</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture04/02-lecture04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Quantum Optics Primer</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
       </ul>
   </li>
     </ul>
@@ -359,7 +383,7 @@ window.Quarto = {
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Visualizing Gaussian Beam Propagation in the x-z Plane
+Gaussian Beam Propagation in the x-z Plane
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -444,7 +468,7 @@ Figure&nbsp;1— Gaussian Beam Intensity Distribution in the x-z Plane for a wav
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Visualizing Gaussian Beam Intensity Profiles
+Gaussian Beam Intensity Profiles
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -471,7 +495,7 @@ Figure&nbsp;2— Gaussian Beam Intensity Profiles for a wavelenght of 632.8 nm a
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Visualizing Gaussian Beam Propagation
+Gaussian Beam Propagation
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -537,13 +561,49 @@ Figure&nbsp;3— Gaussian Beam Width and Wavefront Curvature for a wavelength of
 <p><span class="math display">\[U_{nm}(x,y,z) = U_0\frac{w_0}{w(z)}H_n\left(\frac{\sqrt{2}x}{w(z)}\right)H_m\left(\frac{\sqrt{2}y}{w(z)}\right) \exp\left[-\frac{x^2 + y^2}{w^2(z)}\right]\]</span> <span class="math display">\[\times \exp\left[-ikz - ik\frac{x^2 + y^2}{2R(z)} + i(n+m+1)\phi(z)\right]\]</span></p>
 <p>where <span class="math inline">\(H_n\)</span> and <span class="math inline">\(H_m\)</span> are Hermite polynomials of orders <span class="math inline">\(n\)</span> and <span class="math inline">\(m\)</span>. The indices <span class="math inline">\(n,m = 0,1,2,...\)</span> determine the number of nodes in the intensity pattern along <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> directions. The fundamental Gaussian beam corresponds to <span class="math inline">\(n=m=0\)</span>.</p>
 <p>These modes naturally arise in laser resonators with rectangular symmetry and maintain their intensity pattern during propagation, though they scale in size. Each higher-order mode experiences an additional Gouy phase shift, causing different modes to accumulate phase at different rates during propagation.</p>
+<div id="cell-fig-hermite-gaussian" class="cell" data-execution_count="5">
+<div class="cell-output cell-output-display">
+<div id="fig-hermite-gaussian" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-hermite-gaussian-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="02-lecture03_files/figure-html/fig-hermite-gaussian-output-1.png" width="662" height="285" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-hermite-gaussian-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4— Intensity (top row) and phase (bottom row) distributions of the first four Hermite-Gaussian modes in the xy-plane at z=1z₀: (a) HG₀₀, (b) HG₁₀, (c) HG₀₁, and (d) HG₁₁. Higher-order modes clearly show multiple intensity peaks.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
 </section>
 <section id="laguerre-gaussian-beams" class="level4">
 <h4 class="anchored" data-anchor-id="laguerre-gaussian-beams">Laguerre-Gaussian Beams</h4>
 <p>In systems with cylindrical symmetry, Laguerre-Gaussian modes provide a more natural description. In cylindrical coordinates <span class="math inline">\((r,\theta,z)\)</span>, they are given by:</p>
 <p><span class="math display">\[U_{pl}(r,\theta,z) = U_0\frac{w_0}{w(z)}\left(\frac{\sqrt{2}r}{w(z)}\right)^{|l|}L_p^{|l|}\left(\frac{2r^2}{w^2(z)}\right) \exp\left[-\frac{r^2}{w^2(z)}\right]\]</span> <span class="math display">\[\times \exp\left[-ikz - ik\frac{r^2}{2R(z)} + i(2p+|l|+1)\phi(z) + il\theta\right]\]</span></p>
 <p>where <span class="math inline">\(L_p^{|l|}\)</span> are the associated Laguerre polynomials, <span class="math inline">\(p \geq 0\)</span> is the radial index determining the number of radial nodes, and <span class="math inline">\(l\)</span> is the azimuthal index that determines the helical structure of the wavefront.</p>
-<p>A remarkable property of Laguerre-Gaussian modes with <span class="math inline">\(l \neq 0\)</span> is that they carry orbital angular momentum of <span class="math inline">\(l\hbar\)</span> per photon. The intensity distribution forms a ring-like pattern with a dark center for <span class="math inline">\(l \neq 0\)</span> due to the phase singularity along the beam axis. As <span class="math inline">\(p\)</span> increases, additional concentric rings appear in the intensity pattern.</p>
+<p>A remarkable property of Laguerre-Gaussian modes with <span class="math inline">\(l \neq 0\)</span> is that they carry orbital angular momentum (OAM) of <span class="math inline">\(l\hbar\)</span> per photon. This OAM arises from the helical phase structure represented by the term <span class="math inline">\(\exp(il\theta)\)</span>, which creates a twisted wavefront resembling a spiral staircase. The intensity distribution forms a ring-like pattern with a dark center for <span class="math inline">\(l \neq 0\)</span> due to the phase singularity along the beam axis. As <span class="math inline">\(p\)</span> increases, additional concentric rings appear in the intensity pattern.</p>
+<div id="cell-fig-laguerre-gaussian" class="cell" data-execution_count="6">
+<div class="cell-output cell-output-display">
+<div id="fig-laguerre-gaussian" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-laguerre-gaussian-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="02-lecture03_files/figure-html/fig-laguerre-gaussian-output-1.png" width="662" height="285" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-laguerre-gaussian-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5— Intensity (top row) and phase (bottom row) distributions of the first four Laguerre-Gaussian modes in the xy-plane at z=0.1z₀: (a) LG₀₀, (b) LG₀₁, (c) LG₁₀, and (d) LG₁₁. Note the ring-like intensity patterns and spiral phase structures in modes with non-zero azimuthal index l.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The orbital angular momentum of light is distinct from spin angular momentum (SAM), which is associated with circular polarization (±<span class="math inline">\(\hbar\)</span> per photon). While SAM relates to the polarization state of light, OAM relates to the spatial structure of the wavefront. Importantly, these two forms of angular momentum can interact through spin-orbit coupling in certain optical systems, particularly in anisotropic or inhomogeneous media, at interfaces, or when light experiences strong focusing. Such spin-orbit coupling enables novel phenomena like spin-to-orbital angular momentum conversion, where the polarization state can influence the spatial structure of the beam and vice versa. This coupling mechanism has found specific applications in:</p>
+<ol type="1">
+<li><p><strong>Optical tweezers</strong> - Spin-orbit coupling allows precise control of trapped particles by converting polarization changes into rotational motion, enabling manipulation of microscopic objects with unprecedented precision.</p></li>
+<li><p><strong>Quantum cryptography</strong> - The coupling between SAM and OAM creates additional degrees of freedom for encoding quantum information, enhancing the security and information capacity of quantum key distribution protocols.</p></li>
+<li><p><strong>Optical vortex metrology</strong> - Using the phase singularities created by spin-orbit interactions to detect nanoscale surface imperfections with superior sensitivity compared to conventional techniques.</p></li>
+<li><p><strong>Chiral spectroscopy</strong> - The interaction between polarization and spatial modes enables enhanced detection of chiral molecules by amplifying the difference in light-matter interactions between enantiomers.</p></li>
+<li><p><strong>Structured light microscopy</strong> - Coupling between SAM and OAM generates complex field patterns that improve resolution beyond the diffraction limit in specific imaging configurations.</p></li>
+</ol>
 <p>Both families of higher-order modes are important in modern optics applications, including optical manipulation, quantum information processing, and mode-division multiplexing in optical communications. They represent different orthogonal bases of the same solution space and can be transformed into each other through appropriate optical systems.</p>
 
 
@@ -623,7 +683,7 @@ Figure&nbsp;3— Gaussian Beam Width and Wavefront Curvature for a wavelength of
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/fcichos\.github\.io\/Photonics\/");
+        var filterRegex = new RegExp('/' + window.location.host + '/');
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
@@ -957,6 +1017,9 @@ Figure&nbsp;3— Gaussian Beam Width and Wavefront Curvature for a wavelength of
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="../../lectures/lecture04/01-lecture04.html" class="pagination-link" aria-label="Photon Streams">
+        <span class="nav-page-text">Photon Streams</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->
