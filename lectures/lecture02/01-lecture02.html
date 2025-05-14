@@ -628,7 +628,7 @@ Figure&nbsp;2— Example of a practical paraxial cloak. (a)–(c) A hand is cloa
 \end{array}\right]
 \]</span></p>
 <p>Which perfectly mimics free space propagation, creating the optical cloaking effect.</p>
-<div id="07e5d298" class="cell" data-execution_count="2">
+<div id="4afc5390" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example of optical cloaking with four lenses using raytracing</span></span>
@@ -693,7 +693,7 @@ Figure&nbsp;3— The multifocal adapter. (a) Composition of the multifocal imagi
 </figure>
 </div>
 <p>In the simplest configuration of an objective lens and a tube lens, the light first travels from the object to the objective lens in free space for a distance <span class="math inline">\(s\)</span>, which is represented by</p>
-<div id="a5c525d8" class="cell" data-execution_count="4">
+<div id="144e417f" class="cell" data-execution_count="4">
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="4">
 <p><span class="math display">\[
 M_1=\left[\begin{matrix}1 &amp; s\\0 &amp; 1\end{matrix}\right]
@@ -701,7 +701,7 @@ M_1=\left[\begin{matrix}1 &amp; s\\0 &amp; 1\end{matrix}\right]
 </div>
 </div>
 <p>Then it is passing the objective lens with</p>
-<div id="c6e1c956" class="cell" data-execution_count="5">
+<div id="d990033d" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="5">
 <p><span class="math display">\[
 M_2=\left[\begin{matrix}1 &amp; 0\\- \frac{1}{f_{1}} &amp; 1\end{matrix}\right]
@@ -709,7 +709,7 @@ M_2=\left[\begin{matrix}1 &amp; 0\\- \frac{1}{f_{1}} &amp; 1\end{matrix}\right]
 </div>
 </div>
 <p>traveling further through free space with distance <span class="math inline">\(d\)</span></p>
-<div id="3e49ca3c" class="cell" data-execution_count="6">
+<div id="cff29069" class="cell" data-execution_count="6">
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="6">
 <p><span class="math display">\[
 M_3=\left[\begin{matrix}1 &amp; d\\0 &amp; 1\end{matrix}\right]
@@ -717,7 +717,7 @@ M_3=\left[\begin{matrix}1 &amp; d\\0 &amp; 1\end{matrix}\right]
 </div>
 </div>
 <p>and then hitting the tube lens with</p>
-<div id="46a75f3b" class="cell" data-execution_count="7">
+<div id="2ebbf683" class="cell" data-execution_count="7">
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="7">
 <p><span class="math display">\[
 M_4=\left[\begin{matrix}1 &amp; 0\\- \frac{1}{\Delta_{ft} + f_{t}} &amp; 1\end{matrix}\right]
@@ -725,7 +725,7 @@ M_4=\left[\begin{matrix}1 &amp; 0\\- \frac{1}{\Delta_{ft} + f_{t}} &amp; 1\end{m
 </div>
 </div>
 <p>where <span class="math inline">\(\Delta_ft\)</span> is a parameter modifying the original tube lens focal distance <span class="math inline">\(f_t\)</span>. Finally, the light will propagate to the detector at distance <span class="math inline">\(f_t\)</span> from the tube lens</p>
-<div id="cab21ef1" class="cell" data-execution_count="8">
+<div id="21da6df5" class="cell" data-execution_count="8">
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="8">
 <p><span class="math display">\[
 M_s=\left[\begin{matrix}1 &amp; f_{t}\\0 &amp; 1\end{matrix}\right]
@@ -737,7 +737,7 @@ M_s=\left[\begin{matrix}1 &amp; f_{t}\\0 &amp; 1\end{matrix}\right]
 M_t=M_4 M_3 M_2 M_1
 \]</span></p>
 <p>The final matrix has again 4 parameters <span class="math inline">\(A,B,C\)</span> and <span class="math inline">\(D\)</span>. For sharp imaging the parameter <span class="math inline">\(B\)</span> of the system must be equal to zero, as the outgoing light should be independent of the incoming angle. This is achieved</p>
-<div id="ce839259" class="cell" data-execution_count="9">
+<div id="8dbacb8f" class="cell" data-execution_count="9">
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="9">
 <p><span class="math display">\[\delta s=\frac{f_{1} \left(\Delta_{ft} d + \Delta_{ft} f_{t} + f_{t}^{2}\right)}{\Delta_{ft} d - \Delta_{ft} f_{1} + \Delta_{ft} f_{t} + f_{t}^{2}}-s_0
 \]</span></p>
