@@ -423,6 +423,68 @@ window.Quarto = {
 <p>where <span class="math inline">\(k_z = 2\pi\sqrt{(1/\lambda)^2 - \nu_x^2 - \nu_y^2}\)</span> is the z-component of the wavevector.</p>
 <p>This formulation shows that the field at any distance <span class="math inline">\(z\)</span> can be calculated by multiplying each spatial frequency component by the appropriate phase factor <span class="math inline">\(e^{-i k_z z}\)</span> and then performing an inverse Fourier transform. This approach provides an elegant and computationally efficient method for modeling wave propagation, particularly in homogeneous media.</p>
 <p>For propagating waves, where <span class="math inline">\(\nu_x^2 + \nu_y^2 &lt; (1/\lambda)^2\)</span>, the factor <span class="math inline">\(e^{-i k_z z}\)</span> represents a phase shift. For evanescent waves, where <span class="math inline">\(\nu_x^2 + \nu_y^2 &gt; (1/\lambda)^2\)</span>, <span class="math inline">\(k_z\)</span> becomes imaginary, resulting in exponential decay with distance.</p>
+<div id="cell-fig-rectangular-hole-freq" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set parameters</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>width <span class="op">=</span> <span class="dv">10</span>  <span class="co"># width of rectangular hole in μm</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">30</span>, <span class="dv">30</span>, <span class="dv">1000</span>)  <span class="co"># spatial coordinate in μm</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>wavelengths <span class="op">=</span> [<span class="fl">0.5</span>, <span class="fl">1.0</span>, <span class="fl">2.0</span>]  <span class="co"># example wavelengths in μm</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Create rectangular function (1 inside the aperture, 0 outside)</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>rect <span class="op">=</span> np.zeros_like(x)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>rect[np.<span class="bu">abs</span>(x) <span class="op">&lt;=</span> width<span class="op">/</span><span class="dv">2</span>] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate spatial frequency axis</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>dx <span class="op">=</span> x[<span class="dv">1</span>] <span class="op">-</span> x[<span class="dv">0</span>]</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>freq <span class="op">=</span> np.fft.fftshift(np.fft.fftfreq(<span class="bu">len</span>(x), dx))</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate Fourier transform (sinc function for a rectangular aperture)</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>rect_ft <span class="op">=</span> np.fft.fftshift(np.fft.fft(rect)) <span class="op">/</span> <span class="bu">len</span>(x)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>rect_ft_mag <span class="op">=</span> np.<span class="bu">abs</span>(rect_ft)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Create figure</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>get_size(<span class="dv">12</span>, <span class="dv">6</span>))</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the spectrum</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>plt.plot(freq, rect_ft_mag <span class="op">/</span> np.<span class="bu">max</span>(rect_ft_mag), <span class="st">'b-'</span>, label<span class="op">=</span><span class="st">'Spectrum'</span>)</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot cutoff frequencies for different wavelengths</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> wavelength <span class="kw">in</span> wavelengths:</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    cutoff <span class="op">=</span> <span class="dv">1</span><span class="op">/</span>wavelength  <span class="co"># cutoff frequency in cycles/μm</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    plt.axvline(x<span class="op">=</span>cutoff, color<span class="op">=</span><span class="st">'r'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    plt.axvline(x<span class="op">=-</span>cutoff, color<span class="op">=</span><span class="st">'r'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Fix the label position to be near the corresponding cutoff line</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    plt.text(cutoff<span class="op">+</span><span class="fl">0.02</span>, <span class="fl">0.5</span>, <span class="ss">f'λ = </span><span class="sc">{</span>wavelength<span class="sc">}</span><span class="ss"> μm'</span>, rotation<span class="op">=</span><span class="dv">90</span>, va<span class="op">=</span><span class="st">'center'</span>)</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Add label for negative cutoff too</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    plt.text(<span class="op">-</span>cutoff<span class="op">-</span><span class="fl">0.05</span>, <span class="fl">0.5</span>, <span class="ss">f'λ = </span><span class="sc">{</span>wavelength<span class="sc">}</span><span class="ss"> μm'</span>, rotation<span class="op">=</span><span class="dv">90</span>, va<span class="op">=</span><span class="st">'center'</span>)</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="co"># Add annotations</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.text(0, 0.8, f'width = {width} μm', ha='center')</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.annotate('sinc function', xy=(0.2, 0.5), xytext=(0.3, 0.7),</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="co">#             arrowprops=dict(arrowstyle='-&gt;'))</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Spatial Frequency (cycles/μm)'</span>)</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Normalized Amplitude'</span>)</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>plt.xlim(<span class="op">-</span><span class="fl">2.8</span>, <span class="fl">2.8</span>)</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Spatial Frequency Spectrum of a Rectangular Aperture'</span>)</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-rectangular-hole-freq" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-rectangular-hole-freq-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="01-lecture06_files/figure-html/fig-rectangular-hole-freq-output-1.png" width="692" height="335" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-rectangular-hole-freq-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1— Spatial frequency spectrum of a rectangular aperture with width 10 μm. The dashed lines indicate the cutoff frequencies at which light with wavelength λ can propagate.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
 <section id="transfer-function-of-free-space" class="level3">
 <h3 class="anchored" data-anchor-id="transfer-function-of-free-space">Transfer Function of Free space</h3>
 <p>We now examine the propagation of a monochromatic optical wave of wavelength <span class="math inline">\(\lambda\)</span> and complex amplitude <span class="math inline">\(U(x, y, z)\)</span> in the free space between the planes <span class="math inline">\(z=0\)</span> and <span class="math inline">\(z=d\)</span>, called the input and output planes, respectively. Given the complex amplitude of the wave at the input plane, <span class="math inline">\(f(x, y)=U(x, y, 0)\)</span>, we want to determine the complex amplitude at the output plane, <span class="math inline">\(g(x, y)=U(x, y, d)\)</span>.</p>
@@ -481,53 +543,53 @@ H\left(\nu_x, \nu_y\right) \approx H_0 \exp \left[i \pi \lambda d\left(\nu_x^2+\
 </div>
 </div>
 </div>
-<div id="cell-fig-transfer-function" class="cell" data-execution_count="2">
+<div id="cell-fig-transfer-function" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Parameters</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>wavelength <span class="op">=</span> <span class="fl">0.5</span>  <span class="co"># wavelength in arbitrary units</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>z_distances <span class="op">=</span> [<span class="fl">.2</span>]  <span class="co"># distances for transfer function calculation</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>nu_x <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">3</span><span class="op">/</span>wavelength, <span class="dv">3</span><span class="op">/</span>wavelength, <span class="dv">1000</span>)  <span class="co"># spatial frequency range</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>nu_y <span class="op">=</span> <span class="dv">0</span>  <span class="co"># setting nu_y = 0 for a 1D plot along nu_x</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the magnitude of the transfer function for different z values</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>H_mags <span class="op">=</span> []</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> d <span class="kw">in</span> z_distances:</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Calculate k_z based on spatial frequencies</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    k_z_squared <span class="op">=</span> (<span class="dv">1</span><span class="op">/</span>wavelength)<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> nu_x<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> nu_y<span class="op">**</span><span class="dv">2</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Initialize transfer function array</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    H <span class="op">=</span> np.ones_like(nu_x, dtype<span class="op">=</span><span class="bu">complex</span>)</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># For propagating waves (real k_z)</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    prop_mask <span class="op">=</span> k_z_squared <span class="op">&gt;=</span> <span class="dv">0</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    k_z_prop <span class="op">=</span> np.sqrt(k_z_squared[prop_mask])</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    H[prop_mask] <span class="op">=</span> np.exp(<span class="op">-</span><span class="ot">1j</span> <span class="op">*</span> <span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> k_z_prop <span class="op">*</span> d)</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># For evanescent waves (imaginary k_z)</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    evan_mask <span class="op">=</span> k_z_squared <span class="op">&lt;</span> <span class="dv">0</span></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    k_z_evan <span class="op">=</span> np.sqrt(<span class="op">-</span>k_z_squared[evan_mask])</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    H[evan_mask] <span class="op">=</span> np.exp(<span class="op">-</span><span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> k_z_evan <span class="op">*</span> d)</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Store the magnitude</span></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    H_mags.append(np.<span class="bu">abs</span>(H))</span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the magnitude of the transfer function</span></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>get_size(<span class="dv">8</span>, <span class="dv">6</span>))</span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, d <span class="kw">in</span> <span class="bu">enumerate</span>(z_distances):</span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    plt.plot(nu_x<span class="op">*</span>wavelength, H_mags[i], label<span class="op">=</span><span class="ss">f'z = </span><span class="sc">{</span>d<span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>plt.axvline(x<span class="op">=-</span><span class="dv">1</span>, color<span class="op">=</span><span class="st">'k'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>plt.axvline(x<span class="op">=</span><span class="dv">1</span>, color<span class="op">=</span><span class="st">'k'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="op">-</span><span class="fl">1.1</span>, <span class="fl">0.5</span>, <span class="st">'-1/λ'</span>, fontsize<span class="op">=</span><span class="dv">8</span>)</span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="fl">0.9</span>, <span class="fl">0.5</span>, <span class="st">'1/λ'</span>, fontsize<span class="op">=</span><span class="dv">8</span>)</span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="vs">r' spatial frequency </span><span class="dv">$</span><span class="kw">(</span><span class="ch">\n</span><span class="vs">u_x·</span><span class="er">\</span><span class="vs">lambda</span><span class="kw">)</span><span class="dv">$</span><span class="vs">'</span>)</span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="vs">r'</span><span class="dv">$</span><span class="cf">|</span><span class="vs">H</span><span class="kw">(</span><span class="ch">\n</span><span class="vs">u_x, 0</span><span class="kw">)</span><span class="cf">|</span><span class="dv">$</span><span class="vs">'</span>)</span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.legend()</span></span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="dv">0</span>, <span class="fl">1.1</span>)</span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Parameters</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>wavelength <span class="op">=</span> <span class="fl">0.5</span>  <span class="co"># wavelength in arbitrary units</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>z_distances <span class="op">=</span> [<span class="fl">.2</span>]  <span class="co"># distances for transfer function calculation</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>nu_x <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">3</span><span class="op">/</span>wavelength, <span class="dv">3</span><span class="op">/</span>wavelength, <span class="dv">1000</span>)  <span class="co"># spatial frequency range</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>nu_y <span class="op">=</span> <span class="dv">0</span>  <span class="co"># setting nu_y = 0 for a 1D plot along nu_x</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the magnitude of the transfer function for different z values</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>H_mags <span class="op">=</span> []</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> d <span class="kw">in</span> z_distances:</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Calculate k_z based on spatial frequencies</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    k_z_squared <span class="op">=</span> (<span class="dv">1</span><span class="op">/</span>wavelength)<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> nu_x<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> nu_y<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Initialize transfer function array</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    H <span class="op">=</span> np.ones_like(nu_x, dtype<span class="op">=</span><span class="bu">complex</span>)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># For propagating waves (real k_z)</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    prop_mask <span class="op">=</span> k_z_squared <span class="op">&gt;=</span> <span class="dv">0</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    k_z_prop <span class="op">=</span> np.sqrt(k_z_squared[prop_mask])</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    H[prop_mask] <span class="op">=</span> np.exp(<span class="op">-</span><span class="ot">1j</span> <span class="op">*</span> <span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> k_z_prop <span class="op">*</span> d)</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># For evanescent waves (imaginary k_z)</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    evan_mask <span class="op">=</span> k_z_squared <span class="op">&lt;</span> <span class="dv">0</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    k_z_evan <span class="op">=</span> np.sqrt(<span class="op">-</span>k_z_squared[evan_mask])</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    H[evan_mask] <span class="op">=</span> np.exp(<span class="op">-</span><span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> k_z_evan <span class="op">*</span> d)</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Store the magnitude</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>    H_mags.append(np.<span class="bu">abs</span>(H))</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the magnitude of the transfer function</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>get_size(<span class="dv">8</span>, <span class="dv">6</span>))</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, d <span class="kw">in</span> <span class="bu">enumerate</span>(z_distances):</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>    plt.plot(nu_x<span class="op">*</span>wavelength, H_mags[i], label<span class="op">=</span><span class="ss">f'z = </span><span class="sc">{</span>d<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>plt.axvline(x<span class="op">=-</span><span class="dv">1</span>, color<span class="op">=</span><span class="st">'k'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>plt.axvline(x<span class="op">=</span><span class="dv">1</span>, color<span class="op">=</span><span class="st">'k'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="op">-</span><span class="fl">1.1</span>, <span class="fl">0.5</span>, <span class="st">'-1/λ'</span>, fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="fl">0.9</span>, <span class="fl">0.5</span>, <span class="st">'1/λ'</span>, fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="vs">r' spatial frequency </span><span class="dv">$</span><span class="kw">(</span><span class="ch">\n</span><span class="vs">u_x·</span><span class="er">\</span><span class="vs">lambda</span><span class="kw">)</span><span class="dv">$</span><span class="vs">'</span>)</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="vs">r'</span><span class="dv">$</span><span class="cf">|</span><span class="vs">H</span><span class="kw">(</span><span class="ch">\n</span><span class="vs">u_x, 0</span><span class="kw">)</span><span class="cf">|</span><span class="dv">$</span><span class="vs">'</span>)</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.legend()</span></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="dv">0</span>, <span class="fl">1.1</span>)</span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div id="fig-transfer-function" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -536,7 +598,7 @@ H\left(\nu_x, \nu_y\right) \approx H_0 \exp \left[i \pi \lambda d\left(\nu_x^2+\
 <img src="01-lecture06_files/figure-html/fig-transfer-function-output-1.png" width="454" height="334" class="figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-transfer-function-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1— The magnitude of the free-space transfer function. For propagating waves (<span class="math inline">\(\nu_x^2 + \nu_y^2 &lt; 1/\lambda^2\)</span>), the transfer function has magnitude 1, representing pure phase delay. For evanescent waves (<span class="math inline">\(\nu_x^2 + \nu_y^2 &gt; 1/\lambda^2\)</span>), the magnitude decays exponentially with distance from the origin.
+Figure&nbsp;2— The magnitude of the free-space transfer function. For propagating waves (<span class="math inline">\(\nu_x^2 + \nu_y^2 &lt; 1/\lambda^2\)</span>), the transfer function has magnitude 1, representing pure phase delay. For evanescent waves (<span class="math inline">\(\nu_x^2 + \nu_y^2 &gt; 1/\lambda^2\)</span>), the magnitude decays exponentially with distance from the origin.
 </figcaption>
 </figure>
 </div>
@@ -608,37 +670,37 @@ Total Internal Reflection: A Spatial Frequency Interpretation
 </div>
 </div>
 </div>
-<div id="cell-fig-transfer-function-phase" class="cell" data-execution_count="3">
+<div id="cell-fig-transfer-function-phase" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Parameters</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>wavelength <span class="op">=</span> <span class="fl">0.5</span>  <span class="co"># wavelength in arbitrary units</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>z_distances <span class="op">=</span> [<span class="fl">0.2</span>]  <span class="co"># different propagation distances</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>nu_x <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">1</span><span class="op">/</span>wavelength, <span class="dv">1</span><span class="op">/</span>wavelength, <span class="dv">1000</span>)  <span class="co"># spatial frequency range (propagating waves only)</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>nu_y <span class="op">=</span> <span class="dv">0</span>  <span class="co"># setting nu_y = 0 for a 1D plot along nu_x</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the phase of the transfer function for different z values</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>H_phases <span class="op">=</span> []</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> d <span class="kw">in</span> z_distances:</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Calculate k_z for propagating waves only</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    k_z <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> np.sqrt((<span class="dv">1</span><span class="op">/</span>wavelength)<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> nu_x<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> nu_y<span class="op">**</span><span class="dv">2</span>)</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Calculate the phase (negative argument of the transfer function)</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    phase <span class="op">=</span> k_z <span class="op">*</span> d</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Store the phase</span></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    H_phases.append(phase)</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the phase of the transfer function</span></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>get_size(<span class="dv">8</span>, <span class="dv">6</span>))</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, d <span class="kw">in</span> <span class="bu">enumerate</span>(z_distances):</span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    plt.plot(nu_x<span class="op">*</span>wavelength, H_phases[i], label<span class="op">=</span><span class="ss">f'z = </span><span class="sc">{</span>d<span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="vs">r' spatial frequency </span><span class="dv">$</span><span class="kw">(</span><span class="ch">\n</span><span class="vs">u_x·</span><span class="er">\</span><span class="vs">lambda</span><span class="kw">)</span><span class="dv">$</span><span class="vs">'</span>)</span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="vs">r'phase </span><span class="dv">$</span><span class="er">\</span><span class="vs">phi</span><span class="kw">(</span><span class="ch">\n</span><span class="vs">u_x, 0</span><span class="kw">)</span><span class="dv">$</span><span class="vs"> </span><span class="pp">[rad]</span><span class="vs">'</span>)</span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>plt.xlim(<span class="op">-</span><span class="dv">3</span>,<span class="dv">3</span>)</span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Parameters</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>wavelength <span class="op">=</span> <span class="fl">0.5</span>  <span class="co"># wavelength in arbitrary units</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>z_distances <span class="op">=</span> [<span class="fl">0.2</span>]  <span class="co"># different propagation distances</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>nu_x <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">1</span><span class="op">/</span>wavelength, <span class="dv">1</span><span class="op">/</span>wavelength, <span class="dv">1000</span>)  <span class="co"># spatial frequency range (propagating waves only)</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>nu_y <span class="op">=</span> <span class="dv">0</span>  <span class="co"># setting nu_y = 0 for a 1D plot along nu_x</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the phase of the transfer function for different z values</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>H_phases <span class="op">=</span> []</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> d <span class="kw">in</span> z_distances:</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Calculate k_z for propagating waves only</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    k_z <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> np.sqrt((<span class="dv">1</span><span class="op">/</span>wavelength)<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> nu_x<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> nu_y<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Calculate the phase (negative argument of the transfer function)</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    phase <span class="op">=</span> k_z <span class="op">*</span> d</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Store the phase</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    H_phases.append(phase)</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the phase of the transfer function</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>get_size(<span class="dv">8</span>, <span class="dv">6</span>))</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, d <span class="kw">in</span> <span class="bu">enumerate</span>(z_distances):</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    plt.plot(nu_x<span class="op">*</span>wavelength, H_phases[i], label<span class="op">=</span><span class="ss">f'z = </span><span class="sc">{</span>d<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="vs">r' spatial frequency </span><span class="dv">$</span><span class="kw">(</span><span class="ch">\n</span><span class="vs">u_x·</span><span class="er">\</span><span class="vs">lambda</span><span class="kw">)</span><span class="dv">$</span><span class="vs">'</span>)</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="vs">r'phase </span><span class="dv">$</span><span class="er">\</span><span class="vs">phi</span><span class="kw">(</span><span class="ch">\n</span><span class="vs">u_x, 0</span><span class="kw">)</span><span class="dv">$</span><span class="vs"> </span><span class="pp">[rad]</span><span class="vs">'</span>)</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>plt.xlim(<span class="op">-</span><span class="dv">3</span>,<span class="dv">3</span>)</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div id="fig-transfer-function-phase" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -647,7 +709,83 @@ Total Internal Reflection: A Spatial Frequency Interpretation
 <img src="01-lecture06_files/figure-html/fig-transfer-function-phase-output-1.png" width="454" height="334" class="figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-transfer-function-phase-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2— The phase of the free-space transfer function. For propagating waves (ν_x² + ν_y² &lt; 1/λ²), the transfer function introduces a phase delay that increases with spatial frequency. This phase represents the wavefront curvature during propagation.
+Figure&nbsp;3— The phase of the free-space transfer function. For propagating waves (ν_x² + ν_y² &lt; 1/λ²), the transfer function introduces a phase delay that increases with spatial frequency. This phase represents the wavefront curvature during propagation.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The figure below now visualizes the effect of free space propagation on the phase of the transfer function when light of certain wavelength is used to illuminate and rectangular aperture of 10 µm width.</p>
+<div id="cell-fig-cutoff-effects" class="cell" data-execution_count="5">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set parameters</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>width <span class="op">=</span> <span class="dv">10</span>  <span class="co"># width of rectangular hole in μm</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">30</span>, <span class="dv">30</span>, <span class="dv">1000</span>)  <span class="co"># spatial coordinate in μm</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>dx <span class="op">=</span> x[<span class="dv">1</span>] <span class="op">-</span> x[<span class="dv">0</span>]  <span class="co"># spatial step size</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>cutoff_wavelengths <span class="op">=</span> [<span class="fl">0.5</span>, <span class="fl">1.0</span>, <span class="fl">2.0</span>]  <span class="co"># wavelengths in μm</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Create rectangular function (1 inside the aperture, 0 outside)</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>rect <span class="op">=</span> np.zeros_like(x)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>rect[np.<span class="bu">abs</span>(x) <span class="op">&lt;=</span> width<span class="op">/</span><span class="dv">2</span>] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate spatial frequency axis</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>freq <span class="op">=</span> np.fft.fftshift(np.fft.fftfreq(<span class="bu">len</span>(x), dx))</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate Fourier transform</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>rect_ft <span class="op">=</span> np.fft.fftshift(np.fft.fft(rect))</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Create figure</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>fig, axs <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">2</span>, figsize<span class="op">=</span>get_size(<span class="dv">12</span>,<span class="dv">10</span>))</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>axs <span class="op">=</span> axs.flatten()</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot original rectangular aperture</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">0</span>].plot(x, rect, <span class="st">'b-'</span>)</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">0</span>].set_title(<span class="st">'(a) Original Rectangular Aperture'</span>)</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">0</span>].set_xlabel(<span class="st">'Position (μm)'</span>)</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">0</span>].set_ylabel(<span class="st">'Amplitude'</span>)</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">0</span>].grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="co"># For each cutoff wavelength, apply filter and reconstruct</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, wavelength <span class="kw">in</span> <span class="bu">enumerate</span>(cutoff_wavelengths):</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Create low-pass filter based on cutoff frequency</span></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>    cutoff_freq <span class="op">=</span> <span class="dv">1</span><span class="op">/</span>wavelength  <span class="co"># cutoff frequency in cycles/μm</span></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>    lowpass_filter <span class="op">=</span> np.zeros_like(freq, dtype<span class="op">=</span><span class="bu">complex</span>)</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>    lowpass_filter[np.<span class="bu">abs</span>(freq) <span class="op">&lt;=</span> cutoff_freq] <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Apply filter</span></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>    filtered_ft <span class="op">=</span> rect_ft <span class="op">*</span> lowpass_filter</span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Inverse Fourier transform to get reconstructed signal</span></span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>    reconstructed <span class="op">=</span> np.fft.ifft(np.fft.ifftshift(filtered_ft))</span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Calculate intensity (magnitude squared)</span></span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>    intensity <span class="op">=</span> np.<span class="bu">abs</span>(reconstructed)<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Normalize for display</span></span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>    intensity <span class="op">=</span> intensity <span class="op">/</span> np.<span class="bu">max</span>(intensity)</span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Plot reconstructed intensity</span></span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a>    axs[i<span class="op">+</span><span class="dv">1</span>].plot(x, intensity, <span class="st">'r-'</span>)</span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>    axs[i<span class="op">+</span><span class="dv">1</span>].set_title(<span class="ss">f'(</span><span class="sc">{</span><span class="st">"bcd"</span>[i]<span class="sc">}</span><span class="ss">) λ = </span><span class="sc">{</span>wavelength<span class="sc">}</span><span class="ss"> μm'</span>)</span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>    axs[i<span class="op">+</span><span class="dv">1</span>].set_xlabel(<span class="st">'Position (μm)'</span>)</span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a>    axs[i<span class="op">+</span><span class="dv">1</span>].set_ylabel(<span class="st">'Intensity'</span>)</span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a>    axs[i<span class="op">+</span><span class="dv">1</span>].grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Highlight the original aperture region</span></span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a>    axs[i<span class="op">+</span><span class="dv">1</span>].axvspan(<span class="op">-</span>width<span class="op">/</span><span class="dv">2</span>, width<span class="op">/</span><span class="dv">2</span>, color<span class="op">=</span><span class="st">'gray'</span>, alpha<span class="op">=</span><span class="fl">0.2</span>)</span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-cutoff-effects" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-cutoff-effects-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="01-lecture06_files/figure-html/fig-cutoff-effects-output-1.png" width="703" height="571" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cutoff-effects-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4— Effect of spatial frequency cutoff on image reconstruction. (a) Original rectangular aperture. (b-d) Reconstructed intensity after applying different wavelength cutoffs. As the cutoff wavelength increases, more high-frequency components are lost, resulting in blurring and loss of edge sharpness.
 </figcaption>
 </figure>
 </div>
@@ -663,7 +801,7 @@ Figure&nbsp;2— The phase of the free-space transfer function. For propagating 
 <img src="../../lectures/lecture06/img/transmission.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-transmission-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3— Diffraction and typical transmission spectrum of visible light through a subwavelength hole in an infinitely thin perfect metal film.
+Figure&nbsp;5— Diffraction and typical transmission spectrum of visible light through a subwavelength hole in an infinitely thin perfect metal film.
 </figcaption>
 </figure>
 </div>
@@ -674,7 +812,7 @@ Figure&nbsp;3— Diffraction and typical transmission spectrum of visible light 
 <img src="../../lectures/lecture06/img/hole.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-optical-transmission-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;4— Optical transmission properties of single holes in metal films. The holes were milled in suspended optically thick Ag films illuminated with white light. a, A circular aperture and b, its transmission spectrum for a 270 nm diameter in a 200-nm-thick film. c, A rectangular aperture and d, its transmission spectrum as a function of the polarization angle h for the following geometrical parameters: 210 nm 3 310 nm, film thickness 700 nm. (Degiron, A., Lezec, H. J., Yamamoto, N. &amp; Ebbesen, T. W. Optical transmission properties of a single subwavelength aperture in a real metal. Opt. Commun. 239, 61–66 (2004).)
+Figure&nbsp;6— Optical transmission properties of single holes in metal films. The holes were milled in suspended optically thick Ag films illuminated with white light. a, A circular aperture and b, its transmission spectrum for a 270 nm diameter in a 200-nm-thick film. c, A rectangular aperture and d, its transmission spectrum as a function of the polarization angle h for the following geometrical parameters: 210 nm 3 310 nm, film thickness 700 nm. (Degiron, A., Lezec, H. J., Yamamoto, N. &amp; Ebbesen, T. W. Optical transmission properties of a single subwavelength aperture in a real metal. Opt. Commun. 239, 61–66 (2004).)
 </figcaption>
 </figure>
 </div>
@@ -698,83 +836,83 @@ Figure&nbsp;4— Optical transmission properties of single holes in metal films.
 <p>and</p>
 <p><span class="math display">\[\theta_{y0} = \sin^{-1}(\lambda\nu_{y0})\]</span></p>
 <p>This behavior can be understood by viewing <span class="math inline">\(f(x, y)\)</span> as a combination of the base transmittance <span class="math inline">\(f_0(x, y)\)</span> with a phase grating having transmittance <span class="math inline">\(e^{-i 2\pi(\nu_{x0}x + \nu_{y0}y)}\)</span> that provides the angular deflection.</p>
-<div id="cell-fig-amplitude-modulation" class="cell" data-execution_count="4">
+<div id="cell-fig-amplitude-modulation" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set up the coordinate system</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">500</span>)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">500</span>)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>X, Y <span class="op">=</span> np.meshgrid(x, y)</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Parameters</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>wavelength <span class="op">=</span> <span class="fl">0.5</span>  <span class="co"># arbitrary units</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>nu_x0 <span class="op">=</span> <span class="fl">2.0</span>  <span class="co"># carrier spatial frequency</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>theta_x0 <span class="op">=</span> np.rad2deg(np.arcsin(wavelength <span class="op">*</span> nu_x0))  <span class="co"># corresponding angle</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Create base pattern f₀(x,y) - using a Gaussian pattern</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>sigma <span class="op">=</span> <span class="fl">1.5</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>f0 <span class="op">=</span> np.exp(<span class="op">-</span>(X<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> Y<span class="op">**</span><span class="dv">2</span>)<span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>sigma<span class="op">**</span><span class="dv">2</span>))</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Create carrier wave</span></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>carrier <span class="op">=</span> np.exp(<span class="op">-</span><span class="ot">1j</span><span class="op">*</span><span class="dv">2</span><span class="op">*</span>np.pi<span class="op">*</span>nu_x0<span class="op">*</span>X)</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Create modulated pattern</span></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> f0 <span class="op">*</span> carrier</span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate 2D Fourier transforms</span></span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>F0 <span class="op">=</span> np.fft.fftshift(np.fft.fft2(f0))</span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>F <span class="op">=</span> np.fft.fftshift(np.fft.fft2(f))</span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Create frequency axes</span></span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>freq_x <span class="op">=</span> np.fft.fftshift(np.fft.fftfreq(<span class="bu">len</span>(x), x[<span class="dv">1</span>]<span class="op">-</span>x[<span class="dv">0</span>]))</span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>freq_y <span class="op">=</span> np.fft.fftshift(np.fft.fftfreq(<span class="bu">len</span>(y), y[<span class="dv">1</span>]<span class="op">-</span>y[<span class="dv">0</span>]))</span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Create figure with 4 subplots</span></span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>fig, axs <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">2</span>, figsize<span class="op">=</span>get_size(<span class="dv">12</span>, <span class="dv">12</span>))</span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>axs <span class="op">=</span> axs.flatten()</span>
-<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the base pattern f₀(x,y)</span></span>
-<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>im0 <span class="op">=</span> axs[<span class="dv">0</span>].imshow(f0, extent<span class="op">=</span>[x.<span class="bu">min</span>(), x.<span class="bu">max</span>(), y.<span class="bu">min</span>(), y.<span class="bu">max</span>()],</span>
-<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>                    cmap<span class="op">=</span><span class="st">'gray'</span>, origin<span class="op">=</span><span class="st">'lower'</span>)</span>
-<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">0</span>].set_title(<span class="st">'(a) Base Pattern f₀(x,y)'</span>)</span>
-<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">0</span>].set_xlabel(<span class="st">'x'</span>)</span>
-<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">0</span>].set_ylabel(<span class="st">'y'</span>)</span>
-<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the carrier wave (real part)</span></span>
-<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>im1 <span class="op">=</span> axs[<span class="dv">1</span>].imshow(np.real(carrier), extent<span class="op">=</span>[x.<span class="bu">min</span>(), x.<span class="bu">max</span>(), y.<span class="bu">min</span>(), y.<span class="bu">max</span>()],</span>
-<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>                    cmap<span class="op">=</span><span class="st">'gray'</span>, origin<span class="op">=</span><span class="st">'lower'</span>)</span>
-<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">1</span>].set_title(<span class="ss">f'(b) Carrier Wave: $e^</span><span class="ch">{{</span><span class="ss">-j2</span><span class="ch">\\</span><span class="ss">pi</span><span class="ch">\\</span><span class="ss">nu_</span><span class="ch">{{</span><span class="ss">x0</span><span class="ch">}}</span><span class="ss">x</span><span class="ch">}}</span><span class="ss">$'</span>)</span>
-<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">1</span>].set_xlabel(<span class="st">'x'</span>)</span>
-<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">1</span>].set_ylabel(<span class="st">'y'</span>)</span>
-<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the modulated pattern (real part)</span></span>
-<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>im2 <span class="op">=</span> axs[<span class="dv">2</span>].imshow(np.real(f), extent<span class="op">=</span>[x.<span class="bu">min</span>(), x.<span class="bu">max</span>(), y.<span class="bu">min</span>(), y.<span class="bu">max</span>()],</span>
-<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>                    cmap<span class="op">=</span><span class="st">'gray'</span>, origin<span class="op">=</span><span class="st">'lower'</span>)</span>
-<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">2</span>].set_title(<span class="st">'(c) Modulated Pattern f(x,y)'</span>)</span>
-<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">2</span>].set_xlabel(<span class="st">'x'</span>)</span>
-<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">2</span>].set_ylabel(<span class="st">'y'</span>)</span>
-<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot Fourier transforms (log magnitude to enhance visibility)</span></span>
-<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot along central row in frequency space (freq_y = 0)</span></span>
-<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a>central_row <span class="op">=</span> <span class="bu">len</span>(freq_y) <span class="op">//</span> <span class="dv">2</span></span>
-<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">3</span>].plot(freq_x, np.log(np.<span class="bu">abs</span>(F0[central_row, :]) <span class="op">+</span> <span class="dv">1</span>), <span class="st">'b-'</span>, label<span class="op">=</span><span class="st">'F₀(ν)'</span>)</span>
-<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">3</span>].plot(freq_x, np.log(np.<span class="bu">abs</span>(F[central_row, :]) <span class="op">+</span> <span class="dv">1</span>), <span class="st">'r--'</span>, label<span class="op">=</span><span class="st">'F(ν)'</span>)</span>
-<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">3</span>].set_title(<span class="st">'(d) Fourier Transforms'</span>)</span>
-<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">3</span>].set_xlabel(<span class="st">'Spatial Frequency ν_x'</span>)</span>
-<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">3</span>].set_ylabel(<span class="st">'Log Magnitude'</span>)</span>
-<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">3</span>].legend()</span>
-<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a><span class="co"># Add markers to show the shift to ν₀</span></span>
-<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">3</span>].axvline(x<span class="op">=</span><span class="dv">0</span>, color<span class="op">=</span><span class="st">'g'</span>, linestyle<span class="op">=</span><span class="st">':'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>, label<span class="op">=</span><span class="st">'Original Center'</span>)</span>
-<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">3</span>].axvline(x<span class="op">=</span>nu_x0, color<span class="op">=</span><span class="st">'m'</span>, linestyle<span class="op">=</span><span class="st">':'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>, label<span class="op">=</span><span class="ss">f'Shifted Center (ν₀=</span><span class="sc">{</span>nu_x0<span class="sc">}</span><span class="ss">)'</span>)</span>
-<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a><span class="co">#axs[3].text(nu_x0 + 0.1, axs[3].get_ylim()[1]*0.9, f'θ₀={theta_x0:.1f}°', color='m')</span></span>
-<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a><span class="co"># Limit frequency axis for better visibility</span></span>
-<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">3</span>].set_xlim(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>)</span>
-<span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb3-74"><a href="#cb3-74" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set up the coordinate system</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">500</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">500</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>X, Y <span class="op">=</span> np.meshgrid(x, y)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Parameters</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>wavelength <span class="op">=</span> <span class="fl">0.5</span>  <span class="co"># arbitrary units</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>nu_x0 <span class="op">=</span> <span class="fl">2.0</span>  <span class="co"># carrier spatial frequency</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>theta_x0 <span class="op">=</span> np.rad2deg(np.arcsin(wavelength <span class="op">*</span> nu_x0))  <span class="co"># corresponding angle</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Create base pattern f₀(x,y) - using a Gaussian pattern</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>sigma <span class="op">=</span> <span class="fl">1.5</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>f0 <span class="op">=</span> np.exp(<span class="op">-</span>(X<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> Y<span class="op">**</span><span class="dv">2</span>)<span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>sigma<span class="op">**</span><span class="dv">2</span>))</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Create carrier wave</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>carrier <span class="op">=</span> np.exp(<span class="op">-</span><span class="ot">1j</span><span class="op">*</span><span class="dv">2</span><span class="op">*</span>np.pi<span class="op">*</span>nu_x0<span class="op">*</span>X)</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Create modulated pattern</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> f0 <span class="op">*</span> carrier</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate 2D Fourier transforms</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>F0 <span class="op">=</span> np.fft.fftshift(np.fft.fft2(f0))</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>F <span class="op">=</span> np.fft.fftshift(np.fft.fft2(f))</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Create frequency axes</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>freq_x <span class="op">=</span> np.fft.fftshift(np.fft.fftfreq(<span class="bu">len</span>(x), x[<span class="dv">1</span>]<span class="op">-</span>x[<span class="dv">0</span>]))</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>freq_y <span class="op">=</span> np.fft.fftshift(np.fft.fftfreq(<span class="bu">len</span>(y), y[<span class="dv">1</span>]<span class="op">-</span>y[<span class="dv">0</span>]))</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Create figure with 4 subplots</span></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>fig, axs <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">2</span>, figsize<span class="op">=</span>get_size(<span class="dv">12</span>, <span class="dv">12</span>))</span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>axs <span class="op">=</span> axs.flatten()</span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the base pattern f₀(x,y)</span></span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>im0 <span class="op">=</span> axs[<span class="dv">0</span>].imshow(f0, extent<span class="op">=</span>[x.<span class="bu">min</span>(), x.<span class="bu">max</span>(), y.<span class="bu">min</span>(), y.<span class="bu">max</span>()],</span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>                    cmap<span class="op">=</span><span class="st">'gray'</span>, origin<span class="op">=</span><span class="st">'lower'</span>)</span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">0</span>].set_title(<span class="st">'(a) Base Pattern f₀(x,y)'</span>)</span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">0</span>].set_xlabel(<span class="st">'x'</span>)</span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">0</span>].set_ylabel(<span class="st">'y'</span>)</span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the carrier wave (real part)</span></span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>im1 <span class="op">=</span> axs[<span class="dv">1</span>].imshow(np.real(carrier), extent<span class="op">=</span>[x.<span class="bu">min</span>(), x.<span class="bu">max</span>(), y.<span class="bu">min</span>(), y.<span class="bu">max</span>()],</span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>                    cmap<span class="op">=</span><span class="st">'gray'</span>, origin<span class="op">=</span><span class="st">'lower'</span>)</span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">1</span>].set_title(<span class="ss">f'(b) Carrier Wave: $e^</span><span class="ch">{{</span><span class="ss">-j2</span><span class="ch">\\</span><span class="ss">pi</span><span class="ch">\\</span><span class="ss">nu_</span><span class="ch">{{</span><span class="ss">x0</span><span class="ch">}}</span><span class="ss">x</span><span class="ch">}}</span><span class="ss">$'</span>)</span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">1</span>].set_xlabel(<span class="st">'x'</span>)</span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">1</span>].set_ylabel(<span class="st">'y'</span>)</span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the modulated pattern (real part)</span></span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>im2 <span class="op">=</span> axs[<span class="dv">2</span>].imshow(np.real(f), extent<span class="op">=</span>[x.<span class="bu">min</span>(), x.<span class="bu">max</span>(), y.<span class="bu">min</span>(), y.<span class="bu">max</span>()],</span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a>                    cmap<span class="op">=</span><span class="st">'gray'</span>, origin<span class="op">=</span><span class="st">'lower'</span>)</span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">2</span>].set_title(<span class="st">'(c) Modulated Pattern f(x,y)'</span>)</span>
+<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">2</span>].set_xlabel(<span class="st">'x'</span>)</span>
+<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">2</span>].set_ylabel(<span class="st">'y'</span>)</span>
+<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot Fourier transforms (log magnitude to enhance visibility)</span></span>
+<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot along central row in frequency space (freq_y = 0)</span></span>
+<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a>central_row <span class="op">=</span> <span class="bu">len</span>(freq_y) <span class="op">//</span> <span class="dv">2</span></span>
+<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">3</span>].plot(freq_x, np.log(np.<span class="bu">abs</span>(F0[central_row, :]) <span class="op">+</span> <span class="dv">1</span>), <span class="st">'b-'</span>, label<span class="op">=</span><span class="st">'F₀(ν)'</span>)</span>
+<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">3</span>].plot(freq_x, np.log(np.<span class="bu">abs</span>(F[central_row, :]) <span class="op">+</span> <span class="dv">1</span>), <span class="st">'r--'</span>, label<span class="op">=</span><span class="st">'F(ν)'</span>)</span>
+<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">3</span>].set_title(<span class="st">'(d) Fourier Transforms'</span>)</span>
+<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">3</span>].set_xlabel(<span class="st">'Spatial Frequency ν_x'</span>)</span>
+<span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">3</span>].set_ylabel(<span class="st">'Log Magnitude'</span>)</span>
+<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">3</span>].legend()</span>
+<span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a><span class="co"># Add markers to show the shift to ν₀</span></span>
+<span id="cb5-66"><a href="#cb5-66" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">3</span>].axvline(x<span class="op">=</span><span class="dv">0</span>, color<span class="op">=</span><span class="st">'g'</span>, linestyle<span class="op">=</span><span class="st">':'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>, label<span class="op">=</span><span class="st">'Original Center'</span>)</span>
+<span id="cb5-67"><a href="#cb5-67" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">3</span>].axvline(x<span class="op">=</span>nu_x0, color<span class="op">=</span><span class="st">'m'</span>, linestyle<span class="op">=</span><span class="st">':'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>, label<span class="op">=</span><span class="ss">f'Shifted Center (ν₀=</span><span class="sc">{</span>nu_x0<span class="sc">}</span><span class="ss">)'</span>)</span>
+<span id="cb5-68"><a href="#cb5-68" aria-hidden="true" tabindex="-1"></a><span class="co">#axs[3].text(nu_x0 + 0.1, axs[3].get_ylim()[1]*0.9, f'θ₀={theta_x0:.1f}°', color='m')</span></span>
+<span id="cb5-69"><a href="#cb5-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-70"><a href="#cb5-70" aria-hidden="true" tabindex="-1"></a><span class="co"># Limit frequency axis for better visibility</span></span>
+<span id="cb5-71"><a href="#cb5-71" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">3</span>].set_xlim(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>)</span>
+<span id="cb5-72"><a href="#cb5-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-73"><a href="#cb5-73" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb5-74"><a href="#cb5-74" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div id="fig-amplitude-modulation" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -783,7 +921,7 @@ Figure&nbsp;4— Optical transmission properties of single holes in metal films.
 <img src="01-lecture06_files/figure-html/fig-amplitude-modulation-output-1.png" width="682" height="688" class="figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-amplitude-modulation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5— Visualization of amplitude modulation and the corresponding angular deflection. (a) The base pattern f₀(x,y) - a Gaussian envelope. (b) A carrier wave with spatial frequency ν₀. (c) The amplitude-modulated pattern f(x,y)=f₀(x,y)e^(-j2πν₀x). (d) Fourier transforms showing how the spectrum shifts with modulation, corresponding to angular deflection.
+Figure&nbsp;7— Visualization of amplitude modulation and the corresponding angular deflection. (a) The base pattern f₀(x,y) - a Gaussian envelope. (b) A carrier wave with spatial frequency ν₀. (c) The amplitude-modulated pattern f(x,y)=f₀(x,y)e^(-j2πν₀x). (d) Fourier transforms showing how the spectrum shifts with modulation, corresponding to angular deflection.
 </figcaption>
 </figure>
 </div>
@@ -822,7 +960,7 @@ Structured Illumination Microscopy (SIM)
 <img src="img/moire.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-moire-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;6— The moiré effect in SIM. When a sample with high spatial frequency features is illuminated with a structured pattern, the interference creates moiré fringes at lower frequencies that can be detected by the microscope. This allows information about sub-diffraction structures to be encoded in observable signals. (see Gustafsson, M. G. L. Nonlinear structured-illumination microscopy: Wide-field fluorescence imaging with theoretically unlimited resolution. Proc. Natl. Acad. Sci. 102, 13081–13086 (2005))
+Figure&nbsp;8— The moiré effect in SIM. When a sample with high spatial frequency features is illuminated with a structured pattern, the interference creates moiré fringes at lower frequencies that can be detected by the microscope. This allows information about sub-diffraction structures to be encoded in observable signals. (see Gustafsson, M. G. L. Nonlinear structured-illumination microscopy: Wide-field fluorescence imaging with theoretically unlimited resolution. Proc. Natl. Acad. Sci. 102, 13081–13086 (2005))
 </figcaption>
 </figure>
 </div>
@@ -843,7 +981,7 @@ Figure&nbsp;6— The moiré effect in SIM. When a sample with high spatial frequ
 <img src="../../lectures/lecture06/img/interconnects.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-interconnects-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;7— Deflection of light by a transparency made of several harmonic functions (phase gratings) of different spatial frequencies. (source Saleh/Teich Principles of Photonics).
+Figure&nbsp;9— Deflection of light by a transparency made of several harmonic functions (phase gratings) of different spatial frequencies. (source Saleh/Teich Principles of Photonics).
 </figcaption>
 </figure>
 </div>
@@ -858,64 +996,64 @@ Figure&nbsp;7— Deflection of light by a transparency made of several harmonic 
 <p>Speckle arises when coherent wavefronts undergo spatially varying phase shifts that cause complex interference. From our spatial frequency perspective, we can model a rough surface as applying a random phase modulation to the incident wavefront:</p>
 <p><span class="math display">\[E_{\text{scattered}}(x,y) = E_0 e^{i\phi(x,y)}\]</span></p>
 <p>where <span class="math inline">\(\phi(x,y)\)</span> is a random phase function corresponding to the surface height variations. When this scattered field propagates and interferes with itself, it produces the characteristic speckle pattern. Unlike our controlled interconnect example, where each region deliberately directs light in a specific direction, here each microscopic region of the rough surface randomly deflects light, creating a complex superposition of wavefronts with random phases and directions.</p>
-<div id="cell-fig-speckle-formation" class="cell" data-execution_count="5">
+<div id="cell-fig-speckle-formation" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Code to generate and display a simulated speckle pattern</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.ndimage <span class="im">import</span> gaussian_filter</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create random phase screen</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">512</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>random_phase <span class="op">=</span> <span class="dv">2</span><span class="op">*</span>np.pi<span class="op">*</span>np.random.rand(N, N)</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply some spatial correlation to the phase to get more realistic speckle</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co"># First generate complex field</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>field <span class="op">=</span> np.exp(<span class="ot">1j</span> <span class="op">*</span> random_phase)</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply aperture (spatial filtering) to control speckle size</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>aperture <span class="op">=</span> np.zeros((N, N))</span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>aperture_radius <span class="op">=</span> N<span class="op">//</span><span class="dv">10</span></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>center <span class="op">=</span> N<span class="op">//</span><span class="dv">2</span></span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>y, x <span class="op">=</span> np.ogrid[:N, :N]</span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>mask <span class="op">=</span> (x <span class="op">-</span> center)<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> (y <span class="op">-</span> center)<span class="op">**</span><span class="dv">2</span> <span class="op">&lt;=</span> aperture_radius<span class="op">**</span><span class="dv">2</span></span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>aperture[mask] <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply aperture in Fourier domain (equivalent to spatial filtering)</span></span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>field_ft <span class="op">=</span> np.fft.fftshift(np.fft.fft2(field))</span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>filtered_field_ft <span class="op">=</span> field_ft <span class="op">*</span> aperture</span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>speckle_field <span class="op">=</span> np.fft.ifft2(np.fft.ifftshift(filtered_field_ft))</span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate intensity pattern (square of the field amplitude)</span></span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>speckle_pattern <span class="op">=</span> np.<span class="bu">abs</span>(speckle_field)<span class="op">**</span><span class="dv">2</span></span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Display results</span></span>
-<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>fig, axs <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, figsize<span class="op">=</span>get_size(<span class="dv">13</span>, <span class="dv">4</span>))</span>
-<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Crop phase screen to same dimensions as aperture for consistent display</span></span>
-<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>phase_display <span class="op">=</span> random_phase[center<span class="op">-</span>aperture_radius:center<span class="op">+</span>aperture_radius,</span>
-<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>                             center<span class="op">-</span>aperture_radius:center<span class="op">+</span>aperture_radius]</span>
-<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a><span class="co"># Crop aperture to same dimensions for consistent display</span></span>
-<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>aperture_display <span class="op">=</span> aperture[center<span class="op">-</span>aperture_radius:center<span class="op">+</span>aperture_radius,</span>
-<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>                            center<span class="op">-</span>aperture_radius:center<span class="op">+</span>aperture_radius]</span>
-<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Crop speckle pattern to same size for consistency</span></span>
-<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>speckle_display <span class="op">=</span> speckle_pattern[center<span class="op">-</span>aperture_radius:center<span class="op">+</span>aperture_radius,</span>
-<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>                                  center<span class="op">-</span>aperture_radius:center<span class="op">+</span>aperture_radius]</span>
-<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot phase screen with consistent dimensions</span></span>
-<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>im0 <span class="op">=</span> axs[<span class="dv">0</span>].imshow(phase_display, cmap<span class="op">=</span><span class="st">'viridis'</span>)</span>
-<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">0</span>].set_title(<span class="st">'random phase'</span>)</span>
-<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>plt.colorbar(im0, ax<span class="op">=</span>axs[<span class="dv">0</span>], label<span class="op">=</span><span class="st">'Phase (rad)'</span>)</span>
-<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot aperture with consistent dimensions</span></span>
-<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>im1 <span class="op">=</span> axs[<span class="dv">1</span>].imshow(aperture_display, cmap<span class="op">=</span><span class="st">'hot'</span>)</span>
-<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">1</span>].set_title(<span class="st">'frequency filter'</span>)</span>
-<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot speckle pattern with consistent dimensions</span></span>
-<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a>im2 <span class="op">=</span> axs[<span class="dv">2</span>].imshow(speckle_display, cmap<span class="op">=</span><span class="st">'gray'</span>, vmax<span class="op">=</span><span class="dv">3</span><span class="op">*</span>np.mean(speckle_display))</span>
-<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">2</span>].set_title(<span class="st">'speckle pattern'</span>)</span>
-<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Code to generate and display a simulated speckle pattern</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.ndimage <span class="im">import</span> gaussian_filter</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create random phase screen</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">512</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>random_phase <span class="op">=</span> <span class="dv">2</span><span class="op">*</span>np.pi<span class="op">*</span>np.random.rand(N, N)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply some spatial correlation to the phase to get more realistic speckle</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co"># First generate complex field</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>field <span class="op">=</span> np.exp(<span class="ot">1j</span> <span class="op">*</span> random_phase)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply aperture (spatial filtering) to control speckle size</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>aperture <span class="op">=</span> np.zeros((N, N))</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>aperture_radius <span class="op">=</span> N<span class="op">//</span><span class="dv">10</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>center <span class="op">=</span> N<span class="op">//</span><span class="dv">2</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>y, x <span class="op">=</span> np.ogrid[:N, :N]</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>mask <span class="op">=</span> (x <span class="op">-</span> center)<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> (y <span class="op">-</span> center)<span class="op">**</span><span class="dv">2</span> <span class="op">&lt;=</span> aperture_radius<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>aperture[mask] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply aperture in Fourier domain (equivalent to spatial filtering)</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>field_ft <span class="op">=</span> np.fft.fftshift(np.fft.fft2(field))</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>filtered_field_ft <span class="op">=</span> field_ft <span class="op">*</span> aperture</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>speckle_field <span class="op">=</span> np.fft.ifft2(np.fft.ifftshift(filtered_field_ft))</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate intensity pattern (square of the field amplitude)</span></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>speckle_pattern <span class="op">=</span> np.<span class="bu">abs</span>(speckle_field)<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Display results</span></span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>fig, axs <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, figsize<span class="op">=</span>get_size(<span class="dv">13</span>, <span class="dv">4</span>))</span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Crop phase screen to same dimensions as aperture for consistent display</span></span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>phase_display <span class="op">=</span> random_phase[center<span class="op">-</span>aperture_radius:center<span class="op">+</span>aperture_radius,</span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>                             center<span class="op">-</span>aperture_radius:center<span class="op">+</span>aperture_radius]</span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a><span class="co"># Crop aperture to same dimensions for consistent display</span></span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>aperture_display <span class="op">=</span> aperture[center<span class="op">-</span>aperture_radius:center<span class="op">+</span>aperture_radius,</span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>                            center<span class="op">-</span>aperture_radius:center<span class="op">+</span>aperture_radius]</span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Crop speckle pattern to same size for consistency</span></span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>speckle_display <span class="op">=</span> speckle_pattern[center<span class="op">-</span>aperture_radius:center<span class="op">+</span>aperture_radius,</span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>                                  center<span class="op">-</span>aperture_radius:center<span class="op">+</span>aperture_radius]</span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot phase screen with consistent dimensions</span></span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a>im0 <span class="op">=</span> axs[<span class="dv">0</span>].imshow(phase_display, cmap<span class="op">=</span><span class="st">'viridis'</span>)</span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">0</span>].set_title(<span class="st">'random phase'</span>)</span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a>plt.colorbar(im0, ax<span class="op">=</span>axs[<span class="dv">0</span>], label<span class="op">=</span><span class="st">'Phase (rad)'</span>)</span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot aperture with consistent dimensions</span></span>
+<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a>im1 <span class="op">=</span> axs[<span class="dv">1</span>].imshow(aperture_display, cmap<span class="op">=</span><span class="st">'hot'</span>)</span>
+<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">1</span>].set_title(<span class="st">'frequency filter'</span>)</span>
+<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot speckle pattern with consistent dimensions</span></span>
+<span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a>im2 <span class="op">=</span> axs[<span class="dv">2</span>].imshow(speckle_display, cmap<span class="op">=</span><span class="st">'gray'</span>, vmax<span class="op">=</span><span class="dv">3</span><span class="op">*</span>np.mean(speckle_display))</span>
+<span id="cb6-52"><a href="#cb6-52" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">2</span>].set_title(<span class="st">'speckle pattern'</span>)</span>
+<span id="cb6-53"><a href="#cb6-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-54"><a href="#cb6-54" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb6-55"><a href="#cb6-55" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div id="fig-speckle-formation" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -924,15 +1062,25 @@ Figure&nbsp;7— Deflection of light by a transparency made of several harmonic 
 <img src="01-lecture06_files/figure-html/fig-speckle-formation-output-1.png" width="744" height="225" class="figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-speckle-formation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;8— Speckle formation process. (a) Coherent light incident on a rough surface acquires random phase shifts. (b) The resulting scattered field creates a speckle pattern in the observation plane. (c) The characteristic granular appearance of a fully developed speckle pattern.
+Figure&nbsp;10— Speckle formation process. (a) Coherent light incident on a rough surface acquires random phase shifts. (b) The resulting scattered field creates a speckle pattern in the observation plane. (c) The characteristic granular appearance of a fully developed speckle pattern.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
 <p>The random yet deterministic nature of speckle patterns shares remarkable similarities with the weight matrices of trained neural networks, offering an intriguing conceptual framework that connects Fourier optics with modern computational systems.</p>
-<section id="conceptual-connections-to-neuronal-networks" class="level4">
-<h4 class="anchored" data-anchor-id="conceptual-connections-to-neuronal-networks">Conceptual Connections to Neuronal Networks</h4>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Conceptual Connections to Neuronal Networks
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <ol type="1">
 <li><p><strong>Wave Superposition vs.&nbsp;Neuronal Contributions</strong>: Just as each speckle grain represents the constructive interference of many wave components, each connection in a neural network can be viewed as the “superposition” of many training examples that collectively shaped that weight.</p></li>
 <li><p><strong>Information Encoding</strong>:</p>
@@ -964,42 +1112,106 @@ Figure&nbsp;8— Speckle formation process. (a) Coherent light incident on a rou
 <img src="../../lectures/lecture06/img/imaging_disorder.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-diffusercam-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;9— DiffuserCam: A compressive framework allows 3D imaging using a surface diffuser and a camera, using prior calibration of the diffuser and a minimization algorithm. Image taken from the perspective article <a href="https://www.nature.com/articles/s41567-022-01681-1">Gigan, S. Imaging and computing with disorder. Nat. Phys. 18, 980–985 (2022)</a>.
+Figure&nbsp;11— DiffuserCam: A compressive framework allows 3D imaging using a surface diffuser and a camera, using prior calibration of the diffuser and a minimization algorithm. Image taken from the perspective article <a href="https://www.nature.com/articles/s41567-022-01681-1">Gigan, S. Imaging and computing with disorder. Nat. Phys. 18, 980–985 (2022)</a>.
 </figcaption>
 </figure>
 </div>
-</section>
+</div>
+</div>
+</div>
 </section>
 </section>
 <section id="frequency-modulation-with-continuously-varying-spatial-frequencies" class="level2">
 <h2 class="anchored" data-anchor-id="frequency-modulation-with-continuously-varying-spatial-frequencies">Frequency Modulation with Continuously Varying Spatial Frequencies</h2>
-<p>A transparency may also have a harmonic transmittance with a spatial frequency that varies continuously and slowly with position (in comparison with <span class="math inline">\(\lambda\)</span>), similar to how the frequency of a frequency-modulated (FM) signal varies slowly with time.</p>
-<p>Consider the phase function:</p>
+<p>A transparency may also have a harmonic transmittance with a spatial frequency that varies gradually across its surface, similar to how a musical note changes pitch in an FM radio signal. This is easier to visualize than the fixed-frequency patterns we discussed earlier.</p>
+<p>Let’s look at a transparency with this phase-altering property:</p>
 <p><span class="math display">\[f(x, y) = \exp[-i2\pi\phi(x, y)]\]</span></p>
-<p>where <span class="math inline">\(\phi(x, y)\)</span> is a continuous slowly varying function of <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>.</p>
-<p>In the neighborhood of a point <span class="math inline">\((x_0, y_0)\)</span>, we can use Taylor’s series expansion:</p>
+<p>where <span class="math inline">\(\phi(x, y)\)</span> is a smooth function that changes slowly compared to the wavelength of light (<span class="math inline">\(\lambda\)</span>).</p>
+<p>If we zoom in around any point <span class="math inline">\((x_0, y_0)\)</span>, we can approximate <span class="math inline">\(\phi(x, y)\)</span> using the first few terms of a Taylor series (which you’ve seen in calculus):</p>
 <p><span class="math display">\[\phi(x, y) \approx \phi(x_0, y_0) + (x-x_0)\nu_x + (y-y_0)\nu_y\]</span></p>
-<p>where the derivatives <span class="math inline">\(\nu_x = \partial\phi/\partial x\)</span> and <span class="math inline">\(\nu_y = \partial\phi/\partial y\)</span> are evaluated at the position <span class="math inline">\((x_0, y_0)\)</span>.</p>
-<p>The local variation of <span class="math inline">\(f(x, y)\)</span> with <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> is therefore proportional to:</p>
-<p><span class="math display">\[\exp[-i2\pi(\nu_x x + \nu_y y)]\]</span></p>
-<p>This represents a harmonic function with spatial frequencies:</p>
+<p>where <span class="math inline">\(\nu_x\)</span> and <span class="math inline">\(\nu_y\)</span> are just the partial derivatives of <span class="math inline">\(\phi\)</span> with respect to <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> at that point:</p>
 <p><span class="math display">\[\nu_x = \frac{\partial\phi}{\partial x} \quad \text{and} \quad \nu_y = \frac{\partial\phi}{\partial y}\]</span></p>
-<p>Since these derivatives vary with position, the spatial frequencies also vary with <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>. Consequently, the transparency <span class="math inline">\(f(x, y) = \exp[-i2\pi\phi(x, y)]\)</span> deflects the portion of the wave at position <span class="math inline">\((x, y)\)</span> by the position-dependent angles:</p>
+<p>Near this point, our transparency function behaves like:</p>
+<p><span class="math display">\[\exp[-i2\pi(\nu_x x + \nu_y y)]\]</span></p>
+<p>which we recognize as a harmonic function with local spatial frequencies <span class="math inline">\(\nu_x\)</span> and <span class="math inline">\(\nu_y\)</span>.</p>
+<p>Since these derivatives change as we move across the transparency, the spatial frequencies also vary with position. As a result, different parts of the incoming light wave get deflected by different angles:</p>
 <p><span class="math display">\[\theta_x = \sin^{-1}\left(\lambda\frac{\partial\phi}{\partial x}\right) \quad \text{and} \quad \theta_y = \sin^{-1}\left(\lambda\frac{\partial\phi}{\partial y}\right)\]</span></p>
+<p>This is how optical elements like lenses can bend light in position-dependent ways to focus or shape wavefronts.</p>
 <section id="imaging" class="level3">
 <h3 class="anchored" data-anchor-id="imaging">Imaging</h3>
-<p>When a thin transparency has a complex amplitude transmittance of <span class="math inline">\(f(x, y)=\exp \left(j \pi x^2 / \lambda f\right)\)</span>, it creates a phase shift of <span class="math inline">\(2 \pi \phi(x, y)\)</span> where <span class="math inline">\(\phi(x, y)=\)</span> <span class="math inline">\(-x^2 / 2 \lambda f\)</span>. This causes the wave at position <span class="math inline">\((x, y)\)</span> to be deflected by angles <span class="math inline">\(\theta_x=\)</span> <span class="math inline">\(\sin ^{-1}(\lambda \partial \phi / \partial x)=\sin ^{-1}(-x / f)\)</span> and <span class="math inline">\(\theta_y=0\)</span>. For small values where <span class="math inline">\(|x / f| \ll 1\)</span>, the deflection angle simplifies to <span class="math inline">\(\theta_x \approx-x / f\)</span>, making it directly proportional to the transverse distance <span class="math inline">\(x\)</span>. When a plane wave illuminates this transparency, different parts of the wavefront are deflected at varying angles, altering the overall wavefront shape. At position <span class="math inline">\(x\)</span>, the local wavevector bends by an angle <span class="math inline">\(-x / f\)</span>, causing all wavevectors to converge at a single point located a distance <span class="math inline">\(f\)</span> from the transparency along the optical axis, as shown below</p>
+<p>When a thin transparency has a complex amplitude transmittance of</p>
+<p><span class="math display">\[f(x, y)=\exp \left(j \pi x^2 / \lambda f\right)\]</span>,</p>
+<p>it introduces a phase shift of <span class="math inline">\(2 \pi \phi(x, y)\)</span> where <span class="math inline">\(\phi(x, y)= -x^2 / 2 \lambda f\)</span>.</p>
+<div id="cell-fig-phase-function" class="cell" data-execution_count="8">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Parameters</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>wavelength <span class="op">=</span> <span class="fl">0.5</span>  <span class="co"># wavelength in arbitrary units</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>focal_length <span class="op">=</span> <span class="dv">10</span>  <span class="co"># focal length</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Create coordinate grid</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">500</span>)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">500</span>)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>X, Y <span class="op">=</span> np.meshgrid(x, y)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the phase function φ(x,y) = x²/2λf</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>phi <span class="op">=</span> (X<span class="op">**</span><span class="dv">2</span>)<span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>wavelength<span class="op">*</span>focal_length)</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the complex transmittance f(x,y) = exp(jπx²/λf)</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>transmittance <span class="op">=</span> np.exp(<span class="ot">1j</span><span class="op">*</span>np.pi<span class="op">*</span>X<span class="op">**</span><span class="dv">2</span><span class="op">/</span>(wavelength<span class="op">*</span>focal_length))</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate deflection angle θₓ = -x/f (for small angles)</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>deflection_angle <span class="op">=</span> <span class="op">-</span>X<span class="op">/</span>focal_length</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a figure with two subplots</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>fig, axs <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>get_size(<span class="dv">12</span>, <span class="dv">5</span>))</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the phase (wrapped between 0 and 2π)</span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>phase_plot <span class="op">=</span> axs[<span class="dv">0</span>].imshow(np.real(transmittance),</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>                          extent<span class="op">=</span>[x.<span class="bu">min</span>(), x.<span class="bu">max</span>(), y.<span class="bu">min</span>(), y.<span class="bu">max</span>()],</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>                          cmap<span class="op">=</span><span class="st">'gray'</span>, origin<span class="op">=</span><span class="st">'lower'</span>)</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">0</span>].set_title(<span class="st">'phase profile $</span><span class="ch">\\</span><span class="st">phi(x,y)$'</span>)</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">0</span>].set_xlabel(<span class="st">'x'</span>)</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">0</span>].set_ylabel(<span class="st">'y'</span>)</span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>fig.colorbar(phase_plot, ax<span class="op">=</span>axs[<span class="dv">0</span>], label<span class="op">=</span><span class="st">'Phase (rad)'</span>)</span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the deflection angle along the x-axis</span></span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">1</span>].plot(x, <span class="op">-</span>x<span class="op">/</span>focal_length, <span class="st">'r-'</span>)</span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">1</span>].set_title(<span class="st">'deflection angle $</span><span class="ch">\\</span><span class="st">theta_x$'</span>)</span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">1</span>].set_xlabel(<span class="vs">r'position </span><span class="dv">$</span><span class="vs">x</span><span class="dv">$</span><span class="vs">'</span>)</span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">1</span>].set_ylabel(<span class="st">'angle $</span><span class="ch">\\</span><span class="st">theta_x$ (rad)'</span>)</span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">1</span>].grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">1</span>].axhline(y<span class="op">=</span><span class="dv">0</span>, color<span class="op">=</span><span class="st">'k'</span>, linestyle<span class="op">=</span><span class="st">'-'</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">1</span>].axvline(x<span class="op">=</span><span class="dv">0</span>, color<span class="op">=</span><span class="st">'k'</span>, linestyle<span class="op">=</span><span class="st">'-'</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-phase-function" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-phase-function-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="01-lecture06_files/figure-html/fig-phase-function-output-1.png" width="680" height="273" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-phase-function-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;12— Phase function of a cylindrical Fourier lens. (left) The 2D phase profile showing how phase varies quadratically with x. (right) The resulting deflection angle as a function of position, showing the linear relationship that causes focusing.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>This phase profile causes the wave at position <span class="math inline">\((x, y)\)</span> to be deflected by angles <span class="math inline">\(\theta_x= \sin^{-1}(\lambda \partial \phi / \partial x)=\sin^{-1}(-x / f)\)</span> and <span class="math inline">\(\theta_y=0\)</span>. For small values where <span class="math inline">\(|x / f| \ll 1\)</span>, the deflection angle simplifies to <span class="math inline">\(\theta_x \approx-x / f\)</span>, creating a linear relationship between deflection angle and position. When a plane wave illuminates this transparency, each point of the wavefront experiences a position-dependent deflection, transforming the overall wavefront shape. At each position <span class="math inline">\(x\)</span>, the local wavevector is redirected by an angle <span class="math inline">\(-x / f\)</span>, causing all light rays to converge at a focal point located at distance <span class="math inline">\(f\)</span> from the transparency along the optical axis, as illustrated below.</p>
 <div id="fig-lens" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-lens-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="../../lectures/lecture06/img/lens.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-lens-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;10— A transparency with transmittance <span class="math inline">\(f(x, y)=\exp \left(j \pi x^2 / \lambda f\right)\)</span> bends the wave at position <span class="math inline">\(x\)</span> by an angle <span class="math inline">\(\theta_x \approx-x / f\)</span> so that it acts as a cylindrical lens with focal length <span class="math inline">\(f\)</span>.
+Figure&nbsp;13— A transparency with transmittance <span class="math inline">\(f(x, y)=\exp \left(j \pi x^2 / \lambda f\right)\)</span> bends the wave at position <span class="math inline">\(x\)</span> by an angle <span class="math inline">\(\theta_x \approx-x / f\)</span>, functioning as a cylindrical lens with focal length <span class="math inline">\(f\)</span>.
 </figcaption>
 </figure>
 </div>
-<p>This transparency effectively functions as a cylindrical lens with focal length <span class="math inline">\(f\)</span>. In a similar manner, a transparency with transmittance <span class="math inline">\(f(x, y)=\exp \left[j \pi\left(x^2+y^2\right) / \lambda f\right]\)</span> behaves as a spherical lens with focal length <span class="math inline">\(f\)</span>. This is precisely the mathematical expression that describes the transmittance of a thin lens.</p>
+<p>This transparency operates exactly like a cylindrical lens with focal length <span class="math inline">\(f\)</span>. Extending this concept, a transparency with transmittance <span class="math inline">\(f(x, y)=\exp \left[j \pi\left(x^2+y^2\right) / \lambda f\right]\)</span> acts as a spherical lens with focal length <span class="math inline">\(f\)</span>. This elegant mathematical expression perfectly captures the phase transformation property of a thin lens.</p>
 
 
 </section>
