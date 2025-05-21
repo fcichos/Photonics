@@ -65,6 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
+<link href="../../lectures/lecture06/01-lecture06.html" rel="next">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -172,7 +173,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">FOURIER OPTICS AND IMAGING</li><li class="breadcrumb-item"><a href="../../lectures/lecture05/01-lecture05.html">Lecture 5</a></li><li class="breadcrumb-item"><a href="../../lectures/lecture05/01-lecture05.html">Fourier Optics</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">FOURIER OPTICS AND IMAGING</li><li class="breadcrumb-item"><a href="../../lectures/lecture05/01-lecture05.html">Lecture 5</a></li><li class="breadcrumb-item"><a href="../../lectures/lecture05/01-lecture05.html">Fourier Optics I</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -345,7 +346,24 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../lectures/lecture05/01-lecture05.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Fourier Optics</span></a>
+ <span class="menu-text">Fourier Optics I</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true">
+ <span class="menu-text">Lecture 6</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture06/01-lecture06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Fourier Optics II</span></a>
   </div>
 </li>
       </ul>
@@ -372,7 +390,7 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">FOURIER OPTICS AND IMAGING</li><li class="breadcrumb-item"><a href="../../lectures/lecture05/01-lecture05.html">Lecture 5</a></li><li class="breadcrumb-item"><a href="../../lectures/lecture05/01-lecture05.html">Fourier Optics</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">FOURIER OPTICS AND IMAGING</li><li class="breadcrumb-item"><a href="../../lectures/lecture05/01-lecture05.html">Lecture 5</a></li><li class="breadcrumb-item"><a href="../../lectures/lecture05/01-lecture05.html">Fourier Optics I</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Introduction to Fourier Optics</h1>
 </div>
@@ -707,7 +725,7 @@ Fourier Transform Review
 <p>The inverse Fourier transform reconstructs the original function:</p>
 <p><span class="math display">\[f(x) = \int_{-\infty}^{\infty} F(k) e^{ikx} dk\]</span></p>
 <p>In optics, <span class="math inline">\(x\)</span> typically represents spatial coordinates and <span class="math inline">\(k\)</span> represents spatial frequencies. When working with discrete data, as you will in your computational exercises, you’ll use the Discrete Fourier Transform (DFT), which is efficiently computed using the Fast Fourier Transform (FFT) algorithm:</p>
-<div id="78d12abc" class="cell" data-execution_count="5">
+<div id="f111a924" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -802,7 +820,7 @@ Fourier Transform Review
 </tbody>
 </table>
 <p>Understanding these transform pairs is essential for optical analysis. For example, a rectangular aperture produces a sinc-function diffraction pattern, and a Gaussian beam maintains its Gaussian profile under propagation.</p>
-<div id="34a2a00f" class="cell" data-execution_count="6">
+<div id="1bcf8fc8" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Demonstrate the rect-sinc transform pair</span></span>
@@ -982,281 +1000,6 @@ Figure&nbsp;5— Visualization of a 2D object containing a single spatial freque
 </div>
 </div>
 </div>
-</section>
-<section id="spatial-spectral-analysis" class="level4">
-<h4 class="anchored" data-anchor-id="spatial-spectral-analysis">Spatial Spectral Analysis</h4>
-<p>Corresponding to our previous analysis, the angular spectrum representation can be formalized using Fourier analysis. The complex amplitude transmittance <span class="math inline">\(f(x,y)\)</span> can be written as a Fourier transform</p>
-<p><span class="math display">\[f(x,y)=\iint_{-\infty}^{\infty} F(\nu_x,\nu_y) e^{i 2\pi(\nu_x x + \nu_y y)}d\nu_x d\nu_y\]</span></p>
-<p>where <span class="math inline">\(F(\nu_x,\nu_y)\)</span> give the amplitudes of the frequency components of the transmittance. With our previous expression, then the field at any plane <span class="math inline">\(z\)</span> can be obtained by:</p>
-<p><span class="math display">\[U(x,y,z) = \iint_{-\infty}^{\infty} F(\nu_x,\nu_y) e^{i 2\pi(\nu_x x + \nu_y y)} e^{-i k_z z} d\nu_x d\nu_y\]</span></p>
-<p>where <span class="math inline">\(k_z = 2\pi\sqrt{(1/\lambda)^2 - \nu_x^2 - \nu_y^2}\)</span> is the z-component of the wavevector.</p>
-<p>This formulation shows that the field at any distance <span class="math inline">\(z\)</span> can be calculated by multiplying each spatial frequency component by the appropriate phase factor <span class="math inline">\(e^{-i k_z z}\)</span> and then performing an inverse Fourier transform. This approach provides an elegant and computationally efficient method for modeling wave propagation, particularly in homogeneous media.</p>
-<p>For propagating waves, where <span class="math inline">\(\nu_x^2 + \nu_y^2 &lt; (1/\lambda)^2\)</span>, the factor <span class="math inline">\(e^{-i k_z z}\)</span> represents a phase shift. For evanescent waves, where <span class="math inline">\(\nu_x^2 + \nu_y^2 &gt; (1/\lambda)^2\)</span>, <span class="math inline">\(k_z\)</span> becomes imaginary, resulting in exponential decay with distance.</p>
-</section>
-<section id="transfer-function-of-free-space" class="level4">
-<h4 class="anchored" data-anchor-id="transfer-function-of-free-space">Transfer Function of Free space</h4>
-<p>We now examine the propagation of a monochromatic optical wave of wavelength <span class="math inline">\(\lambda\)</span> and complex amplitude <span class="math inline">\(U(x, y, z)\)</span> in the free space between the planes <span class="math inline">\(z=0\)</span> and <span class="math inline">\(z=d\)</span>, called the input and output planes, respectively. Given the complex amplitude of the wave at the input plane, <span class="math inline">\(f(x, y)=U(x, y, 0)\)</span>, we want to determine the complex amplitude at the output plane, <span class="math inline">\(g(x, y)=U(x, y, d)\)</span>.</p>
-<p>The input field <span class="math inline">\(f(x,y)\)</span> propagates through free space to form the output field <span class="math inline">\(g(x,y)\)</span>. Using the angular spectrum representation, we can express the relationship between input and output as:</p>
-<p><span class="math display">\[g(x,y) = \iint_{-\infty}^{\infty} F(\nu_x,\nu_y) e^{i 2\pi(\nu_x x + \nu_y y)} e^{-i k_z d} d\nu_x d\nu_y\]</span></p>
-<p>where <span class="math inline">\(F(\nu_x,\nu_y)\)</span> is the Fourier transform of <span class="math inline">\(f(x,y)\)</span>, and <span class="math inline">\(k_z = 2\pi\sqrt{(1/\lambda)^2 - \nu_x^2 - \nu_y^2}\)</span> is the z-component of the wavevector.</p>
-<p>The transfer function of free space, denoted as <span class="math inline">\(H(\nu_x,\nu_y)\)</span>, is defined as the ratio of the output spectrum to the input spectrum:</p>
-<p><span class="math display">\[H(\nu_x,\nu_y) = e^{-i k_z d} = e^{-i 2\pi d\sqrt{(1/\lambda)^2 - \nu_x^2 - \nu_y^2}}\]</span></p>
-<p>This transfer function has two distinct regimes based on the values of <span class="math inline">\(\nu_x\)</span> and <span class="math inline">\(\nu_y\)</span>:</p>
-<ol type="1">
-<li><p><strong>Propagating waves</strong>: When <span class="math inline">\(\nu_x^2 + \nu_y^2 &lt; (1/\lambda)^2\)</span>, <span class="math inline">\(k_z\)</span> is real, and <span class="math inline">\(H(\nu_x,\nu_y) = e^{-i k_z d}\)</span> represents a pure phase shift. These are propagating waves that carry energy from the input to the output plane.</p></li>
-<li><p><strong>Evanescent waves</strong>: When <span class="math inline">\(\nu_x^2 + \nu_y^2 &gt; (1/\lambda)^2\)</span>, <span class="math inline">\(k_z\)</span> becomes imaginary, and <span class="math inline">\(H(\nu_x,\nu_y) = e^{-|k_z| d}\)</span> represents an exponential decay. These evanescent waves decay exponentially with distance and do not propagate energy to the far field. For spatial frequencies slightly beyond the propagating limit, where <span class="math inline">\(\nu_x^2 + \nu_y^2 \approx (1/\lambda)^2 + \Delta\)</span>, the decay constant can be approximated as <span class="math inline">\(|k_z| \approx 2\pi\sqrt{\Delta} \approx \pi\lambda/(2d^2)\)</span>, where <span class="math inline">\(d\)</span> is the characteristic distance from the object. This means that features with spatial frequencies significantly above <span class="math inline">\(1/\lambda\)</span> become effectively undetectable at distances greater than a few wavelengths.</p></li>
-</ol>
-<div id="cell-fig-transfer-function" class="cell" data-execution_count="8">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Parameters</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>wavelength <span class="op">=</span> <span class="fl">0.5</span>  <span class="co"># wavelength in arbitrary units</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>z_distances <span class="op">=</span> [<span class="fl">.2</span>]  <span class="co"># distances for transfer function calculation</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>nu_x <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">3</span><span class="op">/</span>wavelength, <span class="dv">3</span><span class="op">/</span>wavelength, <span class="dv">1000</span>)  <span class="co"># spatial frequency range</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>nu_y <span class="op">=</span> <span class="dv">0</span>  <span class="co"># setting nu_y = 0 for a 1D plot along nu_x</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the magnitude of the transfer function for different z values</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>H_mags <span class="op">=</span> []</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> d <span class="kw">in</span> z_distances:</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Calculate k_z based on spatial frequencies</span></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    k_z_squared <span class="op">=</span> (<span class="dv">1</span><span class="op">/</span>wavelength)<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> nu_x<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> nu_y<span class="op">**</span><span class="dv">2</span></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Initialize transfer function array</span></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    H <span class="op">=</span> np.ones_like(nu_x, dtype<span class="op">=</span><span class="bu">complex</span>)</span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># For propagating waves (real k_z)</span></span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    prop_mask <span class="op">=</span> k_z_squared <span class="op">&gt;=</span> <span class="dv">0</span></span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    k_z_prop <span class="op">=</span> np.sqrt(k_z_squared[prop_mask])</span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    H[prop_mask] <span class="op">=</span> np.exp(<span class="op">-</span><span class="ot">1j</span> <span class="op">*</span> <span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> k_z_prop <span class="op">*</span> d)</span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># For evanescent waves (imaginary k_z)</span></span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>    evan_mask <span class="op">=</span> k_z_squared <span class="op">&lt;</span> <span class="dv">0</span></span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>    k_z_evan <span class="op">=</span> np.sqrt(<span class="op">-</span>k_z_squared[evan_mask])</span>
-<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>    H[evan_mask] <span class="op">=</span> np.exp(<span class="op">-</span><span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> k_z_evan <span class="op">*</span> d)</span>
-<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Store the magnitude</span></span>
-<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>    H_mags.append(np.<span class="bu">abs</span>(H))</span>
-<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the magnitude of the transfer function</span></span>
-<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>get_size(<span class="dv">8</span>, <span class="dv">6</span>))</span>
-<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, d <span class="kw">in</span> <span class="bu">enumerate</span>(z_distances):</span>
-<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>    plt.plot(nu_x<span class="op">*</span>wavelength, H_mags[i], label<span class="op">=</span><span class="ss">f'z = </span><span class="sc">{</span>d<span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>plt.axvline(x<span class="op">=-</span><span class="dv">1</span>, color<span class="op">=</span><span class="st">'k'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
-<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>plt.axvline(x<span class="op">=</span><span class="dv">1</span>, color<span class="op">=</span><span class="st">'k'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
-<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="op">-</span><span class="fl">1.1</span>, <span class="fl">0.5</span>, <span class="st">'-1/λ'</span>, fontsize<span class="op">=</span><span class="dv">8</span>)</span>
-<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="fl">0.9</span>, <span class="fl">0.5</span>, <span class="st">'1/λ'</span>, fontsize<span class="op">=</span><span class="dv">8</span>)</span>
-<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="vs">r' spatial frequency </span><span class="dv">$</span><span class="kw">(</span><span class="ch">\n</span><span class="vs">u_x·</span><span class="er">\</span><span class="vs">lambda</span><span class="kw">)</span><span class="dv">$</span><span class="vs">'</span>)</span>
-<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="vs">r'</span><span class="dv">$</span><span class="cf">|</span><span class="vs">H</span><span class="kw">(</span><span class="ch">\n</span><span class="vs">u_x, 0</span><span class="kw">)</span><span class="cf">|</span><span class="dv">$</span><span class="vs">'</span>)</span>
-<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.legend()</span></span>
-<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="dv">0</span>, <span class="fl">1.1</span>)</span>
-<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-display">
-<div id="fig-transfer-function" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-transfer-function-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="01-lecture05_files/figure-html/fig-transfer-function-output-1.png" width="454" height="334" class="figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-transfer-function-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;6— The magnitude of the free-space transfer function. For propagating waves (ν_x² + ν_y² &lt; 1/λ²), the transfer function has magnitude 1, representing pure phase delay. For evanescent waves (ν_x² + ν_y² &gt; 1/λ²), the magnitude decays exponentially with distance from the origin.
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<div id="cell-fig-transfer-function-phase" class="cell" data-execution_count="9">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Parameters</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>wavelength <span class="op">=</span> <span class="fl">0.5</span>  <span class="co"># wavelength in arbitrary units</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>z_distances <span class="op">=</span> [<span class="fl">0.2</span>]  <span class="co"># different propagation distances</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>nu_x <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">1</span><span class="op">/</span>wavelength, <span class="dv">1</span><span class="op">/</span>wavelength, <span class="dv">1000</span>)  <span class="co"># spatial frequency range (propagating waves only)</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>nu_y <span class="op">=</span> <span class="dv">0</span>  <span class="co"># setting nu_y = 0 for a 1D plot along nu_x</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the phase of the transfer function for different z values</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>H_phases <span class="op">=</span> []</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> d <span class="kw">in</span> z_distances:</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Calculate k_z for propagating waves only</span></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    k_z <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> np.sqrt((<span class="dv">1</span><span class="op">/</span>wavelength)<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> nu_x<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> nu_y<span class="op">**</span><span class="dv">2</span>)</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Calculate the phase (negative argument of the transfer function)</span></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    phase <span class="op">=</span> k_z <span class="op">*</span> d</span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Store the phase</span></span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    H_phases.append(phase)</span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the phase of the transfer function</span></span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>get_size(<span class="dv">8</span>, <span class="dv">6</span>))</span>
-<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, d <span class="kw">in</span> <span class="bu">enumerate</span>(z_distances):</span>
-<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>    plt.plot(nu_x<span class="op">*</span>wavelength, H_phases[i], label<span class="op">=</span><span class="ss">f'z = </span><span class="sc">{</span>d<span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="vs">r' spatial frequency </span><span class="dv">$</span><span class="kw">(</span><span class="ch">\n</span><span class="vs">u_x·</span><span class="er">\</span><span class="vs">lambda</span><span class="kw">)</span><span class="dv">$</span><span class="vs">'</span>)</span>
-<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="vs">r'phase </span><span class="dv">$</span><span class="er">\</span><span class="vs">phi</span><span class="kw">(</span><span class="ch">\n</span><span class="vs">u_x, 0</span><span class="kw">)</span><span class="dv">$</span><span class="vs"> </span><span class="pp">[rad]</span><span class="vs">'</span>)</span>
-<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>plt.xlim(<span class="op">-</span><span class="dv">3</span>,<span class="dv">3</span>)</span>
-<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-display">
-<div id="fig-transfer-function-phase" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-transfer-function-phase-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="01-lecture05_files/figure-html/fig-transfer-function-phase-output-1.png" width="454" height="334" class="figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-transfer-function-phase-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;7— The phase of the free-space transfer function. For propagating waves (ν_x² + ν_y² &lt; 1/λ²), the transfer function introduces a phase delay that increases with spatial frequency. This phase represents the wavefront curvature during propagation.
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>This description of free space propagation provides insight into important phenomena such as:</p>
-<ol type="1">
-<li><p><strong>Diffraction limits</strong>: Spatial frequencies beyond <span class="math inline">\(1/\lambda\)</span> correspond to evanescent waves that decay exponentially with distance, explaining why sub-wavelength features cannot be observed in the far field.</p></li>
-<li><p><strong>Resolution limits</strong>: An optical system with a maximum acceptance angle <span class="math inline">\(\theta_{max}\)</span> can only capture spatial frequencies up to <span class="math inline">\(\sin\theta_{max}/\lambda\)</span>, limiting the finest details that can be resolved.</p></li>
-<li><p><strong>Spatial filtering</strong>: Optical components like apertures and lenses act as spatial filters, selectively transmitting or modifying certain spatial frequency components.</p></li>
-</ol>
-</section>
-<section id="amplitude-modulation" class="level4">
-<h4 class="anchored" data-anchor-id="amplitude-modulation">Amplitude Modulation</h4>
-<p>Let’s examine how spatial amplitude modulation affects the angular propagation of light. Consider a transparency with complex amplitude transmittance <span class="math inline">\(f_0(x, y)\)</span>. If its Fourier transform <span class="math inline">\(F_0(\nu_x, \nu_y)\)</span> extends over spatial frequency ranges <span class="math inline">\(\pm \Delta \nu_x\)</span> and <span class="math inline">\(\pm \Delta \nu_y\)</span> in the <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> directions, the transparency will deflect an incident plane wave by angles <span class="math inline">\(\theta_x\)</span> and <span class="math inline">\(\theta_y\)</span> within the ranges <span class="math inline">\(\pm \sin^{-1}(\lambda \Delta \nu_x)\)</span> and <span class="math inline">\(\pm \sin^{-1}(\lambda \Delta \nu_y)\)</span>, respectively.</p>
-<p>Now consider a second transparency with complex amplitude transmittance <span class="math inline">\(f(x, y) = f_0(x, y) e^{-i 2\pi(\nu_{x0}x + \nu_{y0}y)}\)</span>, where <span class="math inline">\(f_0(x, y)\)</span> varies slowly compared to the exponential carrier term, meaning <span class="math inline">\(\Delta \nu_x \ll \nu_{x0}\)</span> and <span class="math inline">\(\Delta \nu_y \ll \nu_{y0}\)</span>. This represents an amplitude-modulated function with spatial carrier frequencies <span class="math inline">\(\nu_{x0}\)</span> and <span class="math inline">\(\nu_{y0}\)</span> and modulation function <span class="math inline">\(f_0(x, y)\)</span>. According to the shift property of the Fourier transform, the transform of <span class="math inline">\(f(x, y)\)</span> is <span class="math inline">\(F_0(\nu_x - \nu_{x0}, \nu_y - \nu_{y0})\)</span>. The transparency will deflect a plane wave in directions centered around the angles <span class="math inline">\(\theta_{x0} = \sin^{-1}(\lambda\nu_{x0})\)</span> and <span class="math inline">\(\theta_{y0} = \sin^{-1}(\lambda\nu_{y0})\)</span>. This behavior can be understood by viewing <span class="math inline">\(f(x, y)\)</span> as a combination of the base transmittance <span class="math inline">\(f_0(x, y)\)</span> with a phase grating having transmittance <span class="math inline">\(e^{-i 2\pi(\nu_{x0}x + \nu_{y0}y)}\)</span> that provides the angular deflection.</p>
-<div id="cell-fig-amplitude-modulation" class="cell" data-execution_count="10">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set up the coordinate system</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">500</span>)</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">500</span>)</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>X, Y <span class="op">=</span> np.meshgrid(x, y)</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Parameters</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>wavelength <span class="op">=</span> <span class="fl">0.5</span>  <span class="co"># arbitrary units</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>nu_x0 <span class="op">=</span> <span class="fl">2.0</span>  <span class="co"># carrier spatial frequency</span></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>theta_x0 <span class="op">=</span> np.rad2deg(np.arcsin(wavelength <span class="op">*</span> nu_x0))  <span class="co"># corresponding angle</span></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Create base pattern f₀(x,y) - using a Gaussian pattern</span></span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>sigma <span class="op">=</span> <span class="fl">1.5</span></span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>f0 <span class="op">=</span> np.exp(<span class="op">-</span>(X<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> Y<span class="op">**</span><span class="dv">2</span>)<span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>sigma<span class="op">**</span><span class="dv">2</span>))</span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Create carrier wave</span></span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>carrier <span class="op">=</span> np.exp(<span class="op">-</span><span class="ot">1j</span><span class="op">*</span><span class="dv">2</span><span class="op">*</span>np.pi<span class="op">*</span>nu_x0<span class="op">*</span>X)</span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Create modulated pattern</span></span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> f0 <span class="op">*</span> carrier</span>
-<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate 2D Fourier transforms</span></span>
-<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>F0 <span class="op">=</span> np.fft.fftshift(np.fft.fft2(f0))</span>
-<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>F <span class="op">=</span> np.fft.fftshift(np.fft.fft2(f))</span>
-<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Create frequency axes</span></span>
-<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>freq_x <span class="op">=</span> np.fft.fftshift(np.fft.fftfreq(<span class="bu">len</span>(x), x[<span class="dv">1</span>]<span class="op">-</span>x[<span class="dv">0</span>]))</span>
-<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>freq_y <span class="op">=</span> np.fft.fftshift(np.fft.fftfreq(<span class="bu">len</span>(y), y[<span class="dv">1</span>]<span class="op">-</span>y[<span class="dv">0</span>]))</span>
-<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Create figure with 4 subplots</span></span>
-<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>fig, axs <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">2</span>, figsize<span class="op">=</span>get_size(<span class="dv">12</span>, <span class="dv">12</span>))</span>
-<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>axs <span class="op">=</span> axs.flatten()</span>
-<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the base pattern f₀(x,y)</span></span>
-<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>im0 <span class="op">=</span> axs[<span class="dv">0</span>].imshow(f0, extent<span class="op">=</span>[x.<span class="bu">min</span>(), x.<span class="bu">max</span>(), y.<span class="bu">min</span>(), y.<span class="bu">max</span>()],</span>
-<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>                    cmap<span class="op">=</span><span class="st">'gray'</span>, origin<span class="op">=</span><span class="st">'lower'</span>)</span>
-<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">0</span>].set_title(<span class="st">'(a) Base Pattern f₀(x,y)'</span>)</span>
-<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">0</span>].set_xlabel(<span class="st">'x'</span>)</span>
-<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">0</span>].set_ylabel(<span class="st">'y'</span>)</span>
-<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the carrier wave (real part)</span></span>
-<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a>im1 <span class="op">=</span> axs[<span class="dv">1</span>].imshow(np.real(carrier), extent<span class="op">=</span>[x.<span class="bu">min</span>(), x.<span class="bu">max</span>(), y.<span class="bu">min</span>(), y.<span class="bu">max</span>()],</span>
-<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a>                    cmap<span class="op">=</span><span class="st">'gray'</span>, origin<span class="op">=</span><span class="st">'lower'</span>)</span>
-<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">1</span>].set_title(<span class="ss">f'(b) Carrier Wave: $e^</span><span class="ch">{{</span><span class="ss">-j2</span><span class="ch">\\</span><span class="ss">pi</span><span class="ch">\\</span><span class="ss">nu_</span><span class="ch">{{</span><span class="ss">x0</span><span class="ch">}}</span><span class="ss">x</span><span class="ch">}}</span><span class="ss">$'</span>)</span>
-<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">1</span>].set_xlabel(<span class="st">'x'</span>)</span>
-<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">1</span>].set_ylabel(<span class="st">'y'</span>)</span>
-<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the modulated pattern (real part)</span></span>
-<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a>im2 <span class="op">=</span> axs[<span class="dv">2</span>].imshow(np.real(f), extent<span class="op">=</span>[x.<span class="bu">min</span>(), x.<span class="bu">max</span>(), y.<span class="bu">min</span>(), y.<span class="bu">max</span>()],</span>
-<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a>                    cmap<span class="op">=</span><span class="st">'gray'</span>, origin<span class="op">=</span><span class="st">'lower'</span>)</span>
-<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">2</span>].set_title(<span class="st">'(c) Modulated Pattern f(x,y)'</span>)</span>
-<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">2</span>].set_xlabel(<span class="st">'x'</span>)</span>
-<span id="cb9-52"><a href="#cb9-52" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">2</span>].set_ylabel(<span class="st">'y'</span>)</span>
-<span id="cb9-53"><a href="#cb9-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-54"><a href="#cb9-54" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot Fourier transforms (log magnitude to enhance visibility)</span></span>
-<span id="cb9-55"><a href="#cb9-55" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot along central row in frequency space (freq_y = 0)</span></span>
-<span id="cb9-56"><a href="#cb9-56" aria-hidden="true" tabindex="-1"></a>central_row <span class="op">=</span> <span class="bu">len</span>(freq_y) <span class="op">//</span> <span class="dv">2</span></span>
-<span id="cb9-57"><a href="#cb9-57" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">3</span>].plot(freq_x, np.log(np.<span class="bu">abs</span>(F0[central_row, :]) <span class="op">+</span> <span class="dv">1</span>), <span class="st">'b-'</span>, label<span class="op">=</span><span class="st">'F₀(ν)'</span>)</span>
-<span id="cb9-58"><a href="#cb9-58" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">3</span>].plot(freq_x, np.log(np.<span class="bu">abs</span>(F[central_row, :]) <span class="op">+</span> <span class="dv">1</span>), <span class="st">'r--'</span>, label<span class="op">=</span><span class="st">'F(ν)'</span>)</span>
-<span id="cb9-59"><a href="#cb9-59" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">3</span>].set_title(<span class="st">'(d) Fourier Transforms'</span>)</span>
-<span id="cb9-60"><a href="#cb9-60" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">3</span>].set_xlabel(<span class="st">'Spatial Frequency ν_x'</span>)</span>
-<span id="cb9-61"><a href="#cb9-61" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">3</span>].set_ylabel(<span class="st">'Log Magnitude'</span>)</span>
-<span id="cb9-62"><a href="#cb9-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-63"><a href="#cb9-63" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">3</span>].legend()</span>
-<span id="cb9-64"><a href="#cb9-64" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-65"><a href="#cb9-65" aria-hidden="true" tabindex="-1"></a><span class="co"># Add markers to show the shift to ν₀</span></span>
-<span id="cb9-66"><a href="#cb9-66" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">3</span>].axvline(x<span class="op">=</span><span class="dv">0</span>, color<span class="op">=</span><span class="st">'g'</span>, linestyle<span class="op">=</span><span class="st">':'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>, label<span class="op">=</span><span class="st">'Original Center'</span>)</span>
-<span id="cb9-67"><a href="#cb9-67" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">3</span>].axvline(x<span class="op">=</span>nu_x0, color<span class="op">=</span><span class="st">'m'</span>, linestyle<span class="op">=</span><span class="st">':'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>, label<span class="op">=</span><span class="ss">f'Shifted Center (ν₀=</span><span class="sc">{</span>nu_x0<span class="sc">}</span><span class="ss">)'</span>)</span>
-<span id="cb9-68"><a href="#cb9-68" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">3</span>].text(nu_x0 <span class="op">+</span> <span class="fl">0.1</span>, axs[<span class="dv">3</span>].get_ylim()[<span class="dv">1</span>]<span class="op">*</span><span class="fl">0.9</span>, <span class="ss">f'θ₀=</span><span class="sc">{</span>theta_x0<span class="sc">:.1f}</span><span class="ss">°'</span>, color<span class="op">=</span><span class="st">'m'</span>)</span>
-<span id="cb9-69"><a href="#cb9-69" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-70"><a href="#cb9-70" aria-hidden="true" tabindex="-1"></a><span class="co"># Limit frequency axis for better visibility</span></span>
-<span id="cb9-71"><a href="#cb9-71" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">3</span>].set_xlim(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>)</span>
-<span id="cb9-72"><a href="#cb9-72" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-73"><a href="#cb9-73" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb9-74"><a href="#cb9-74" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-display">
-<div id="fig-amplitude-modulation" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-amplitude-modulation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="01-lecture05_files/figure-html/fig-amplitude-modulation-output-1.png" width="691" height="688" class="figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-amplitude-modulation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;8— Visualization of amplitude modulation and the corresponding angular deflection. (a) The base pattern f₀(x,y) - a Gaussian envelope. (b) A carrier wave with spatial frequency ν₀. (c) The amplitude-modulated pattern f(x,y)=f₀(x,y)e^(-j2πν₀x). (d) Fourier transforms showing how the spectrum shifts with modulation, corresponding to angular deflection.
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>This principle enables spatial-frequency multiplexing, where two images <span class="math inline">\(f_1(x, y)\)</span> and <span class="math inline">\(f_2(x, y)\)</span> can be recorded on the same transparency using the encoding: <span class="math inline">\(f(x, y) = f_1(x, y)e^{-i 2\pi(\nu_{x1}x + \nu_{y1}y)} + f_2(x, y)e^{-i 2\pi(\nu_{x2}x + \nu_{y2}y)}\)</span></p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Structured Illumination Microscopy (SIM)
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>The amplitude modulation concepts presented here form the theoretical foundation for Structured Illumination Microscopy (SIM), a super-resolution imaging technique. In SIM, a sample is illuminated with a known spatially structured pattern, typically a sinusoidal grid. This can be mathematically represented as an illumination intensity pattern:</p>
-<p><span class="math display">\[I_{\text{illum}}(x,y) = I_0[1 + m\cos(2\pi\nu_0 x + \phi)]\]</span></p>
-<p>where <span class="math inline">\(I_0\)</span> is the average intensity, <span class="math inline">\(m\)</span> is the modulation depth, <span class="math inline">\(\nu_0\)</span> is the spatial frequency of the illumination pattern, and <span class="math inline">\(\phi\)</span> is the phase.</p>
-<p>When this structured pattern illuminates a sample with spatial structure <span class="math inline">\(S(x,y)\)</span>, the resulting observed image is simply the product:</p>
-<p><span class="math display">\[D(x,y) = S(x,y) \cdot I_{\text{illum}}(x,y)\]</span></p>
-<p>Substituting the illumination pattern:</p>
-<p><span class="math display">\[D(x,y) = S(x,y) \cdot I_0[1 + m\cos(2\pi\nu_0 x + \phi)]\]</span> <span class="math display">\[D(x,y) = I_0 \cdot S(x,y) + I_0 \cdot m \cdot S(x,y)\cos(2\pi\nu_0 x + \phi)\]</span></p>
-<p>Using Euler’s formula, we can rewrite the cosine term:</p>
-<p><span class="math display">\[D(x,y) = I_0 \cdot S(x,y) + \frac{I_0 \cdot m}{2} \cdot S(x,y)[e^{j(2\pi\nu_0 x + \phi)} + e^{-j(2\pi\nu_0 x + \phi)}]\]</span></p>
-<p>In the frequency domain, this becomes:</p>
-<p><span class="math display">\[\tilde{D}(\nu_x,\nu_y) = I_0\tilde{S}(\nu_x,\nu_y) + \frac{I_0 \cdot m}{2}[\tilde{S}(\nu_x-\nu_0,\nu_y)e^{j\phi} + \tilde{S}(\nu_x+\nu_0,\nu_y)e^{-j\phi}]\]</span></p>
-<p>where <span class="math inline">\(\tilde{S}\)</span> is the Fourier transform of the sample structure, and <span class="math inline">\(\tilde{D}\)</span> is the Fourier transform of the detected image.</p>
-<p>This equation reveals how structured illumination enables access to high spatial frequencies beyond the conventional diffraction limit. In standard microscopy, the optical system acts as a low-pass filter due to the diffraction limit, restricting detectable spatial frequencies to <span class="math inline">\(|\nu| \leq \nu_{\text{max}} = \frac{NA}{\lambda}\)</span>, where NA is the numerical aperture and λ is the wavelength.</p>
-<p>The key insight is that structured illumination creates a “moiré effect” between the illumination pattern and the sample structure. Consider a sample with high spatial frequency components that exceed <span class="math inline">\(\nu_{\text{max}}\)</span> and would normally be undetectable. When this sample is illuminated with the structured pattern of frequency <span class="math inline">\(\nu_0\)</span>, these high-frequency components interact with the illumination pattern to produce difference frequencies that fall within the detectable range.</p>
-<div id="fig-moire" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-moire-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="img/moire.png" class="img-fluid figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-moire-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;9— The moiré effect in SIM. When a sample with high spatial frequency features is illuminated with a structured pattern, the interference creates moiré fringes at lower frequencies that can be detected by the microscope. This allows information about sub-diffraction structures to be encoded in observable signals. (see Gustafsson, M. G. L. Nonlinear structured-illumination microscopy: Wide-field fluorescence imaging with theoretically unlimited resolution. Proc. Natl. Acad. Sci. 102, 13081–13086 (2005))
-</figcaption>
-</figure>
-</div>
-<p>Specifically, sample features with spatial frequency <span class="math inline">\(\nu_s &gt; \nu_{\text{max}}\)</span> combine with the illumination frequency <span class="math inline">\(\nu_0\)</span> to produce components at <span class="math inline">\(\nu_s - \nu_0\)</span> and <span class="math inline">\(\nu_s + \nu_0\)</span>. If <span class="math inline">\(\nu_s - \nu_0 &lt; \nu_{\text{max}}\)</span>, then this difference frequency becomes detectable by the optical system, effectively bringing previously inaccessible high-frequency information into the observable range.</p>
-<p>For example, if a sample contains structures with spatial frequency <span class="math inline">\(\nu_s = 1.7\nu_{\text{max}}\)</span> and we apply illumination with <span class="math inline">\(\nu_0 = 0.8\nu_{\text{max}}\)</span>, the difference frequency becomes <span class="math inline">\(\nu_s - \nu_0 = 0.9\nu_{\text{max}}\)</span>, which falls within the detectable range. This allows us to extract information about sample features that would be invisible under conventional illumination.</p>
-<p>To separate and reconstruct these frequency-shifted components, we need multiple images with different phases of the illumination pattern. Typically, three images with phases <span class="math inline">\(\phi = 0°, 120°, 240°\)</span> are acquired, allowing us to solve the following system of equations:</p>
-<p><span class="math display">\[\begin{pmatrix} D_1 \\ D_2 \\ D_3 \end{pmatrix} = \begin{pmatrix} 1 &amp; e^{j\phi_1} &amp; e^{-j\phi_1} \\ 1 &amp; e^{j\phi_2} &amp; e^{-j\phi_2} \\ 1 &amp; e^{j\phi_3} &amp; e^{-j\phi_3} \end{pmatrix} \begin{pmatrix} I_0\tilde{S}(\nu) \\ \frac{I_0 \cdot m}{2}\tilde{S}(\nu-\nu_0) \\ \frac{I_0 \cdot m}{2}\tilde{S}(\nu+\nu_0) \end{pmatrix}\]</span></p>
-<p>By extracting these frequency-shifted components and computationally restoring them to their original positions in frequency space, we can reconstruct spatial frequencies beyond the conventional diffraction limit, typically achieving a resolution improvement factor of 2 in each dimension, or a factor of 2 beyond what would be possible with the same wavelength and numerical aperture in conventional microscopy.</p>
-</div>
-</div>
-<p>By illuminating this combined transparency with a plane wave, the two images are deflected at different angles determined by their carrier frequencies, allowing them to be spatially separated. This technique is particularly valuable in holography, where separating different image components recorded on the same medium is often necessary.</p>
 
 
 </section>
@@ -1662,6 +1405,15 @@ Figure&nbsp;9— The moiré effect in SIM. When a sample with high spatial frequ
     }
   });
   </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../lectures/lecture06/01-lecture06.html" class="pagination-link" aria-label="Fourier Optics II">
+        <span class="nav-page-text">Fourier Optics II</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
 
 
