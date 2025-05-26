@@ -23,8 +23,16 @@ book:
     - part: " Lecture 3"
       chapters:
         - lectures/lecture03/01-lecture03.qmd
-        - lectures/lecture03/02-lecture03.qmd
-        - lectures/lecture03/03-lecture03.qmd
+    - part: " Lecture 4"
+      chapters:
+        - lectures/lecture04/01-lecture04.qmd
+    - part: " Lecture 5"
+      chapters:
+        - lectures/lecture05/01-lecture05.qmd
+    - part: " Lecture 6"
+      chapters:
+        - lectures/lecture06/01-lecture06.qmd
+
 format:
   pdf:
     documentclass: book

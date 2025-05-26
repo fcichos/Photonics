@@ -61,7 +61,24 @@ website:
             contents:
               - text: Interference
                 href: lectures/lecture03/01-lecture03.qmd
+          - section: "Lecture 4"
+            contents:
               - text: Gaussian Beams
-                href: lectures/lecture03/02-lecture03.qmd
-              - text: Photon Streams & Quantum Optics
-                href: lectures/lecture03/02-lecture03.qmd
+                href: lectures/lecture04/01-lecture04.qmd
+      - text: "---" # This creates a divider
+      - section: FOURIER OPTICS AND IMAGING
+        contents:
+          - section: "Lecture 5"
+            contents:
+              - text: Fourier Optics I
+                href: lectures/lecture05/01-lecture05.qmd
+          - section: "Lecture 6"
+            contents:
+              - text: Fourier Optics II
+                href: lectures/lecture06/01-lecture06.qmd
+          #- section: "Lecture 6"
+          #  contents:
+          #- text: Photon Streams
+          #  href: lectures/lecture04/02-lecture04.qmd
+          #- text: Quantum Optics Primer
+          #  href: lectures/lecture04/03-lecture04.qmd

@@ -1,0 +1,288 @@
+---
+title: "Supplementary Materials: Fourier Optics"
+subtitle: "Additional examples, review, and visualizations"
+format:
+  html:
+    toc: true
+    toc-location: left
+    fig-cap-location: bottom
+jupyter: python3
+---
+
+## 1. Fourier Transform Review
+
+### 1.1 Basic Definitions
+
+The Fourier transform decomposes a function into its constituent frequencies. For a function $f(x)$, its Fourier transform $F(k)$ is defined as:
+
+$$F(k) = \int_{-\infty}^{\infty} f(x) e^{-i2\pi kx} dx$$
+
+The inverse Fourier transform reconstructs the original function:
+
+$$f(x) = \int_{-\infty}^{\infty} F(k) e^{i2\pi kx} dk$$
+
+In optics, $x$ typically represents spatial coordinates and $k$ represents spatial frequencies.
+
+### 1.2 Important Properties
+
+1. **Linearity**: $\mathcal{F}\{af(x) + bg(x)\} = aF(k) + bG(k)$
+
+2. **Shift Theorem**: $\mathcal{F}\{f(x-a)\} = e^{-i2\pi ka}F(k)$
+
+3. **Convolution Theorem**: $\mathcal{F}\{f * g\} = F(k) \cdot G(k)$
+
+4. **Parseval's Theorem**: $\int |f(x)|^2 dx = \int |F(k)|^2 dk$
+
+### 1.3 Common Fourier Transform Pairs
+
+| Function | Fourier Transform |
+|----------|-------------------|
+| $\delta(x)$ (Delta function) | $1$ (constant) |
+| $1$ (constant) | $\delta(k)$ (Delta function) |
+| $\text{rect}(x)$ (Rectangle function) | $\text{sinc}(k)$ (Sinc function) |
+| $e^{-\pi x^2}$ (Gaussian) | $e^{-\pi k^2}$ (Gaussian) |
+| $\cos(2\pi ax)$ | $\frac{1}{2}[\delta(k-a) + \delta(k+a)]$ |
+
+### 1.4 Application to Optics
+
+In optics, the Fourier transform relates:
+- The field distribution in real space to its spatial frequency spectrum
+- The field at one plane to its distribution in the focal plane of a lens
+- The aperture function to its diffraction pattern in the far field
+
+## 2. Worked Examples
+
+### 2.1 Transmission Examples
+
+#### Example 1: Thin Lens Transmission Function
+
+**Problem:** Calculate the transmission function for a thin biconvex lens with focal length $f = 100$ mm at wavelength $\lambda = 633$ nm.
+
+**Solution:**
+
+For a thin lens, the transmission function is purely a phase modulation:
+
+$$t(x,y) = e^{-i\frac{k}{2f}(x^2+y^2)}$$
+
+With $k = \frac{2\pi}{\lambda} = \frac{2\pi}{633 \times 10^{-9}} \approx 9.92 \times 10^6$ rad/m:
+
+$$t(x,y) = e^{-i\frac{9.92 \times 10^6}{2 \times 0.1}(x^2+y^2)} = e^{-i 4.96 \times 10^7 (x^2+y^2)}$$
+
+The phase shift at position $(x,y) = (1 \text{ mm}, 0) = (10^{-3} \text{ m}, 0)$ is:
+
+$$\phi = -4.96 \times 10^7 \times (10^{-3})^2 = -49.6 \text{ rad} \approx -15.8\pi \text{ rad}$$
+
+This represents approximately 8 complete phase cycles at just 1 mm from the center.
+
+#### Example 2: Phase Grating
+
+**Problem:** A phase grating has a transmission function $t(x) = e^{i\alpha\sin(2\pi x/d)}$ where $d = 10$ μm and $\alpha = \pi/2$. Determine the amplitudes of the diffraction orders.
+
+**Solution:**
+
+This is a sinusoidal phase grating. Using the Jacobi-Anger expansion:
+
+$$e^{i\alpha\sin\theta} = \sum_{n=-\infty}^{\infty} J_n(\alpha)e^{in\theta}$$
+
+Where $J_n$ is the Bessel function of the first kind.
+
+For our grating:
+
+$$t(x) = e^{i(\pi/2)\sin(2\pi x/d)} = \sum_{n=-\infty}^{\infty} J_n(\pi/2)e^{in(2\pi x/d)}$$
+
+Each term in this expansion corresponds to a diffraction order with amplitude $J_n(\pi/2)$.
+
+For the first few orders:
+- 0th order: $J_0(\pi/2) \approx 0.568$
+- ±1st order: $J_{\pm1}(\pi/2) \approx 0.382$
+- ±2nd order: $J_{\pm2}(\pi/2) \approx 0.129$
+- ±3rd order: $J_{\pm3}(\pi/2) \approx 0.019$
+
+### 2.2 Wave Propagation Examples
+
+#### Example 3: Fresnel Propagation
+
+**Problem:** A uniformly illuminated circular aperture of diameter $D = 2$ mm is placed at $z = 0$. Calculate the intensity at the center of the diffraction pattern at distance $z = 1$ m for light with wavelength $\lambda = 500$ nm.
+
+**Solution:**
+
+For Fresnel diffraction, we need to evaluate:
+
+$$U(x,y,z) = \frac{e^{ikz}}{i\lambda z}e^{i\frac{k}{2z}(x^2+y^2)} \iint U(x',y',0)e^{i\frac{k}{2z}(x'^2+y'^2)}e^{-i\frac{k}{z}(xx'+yy')}dx'dy'$$
+
+For the center of the pattern $(x=0, y=0)$ with uniform illumination $U(x',y',0) = U_0$ within the aperture:
+
+$$U(0,0,z) = \frac{e^{ikz}}{i\lambda z} \iint_{aperture} U_0 e^{i\frac{k}{2z}(x'^2+y'^2)}dx'dy'$$
+
+For a circular aperture of radius $a = D/2 = 1$ mm, using polar coordinates:
+
+$$U(0,0,z) = \frac{U_0 e^{ikz}}{i\lambda z} \int_0^{2\pi}\int_0^a e^{i\frac{k}{2z}r'^2}r'dr'd\theta'$$
+
+$$U(0,0,z) = \frac{2\pi U_0 e^{ikz}}{i\lambda z} \int_0^a e^{i\frac{k}{2z}r'^2}r'dr'$$
+
+Evaluating this integral:
+
+$$U(0,0,z) = \frac{2\pi U_0 e^{ikz}}{i\lambda z} \cdot \frac{z}{ik}(1-e^{i\frac{k}{2z}a^2})$$
+
+$$U(0,0,z) = \frac{2\pi U_0 e^{ikz}}{k} \cdot (1-e^{i\frac{k}{2z}a^2})$$
+
+For our values: $k = 2\pi/\lambda = 2\pi/(500 \times 10^{-9}) = 1.26 \times 10^7$, $z = 1$ m, $a = 10^{-3}$ m:
+
+$$\frac{k}{2z}a^2 = \frac{1.26 \times 10^7}{2 \times 1}(10^{-3})^2 = 6.28$$
+
+Therefore:
+$$U(0,0,z) = \frac{2\pi U_0 e^{ikz}}{k} \cdot (1-e^{i\cdot 6.28})$$
+
+Since $e^{i\cdot 6.28} \approx e^{i\cdot 2\pi} = 1$, we get:
+$$U(0,0,z) \approx 0$$
+
+This indicates a dark spot at the center, as expected from Fresnel diffraction for these parameters.
+
+### 2.3 Spatial Frequency Examples
+
+#### Example 4: Resolution Limit
+
+**Problem:** A microscope objective has a numerical aperture NA = 0.65. Calculate the smallest resolvable feature size according to the Abbe diffraction limit for light with wavelength $\lambda = 488$ nm.
+
+**Solution:**
+
+The Abbe diffraction limit states that the smallest resolvable feature has a spatial frequency of:
+
+$$\nu_{max} = \frac{2\text{NA}}{\lambda}$$
+
+For NA = 0.65 and $\lambda = 488$ nm:
+
+$$\nu_{max} = \frac{2 \times 0.65}{488 \times 10^{-9}} = 2.66 \times 10^6 \text{ cycles/m}$$
+
+The corresponding minimum resolvable feature size is:
+
+$$d_{min} = \frac{1}{2\nu_{max}} = \frac{\lambda}{2\text{NA}} = \frac{488 \times 10^{-9}}{2 \times 0.65} = 375 \text{ nm}$$
+
+#### Example 5: Angular Spectrum Filtering
+
+**Problem:** A spatial filter blocks all spatial frequencies above $\nu_{cutoff} = 100$ cycles/mm. What is the minimum spot size achievable after this filter for light with wavelength $\lambda = 600$ nm?
+
+**Solution:**
+
+The minimum spot size is related to the highest spatial frequency that can pass through the filter:
+
+$$w_{min} = \frac{1}{2\nu_{cutoff}} = \frac{1}{2 \times 100 \times 10^3} = \frac{1}{2 \times 10^5} = 5 \times 10^{-6} \text{ m} = 5 \text{ μm}$$
+
+The corresponding numerical aperture that this filter effectively creates is:
+
+$$\text{NA} = \lambda \times \nu_{cutoff} = 600 \times 10^{-9} \times 100 \times 10^3 = 0.06$$
+
+## 3. Angular Spectrum Visualizations
+
+### 3.1 Conceptual Visualization
+
+The angular spectrum representation can be visualized through several complementary perspectives:
+
+1. **Plane Wave Decomposition**: Each spatial frequency component corresponds to a plane wave traveling at a specific angle.
+
+   ![Plane Wave Decomposition](angular_spectrum_planes.png)
+
+2. **Fourier Space Representation**: The 2D Fourier transform of a field shows its angular spectrum.
+
+   ![Fourier Space](angular_spectrum_fourier.png)
+
+3. **Evanescent Waves**: Spatial frequencies beyond $1/\lambda$ correspond to evanescent waves that decay exponentially away from the source.
+
+   ![Evanescent Waves](evanescent_waves.png)
+
+### 3.2 Interactive Visualization Code
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib.widgets import Slider
+
+# Setup the figure
+fig = plt.figure(figsize=(10, 8))
+ax1 = fig.add_subplot(211)  # Field at z=0
+ax2 = fig.add_subplot(212)  # Propagated field
+
+# Parameters
+Nx = 512  # Number of spatial points
+L = 10e-3  # Size of window in meters
+dx = L/Nx  # Spatial step size
+x = np.linspace(-L/2, L/2, Nx)  # Spatial coordinates
+kx = 2*np.pi*np.fft.fftshift(np.fft.fftfreq(Nx, dx))  # Spatial frequencies
+wavelength = 633e-9  # Wavelength in meters
+k0 = 2*np.pi/wavelength  # Wavenumber
+
+# Initial field at z=0 (Gaussian beam)
+w0 = 0.5e-3  # Beam waist
+initial_field = np.exp(-(x**2)/(w0**2))
+
+# Calculate Angular Spectrum
+angular_spectrum = np.fft.fftshift(np.fft.fft(initial_field))
+
+# Function to propagate the field
+def propagate_field(z):
+    # Propagation phase factor
+    kz = np.sqrt(k0**2 - kx**2 + 0j)  # +0j to ensure complex sqrt
+    # Set evanescent waves where kx > k0
+    kz[np.abs(kx) > k0] = 1j*np.sqrt(kx[np.abs(kx) > k0]**2 - k0**2)
+    propagator = np.exp(1j*kz*z)
+    
+    # Apply propagator to angular spectrum
+    propagated_spectrum = angular_spectrum * propagator
+    # Inverse transform to get propagated field
+    propagated_field = np.fft.ifft(np.fft.ifftshift(propagated_spectrum))
+    return propagated_field
+
+# Initial plot
+z_init = 0.1  # Initial propagation distance
+propagated_field = propagate_field(z_init)
+
+# Plot initial field
+line1, = ax1.plot(x*1e3, np.abs(initial_field)**2)
+ax1.set_title('Initial Intensity at z=0')
+ax1.set_xlabel('Position (mm)')
+ax1.set_ylabel('Intensity')
+
+# Plot propagated field
+line2, = ax2.plot(x*1e3, np.abs(propagated_field)**2)
+ax2.set_title(f'Propagated Intensity at z={z_init*1e2:.1f} cm')
+ax2.set_xlabel('Position (mm)')
+ax2.set_ylabel('Intensity')
+
+# Add slider for propagation distance
+axz = plt.axes([0.2, 0.02, 0.65, 0.03])
+z_slider = Slider(axz, 'z (cm)', 0, 50, valinit=z_init*1e2)
+
+# Update function for slider
+def update(val):
+    z = z_slider.val * 1e-2  # Convert cm to m
+    propagated_field = propagate_field(z)
+    line2.set_ydata(np.abs(propagated_field)**2)
+    ax2.set_title(f'Propagated Intensity at z={z*1e2:.1f} cm')
+    fig.canvas.draw_idle()
+
+z_slider.on_changed(update)
+
+plt.tight_layout()
+plt.subplots_adjust(bottom=0.15)  # Make room for slider
+plt.show()
+```
+
+### 3.3 Physical Interpretation
+
+When light passes through an aperture, we can interpret the resulting diffraction in two equivalent ways:
+
+1. **Spatial Domain**: The aperture creates a new light source that diffracts according to the Huygens-Fresnel principle.
+
+2. **Frequency Domain**: The aperture acts as a spatial filter, selectively transmitting certain angular components (spatial frequencies).
+
+The angular spectrum approach provides a rigorous mathematical framework that connects these two viewpoints. It shows that:
+
+- Each spatial frequency corresponds to a plane wave traveling at a specific angle
+- These plane waves propagate independently in free space
+- The complete field at any plane is the coherent superposition of all these plane waves
+- The maximum angle of propagation determines the system's resolution limit
+
+This perspective elegantly explains why:
+- Smaller apertures produce wider diffraction patterns (they filter out high spatial frequencies)
+- Optical systems have finite resolution (they cannot capture infinitely high spatial frequencies)
+- Evanescent waves decay exponentially (they correspond to "trapped" light that doesn't propagate)

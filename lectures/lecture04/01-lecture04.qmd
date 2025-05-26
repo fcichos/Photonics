@@ -1,0 +1,647 @@
+---
+jupyter: python3
+format:
+  html:
+    code-fold: true
+crossref:
+  fig-title: Figure     # (default is "Figure")
+  tbl-title: Tbl     # (default is "Table")
+  title-delim: "—"   # (default is ":")
+  fig-prefix: "Figure"
+  eq-prefix: Eq.
+  chapters: true
+---
+```{python}
+# | echo: false
+## just for plotting later
+import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib.path import Path
+import matplotlib.patches as patches
+from matplotlib.colors import LinearSegmentedColormap
+from mpl_toolkits.mplot3d import Axes3D
+import sympy as sp
+from IPython.display import Markdown
+
+#from matplotlib_inline.backend_inline import set_matplotlib_formats
+#set_matplotlib_formats('svg')
+
+plt.rcParams.update({'font.size': 12,
+                     'axes.titlesize': 10,
+                     'axes.labelsize': 10,
+                     'lines.linewidth': 1,
+                     'lines.markersize': 5,
+                     'xtick.labelsize' : 10,
+                     'ytick.labelsize' : 10,
+                     'xtick.top' : True,
+                     'xtick.direction' : 'in',
+                     'ytick.right' : True,
+                     'ytick.direction' : 'in'})
+
+def get_size(w,h):
+    return((w/2.54,h/2.54))
+```
+
+
+
+## Introduction to Gaussian Beams
+
+In optics and laser physics, Gaussian beams represent one of the most fundamental and important mathematical descriptions of laser light propagation. They are particularly relevant for understanding laser resonators, optical systems, and coherent light behavior. This section introduces Gaussian beams from first principles and explores their mathematical description.
+
+### Derivation from the Helmholtz Equation
+
+We begin with the Helmholtz equation, which describes monochromatic electromagnetic waves in a homogeneous medium:
+
+$$\nabla^2 U + k^2 U = 0$$
+
+where $U$ represents the electric field component, $k = 2\pi/\lambda$ is the wave number, and $\lambda$ is the wavelength of light. For a wave predominantly traveling along the $z$-axis, we can express the electric field as:
+
+$$U(x,y,z) = u(x,y,z)e^{-ikz}$$
+
+Here, $u(x,y,z)$ is a complex amplitude function that varies slowly with $z$ compared to the wavelength. Substituting this into the Helmholtz equation and expanding the Laplacian operator yields:
+
+$$\left(\frac{\partial^2}{\partial x^2} + \frac{\partial^2}{\partial y^2} + \frac{\partial^2}{\partial z^2}\right)(u e^{-ikz}) + k^2 (u e^{-ikz}) = 0$$
+
+Computing the derivatives and simplifying:
+
+$$\frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} + \frac{\partial^2 u}{\partial z^2} - 2ik\frac{\partial u}{\partial z} = 0$$
+
+### The Paraxial Approximation
+
+The paraxial approximation applies when the beam's angular spread is small, meaning the wavefronts are nearly perpendicular to the propagation axis. Mathematically, this means that the amplitude $u$ varies slowly along the propagation direction compared to transverse directions:
+
+$$\left|\frac{\partial^2 u}{\partial z^2}\right| \ll \left|2k\frac{\partial u}{\partial z}\right|$$
+
+Under this approximation, the Helmholtz equation simplifies to the paraxial Helmholtz equation:
+
+$$\frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} - 2ik\frac{\partial u}{\partial z} = 0$$
+
+To solve this equation, we propose the ansatz:
+
+$$u(x,y,z) = A(z)\exp\left[-\frac{k}{2q(z)}(x^2 + y^2)\right]$$
+
+where $A(z)$ and $q(z)$ are complex functions to be determined. Substituting this into the paraxial equation and solving the resulting differential equations:
+
+$$\frac{dq}{dz} = 1 \quad \text{and} \quad \frac{dA}{dz} = -\frac{A}{q}$$
+
+These yield solutions $q(z) = q_0 + z$ and $A(z) = \frac{A_0}{q(z)}$, where $q_0$ and $A_0$ are constants.
+
+The complex beam parameter $q(z)$ relates to physical parameters through:
+
+$$\frac{1}{q(z)} = \frac{1}{R(z)} - i\frac{\lambda}{\pi w^2(z)}$$
+
+where $R(z)$ is the radius of curvature of the wavefront and $w(z)$ is the beam radius at which the intensity falls to $1/e^2$ of its axial value.
+
+Setting $q_0 = iz_0$ where $z_0$ is the Rayleigh range, we can express these parameters as:
+
+$$w(z) = w_0\sqrt{1 + \left(\frac{z}{z_0}\right)^2}$$
+
+$$R(z) = z\left[1 + \left(\frac{z_0}{z}\right)^2\right]$$
+
+where $w_0 = \sqrt{\frac{\lambda z_0}{\pi}}$ is the beam waist (minimum beam radius).
+
+The complete Gaussian beam solution is:
+
+$$U(x,y,z) = U_0 \frac{w_0}{w(z)} \exp\left[-\frac{x^2 + y^2}{w^2(z)}\right] \exp\left[-ikz - ik\frac{x^2 + y^2}{2R(z)} + i\phi(z)\right]$$
+
+where $\phi(z) = \arctan(z/z_0)$ is the Gouy phase shift, representing an additional phase beyond that of a plane wave.
+
+In scalar wave theory, the intensity of the Gaussian beam is proportional to the square of the amplitude. It can be calculated as:
+
+$$I(x,y,z) = |U(x,y,z)|^2 = I_0\frac{w_0^2}{w^2(z)}\exp\left[-\frac{2(x^2+y^2)}{w^2(z)}\right]$$
+
+where $I_0 = |U_0|^2$ is the peak intensity at the beam waist. This expression shows that the intensity has a Gaussian profile in any transverse plane, with its peak on the beam axis. The intensity falls to $1/e^2$ of its axial value at a radial distance $r = w(z)$ from the axis, which defines the beam radius. The total power carried by the beam is conserved during propagation, but the peak intensity decreases as $w(z)$ increases with distance from the waist.
+
+::: {.callout-note}
+## Gaussian Beam Propagation in the x-z Plane
+
+We can visualize how a Gaussian beam's intensity varies across both the propagation direction (z-axis) and transverse direction (x-axis) simultaneously using a 2D contour plot.
+
+```{python}
+# | echo: false
+# | label: fig-gaussian-beam-2d
+# | fig-cap: "Gaussian Beam Intensity Distribution in the x-z Plane for a wavelength of 632.8 nm and a beam waist of $w_0=0.1\\, \\text{mm}$"
+
+# Set parameters
+wavelength = 632.8e-9  # He-Ne laser wavelength (m)
+w0 = 0.1e-3  # Beam waist (m)
+z0 = np.pi * w0**2 / wavelength  # Rayleigh range (m)
+I0 = 1.0  # Peak intensity at waist
+
+# Define beam width function
+def w(z):
+    return w0 * np.sqrt(1 + (z/z0)**2)
+
+# Create a 2D grid for the x-z plane
+z_range = 3*z0  # Range for z-axis
+x_range = 3*w0  # Range for x-axis
+nz, nx = 500, 300  # Number of points
+z = np.linspace(-z_range, z_range, nz)
+x = np.linspace(-x_range, x_range, nx)
+Z, X = np.meshgrid(z, x)
+
+# Calculate beam width at each z position
+W = w0 * np.sqrt(1 + (Z/z0)**2)
+
+# Calculate intensity at each point in the x-z plane
+I = I0 * (w0/W)**2 * np.exp(-2*X**2/W**2)
+
+# Create the figure
+fig, ax = plt.subplots(figsize=get_size(16, 8))
+
+# Create filled contour plot with custom colormap
+cmap = plt.cm.plasma
+contour = ax.contourf(Z/z0, X/w0, I/I0, 50, cmap=cmap)
+
+# Add beam width contour lines (where intensity falls to 1/e^2 of central value)
+ax.plot(z/z0, w(z)/w0, 'w--', linewidth=1.5)
+ax.plot(z/z0, -w(z)/w0, 'w--', linewidth=1.5)
+
+# Add colorbar
+cbar = plt.colorbar(contour, ax=ax)
+cbar.set_label(r'$I/I_0$')
+
+# Set labels and title
+ax.set_xlabel(r'$z/z_0$')
+ax.set_ylabel(r'$x/w_0$')
+ax.set_aspect('auto')
+
+# Add annotations
+ax.axvline(x=0, color='w', linestyle=':', alpha=0.7)  # Mark beam waist position
+ax.axvline(x=1, color='w', linestyle=':', alpha=0.7)  # Mark Rayleigh range
+ax.axvline(x=-1, color='w', linestyle=':', alpha=0.7)  # Mark Rayleigh range
+
+plt.tight_layout()
+plt.show()
+```
+
+This contour plot illustrates how the Gaussian beam intensity distribution evolves as it propagates. The horizontal axis represents the normalized propagation distance (z/z₀), while the vertical axis shows the normalized transverse distance (x/w₀). The color gradient indicates intensity values, with brighter colors representing higher intensities.
+
+The white dashed lines trace the beam width w(z), where the intensity falls to 1/e² (approximately 13.5%) of its value on the beam axis. Note how the beam width reaches its minimum at the beam waist (z=0) and expands as the beam propagates away from the focus.
+
+The plot clearly shows that the highest intensity occurs at the beam waist, with the intensity decreasing both as we move away from the center axis and as the beam propagates away from the focal point.
+:::
+
+
+#### Key Gaussian Beam Parameters
+
+The following table summarizes the important parameters that characterize a Gaussian beam:
+
+| Parameter | Expression | Description |
+|-----------|------------|-------------|
+| Beam waist ($w_0$) | | Minimum beam radius at focus ($z=0$) |
+| Beam width ($w(z)$) | $w(z) = w_0\sqrt{1 + \left(\frac{z}{z_0}\right)^2}$ | Beam radius at position $z$ |
+| Rayleigh length ($z_0$) | $z_0 = \frac{\pi w_0^2}{\lambda}$ | Distance over which beam area doubles |
+| Radius of curvature ($R(z)$) | $R(z) = z\left[1 + \left(\frac{z_0}{z}\right)^2\right]$ | Radius of wavefront curvature |
+| Divergence angle ($\theta$) | $\theta = \frac{\lambda}{\pi w_0}$ | Far-field half-angle of beam spread |
+| Gouy phase ($\phi(z)$) | $\phi(z) = \arctan\left(\frac{z}{z_0}\right)$ | Additional phase beyond plane wave |
+| Complex beam parameter ($q(z)$) | $q(z) = z + iz_0$ | Combined parameter for beam properties |
+
+These parameters are interrelated, forming a complete description of how a Gaussian beam propagates. The Rayleigh length $z_0$ is particularly important as it defines the transition between the near field (where the beam is approximately collimated) and the far field (where the beam diverges linearly). At a distance of one Rayleigh length from the waist, the beam width increases by a factor of $\sqrt{2}$ and the intensity drops to half its maximum value.
+
+::: {.callout-note}
+## Gaussian Beam Intensity Profiles
+
+To better understand the spatial distribution of intensity in a Gaussian beam, it's helpful to visualize how the intensity varies along different directions. Here we explore two fundamental cross-sections: the axial intensity along the beam propagation path, and the transverse intensity profile at the beam waist.
+
+```{python}
+# | echo: false
+# | label: fig-gaussian-beam-intensity
+# | fig-cap: "Gaussian Beam Intensity Profiles for a wavelenght of 632.8 nm and a beam waist of $w_0=0.1\\, m$"
+from matplotlib.gridspec import GridSpec
+from mpl_toolkits.axes_grid1 import make_axes_locatable
+
+# Set parameters
+wavelength = 632.8e-9  # He-Ne laser wavelength (m)
+w0 = 0.1e-3  # Beam waist (m)
+z0 = np.pi * w0**2 / wavelength  # Rayleigh range (m)
+I0 = 1.0  # Peak intensity at waist
+
+# Calculate beam properties as functions
+def w(z):
+    return w0 * np.sqrt(1 + (z/z0)**2)
+
+def I_axial(z):
+    """Intensity at x=y=0, varying z"""
+    return I0 * (w0/w(z))**2
+
+def I_transverse(x):
+    """Intensity at z=0, y=0, varying x"""
+    return I0 * np.exp(-2*x**2/w0**2)
+
+# Create z and x arrays for plotting
+z_range = 4*z0
+z = np.linspace(-z_range, z_range, 1000)
+x = np.linspace(-3*w0, 3*w0, 1000)
+
+# Create figure with two subplots
+fig = plt.figure(figsize=get_size(16, 8))
+gs = GridSpec(1, 2, figure=fig)
+
+# Plot 1: Axial intensity vs z
+ax1 = fig.add_subplot(gs[0, 0])
+ax1.plot(z/z0, I_axial(z)/I0, 'b-', linewidth=2)
+ax1.set_xlabel(r'distance from waist ($z/z_0$)')
+ax1.set_ylabel(r'relative intensity ($I/I_0$)')
+#ax1.set_title('Axial Intensity (x=y=0)')
+ax1.grid(True, alpha=0.3)
+ax1.set_ylim(0, 1.05)
+
+# Plot 2: Transverse intensity vs x at z=0
+ax2 = fig.add_subplot(gs[0, 1])
+ax2.plot(x/w0, I_transverse(x)/I0, 'r-', linewidth=2)
+ax2.set_xlabel(r'transverse distance ($x/w_0$)')
+ax2.set_ylabel('relative intensity ($I/I_0$)')
+# ax2.set_title(R'Transverse Intensity at Waist (z=0, y=0)')
+ax2.grid(True, alpha=0.3)
+ax2.set_ylim(0, 1.05)
+
+# Add vertical lines to indicate beam width
+ax2.axvline(x=1, color='k', linestyle='--', alpha=0.7, label=r'$w_0$')
+ax2.axvline(x=-1, color='k', linestyle='--', alpha=0.7)
+ax2.axhline(y=1/np.e**2, color='k', linestyle=':', alpha=0.7, label='$1/e^2$')
+ax2.legend()
+
+plt.tight_layout()
+plt.show()
+```
+:::
+
+
+
+::: {.callout-note}
+## Gaussian Beam Propagation
+
+To better understand the spatial evolution of a Gaussian beam as it propagates, we can visualize how two key parameters change with distance: the beam width $w(z)$ and the wavefront radius of curvature $R(z)$.
+
+```{python}
+# | echo: false
+# | label: fig-gaussian-beam-properties
+# | fig-cap: "Gaussian Beam Width and Wavefront Curvature for a wavelength of 632.8 nm and a beam waist of $w_0=0.1\\, \\text{mm}$"
+
+# Set parameters (same as previous figure)
+wavelength = 632.8e-9  # He-Ne laser wavelength (m)
+w0 = 0.1e-3  # Beam waist (m)
+z0 = np.pi * w0**2 / wavelength  # Rayleigh range (m)
+
+# Define functions for beam width and radius of curvature
+def w(z):
+    return w0 * np.sqrt(1 + (z/z0)**2)
+
+def R(z):
+    # Avoid division by zero at z=0
+    z_safe = np.where(z == 0, 1e-10, z)
+    return z_safe * (1 + (z0/z_safe)**2)
+
+# Create z array for plotting
+z_range = 4*z0
+z = np.linspace(-z_range, z_range, 1000)
+
+# Create figure with two subplots
+fig = plt.figure(figsize=get_size(16, 8))
+gs = GridSpec(1, 2, figure=fig)
+
+# Plot 1: Beam width vs z
+ax1 = fig.add_subplot(gs[0, 0])
+ax1.plot(z/z0, w(z)/w0, 'b-', linewidth=2)
+ax1.set_xlabel(r'Distance from waist ($z/z_0$)')
+ax1.set_ylabel(r'Normalized beam width ($w(z)/w_0$)')
+ax1.grid(True, alpha=0.3)
+ax1.set_ylim(-4, 4)
+# Add horizontal line at w = sqrt(2)*w0 (width at Rayleigh range)
+ax1.axhline(y=np.sqrt(2), color='k', linestyle='--', alpha=0.7)
+ax1.axvline(x=1, color='k', linestyle=':', alpha=0.7)
+ax1.axvline(x=-1, color='k', linestyle=':', alpha=0.7)
+ax1.text(0.5, -np.sqrt(2)+0.1, r'$w(z_0) = \sqrt{2}w_0$', ha='center')
+
+# Plot 2: Radius of curvature vs z
+ax2 = fig.add_subplot(gs[0, 1])
+# For better visualization, limit the plot range for R(z)
+z_plot = np.linspace(-z_range, z_range, 1000)
+z_plot = z_plot[abs(z_plot) > 0.2*z0]  # Exclude points very close to z=0
+R_plot = R(z_plot)
+R_plot = np.clip(R_plot, -5*z0, 5*z0)  # Limit extreme values for better visualization
+
+ax2.plot(z_plot/z0, R_plot/z0, 'r-', linewidth=2)
+ax2.set_xlabel(r'$z/z_0$')
+ax2.set_ylabel(r'$R(z)/z_0$')
+ax2.grid(True, alpha=0.3)
+ax2.set_ylim(-5, 5)
+# Add asymptotic lines
+ax2.plot(z/z0, z/z0, 'k--', alpha=0.5, label=r'$R(z) \approx z$ for $|z| \gg z_0$')
+ax2.legend()
+
+plt.tight_layout()
+plt.show()
+```
+The left plot shows how the beam width $w(z)$ evolves with distance from the beam waist. At $z = 0$, the beam is at its narrowest point $w_0$. At the Rayleigh range ($z = ±z_0$), the width increases to $\sqrt{2}w_0$. For $|z| \gg z_0$, the beam width increases approximately linearly with distance, corresponding to a constant far-field divergence angle $\theta = \lambda/(\pi w_0)$.
+
+The right plot illustrates the wavefront radius of curvature $R(z)$. At the beam waist, the wavefronts are flat ($R = \infty$). The curvature reaches its minimum absolute value of $2z_0$ at $z = ±z_0$. For $z > 0$, $R(z)$ is positive (converging wavefronts), while for $z < 0$, $R(z)$ is negative (diverging wavefronts). As $|z|$ increases, $R(z)$ approaches the asymptotic behavior of a spherical wave, where $R(z) \approx z$.
+
+These parameters together provide a complete description of how the Gaussian beam transforms from a tightly focused wave near the waist to an approximately spherical wave in the far field.
+
+:::
+
+### Gaussian Beam Transformation Through Optical Systems
+
+#### The ABCD Matrix Formalism
+
+The propagation of Gaussian beams through optical systems can be elegantly described using the ABCD matrix formalism from ray optics. While ray optics typically tracks the position and angle of rays, for Gaussian beams we track the transformation of the complex beam parameter $q(z)$.
+
+When a Gaussian beam passes through an optical system characterized by an ABCD matrix, the complex beam parameter transforms according to:
+
+$$q_2 = \frac{Aq_1 + B}{Cq_1 + D}$$
+
+where $q_1$ is the initial complex beam parameter and $q_2$ is the transformed parameter. This remarkable result, known as the ABCD law for Gaussian beams, allows us to determine how the beam waist and wavefront curvature change through arbitrary optical systems.
+
+
+
+
+#### Common Optical Elements
+
+Different optical elements transform Gaussian beams in characteristic ways:
+
+1. **Free-space propagation** over distance $d$ is represented by:
+
+   $$\begin{pmatrix} A & B \\ C & D \end{pmatrix} = \begin{pmatrix} 1 & d \\ 0 & 1 \end{pmatrix}$$
+
+   This matrix describes how the beam naturally diverges as it propagates.
+
+2. **Thin lens** with focal length $f$:
+
+   $$\begin{pmatrix} A & B \\ C & D \end{pmatrix} = \begin{pmatrix} 1 & 0 \\ -1/f & 1 \end{pmatrix}$$
+
+   A lens modifies the wavefront curvature without changing the beam diameter at the lens location.
+
+3. **Curved interface** between media with refractive indices $n_1$ and $n_2$ and radius of curvature $R$:
+
+   $$\begin{pmatrix} A & B \\ C & D \end{pmatrix} = \begin{pmatrix} 1 & 0 \\ -\frac{n_2-n_1}{n_2 R} & \frac{n_1}{n_2} \end{pmatrix}$$
+
+Multiple optical elements can be analyzed by multiplying their respective ABCD matrices in the order encountered by the beam.
+
+#### Focusing of Gaussian Beams
+
+A particularly important case is the focusing of a Gaussian beam by a lens. If a collimated Gaussian beam with waist $w_0$ is incident on a lens with focal length $f$, the focused beam will have a new waist:
+
+$$w_0' = \frac{\lambda f}{\pi w_0}$$
+
+located approximately at the focal point. This equation highlights the fundamental diffraction limit of focusing: smaller focal spots require larger input beam diameters relative to the wavelength.
+
+When a Gaussian beam is focused by a lens, the Rayleigh range of the focused beam also changes. For a collimated input beam, the new Rayleigh range after focusing is:
+
+$$z_0' = \frac{\pi {w_0'}^2}{\lambda} = \frac{\lambda f^2}{\pi w_0^2}$$
+
+This means that tightly focused beams (small $w_0'$) have correspondingly shorter Rayleigh ranges, resulting in more rapid divergence beyond the focal point. This inverse relationship between spot size and Rayleigh range represents a fundamental trade-off in beam focusing: achieving a smaller spot size necessarily results in a beam that diverges more quickly after the focus.
+
+The divergence angle of the focused beam is also affected, increasing as the spot size decreases:
+
+$$\theta' = \frac{\lambda}{\pi w_0'} = \frac{w_0}{f}$$
+
+This relationship shows that the focused beam's divergence is inversely proportional to the input beam width. A wider input beam produces a more tightly focused spot with greater divergence, while a narrower input beam creates a larger focal spot with less divergence.
+
+The transformation matrices enable us to design optical systems that reshape Gaussian beams to desired specifications—expanding, collimating, or focusing them for specific applications. This matrix approach bridges ray optics and wave optics, providing a powerful tool for optical system design with coherent light sources.
+
+
+### Higher-Order Gaussian Modes
+#### Hermite-Gaussian Beams
+
+Hermite-Gaussian modes form a complete set of solutions to the paraxial wave equation in Cartesian coordinates. They can be expressed as:
+
+$$U_{nm}(x,y,z) = U_0\frac{w_0}{w(z)}H_n\left(\frac{\sqrt{2}x}{w(z)}\right)H_m\left(\frac{\sqrt{2}y}{w(z)}\right) \exp\left[-\frac{x^2 + y^2}{w^2(z)}\right]$$
+$$\times \exp\left[-ikz - ik\frac{x^2 + y^2}{2R(z)} + i(n+m+1)\phi(z)\right]$$
+
+where $H_n$ and $H_m$ are Hermite polynomials of orders $n$ and $m$. The indices $n,m = 0,1,2,...$ determine the number of nodes in the intensity pattern along $x$ and $y$ directions. The fundamental Gaussian beam corresponds to $n=m=0$.
+
+These modes naturally arise in laser resonators with rectangular symmetry and maintain their intensity pattern during propagation, though they scale in size. Each higher-order mode experiences an additional Gouy phase shift, causing different modes to accumulate phase at different rates during propagation.
+
+```{python}
+# | echo: false
+# | label: fig-hermite-gaussian
+# | fig-cap: "Intensity (top row) and phase (bottom row) distributions of the first four Hermite-Gaussian modes in the xy-plane at z=1z₀: (a) HG₀₀, (b) HG₁₀, (c) HG₀₁, and (d) HG₁₁. Higher-order modes clearly show multiple intensity peaks."
+
+from matplotlib.colors import LinearSegmentedColormap
+from scipy.special import hermite
+
+# Create a 2D grid in the xy-plane
+x = np.linspace(-2, 2, 300)
+y = np.linspace(-2, 2, 300)
+X, Y = np.meshgrid(x, y)
+
+# Parameters
+w0 = 1.0            # Beam waist (normalized units)
+z = 0.1             # Observing at z=1*z0, not at waist
+z0 = np.pi * w0**2  # Rayleigh range (normalized)
+k = 2*np.pi         # Wavenumber (normalized)
+
+# Calculate beam parameters at z
+w_z = w0 * np.sqrt(1 + (z/z0)**2)          # Beam width at z
+R_z = z * (1 + (z0/z)**2)                  # Radius of curvature at z
+phi_z = np.arctan(z/z0)                    # Gouy phase at z
+
+# Define function to calculate Hermite-Gaussian modes
+def hermite_gaussian(x, y, n, m, w0, z):
+    # Calculate using the actual Hermite polynomials
+    w_z = w0 * np.sqrt(1 + (z/z0)**2)
+    R_z = z * (1 + (z0/z)**2)
+    phi_z = np.arctan(z/z0)
+
+    # Use scipy's hermite function to calculate the Hermite polynomials
+    H_n = hermite(n)
+    H_m = hermite(m)
+
+    # Calculate the Hermite-Gaussian field
+    amplitude = (w0/w_z) * H_n(np.sqrt(2)*x/w_z) * H_m(np.sqrt(2)*y/w_z) * np.exp(-(x**2 + y**2)/w_z**2)
+
+    # Add the phase factors
+    phase = -k*z - k*(x**2 + y**2)/(2*R_z) + (n + m + 1)*phi_z
+
+    # Combine into complex field
+    field = amplitude * np.exp(1j * phase)
+    return field
+
+# Calculate the first four Hermite-Gaussian modes
+HG_modes = [
+    hermite_gaussian(X, Y, 0, 0, w0, z),  # HG₀₀
+    hermite_gaussian(X, Y, 1, 0, w0, z),  # HG₁₀
+    hermite_gaussian(X, Y, 0, 1, w0, z),  # HG₀₁
+    hermite_gaussian(X, Y, 1, 1, w0, z)   # HG₁₁
+]
+mode_labels = [r'$\mathrm{HG}_{00}$', r'$\mathrm{HG}_{10}$', r'$\mathrm{HG}_{01}$', r'$\mathrm{HG}_{11}$']
+
+# Create figure with proper space for colorbar
+fig = plt.figure(figsize=get_size(18, 8))  # Increased width to accommodate colorbars
+
+# Create subplot grid with appropriate spacing
+gs = fig.add_gridspec(2, 5, width_ratios=[1, 1, 1, 1, 0.1])
+
+# Create axes for plots
+axs = np.array([[fig.add_subplot(gs[0, 0]), fig.add_subplot(gs[0, 1]),
+                 fig.add_subplot(gs[0, 2]), fig.add_subplot(gs[0, 3])],
+                [fig.add_subplot(gs[1, 0]), fig.add_subplot(gs[1, 1]),
+                 fig.add_subplot(gs[1, 2]), fig.add_subplot(gs[1, 3])]])
+
+# Create axes for colorbars
+cax1 = fig.add_subplot(gs[0, 4])
+cax2 = fig.add_subplot(gs[1, 4])
+
+# Custom colormap for phase plots
+phase_cmap = 'hsv'
+
+# Plot intensity and phase for each mode
+for i, mode in enumerate(HG_modes):
+    # Calculate intensity and phase
+    intensity = np.abs(mode)**2
+    phase = np.angle(mode)
+
+    # Intensity plot (top row)
+    im1 = axs[0, i].imshow(intensity, extent=[-2, 2, -2, 2], cmap='viridis', origin='lower')
+    axs[0, i].set_title(f"{mode_labels[i]} - Intensity")
+    axs[0, i].set_xlabel(r'$x/w_0$')
+    axs[0, i].set_ylabel(r'$y/w_0$')
+
+    # Phase plot (bottom row)
+    im2 = axs[1, i].imshow(phase, extent=[-2, 2, -2, 2], cmap=phase_cmap, origin='lower',
+                           vmin=-np.pi, vmax=np.pi)
+    axs[1, i].set_title(f"{mode_labels[i]} - Phase")
+    axs[1, i].set_xlabel(r'$x/w_0$')
+    axs[1, i].set_ylabel(r'$y/w_0$')
+
+# Add colorbars
+fig.colorbar(im1, cax=cax1, label=r'$I/I_0$')
+fig.colorbar(im2, cax=cax2, label=r'$\phi \, [\mathrm{rad}]$')
+
+plt.tight_layout()
+plt.show()
+```
+
+#### Laguerre-Gaussian Beams
+
+In systems with cylindrical symmetry, Laguerre-Gaussian modes provide a more natural description. In cylindrical coordinates $(r,\theta,z)$, they are given by:
+
+$$U_{pl}(r,\theta,z) = U_0\frac{w_0}{w(z)}\left(\frac{\sqrt{2}r}{w(z)}\right)^{|l|}L_p^{|l|}\left(\frac{2r^2}{w^2(z)}\right) \exp\left[-\frac{r^2}{w^2(z)}\right]$$
+$$\times \exp\left[-ikz - ik\frac{r^2}{2R(z)} + i(2p+|l|+1)\phi(z) + il\theta\right]$$
+
+where $L_p^{|l|}$ are the associated Laguerre polynomials, $p \geq 0$ is the radial index determining the number of radial nodes, and $l$ is the azimuthal index that determines the helical structure of the wavefront.
+
+A remarkable property of Laguerre-Gaussian modes with $l \neq 0$ is that they carry orbital angular momentum (OAM) of $l\hbar$ per photon. This OAM arises from the helical phase structure represented by the term $\exp(il\theta)$, which creates a twisted wavefront resembling a spiral staircase. The intensity distribution forms a ring-like pattern with a dark center for $l \neq 0$ due to the phase singularity along the beam axis. As $p$ increases, additional concentric rings appear in the intensity pattern.
+
+
+
+```{python}
+# | echo: false
+# | label: fig-laguerre-gaussian
+# | fig-cap: "Intensity (top row) and phase (bottom row) distributions of the first four Laguerre-Gaussian modes in the xy-plane at z=0.1z₀: (a) LG₀₀, (b) LG₀₁, (c) LG₁₀, and (d) LG₁₁. Note the ring-like intensity patterns and spiral phase structures in modes with non-zero azimuthal index l."
+
+from scipy.special import genlaguerre
+import math  # Import standard math module instead of using np.math
+
+# Create a 2D grid in the xy-plane
+x = np.linspace(-2, 2, 300)
+y = np.linspace(-2, 2, 300)
+X, Y = np.meshgrid(x, y)
+R = np.sqrt(X**2 + Y**2)
+THETA = np.arctan2(Y, X)
+
+# Parameters
+w0 = 1.0            # Beam waist (normalized units)
+z = 0.1             # Observing at z=0.1*z0
+z0 = np.pi * w0**2  # Rayleigh range (normalized)
+k = 2*np.pi         # Wavenumber (normalized)
+
+# Calculate beam parameters at z
+w_z = w0 * np.sqrt(1 + (z/z0)**2)          # Beam width at z
+R_z = z * (1 + (z0/z)**2)                  # Radius of curvature at z
+phi_z = np.arctan(z/z0)                    # Gouy phase at z
+
+# Define function to calculate Laguerre-Gaussian modes
+def laguerre_gaussian(r, theta, p, l, w0, z):
+    # Calculate using the associated Laguerre polynomials
+    w_z = w0 * np.sqrt(1 + (z/z0)**2)
+    R_z = z * (1 + (z0/z)**2)
+    phi_z = np.arctan(z/z0)
+
+    # Use scipy's genlaguerre function to calculate the associated Laguerre polynomials
+    L_pl = genlaguerre(p, abs(l))
+
+    # Calculate the Laguerre-Gaussian field
+    norm = np.sqrt(2*math.factorial(p) / (np.pi * math.factorial(p + abs(l))))
+    amplitude = norm * (w0/w_z) * ((np.sqrt(2)*r/w_z)**abs(l)) * L_pl(2*r**2/w_z**2) * np.exp(-r**2/w_z**2)
+
+    # Add the phase factors
+    phase = -k*z - k*r**2/(2*R_z) + (2*p + abs(l) + 1)*phi_z + l*theta
+
+    # Combine into complex field
+    field = amplitude * np.exp(1j * phase)
+    return field
+
+# Calculate the first four Laguerre-Gaussian modes
+LG_modes = [
+    laguerre_gaussian(R, THETA, 0, 0, w0, z),  # LG₀₀
+    laguerre_gaussian(R, THETA, 0, 1, w0, z),  # LG₀₁
+    laguerre_gaussian(R, THETA, 1, 0, w0, z),  # LG₁₀
+    laguerre_gaussian(R, THETA, 1, 1, w0, z)   # LG₁₁
+]
+mode_labels = [r'$\mathrm{LG}_{00}$', r'$\mathrm{LG}_{01}$', r'$\mathrm{LG}_{10}$', r'$\mathrm{LG}_{11}$']
+
+# Create figure with proper space for colorbar
+fig = plt.figure(figsize=get_size(18, 8))
+
+# Create subplot grid with appropriate spacing
+gs = fig.add_gridspec(2, 5, width_ratios=[1, 1, 1, 1, 0.1])
+
+# Create axes for plots
+axs = np.array([[fig.add_subplot(gs[0, 0]), fig.add_subplot(gs[0, 1]),
+                 fig.add_subplot(gs[0, 2]), fig.add_subplot(gs[0, 3])],
+                [fig.add_subplot(gs[1, 0]), fig.add_subplot(gs[1, 1]),
+                 fig.add_subplot(gs[1, 2]), fig.add_subplot(gs[1, 3])]])
+
+# Create axes for colorbars
+cax1 = fig.add_subplot(gs[0, 4])
+cax2 = fig.add_subplot(gs[1, 4])
+
+# Custom colormap for phase plots
+phase_cmap = 'hsv'
+
+# Plot intensity and phase for each mode
+for i, mode in enumerate(LG_modes):
+    # Calculate intensity and phase
+    intensity = np.abs(mode)**2
+    phase = np.angle(mode)
+
+    # Normalize intensity for better visualization
+    intensity = intensity / np.max(intensity)
+
+    # Intensity plot (top row)
+    im1 = axs[0, i].imshow(intensity, extent=[-2, 2, -2, 2], cmap='viridis', origin='lower')
+    axs[0, i].set_title(f"{mode_labels[i]} - Intensity")
+    axs[0, i].set_xlabel(r'$x/w_0$')
+    axs[0, i].set_ylabel(r'$y/w_0$')
+
+    # Phase plot (bottom row)
+    im2 = axs[1, i].imshow(phase, extent=[-2, 2, -2, 2], cmap=phase_cmap, origin='lower',
+                          vmin=-np.pi, vmax=np.pi)
+    axs[1, i].set_title(f"{mode_labels[i]} - Phase")
+    axs[1, i].set_xlabel(r'$x/w_0$')
+    axs[1, i].set_ylabel(r'$y/w_0$')
+
+# Add colorbars
+fig.colorbar(im1, cax=cax1, label=r'Normalized Intensity')
+fig.colorbar(im2, cax=cax2, label=r'Phase $\phi \, [\mathrm{rad}]$')
+
+plt.tight_layout()
+plt.show()
+```
+The orbital angular momentum of light is distinct from spin angular momentum (SAM), which is associated with circular polarization (±$\hbar$ per photon). While SAM relates to the polarization state of light, OAM relates to the spatial structure of the wavefront. Importantly, these two forms of angular momentum can interact through spin-orbit coupling in certain optical systems, particularly in anisotropic or inhomogeneous media, at interfaces, or when light experiences strong focusing. Such spin-orbit coupling enables novel phenomena like spin-to-orbital angular momentum conversion, where the polarization state can influence the spatial structure of the beam and vice versa. This coupling mechanism has found specific applications in:
+
+1. **Optical tweezers** - Spin-orbit coupling allows precise control of trapped particles by converting polarization changes into rotational motion, enabling manipulation of microscopic objects with unprecedented precision.
+
+2. **Quantum cryptography** - The coupling between SAM and OAM creates additional degrees of freedom for encoding quantum information, enhancing the security and information capacity of quantum key distribution protocols.
+
+3. **Optical vortex metrology** - Using the phase singularities created by spin-orbit interactions to detect nanoscale surface imperfections with superior sensitivity compared to conventional techniques.
+
+4. **Chiral spectroscopy** - The interaction between polarization and spatial modes enables enhanced detection of chiral molecules by amplifying the difference in light-matter interactions between enantiomers.
+
+5. **Structured light microscopy** - Coupling between SAM and OAM generates complex field patterns that improve resolution beyond the diffraction limit in specific imaging configurations.
+
+
+Both families of higher-order modes are important in modern optics applications, including optical manipulation, quantum information processing, and mode-division multiplexing in optical communications. They represent different orthogonal bases of the same solution space and can be transformed into each other through appropriate optical systems.

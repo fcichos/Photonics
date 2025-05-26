@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.29">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>8&nbsp; Spatial Spectral Analysis – Introduction to Photonics</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../lectures/lecture05/01-lecture05.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-0815c480559380816a4d1ea211a47e91.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-485d01fc63b59abcd3ee1bf1e8e2748d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../assets/css/styles.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../lectures/lecture06/01-lecture06.html">Lecture 6</a></li><li class="breadcrumb-item"><a href="../../lectures/lecture06/01-lecture06.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">| echo: false</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../">Introduction to Photonics</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Photonics</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Lecture 1</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture01/01-lecture01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">| echo: false</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Lecture 2</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture02/01-lecture02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">| echo: false</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture02/02-lecture02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">| echo: false</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Lecture 3</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture03/01-lecture03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">just for plotting later</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Lecture 4</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture04/01-lecture04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">| echo: false</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Lecture 5</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture05/01-lecture05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">| echo: false</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Lecture 6</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture06/01-lecture06.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">| echo: false</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#transfer-function-of-free-space" id="toc-transfer-function-of-free-space" class="nav-link active" data-scroll-target="#transfer-function-of-free-space"><span class="header-section-number">8.0.1</span> Transfer Function of Free space</a></li>
+  <li><a href="#amplitude-modulation" id="toc-amplitude-modulation" class="nav-link" data-scroll-target="#amplitude-modulation"><span class="header-section-number">8.1</span> Amplitude Modulation</a></li>
+  <li><a href="#frequency-modulation" id="toc-frequency-modulation" class="nav-link" data-scroll-target="#frequency-modulation"><span class="header-section-number">8.2</span> Frequency Modulation</a></li>
+  <li><a href="#speckle-random-frequency-modulation" id="toc-speckle-random-frequency-modulation" class="nav-link" data-scroll-target="#speckle-random-frequency-modulation"><span class="header-section-number">8.3</span> Speckle: Random Frequency Modulation</a>
+  <ul class="collapse">
+  <li><a href="#speckle-formation" id="toc-speckle-formation" class="nav-link" data-scroll-target="#speckle-formation"><span class="header-section-number">8.3.1</span> Speckle Formation</a></li>
+  </ul></li>
+  <li><a href="#frequency-modulation-with-continuously-varying-spatial-frequencies" id="toc-frequency-modulation-with-continuously-varying-spatial-frequencies" class="nav-link" data-scroll-target="#frequency-modulation-with-continuously-varying-spatial-frequencies"><span class="header-section-number">8.4</span> Frequency Modulation with Continuously Varying Spatial Frequencies</a>
+  <ul class="collapse">
+  <li><a href="#imaging" id="toc-imaging" class="nav-link" data-scroll-target="#imaging"><span class="header-section-number">8.4.1</span> Imaging</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../lectures/lecture06/01-lecture06.html">Lecture 6</a></li><li class="breadcrumb-item"><a href="../../lectures/lecture06/01-lecture06.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">| echo: false</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Spatial Spectral Analysis</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Corresponding to our previous analysis, the angular spectrum representation can be formalized using Fourier analysis. The complex amplitude transmittance <span class="math inline">\(f(x,y)\)</span> can be written as a Fourier transform</p>
+<p><span class="math display">\[f(x,y)=\iint_{-\infty}^{\infty} F(\nu_x,\nu_y) e^{i 2\pi(\nu_x x + \nu_y y)}d\nu_x d\nu_y\]</span></p>
+<p>where <span class="math inline">\(F(\nu_x,\nu_y)\)</span> give the amplitudes of the frequency components of the transmittance. With our previous expression, then the field at any plane <span class="math inline">\(z\)</span> can be obtained by:</p>
+<p><span class="math display">\[U(x,y,z) = \iint_{-\infty}^{\infty} F(\nu_x,\nu_y) e^{i 2\pi(\nu_x x + \nu_y y)} e^{-i k_z z} d\nu_x d\nu_y\]</span></p>
+<p>where <span class="math inline">\(k_z = 2\pi\sqrt{(1/\lambda)^2 - \nu_x^2 - \nu_y^2}\)</span> is the z-component of the wavevector.</p>
+<p>This formulation shows that the field at any distance <span class="math inline">\(z\)</span> can be calculated by multiplying each spatial frequency component by the appropriate phase factor <span class="math inline">\(e^{-i k_z z}\)</span> and then performing an inverse Fourier transform. This approach provides an elegant and computationally efficient method for modeling wave propagation, particularly in homogeneous media.</p>
+<p>For propagating waves, where <span class="math inline">\(\nu_x^2 + \nu_y^2 &lt; (1/\lambda)^2\)</span>, the factor <span class="math inline">\(e^{-i k_z z}\)</span> represents a phase shift. For evanescent waves, where <span class="math inline">\(\nu_x^2 + \nu_y^2 &gt; (1/\lambda)^2\)</span>, <span class="math inline">\(k_z\)</span> becomes imaginary, resulting in exponential decay with distance.</p>
+<div id="cell-fig-rectangular-hole-freq" class="cell" data-execution_count="2">
+<div class="cell-output cell-output-display">
+<div id="fig-rectangular-hole-freq" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-rectangular-hole-freq-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="01-lecture06_files/figure-html/fig-rectangular-hole-freq-output-1.png" width="692" height="335" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-rectangular-hole-freq-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8.1— Spatial frequency spectrum of a rectangular aperture with width 10 μm. The dashed lines indicate the cutoff frequencies at which light with wavelength λ can propagate.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<section id="transfer-function-of-free-space" class="level3" data-number="8.0.1">
+<h3 data-number="8.0.1" class="anchored" data-anchor-id="transfer-function-of-free-space"><span class="header-section-number">8.0.1</span> Transfer Function of Free space</h3>
+<p>We now examine the propagation of a monochromatic optical wave of wavelength <span class="math inline">\(\lambda\)</span> and complex amplitude <span class="math inline">\(U(x, y, z)\)</span> in the free space between the planes <span class="math inline">\(z=0\)</span> and <span class="math inline">\(z=d\)</span>, called the input and output planes, respectively. Given the complex amplitude of the wave at the input plane, <span class="math inline">\(f(x, y)=U(x, y, 0)\)</span>, we want to determine the complex amplitude at the output plane, <span class="math inline">\(g(x, y)=U(x, y, d)\)</span>.</p>
+<p>The input field <span class="math inline">\(f(x,y)\)</span> propagates through free space to form the output field <span class="math inline">\(g(x,y)\)</span>. Using the angular spectrum representation, we can express the relationship between input and output as:</p>
+<p><span class="math display">\[g(x,y) = \iint_{-\infty}^{\infty} F(\nu_x,\nu_y) e^{i 2\pi(\nu_x x + \nu_y y)} e^{-i k_z d} d\nu_x d\nu_y\]</span></p>
+<p>where <span class="math inline">\(F(\nu_x,\nu_y)\)</span> is the Fourier transform of <span class="math inline">\(f(x,y)\)</span>, and <span class="math inline">\(k_z = 2\pi\sqrt{(1/\lambda)^2 - \nu_x^2 - \nu_y^2}\)</span> is the z-component of the wavevector.</p>
+<p>The transfer function of free space, denoted as <span class="math inline">\(H(\nu_x,\nu_y)\)</span>, is defined as the ratio of the output spectrum to the input spectrum:</p>
+<p><span class="math display">\[H(\nu_x,\nu_y) = e^{-i k_z d} = e^{-i 2\pi d\sqrt{(1/\lambda)^2 - \nu_x^2 - \nu_y^2}}\]</span></p>
+<p>This transfer function has two distinct regimes based on the values of <span class="math inline">\(\nu_x\)</span> and <span class="math inline">\(\nu_y\)</span>:</p>
+<ol type="1">
+<li><p><strong>Propagating waves</strong>: When <span class="math inline">\(\nu_x^2 + \nu_y^2 &lt; (1/\lambda)^2\)</span>, <span class="math inline">\(k_z\)</span> is real, and <span class="math inline">\(H(\nu_x,\nu_y) = e^{-i k_z d}\)</span> represents a pure phase shift. These are propagating waves that carry energy from the input to the output plane.</p></li>
+<li><p><strong>Evanescent waves</strong>: When <span class="math inline">\(\nu_x^2 + \nu_y^2 &gt; (1/\lambda)^2\)</span>, <span class="math inline">\(k_z\)</span> becomes imaginary, and <span class="math inline">\(H(\nu_x,\nu_y) = e^{-|k_z| d}\)</span> represents an exponential decay. These evanescent waves decay exponentially with distance and do not propagate energy to the far field. For spatial frequencies slightly beyond the propagating limit, where <span class="math inline">\(\nu_x^2 + \nu_y^2 \approx (1/\lambda)^2 + \Delta\)</span>, the decay constant can be approximated as <span class="math inline">\(|k_z| \approx 2\pi\sqrt{\Delta} \approx \pi\lambda/(2d^2)\)</span>, where <span class="math inline">\(d\)</span> is the characteristic distance from the object. This means that features with spatial frequencies significantly above <span class="math inline">\(1/\lambda\)</span> become effectively undetectable at distances greater than a few wavelengths.</p></li>
+</ol>
+<p>A simplification of the transfer function of free space maybe obtained when considering only spatial frequencies that are much smaller than the cut-off frequency. This simplificaltion is called the Fresnel approximation and leads to</p>
+<p><span class="math display">\[
+H\left(\nu_x, \nu_y\right) \approx H_0 \exp \left[i \pi \lambda d\left(\nu_x^2+\nu_y^2\right)\right]
+\]</span></p>
+<p>Its inverse Fourier transform is the impulse response function <span class="math inline">\(h(x,y)\)</span>, which is given by</p>
+<p><span class="math display">\[
+h(x, y) \approx h_0 \exp \left[-i k \frac{x^2+y^2}{2 d}\right]
+\]</span></p>
+<p>with <span class="math inline">\(h_0=(i / \lambda d) \exp (-i k d)\)</span>.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Fresnel Approximation
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>The expression for the transfer function may be simplified if the input function <span class="math inline">\(f(x, y)\)</span> contains only spatial frequencies that are much smaller than the cutoff frequency <span class="math inline">\(1 / \lambda\)</span>, so that <span class="math inline">\(\nu_x^2+\nu_y^2 \ll 1 / \lambda^2\)</span>. The plane-wave components of the propagating light then make small angles <span class="math inline">\(\theta_x \approx \lambda \nu_x\)</span> and <span class="math inline">\(\theta_y \approx \lambda \nu_y\)</span> corresponding to paraxial rays.</p>
+<p>Denoting <span class="math inline">\(\theta^2=\theta_x^2+\theta_y^2 \approx \lambda^2\left(\nu_x^2+\nu_y^2\right)\)</span>, where <span class="math inline">\(\theta\)</span> is the angle with the optical axis, the phase factor in the transfer function is</p>
+<p><span class="math display">\[
+\begin{aligned}
+2 \pi\left(\frac{1}{\lambda^2}-\nu_x^2-\nu_y^2\right)^{1 / 2} d &amp; =2 \pi \frac{d}{\lambda}\left(1-\theta^2\right)^{1 / 2} \\
+&amp; =2 \pi \frac{d}{\lambda}\left(1-\frac{\theta^2}{2}+\frac{\theta^4}{8}-\cdots\right)
+\end{aligned}
+\]</span></p>
+<p>Neglecting the third and higher terms of this expansion, the transfer function may be approximated by</p>
+<p><span class="math display">\[
+H\left(\nu_x, \nu_y\right) \approx H_0 \exp \left[i \pi \lambda d\left(\nu_x^2+\nu_y^2\right)\right]
+\]</span></p>
+<p>where <span class="math inline">\(H_0=\exp (-i k d)\)</span>. In this approximation, the phase is a quadratic function of <span class="math inline">\(\nu_x\)</span> and <span class="math inline">\(\nu_y\)</span>. This approximation is known as the Fresnel approximation.</p>
+<p>The condition of validity of the Fresnel approximation is that the third term in the expansion is much smaller than <span class="math inline">\(\pi\)</span> for all <span class="math inline">\(\theta\)</span>. This is equivalent to</p>
+<p><span class="math display">\[
+\frac{\theta^4 d}{4 \lambda} \ll 1
+\]</span></p>
+<p>If <span class="math inline">\(a\)</span> is the largest radial distance in the output plane, the largest angle <span class="math inline">\(\theta_m \approx a / d\)</span>, and this condition may be written in the form</p>
+<p><span class="math display">\[
+\frac{N_{\mathrm{F}} \theta_m^2}{4} \ll 1,
+\]</span> where <span class="math inline">\(N_{\mathrm{F}}=a^2 / \lambda d\)</span> is the Fresnel number. For example, if <span class="math inline">\(a=1 \mathrm{~cm}, d=100 \mathrm{~cm}\)</span>, and <span class="math inline">\(\lambda=0.5 \mu \mathrm{~m}\)</span>, then <span class="math inline">\(\theta_m=10^{-2}\)</span> radian, <span class="math inline">\(N_{\mathrm{F}}=200\)</span>, and <span class="math inline">\(N_{\mathrm{F}} \theta^2 / 4=5 \times 10^{-3}\)</span>. In this case the Fresnel approximation is applicable.</p>
+</div>
+</div>
+</div>
+<div id="cell-fig-transfer-function" class="cell" data-execution_count="3">
+<div class="cell-output cell-output-display">
+<div id="fig-transfer-function" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-transfer-function-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="01-lecture06_files/figure-html/fig-transfer-function-output-1.png" width="454" height="334" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-transfer-function-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8.2— The magnitude of the free-space transfer function. For propagating waves (<span class="math inline">\(\nu_x^2 + \nu_y^2 &lt; 1/\lambda^2\)</span>), the transfer function has magnitude 1, representing pure phase delay. For evanescent waves (<span class="math inline">\(\nu_x^2 + \nu_y^2 &gt; 1/\lambda^2\)</span>), the magnitude decays exponentially with distance from the origin.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Total Internal Reflection: A Spatial Frequency Interpretation
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>In Fourier optics, we analyze wave propagation in terms of spatial frequencies. For a monochromatic wave with vacuum wavelength <span class="math inline">\(\lambda_0\)</span>:</p>
+<ol type="1">
+<li><p><strong>Wavevector components</strong> in a medium with refractive index <span class="math inline">\(n\)</span>:</p>
+<p><span class="math display">\[|\mathbf{k}| = \frac{2\pi n}{\lambda_0}\]</span></p>
+<p>And its components must satisfy:</p>
+<p><span class="math display">\[k_x^2 + k_y^2 + k_z^2 = \left(\frac{2\pi n}{\lambda_0}\right)^2\]</span></p></li>
+<li><p><strong>Spatial frequency components</strong> are related to the wavevector:</p>
+<p><span class="math display">\[\nu_x = \frac{k_x}{2\pi}, \nu_y = \frac{k_y}{2\pi}, \nu_z = \frac{k_z}{2\pi}\]</span></p>
+<p>Thus, the dispersion relation in terms of spatial frequencies:</p>
+<p><span class="math display">\[\nu_x^2 + \nu_y^2 + \nu_z^2 = \left(\frac{n}{\lambda_0}\right)^2\]</span></p></li>
+</ol>
+<section id="total-internal-reflection-condition" class="level3" data-number="8.0.2">
+<h3 data-number="8.0.2" class="anchored" data-anchor-id="total-internal-reflection-condition"><span class="header-section-number">8.0.2</span> Total Internal Reflection Condition</h3>
+<p>When light travels from medium 1 (<span class="math inline">\(n_1\)</span>) to medium 2 (<span class="math inline">\(n_2\)</span>), where <span class="math inline">\(n_1 &gt; n_2\)</span>:</p>
+<ol type="1">
+<li><p><strong>Tangential continuity</strong>: The tangential component of the wavevector (<span class="math inline">\(k_x\)</span>) must be conserved across the boundary. For an incident angle <span class="math inline">\(\theta_i\)</span>:</p>
+<p><span class="math display">\[k_x = \frac{2\pi n_1}{\lambda_0}\sin\theta_i\]</span></p>
+<p>Or in terms of spatial frequency:</p>
+<p><span class="math display">\[\nu_x = \frac{n_1}{\lambda_0}\sin\theta_i\]</span></p></li>
+<li><p><strong>Critical angle condition</strong>: At the critical angle <span class="math inline">\(\theta_c\)</span>:</p>
+<p><span class="math display">\[\sin\theta_c = \frac{n_2}{n_1}\]</span></p>
+<p>In spatial frequency terms, this corresponds to:</p>
+<p><span class="math display">\[\nu_x^{critical} = \frac{n_2}{\lambda_0}\]</span></p></li>
+<li><p><strong>Total internal reflection regime</strong>: When <span class="math inline">\(\theta_i &gt; \theta_c\)</span>, or equivalently, when <span class="math inline">\(\nu_x &gt; n_2/\lambda_0\)</span>:</p>
+<p><span class="math display">\[\nu_x &gt; \frac{n_2}{\lambda_0}\]</span></p>
+<p>The normal component of the wavevector in medium 2 becomes:</p>
+<p><span class="math display">\[k_z^2 = \left(\frac{2\pi n_2}{\lambda_0}\right)^2 - k_x^2 &lt; 0\]</span></p>
+<p>Or in spatial frequency terms:</p>
+<p><span class="math display">\[\nu_z^2 = \left(\frac{n_2}{\lambda_0}\right)^2 - \nu_x^2 &lt; 0\]</span></p></li>
+<li><p><strong>Evanescent wave solution</strong>: Since <span class="math inline">\(\nu_z^2 &lt; 0\)</span>, we have <span class="math inline">\(\nu_z = \pm i\gamma\)</span> where <span class="math inline">\(\gamma\)</span> is real. Choosing the physically meaningful solution:</p>
+<p><span class="math display">\[\nu_z = i\gamma = i\sqrt{\nu_x^2 - \left(\frac{n_2}{\lambda_0}\right)^2}\]</span></p>
+<p>The field in medium 2 takes the form:</p>
+<p><span class="math display">\[E(x,z) = E_0 e^{i2\pi\nu_x x} e^{-2\pi\gamma z}\]</span></p>
+<p>This represents an evanescent wave that propagates along the interface but decays exponentially perpendicular to it.</p></li>
+<li><p><strong>Penetration depth</strong>: The amplitude of the evanescent wave decreases by a factor of 1/e at a distance:</p>
+<p><span class="math display">\[d = \frac{1}{2\pi\gamma} = \frac{1}{2\pi\sqrt{\nu_x^2 - \left(\frac{n_2}{\lambda_0}\right)^2}}\]</span></p>
+<p>This can be rewritten in terms of the incident angle:</p>
+<p><span class="math display">\[d = \frac{\lambda_0}{2\pi\sqrt{n_1^2\sin^2\theta_i - n_2^2}}\]</span></p></li>
+</ol>
+</section>
+<section id="spatial-frequency-filtering-interpretation" class="level3" data-number="8.0.3">
+<h3 data-number="8.0.3" class="anchored" data-anchor-id="spatial-frequency-filtering-interpretation"><span class="header-section-number">8.0.3</span> Spatial Frequency Filtering Interpretation</h3>
+<p>Total internal reflection can be understood as a spatial frequency filtering phenomenon:</p>
+<ol type="1">
+<li><p>The medium with refractive index <span class="math inline">\(n_2\)</span> has a maximum spatial frequency cutoff at <span class="math inline">\(\nu_{max} = n_2/\lambda_0\)</span> for propagating waves.</p></li>
+<li><p>When the incident wave has a tangential spatial frequency component <span class="math inline">\(\nu_x &gt; \nu_{max}\)</span>, the second medium cannot support propagating waves at this spatial frequency.</p></li>
+<li><p>The resulting evanescent wave can be viewed as a “frustrated” attempt to propagate high spatial frequencies that exceed the medium’s capability.</p></li>
+<li><p>Only spatial frequencies that satisfy <span class="math inline">\(\nu_x \leq n_2/\lambda_0\)</span> can propagate in medium 2, constituting a low-pass spatial filter.</p></li>
+</ol>
+<p>This mathematical framework demonstrates why optical systems with lower numerical apertures (effectively lower refractive indices) cannot resolve features with spatial frequencies beyond their cutoff frequency - the same principle that underlies the diffraction limit in microscopy.</p>
+</section>
+</div>
+</div>
+</div>
+<div id="cell-fig-transfer-function-phase" class="cell" data-execution_count="4">
+<div class="cell-output cell-output-display">
+<div id="fig-transfer-function-phase" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-transfer-function-phase-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="01-lecture06_files/figure-html/fig-transfer-function-phase-output-1.png" width="454" height="334" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-transfer-function-phase-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8.3— The phase of the free-space transfer function. For propagating waves (ν_x² + ν_y² &lt; 1/λ²), the transfer function introduces a phase delay that increases with spatial frequency. This phase represents the wavefront curvature during propagation.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The figure below now visualizes the effect of free space propagation on the phase of the transfer function when light of certain wavelength is used to illuminate and rectangular aperture of 10 µm width.</p>
+<div id="cell-fig-cutoff-effects" class="cell" data-execution_count="5">
+<div class="cell-output cell-output-display">
+<div id="fig-cutoff-effects" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-cutoff-effects-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="01-lecture06_files/figure-html/fig-cutoff-effects-output-1.png" width="703" height="571" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cutoff-effects-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8.4— Effect of spatial frequency cutoff on image reconstruction. (a) Original rectangular aperture. (b-d) Reconstructed intensity after applying different wavelength cutoffs. As the cutoff wavelength increases, more high-frequency components are lost, resulting in blurring and loss of edge sharpness.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>This description of free space propagation provides insight into important phenomena such as:</p>
+<p><strong>Diffraction limits</strong>: Spatial frequencies beyond <span class="math inline">\(1/\lambda\)</span> correspond to evanescent waves that decay exponentially with distance, explaining why sub-wavelength features cannot be observed in the far field. This would mean that light should not propagate through subwavelength holes. This is what you would expect for the grid in front of your microwave. Yet, light can penetrate through subwavelength holes not only as evanescent fields. <a href="https://journals.aps.org/pr/abstract/10.1103/PhysRev.66.163">Bethe used in 1944</a> an idealized model where the film was infinitely thin and the metal was a perfect conductor. Under these assumptions, he derived a straightforward expression for the transmission efficiency <span class="math inline">\(\eta_B\)</span> (normalized to the aperture area):</p>
+<p><span class="math display">\[\eta_B = \frac{64(kr)^4}{27\pi^2}\]</span></p>
+<p>where <span class="math inline">\(k = 2\pi/\lambda\)</span> represents the wavevector magnitude of the incoming light with wavelength <span class="math inline">\(\lambda\)</span>, and <span class="math inline">\(r\)</span> is the hole radius. This equation clearly shows that <span class="math inline">\(\eta_B\)</span> scales as <span class="math inline">\((r/\lambda)^4\)</span>, indicating that the optical transmission would decrease rapidly as <span class="math inline">\(\lambda\)</span> becomes larger than <span class="math inline">\(r\)</span>.</p>
+<div id="fig-transmission" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-transmission-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../../lectures/lecture06/img/transmission.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-transmission-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8.5— Diffraction and typical transmission spectrum of visible light through a subwavelength hole in an infinitely thin perfect metal film.
+</figcaption>
+</figure>
+</div>
+<p>However, real apertures with finite depth exhibit waveguide properties. Light transmission through these waveguides differs fundamentally from free-space propagation. The confined geometry modifies the field’s dispersion relation, with the aperture’s lateral dimensions determining the cutoff wavelength <span class="math inline">\(\lambda_c\)</span> beyond which propagation ceases. When incident wavelength <span class="math inline">\(\lambda &gt; \lambda_c\)</span>, transmission decays exponentially, indicating the non-propagating regime (Fig. 2). In real metals, the transition from propagative to evanescent regimes occurs gradually rather than at a sharply defined <span class="math inline">\(\lambda_c\)</span>.</p>
+<div id="fig-optical-transmission" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-optical-transmission-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../../lectures/lecture06/img/hole.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-optical-transmission-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8.6— Optical transmission properties of single holes in metal films. The holes were milled in suspended optically thick Ag films illuminated with white light. a, A circular aperture and b, its transmission spectrum for a 270 nm diameter in a 200-nm-thick film. c, A rectangular aperture and d, its transmission spectrum as a function of the polarization angle h for the following geometrical parameters: 210 nm 3 310 nm, film thickness 700 nm. (Degiron, A., Lezec, H. J., Yamamoto, N. &amp; Ebbesen, T. W. Optical transmission properties of a single subwavelength aperture in a real metal. Opt. Commun. 239, 61–66 (2004).)
+</figcaption>
+</figure>
+</div>
+<p>The transmission of light through subwavelength apertures provides exciting new tools for spectroscopy and imaging applications. These tools enable the manipulation of light at the nanoscale, leading to advancements in areas such as microscopy, sensing, and communication.</p>
+<p><strong>Resolution limits</strong>: An optical system with a maximum acceptance angle <span class="math inline">\(\theta_{max}\)</span> can only capture spatial frequencies up to <span class="math inline">\(\sin\theta_{max}/\lambda\)</span>, limiting the finest details that can be resolved.</p>
+<p><strong>Spatial filtering</strong>: Optical components like apertures and lenses act as spatial filters, selectively transmitting or modifying certain spatial frequency components.</p>
+</section>
+<section id="amplitude-modulation" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="amplitude-modulation"><span class="header-section-number">8.1</span> Amplitude Modulation</h2>
+<p>Let’s examine how spatial amplitude modulation affects the angular propagation of light. Consider a transparency with complex amplitude transmittance <span class="math inline">\(f_0(x, y)\)</span>. If its Fourier transform <span class="math inline">\(F_0(\nu_x, \nu_y)\)</span> extends over spatial frequency ranges <span class="math inline">\(\pm \Delta \nu_x\)</span> and <span class="math inline">\(\pm \Delta \nu_y\)</span> in the <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> directions, the transparency will deflect an incident plane wave by angles <span class="math inline">\(\theta_x\)</span> and <span class="math inline">\(\theta_y\)</span> within the ranges:</p>
+<p><span class="math display">\[\pm \sin^{-1}(\lambda \Delta \nu_x)\]</span></p>
+<p>and</p>
+<p><span class="math display">\[\pm \sin^{-1}(\lambda \Delta \nu_y)\]</span></p>
+<p>respectively.</p>
+<p>Now consider a second transparency with complex amplitude transmittance:</p>
+<p><span class="math display">\[f(x, y) = f_0(x, y) e^{-i 2\pi(\nu_{x0}x + \nu_{y0}y)}\]</span></p>
+<p>where <span class="math inline">\(f_0(x, y)\)</span> varies slowly compared to the exponential carrier term, meaning <span class="math inline">\(\Delta \nu_x \ll \nu_{x0}\)</span> and <span class="math inline">\(\Delta \nu_y \ll \nu_{y0}\)</span>. This represents an amplitude-modulated function with spatial carrier frequencies <span class="math inline">\(\nu_{x0}\)</span> and <span class="math inline">\(\nu_{y0}\)</span> and modulation function <span class="math inline">\(f_0(x, y)\)</span>. According to the shift property of the Fourier transform, the transform of <span class="math inline">\(f(x, y)\)</span> is:</p>
+<p><span class="math display">\[F_0(\nu_x - \nu_{x0}, \nu_y - \nu_{y0})\]</span></p>
+<p>The transparency will deflect a plane wave in directions centered around the angles:</p>
+<p><span class="math display">\[\theta_{x0} = \sin^{-1}(\lambda\nu_{x0})\]</span></p>
+<p>and</p>
+<p><span class="math display">\[\theta_{y0} = \sin^{-1}(\lambda\nu_{y0})\]</span></p>
+<p>This behavior can be understood by viewing <span class="math inline">\(f(x, y)\)</span> as a combination of the base transmittance <span class="math inline">\(f_0(x, y)\)</span> with a phase grating having transmittance <span class="math inline">\(e^{-i 2\pi(\nu_{x0}x + \nu_{y0}y)}\)</span> that provides the angular deflection.</p>
+<div id="cell-fig-amplitude-modulation" class="cell" data-execution_count="6">
+<div class="cell-output cell-output-display">
+<div id="fig-amplitude-modulation" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-amplitude-modulation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="01-lecture06_files/figure-html/fig-amplitude-modulation-output-1.png" width="682" height="688" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-amplitude-modulation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8.7— Visualization of amplitude modulation and the corresponding angular deflection. (a) The base pattern f₀(x,y) - a Gaussian envelope. (b) A carrier wave with spatial frequency ν₀. (c) The amplitude-modulated pattern f(x,y)=f₀(x,y)e^(-j2πν₀x). (d) Fourier transforms showing how the spectrum shifts with modulation, corresponding to angular deflection.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>This principle enables spatial-frequency multiplexing, where two images <span class="math inline">\(f_1(x, y)\)</span> and <span class="math inline">\(f_2(x, y)\)</span> can be recorded on the same transparency using the encoding:</p>
+<p><span class="math display">\[f(x, y) = f_1(x, y)e^{-i 2\pi(\nu_{x1}x + \nu_{y1}y)} + f_2(x, y)e^{-i 2\pi(\nu_{x2}x + \nu_{y2}y)}\]</span></p>
+<p>By illuminating this combined transparency with a plane wave, the two images are deflected at different angles determined by their carrier frequencies, allowing them to be spatially separated. This technique is particularly valuable in holography, where separating different image components recorded on the same medium is often necessary.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Structured Illumination Microscopy (SIM)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The amplitude modulation concepts presented here form the theoretical foundation for Structured Illumination Microscopy (SIM), a super-resolution imaging technique. In SIM, a sample is illuminated with a known spatially structured pattern, typically a sinusoidal grid. This can be mathematically represented as an illumination intensity pattern:</p>
+<p><span class="math display">\[I_{\text{illum}}(x,y) = I_0[1 + m\cos(2\pi\nu_0 x + \phi)]\]</span></p>
+<p>where <span class="math inline">\(I_0\)</span> is the average intensity, <span class="math inline">\(m\)</span> is the modulation depth, <span class="math inline">\(\nu_0\)</span> is the spatial frequency of the illumination pattern, and <span class="math inline">\(\phi\)</span> is the phase.</p>
+<p>When this structured pattern illuminates a sample with spatial structure <span class="math inline">\(S(x,y)\)</span>, the resulting observed image is simply the product:</p>
+<p><span class="math display">\[D(x,y) = S(x,y) \cdot I_{\text{illum}}(x,y)\]</span></p>
+<p>Substituting the illumination pattern:</p>
+<p><span class="math display">\[D(x,y) = S(x,y) \cdot I_0[1 + m\cos(2\pi\nu_0 x + \phi)]\]</span> <span class="math display">\[D(x,y) = I_0 \cdot S(x,y) + I_0 \cdot m \cdot S(x,y)\cos(2\pi\nu_0 x + \phi)\]</span></p>
+<p>Using Euler’s formula, we can rewrite the cosine term:</p>
+<p><span class="math display">\[D(x,y) = I_0 \cdot S(x,y) + \frac{I_0 \cdot m}{2} \cdot S(x,y)[e^{j(2\pi\nu_0 x + \phi)} + e^{-j(2\pi\nu_0 x + \phi)}]\]</span></p>
+<p>In the frequency domain, this becomes:</p>
+<p><span class="math display">\[\tilde{D}(\nu_x,\nu_y) = I_0\tilde{S}(\nu_x,\nu_y) + \frac{I_0 \cdot m}{2}[\tilde{S}(\nu_x-\nu_0,\nu_y)e^{j\phi} + \tilde{S}(\nu_x+\nu_0,\nu_y)e^{-j\phi}]\]</span></p>
+<p>where <span class="math inline">\(\tilde{S}\)</span> is the Fourier transform of the sample structure, and <span class="math inline">\(\tilde{D}\)</span> is the Fourier transform of the detected image.</p>
+<p>This equation reveals how structured illumination enables access to high spatial frequencies beyond the conventional diffraction limit. In standard microscopy, the optical system acts as a low-pass filter due to the diffraction limit, restricting detectable spatial frequencies to <span class="math inline">\(|\nu| \leq \nu_{\text{max}} = \frac{NA}{\lambda}\)</span>, where NA is the numerical aperture and λ is the wavelength.</p>
+<p>The key insight is that structured illumination creates a “moiré effect” between the illumination pattern and the sample structure. Consider a sample with high spatial frequency components that exceed <span class="math inline">\(\nu_{\text{max}}\)</span> and would normally be undetectable. When this sample is illuminated with the structured pattern of frequency <span class="math inline">\(\nu_0\)</span>, these high-frequency components interact with the illumination pattern to produce difference frequencies that fall within the detectable range.</p>
+<div id="fig-moire" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-moire-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="img/moire.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-moire-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8.8— The moiré effect in SIM. When a sample with high spatial frequency features is illuminated with a structured pattern, the interference creates moiré fringes at lower frequencies that can be detected by the microscope. This allows information about sub-diffraction structures to be encoded in observable signals. (see Gustafsson, M. G. L. Nonlinear structured-illumination microscopy: Wide-field fluorescence imaging with theoretically unlimited resolution. Proc. Natl. Acad. Sci. 102, 13081–13086 (2005))
+</figcaption>
+</figure>
+</div>
+<p>Specifically, sample features with spatial frequency <span class="math inline">\(\nu_s &gt; \nu_{\text{max}}\)</span> combine with the illumination frequency <span class="math inline">\(\nu_0\)</span> to produce components at <span class="math inline">\(\nu_s - \nu_0\)</span> and <span class="math inline">\(\nu_s + \nu_0\)</span>. If <span class="math inline">\(\nu_s - \nu_0 &lt; \nu_{\text{max}}\)</span>, then this difference frequency becomes detectable by the optical system, effectively bringing previously inaccessible high-frequency information into the observable range.</p>
+<p>For example, if a sample contains structures with spatial frequency <span class="math inline">\(\nu_s = 1.7\nu_{\text{max}}\)</span> and we apply illumination with <span class="math inline">\(\nu_0 = 0.8\nu_{\text{max}}\)</span>, the difference frequency becomes <span class="math inline">\(\nu_s - \nu_0 = 0.9\nu_{\text{max}}\)</span>, which falls within the detectable range. This allows us to extract information about sample features that would be invisible under conventional illumination.</p>
+<p>To separate and reconstruct these frequency-shifted components, we need multiple images with different phases of the illumination pattern. Typically, three images with phases <span class="math inline">\(\phi = 0°, 120°, 240°\)</span> are acquired, allowing us to solve the following system of equations:</p>
+<p><span class="math display">\[\begin{pmatrix} D_1 \\ D_2 \\ D_3 \end{pmatrix} = \begin{pmatrix} 1 &amp; e^{j\phi_1} &amp; e^{-j\phi_1} \\ 1 &amp; e^{j\phi_2} &amp; e^{-j\phi_2} \\ 1 &amp; e^{j\phi_3} &amp; e^{-j\phi_3} \end{pmatrix} \begin{pmatrix} I_0\tilde{S}(\nu) \\ \frac{I_0 \cdot m}{2}\tilde{S}(\nu-\nu_0) \\ \frac{I_0 \cdot m}{2}\tilde{S}(\nu+\nu_0) \end{pmatrix}\]</span></p>
+<p>By extracting these frequency-shifted components and computationally restoring them to their original positions in frequency space, we can reconstruct spatial frequencies beyond the conventional diffraction limit, typically achieving a resolution improvement factor of 2 in each dimension, or a factor of 2 beyond what would be possible with the same wavelength and numerical aperture in conventional microscopy.</p>
+</div>
+</div>
+</section>
+<section id="frequency-modulation" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="frequency-modulation"><span class="header-section-number">8.2</span> Frequency Modulation</h2>
+<p>We now examine the transmission of a plane wave through a transparency made of a “collage” of several regions, the transmittance of each of which is a harmonic function of some spatial frequency, as illustrated below. If the dimensions of each region are much greater than the period, each region acts as a grating or a prism that deflects the wave in some direction, so that different portions of the incident wavefront are deflected into different directions. This principle may be used to create maps of optical interconnections, which may be used in optical computing applications</p>
+<div id="fig-interconnects" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-interconnects-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../../lectures/lecture06/img/interconnects.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-interconnects-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8.9— Deflection of light by a transparency made of several harmonic functions (phase gratings) of different spatial frequencies. (source Saleh/Teich Principles of Photonics).
+</figcaption>
+</figure>
+</div>
+<p>This concept of directed light deflection through controlled spatial frequency modulation stands in stark contrast to what happens when spatial frequencies are distributed randomly, as we’ll see next with speckle patterns.</p>
+</section>
+<section id="speckle-random-frequency-modulation" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="speckle-random-frequency-modulation"><span class="header-section-number">8.3</span> Speckle: Random Frequency Modulation</h2>
+<p>When coherent light interacts with a rough surface or passes through a scattering medium, the resulting intensity pattern exhibits a characteristic granular appearance known as speckle. This phenomenon represents a natural example of random spatial frequency modulation that can be elegantly described using the Fourier optics framework we’ve developed.</p>
+<p>While the optical interconnect example above demonstrates how carefully designed spatial frequency distributions can create predictable, useful light paths, speckle represents the opposite case - where randomly distributed spatial frequencies create complex interference patterns. In essence, speckle is what happens when nature creates its own “random optical interconnect map.”</p>
+<section id="speckle-formation" class="level3" data-number="8.3.1">
+<h3 data-number="8.3.1" class="anchored" data-anchor-id="speckle-formation"><span class="header-section-number">8.3.1</span> Speckle Formation</h3>
+<p>Speckle arises when coherent wavefronts undergo spatially varying phase shifts that cause complex interference. From our spatial frequency perspective, we can model a rough surface as applying a random phase modulation to the incident wavefront:</p>
+<p><span class="math display">\[E_{\text{scattered}}(x,y) = E_0 e^{i\phi(x,y)}\]</span></p>
+<p>where <span class="math inline">\(\phi(x,y)\)</span> is a random phase function corresponding to the surface height variations. When this scattered field propagates and interferes with itself, it produces the characteristic speckle pattern. Unlike our controlled interconnect example, where each region deliberately directs light in a specific direction, here each microscopic region of the rough surface randomly deflects light, creating a complex superposition of wavefronts with random phases and directions.</p>
+<div id="cell-fig-speckle-formation" class="cell" data-execution_count="7">
+<div class="cell-output cell-output-display">
+<div id="fig-speckle-formation" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-speckle-formation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="01-lecture06_files/figure-html/fig-speckle-formation-output-1.png" width="744" height="225" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-speckle-formation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8.10— Speckle formation process. (a) Coherent light incident on a rough surface acquires random phase shifts. (b) The resulting scattered field creates a speckle pattern in the observation plane. (c) The characteristic granular appearance of a fully developed speckle pattern.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The random yet deterministic nature of speckle patterns shares remarkable similarities with the weight matrices of trained neural networks, offering an intriguing conceptual framework that connects Fourier optics with modern computational systems.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Conceptual Connections to Neuronal Networks
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><p><strong>Wave Superposition vs.&nbsp;Neuronal Contributions</strong>: Just as each speckle grain represents the constructive interference of many wave components, each connection in a neural network can be viewed as the “superposition” of many training examples that collectively shaped that weight.</p></li>
+<li><p><strong>Information Encoding</strong>:</p>
+<ul>
+<li>Speckle patterns encode information about the scattering medium in a distributed, holographic manner</li>
+<li>Neural networks encode learned features in a distributed pattern across weight matrices</li>
+</ul></li>
+<li><p><strong>Statistical Properties</strong>:</p>
+<ul>
+<li>Speckle intensity follows a negative exponential distribution for fully developed speckle</li>
+<li>Neural network weights often approximate Gaussian distributions after training</li>
+</ul></li>
+<li><p><strong>Fourier Domain Representation</strong>:</p>
+<ul>
+<li>Speckle can be analyzed in the Fourier domain to reveal the spatial frequency content of the scattering medium</li>
+<li>Neural network weights can be analyzed in the frequency domain to reveal the spectrum of features they’ve learned to detect</li>
+</ul></li>
+</ol>
+<p>The mathematical connection becomes even more apparent when considering both systems as complex-valued functions:</p>
+<ul>
+<li><p>A speckle field at a plane can be expressed as: <span class="math inline">\(E(x,y) = \sum_k A_k e^{j\phi_k} e^{j(k_x x + k_y y)}\)</span></p></li>
+<li><p>A neural network layer output can be expressed as: <span class="math inline">\(y_i = \sigma\left(\sum_j w_{ij} x_j + b_i\right)\)</span></p></li>
+</ul>
+<p>Both involve a weighted sum of inputs, and both transform information from one domain to another through operations that can be represented as spatial filtering operations.</p>
+<p>These connections between speckle field and information processing give rise to research field of imaging and computing with disordered materials.</p>
+<div id="fig-diffusercam" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-diffusercam-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../../lectures/lecture06/img/imaging_disorder.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-diffusercam-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8.11— DiffuserCam: A compressive framework allows 3D imaging using a surface diffuser and a camera, using prior calibration of the diffuser and a minimization algorithm. Image taken from the perspective article <a href="https://www.nature.com/articles/s41567-022-01681-1">Gigan, S. Imaging and computing with disorder. Nat. Phys. 18, 980–985 (2022)</a>.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="frequency-modulation-with-continuously-varying-spatial-frequencies" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="frequency-modulation-with-continuously-varying-spatial-frequencies"><span class="header-section-number">8.4</span> Frequency Modulation with Continuously Varying Spatial Frequencies</h2>
+<p>A transparency may also have a harmonic transmittance with a spatial frequency that varies gradually across its surface, similar to how a musical note changes pitch in an FM radio signal. This is easier to visualize than the fixed-frequency patterns we discussed earlier.</p>
+<p>Let’s look at a transparency with this phase-altering property:</p>
+<p><span class="math display">\[f(x, y) = \exp[-i2\pi\phi(x, y)]\]</span></p>
+<p>where <span class="math inline">\(\phi(x, y)\)</span> is a smooth function that changes slowly compared to the wavelength of light (<span class="math inline">\(\lambda\)</span>).</p>
+<p>If we zoom in around any point <span class="math inline">\((x_0, y_0)\)</span>, we can approximate <span class="math inline">\(\phi(x, y)\)</span> using the first few terms of a Taylor series (which you’ve seen in calculus):</p>
+<p><span class="math display">\[\phi(x, y) \approx \phi(x_0, y_0) + (x-x_0)\nu_x + (y-y_0)\nu_y\]</span></p>
+<p>where <span class="math inline">\(\nu_x\)</span> and <span class="math inline">\(\nu_y\)</span> are just the partial derivatives of <span class="math inline">\(\phi\)</span> with respect to <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> at that point:</p>
+<p><span class="math display">\[\nu_x = \frac{\partial\phi}{\partial x} \quad \text{and} \quad \nu_y = \frac{\partial\phi}{\partial y}\]</span></p>
+<p>Near this point, our transparency function behaves like:</p>
+<p><span class="math display">\[\exp[-i2\pi(\nu_x x + \nu_y y)]\]</span></p>
+<p>which we recognize as a harmonic function with local spatial frequencies <span class="math inline">\(\nu_x\)</span> and <span class="math inline">\(\nu_y\)</span>.</p>
+<p>Since these derivatives change as we move across the transparency, the spatial frequencies also vary with position. As a result, different parts of the incoming light wave get deflected by different angles:</p>
+<p><span class="math display">\[\theta_x = \sin^{-1}\left(\lambda\frac{\partial\phi}{\partial x}\right) \quad \text{and} \quad \theta_y = \sin^{-1}\left(\lambda\frac{\partial\phi}{\partial y}\right)\]</span></p>
+<p>This is how optical elements like lenses can bend light in position-dependent ways to focus or shape wavefronts.</p>
+<section id="imaging" class="level3" data-number="8.4.1">
+<h3 data-number="8.4.1" class="anchored" data-anchor-id="imaging"><span class="header-section-number">8.4.1</span> Imaging</h3>
+<p>When a thin transparency has a complex amplitude transmittance of</p>
+<p><span class="math display">\[f(x, y)=\exp \left(j \pi x^2 / \lambda f\right)\]</span>,</p>
+<p>it introduces a phase shift of <span class="math inline">\(2 \pi \phi(x, y)\)</span> where <span class="math inline">\(\phi(x, y)= -x^2 / 2 \lambda f\)</span>.</p>
+<div id="cell-fig-phase-function" class="cell" data-execution_count="8">
+<div class="cell-output cell-output-display">
+<div id="fig-phase-function" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-phase-function-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="01-lecture06_files/figure-html/fig-phase-function-output-1.png" width="680" height="273" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-phase-function-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8.12— Phase function of a cylindrical Fourier lens. (left) The 2D phase profile showing how phase varies quadratically with x. (right) The resulting deflection angle as a function of position, showing the linear relationship that causes focusing.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>This phase profile causes the wave at position <span class="math inline">\((x, y)\)</span> to be deflected by angles <span class="math inline">\(\theta_x= \sin^{-1}(\lambda \partial \phi / \partial x)=\sin^{-1}(-x / f)\)</span> and <span class="math inline">\(\theta_y=0\)</span>. For small values where <span class="math inline">\(|x / f| \ll 1\)</span>, the deflection angle simplifies to <span class="math inline">\(\theta_x \approx-x / f\)</span>, creating a linear relationship between deflection angle and position. When a plane wave illuminates this transparency, each point of the wavefront experiences a position-dependent deflection, transforming the overall wavefront shape. At each position <span class="math inline">\(x\)</span>, the local wavevector is redirected by an angle <span class="math inline">\(-x / f\)</span>, causing all light rays to converge at a focal point located at distance <span class="math inline">\(f\)</span> from the transparency along the optical axis, as illustrated below.</p>
+<div id="fig-lens" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-lens-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../../lectures/lecture06/img/lens.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-lens-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8.13— A transparency with transmittance <span class="math inline">\(f(x, y)=\exp \left(j \pi x^2 / \lambda f\right)\)</span> bends the wave at position <span class="math inline">\(x\)</span> by an angle <span class="math inline">\(\theta_x \approx-x / f\)</span>, functioning as a cylindrical lens with focal length <span class="math inline">\(f\)</span>.
+</figcaption>
+</figure>
+</div>
+<p>This transparency operates exactly like a cylindrical lens with focal length <span class="math inline">\(f\)</span>. Extending this concept, a transparency with transmittance <span class="math inline">\(f(x, y)=\exp \left[j \pi\left(x^2+y^2\right) / \lambda f\right]\)</span> acts as a spherical lens with focal length <span class="math inline">\(f\)</span>. This elegant mathematical expression perfectly captures the phase transformation property of a thin lens.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../lectures/lecture05/01-lecture05.html" class="pagination-link" aria-label="| echo: false">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">| echo: false</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

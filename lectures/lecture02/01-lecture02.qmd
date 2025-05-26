@@ -355,6 +355,8 @@ path.display(raysList=[
 :::
 
 
+
+
 ### Multifocal Imaging
 
 We would like to explore the concept of multifocal imaging to obtain 3D resolution from a single image.

@@ -1,0 +1,610 @@
+---
+jupyter: python3
+format:
+  html:
+    toc: true
+    toc-location: right
+    fig-cap-location: bottom
+crossref:
+  fig-title: Figure
+  tbl-title: Table
+  title-delim: "—"
+  fig-prefix: Figure
+  eq-prefix: Equation
+  chapters: true
+  fig-labels: arabic
+---
+
+
+```{python}
+# | echo: false
+## just for plotting later
+import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib.path import Path
+import matplotlib.patches as patches
+from matplotlib.colors import LinearSegmentedColormap
+from mpl_toolkits.mplot3d import Axes3D
+import sympy as sp
+from IPython.display import Markdown
+
+plt.rcParams.update({'font.size': 10,
+                     'axes.titlesize': 8,
+                     'axes.labelsize': 8,
+                     'lines.linewidth': 1,
+                     'lines.markersize': 5,
+                     'xtick.labelsize' : 8,
+                     'ytick.labelsize' : 8,
+                     'xtick.top' : True,
+                     'xtick.direction' : 'in',
+                     'ytick.right' : True,
+                     'ytick.direction' : 'in',
+                     'figure.dpi': 150})
+
+def get_size(w,h):
+    return((w/2.54,h/2.54))
+```
+
+## Introduction to Fourier Optics
+
+Fourier optics offers a robust analytical approach to understanding light propagation through optical systems by employing Fourier analysis techniques on optical fields. This framework elegantly connects image formation and optical resolution to the transmission of spatial information via light waves. Our exploration begins with examining complex transmittance functions, which give us fundamental insights into how various samples shape optical wavefronts. From this foundation, we will progress to the essential principles of Fourier optics and the associated diffraction integrals.
+
+### Transmission
+
+When light interacts with an optical component or object, its amplitude and phase can be modified. Following Saleh and Teich's formalism, we can characterize this interaction using the complex transmission factor $t(x,y)$, which is defined as the ratio of the output field amplitude to the input field amplitude at each point $(x,y)$ in a plane:
+
+$$t(x,y) = \frac{U_{\text{out}}(x,y)}{U_{\text{in}}(x,y)}$$
+
+This transmission factor is generally complex-valued, with its magnitude representing amplitude modulation and its phase representing phase modulation of the incident light.
+
+For a thin lens, the primary effect is phase modulation. To derive the transmission function for a thin lens, we need to consider the optical path length through the lens at each point. Consider a planoconvex lens with one flat surface and one spherical surface of radius $R$. The thickness of the lens varies with position according to:
+
+$$d(x,y) = d_0 - \frac{(x^2+y^2)}{2R}$$
+
+where $d_0$ is the thickness at the center. As light passes through the lens, it experiences a phase delay proportional to the optical path length, which is the product of the refractive index $n$ and the physical path length:
+
+$$\phi(x,y) = k \cdot n \cdot d(x,y) - k \cdot d(x,y)_{\text{air}}$$
+
+where $k = 2\pi/\lambda$ is the wavenumber. Simplifying:
+
+$$\phi(x,y) = k(n-1)d(x,y) = k(n-1)\left(d_0 - \frac{(x^2+y^2)}{2R}\right)$$
+
+The first term represents a constant phase shift that we can ignore, and the second term gives us the position-dependent phase modulation. For a lens with focal length $f$, the relationship between $R$ and $f$ is given by the lensmaker's formula, which for a planoconvex lens simplifies to:
+
+$$(n-1)\frac{1}{R} = \frac{1}{f}$$
+
+Substituting this into our phase equation:
+
+$$\phi(x,y) = -k(n-1)\frac{(x^2+y^2)}{2R} = -k\frac{(x^2+y^2)}{2f}$$
+
+The complex transmission factor is then:
+
+$$t(x,y) = \exp[j\phi(x,y)] = \exp\left[-j\frac{k}{2f}(x^2+y^2)\right]$$
+
+This quadratic phase factor represents the position-dependent phase delay introduced by the lens, with greater delays at the thicker portions of the lens.
+
+```{python}
+# | label: fig-lens-phase
+# | fig-cap: "Phase modulation effect of a thin lens on an incident plane wave. (a) The quadratic phase profile introduced by the lens at z=0. (b) The wavefront shape in the x-z plane after passing through the lens, showing how the initially flat wavefront is transformed into a converging spherical wavefront."
+
+# Parameters
+wavelength = 0.5  # arbitrary units
+k = 2*np.pi/wavelength
+f = 10  # focal length
+x = np.linspace(-5, 5, 400)
+z = np.linspace(0, 15, 400)
+X, Z = np.meshgrid(x, z)
+
+# Calculate the phase profile at the lens (z=0)
+# Using positive sign to make the phase retardation largest at the center (x=0)
+lens_phase = k*(x**2)/(2*f)
+
+# Calculate the phase in the x-z plane after the lens
+# For each z position, the phase evolves according to the wave equation
+phase_xz = np.zeros_like(X)
+for i, z_val in enumerate(z):
+    if z_val == 0:
+        # At z=0, the phase is just the lens phase profile
+        phase_xz[i,:] = lens_phase
+    else:
+        # After the lens, we model the converging wavefront
+        # The phase at each point is approximately:
+        # φ(x,z) = k*((x²/(2f)) - z) for a converging wave
+        # Negative sign for z to represent forward propagation
+        phase_xz[i,:] = k*((X[i,:]**2)/(2*f) - z_val)
+
+# Wrap phase to [-π,π] for visualization
+phase_xz_wrapped = np.angle(np.exp(1j*phase_xz))
+
+# Create figure with two subplots
+fig, ax = plt.subplots(1, 2, figsize=get_size(12,6))
+
+# Plot the phase profile at the lens (z=0)
+ax[0].plot(x, lens_phase)
+ax[0].set_xlabel('x')
+ax[0].set_ylabel('Phase [rad]')
+ax[0].set_title('Lens Phase Profile (z=0)')
+ax[0].grid(True)
+
+# Plot the phase in the x-z plane after the lens
+im = ax[1].imshow(phase_xz_wrapped, extent=[x.min(), x.max(), z.min(), z.max()],
+           origin='lower', cmap='twilight', aspect='auto')
+ax[1].set_xlabel('x')
+ax[1].set_ylabel('z')
+ax[1].set_title('Wavefront Phase in x-z Plane')
+ax[1].axhline(y=f, color='r', linestyle='--', alpha=0.7)
+ax[1].text(x.max()-0.5, f+0.3, 'f', color='red')
+
+# Add a colorbar
+cbar = fig.colorbar(im, ax=ax[1], ticks=[-np.pi, 0, np.pi])
+cbar.set_label('Phase [rad]')
+cbar.ax.set_yticklabels(['-π', '0', 'π'])
+
+plt.tight_layout()
+plt.show()
+```
+
+
+This transmission function is crucial in Fourier optics as it allows us to mathematically model how a lens transforms an incident field. When placed in the path of a light wave, the lens modifies the wavefront according to this transmission factor, effectively performing a spatial Fourier transform of the input field at its focal plane.
+
+
+### Generalization to Arbitrary Thickness Objects
+
+For arbitrary thickness objects, we can extend our treatment beyond the thin-element approximation. When light propagates through a medium of varying thickness and refractive index, the transmission function becomes:
+
+$$t(x,y) = A(x,y) e^{i\phi(x,y)}$$
+
+where $A(x,y)$ represents amplitude modulation (absorption or gain) and $\phi(x,y)$ represents phase modulation. For a thick object, the phase shift is given by the path integral through the object:
+
+$$\phi(x,y) = k \int_\text{path} [n(x,y,z) - n_0] dz$$
+
+where $n(x,y,z)$ is the spatially varying refractive index within the object, $n_0$ is the refractive index of the surrounding medium, and the integration is performed along the light path through the object.
+
+This formulation accounts for complex three-dimensional objects where both the thickness and the refractive index may vary with position. For inhomogeneous media, we can express the transmission function as:
+
+$$t(x,y) = \exp\left[ -\frac{1}{2}\alpha(x,y) + i k\int_0^{d(x,y)} n(x,y,z)dz \right]$$
+
+where $\alpha(x,y)$ is the absorption coefficient integrated along the path, and $d(x,y)$ is the thickness at position $(x,y)$.
+
+For many practical applications, this can be approximated by considering the effective phase and amplitude changes, leading to the more manageable form:
+
+$$t(x,y) = \tau(x,y) e^{i k(n-n_0)d(x,y)}$$
+
+where $\tau(x,y)$ is the amplitude transmission coefficient accounting for reflection and absorption losses.
+
+This mathematical framework will become crucially important later when we describe image formation from waves that have propagated through an object. The transmission function directly encodes how an object modifies both the amplitude and phase of the incident light field, which determines how the object appears in an imaging system. Different imaging modalities (such as bright-field, phase-contrast, or differential interference contrast microscopy) essentially measure different aspects of this complex transmission function, revealing different properties of the object being imaged.
+
+### Wave Propagation Through Objects
+
+When a plane wave propagating along the z-axis encounters an object, its wavefronts are modified according to the object's transmission function. This section explores how different types of objects transform incident wavefronts, which is fundamental to understanding phenomena from simple refraction to complex wavefront shaping.
+
+```{python}
+# | label: fig-wavefront-transmission
+# | fig-cap: "Wavefront propagation after transmission through different optical elements. (a) A plane wave passing through free space maintains flat wavefronts. (b) After passing through a converging lens, the wavefronts become spherical, converging toward the focal point. (c) Transmission through a prism tilts the wavefronts, changing the propagation direction. (d) A phase plate with arbitrary phase profile creates custom-shaped wavefronts."
+
+# Parameters
+wavelength = 0.5  # arbitrary units
+k = 2*np.pi/wavelength
+x = np.linspace(-5, 5, 400)
+z = np.linspace(0, 15, 400)
+X, Z = np.meshgrid(x, z)
+
+# Create figure with four subplots
+fig, ax = plt.subplots(2, 2, figsize=get_size(12,12))
+ax = ax.flatten()
+
+# (a) Plane wave in free space - flat wavefronts
+phase_free_space = k*Z
+phase_free_space_wrapped = np.angle(np.exp(1j*phase_free_space))
+im1 = ax[0].imshow(phase_free_space_wrapped, extent=[x.min(), x.max(), z.min(), z.max()],
+           origin='lower', cmap='twilight', aspect='auto')
+ax[0].set_xlabel('x')
+ax[0].set_ylabel('z')
+ax[0].set_title('(a) Free Space Propagation')
+
+# (b) Converging lens - spherical wavefronts
+f = 10  # focal length
+lens_phase = np.zeros_like(X)
+for i, z_val in enumerate(z):
+    if z_val < 0.1:  # At z=0, apply lens phase
+        lens_phase[i,:] = k*(x**2)/(2*f)
+    else:
+        # After the lens, we model spherical wavefronts converging to focal point
+        lens_phase[i,:] = k*((X[i,:]**2)/(2*f) - z_val)
+
+lens_phase_wrapped = np.angle(np.exp(1j*lens_phase))
+im2 = ax[1].imshow(lens_phase_wrapped, extent=[x.min(), x.max(), z.min(), z.max()],
+           origin='lower', cmap='twilight', aspect='auto')
+ax[1].set_xlabel('x')
+ax[1].set_ylabel('z')
+ax[1].set_title('(b) Converging Lens')
+ax[1].axhline(y=f, color='r', linestyle='--', alpha=0.7)
+ax[1].text(x.max()-0.5, f+0.3, 'f', color='red')
+
+# (c) Prism - tilted wavefronts
+tilt_angle = 10  # degrees
+prism_phase = np.zeros_like(X)
+for i, z_val in enumerate(z):
+    if z_val < 0.1:  # At z=0, apply linear phase (prism)
+        prism_phase[i,:] = k*np.tan(np.deg2rad(tilt_angle))*x
+    else:
+        # After the prism, wavefronts are tilted
+        prism_phase[i,:] = k*(np.tan(np.deg2rad(tilt_angle))*x + z_val/np.cos(np.deg2rad(tilt_angle)))
+
+prism_phase_wrapped = np.angle(np.exp(1j*prism_phase))
+im3 = ax[2].imshow(prism_phase_wrapped, extent=[x.min(), x.max(), z.min(), z.max()],
+           origin='lower', cmap='twilight', aspect='auto')
+ax[2].set_xlabel('x')
+ax[2].set_ylabel('z')
+ax[2].set_title('(c) Prism')
+
+# (d) Arbitrary phase object - custom wavefronts
+def arbitrary_phase(x):
+    return 2*np.sin(x) + 0.5*np.sin(3*x)
+
+arb_phase = np.zeros_like(X)
+for i, z_val in enumerate(z):
+    if z_val < 0.1:  # At z=0, apply arbitrary phase
+        arb_phase[i,:] = k*arbitrary_phase(x)
+    else:
+        # After the object, wavefronts are deformed
+        # This is a simplified model that propagates the phase deformation
+        arb_phase[i,:] = k*(arbitrary_phase(x) + z_val)
+
+arb_phase_wrapped = np.angle(np.exp(1j*arb_phase))
+im4 = ax[3].imshow(arb_phase_wrapped, extent=[x.min(), x.max(), z.min(), z.max()],
+           origin='lower', cmap='twilight', aspect='auto')
+ax[3].set_xlabel('x')
+ax[3].set_ylabel('z')
+ax[3].set_title('(d) Arbitrary Phase Object')
+
+# Add a colorbar for reference
+#cbar = fig.colorbar(im1, ax=ax, ticks=[-np.pi, 0, np.pi], orientation='horizontal', pad=0.02)
+#cbar.set_label('Phase [rad]')
+#cbar.ax.set_xticklabels(['-π', '0', 'π'])
+
+plt.tight_layout()
+plt.show()
+```
+
+The wavefront visualizations above illustrate how different optical elements transform an incident plane wave:
+
+1. **Free Space Propagation**: In the absence of any optical element, a plane wave maintains flat wavefronts perpendicular to the propagation direction.
+
+2. **Lens Effect**: A converging lens introduces a quadratic phase modulation, transforming plane wavefronts into converging spherical wavefronts that focus at the focal point.
+
+3. **Prism Effect**: A prism applies a linear phase gradient across the wavefront, tilting the wavefronts and changing the propagation direction according to Snell's law.
+
+4. **Arbitrary Phase Objects**: More complex phase profiles create correspondingly complex wavefront shapes, which can be designed for specific applications like wavefront correction or beam shaping.
+
+Understanding these wavefront transformations is essential in optical system design, as the shape of the wavefront directly determines how light propagates through subsequent optical elements and ultimately forms images or interference patterns.
+
+### Spatial Frequencies and Angular Spectrum
+
+Building on our analysis of wave propagation through various optical elements, we now explore a fundamental concept in Fourier optics that connects spatial patterns to wave propagation directions. This relationship between spatial structure and angular distribution is a direct extension of how different optical elements transform wavefronts, as visualized in the previous section. Just as a lens converts a plane wave into a converging spherical wave and a prism tilts the wavefront to change the propagation direction, complex spatial patterns decompose into multiple propagation directions—a relationship that will become essential when we discuss optical imaging systems, diffraction limits, and the resolution capabilities of microscopes and telescopes.
+
+
+```{python}
+#| label: fig-freq
+#| fig-cap: "Spatial frequency analysis of an image. (a) Original grayscale image. (b) Magnitude of the 2D Fourier transform, showing the distribution of spatial frequencies. (c) Phase of the Fourier transform."
+
+# Load and display a sample image with different spatial frequencies
+from PIL import Image
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Load image and convert to grayscale
+img = plt.imread('img/frank.png')
+if len(img.shape) > 2:
+    img_gray = np.mean(img, axis=2)  # Convert RGB to grayscale
+else:
+    img_gray = img
+
+# Compute 2D FFT
+img_fft = np.fft.fftshift(np.fft.fft2(img_gray))
+freq_x = np.fft.fftshift(np.fft.fftfreq(img_gray.shape[1]))
+freq_y = np.fft.fftshift(np.fft.fftfreq(img_gray.shape[0]))
+
+# Create figure for original image and its Fourier transform
+fig, ax = plt.subplots(1, 3, figsize=get_size(12, 5))
+
+# Display original image
+ax[0].imshow(img_gray, cmap='gray')
+ax[0].set_title('(a) Original Image')
+ax[0].set_axis_off()
+
+# Display 2D FFT magnitude
+ax[1].imshow(np.log(np.abs(img_fft) + 1), cmap='viridis', extent=[freq_x.min(), freq_x.max(), freq_y.min(), freq_y.max()])
+ax[1].set_title('(b) Magnitude')
+ax[1].set_xlabel(r'$\nu_x$')
+ax[1].set_ylabel(r'$\nu_y$')
+ax[1].set_xticks([])
+ax[1].set_yticks([])
+
+# Display 2D FFT phase
+ax[2].imshow(np.angle(img_fft), cmap='twilight', extent=[freq_x.min(), freq_x.max(), freq_y.min(), freq_y.max()])
+ax[2].set_title('(c) Phase')
+ax[2].set_xlabel(r'$\nu_x$')
+ax[2].set_ylabel(r'$\nu_y$')
+ax[2].set_xticks([])
+ax[2].set_yticks([])
+
+plt.tight_layout()
+plt.show()
+```
+
+
+#### The Concept of Spatial Frequencies
+
+Just as a temporal signal can be decomposed into frequency components through Fourier analysis, a spatial pattern or object can be represented as a superposition of spatial harmonic functions with different spatial frequencies. The spatial frequency $\nu$ represents how rapidly the intensity or phase of an optical field changes with distance.
+
+For a two-dimensional complex spatial harmonic function:
+
+$$f(x,y) = A e^{i 2\pi(\nu_x x + \nu_y y)}$$
+
+where:
+
+- $\nu_x$ and $\nu_y$ are the spatial frequencies in the x and y directions (in cycles per unit length)
+- $A$ is the complex amplitude
+
+Higher spatial frequencies correspond to finer details in an object, while lower spatial frequencies represent coarser features.
+
+Overall, the function $f(x,y)$ can be expressed as the Fourier transform of its spatial frequency components:
+
+$$f(x,y) = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} F(\nu_x, \nu_y) e^{i 2\pi(\nu_x x + \nu_y y)} d\nu_x d\nu_y$$
+
+where $F(\nu_x, \nu_y)$ is the spatial frequency spectrum of $f(x,y)$.
+
+
+:::{.callout-note collapse=true}
+## Fourier Transform Review
+
+### Basic Definitions
+
+The Fourier transform decomposes a function into its constituent frequencies. For a function $f(x)$, its Fourier transform $F(k)$ is defined as:
+
+$$F(k) = \int_{-\infty}^{\infty} f(x) e^{-ikx} dx$$
+
+The inverse Fourier transform reconstructs the original function:
+
+$$f(x) = \int_{-\infty}^{\infty} F(k) e^{ikx} dk$$
+
+In optics, $x$ typically represents spatial coordinates and $k$ represents spatial frequencies. When working with discrete data, as you will in your computational exercises, you'll use the Discrete Fourier Transform (DFT), which is efficiently computed using the Fast Fourier Transform (FFT) algorithm:
+
+```{python}
+import numpy as np
+from scipy import fftpack
+
+# Generate a simple signal
+x = np.linspace(0, 1, 1000)  # spatial coordinate
+f = np.sin(2*np.pi*5*x) + 0.5*np.sin(2*np.pi*10*x)  # signal with 5 Hz and 10 Hz components
+
+# Compute the FFT
+F = fftpack.fft(f)
+freqs = fftpack.fftfreq(len(x), x[1]-x[0])  # frequency coordinates
+
+# For display, often use fftshift to center the zero frequency
+F_shifted = fftpack.fftshift(F)
+freqs_shifted = fftpack.fftshift(freqs)
+
+# Plot the original signal and its spectrum
+
+plt.figure(figsize=get_size(12, 5))
+plt.subplot(121)
+plt.plot(x, f)
+plt.xlabel('position x')
+plt.ylabel('amplitude')
+plt.title('original signal')
+
+plt.subplot(122)
+plt.plot(freqs_shifted, np.abs(F_shifted))
+plt.xlabel('spatial frequency k')
+plt.ylabel('magnitude |F(k)|')
+plt.title('fourier spectrum')
+plt.xlim(-20, 20)  # Zoom in on relevant frequencies
+plt.tight_layout()
+plt.show()
+```
+
+### Important Properties
+
+1. **Linearity**: $\mathcal{F}\{af(x) + bg(x)\} = aF(k) + bG(k)$
+
+   This means the Fourier transform of a sum is the sum of the Fourier transforms, allowing us to analyze complex signals by breaking them into simpler components.
+
+2. **Shift Theorem**: $\mathcal{F}\{f(x-a)\} = e^{-ika}F(k)$
+
+   A shift in the spatial domain corresponds to a phase change in the frequency domain, critical for understanding how optical elements that cause phase shifts affect the spectrum.
+
+3. **Convolution Theorem**: $\mathcal{F}\{f * g\} = F(k) \cdot G(k)$
+
+   Convolution in the spatial domain becomes multiplication in the frequency domain. This is particularly useful in optics, where the effect of a lens or aperture can be modeled as a convolution operation.
+
+
+4. **Parseval's Theorem**: $\int |f(x)|^2 dx = \int |F(k)|^2 dk$
+
+   This theorem establishes energy conservation between domains, showing that the total energy in a signal is preserved in its Fourier transform.
+
+### Common Fourier Transform Pairs
+
+| Function | Fourier Transform |
+|----------|-------------------|
+| $\delta(x)$ (Delta function) | $1$ (constant) |
+| $1$ (constant) | $\delta(k)$ (Delta function) |
+| $\text{rect}(x)$ (Rectangle function) | $\text{sinc}(k)$ (Sinc function) |
+| $e^{-\pi x^2}$ (Gaussian) | $e^{-\pi k^2}$ (Gaussian) |
+| $\cos(2\pi ax)$ | $\frac{1}{2}[\delta(k-a) + \delta(k+a)]$ |
+
+Understanding these transform pairs is essential for optical analysis. For example, a rectangular aperture produces a sinc-function diffraction pattern, and a Gaussian beam maintains its Gaussian profile under propagation.
+
+```{python}
+# Demonstrate the rect-sinc transform pair
+def rect(x, width=1.0):
+    return np.where(np.abs(x) <= width/2, 1.0, 0.0)
+
+def sinc(k):
+    # Handle the case where k=0 directly to avoid division by zero warning
+    result = np.ones_like(k, dtype=float)
+    non_zero = k != 0
+    result[non_zero] = np.sin(np.pi * k[non_zero]) / (np.pi * k[non_zero])
+    return result
+
+# Create a rectangular function
+x_fine = np.linspace(-5, 5, 1000)
+rect_func = rect(x_fine, width=2.0)
+
+# Calculate its Fourier transform
+rect_ft = fftpack.fftshift(fftpack.fft(rect_func))
+k_values = fftpack.fftshift(fftpack.fftfreq(len(x_fine), x_fine[1]-x_fine[0]))
+
+# Also plot the analytical sinc function for comparison
+theoretical_sinc = 2.0 * sinc(2.0*k_values)
+
+plt.figure(figsize=get_size(12, 5))
+plt.subplot(121)
+plt.plot(x_fine, rect_func)
+plt.xlabel('position x')
+plt.title('rectangle function')
+
+plt.subplot(122)
+plt.plot(k_values, np.abs(rect_ft)/np.max(np.abs(rect_ft)), 'b-', label='FFT Result')
+plt.plot(k_values, np.abs(theoretical_sinc), 'r--', label='Theoretical Sinc')
+plt.xlabel('spatial frequency k')
+plt.xlim(-2, 2)
+plt.tight_layout()
+plt.show()
+```
+:::
+
+
+#### Correspondence to Plane Wave Angular Components
+
+One of the most profound insights in Fourier optics is the relationship between spatial frequencies and the angular spectrum of plane waves. To understand this relationship, consider a plane wave $U(x,y,z)$ with wavevector $\mathbf{k}$ and wavelength $\lambda$ incident on the plane $z=0$. The wavevector can be written as:
+
+$$\mathbf{k} = k_x\hat{\mathbf{x}} + k_y\hat{\mathbf{y}} + k_z\hat{\mathbf{z}}$$
+
+where $|\mathbf{k}| = 2\pi/\lambda$. The components of this wavevector can be expressed in terms of the propagation angles $\theta_x$ and $\theta_y$ (with respect to the $z$-axis):
+
+$$k_x = \frac{2\pi}{\lambda}\sin\theta_x$$
+$$k_y = \frac{2\pi}{\lambda}\sin\theta_y$$
+$$k_z = \frac{2\pi}{\lambda}\cos\theta_z$$
+
+where $\cos\theta_z = \sqrt{1-\sin^2\theta_x-\sin^2\theta_y}$ from the constraint that $|\mathbf{k}| = 2\pi/\lambda$.
+
+
+::: {#fig-decomp}
+![](/lectures/lecture05/img/spectraldecomp.png)
+
+Principle of plane wave angular decomposition. (Image taken from Saleh/Teich "Principles of Photonics")
+:::
+
+
+At the plane $z=0$, this plane wave can be represented as:
+
+$$U(x,y,0) = U_0 e^{j(k_x x + k_y y)}$$
+
+where $k_x/2\pi$ and $k_x/2\pi$ are the spatial frequencies of the plane wave along the x- and y direction. This equation shows that a plane wave propagating at angles $\theta_x$ and $\theta_y$ manifests as a spatial harmonic function at the $z=0$ plane, with spatial frequencies directly related to the propagation angles:
+
+$$\frac{k_x}{2\pi} = \frac{1}{\lambda}\sin\theta_x$$
+$$\frac{k_y}{2\pi} = \frac{1}{\lambda}\sin\theta_y$$
+
+We can match now the spatial frequencies of the object $f(x,y)$ to the plane wave $U(x,y,0)$ by adjusting the wavevector angles $\theta_x, \theta_y$ to yield the same periodicity.
+
+The means that
+
+$$U(x,y,0)=f(x,y)$$
+
+or concerning the frequencies
+
+$$\nu_x = \frac{k_x}{2\pi}=\frac{1}{\lambda}\sin\theta_x$$
+$$\nu_y = \frac{k_y}{2\pi}=\frac{1}{\lambda}\sin\theta_y$$
+
+This means each spatial frequency of the sample $f(x,y)$ is diffracting the incident plane wave $U(x,y,z)$ into a certain angle, when the frequencies are matched. Behind the sample, the plane wave is propagating further without any change with the additional phase factor $e^{-i k_z z}$ such that
+
+$$U(x,y,z) = U(x,y,0) e^{-ik_z z} = U_0 e^{i(k_x x + k_y y)} e^{-ik_z z}$$
+
+where the wavevector component $k_z$ is given by:
+
+$$k_z = \sqrt{k^2 - k_x^2 - k_y^2} = \frac{2\pi}{\lambda}\sqrt{1 - \lambda^2(\nu_x^2 + \nu_y^2)}$$
+
+This expression for $k_z$ shows how the propagation along the z-direction depends on the spatial frequencies in the x and y directions. This relationship provides a direct connection between the spatial structure of an object and the directions in which light propagates after interacting with it.
+
+
+::: {.callout-note collapse=true}
+## Spatial Frequency and Propagation Angles of a Grating
+We saw this principle in action when analyzing diffraction gratings, where we decomposed the grating's periodic structure into angular components using the grating vector. For a grating with period $d$, the spatial frequency is $\nu_x = 1/d$, and the directions of diffracted orders are given by:
+
+$$\sin\theta_m = m\lambda/d = m\lambda\nu_x$$
+
+where $m$ is the diffraction order. This shows how the grating's spatial frequency determines the angles of diffracted light, which is a specific application of the more general Fourier relationship between spatial frequencies and propagation angles.
+
+
+
+```{python}
+# | label: fig-single-spatial-freq
+# | fig-cap: "Visualization of a 2D object containing a single spatial frequency in the x-direction. (a) The object pattern showing sinusoidal variation along x with frequency νₓ. (b) The Fourier transform magnitude of the object, showing two symmetric points corresponding to ±νₓ. (c) The corresponding angular spectrum representation, where the spatial frequency νₓ maps to specific diffraction angles ±θ according to sin(θ) = λνₓ."
+
+# Create a 2D object with a single spatial frequency in the x direction
+x = np.linspace(-5, 5, 400)
+y = np.linspace(-5, 5, 400)
+X, Y = np.meshgrid(x, y)
+
+# Define the spatial frequency
+spatial_freq = 1.0  # cycles per unit length
+wavelength = 0.5    # arbitrary units
+
+# Create the sinusoidal pattern object
+object_pattern = np.cos(2 * np.pi * spatial_freq * X)
+
+# Calculate the corresponding diffraction angle
+diffraction_angle = np.rad2deg(np.arcsin(wavelength * spatial_freq))
+
+# Calculate the 1D FFT of a single row of the object (at y=0)
+row_index = len(y) // 2  # Middle row
+object_row = object_pattern[row_index, :]
+ft_1d = np.fft.fftshift(np.fft.fft(object_row))
+ft_magnitude_1d = np.abs(ft_1d)
+
+# Create frequency axis for the 1D Fourier transform
+fx = np.fft.fftshift(np.fft.fftfreq(len(x), x[1]-x[0]))
+
+# Calculate the corresponding diffraction angles
+theta_x = np.rad2deg(np.arcsin(np.clip(wavelength * fx, -1, 1)))
+
+# Create a figure with 3 subplots
+fig, axs = plt.subplots(1, 3, figsize=get_size(12, 4))
+
+# Plot the object pattern (2D image)
+im0 = axs[0].imshow(object_pattern, extent=[x.min(), x.max(), y.min(), y.max()],
+                    cmap='gray', origin='lower')
+axs[0].set_xlabel('x ')
+axs[0].set_ylabel('y ')
+#fig.colorbar(im0, ax=axs[0], label='Amplitude')
+
+# Plot the spatial frequency spectrum (1D line plot)
+axs[1].plot(fx, ft_magnitude_1d)
+axs[1].set_xlabel(r'$\nu_x$')
+axs[1].set_ylabel('magnitude')
+axs[1].set_xlim(-3, 3)
+axs[1].grid(True)
+axs[1].axvline(x=spatial_freq, color='r', linestyle='--', alpha=0.7)
+axs[1].axvline(x=-spatial_freq, color='r', linestyle='--', alpha=0.7)
+axs[1].text(spatial_freq, 0.7*np.max(ft_magnitude_1d), f"+νₓ", color='red', ha='left')
+axs[1].text(-spatial_freq, 0.7*np.max(ft_magnitude_1d), f"-νₓ", color='red', ha='right')
+
+# Plot the angular spectrum representation (1D line plot)
+# Only display points where |fx| < 1/wavelength (propagating waves)
+valid_indices = np.abs(fx) <= 1/wavelength
+axs[2].plot(theta_x[valid_indices], ft_magnitude_1d[valid_indices])
+axs[2].set_xlabel(r'$\theta_x$ [°]')
+axs[2].set_ylabel('magnitude')
+axs[2].grid(True)
+axs[2].axvline(x=diffraction_angle, color='r', linestyle='--', alpha=0.7)
+axs[2].axvline(x=-diffraction_angle, color='r', linestyle='--', alpha=0.7)
+axs[2].text(diffraction_angle, 0.7*np.max(ft_magnitude_1d[valid_indices]), f"+θ", color='red', ha='left')
+axs[2].text(-diffraction_angle, 0.7*np.max(ft_magnitude_1d[valid_indices]), f"-θ", color='red', ha='right')
+
+plt.tight_layout()
+plt.show()
+```
+:::

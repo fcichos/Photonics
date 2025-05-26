@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.29">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>6&nbsp; Introduction to Gaussian Beams – Introduction to Photonics</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../lectures/lecture05/01-lecture05.html" rel="next">
+<link href="../../lectures/lecture03/01-lecture03.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-0815c480559380816a4d1ea211a47e91.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-485d01fc63b59abcd3ee1bf1e8e2748d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../assets/css/styles.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../lectures/lecture04/01-lecture04.html">Lecture 4</a></li><li class="breadcrumb-item"><a href="../../lectures/lecture04/01-lecture04.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">| echo: false</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../">Introduction to Photonics</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Photonics</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Lecture 1</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture01/01-lecture01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">| echo: false</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Lecture 2</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture02/01-lecture02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">| echo: false</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture02/02-lecture02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">| echo: false</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Lecture 3</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture03/01-lecture03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">just for plotting later</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Lecture 4</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture04/01-lecture04.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">| echo: false</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Lecture 5</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture05/01-lecture05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">| echo: false</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Lecture 6</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture06/01-lecture06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">| echo: false</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#derivation-from-the-helmholtz-equation" id="toc-derivation-from-the-helmholtz-equation" class="nav-link active" data-scroll-target="#derivation-from-the-helmholtz-equation"><span class="header-section-number">6.0.1</span> Derivation from the Helmholtz Equation</a></li>
+  <li><a href="#the-paraxial-approximation" id="toc-the-paraxial-approximation" class="nav-link" data-scroll-target="#the-paraxial-approximation"><span class="header-section-number">6.0.2</span> The Paraxial Approximation</a></li>
+  <li><a href="#gaussian-beam-transformation-through-optical-systems" id="toc-gaussian-beam-transformation-through-optical-systems" class="nav-link" data-scroll-target="#gaussian-beam-transformation-through-optical-systems"><span class="header-section-number">6.0.3</span> Gaussian Beam Transformation Through Optical Systems</a></li>
+  <li><a href="#higher-order-gaussian-modes" id="toc-higher-order-gaussian-modes" class="nav-link" data-scroll-target="#higher-order-gaussian-modes"><span class="header-section-number">6.0.4</span> Higher-Order Gaussian Modes</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../lectures/lecture04/01-lecture04.html">Lecture 4</a></li><li class="breadcrumb-item"><a href="../../lectures/lecture04/01-lecture04.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">| echo: false</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Introduction to Gaussian Beams</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>In optics and laser physics, Gaussian beams represent one of the most fundamental and important mathematical descriptions of laser light propagation. They are particularly relevant for understanding laser resonators, optical systems, and coherent light behavior. This section introduces Gaussian beams from first principles and explores their mathematical description.</p>
+<section id="derivation-from-the-helmholtz-equation" class="level3" data-number="6.0.1">
+<h3 data-number="6.0.1" class="anchored" data-anchor-id="derivation-from-the-helmholtz-equation"><span class="header-section-number">6.0.1</span> Derivation from the Helmholtz Equation</h3>
+<p>We begin with the Helmholtz equation, which describes monochromatic electromagnetic waves in a homogeneous medium:</p>
+<p><span class="math display">\[\nabla^2 U + k^2 U = 0\]</span></p>
+<p>where <span class="math inline">\(U\)</span> represents the electric field component, <span class="math inline">\(k = 2\pi/\lambda\)</span> is the wave number, and <span class="math inline">\(\lambda\)</span> is the wavelength of light. For a wave predominantly traveling along the <span class="math inline">\(z\)</span>-axis, we can express the electric field as:</p>
+<p><span class="math display">\[U(x,y,z) = u(x,y,z)e^{-ikz}\]</span></p>
+<p>Here, <span class="math inline">\(u(x,y,z)\)</span> is a complex amplitude function that varies slowly with <span class="math inline">\(z\)</span> compared to the wavelength. Substituting this into the Helmholtz equation and expanding the Laplacian operator yields:</p>
+<p><span class="math display">\[\left(\frac{\partial^2}{\partial x^2} + \frac{\partial^2}{\partial y^2} + \frac{\partial^2}{\partial z^2}\right)(u e^{-ikz}) + k^2 (u e^{-ikz}) = 0\]</span></p>
+<p>Computing the derivatives and simplifying:</p>
+<p><span class="math display">\[\frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} + \frac{\partial^2 u}{\partial z^2} - 2ik\frac{\partial u}{\partial z} = 0\]</span></p>
+</section>
+<section id="the-paraxial-approximation" class="level3" data-number="6.0.2">
+<h3 data-number="6.0.2" class="anchored" data-anchor-id="the-paraxial-approximation"><span class="header-section-number">6.0.2</span> The Paraxial Approximation</h3>
+<p>The paraxial approximation applies when the beam’s angular spread is small, meaning the wavefronts are nearly perpendicular to the propagation axis. Mathematically, this means that the amplitude <span class="math inline">\(u\)</span> varies slowly along the propagation direction compared to transverse directions:</p>
+<p><span class="math display">\[\left|\frac{\partial^2 u}{\partial z^2}\right| \ll \left|2k\frac{\partial u}{\partial z}\right|\]</span></p>
+<p>Under this approximation, the Helmholtz equation simplifies to the paraxial Helmholtz equation:</p>
+<p><span class="math display">\[\frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} - 2ik\frac{\partial u}{\partial z} = 0\]</span></p>
+<p>To solve this equation, we propose the ansatz:</p>
+<p><span class="math display">\[u(x,y,z) = A(z)\exp\left[-\frac{k}{2q(z)}(x^2 + y^2)\right]\]</span></p>
+<p>where <span class="math inline">\(A(z)\)</span> and <span class="math inline">\(q(z)\)</span> are complex functions to be determined. Substituting this into the paraxial equation and solving the resulting differential equations:</p>
+<p><span class="math display">\[\frac{dq}{dz} = 1 \quad \text{and} \quad \frac{dA}{dz} = -\frac{A}{q}\]</span></p>
+<p>These yield solutions <span class="math inline">\(q(z) = q_0 + z\)</span> and <span class="math inline">\(A(z) = \frac{A_0}{q(z)}\)</span>, where <span class="math inline">\(q_0\)</span> and <span class="math inline">\(A_0\)</span> are constants.</p>
+<p>The complex beam parameter <span class="math inline">\(q(z)\)</span> relates to physical parameters through:</p>
+<p><span class="math display">\[\frac{1}{q(z)} = \frac{1}{R(z)} - i\frac{\lambda}{\pi w^2(z)}\]</span></p>
+<p>where <span class="math inline">\(R(z)\)</span> is the radius of curvature of the wavefront and <span class="math inline">\(w(z)\)</span> is the beam radius at which the intensity falls to <span class="math inline">\(1/e^2\)</span> of its axial value.</p>
+<p>Setting <span class="math inline">\(q_0 = iz_0\)</span> where <span class="math inline">\(z_0\)</span> is the Rayleigh range, we can express these parameters as:</p>
+<p><span class="math display">\[w(z) = w_0\sqrt{1 + \left(\frac{z}{z_0}\right)^2}\]</span></p>
+<p><span class="math display">\[R(z) = z\left[1 + \left(\frac{z_0}{z}\right)^2\right]\]</span></p>
+<p>where <span class="math inline">\(w_0 = \sqrt{\frac{\lambda z_0}{\pi}}\)</span> is the beam waist (minimum beam radius).</p>
+<p>The complete Gaussian beam solution is:</p>
+<p><span class="math display">\[U(x,y,z) = U_0 \frac{w_0}{w(z)} \exp\left[-\frac{x^2 + y^2}{w^2(z)}\right] \exp\left[-ikz - ik\frac{x^2 + y^2}{2R(z)} + i\phi(z)\right]\]</span></p>
+<p>where <span class="math inline">\(\phi(z) = \arctan(z/z_0)\)</span> is the Gouy phase shift, representing an additional phase beyond that of a plane wave.</p>
+<p>In scalar wave theory, the intensity of the Gaussian beam is proportional to the square of the amplitude. It can be calculated as:</p>
+<p><span class="math display">\[I(x,y,z) = |U(x,y,z)|^2 = I_0\frac{w_0^2}{w^2(z)}\exp\left[-\frac{2(x^2+y^2)}{w^2(z)}\right]\]</span></p>
+<p>where <span class="math inline">\(I_0 = |U_0|^2\)</span> is the peak intensity at the beam waist. This expression shows that the intensity has a Gaussian profile in any transverse plane, with its peak on the beam axis. The intensity falls to <span class="math inline">\(1/e^2\)</span> of its axial value at a radial distance <span class="math inline">\(r = w(z)\)</span> from the axis, which defines the beam radius. The total power carried by the beam is conserved during propagation, but the peak intensity decreases as <span class="math inline">\(w(z)\)</span> increases with distance from the waist.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Gaussian Beam Propagation in the x-z Plane
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>We can visualize how a Gaussian beam’s intensity varies across both the propagation direction (z-axis) and transverse direction (x-axis) simultaneously using a 2D contour plot.</p>
+<div id="cell-fig-gaussian-beam-2d" class="cell" data-execution_count="2">
+<div class="cell-output cell-output-display">
+<div id="fig-gaussian-beam-2d" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-gaussian-beam-2d-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="01-lecture04_files/figure-html/fig-gaussian-beam-2d-output-1.png" width="575" height="286" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gaussian-beam-2d-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.1— Gaussian Beam Intensity Distribution in the x-z Plane for a wavelength of 632.8 nm and a beam waist of <span class="math inline">\(w_0=0.1\, \text{mm}\)</span>
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>This contour plot illustrates how the Gaussian beam intensity distribution evolves as it propagates. The horizontal axis represents the normalized propagation distance (z/z₀), while the vertical axis shows the normalized transverse distance (x/w₀). The color gradient indicates intensity values, with brighter colors representing higher intensities.</p>
+<p>The white dashed lines trace the beam width w(z), where the intensity falls to 1/e² (approximately 13.5%) of its value on the beam axis. Note how the beam width reaches its minimum at the beam waist (z=0) and expands as the beam propagates away from the focus.</p>
+<p>The plot clearly shows that the highest intensity occurs at the beam waist, with the intensity decreasing both as we move away from the center axis and as the beam propagates away from the focal point.</p>
+</div>
+</div>
+<section id="key-gaussian-beam-parameters" class="level4" data-number="6.0.2.1">
+<h4 data-number="6.0.2.1" class="anchored" data-anchor-id="key-gaussian-beam-parameters"><span class="header-section-number">6.0.2.1</span> Key Gaussian Beam Parameters</h4>
+<p>The following table summarizes the important parameters that characterize a Gaussian beam:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 30%">
+<col style="width: 33%">
+<col style="width: 36%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Parameter</th>
+<th>Expression</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Beam waist (<span class="math inline">\(w_0\)</span>)</td>
+<td></td>
+<td>Minimum beam radius at focus (<span class="math inline">\(z=0\)</span>)</td>
+</tr>
+<tr class="even">
+<td>Beam width (<span class="math inline">\(w(z)\)</span>)</td>
+<td><span class="math inline">\(w(z) = w_0\sqrt{1 + \left(\frac{z}{z_0}\right)^2}\)</span></td>
+<td>Beam radius at position <span class="math inline">\(z\)</span></td>
+</tr>
+<tr class="odd">
+<td>Rayleigh length (<span class="math inline">\(z_0\)</span>)</td>
+<td><span class="math inline">\(z_0 = \frac{\pi w_0^2}{\lambda}\)</span></td>
+<td>Distance over which beam area doubles</td>
+</tr>
+<tr class="even">
+<td>Radius of curvature (<span class="math inline">\(R(z)\)</span>)</td>
+<td><span class="math inline">\(R(z) = z\left[1 + \left(\frac{z_0}{z}\right)^2\right]\)</span></td>
+<td>Radius of wavefront curvature</td>
+</tr>
+<tr class="odd">
+<td>Divergence angle (<span class="math inline">\(\theta\)</span>)</td>
+<td><span class="math inline">\(\theta = \frac{\lambda}{\pi w_0}\)</span></td>
+<td>Far-field half-angle of beam spread</td>
+</tr>
+<tr class="even">
+<td>Gouy phase (<span class="math inline">\(\phi(z)\)</span>)</td>
+<td><span class="math inline">\(\phi(z) = \arctan\left(\frac{z}{z_0}\right)\)</span></td>
+<td>Additional phase beyond plane wave</td>
+</tr>
+<tr class="odd">
+<td>Complex beam parameter (<span class="math inline">\(q(z)\)</span>)</td>
+<td><span class="math inline">\(q(z) = z + iz_0\)</span></td>
+<td>Combined parameter for beam properties</td>
+</tr>
+</tbody>
+</table>
+<p>These parameters are interrelated, forming a complete description of how a Gaussian beam propagates. The Rayleigh length <span class="math inline">\(z_0\)</span> is particularly important as it defines the transition between the near field (where the beam is approximately collimated) and the far field (where the beam diverges linearly). At a distance of one Rayleigh length from the waist, the beam width increases by a factor of <span class="math inline">\(\sqrt{2}\)</span> and the intensity drops to half its maximum value.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Gaussian Beam Intensity Profiles
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>To better understand the spatial distribution of intensity in a Gaussian beam, it’s helpful to visualize how the intensity varies along different directions. Here we explore two fundamental cross-sections: the axial intensity along the beam propagation path, and the transverse intensity profile at the beam waist.</p>
+<div id="cell-fig-gaussian-beam-intensity" class="cell" data-execution_count="3">
+<div class="cell-output cell-output-display">
+<div id="fig-gaussian-beam-intensity" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-gaussian-beam-intensity-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="01-lecture04_files/figure-html/fig-gaussian-beam-intensity-output-1.png" width="587" height="285" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gaussian-beam-intensity-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.2— Gaussian Beam Intensity Profiles for a wavelenght of 632.8 nm and a beam waist of <span class="math inline">\(w_0=0.1\, m\)</span>
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Gaussian Beam Propagation
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>To better understand the spatial evolution of a Gaussian beam as it propagates, we can visualize how two key parameters change with distance: the beam width <span class="math inline">\(w(z)\)</span> and the wavefront radius of curvature <span class="math inline">\(R(z)\)</span>.</p>
+<div id="cell-fig-gaussian-beam-properties" class="cell" data-execution_count="4">
+<div class="cell-output cell-output-display">
+<div id="fig-gaussian-beam-properties" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-gaussian-beam-properties-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="01-lecture04_files/figure-html/fig-gaussian-beam-properties-output-1.png" width="587" height="285" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gaussian-beam-properties-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.3— Gaussian Beam Width and Wavefront Curvature for a wavelength of 632.8 nm and a beam waist of <span class="math inline">\(w_0=0.1\, \text{mm}\)</span>
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The left plot shows how the beam width <span class="math inline">\(w(z)\)</span> evolves with distance from the beam waist. At <span class="math inline">\(z = 0\)</span>, the beam is at its narrowest point <span class="math inline">\(w_0\)</span>. At the Rayleigh range (<span class="math inline">\(z = ±z_0\)</span>), the width increases to <span class="math inline">\(\sqrt{2}w_0\)</span>. For <span class="math inline">\(|z| \gg z_0\)</span>, the beam width increases approximately linearly with distance, corresponding to a constant far-field divergence angle <span class="math inline">\(\theta = \lambda/(\pi w_0)\)</span>.</p>
+<p>The right plot illustrates the wavefront radius of curvature <span class="math inline">\(R(z)\)</span>. At the beam waist, the wavefronts are flat (<span class="math inline">\(R = \infty\)</span>). The curvature reaches its minimum absolute value of <span class="math inline">\(2z_0\)</span> at <span class="math inline">\(z = ±z_0\)</span>. For <span class="math inline">\(z &gt; 0\)</span>, <span class="math inline">\(R(z)\)</span> is positive (converging wavefronts), while for <span class="math inline">\(z &lt; 0\)</span>, <span class="math inline">\(R(z)\)</span> is negative (diverging wavefronts). As <span class="math inline">\(|z|\)</span> increases, <span class="math inline">\(R(z)\)</span> approaches the asymptotic behavior of a spherical wave, where <span class="math inline">\(R(z) \approx z\)</span>.</p>
+<p>These parameters together provide a complete description of how the Gaussian beam transforms from a tightly focused wave near the waist to an approximately spherical wave in the far field.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="gaussian-beam-transformation-through-optical-systems" class="level3" data-number="6.0.3">
+<h3 data-number="6.0.3" class="anchored" data-anchor-id="gaussian-beam-transformation-through-optical-systems"><span class="header-section-number">6.0.3</span> Gaussian Beam Transformation Through Optical Systems</h3>
+<section id="the-abcd-matrix-formalism" class="level4" data-number="6.0.3.1">
+<h4 data-number="6.0.3.1" class="anchored" data-anchor-id="the-abcd-matrix-formalism"><span class="header-section-number">6.0.3.1</span> The ABCD Matrix Formalism</h4>
+<p>The propagation of Gaussian beams through optical systems can be elegantly described using the ABCD matrix formalism from ray optics. While ray optics typically tracks the position and angle of rays, for Gaussian beams we track the transformation of the complex beam parameter <span class="math inline">\(q(z)\)</span>.</p>
+<p>When a Gaussian beam passes through an optical system characterized by an ABCD matrix, the complex beam parameter transforms according to:</p>
+<p><span class="math display">\[q_2 = \frac{Aq_1 + B}{Cq_1 + D}\]</span></p>
+<p>where <span class="math inline">\(q_1\)</span> is the initial complex beam parameter and <span class="math inline">\(q_2\)</span> is the transformed parameter. This remarkable result, known as the ABCD law for Gaussian beams, allows us to determine how the beam waist and wavefront curvature change through arbitrary optical systems.</p>
+</section>
+<section id="common-optical-elements" class="level4" data-number="6.0.3.2">
+<h4 data-number="6.0.3.2" class="anchored" data-anchor-id="common-optical-elements"><span class="header-section-number">6.0.3.2</span> Common Optical Elements</h4>
+<p>Different optical elements transform Gaussian beams in characteristic ways:</p>
+<ol type="1">
+<li><p><strong>Free-space propagation</strong> over distance <span class="math inline">\(d\)</span> is represented by:</p>
+<p><span class="math display">\[\begin{pmatrix} A &amp; B \\ C &amp; D \end{pmatrix} = \begin{pmatrix} 1 &amp; d \\ 0 &amp; 1 \end{pmatrix}\]</span></p>
+<p>This matrix describes how the beam naturally diverges as it propagates.</p></li>
+<li><p><strong>Thin lens</strong> with focal length <span class="math inline">\(f\)</span>:</p>
+<p><span class="math display">\[\begin{pmatrix} A &amp; B \\ C &amp; D \end{pmatrix} = \begin{pmatrix} 1 &amp; 0 \\ -1/f &amp; 1 \end{pmatrix}\]</span></p>
+<p>A lens modifies the wavefront curvature without changing the beam diameter at the lens location.</p></li>
+<li><p><strong>Curved interface</strong> between media with refractive indices <span class="math inline">\(n_1\)</span> and <span class="math inline">\(n_2\)</span> and radius of curvature <span class="math inline">\(R\)</span>:</p>
+<p><span class="math display">\[\begin{pmatrix} A &amp; B \\ C &amp; D \end{pmatrix} = \begin{pmatrix} 1 &amp; 0 \\ -\frac{n_2-n_1}{n_2 R} &amp; \frac{n_1}{n_2} \end{pmatrix}\]</span></p></li>
+</ol>
+<p>Multiple optical elements can be analyzed by multiplying their respective ABCD matrices in the order encountered by the beam.</p>
+</section>
+<section id="focusing-of-gaussian-beams" class="level4" data-number="6.0.3.3">
+<h4 data-number="6.0.3.3" class="anchored" data-anchor-id="focusing-of-gaussian-beams"><span class="header-section-number">6.0.3.3</span> Focusing of Gaussian Beams</h4>
+<p>A particularly important case is the focusing of a Gaussian beam by a lens. If a collimated Gaussian beam with waist <span class="math inline">\(w_0\)</span> is incident on a lens with focal length <span class="math inline">\(f\)</span>, the focused beam will have a new waist:</p>
+<p><span class="math display">\[w_0' = \frac{\lambda f}{\pi w_0}\]</span></p>
+<p>located approximately at the focal point. This equation highlights the fundamental diffraction limit of focusing: smaller focal spots require larger input beam diameters relative to the wavelength.</p>
+<p>When a Gaussian beam is focused by a lens, the Rayleigh range of the focused beam also changes. For a collimated input beam, the new Rayleigh range after focusing is:</p>
+<p><span class="math display">\[z_0' = \frac{\pi {w_0'}^2}{\lambda} = \frac{\lambda f^2}{\pi w_0^2}\]</span></p>
+<p>This means that tightly focused beams (small <span class="math inline">\(w_0'\)</span>) have correspondingly shorter Rayleigh ranges, resulting in more rapid divergence beyond the focal point. This inverse relationship between spot size and Rayleigh range represents a fundamental trade-off in beam focusing: achieving a smaller spot size necessarily results in a beam that diverges more quickly after the focus.</p>
+<p>The divergence angle of the focused beam is also affected, increasing as the spot size decreases:</p>
+<p><span class="math display">\[\theta' = \frac{\lambda}{\pi w_0'} = \frac{w_0}{f}\]</span></p>
+<p>This relationship shows that the focused beam’s divergence is inversely proportional to the input beam width. A wider input beam produces a more tightly focused spot with greater divergence, while a narrower input beam creates a larger focal spot with less divergence.</p>
+<p>The transformation matrices enable us to design optical systems that reshape Gaussian beams to desired specifications—expanding, collimating, or focusing them for specific applications. This matrix approach bridges ray optics and wave optics, providing a powerful tool for optical system design with coherent light sources.</p>
+</section>
+</section>
+<section id="higher-order-gaussian-modes" class="level3" data-number="6.0.4">
+<h3 data-number="6.0.4" class="anchored" data-anchor-id="higher-order-gaussian-modes"><span class="header-section-number">6.0.4</span> Higher-Order Gaussian Modes</h3>
+<section id="hermite-gaussian-beams" class="level4" data-number="6.0.4.1">
+<h4 data-number="6.0.4.1" class="anchored" data-anchor-id="hermite-gaussian-beams"><span class="header-section-number">6.0.4.1</span> Hermite-Gaussian Beams</h4>
+<p>Hermite-Gaussian modes form a complete set of solutions to the paraxial wave equation in Cartesian coordinates. They can be expressed as:</p>
+<p><span class="math display">\[U_{nm}(x,y,z) = U_0\frac{w_0}{w(z)}H_n\left(\frac{\sqrt{2}x}{w(z)}\right)H_m\left(\frac{\sqrt{2}y}{w(z)}\right) \exp\left[-\frac{x^2 + y^2}{w^2(z)}\right]\]</span> <span class="math display">\[\times \exp\left[-ikz - ik\frac{x^2 + y^2}{2R(z)} + i(n+m+1)\phi(z)\right]\]</span></p>
+<p>where <span class="math inline">\(H_n\)</span> and <span class="math inline">\(H_m\)</span> are Hermite polynomials of orders <span class="math inline">\(n\)</span> and <span class="math inline">\(m\)</span>. The indices <span class="math inline">\(n,m = 0,1,2,...\)</span> determine the number of nodes in the intensity pattern along <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> directions. The fundamental Gaussian beam corresponds to <span class="math inline">\(n=m=0\)</span>.</p>
+<p>These modes naturally arise in laser resonators with rectangular symmetry and maintain their intensity pattern during propagation, though they scale in size. Each higher-order mode experiences an additional Gouy phase shift, causing different modes to accumulate phase at different rates during propagation.</p>
+<div id="cell-fig-hermite-gaussian" class="cell" data-execution_count="5">
+<div class="cell-output cell-output-display">
+<div id="fig-hermite-gaussian" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-hermite-gaussian-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="01-lecture04_files/figure-html/fig-hermite-gaussian-output-1.png" width="662" height="285" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-hermite-gaussian-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.4— Intensity (top row) and phase (bottom row) distributions of the first four Hermite-Gaussian modes in the xy-plane at z=1z₀: (a) HG₀₀, (b) HG₁₀, (c) HG₀₁, and (d) HG₁₁. Higher-order modes clearly show multiple intensity peaks.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="laguerre-gaussian-beams" class="level4" data-number="6.0.4.2">
+<h4 data-number="6.0.4.2" class="anchored" data-anchor-id="laguerre-gaussian-beams"><span class="header-section-number">6.0.4.2</span> Laguerre-Gaussian Beams</h4>
+<p>In systems with cylindrical symmetry, Laguerre-Gaussian modes provide a more natural description. In cylindrical coordinates <span class="math inline">\((r,\theta,z)\)</span>, they are given by:</p>
+<p><span class="math display">\[U_{pl}(r,\theta,z) = U_0\frac{w_0}{w(z)}\left(\frac{\sqrt{2}r}{w(z)}\right)^{|l|}L_p^{|l|}\left(\frac{2r^2}{w^2(z)}\right) \exp\left[-\frac{r^2}{w^2(z)}\right]\]</span> <span class="math display">\[\times \exp\left[-ikz - ik\frac{r^2}{2R(z)} + i(2p+|l|+1)\phi(z) + il\theta\right]\]</span></p>
+<p>where <span class="math inline">\(L_p^{|l|}\)</span> are the associated Laguerre polynomials, <span class="math inline">\(p \geq 0\)</span> is the radial index determining the number of radial nodes, and <span class="math inline">\(l\)</span> is the azimuthal index that determines the helical structure of the wavefront.</p>
+<p>A remarkable property of Laguerre-Gaussian modes with <span class="math inline">\(l \neq 0\)</span> is that they carry orbital angular momentum (OAM) of <span class="math inline">\(l\hbar\)</span> per photon. This OAM arises from the helical phase structure represented by the term <span class="math inline">\(\exp(il\theta)\)</span>, which creates a twisted wavefront resembling a spiral staircase. The intensity distribution forms a ring-like pattern with a dark center for <span class="math inline">\(l \neq 0\)</span> due to the phase singularity along the beam axis. As <span class="math inline">\(p\)</span> increases, additional concentric rings appear in the intensity pattern.</p>
+<div id="cell-fig-laguerre-gaussian" class="cell" data-execution_count="6">
+<div class="cell-output cell-output-display">
+<div id="fig-laguerre-gaussian" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-laguerre-gaussian-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="01-lecture04_files/figure-html/fig-laguerre-gaussian-output-1.png" width="662" height="285" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-laguerre-gaussian-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.5— Intensity (top row) and phase (bottom row) distributions of the first four Laguerre-Gaussian modes in the xy-plane at z=0.1z₀: (a) LG₀₀, (b) LG₀₁, (c) LG₁₀, and (d) LG₁₁. Note the ring-like intensity patterns and spiral phase structures in modes with non-zero azimuthal index l.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The orbital angular momentum of light is distinct from spin angular momentum (SAM), which is associated with circular polarization (±<span class="math inline">\(\hbar\)</span> per photon). While SAM relates to the polarization state of light, OAM relates to the spatial structure of the wavefront. Importantly, these two forms of angular momentum can interact through spin-orbit coupling in certain optical systems, particularly in anisotropic or inhomogeneous media, at interfaces, or when light experiences strong focusing. Such spin-orbit coupling enables novel phenomena like spin-to-orbital angular momentum conversion, where the polarization state can influence the spatial structure of the beam and vice versa. This coupling mechanism has found specific applications in:</p>
+<ol type="1">
+<li><p><strong>Optical tweezers</strong> - Spin-orbit coupling allows precise control of trapped particles by converting polarization changes into rotational motion, enabling manipulation of microscopic objects with unprecedented precision.</p></li>
+<li><p><strong>Quantum cryptography</strong> - The coupling between SAM and OAM creates additional degrees of freedom for encoding quantum information, enhancing the security and information capacity of quantum key distribution protocols.</p></li>
+<li><p><strong>Optical vortex metrology</strong> - Using the phase singularities created by spin-orbit interactions to detect nanoscale surface imperfections with superior sensitivity compared to conventional techniques.</p></li>
+<li><p><strong>Chiral spectroscopy</strong> - The interaction between polarization and spatial modes enables enhanced detection of chiral molecules by amplifying the difference in light-matter interactions between enantiomers.</p></li>
+<li><p><strong>Structured light microscopy</strong> - Coupling between SAM and OAM generates complex field patterns that improve resolution beyond the diffraction limit in specific imaging configurations.</p></li>
+</ol>
+<p>Both families of higher-order modes are important in modern optics applications, including optical manipulation, quantum information processing, and mode-division multiplexing in optical communications. They represent different orthogonal bases of the same solution space and can be transformed into each other through appropriate optical systems.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../lectures/lecture03/01-lecture03.html" class="pagination-link" aria-label="just for plotting later">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">just for plotting later</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../lectures/lecture05/01-lecture05.html" class="pagination-link" aria-label="| echo: false">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">| echo: false</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
