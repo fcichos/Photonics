@@ -368,6 +368,29 @@ window.Quarto = {
 </li>
       </ul>
   </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true">
+ <span class="menu-text">Lecture 8</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture08/02-lecture04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Photon Optics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture08/03-lecture04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Quantum Optics</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
       </ul>
   </li>
     </ul>
@@ -725,7 +748,7 @@ Fourier Transform Review
 <p>The inverse Fourier transform reconstructs the original function:</p>
 <p><span class="math display">\[f(x) = \int_{-\infty}^{\infty} F(k) e^{ikx} dk\]</span></p>
 <p>In optics, <span class="math inline">\(x\)</span> typically represents spatial coordinates and <span class="math inline">\(k\)</span> represents spatial frequencies. When working with discrete data, as you will in your computational exercises, you’ll use the Discrete Fourier Transform (DFT), which is efficiently computed using the Fast Fourier Transform (FFT) algorithm:</p>
-<div id="f111a924" class="cell" data-execution_count="5">
+<div id="d115ee30" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -820,7 +843,7 @@ Fourier Transform Review
 </tbody>
 </table>
 <p>Understanding these transform pairs is essential for optical analysis. For example, a rectangular aperture produces a sinc-function diffraction pattern, and a Gaussian beam maintains its Gaussian profile under propagation.</p>
-<div id="1bcf8fc8" class="cell" data-execution_count="6">
+<div id="ed58a6f7" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Demonstrate the rect-sinc transform pair</span></span>

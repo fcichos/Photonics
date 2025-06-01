@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>lecture02 – Photonics</title>
+<title>lecture07 – Photonics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,41 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -65,8 +30,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../lectures/lecture02/02-lecture02.html" rel="next">
-<link href="../../lectures/lecture01/01-lecture01.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -174,7 +137,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">FOUNDATIONS OF PHOTONICS</li><li class="breadcrumb-item"><a href="../../lectures/lecture02/01-lecture02.html">Lecture 2</a></li><li class="breadcrumb-item"><a href="../../lectures/lecture02/01-lecture02.html">Matrix Optics</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Transfer Function of Free space</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -277,7 +240,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../lectures/lecture02/01-lecture02.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../lectures/lecture02/01-lecture02.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Matrix Optics</span></a>
   </div>
 </li>
@@ -404,18 +367,20 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#refraction-at-spherical-surfaces" id="toc-refraction-at-spherical-surfaces" class="nav-link active" data-scroll-target="#refraction-at-spherical-surfaces">Refraction at Spherical Surfaces</a></li>
-  <li><a href="#matrix-optics" id="toc-matrix-optics" class="nav-link" data-scroll-target="#matrix-optics">Matrix Optics</a></li>
-  <li><a href="#multifocal-imaging" id="toc-multifocal-imaging" class="nav-link" data-scroll-target="#multifocal-imaging">Multifocal Imaging</a></li>
+  <li><a href="#input-output-relation" id="toc-input-output-relation" class="nav-link active" data-scroll-target="#input-output-relation">Input Output Relation</a></li>
+  <li><a href="#impuls-response-function" id="toc-impuls-response-function" class="nav-link" data-scroll-target="#impuls-response-function">Impuls Response Function</a></li>
+  <li><a href="#free-space-propagation-as-convolution" id="toc-free-space-propagation-as-convolution" class="nav-link" data-scroll-target="#free-space-propagation-as-convolution">Free Space Propagation as Convolution</a></li>
+  <li><a href="#far-field" id="toc-far-field" class="nav-link" data-scroll-target="#far-field">Far Field</a></li>
+  <li><a href="#fourier-transform-using-a-lens" id="toc-fourier-transform-using-a-lens" class="nav-link" data-scroll-target="#fourier-transform-using-a-lens">Fourier Transform using a Lens</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">FOUNDATIONS OF PHOTONICS</li><li class="breadcrumb-item"><a href="../../lectures/lecture02/01-lecture02.html">Lecture 2</a></li><li class="breadcrumb-item"><a href="../../lectures/lecture02/01-lecture02.html">Matrix Optics</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Theories for light</h1>
+<h1 class="title">Transfer Function of Free space</h1>
 </div>
 
 
@@ -432,404 +397,67 @@ window.Quarto = {
 </header>
 
 
-<section id="refraction-at-spherical-surfaces" class="level3">
-<h3 class="anchored" data-anchor-id="refraction-at-spherical-surfaces">Refraction at Spherical Surfaces</h3>
-<p>When light encounters a spherical boundary between two media, we can analyze its path using Snell’s law and geometric considerations as shown below:</p>
-<div id="fig-curved-surface" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-curved-surface-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="img/curved_surface.png" class="img-fluid figure-img" style="width:80.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-curved-surface-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1— Refraction at a curved surface.
-</figcaption>
-</figure>
-</div>
-<p>To determine how an image forms, we need to find where rays originating from a point at distance <span class="math inline">\(a\)</span> from the surface will converge after refraction. Using Snell’s law for a ray hitting the surface at angle <span class="math inline">\(\alpha+\theta_1\)</span>:</p>
-<p><span class="math display">\[n_{1}\sin(\alpha+\theta_1)=n_{2}\sin(\alpha-\theta_2)\]</span></p>
-<p>Where: <span class="math display">\[\sin(\alpha)=\frac{y}{R}, \quad \tan(\theta_1)=\frac{y}{a}, \quad \tan(\theta_2)=\frac{y}{b}\]</span></p>
-<p>For practical optical systems, we employ the <strong>paraxial approximation</strong>, where all angles are assumed small enough that:</p>
-<p><span class="math display">\[\sin(\theta) \approx \theta+ O(\theta^{3}), \quad \tan(\theta) \approx \theta + O(\theta^{3}),\quad \cos(\theta)\approx 1 + O(\theta^{2})\]</span></p>
-<p>This simplifies Snell’s law to:</p>
-<p><span class="math display">\[n_1(\alpha+\theta_1)=n_2(\alpha-\theta_2)\]</span></p>
-<p>After appropriate transformations (detailed in the online lecture), we obtain:</p>
-<p><span class="math display">\[\theta_2=\frac{n_2-n_1}{n_2 R}y -\frac{n_1}{n_2}\theta_1\]</span></p>
-<p>and</p>
-<p><span class="math display">\[y=y_1=y_2\]</span></p>
-<p>This linear relationship between input (<span class="math inline">\(y\)</span>, <span class="math inline">\(\theta_1\)</span>) and output (<span class="math inline">\(y\)</span>,<span class="math inline">\(\theta_2\)</span>) parameters is a hallmark of paraxial optics and a result of the linearization of Snells law.</p>
+<p>We now examine the propagation of a monochromatic optical wave of wavelength <span class="math inline">\(\lambda\)</span> and complex amplitude <span class="math inline">\(U(x, y, z)\)</span> in the free space between the planes <span class="math inline">\(z=0\)</span> and <span class="math inline">\(z=d\)</span>, called the input and output planes, respectively. Given the complex amplitude of the wave at the input plane, <span class="math inline">\(f(x, y)=U(x, y, 0)\)</span>, we want to determine the complex amplitude at the output plane, <span class="math inline">\(g(x, y)=U(x, y, d)\)</span>.</p>
+<p>The input field <span class="math inline">\(f(x,y)\)</span> propagates through free space to form the output field <span class="math inline">\(g(x,y)\)</span>. Using the angular spectrum representation, we can express the relationship between input and output as:</p>
+<p><span class="math display">\[g(x,y) = \iint_{-\infty}^{\infty} F(\nu_x,\nu_y) e^{i 2\pi(\nu_x x + \nu_y y)} e^{-i k_z d} d\nu_x d\nu_y\]</span></p>
+<p>where <span class="math inline">\(F(\nu_x,\nu_y)\)</span> is the Fourier transform of <span class="math inline">\(f(x,y)\)</span>, and <span class="math inline">\(k_z = 2\pi\sqrt{(1/\lambda)^2 - \nu_x^2 - \nu_y^2}\)</span> is the z-component of the wavevector.</p>
+<p>The transfer function of free space, denoted as <span class="math inline">\(H(\nu_x,\nu_y)\)</span>, is defined as the ratio of the output spectrum to the input spectrum:</p>
+<p><span class="math display">\[H(\nu_x,\nu_y) = e^{-i k_z d} = e^{-i 2\pi d\sqrt{(1/\lambda)^2 - \nu_x^2 - \nu_y^2}}\]</span></p>
+<p>This transfer function has two distinct regimes based on the values of <span class="math inline">\(\nu_x\)</span> and <span class="math inline">\(\nu_y\)</span>:</p>
+<ol type="1">
+<li><p><strong>Propagating waves</strong>: When <span class="math inline">\(\nu_x^2 + \nu_y^2 &lt; (1/\lambda)^2\)</span>, <span class="math inline">\(k_z\)</span> is real, and <span class="math inline">\(H(\nu_x,\nu_y) = e^{-i k_z d}\)</span> represents a pure phase shift. These are propagating waves that carry energy from the input to the output plane.</p></li>
+<li><p><strong>Evanescent waves</strong>: When <span class="math inline">\(\nu_x^2 + \nu_y^2 &gt; (1/\lambda)^2\)</span>, <span class="math inline">\(k_z\)</span> becomes imaginary, and <span class="math inline">\(H(\nu_x,\nu_y) = e^{-|k_z| d}\)</span> represents an exponential decay. These evanescent waves decay exponentially with distance and do not propagate energy to the far field. For spatial frequencies slightly beyond the propagating limit, where <span class="math inline">\(\nu_x^2 + \nu_y^2 \approx (1/\lambda)^2 + \Delta\)</span>, the decay constant can be approximated as <span class="math inline">\(|k_z| \approx 2\pi\sqrt{\Delta} \approx \pi\lambda/(2d^2)\)</span>, where <span class="math inline">\(d\)</span> is the characteristic distance from the object. This means that features with spatial frequencies significantly above <span class="math inline">\(1/\lambda\)</span> become effectively undetectable at distances greater than a few wavelengths.</p></li>
+</ol>
+<p>A simplification of the transfer function of free space maybe obtained when considering only spatial frequencies that are much smaller than the cut-off frequency. This simplificaltion is called the Fresnel approximation and leads to</p>
+<p><span class="math display">\[
+H\left(\nu_x, \nu_y\right) \approx H_0 \exp \left[i \pi \lambda d\left(\nu_x^2+\nu_y^2\right)\right]
+\]</span></p>
+<p>Its inverse Fourier transform is the impulse response function <span class="math inline">\(h(x,y)\)</span>, which is given by</p>
+<p><span class="math display">\[
+h(x, y) \approx h_0 \exp \left[-i k \frac{x^2+y^2}{2 d}\right]
+\]</span></p>
+<p>with <span class="math inline">\(h_0=(i / \lambda d) \exp (-i k d)\)</span>.</p>
+<section id="input-output-relation" class="level3">
+<h3 class="anchored" data-anchor-id="input-output-relation">Input Output Relation</h3>
+<p><span class="math display">\[g(x, y)=\iint_{-\infty}^{\infty} H\left(\nu_x, \nu_y\right) F\left(\nu_x, \nu_y\right) \exp \left[-i 2 \pi\left(\nu_x x+\nu_y y\right)\right] d \nu_x d \nu_y\]</span></p>
+<p><span class="math display">\[
+g(x, y)=H_0 \iint_{-\infty}^{\infty} F\left(\nu_x, \nu_y\right) \exp \left[j \pi \lambda d\left(\nu_x^2+\nu_y^2\right)\right] \exp \left[-i 2 \pi\left(\nu_x x+\nu_y y\right)\right] d \nu_x d \nu_y
+\]</span></p>
 </section>
-<section id="matrix-optics" class="level3">
-<h3 class="anchored" data-anchor-id="matrix-optics">Matrix Optics</h3>
-<p>The linear relation between input and output parameters allows us to express optical elements as linear transformations (matrices). This approach forms the foundation of <strong>matrix optics</strong>. For a lens, the matrix representation is:</p>
-<p><span class="math display">\[\begin{pmatrix} y_2 \\ \theta_2 \end{pmatrix} = \begin{pmatrix} 1 &amp; 0 \\ -\frac{1}{f} &amp; 1 \end{pmatrix} \begin{pmatrix} y_1 \\ \theta_1 \end{pmatrix}\]</span></p>
-<p>This 2×2 matrix is called the <strong>ABCD matrix</strong> of the lens. Thanks to the linearization of Snell’s law, we can generalize this to any optical element:</p>
-<p><span class="math display">\[\begin{pmatrix} y_2 \\
-\theta_2 \end{pmatrix} = \begin{pmatrix} A &amp; B \\ C &amp; D \end{pmatrix} \begin{pmatrix} y_1 \\ \theta_1 \end{pmatrix}\]</span></p>
-<p>Each element in the ABCD matrix has a specific physical meaning:</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 47%">
-<col style="width: 52%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Matrix Element</th>
-<th>Physical Meaning</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>A</td>
-<td>Magnification - relates output position to input position</td>
-</tr>
-<tr class="even">
-<td>B</td>
-<td>Position-to-angle conversion - relates output position to input angle</td>
-</tr>
-<tr class="odd">
-<td>C</td>
-<td>Focusing power - relates output angle to input position</td>
-</tr>
-<tr class="even">
-<td>D</td>
-<td>Angular magnification - relates output angle to input angle</td>
-</tr>
-</tbody>
-</table>
-<p>Every optical element can be characterized by these parameters. For example, a lens has C = -1/f (focusing power), while free space has B = d (position-dependent angle change). An important property is that the determinant of the matrix equals the ratio of refractive indices: det(M) = n₁/n₂, which equals 1 in a single medium.</p>
-<p>Here are the ABCD matrices for common optical elements:</p>
+<section id="impuls-response-function" class="level3">
+<h3 class="anchored" data-anchor-id="impuls-response-function">Impuls Response Function</h3>
+<p>Its inverse Fourier transform is the impulse response function <span class="math inline">\(h(x,y)\)</span>, which is given by</p>
 <p><span class="math display">\[
-\mathbf{M}=\begin{bmatrix}
-A &amp; B\\
-C &amp; D
-\end{bmatrix} =\left[\begin{array}{ll}
-1 &amp; d \\
-0 &amp; 1
-\end{array}\right] \tag{Free space}
+h(x, y) \approx h_0 \exp \left[-i k \frac{x^2+y^2}{2 d}\right]
 \]</span></p>
-<p><span class="math display">\[
-\mathbf{M}=\left[\begin{array}{cc}
-1 &amp; 0 \\
-0 &amp; \frac{n_1}{n_2}
-\end{array}\right] \tag{Planar interface}
-\]</span></p>
-<p><span class="math display">\[
-\mathbf{M}=\left[\begin{array}{cc}
-1 &amp; 0 \\
--\frac{\left(n_2-n_1\right)}{n_2 R} &amp; \frac{n_1}{n_2}
-\end{array}\right] \tag{Spherical Boundary}
-\]</span></p>
-<p><span class="math display">\[
-\mathbf{M}=\left[\begin{array}{cc}
-1 &amp; 0 \\
--\frac{1}{f} &amp; 1
-\end{array}\right] \tag{Thin Lens}
-\]</span></p>
-<p>For a system containing multiple optical elements, we simply multiply their matrices in the order that light passes through them:</p>
-<p><span class="math display">\[
-\mathrm{M}=\mathbf{M}_N \cdots \mathbf{M}_2 \mathbf{M}_1
-\]</span></p>
-<p>A ray entering the first optical element at a height <span class="math inline">\(y_1\)</span> at an angle <span class="math inline">\(\theta_1\)</span> is transformed according to the matrix <span class="math inline">\(\mathbf{M}\)</span> by the whole system. This elegant approach provides a powerful tool for analyzing complex optical systems efficiently.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Example: Optical Cloaking with Lens Systems
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>Optical cloaking refers to making objects “invisible” by guiding light rays around them such that to an observer, it appears as if the rays traveled through free space without encountering any object. Using matrix optics, we can design such a system.</p>
-<div id="fig-cloaking" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-cloaking-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="img/cloacking.png" class="img-fluid figure-img" style="width:80.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cloaking-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2— Example of a practical paraxial cloak. (a)–(c) A hand is cloaked for varying directions, while the background image is transmitted properly.(d) On-axis view of the ray optics cloaking device. (e) Setup using practical, easy to obtain optics, for demonstrating paraxial cloaking principles. (Photos by J. Adam Fenster, videos by Matthew Mann / University of Rochester) <a href="https://opg.optica.org/oe/fulltext.cfm?uri=oe-22-24-29465&amp;id=304785">Source</a>
-</figcaption>
-</figure>
-</div>
-<p>For perfect optical cloaking, the ABCD matrix of our system must be equivalent to that of free space:</p>
-<p><span class="math display">\[
-\mathbf{M}_{cloaking} = \left[\begin{array}{cc}
-1 &amp; d \\
-0 &amp; 1
-\end{array}\right]
-\]</span></p>
-<p>Where <span class="math inline">\(d\)</span> is the total effective optical path length. Let’s explore why we need exactly 4 lenses to achieve this.</p>
-<section id="analysis-of-different-lens-configurations" class="level4">
-<h4 class="anchored" data-anchor-id="analysis-of-different-lens-configurations">Analysis of Different Lens Configurations</h4>
-<p><strong>1. Single Lens Configuration</strong></p>
-<p>For a single lens with focal length <span class="math inline">\(f\)</span>, the ABCD matrix is:</p>
-<p><span class="math display">\[
-\mathbf{M}_{single} = \left[\begin{array}{cc}
-1 &amp; 0 \\
--\frac{1}{f} &amp; 1
-\end{array}\right]
-\]</span></p>
-<p>This clearly cannot match the free space matrix due to the non-zero <span class="math inline">\(C\)</span> element.</p>
-<p><strong>2. Two-Lens Configuration</strong></p>
-<p>For two lenses with focal lengths <span class="math inline">\(f_1\)</span> and <span class="math inline">\(f_2\)</span> separated by distance <span class="math inline">\(d_{12}\)</span>:</p>
-<p><span class="math display">\[
-\mathbf{M}_{two} = \left[\begin{array}{cc}
-1 &amp; 0 \\
--\frac{1}{f_2} &amp; 1
-\end{array}\right]
-\left[\begin{array}{cc}
-1 &amp; d_{12} \\
-0 &amp; 1
-\end{array}\right]
-\left[\begin{array}{cc}
-1 &amp; 0 \\
--\frac{1}{f_1} &amp; 1
-\end{array}\right]
-\]</span></p>
-<p>When <span class="math inline">\(d_{12} = f_1 + f_2\)</span> (telescopic arrangement), this simplifies to:</p>
-<p><span class="math display">\[
-\mathbf{M}_{two} = \left[\begin{array}{cc}
--\frac{f_1}{f_2} &amp; 0 \\
-0 &amp; -\frac{f_2}{f_1}
-\end{array}\right]
-\]</span></p>
-<p>Since both magnification (<span class="math inline">\(A\)</span>) and angular magnification (<span class="math inline">\(D\)</span>) cannot simultaneously equal 1 while maintaining <span class="math inline">\(\det(\mathbf{M}) = 1\)</span>, two lenses are insufficient.</p>
-<p><strong>3. Three-Lens Configuration</strong></p>
-<p>With three lenses, we have more parameters but still need to determine if we can satisfy all constraints simultaneously. For a three-lens system with focal lengths <span class="math inline">\(f_1\)</span>, <span class="math inline">\(f_2\)</span>, and <span class="math inline">\(f_3\)</span>, separated by distances <span class="math inline">\(d_{12}\)</span> and <span class="math inline">\(d_{23}\)</span>, the system matrix would be:</p>
-<p><span class="math display">\[
-\mathbf{M}_{three} =
-\left[\begin{array}{cc}
-1 &amp; 0 \\
--\frac{1}{f_3} &amp; 1
-\end{array}\right]
-\left[\begin{array}{cc}
-1 &amp; d_{23} \\
-0 &amp; 1
-\end{array}\right]
-\left[\begin{array}{cc}
-1 &amp; 0 \\
--\frac{1}{f_2} &amp; 1
-\end{array}\right]
-\left[\begin{array}{cc}
-1 &amp; d_{12} \\
-0 &amp; 1
-\end{array}\right]
-\left[\begin{array}{cc}
-1 &amp; 0 \\
--\frac{1}{f_1} &amp; 1
-\end{array}\right]
-\]</span></p>
-<p>When multiplied out, the focusing power (C element) of the system is:</p>
-<p><span class="math display">\[C = -\frac{1}{f_3} - \frac{1}{f_2} - \frac{1}{f_1} + \frac{d_{12}}{f_1f_2} + \frac{d_{23}}{f_2f_3} + \frac{d_{12}d_{23}}{f_1f_2f_3}\]</span></p>
-<p>The magnification (A element) of the system is:</p>
-<p><span class="math display">\[A = 1 - \frac{d_{12}}{f_1} - \frac{d_{23}}{f_2} + \frac{d_{12}d_{23}}{f_1f_2}\]</span></p>
-<p>For perfect cloaking, we need both C = 0 and A = 1. From A = 1, we can derive:</p>
-<p><span class="math display">\[\frac{d_{12}}{f_1} + \frac{d_{23}}{f_2} - \frac{d_{12}d_{23}}{f_1f_2} = 0\]</span></p>
-<p>Solving for <span class="math inline">\(d_{23}\)</span>, we get:</p>
-<p><span class="math display">\[d_{23} = \frac{d_{12}/f_1}{1/f_2 - d_{12}/(f_1f_2)}\]</span></p>
-<p>Substituting this into the condition for C = 0, we obtain a complex expression that places constraints on the possible values of <span class="math inline">\(f_1\)</span>, <span class="math inline">\(f_2\)</span>, and <span class="math inline">\(f_3\)</span>. For typical lens configurations, this results in values that are difficult to realize physically, as it often requires either negative separations or negative focal lengths.</p>
-<p>While the three-lens system provides more parameters to work with than the two-lens system, the mathematical constraints of simultaneously achieving zero focusing power (C = 0) and unit magnification (A = 1) still make perfect cloaking challenging with conventional optical elements.</p>
-<p><strong>4. Four-Lens Configuration: The Solution</strong></p>
-<p>We can arrange four lenses in two pairs:</p>
-<ul>
-<li>First pair (lenses 1 and 2): A beam compressor</li>
-<li>Second pair (lenses 3 and 4): A beam expander</li>
-</ul>
-<p>For the beam compressor, with lenses at their combined focal length apart:</p>
-<p><span class="math display">\[
-\mathbf{M}_{comp} = \left[\begin{array}{cc}
--\frac{f_1}{f_2} &amp; 0 \\
-0 &amp; -\frac{f_2}{f_1}
-\end{array}\right]
-\]</span></p>
-<p>Similarly, for the beam expander:</p>
-<p><span class="math display">\[
-\mathbf{M}_{exp} = \left[\begin{array}{cc}
--\frac{f_3}{f_4} &amp; 0 \\
-0 &amp; -\frac{f_4}{f_3}
-\end{array}\right]
-\]</span></p>
-<p>The combined system matrix is:</p>
-<p><span class="math display">\[
-\mathbf{M}_{total} = \mathbf{M}_{exp} \times \mathbf{M}_{comp} = \left[\begin{array}{cc}
-\frac{f_1}{f_2} \times \frac{f_3}{f_4} &amp; 0 \\
-0 &amp; \frac{f_2}{f_1} \times \frac{f_4}{f_3}
-\end{array}\right]
-\]</span></p>
-<p>For perfect cloaking, we need: - <span class="math inline">\(\frac{f_1}{f_2} \times \frac{f_3}{f_4} = 1\)</span> - <span class="math inline">\(\frac{f_2}{f_1} \times \frac{f_4}{f_3} = 1\)</span></p>
-<p>This is satisfied when <span class="math inline">\(f_1 = f_4\)</span> and <span class="math inline">\(f_2 = f_3\)</span>.</p>
-<p>With the lenses properly spaced and an additional free space distance <span class="math inline">\(d_0\)</span> between the two pairs, the complete system matrix becomes:</p>
-<p><span class="math display">\[
-\mathbf{M}_{cloaking} = \left[\begin{array}{cc}
-1 &amp; d_0 \\
-0 &amp; 1
-\end{array}\right]
-\]</span></p>
-<p>Which perfectly mimics free space propagation, creating the optical cloaking effect.</p>
-<div id="37c936cd" class="cell" data-execution_count="2">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example of optical cloaking with four lenses using raytracing</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> raytracing <span class="im">import</span> <span class="op">*</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Define focal lengths (in mm)</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>f1 <span class="op">=</span> <span class="dv">200</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>f2 <span class="op">=</span> <span class="dv">75</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>f3 <span class="op">=</span> f2  <span class="co"># f3 = f2 = 75</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>f4 <span class="op">=</span> f1  <span class="co"># f4 = f1 = 200</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Create an optical path</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>path <span class="op">=</span> ImagingPath()</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Add the four lenses with proper spacing</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>path.append(Space(d<span class="op">=</span><span class="dv">100</span>))  <span class="co"># Initial space before first lens</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>path.append(Lens(f<span class="op">=</span>f1, label<span class="op">=</span><span class="ss">f"f₁=</span><span class="sc">{</span>f1<span class="sc">}</span><span class="ss">mm"</span>))</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>path.append(Space(d<span class="op">=</span>f1<span class="op">+</span>f2))  <span class="co"># Distance between lens 1 and 2</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>path.append(Lens(f<span class="op">=</span>f2, label<span class="op">=</span><span class="ss">f"f₂=</span><span class="sc">{</span>f2<span class="sc">}</span><span class="ss">mm"</span>))</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>path.append(Space(d<span class="op">=</span><span class="dv">100</span>))  <span class="co"># Distance between lens pairs (d₀)</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>path.append(Lens(f<span class="op">=</span>f3, label<span class="op">=</span><span class="ss">f"f₃=</span><span class="sc">{</span>f3<span class="sc">}</span><span class="ss">mm"</span>))</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>path.append(Space(d<span class="op">=</span>f3<span class="op">+</span>f4))  <span class="co"># Distance between lens 3 and 4</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>path.append(Lens(f<span class="op">=</span>f4, label<span class="op">=</span><span class="ss">f"f₄=</span><span class="sc">{</span>f4<span class="sc">}</span><span class="ss">mm"</span>))</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>path.append(Space(d<span class="op">=</span><span class="dv">100</span>))  <span class="co"># Final space after last lens</span></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the ray path with custom figure size</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>path.display(raysList<span class="op">=</span>[</span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    [Ray(y<span class="op">=</span><span class="dv">5</span>, theta<span class="op">=</span><span class="dv">0</span>)],</span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    [Ray(y<span class="op">=-</span><span class="dv">5</span>, theta<span class="op">=</span><span class="dv">0</span>)]</span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>], interactive<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stderr">
-<pre><code>BeginnerHint [in figure.py]: Infinite field of view: cannot use limitObjectToFieldOfView=True. The object height is instead set to the default value of 10.0.
-BeginnerHint [in imagingpath.py]: Field of view is infinite. You can pass useObject=True to use the finite objectHeight.
-BeginnerHint [in figure.py]: No aperture stop in the system: cannot use onlyPrincipalAndAxialRays=True since they are not defined. Showing the default ObjectRays instead. </code></pre>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="01-lecture02_files/figure-html/cell-3-output-2.png" width="850" height="589" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
+<p>with <span class="math inline">\(h_0=(i / \lambda d) \exp (-i k d)\)</span>.</p>
 </section>
-</div>
-</div>
-</div>
+<section id="free-space-propagation-as-convolution" class="level3">
+<h3 class="anchored" data-anchor-id="free-space-propagation-as-convolution">Free Space Propagation as Convolution</h3>
+<p><span class="math display">\[
+g(x, y)=h_0 \iint_{-\infty}^{\infty} f\left(x^{\prime}, y^{\prime}\right) \exp \left[-j \pi \frac{\left(x-x^{\prime}\right)^2+\left(y-y^{\prime}\right)^2}{\lambda d}\right] d x^{\prime} d y^{\prime}
+\]</span></p>
 </section>
-<section id="multifocal-imaging" class="level3">
-<h3 class="anchored" data-anchor-id="multifocal-imaging">Multifocal Imaging</h3>
-<p>We would like to explore the concept of multifocal imaging to obtain 3D resolution from a single image. In a microscope, an objective lens together with a tube lens is used to focus light from a sample onto a detector. Either the tube lens is no modified to shift the focal plane of the objective lens or one uses multiple tube lenses with different focal lengths with a single objective lens.</p>
-<div id="fig-multifocal-adapter" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-multifocal-adapter-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="img/multifocal_imaging.png" class="img-fluid figure-img" style="width:80.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-multifocal-adapter-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3— The multifocal adapter. (a) Composition of the multifocal imaging setup. The multifocal adapter (MFA) is inserted into the light path between a standard dark-field microscope and a camera. (b) Composition of the multifocal adapter. Incoming light from the microscope is infinity projected by the lens f1 and split by three consecutive beam-splitters (b1 = 25/75; b2 = 33/67; b3 = 50/50). Five mirrors (m) guide the light into four separate optical paths. The lens f5 projects the four images onto the camera chip. The inter-plane distance is set by lenses of different focal length (f1 - f4). (c, d) Experimentally acquired (c) and simulated (d) (see Methods) multifocal dark-field images (planes 1 - 4, 20x objective) of a calibration grid at the four focal positions (indicated on the left side), where one of the four focal planes maps the grid sharply. Scale bar represents 20 µm. Experiment was performed six times with similar results. <a href="https://www.nature.com/articles/s41467-021-24768-4">Source</a>
-</figcaption>
-</figure>
-</div>
-<p>In the simplest configuration of an objective lens and a tube lens, the light first travels from the object to the objective lens in free space for a distance <span class="math inline">\(s\)</span>, which is represented by</p>
-<div id="df8f9f95" class="cell" data-execution_count="4">
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="4">
+<section id="far-field" class="level3">
+<h3 class="anchored" data-anchor-id="far-field">Far Field</h3>
+<p>We now proceed to show that if the propagation distance <span class="math inline">\(d\)</span> is sufficiently long, the only plane wave that contributes to the complex amplitude at a point <span class="math inline">\((x, y)\)</span> in the output plane is the wave with direction making angles <span class="math inline">\(\theta_x \approx x / d\)</span> and <span class="math inline">\(\theta_y \approx y / d\)</span> with the optical axis (see Fig. 4.2-1). This is the wave with wavevector components <span class="math inline">\(k_x \approx(x / d) k\)</span> and <span class="math inline">\(k_y \approx(y / d) k\)</span> and amplitude <span class="math inline">\(F\left(\nu_x, \nu_y\right)\)</span> with <span class="math inline">\(\nu_x=x / \lambda d\)</span>, and <span class="math inline">\(\nu_y=y / \lambda d\)</span>. The complex amplitudes <span class="math inline">\(g(x, y)\)</span> and <span class="math inline">\(f(x, y)\)</span> of the wave at the <span class="math inline">\(z=d\)</span> and <span class="math inline">\(z=0\)</span> planes are related by</p>
 <p><span class="math display">\[
-M_1=\left[\begin{matrix}1 &amp; s\\0 &amp; 1\end{matrix}\right]
+g(x, y)=h_0 F\left(\frac{x}{\lambda d}, \frac{y}{\lambda d}\right)
 \]</span></p>
-</div>
-</div>
-<p>Then it is passing the objective lens with</p>
-<div id="1d985ff9" class="cell" data-execution_count="5">
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="5">
+</section>
+<section id="fourier-transform-using-a-lens" class="level3">
+<h3 class="anchored" data-anchor-id="fourier-transform-using-a-lens">Fourier Transform using a Lens</h3>
 <p><span class="math display">\[
-M_2=\left[\begin{matrix}1 &amp; 0\\- \frac{1}{f_{1}} &amp; 1\end{matrix}\right]
+g(x, y) \propto F\left(\frac{x}{\lambda f}, \frac{y}{\lambda f}\right)
 \]</span></p>
-</div>
-</div>
-<p>traveling further through free space with distance <span class="math inline">\(d\)</span></p>
-<div id="0811f0a3" class="cell" data-execution_count="6">
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="6">
+<p>with prefactor</p>
 <p><span class="math display">\[
-M_3=\left[\begin{matrix}1 &amp; d\\0 &amp; 1\end{matrix}\right]
+g(x, y)=h_l \exp \left[j \pi \frac{\left(x^2+y^2\right)(d-f)}{\lambda f^2}\right] F\left(\frac{x}{\lambda f}, \frac{y}{\lambda f}\right)
 \]</span></p>
-</div>
-</div>
-<p>and then hitting the tube lens with</p>
-<div id="ac34ca94" class="cell" data-execution_count="7">
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="7">
+<p>intensity</p>
 <p><span class="math display">\[
-M_4=\left[\begin{matrix}1 &amp; 0\\- \frac{1}{\Delta_{ft} + f_{t}} &amp; 1\end{matrix}\right]
+I(x, y)=\frac{1}{(\lambda f)^2}\left|F\left(\frac{x}{\lambda f}, \frac{y}{\lambda f}\right)\right|^2
 \]</span></p>
-</div>
-</div>
-<p>where <span class="math inline">\(\Delta_ft\)</span> is a parameter modifying the original tube lens focal distance <span class="math inline">\(f_t\)</span>. Finally, the light will propagate to the detector at distance <span class="math inline">\(f_t\)</span> from the tube lens</p>
-<div id="41f73dbe" class="cell" data-execution_count="8">
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="8">
-<p><span class="math display">\[
-M_s=\left[\begin{matrix}1 &amp; f_{t}\\0 &amp; 1\end{matrix}\right]
-\]</span></p>
-</div>
-</div>
-<p>gicing for the whole system:</p>
-<p><span class="math display">\[
-M_t=M_4 M_3 M_2 M_1
-\]</span></p>
-<p>The final matrix has again 4 parameters <span class="math inline">\(A,B,C\)</span> and <span class="math inline">\(D\)</span>. For sharp imaging the parameter <span class="math inline">\(B\)</span> of the system must be equal to zero, as the outgoing light should be independent of the incoming angle. This is achieved</p>
-<div id="416a2cb2" class="cell" data-execution_count="9">
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="9">
-<p><span class="math display">\[\delta s=\frac{f_{1} \left(\Delta_{ft} d + \Delta_{ft} f_{t} + f_{t}^{2}\right)}{\Delta_{ft} d - \Delta_{ft} f_{1} + \Delta_{ft} f_{t} + f_{t}^{2}}-s_0
-\]</span></p>
-</div>
-</div>
-<div id="cell-fig-shift" class="cell" data-execution_count="10">
-<div class="cell-output cell-output-display">
-<div id="fig-shift" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-shift-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="01-lecture02_files/figure-html/fig-shift-output-1.png" width="565" height="447" class="figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-shift-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;4— Plot of the solution with specific parameter values
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-The B Parameter
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>The <strong>B parameter</strong> is the most direct indicator of a sharp image in matrix optics. For an optical system with ABCD matrix: <span class="math display">\[
-\begin{pmatrix} y_2 \\ \theta_2 \end{pmatrix} =
-\begin{pmatrix} A &amp; B \\ C &amp; D \end{pmatrix}
-\begin{pmatrix} y_1 \\ \theta_1 \end{pmatrix}
-\]</span></p>
-<p>The output position is given by: <span class="math display">\[y_2 = Ay_1 + B\theta_1\]</span></p>
-<p>For an image to be sharp, all rays originating from the same object point must converge to a single image point, regardless of their initial angles. This means that for a given <span class="math inline">\(y_1\)</span> (object position), the final position <span class="math inline">\(y_2\)</span> must be independent of the initial angle <span class="math inline">\(\theta_1\)</span>.</p>
-<p>This condition is satisfied when <strong>B = 0</strong>.</p>
-<p>When B = 0: - The final position depends only on the initial position (<span class="math inline">\(y_2 = Ay_1\)</span>) - All rays from a point source converge to a single point in the image plane - The imaging is “stigmatic” (point-to-point mapping)</p>
-<p>In our lens example, the system matrix was: <span class="math display">\[
-\mathbf{M}_{system} =
-\left[\begin{array}{cc}
-1-\frac{d}{f} &amp; d \\
--\frac{1}{f} &amp; 1
-\end{array}\right]
-\]</span></p>
-<p>For parallel input rays (different <span class="math inline">\(y_1\)</span> but all <span class="math inline">\(\theta_1 = 0\)</span>), we needed A = 0 to make them all converge to a single point, which happened when d = f.</p>
-<p>But for general imaging of points (not just parallel rays), the B = 0 condition is what determines whether the image is sharp. This is why, in optical design, finding conjugate planes (where B = 0) is essential for sharp imaging.</p>
-</div>
-</div>
-</div>
 
 
 </section>
@@ -1234,18 +862,6 @@ The B Parameter
     }
   });
   </script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a href="../../lectures/lecture01/01-lecture01.html" class="pagination-link" aria-label="Ray Optics">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Ray Optics</span>
-      </a>          
-  </div>
-  <div class="nav-page nav-page-next">
-      <a href="../../lectures/lecture02/02-lecture02.html" class="pagination-link" aria-label="Wave Optics Introduction">
-        <span class="nav-page-text">Wave Optics Introduction</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
-  </div>
-</nav>
 </div> <!-- /content -->
 
 
