@@ -404,7 +404,8 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#random-photon-streams-and-poisson-statistics" id="toc-random-photon-streams-and-poisson-statistics" class="nav-link active" data-scroll-target="#random-photon-streams-and-poisson-statistics">Random Photon Streams and Poisson Statistics</a></li>
+  <li><a href="#fundamental-equations-for-photon-streams" id="toc-fundamental-equations-for-photon-streams" class="nav-link active" data-scroll-target="#fundamental-equations-for-photon-streams">Fundamental Equations for Photon Streams</a></li>
+  <li><a href="#random-photon-streams-and-poisson-statistics" id="toc-random-photon-streams-and-poisson-statistics" class="nav-link" data-scroll-target="#random-photon-streams-and-poisson-statistics">Random Photon Streams and Poisson Statistics</a></li>
   <li><a href="#beam-splitters-and-photon-statistics" id="toc-beam-splitters-and-photon-statistics" class="nav-link" data-scroll-target="#beam-splitters-and-photon-statistics">Beam Splitters and Photon Statistics</a></li>
   <li><a href="#thermal-light-and-exponential-statistics" id="toc-thermal-light-and-exponential-statistics" class="nav-link" data-scroll-target="#thermal-light-and-exponential-statistics">Thermal Light and Exponential Statistics</a></li>
   </ul>
@@ -433,6 +434,22 @@ window.Quarto = {
 
 
 <p>In classical optics, light is treated as an electromagnetic wave. However, at the quantum level, light consists of discrete energy packets called photons. The statistical distribution of these photons provides profound insights into the nature of light sources.</p>
+<section id="fundamental-equations-for-photon-streams" class="level3">
+<h3 class="anchored" data-anchor-id="fundamental-equations-for-photon-streams">Fundamental Equations for Photon Streams</h3>
+<p>Before diving into statistical properties, let’s establish some fundamental relationships between classical light intensity and photon descriptions.</p>
+<p>The energy of a single photon is related to its frequency by:</p>
+<p><span class="math display">\[E_{\text{photon}} = h\nu = \frac{hc}{\lambda}\]</span></p>
+<p>where <span class="math inline">\(h\)</span> is Planck’s constant, <span class="math inline">\(\nu\)</span> is the frequency, <span class="math inline">\(c\)</span> is the speed of light, and <span class="math inline">\(\lambda\)</span> is the wavelength.</p>
+<p>For a classical electromagnetic wave with intensity <span class="math inline">\(I\)</span> (power per unit area), the corresponding photon flux <span class="math inline">\(\Phi\)</span> (number of photons per unit area per unit time) is:</p>
+<p><span class="math display">\[\Phi = \frac{I}{h\nu}\]</span></p>
+<p>The total number of photons <span class="math inline">\(n\)</span> passing through an area <span class="math inline">\(A\)</span> during time <span class="math inline">\(T\)</span> is:</p>
+<p><span class="math display">\[n = \Phi \cdot A \cdot T = \frac{I \cdot A \cdot T}{h\nu}\]</span></p>
+<p>For a detector with quantum efficiency <span class="math inline">\(\eta\)</span> (the probability that an incident photon generates a detectable event), the average number of detected photons becomes:</p>
+<p><span class="math display">\[\bar{n} = \eta \cdot n = \eta \cdot \frac{I \cdot A \cdot T}{h\nu}\]</span></p>
+<p>The photon arrival rate <span class="math inline">\(\alpha\)</span> (photons per unit time) can be expressed as:</p>
+<p><span class="math display">\[\alpha = \frac{\bar{n}}{T} = \eta \cdot \frac{I \cdot A}{h\nu}\]</span></p>
+<p>This photon arrival rate <span class="math inline">\(\alpha\)</span> is a crucial parameter that connects the classical description of light intensity with the quantum description of photon statistics that we’ll explore in the following sections.</p>
+</section>
 <section id="random-photon-streams-and-poisson-statistics" class="level3">
 <h3 class="anchored" data-anchor-id="random-photon-streams-and-poisson-statistics">Random Photon Streams and Poisson Statistics</h3>
 <section id="photon-streams-and-time-bins" class="level4">
@@ -619,7 +636,7 @@ Figure&nbsp;3— Thermal light distribution of photon number statistics for thre
 <p>This is a striking result: for thermal light at high intensities, the SNR approaches a constant value of 1, regardless of how much we increase the intensity. This is in stark contrast to the coherent light case where SNR increases as <span class="math inline">\(\sqrt{\bar{n}}\)</span>.</p>
 <p>This fundamental limitation on the SNR of thermal light is due to the inherent “excess noise” from photon bunching. It explains why many precision optical measurements preferentially use laser sources (with Poisson statistics) rather than thermal sources, even when high intensities are available.</p>
 <p>The comparison between thermal light (SNR ~ 1) and coherent light (SNR ~ <span class="math inline">\(\sqrt{\bar{n}}\)</span>) provides a clear example of how the quantum statistical properties of a light source directly impact measurement sensitivity in practical applications.</p>
-<div id="fef02165" class="cell" data-execution_count="5">
+<div id="bda7f339" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>   <span class="co"># Range of mean photon numbers</span></span>
