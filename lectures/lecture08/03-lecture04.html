@@ -600,13 +600,14 @@ window.Quarto = {
 <span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a>ax.set_yticks([])</span>
 <span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a>ax.set_zticks([])</span>
 <span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a><span class="co"># Adjust the padding</span></span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a>fig.subplots_adjust(left<span class="op">=</span><span class="fl">0.01</span>, right<span class="op">=</span><span class="fl">0.99</span>, top<span class="op">=</span><span class="fl">0.99</span>, bottom<span class="op">=</span><span class="fl">0.01</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div id="fig-bloch-sphere" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-bloch-sphere-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="03-lecture04_files/figure-html/fig-bloch-sphere-output-1.png" width="448" height="448" class="figure-img">
+<img src="03-lecture04_files/figure-html/fig-bloch-sphere-output-1.png" width="492" height="492" class="figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bloch-sphere-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;1— Bloch sphere representation showing the relationship between quadrature components and quantum states
@@ -742,13 +743,13 @@ Figure&nbsp;1— Bloch sphere representation showing the relationship between qu
 <span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a>ax4.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
 <span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a>ax4.set_aspect(<span class="st">'equal'</span>)</span>
 <span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a>fig.subplots_adjust(wspace<span class="op">=</span><span class="fl">0.1</span>, hspace<span class="op">=</span><span class="fl">0.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div id="fig-quadrature-states" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-quadrature-states-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="03-lecture04_files/figure-html/fig-quadrature-states-output-1.png" width="663" height="569" class="figure-img">
+<img src="03-lecture04_files/figure-html/fig-quadrature-states-output-1.png" width="649" height="571" class="figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-quadrature-states-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2— Quadrature phase space representations of different quantum states
