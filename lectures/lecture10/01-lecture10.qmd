@@ -1,0 +1,394 @@
+---
+title: "Quantum Optics: From Classical Fields to Entangled Photons"
+jupyter: python3
+format:
+  html:
+    toc: true
+    toc-location: right
+    fig-cap-location: bottom
+crossref:
+  fig-title: Figure
+  tbl-title: Table
+  title-delim: "—"
+  fig-prefix: Figure
+  eq-prefix: Equation
+  chapters: true
+  fig-labels: arabic
+---
+
+```{python}
+# | echo: false
+## just for plotting later
+import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib.path import Path
+import matplotlib.patches as patches
+from matplotlib.colors import LinearSegmentedColormap
+from mpl_toolkits.mplot3d import Axes3D
+import sympy as sp
+from IPython.display import Markdown
+
+import numpy as np
+from scipy.sparse import diags
+from scipy.sparse.linalg import eigsh
+
+
+plt.rcParams.update({'font.size': 12,
+                     'axes.titlesize': 10,
+                     'axes.labelsize': 10,
+                     'lines.linewidth': 1,
+                     'lines.markersize': 5,
+                     'xtick.labelsize' : 10,
+                     'ytick.labelsize' : 10,
+                     'xtick.top' : True,
+                     'xtick.direction' : 'in',
+                     'ytick.right' : True,
+                     'ytick.direction' : 'in',
+                     'figure.dpi': 150})
+
+def get_size(w,h):
+    return((w/2.54,h/2.54))
+```
+
+
+### Quadrature States and Phase Space
+
+The electromagnetic field can be visualized in a phase space with quadratures as axes. Different quantum states appear as different distributions in this phase space:
+
+1. **Vacuum State**: Appears as a circular Gaussian distribution centered at the origin, with equal uncertainty in both quadratures
+
+2. **Coherent States** $|\alpha\rangle$: Appear as the same circular Gaussian distribution, but displaced from the origin to a point $(\langle\hat{X}\rangle, \langle\hat{P}\rangle) = (\sqrt{2}|\alpha|\cos\phi, \sqrt{2}|\alpha|\sin\phi)$
+
+3. **Squeezed States**: Appear as elliptical Gaussian distributions, with reduced uncertainty in one quadrature at the expense of increased uncertainty in the other
+
+4. **Fock States**: Have circular symmetry around the origin but exhibit a non-Gaussian "ring-like" distribution
+
+This phase space representation provides a powerful visualization tool for understanding quantum states of light and their behavior under various transformations. It also illustrates how classical and quantum descriptions connect: classical states correspond to points in phase space, while quantum states correspond to distributions with minimum areas constrained by the uncertainty principle.
+
+```{python}
+# | label: fig-quadrature-states
+# | fig-cap: "Quadrature phase space representations of different quantum states"
+
+import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib.patches import Ellipse
+import matplotlib.gridspec as gridspec
+from matplotlib.colors import LinearSegmentedColormap
+
+# Create figure with 2x2 grid
+fig = plt.figure(figsize=get_size(14, 14))
+gs = gridspec.GridSpec(2, 2, figure=fig)
+
+# Function to create 2D Gaussian distribution
+def gaussian_2d(x, y, x0, y0, sigma_x, sigma_y):
+    return np.exp(-((x-x0)**2/(2*sigma_x**2) + (y-y0)**2/(2*sigma_y**2)))
+
+# Function to approximate Wigner function for Fock state
+def fock_wigner_approx(x, y, n):
+    r_squared = x**2 + y**2
+    # Approximate the Fock state Wigner function
+    if n == 0:  # Vacuum state
+        return np.exp(-r_squared)
+    elif n == 1:  # Single photon
+        return (2*r_squared - 1) * np.exp(-r_squared)
+    else:  # Higher photon number
+        # Use Laguerre polynomials approximation
+        result = (2*r_squared - 2*n - 1) * np.exp(-r_squared)
+        return result * (-1)**n
+
+# Create coordinate grid
+x = np.linspace(-3, 3, 100)
+y = np.linspace(-3, 3, 100)
+X, Y = np.meshgrid(x, y)
+
+# 1. Vacuum state (circular uncertainty at origin)
+ax1 = fig.add_subplot(gs[0, 0])
+vacuum = gaussian_2d(X, Y, 0, 0, 0.5, 0.5)
+contour1 = ax1.contourf(X, Y, vacuum, levels=10, cmap='Blues')
+ax1.add_patch(Ellipse((0, 0), 1.0, 1.0, fill=False, color='blue', linestyle='-', linewidth=2))
+ax1.set_xlabel('X')
+ax1.set_ylabel('P')
+ax1.set_title('vacuum state')
+ax1.grid(True, alpha=0.3)
+ax1.set_aspect('equal')
+
+# 2. Coherent state (displaced circular uncertainty)
+ax2 = fig.add_subplot(gs[0, 1])
+alpha_x, alpha_y = 1.5, 0  # Displacement in X direction
+coherent = gaussian_2d(X, Y, alpha_x, alpha_y, 0.5, 0.5)
+contour2 = ax2.contourf(X, Y, coherent, levels=10, cmap='Greens')
+ax2.add_patch(Ellipse((alpha_x, alpha_y), 1.0, 1.0, fill=False, color='green', linestyle='-', linewidth=2))
+ax2.set_xlabel('X')
+ax2.set_ylabel('P')
+ax2.set_title('coherent state |α⟩')
+ax2.grid(True, alpha=0.3)
+ax2.set_aspect('equal')
+
+# 3. Squeezed state (elliptical uncertainty)
+ax3 = fig.add_subplot(gs[1, 0])
+squeezed = gaussian_2d(X, Y, 0, 0, 0.25, 1.0)  # Squeezed in X, anti-squeezed in P
+contour3 = ax3.contourf(X, Y, squeezed, levels=10, cmap='Reds')
+ax3.add_patch(Ellipse((0, 0), 0.5, 2.0, fill=False, color='red', linestyle='-', linewidth=2))
+ax3.set_xlabel('X')
+ax3.set_ylabel('P')
+ax3.set_title('squeezed vacuum state')
+ax3.grid(True, alpha=0.3)
+ax3.set_aspect('equal')
+
+# 4. Fock state (n=1 photon state)
+ax4 = fig.add_subplot(gs[1, 1])
+# For Fock state |1⟩, just draw a circle representing the ring-like distribution
+ax4.add_patch(plt.Circle((0, 0), 1.0, fill=False, color='purple', linestyle='-', linewidth=3))
+# Add a light fill to indicate the ring-like nature
+ax4.add_patch(plt.Circle((0, 0), 1.0, fill=True, color='purple', alpha=0.1))
+ax4.set_xlabel('X')
+ax4.set_ylabel('P')
+ax4.set_xlim(-2.5, 2.5)
+ax4.set_ylim(-2.5, 2.5)
+ax4.set_title('Fock state |1⟩')
+ax4.grid(True, alpha=0.3)
+ax4.set_aspect('equal')
+
+fig.subplots_adjust(wspace=0.35, hspace=0.35)
+```
+
+The figure above illustrates the key differences between quantum states in phase space:
+
+- **Vacuum state**: A circular uncertainty region centered at the origin with minimum uncertainty in both quadratures
+- **Coherent state**: The same uncertainty circle as the vacuum state, but displaced from the origin (representing a non-zero field amplitude)
+- **Squeezed state**: An elliptical uncertainty region, with reduced fluctuations in one quadrature at the expense of increased fluctuations in the other
+- **Fock state**: A ring-like distribution with circular symmetry around the origin, exhibiting negative values in the Wigner function (a quintessential signature of non-classical light)
+
+The quadrature framework will prove essential for understanding more advanced concepts like quantum teleportation, continuous variable quantum computing, and precision measurements beyond the standard quantum limit.
+
+## Quantum States of Light
+
+### Fock States
+
+Fock states $|n\rangle$ represent exactly $n$ photons in a mode. They are eigenstates of the number operator:
+
+$$\hat{n}|n\rangle = n|n\rangle$$
+
+Properties of Fock states:
+
+- Definite energy: $E_n = \hbar\omega(n + \frac{1}{2})$
+- Indefinite phase
+- Highly non-classical (no classical analog)
+- Exhibit sub-Poissonian photon statistics
+
+Think of Fock states as precisely counted collections of identical photons, like having exactly 3 identical marbles in a box. This precise counting is fundamentally different from classical light, where intensity can vary continuously (like water flowing from a tap). A single-photon Fock state ($|1\rangle$) is what we use in quantum cryptography and quantum computing - it's literally "just one photon." Remarkably, while we know exactly how many photons are present in a Fock state, we have no information about their phase - it's completely random. This is similar to knowing exactly how many people are in a room but having no idea what direction they're facing.
+
+::: {.callout-note collapse=true}
+## Single Photon Sources
+
+The experimental generation of pure Fock states, particularly the single-photon state $|1\rangle$, presents significant challenges. Several types of single-photon sources have been developed:
+
+1. **Attenuated lasers**: The simplest approach uses highly attenuated coherent light, but these are imperfect sources as they follow Poisson statistics with non-zero probability of containing multiple photons.
+
+2. **Spontaneous parametric down-conversion (SPDC)**: A nonlinear optical process where one photon splits into two entangled photons. By detecting one photon (heralding), we can verify its partner exists, approximating a single-photon state.
+
+3. **Quantum dots**: Semiconductor nanostructures that emit single photons when electrically or optically excited, behaving like artificial atoms with discrete energy levels.
+
+4. **Color centers in solids**: Defects in crystal structures (like nitrogen-vacancy centers in diamond) that emit single photons when excited.
+
+5. **Single atoms or ions in cavities**: Trapped atoms that emit exactly one photon during controlled transitions between energy levels.
+
+The ideal single-photon source would produce photons on-demand with high efficiency, perfect indistinguishability, and zero probability of multi-photon events. Current research focuses on improving these metrics for quantum information applications.
+:::
+
+### Coherent States
+
+Coherent states $|\alpha\rangle$ are the quantum states that most closely resemble classical light. They are eigenstates of the annihilation operator:
+
+$$\hat{a}|\alpha\rangle = \alpha|\alpha\rangle$$
+
+Properties of coherent states:
+
+- Minimum uncertainty states
+- Poissonian photon statistics
+- Indefinite photon number
+- Well-defined phase
+- Generated by ideal lasers
+
+You can think of coherent states as the quantum equivalent of a perfect laser beam. Unlike the precisely counted photons in Fock states, coherent states are more like a crowd of people arriving at a subway station - we don't know exactly how many will arrive in the next minute (the photon number is uncertain), but they arrive at a steady average rate with a specific pattern of fluctuations (Poissonian statistics). If Fock states are like having exactly 5 dollars, coherent states are like having about 5 dollars on average, sometimes a bit more, sometimes less. The trade-off is that coherent states have a well-defined phase - like knowing all the people in our subway station are walking in the same direction, even if we don't know exactly how many people there are.
+
+Lasers are the physical realization of coherent states in quantum optics. The stimulated emission process in lasers naturally produces light with high coherence both temporally (well-defined frequency) and spatially (well-defined direction). This coherence corresponds directly to the well-defined phase property of coherent states. While an ideal laser would produce a perfect coherent state, real lasers approach this ideal quite closely, especially when operating well above threshold with proper stabilization. The quantum fluctuations in laser light manifest as the shot noise limit in precision measurements, representing the fundamental uncertainty inherent in coherent states.
+
+A coherent state can be expressed as a superposition of Fock states:
+
+$$|\alpha\rangle = e^{-|\alpha|^2/2}\sum_{n=0}^{\infty}\frac{\alpha^n}{\sqrt{n!}}|n\rangle$$
+
+::: {.callout-note collapse=true}
+## Photon Entanglement on a Beam Splitter
+
+### Beam Splitter Transformation
+
+A beam splitter is a fundamental optical element that can generate quantum entanglement. Physically, it consists of a partially reflective interface (often a thin metallic layer on glass) that splits an incident beam of light into reflected and transmitted components. In quantum optics, this simple device becomes a powerful tool for creating non-classical correlations between photons.
+
+For a beam splitter with arbitrary reflection and transmission coefficients (r and t), the transformation can be represented by a unitary matrix:
+
+$$\begin{pmatrix} \hat{c} \\ \hat{d} \end{pmatrix} = \begin{pmatrix} t & r \\ r & -t \end{pmatrix} \begin{pmatrix} \hat{a} \\ \hat{b} \end{pmatrix}$$
+
+where the unitarity conditions require $|t|^2 + |r|^2 = 1$ and $t^*r + tr^* = 0$. The most common case is a 50:50 beam splitter where $|t|^2 = |r|^2 = 1/2$.
+
+In the Schrödinger picture, focusing on creation operators for a 50:50 beam splitter, we have:
+
+$$\hat{c}^\dagger = \frac{1}{\sqrt{2}}(\hat{a}^\dagger + \hat{b}^\dagger)$$
+$$\hat{d}^\dagger = \frac{1}{\sqrt{2}}(\hat{a}^\dagger - \hat{b}^\dagger)$$
+
+where $\hat{a}^\dagger$ and $\hat{b}^\dagger$ are creation operators for the input ports, and $\hat{c}^\dagger$ and $\hat{d}^\dagger$ are for the output ports.
+
+These transformations preserve the commutation relations, ensuring that $[\hat{c},\hat{c}^\dagger] = [\hat{d},\hat{d}^\dagger] = 1$ and $[\hat{c},\hat{d}^\dagger] = [\hat{d},\hat{c}^\dagger] = 0$, which can be verified by direct substitution.
+
+The beam splitter evolution can also be described by a unitary operator:
+
+$$\hat{U}_{BS} = \exp[\theta(\hat{a}^\dagger\hat{b}e^{-i\phi} - \hat{a}\hat{b}^\dagger e^{i\phi})]$$
+
+where $\theta$ determines the reflection-transmission ratio ($\theta = \pi/4$ for a 50:50 beam splitter) and $\phi$ is a phase factor.
+
+### Hong-Ou-Mandel Effect
+
+The Hong-Ou-Mandel (HOM) effect, first demonstrated experimentally in 1987, is a quintessential quantum interference phenomenon that has no classical analog. It occurs when two identical single photons enter a 50:50 beam splitter simultaneously from different input ports.
+
+Consider a state with one photon in each input port: $|1_a, 1_b\rangle = \hat{a}^\dagger \hat{b}^\dagger |0\rangle$.
+
+After passing through the beam splitter, this state transforms to:
+
+$$\hat{a}^\dagger \hat{b}^\dagger |0\rangle \rightarrow \frac{1}{2}(\hat{c}^\dagger + \hat{d}^\dagger)(\hat{c}^\dagger - \hat{d}^\dagger)|0\rangle = \frac{1}{2}((\hat{c}^\dagger)^2 - (\hat{d}^\dagger)^2)|0\rangle$$
+
+Simplifying and normalizing:
+
+$$\frac{1}{\sqrt{2}}(|2_c, 0_d\rangle - |0_c, 2_d\rangle)$$
+
+This is an entangled state where both photons exit together through the same output port, with equal probability of finding both photons in either output. Remarkably, the probability of finding one photon in each output port is zero—a purely quantum effect known as the Hong-Ou-Mandel effect or photon bunching.
+
+To appreciate how strange this is, imagine two identical red balls rolling toward a fork in the road. Classically, each ball would randomly choose one path or the other, and sometimes they'd separate. But quantum mechanically, if these were photons, they would somehow always choose the same path! It's as if the photons "conspire" to stay together. This photon bunching arises from their bosonic nature and quantum interference.
+
+Experimentally, the HOM effect is observed by varying the relative arrival time of the two photons at the beam splitter using a delay line. When the photons arrive at different times, they behave independently, and coincidence detections occur 50% of the time. However, as the temporal overlap increases, the coincidence rate drops, reaching zero for perfectly indistinguishable photons. This creates the characteristic "HOM dip" in the coincidence count rate:
+
+$$R_c(\Delta t) = R_0\left(1 - V\exp\left(-\frac{(\Delta t)^2}{2\sigma^2}\right)\right)$$
+
+where $V$ is the visibility (ideally 1 for perfect indistinguishability) and $\sigma$ relates to the coherence time of the photons.
+
+The HOM effect serves as:
+
+1. A highly sensitive method to measure timing differences down to femtoseconds
+2. A test of photon indistinguishability in all degrees of freedom (frequency, polarization, spatial mode)
+3. A fundamental building block for linear optical quantum computing
+4. A tool for characterizing single-photon sources
+
+### Phase-Based Understanding and Quantum Paths
+
+We can understand the HOM effect more intuitively through probability amplitudes and the concept of indistinguishable paths.
+
+For a 50:50 beam splitter with energy conservation and time-reversal symmetry:
+
+- Reflection amplitude: $r = 1/\sqrt{2}$ (typically real)
+- Transmission amplitude: $t = i/\sqrt{2}$ (note the $\pi/2$ phase factor represented by $i$)
+
+This phase shift upon transmission is necessary for unitarity and energy conservation, though it's often omitted in simplified treatments.
+
+With two photons entering from different ports, we must consider four possible pathways:
+
+1. Photon from port a reflects to port c, photon from port b reflects to port d:
+
+   - Amplitude = $r \cdot r = 1/2$
+   - Final state: $|1_c, 1_d\rangle$
+
+2. Photon from port a transmits to port d, photon from port b transmits to port c:
+
+   - Amplitude = $t \cdot t = (i/\sqrt{2})^2 = -1/2$
+   - Final state: $|1_c, 1_d\rangle$
+
+3. Both photons exit from port c (one reflects, one transmits):
+
+   - Amplitude = $r \cdot t = i/2$
+   - Final state: $|2_c, 0_d\rangle$
+
+4. Both photons exit from port d (one reflects, one transmits):
+
+   - Amplitude = $t \cdot r = i/2$
+   - Final state: $|0_c, 2_d\rangle$
+
+The critical quantum interference occurs between pathways 1 and 2, which lead to the same final state $|1_c, 1_d\rangle$. The total amplitude for this outcome is:
+
+$$A_{|1_c, 1_d\rangle} = r^2 + t^2 = 1/2 + (-1/2) = 0$$
+
+This perfect destructive interference explains why we never observe one photon in each output port.
+
+For the bunched outcomes, the amplitudes are:
+
+$$A_{|2_c, 0_d\rangle} = rt = i/2$$
+$$A_{|0_c, 2_d\rangle} = tr = i/2$$
+
+Squaring these amplitudes gives the probabilities:
+
+- Probability of one photon in each output port: $|0|^2 = 0$
+- Probability of both photons in port c: $|i/2|^2 = 1/4$
+- Probability of both photons in port d: $|i/2|^2 = 1/4$
+
+When normalized (multiplying by 2), we get 50% probability for each bunched outcome.
+
+### Generalizations and Applications
+
+The beam splitter entanglement mechanism extends beyond the two-photon case. For example, with input state $|n_a, m_b\rangle$, the output becomes a complex superposition of states $|k_c, (n+m-k)_d\rangle$ weighted by binomial coefficients.
+
+The beam splitter's entangling capabilities are utilized in:
+
+1. **Bell state generation**: By placing a source of entangled photon pairs (e.g., from spontaneous parametric down-conversion) at one input port and vacuum at the other, beam splitters can help prepare specific Bell states for quantum communication protocols.
+
+2. **Quantum teleportation**: Beam splitters are essential components in Bell-state analyzers used for quantum teleportation, where they create the necessary entanglement between photons.
+
+3. **Boson sampling**: A computational problem where multiple photons are sent through a network of beam splitters, creating a complex entangled state whose photon statistics are believed to be classically hard to simulate.
+
+4. **Quantum metrology**: HOM interference enables quantum-enhanced measurements that can exceed classical precision limits, particularly in quantum imaging and sensing applications.
+
+The quantum interference at a beam splitter thus represents one of the most elegant demonstrations of quantum mechanics, where the simple act of splitting a beam reveals the profound wave-particle duality of light and generates entanglement—a uniquely quantum resource with no classical analog.
+:::
+
+## Applications and Implications
+
+### Quantum Information Processing
+
+The ability to generate and manipulate entangled photons provides the foundation for:
+
+- Quantum computing with photons
+- Quantum key distribution for secure communication
+- Quantum teleportation protocols
+
+These quantum information applications leverage the unique properties of quantum light in ways impossible with classical systems. Quantum key distribution, for example, uses the fact that measuring a quantum state disturbs it, allowing users to detect eavesdroppers attempting to intercept communications. It's like sending a package that changes color if anyone opens it along the way. Quantum teleportation doesn't actually move matter faster than light as in science fiction, but rather transfers the exact quantum state from one particle to another distant particle using entanglement as a resource - somewhat like transferring a computer file from one device to another, but for quantum information that cannot be perfectly copied or measured.
+
+### Quantum Metrology
+
+Quantum states of light can enhance measurement precision beyond classical limits:
+- Gravitational wave detection
+- Atomic clocks
+- Ultra-precise imaging
+
+###  Fundamental Tests of Quantum Mechanics
+
+Entangled photons allow tests of:
+
+- Bell's inequalities
+- Quantum non-locality
+- The boundary between quantum and classical physics
+
+These experiments address fundamental questions about reality itself. Bell's inequalities provide a way to experimentally distinguish between quantum mechanics and classical theories with "hidden variables." When violated (as experiments consistently show), they reveal that entangled photons share correlations stronger than any classical system could possibly exhibit. It's like having two coins that always land showing the same face when flipped, even when separated by vast distances, with no hidden mechanism or prior agreement on the outcome. This "spooky action at a distance," as Einstein called it, demonstrates that our universe doesn't obey the local realism that seems intuitive in our everyday experience, challenging our deepest notions about the nature of reality and information.
+
+## Summary
+
+We've traversed the path from classical electromagnetism to quantum optics by:
+
+1. Quantizing the electromagnetic field using the harmonic oscillator analogy
+2. Introducing field quadratures as quantum observables with uncertainty relations
+3. Exploring fundamental quantum states of light (Fock states and coherent states)
+4. Demonstrating how quantum entanglement emerges at a beam splitter
+5. Highlighting applications in quantum technologies
+
+This quantum description of light reveals phenomena that have no classical explanation, including photon antibunching, quantum entanglement, and the ability to manipulate quantum uncertainty. These concepts form the foundation of modern quantum technologies and continue to expand our understanding of the quantum nature of reality.
+
+## Further Reading
+
+- Cohen-Tannoudji, C., Dupont-Roc, J., & Grynberg, G. (1997). *Photons and Atoms: Introduction to Quantum Electrodynamics*
+- Fox, M. (2006). *Quantum Optics: An Introduction*
+- Gerry, C. C., & Knight, P. L. (2005). *Introductory Quantum Optics*
