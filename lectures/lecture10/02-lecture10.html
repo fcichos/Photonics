@@ -65,6 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
+<link href="../../lectures/lecture11/anisotropic_media.html" rel="next">
 <link href="../../lectures/lecture10/01-lecture10.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -425,6 +426,23 @@ window.Quarto = {
 </li>
       </ul>
   </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="true">
+ <span class="menu-text">Lecture 11</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-13" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture11/anisotropic_media.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Anisotropic Materials</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
       </ul>
   </li>
     </ul>
@@ -445,13 +463,13 @@ window.Quarto = {
   <li><a href="#from-atoms-to-bulk-materials" id="toc-from-atoms-to-bulk-materials" class="nav-link" data-scroll-target="#from-atoms-to-bulk-materials">From Atoms to Bulk Materials</a>
   <ul class="collapse">
   <li><a href="#polarization-density" id="toc-polarization-density" class="nav-link" data-scroll-target="#polarization-density">Polarization Density</a></li>
-  <li><a href="#local-field-effects-the-clausius-mossotti-relation" id="toc-local-field-effects-the-clausius-mossotti-relation" class="nav-link" data-scroll-target="#local-field-effects-the-clausius-mossotti-relation">Local Field Effects: The Clausius-Mossotti Relation</a></li>
-  <li><a href="#frequency-dependence-of-the-refractive-index-the-lorentz-oscillator-model" id="toc-frequency-dependence-of-the-refractive-index-the-lorentz-oscillator-model" class="nav-link" data-scroll-target="#frequency-dependence-of-the-refractive-index-the-lorentz-oscillator-model">Frequency Dependence of the Refractive Index: The Lorentz Oscillator Model</a></li>
   <li><a href="#maxwells-equations-in-matter" id="toc-maxwells-equations-in-matter" class="nav-link" data-scroll-target="#maxwells-equations-in-matter">Maxwell’s Equations in Matter</a></li>
+  <li><a href="#local-field-effects-the-clausius-mossotti-relation" id="toc-local-field-effects-the-clausius-mossotti-relation" class="nav-link" data-scroll-target="#local-field-effects-the-clausius-mossotti-relation">Local Field Effects: The Clausius-Mossotti Relation</a></li>
   </ul></li>
   <li><a href="#wave-propagation-and-the-refractive-index" id="toc-wave-propagation-and-the-refractive-index" class="nav-link" data-scroll-target="#wave-propagation-and-the-refractive-index">Wave Propagation and the Refractive Index</a>
   <ul class="collapse">
   <li><a href="#wave-propagation-and-the-refractive-index-1" id="toc-wave-propagation-and-the-refractive-index-1" class="nav-link" data-scroll-target="#wave-propagation-and-the-refractive-index-1">Wave Propagation and the Refractive Index</a></li>
+  <li><a href="#frequency-dependence-of-the-refractive-index-the-lorentz-oscillator-model" id="toc-frequency-dependence-of-the-refractive-index-the-lorentz-oscillator-model" class="nav-link" data-scroll-target="#frequency-dependence-of-the-refractive-index-the-lorentz-oscillator-model">Frequency Dependence of the Refractive Index: The Lorentz Oscillator Model</a></li>
   </ul></li>
   <li><a href="#reflection-and-refraction-at-interfaces" id="toc-reflection-and-refraction-at-interfaces" class="nav-link" data-scroll-target="#reflection-and-refraction-at-interfaces">Reflection and Refraction at Interfaces</a>
   <ul class="collapse">
@@ -460,7 +478,7 @@ window.Quarto = {
   <li><a href="#key-features-of-fresnel-behavior" id="toc-key-features-of-fresnel-behavior" class="nav-link" data-scroll-target="#key-features-of-fresnel-behavior">Key Features of Fresnel Behavior</a></li>
   </ul></li>
   </ul>
-</nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="02-lecture10.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -538,6 +556,30 @@ Figure&nbsp;1— Atomic polarization: An external electric field displaces the p
 <p><span class="math display">\[\vec{P}=N\vec{p}=N\alpha\vec{E}_{\text{local}}\]</span></p>
 <p>But what is <span class="math inline">\(\vec{E}_{\text{local}}\)</span>? In dense materials, each atom feels not just the applied field but also fields from neighboring dipoles.</p>
 </section>
+<section id="maxwells-equations-in-matter" class="level3">
+<h3 class="anchored" data-anchor-id="maxwells-equations-in-matter">Maxwell’s Equations in Matter</h3>
+<p>From the polarization density <span class="math inline">\(\vec{P} = N\vec{p}\)</span> we established earlier, we can now understand how this microscopic response modifies the macroscopic electromagnetic fields. The polarization creates bound charges within the material that must be accounted for in Maxwell’s equations.</p>
+<p>The key insight is that the polarization <span class="math inline">\(\vec{P}\)</span> represents dipole moments per unit volume, which creates a bound charge density:</p>
+<p><span class="math display">\[\rho_b = -\nabla \cdot \vec{P}\]</span></p>
+<p>To handle both free charges (from external sources) and bound charges (from polarization) in a unified way, we introduce the <strong>displacement field</strong>:</p>
+<p><span class="math display">\[\vec{D} = \epsilon_0\vec{E} + \vec{P}\]</span></p>
+<p>This displacement field allows us to write Gauss’s law in terms of only the free charge density <span class="math inline">\(\rho_f\)</span>, effectively “absorbing” the bound charges into the definition of <span class="math inline">\(\vec{D}\)</span>.</p>
+<p>For linear materials, the polarization is proportional to the electric field:</p>
+<p><span class="math display">\[\vec{P} = \epsilon_0\chi\vec{E}\]</span></p>
+<p>where <span class="math inline">\(\chi\)</span> is the <strong>electric susceptibility</strong> of the material. This gives us:</p>
+<p><span class="math display">\[\vec{D} = \epsilon_0\vec{E} + \vec{P} = \epsilon_0\vec{E} + \epsilon_0\chi\vec{E} = \epsilon_0(1 + \chi)\vec{E}\]</span></p>
+<p>We define the <strong>relative dielectric function</strong> (or relative permittivity) as:</p>
+<p><span class="math display">\[\epsilon_r = 1 + \chi\]</span></p>
+<p>so that:</p>
+<p><span class="math display">\[\vec{D} = \epsilon_0\epsilon_r\vec{E} = \epsilon\vec{E}\]</span></p>
+<p>where <span class="math inline">\(\epsilon = \epsilon_0\epsilon_r\)</span> is the absolute permittivity.</p>
+<p>The presence of bound charges requires modified Maxwell’s equations:</p>
+<p><span class="math display">\[\nabla \times \vec{E}=-\frac{\partial \vec{B}}{\partial t} \quad \text{(Faraday's law)}\]</span></p>
+<p><span class="math display">\[\nabla\cdot\vec{D}=\rho_f \quad \text{(Gauss's law with } \vec{D}=\epsilon_0\vec{E}+\vec{P}\text{)}\]</span></p>
+<p><span class="math display">\[\nabla\times \vec{H}=\frac{\partial \vec{D}}{\partial t}+\vec{j}_f \quad \text{(Ampère's law)}\]</span></p>
+<p><span class="math display">\[\nabla\cdot \vec{B}=0 \quad \text{(No magnetic monopoles)}\]</span></p>
+<p>For linear materials: <span class="math inline">\(\vec{D}=\epsilon(\omega)\vec{E}\)</span> and <span class="math inline">\(\vec{B}=\mu(\omega)\vec{H}\)</span>, where the frequency dependence is now explicit.</p>
+</section>
 <section id="local-field-effects-the-clausius-mossotti-relation" class="level3">
 <h3 class="anchored" data-anchor-id="local-field-effects-the-clausius-mossotti-relation">Local Field Effects: The Clausius-Mossotti Relation</h3>
 <p>When we try to connect the microscopic polarizability of individual atoms to macroscopic dielectric properties, we face a crucial problem: in dense materials, atoms don’t just experience the externally applied electric field. Instead, each atom sits in a complex field environment created by all other polarized atoms in the material.</p>
@@ -566,110 +608,6 @@ Figure&nbsp;1— Atomic polarization: An external electric field displaces the p
 <p>Solving for the final result:</p>
 <p><span class="math display">\[\frac{\epsilon_r - 1}{\epsilon_r + 2} = \frac{N\alpha}{3\epsilon_0}\]</span></p>
 <p>This is the <strong>Clausius-Mossotti relation</strong>, a remarkable bridge between the microscopic world of atomic polarizability and the macroscopic world of dielectric constants. It successfully explains the refractive indices of many gases and liquids, though it becomes less accurate for strongly polar materials where dipole-dipole interactions become significant.</p>
-</section>
-<section id="frequency-dependence-of-the-refractive-index-the-lorentz-oscillator-model" class="level3">
-<h3 class="anchored" data-anchor-id="frequency-dependence-of-the-refractive-index-the-lorentz-oscillator-model">Frequency Dependence of the Refractive Index: The Lorentz Oscillator Model</h3>
-<p>In the earlier atomic polarizability model, we treated atoms as static systems responding to a constant electric field. In reality, light consists of time-varying electromagnetic fields, and atoms respond dynamically to these oscillations. This frequency dependence fundamentally explains dispersion, absorption, and many optical phenomena.</p>
-<section id="from-static-to-dynamic-atomic-response" class="level4">
-<h4 class="anchored" data-anchor-id="from-static-to-dynamic-atomic-response">From Static to Dynamic Atomic Response</h4>
-<p>Extending our previous atomic model, we now treat the electron as a damped harmonic oscillator driven by an oscillating electric field. For visible light (<span class="math inline">\(\lambda \approx 500\, \text{nm}\)</span>) interacting with atoms (size <span class="math inline">\(\approx 0.1\, \text{nm}\)</span>), we can make the dipole approximation where the field appears uniform across each atom (<span class="math inline">\(\vec{E}(\vec{r},t) \approx \vec{E}(t)\)</span>), and the local field approximation where the field acting on each atom is approximately the macroscopic field (<span class="math inline">\(\vec{E}_\text{local} \approx \vec{E}\)</span>).</p>
-<p>For a harmonically oscillating electric field <span class="math inline">\(\vec{E}(t)=E_0\hat{x} e^{-i\omega t}\)</span>, the bound electron moves under the combined influence of the restoring force from the nucleus, damping from radiation and collisions, and the driving force from the electric field. This gives us the equation of motion: <span class="math display">\[
-m\ddot{\vec{r}}+m\sigma\dot{\vec{r}}+m\omega_0^2\vec{r}=q\vec{E}(t)
-\]</span></p>
-<p>Here, <span class="math inline">\(\omega_0\)</span> is the natural resonance frequency of the electron, <span class="math inline">\(\sigma\)</span> is the damping coefficient, <span class="math inline">\(q\)</span> is the electron charge, and <span class="math inline">\(m\)</span> is the electron mass.</p>
-</section>
-<section id="frequency-dependent-polarizability" class="level4">
-<h4 class="anchored" data-anchor-id="frequency-dependent-polarizability">Frequency-Dependent Polarizability</h4>
-<p>Solving this differential equation for a steady-state response, the electron displacement follows the driving field with frequency <span class="math inline">\(\omega\)</span>: <span class="math display">\[
-\vec{r}(t)=\frac{q/m}{\omega_0^2+i\omega\sigma-\omega^2}\vec{E}(t)
-\]</span></p>
-<p>From this, the frequency-dependent dipole moment becomes <span class="math inline">\(\vec{p}(\omega)=q\vec{r}(t)=\alpha(\omega)\vec{E}(t)\)</span>, where <span class="math inline">\(\alpha(\omega)=\frac{q^2/m}{\omega_0^2+i\omega\sigma-\omega^2}\)</span> is the frequency-dependent polarizability. This directly extends our previous static model, with the atomic polarizability we derived earlier (<span class="math inline">\(\alpha=4\pi\epsilon_0 a^3\)</span>) being approximately the low-frequency limit (<span class="math inline">\(\omega \rightarrow 0\)</span>) of this more general expression.</p>
-</section>
-<section id="from-polarizability-to-complex-refractive-index" class="level4">
-<h4 class="anchored" data-anchor-id="from-polarizability-to-complex-refractive-index">From Polarizability to Complex Refractive Index</h4>
-<p>The macroscopic polarization density for <span class="math inline">\(N\)</span> atoms per unit volume becomes</p>
-<p><span class="math display">\[\vec{P}=N\vec{p}=N\alpha(\omega)\vec{E}(t)=\epsilon_0\chi(\omega)\vec{E}(t)\]</span></p>
-<p>giving us the frequency-dependent susceptibility</p>
-<p><span class="math display">\[\chi(\omega)=\chi_0\frac{1}{\omega_0^2+i\omega\sigma-\omega^2}\]</span></p>
-<p>where <span class="math inline">\(\chi_0=\frac{Nq^2}{m\epsilon_0}\)</span> represents the strength of the resonance.</p>
-<p>Since the susceptibility is complex (<span class="math inline">\(\chi=\chi'+i\chi''\)</span>), both the dielectric function <span class="math inline">\(\epsilon_r(\omega)=1+\chi(\omega)\)</span> and the refractive index become complex quantities:</p>
-<p><span class="math display">\[
-n(\omega)=n_r(\omega)-i\kappa(\omega)=\sqrt{\epsilon_r(\omega)}=\sqrt{1+\chi(\omega)}
-\]</span></p>
-<p>This expands to:</p>
-<p><span class="math display">\[
-n(\omega)=1+\frac{Nq^2}{2\epsilon_0 m}\frac{(\omega_0^2-\omega^2)-i\sigma\omega}{(\omega_0^2-\omega^2)^2+\omega^2\sigma^2}
-\]</span></p>
-<p>The real part <span class="math inline">\(n_r(\omega)\)</span> controls the phase velocity and refraction, while the imaginary part <span class="math inline">\(\kappa(\omega)\)</span> determines absorption according to the Beer-Lambert law: <span class="math inline">\(I \propto e^{-2\omega\kappa z/c}\)</span>. These components can be written as: <span class="math display">\[n_r(\omega) = 1 + A\frac{(\omega_0^2-\omega^2)}{(\omega_0^2-\omega^2)^2+\omega^2\sigma^2}\]</span></p>
-<p><span class="math display">\[\kappa(\omega) = A\frac{\sigma\omega}{(\omega_0^2-\omega^2)^2+\omega^2\sigma^2}\]</span></p>
-<p>where <span class="math inline">\(A=\frac{Nq^2}{2\epsilon_0 m}\)</span> is a constant that depends on the material’s atomic properties.</p>
-<div id="df348c88" class="cell" data-execution_count="2">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">1</span>  <span class="co"># Number density</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>q <span class="op">=</span> <span class="dv">1</span>  <span class="co"># Charge</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> <span class="dv">1</span>  <span class="co"># Mass</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>epsilon_0 <span class="op">=</span> <span class="dv">1</span>  <span class="co"># Vacuum permittivity</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>omega_0 <span class="op">=</span> <span class="dv">1</span>  <span class="co"># Resonance frequency</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>sigma <span class="op">=</span> <span class="fl">0.1</span>  <span class="co"># Damping parameter</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>omega <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">1000</span>)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>prefactor <span class="op">=</span> N <span class="op">*</span> q<span class="op">**</span><span class="dv">2</span> <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> epsilon_0 <span class="op">*</span> m)</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>denominator <span class="op">=</span> (omega_0<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> omega<span class="op">**</span><span class="dv">2</span>)<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> omega<span class="op">**</span><span class="dv">2</span> <span class="op">*</span> sigma<span class="op">**</span><span class="dv">2</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>n_real <span class="op">=</span> <span class="dv">1</span> <span class="op">+</span> prefactor <span class="op">*</span> (omega_0<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> omega<span class="op">**</span><span class="dv">2</span>) <span class="op">/</span> denominator</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>n_imag <span class="op">=</span> prefactor <span class="op">*</span> sigma <span class="op">*</span> omega <span class="op">/</span> denominator</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>fig, (ax1, ax2) <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>get_size(<span class="dv">12</span>,<span class="dv">7</span>))</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Real part</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>ax1.plot(omega<span class="op">/</span>omega_0, n_real, <span class="st">'b-'</span>)</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>ax1.axhline(y<span class="op">=</span><span class="dv">1</span>, color<span class="op">=</span><span class="st">'k'</span>, linestyle<span class="op">=</span><span class="st">':'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>ax1.axvline(x<span class="op">=</span><span class="dv">1</span>, color<span class="op">=</span><span class="st">'r'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>ax1.set_xlabel(<span class="vs">r'frequency </span><span class="kw">(</span><span class="dv">$</span><span class="er">\</span><span class="vs">omega/</span><span class="er">\</span><span class="vs">omega_0</span><span class="dv">$</span><span class="kw">)</span><span class="vs">'</span>)</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>ax1.set_ylabel(<span class="vs">r'real part </span><span class="dv">$</span><span class="vs">n_r</span><span class="kw">(</span><span class="er">\</span><span class="vs">omega</span><span class="kw">)</span><span class="dv">$</span><span class="vs">'</span>)</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>ax1.grid(alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Imaginary part</span></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>ax2.plot(omega<span class="op">/</span>omega_0, n_imag, <span class="st">'r-'</span>)</span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>ax2.axhline(y<span class="op">=</span><span class="dv">0</span>, color<span class="op">=</span><span class="st">'k'</span>, linestyle<span class="op">=</span><span class="st">':'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>ax2.axvline(x<span class="op">=</span><span class="dv">1</span>, color<span class="op">=</span><span class="st">'r'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>ax2.set_xlabel(<span class="vs">r'frequency </span><span class="kw">(</span><span class="dv">$</span><span class="er">\</span><span class="vs">omega/</span><span class="er">\</span><span class="vs">omega_0</span><span class="dv">$</span><span class="kw">)</span><span class="vs">'</span>)</span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>ax2.set_ylabel(<span class="vs">r'imaginary part </span><span class="dv">$</span><span class="er">\</span><span class="vs">kappa</span><span class="kw">(</span><span class="er">\</span><span class="vs">omega</span><span class="kw">)</span><span class="dv">$</span><span class="vs">'</span>)</span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>ax2.grid(alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="02-lecture10_files/figure-html/cell-3-output-1.png" width="699" height="402" class="figure-img"></p>
-<figcaption>Frequency dependence of refractive index near a resonance. The real part shows dispersion behavior around the resonance, while the imaginary part peaks at resonance, corresponding to maximum absorption.</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="physical-interpretation-and-applications" class="level4">
-<h4 class="anchored" data-anchor-id="physical-interpretation-and-applications">Physical Interpretation and Applications</h4>
-<p>The plots above reveal how refractive index varies with frequency around a resonance. Below resonance (ω &lt; ω₀), the real part exceeds 1 and increases with frequency (normal dispersion), while absorption remains low. At resonance (ω = ω₀), absorption reaches its maximum as the atoms absorb energy most efficiently, with a 90° phase lag between atomic oscillation and the driving field. Above resonance (ω &gt; ω₀), the real part drops below 1, showing anomalous dispersion.</p>
-<p>This behavior explains everyday optical phenomena such as prism dispersion (different colors refracting at different angles), material color (selective absorption of specific wavelengths), and transparency windows (regions between resonances with low absorption).</p>
-<p>Real materials typically have multiple resonances across the electromagnetic spectrum. Their susceptibility can be expressed as a sum over all resonances:</p>
-<p><span class="math display">\[\chi(\omega) = \sum_j \frac{f_j\omega_{p,j}^2}{\omega_{0,j}^2 - \omega^2 - i\gamma_j\omega}\]</span></p>
-<p>where <span class="math inline">\(f_j\)</span> is the oscillator strength, <span class="math inline">\(\omega_{p,j}\)</span> is the plasma frequency, and <span class="math inline">\(\omega_{0,j}\)</span> is the resonance frequency for the j-th resonance. This extends our understanding from the static case to the full spectral response of materials.</p>
-</section>
-</section>
-<section id="maxwells-equations-in-matter" class="level3">
-<h3 class="anchored" data-anchor-id="maxwells-equations-in-matter">Maxwell’s Equations in Matter</h3>
-<p>The presence of bound charges requires modified Maxwell’s equations:</p>
-<p><span class="math display">\[\nabla \times \vec{E}=-\frac{\partial \vec{B}}{\partial t} \quad \text{(Faraday's law)}\]</span></p>
-<p><span class="math display">\[\nabla\cdot\vec{D}=\rho_f \quad \text{(Gauss's law with } \vec{D}=\epsilon_0\vec{E}+\vec{P}\text{)}\]</span></p>
-<p><span class="math display">\[\nabla\times \vec{H}=\frac{\partial \vec{D}}{\partial t}+\vec{j}_f \quad \text{(Ampère's law)}\]</span></p>
-<p><span class="math display">\[\nabla\cdot \vec{B}=0 \quad \text{(No magnetic monopoles)}\]</span></p>
-<p>For linear materials: <span class="math inline">\(\vec{D}=\epsilon(\omega)\vec{E}\)</span> and <span class="math inline">\(\vec{B}=\mu(\omega)\vec{H}\)</span>, where the frequency dependence is now explicit.</p>
 </section>
 </section>
 <section id="wave-propagation-and-the-refractive-index" class="level2">
@@ -704,40 +642,40 @@ E &amp;= E_0 e^{i(\omega t - k z)} + E_{pol} \\
 &amp;= E_0 e^{-i\phi} e^{i(\omega t - kz)}
 \end{aligned}\]</span></p>
 <p>where <span class="math inline">\(\phi = (n-1)k\Delta z\)</span> is the phase shift introduced by the material. This phase shift has a direct physical interpretation: <span class="math inline">\((n-1)\)</span> represents the additional optical path length per unit physical length caused by the material’s polarization response, and <span class="math inline">\(k\Delta z\)</span> is the phase accumulated over distance <span class="math inline">\(\Delta z\)</span>.</p>
-<div id="cell-fig-wave-components" class="cell" data-execution_count="3">
+<div id="cell-fig-wave-components" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Parameters</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>E0 <span class="op">=</span> <span class="fl">1.0</span>  <span class="co"># Initial amplitude</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>k <span class="op">=</span> <span class="dv">2</span><span class="op">*</span>np.pi  <span class="co"># Wave number</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="fl">1.5</span>  <span class="co"># Refractive index</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>dz <span class="op">=</span> <span class="fl">0.1</span>  <span class="co"># Thickness of slab</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>omega <span class="op">=</span> <span class="dv">2</span><span class="op">*</span>np.pi  <span class="co"># Angular frequency</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> <span class="dv">0</span>  <span class="co"># Fixed time point</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Spatial grid</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">1000</span>)</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate components</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>E_vacuum <span class="op">=</span> E0 <span class="op">*</span> np.exp(<span class="ot">1j</span><span class="op">*</span>(omega<span class="op">*</span>t <span class="op">-</span> k<span class="op">*</span>z))</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>E_medium <span class="op">=</span> <span class="op">-</span><span class="ot">1j</span> <span class="op">*</span> k <span class="op">*</span> (n<span class="op">-</span><span class="dv">1</span>) <span class="op">*</span> dz <span class="op">*</span> E0 <span class="op">*</span> np.exp(<span class="ot">1j</span><span class="op">*</span>(omega<span class="op">*</span>t <span class="op">-</span> k<span class="op">*</span>z))</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>E_total <span class="op">=</span> E_vacuum <span class="op">+</span> E_medium</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Create figure</span></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>fig, ax1 <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>get_size(<span class="dv">12</span>, <span class="dv">8</span>))</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot real parts</span></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>ax1.plot(z, E_vacuum.real, <span class="st">'b-'</span>, label<span class="op">=</span><span class="st">'Incident Wave'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>ax1.plot(z, E_medium.real, <span class="st">'r-'</span>, label<span class="op">=</span><span class="st">'Material Response'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>ax1.plot(z, E_total.real, <span class="st">'g-.'</span>, label<span class="op">=</span><span class="st">'Total Field'</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>ax1.set_xlabel(<span class="st">'Position z'</span>)</span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>ax1.set_ylabel(<span class="st">'Electric Field'</span>)</span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>ax1.legend()</span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>ax1.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>ax1.set_title(<span class="st">'Wave Modification by Material'</span>)</span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Parameters</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>E0 <span class="op">=</span> <span class="fl">1.0</span>  <span class="co"># Initial amplitude</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>k <span class="op">=</span> <span class="dv">2</span><span class="op">*</span>np.pi  <span class="co"># Wave number</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="fl">1.5</span>  <span class="co"># Refractive index</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>dz <span class="op">=</span> <span class="fl">0.1</span>  <span class="co"># Thickness of slab</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>omega <span class="op">=</span> <span class="dv">2</span><span class="op">*</span>np.pi  <span class="co"># Angular frequency</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> <span class="dv">0</span>  <span class="co"># Fixed time point</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Spatial grid</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">1000</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate components</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>E_vacuum <span class="op">=</span> E0 <span class="op">*</span> np.exp(<span class="ot">1j</span><span class="op">*</span>(omega<span class="op">*</span>t <span class="op">-</span> k<span class="op">*</span>z))</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>E_medium <span class="op">=</span> <span class="op">-</span><span class="ot">1j</span> <span class="op">*</span> k <span class="op">*</span> (n<span class="op">-</span><span class="dv">1</span>) <span class="op">*</span> dz <span class="op">*</span> E0 <span class="op">*</span> np.exp(<span class="ot">1j</span><span class="op">*</span>(omega<span class="op">*</span>t <span class="op">-</span> k<span class="op">*</span>z))</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>E_total <span class="op">=</span> E_vacuum <span class="op">+</span> E_medium</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Create figure</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>fig, ax1 <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>get_size(<span class="dv">12</span>, <span class="dv">8</span>))</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot real parts</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>ax1.plot(z, E_vacuum.real, <span class="st">'b-'</span>, label<span class="op">=</span><span class="st">'Incident Wave'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>ax1.plot(z, E_medium.real, <span class="st">'r-'</span>, label<span class="op">=</span><span class="st">'Material Response'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>ax1.plot(z, E_total.real, <span class="st">'g-.'</span>, label<span class="op">=</span><span class="st">'Total Field'</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>ax1.set_xlabel(<span class="st">'Position z'</span>)</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>ax1.set_ylabel(<span class="st">'Electric Field'</span>)</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>ax1.legend()</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>ax1.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>ax1.set_title(<span class="st">'Wave Modification by Material'</span>)</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div id="fig-wave-components" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
@@ -787,6 +725,101 @@ Figure&nbsp;2— Wave propagation through a thin material slab
 <li><p><strong>Phase contrast microscopy</strong>: This Nobel Prize-winning technique exploits the phase shifts introduced by biological samples to convert otherwise invisible phase variations into visible intensity changes, revolutionizing biological imaging without needing stains.</p></li>
 </ul>
 <p>The fundamental interaction between electromagnetic waves and bound charges thus bridges atomic physics to practical applications, demonstrating how microscopic quantum mechanical phenomena scale up to create macroscopic optical effects we can harness in technology.</p>
+</section>
+</section>
+<section id="frequency-dependence-of-the-refractive-index-the-lorentz-oscillator-model" class="level3">
+<h3 class="anchored" data-anchor-id="frequency-dependence-of-the-refractive-index-the-lorentz-oscillator-model">Frequency Dependence of the Refractive Index: The Lorentz Oscillator Model</h3>
+<p>In the earlier atomic polarizability model, we treated atoms as static systems responding to a constant electric field. In reality, light consists of time-varying electromagnetic fields, and atoms respond dynamically to these oscillations. This frequency dependence fundamentally explains dispersion, absorption, and many optical phenomena.</p>
+<section id="from-static-to-dynamic-atomic-response" class="level4">
+<h4 class="anchored" data-anchor-id="from-static-to-dynamic-atomic-response">From Static to Dynamic Atomic Response</h4>
+<p>Extending our previous atomic model, we now treat the electron as a damped harmonic oscillator driven by an oscillating electric field. For visible light (<span class="math inline">\(\lambda \approx 500\, \text{nm}\)</span>) interacting with atoms (size <span class="math inline">\(\approx 0.1\, \text{nm}\)</span>), we can make the dipole approximation where the field appears uniform across each atom (<span class="math inline">\(\vec{E}(\vec{r},t) \approx \vec{E}(t)\)</span>), and the local field approximation where the field acting on each atom is approximately the macroscopic field (<span class="math inline">\(\vec{E}_\text{local} \approx \vec{E}\)</span>).</p>
+<p>For a harmonically oscillating electric field <span class="math inline">\(\vec{E}(t)=E_0\hat{x} e^{-i\omega t}\)</span>, the bound electron moves under the combined influence of the restoring force from the nucleus, damping from radiation and collisions, and the driving force from the electric field. This gives us the equation of motion: <span class="math display">\[
+m\ddot{\vec{r}}+m\sigma\dot{\vec{r}}+m\omega_0^2\vec{r}=q\vec{E}(t)
+\]</span></p>
+<p>Here, <span class="math inline">\(\omega_0\)</span> is the natural resonance frequency of the electron, <span class="math inline">\(\sigma\)</span> is the damping coefficient, <span class="math inline">\(q\)</span> is the electron charge, and <span class="math inline">\(m\)</span> is the electron mass.</p>
+</section>
+<section id="frequency-dependent-polarizability" class="level4">
+<h4 class="anchored" data-anchor-id="frequency-dependent-polarizability">Frequency-Dependent Polarizability</h4>
+<p>Solving this differential equation for a steady-state response, the electron displacement follows the driving field with frequency <span class="math inline">\(\omega\)</span>: <span class="math display">\[
+\vec{r}(t)=\frac{q/m}{\omega_0^2+i\omega\sigma-\omega^2}\vec{E}(t)
+\]</span></p>
+<p>From this, the frequency-dependent dipole moment becomes <span class="math inline">\(\vec{p}(\omega)=q\vec{r}(t)=\alpha(\omega)\vec{E}(t)\)</span>, where <span class="math inline">\(\alpha(\omega)=\frac{q^2/m}{\omega_0^2+i\omega\sigma-\omega^2}\)</span> is the frequency-dependent polarizability. This directly extends our previous static model, with the atomic polarizability we derived earlier (<span class="math inline">\(\alpha=4\pi\epsilon_0 a^3\)</span>) being approximately the low-frequency limit (<span class="math inline">\(\omega \rightarrow 0\)</span>) of this more general expression.</p>
+</section>
+<section id="from-polarizability-to-complex-refractive-index" class="level4">
+<h4 class="anchored" data-anchor-id="from-polarizability-to-complex-refractive-index">From Polarizability to Complex Refractive Index</h4>
+<p>The macroscopic polarization density for <span class="math inline">\(N\)</span> atoms per unit volume becomes</p>
+<p><span class="math display">\[\vec{P}=N\vec{p}=N\alpha(\omega)\vec{E}(t)=\epsilon_0\chi(\omega)\vec{E}(t)\]</span></p>
+<p>giving us the frequency-dependent susceptibility</p>
+<p><span class="math display">\[\chi(\omega)=\chi_0\frac{1}{\omega_0^2+i\omega\sigma-\omega^2}\]</span></p>
+<p>where <span class="math inline">\(\chi_0=\frac{Nq^2}{m\epsilon_0}\)</span> represents the strength of the resonance.</p>
+<p>Since the susceptibility is complex (<span class="math inline">\(\chi=\chi'+i\chi''\)</span>), both the dielectric function <span class="math inline">\(\epsilon_r(\omega)=1+\chi(\omega)\)</span> and the refractive index become complex quantities:</p>
+<p><span class="math display">\[
+n(\omega)=n_r(\omega)-i\kappa(\omega)=\sqrt{\epsilon_r(\omega)}=\sqrt{1+\chi(\omega)}
+\]</span></p>
+<p>This expands to:</p>
+<p><span class="math display">\[
+n(\omega)=1+\frac{Nq^2}{2\epsilon_0 m}\frac{(\omega_0^2-\omega^2)-i\sigma\omega}{(\omega_0^2-\omega^2)^2+\omega^2\sigma^2}
+\]</span></p>
+<p>The real part <span class="math inline">\(n_r(\omega)\)</span> controls the phase velocity and refraction, while the imaginary part <span class="math inline">\(\kappa(\omega)\)</span> determines absorption according to the Beer-Lambert law: <span class="math inline">\(I \propto e^{-2\omega\kappa z/c}\)</span>. These components can be written as: <span class="math display">\[n_r(\omega) = 1 + A\frac{(\omega_0^2-\omega^2)}{(\omega_0^2-\omega^2)^2+\omega^2\sigma^2}\]</span></p>
+<p><span class="math display">\[\kappa(\omega) = A\frac{\sigma\omega}{(\omega_0^2-\omega^2)^2+\omega^2\sigma^2}\]</span></p>
+<p>where <span class="math inline">\(A=\frac{Nq^2}{2\epsilon_0 m}\)</span> is a constant that depends on the material’s atomic properties.</p>
+<div id="59ea7d0f" class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">1</span>  <span class="co"># Number density</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>q <span class="op">=</span> <span class="dv">1</span>  <span class="co"># Charge</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> <span class="dv">1</span>  <span class="co"># Mass</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>epsilon_0 <span class="op">=</span> <span class="dv">1</span>  <span class="co"># Vacuum permittivity</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>omega_0 <span class="op">=</span> <span class="dv">1</span>  <span class="co"># Resonance frequency</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>sigma <span class="op">=</span> <span class="fl">0.1</span>  <span class="co"># Damping parameter</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>omega <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">1000</span>)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>prefactor <span class="op">=</span> N <span class="op">*</span> q<span class="op">**</span><span class="dv">2</span> <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> epsilon_0 <span class="op">*</span> m)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>denominator <span class="op">=</span> (omega_0<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> omega<span class="op">**</span><span class="dv">2</span>)<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> omega<span class="op">**</span><span class="dv">2</span> <span class="op">*</span> sigma<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>n_real <span class="op">=</span> <span class="dv">1</span> <span class="op">+</span> prefactor <span class="op">*</span> (omega_0<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> omega<span class="op">**</span><span class="dv">2</span>) <span class="op">/</span> denominator</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>n_imag <span class="op">=</span> prefactor <span class="op">*</span> sigma <span class="op">*</span> omega <span class="op">/</span> denominator</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>fig, (ax1, ax2) <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>get_size(<span class="dv">12</span>,<span class="dv">7</span>))</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Real part</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>ax1.plot(omega<span class="op">/</span>omega_0, n_real, <span class="st">'b-'</span>)</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>ax1.axhline(y<span class="op">=</span><span class="dv">1</span>, color<span class="op">=</span><span class="st">'k'</span>, linestyle<span class="op">=</span><span class="st">':'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>ax1.axvline(x<span class="op">=</span><span class="dv">1</span>, color<span class="op">=</span><span class="st">'r'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>ax1.set_xlabel(<span class="vs">r'frequency </span><span class="kw">(</span><span class="dv">$</span><span class="er">\</span><span class="vs">omega/</span><span class="er">\</span><span class="vs">omega_0</span><span class="dv">$</span><span class="kw">)</span><span class="vs">'</span>)</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>ax1.set_ylabel(<span class="vs">r'real part </span><span class="dv">$</span><span class="vs">n_r</span><span class="kw">(</span><span class="er">\</span><span class="vs">omega</span><span class="kw">)</span><span class="dv">$</span><span class="vs">'</span>)</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>ax1.grid(alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Imaginary part</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>ax2.plot(omega<span class="op">/</span>omega_0, n_imag, <span class="st">'r-'</span>)</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>ax2.axhline(y<span class="op">=</span><span class="dv">0</span>, color<span class="op">=</span><span class="st">'k'</span>, linestyle<span class="op">=</span><span class="st">':'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>ax2.axvline(x<span class="op">=</span><span class="dv">1</span>, color<span class="op">=</span><span class="st">'r'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>ax2.set_xlabel(<span class="vs">r'frequency </span><span class="kw">(</span><span class="dv">$</span><span class="er">\</span><span class="vs">omega/</span><span class="er">\</span><span class="vs">omega_0</span><span class="dv">$</span><span class="kw">)</span><span class="vs">'</span>)</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>ax2.set_ylabel(<span class="vs">r'imaginary part </span><span class="dv">$</span><span class="er">\</span><span class="vs">kappa</span><span class="kw">(</span><span class="er">\</span><span class="vs">omega</span><span class="kw">)</span><span class="dv">$</span><span class="vs">'</span>)</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>ax2.grid(alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="02-lecture10_files/figure-html/cell-4-output-1.png" width="699" height="402" class="figure-img"></p>
+<figcaption>Frequency dependence of refractive index near a resonance. The real part shows dispersion behavior around the resonance, while the imaginary part peaks at resonance, corresponding to maximum absorption.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="physical-interpretation-and-applications" class="level4">
+<h4 class="anchored" data-anchor-id="physical-interpretation-and-applications">Physical Interpretation and Applications</h4>
+<p>The plots above reveal how refractive index varies with frequency around a resonance. Below resonance (<span class="math inline">\(\omega &lt; \omega_0\)</span>), the real part exceeds 1 and increases with frequency (normal dispersion), while absorption remains low. At resonance (<span class="math inline">\(\omega = \omega_0\)</span>), absorption reaches its maximum as the atoms absorb energy most efficiently, with a <span class="math inline">\(90°\)</span> phase lag between atomic oscillation and the driving field. Above resonance (<span class="math inline">\(\omega &gt; \omega_0\)</span>), the real part drops below 1, showing anomalous dispersion.</p>
+<p>This behavior explains everyday optical phenomena such as prism dispersion (different colors refracting at different angles), material color (selective absorption of specific wavelengths), and transparency windows (regions between resonances with low absorption).</p>
+<p>Real materials typically have multiple resonances across the electromagnetic spectrum. Their susceptibility can be expressed as a sum over all resonances:</p>
+<p><span class="math display">\[\chi(\omega) = \sum_j \frac{f_j\omega_{p,j}^2}{\omega_{0,j}^2 - \omega^2 - i\gamma_j\omega}\]</span></p>
+<p>where <span class="math inline">\(f_j\)</span> is the oscillator strength, <span class="math inline">\(\omega_{p,j}\)</span> is the plasma frequency, and <span class="math inline">\(\omega_{0,j}\)</span> is the resonance frequency for the j-th resonance. This extends our understanding from the static case to the full spectral response of materials.</p>
 </section>
 </section>
 </section>
@@ -1059,7 +1092,7 @@ Figure&nbsp;4— Magnitude and phase of Fresnel reflection coefficients for air-
 <p>The following code calculates these coefficients for various angles of incidence:</p>
 <!--
 
-::: {#3578ca01 .cell execution_count=5}
+::: {#84710a71 .cell execution_count=5}
 ``` {.python .cell-code code-fold="true"}
 def fresnel_coefficients(n1, n2, theta_i, polarization='s'):
     """Calculate Fresnel reflection and transmission coefficients"""
@@ -2034,6 +2067,9 @@ The beauty of optics lies in this seamless connection between fundamental atomic
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="../../lectures/lecture11/anisotropic_media.html" class="pagination-link" aria-label="Anisotropic Materials">
+        <span class="nav-page-text">Anisotropic Materials</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->
