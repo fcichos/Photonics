@@ -30,6 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
+<link href="../../lectures/lecture10/02-lecture10.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -137,7 +138,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Light Propagation in Anisotropic Materials</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">FOURIER OPTICS AND IMAGING</li><li class="breadcrumb-item"><a href="../../lectures/lecture12/anisotropic_media.html">Lecture 12</a></li><li class="breadcrumb-item"><a href="../../lectures/lecture12/anisotropic_media.html">Anisotropic Materials</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -417,7 +418,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-14" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../lectures/lecture12/anisotropic_media.html" class="sidebar-item-text sidebar-link">
+  <a href="../../lectures/lecture12/anisotropic_media.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Anisotropic Materials</span></a>
   </div>
 </li>
@@ -449,12 +450,10 @@ window.Quarto = {
   <li><a href="#wave-equation-in-anisotropic-media" id="toc-wave-equation-in-anisotropic-media" class="nav-link" data-scroll-target="#wave-equation-in-anisotropic-media">Wave Equation in Anisotropic Media</a>
   <ul class="collapse">
   <li><a href="#physical-consequences" id="toc-physical-consequences" class="nav-link" data-scroll-target="#physical-consequences">Physical Consequences</a></li>
-  <li><a href="#wave-vector-vs.-ray-vector-a-critical-distinction" id="toc-wave-vector-vs.-ray-vector-a-critical-distinction" class="nav-link" data-scroll-target="#wave-vector-vs.-ray-vector-a-critical-distinction">Wave Vector vs.&nbsp;Ray Vector: A Critical Distinction</a></li>
   </ul></li>
-  <li><a href="#birefringence" id="toc-birefringence" class="nav-link" data-scroll-target="#birefringence">Birefringence</a></li>
-  <li><a href="#derivation-of-the-dispersion-relation" id="toc-derivation-of-the-dispersion-relation" class="nav-link" data-scroll-target="#derivation-of-the-dispersion-relation">Derivation of the Dispersion Relation</a>
+  <li><a href="#birefringence" id="toc-birefringence" class="nav-link" data-scroll-target="#birefringence">Birefringence</a>
   <ul class="collapse">
-  <li><a href="#from-maxwells-equations-to-plane-wave-form" id="toc-from-maxwells-equations-to-plane-wave-form" class="nav-link" data-scroll-target="#from-maxwells-equations-to-plane-wave-form">From Maxwell’s Equations to Plane Wave Form</a></li>
+  <li><a href="#derivation-of-the-dispersion-relation" id="toc-derivation-of-the-dispersion-relation" class="nav-link" data-scroll-target="#derivation-of-the-dispersion-relation">Derivation of the Dispersion Relation</a></li>
   <li><a href="#component-form-and-the-fresnel-equation" id="toc-component-form-and-the-fresnel-equation" class="nav-link" data-scroll-target="#component-form-and-the-fresnel-equation">Component Form and the Fresnel Equation</a></li>
   </ul></li>
   <li><a href="#uniaxial-crystals-special-case-analysis" id="toc-uniaxial-crystals-special-case-analysis" class="nav-link" data-scroll-target="#uniaxial-crystals-special-case-analysis">Uniaxial Crystals: Special Case Analysis</a>
@@ -474,15 +473,16 @@ window.Quarto = {
   <li><a href="#applications" id="toc-applications" class="nav-link" data-scroll-target="#applications">Applications</a>
   <ul class="collapse">
   <li><a href="#wave-plates" id="toc-wave-plates" class="nav-link" data-scroll-target="#wave-plates">Wave Plates</a></li>
+  <li><a href="#phase-matching-for-nonlinear-optics" id="toc-phase-matching-for-nonlinear-optics" class="nav-link" data-scroll-target="#phase-matching-for-nonlinear-optics">Phase Matching for Nonlinear Optics</a></li>
   </ul></li>
   </ul></li>
   </ul>
-</nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="anisotropic_media.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">FOURIER OPTICS AND IMAGING</li><li class="breadcrumb-item"><a href="../../lectures/lecture12/anisotropic_media.html">Lecture 12</a></li><li class="breadcrumb-item"><a href="../../lectures/lecture12/anisotropic_media.html">Anisotropic Materials</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Light Propagation in Anisotropic Materials</h1>
 </div>
@@ -689,6 +689,32 @@ Table&nbsp;1.1— Common anisotropic materials and their optical properties. For
 </div>
 </figure>
 </div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Normal Polarization Modes and Crystal Types
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Normal Polarization Modes</strong> (or eigenmodes) are the specific polarization states that can propagate through an anisotropic medium without changing their polarization character. For each propagation direction in a crystal:</p>
+<ul>
+<li>Only two independent polarization states can propagate as plane waves</li>
+<li>These modes have orthogonal polarizations</li>
+<li>Each mode experiences a different refractive index</li>
+<li>The modes propagate with different phase velocities</li>
+<li>The normal modes generally correspond to the “ordinary” and “extraordinary” rays</li>
+</ul>
+<p><strong>Uniaxial and Biaxial Crystals:</strong></p>
+<ul>
+<li><p><strong>Uniaxial crystals</strong> have two of their three principal refractive indices equal: <span class="math inline">\(n_x = n_y = n_o\)</span> (ordinary index), while <span class="math inline">\(n_z = n_e\)</span> (extraordinary index). They have a single optical axis (the z-axis in this case). Light traveling along this optical axis experiences no birefringence. Examples include calcite, quartz, and rutile.</p></li>
+<li><p><strong>Biaxial crystals</strong> have three distinct principal refractive indices: <span class="math inline">\(n_x \neq n_y \neq n_z\)</span>. They have two optical axes along which light propagates without birefringence. The optical axes lie in the plane containing the highest and lowest refractive indices. Examples include mica, topaz, and gypsum.</p></li>
+</ul>
+<p>The classification determines how light propagates through the material and the symmetry of the wave surfaces.</p>
+</div>
+</div>
 </section>
 </section>
 <section id="mathematical-framework" class="level1">
@@ -772,41 +798,69 @@ Figure&nbsp;2.2— Vector relationships in anisotropic media showing the directi
 </div>
 <p>To see this explicitly, consider the divergence of <strong>E</strong> in terms of <strong>D</strong>: <span class="math display">\[\nabla \cdot \mathbf{E} = \nabla \cdot (\overleftrightarrow{\varepsilon}_r^{-1} \mathbf{D}/\varepsilon_0)\]</span></p>
 <p>Since the inverse permittivity tensor <span class="math inline">\(\overleftrightarrow{\varepsilon}_r^{-1}\)</span> has spatially varying elements in general, even when <span class="math inline">\(\nabla \cdot \mathbf{D} = 0\)</span>, the divergence <span class="math inline">\(\nabla \cdot \mathbf{E}\)</span> does not vanish.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+The Impermeability Tensor
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>The inverse of the relative permittivity tensor <span class="math inline">\(\overleftrightarrow{\varepsilon}_r^{-1}\)</span> is known as the <strong>impermeability tensor</strong> or <strong>dielectric impermeability tensor</strong> <span class="math inline">\(\overleftrightarrow{\eta}\)</span>:</p>
+<p><span class="math display">\[\overleftrightarrow{\eta} = \overleftrightarrow{\varepsilon}_r^{-1}\]</span></p>
+<p>This tensor plays a crucial role in crystal optics and provides an alternative mathematical framework for analyzing light propagation. In component form:</p>
+<p><span class="math display">\[\eta_{ij} = (\varepsilon_r^{-1})_{ij}\]</span></p>
+<p>Just like the permittivity tensor, the impermeability tensor has principal axes along which it becomes diagonal. In these principal axes:</p>
+<p><span class="math display">\[\overleftrightarrow{\eta} = \begin{pmatrix}
+\frac{1}{n_x^2} &amp; 0 &amp; 0 \\
+0 &amp; \frac{1}{n_y^2} &amp; 0 \\
+0 &amp; 0 &amp; \frac{1}{n_z^2}
+\end{pmatrix}\]</span></p>
+<p>The impermeability tensor is particularly useful because:</p>
+<ol type="1">
+<li><p>It relates directly to the <strong>optical indicatrix</strong> (index ellipsoid) equation: <span class="math display">\[\eta_{11}x^2 + \eta_{22}y^2 + \eta_{33}z^2 + 2\eta_{12}xy + 2\eta_{13}xz + 2\eta_{23}yz = 1\]</span></p></li>
+<li><p>In electro-optic materials, applied electric fields modify the impermeability tensor elements (rather than directly modifying the permittivity), making it the natural choice for describing electro-optic effects.</p></li>
+<li><p>The principal values of <span class="math inline">\(\overleftrightarrow{\eta}\)</span> are simply the inverse squares of the principal refractive indices, providing a direct connection to measurable optical properties.</p></li>
+</ol>
+<p>In the analysis of wave propagation, the impermeability tensor offers equivalent but sometimes mathematically simpler formulations for understanding the behavior of light in anisotropic media.</p>
+</div>
+</div>
+</div>
 <section id="physical-consequences" class="level3">
 <h3 class="anchored" data-anchor-id="physical-consequences">Physical Consequences</h3>
 <ol type="1">
 <li><p><strong>Waves are no longer purely transverse:</strong> The non-zero <span class="math inline">\(\nabla \cdot \mathbf{E}\)</span> means the electric field has components both perpendicular and parallel to the propagation direction.</p></li>
-<li><p><strong>Two propagation modes emerge:</strong> The modified wave equation, combined with boundary conditions, yields the <strong>Fresnel equation</strong> - a quartic equation in the refractive index that has two solutions for each propagation direction, corresponding to the ordinary and extraordinary rays.</p></li>
-<li><p><strong>Energy flow vs.&nbsp;phase propagation divergence:</strong> Since <strong>D</strong> and <strong>E</strong> are not parallel, the Poynting vector <span class="math inline">\(\mathbf{S} = \mathbf{E} \times \mathbf{H}\)</span> (energy flow direction) is no longer parallel to the wave vector <strong>k</strong> (phase propagation direction). This is most pronounced for the extraordinary ray.</p></li>
+<li><p><strong>Two propagation modes emerge:</strong> The modified wave equation, combined with boundary conditions, yields the <strong>Fresnel equation</strong> - a quartic equation in the refractive index that has two distinct solutions for each propagation direction, corresponding to the ordinary and extraordinary rays.</p></li>
 <li><p><strong>Polarization-dependent propagation:</strong> Each mode has a specific polarization state that depends on both the propagation direction and the crystal’s optical properties.</p></li>
-</ol>
-<p><strong>The Extraordinary Ray Phenomenon:</strong> The most striking consequence is that the extraordinary ray exhibits “walk-off” - its energy propagates in a different direction than its phase fronts advance. This creates the remarkable situation where a beam of light can physically travel at an angle to its own wave fronts, a phenomenon impossible in isotropic media and directly traceable to the non-parallelism of <strong>D</strong> and <strong>E</strong>.</p>
-</section>
-<section id="wave-vector-vs.-ray-vector-a-critical-distinction" class="level3">
-<h3 class="anchored" data-anchor-id="wave-vector-vs.-ray-vector-a-critical-distinction">Wave Vector vs.&nbsp;Ray Vector: A Critical Distinction</h3>
-<p>In anisotropic media, we must carefully distinguish between two different directions:</p>
-<ol type="1">
+<li><p><strong>Wave Vector vs.&nbsp;Ray Vector Distinction:</strong> In anisotropic media, we must distinguish between:</p>
+<ul>
 <li><strong>Wave vector <span class="math inline">\(\mathbf{k}\)</span></strong>: Direction of phase propagation (perpendicular to wavefronts)</li>
 <li><strong>Ray vector <span class="math inline">\(\mathbf{k}_r\)</span> (or Poynting vector <span class="math inline">\(\mathbf{S}\)</span>)</strong>: Direction of energy flow</li>
-</ol>
-<p><strong>In isotropic media:</strong> <span class="math inline">\(\mathbf{k} \parallel \mathbf{S}\)</span> - phase and energy travel in the same direction.</p>
-<p><strong>In anisotropic media:</strong> <span class="math inline">\(\mathbf{k} \not\parallel \mathbf{S}\)</span> - phase and energy travel in different directions!</p>
-<p><strong>Mathematical relationship:</strong> From the Poynting vector <span class="math inline">\(\mathbf{S} = \frac{1}{\mu_0}\mathbf{E} \times \mathbf{H}\)</span> and Maxwell’s equations:</p>
+</ul>
+<p>While in isotropic media <span class="math inline">\(\mathbf{k} \parallel \mathbf{S}\)</span> (phase and energy travel together), in anisotropic media <span class="math inline">\(\mathbf{k} \not\parallel \mathbf{S}\)</span> due to the non-parallelism of <strong>D</strong> and <strong>E</strong>.</p>
+<p><strong>Mathematical relationship:</strong> From the Poynting vector definition and Maxwell’s equations:</p>
 <p><span class="math display">\[\mathbf{S} = \frac{c}{2\mu_0\omega}(\mathbf{E} \times \mathbf{B}) = \frac{c}{2\mu_0\omega}(\mathbf{E} \times (\mathbf{k} \times \mathbf{E}))\]</span></p>
 <p>In anisotropic media, this becomes: <span class="math display">\[\mathbf{S} \propto \mathbf{E} \times (\mathbf{k} \times \mathbf{D}/\varepsilon_0)\]</span></p>
-<p>Since <span class="math inline">\(\mathbf{D} = \varepsilon_0 \overleftrightarrow{\varepsilon}_r \mathbf{E}\)</span> and <span class="math inline">\(\mathbf{D} \not\parallel \mathbf{E}\)</span>, the energy flow direction differs from the wave vector direction.</p>
-<p><strong>Physical consequence:</strong> A light beam entering an anisotropic crystal will have its wavefronts traveling in one direction while the actual light energy travels in a slightly different direction - this is the “walk-off” phenomenon.</p>
+<p>With <span class="math inline">\(\mathbf{D} = \varepsilon_0 \overleftrightarrow{\varepsilon}_r \mathbf{E}\)</span>, the energy flow direction systematically deviates from the wave vector direction, most noticeably in the extraordinary ray.</p></li>
+</ol>
+<p><strong>The Extraordinary Ray Phenomenon:</strong> The most striking consequence is that the extraordinary ray exhibits “walk-off” - its energy propagates in a different direction than its phase fronts advance. This creates the remarkable situation where a beam of light can physically travel at an angle to its own wave fronts, a phenomenon impossible in isotropic media and directly traceable to the non-parallelism of <strong>D</strong> and <strong>E</strong>. A light beam entering an anisotropic crystal will have its wavefronts traveling in one direction while the actual light energy travels in a slightly different direction.</p>
 </section>
 </section>
 <section id="birefringence" class="level2">
 <h2 class="anchored" data-anchor-id="birefringence">Birefringence</h2>
-</section>
-<section id="derivation-of-the-dispersion-relation" class="level2">
-<h2 class="anchored" data-anchor-id="derivation-of-the-dispersion-relation">Derivation of the Dispersion Relation</h2>
-<section id="from-maxwells-equations-to-plane-wave-form" class="level3">
-<h3 class="anchored" data-anchor-id="from-maxwells-equations-to-plane-wave-form">From Maxwell’s Equations to Plane Wave Form</h3>
-<p>We start from the standard Maxwell equations in time domain: <span class="math display">\[\nabla \times \mathbf{E} = -\frac{\partial \mathbf{B}}{\partial t} = -\mu_0\frac{\partial \mathbf{H}}{\partial t}\]</span> <span class="math display">\[\nabla \times \mathbf{H} = \frac{\partial \mathbf{D}}{\partial t}\]</span></p>
-<p>For plane waves with harmonic time dependence <span class="math inline">\(\mathbf{E}(\mathbf{r},t) = \mathbf{E}(\mathbf{r})e^{-i\omega t}\)</span> and <span class="math inline">\(\mathbf{H}(\mathbf{r},t) = \mathbf{H}(\mathbf{r})e^{-i\omega t}\)</span>: - Time derivatives: <span class="math inline">\(\frac{\partial}{\partial t} \rightarrow -i\omega\)</span> - Spatial derivatives for plane waves <span class="math inline">\(e^{i\mathbf{k} \cdot \mathbf{r}}\)</span>: <span class="math inline">\(\nabla \rightarrow i\mathbf{k}\)</span></p>
+<section id="derivation-of-the-dispersion-relation" class="level3">
+<h3 class="anchored" data-anchor-id="derivation-of-the-dispersion-relation">Derivation of the Dispersion Relation</h3>
+<p>We start from the standard Maxwell equations in time domain:</p>
+<p><span class="math display">\[\nabla \times \mathbf{E} = -\frac{\partial \mathbf{B}}{\partial t} = -\mu_0\frac{\partial \mathbf{H}}{\partial t}\]</span> <span class="math display">\[\nabla \times \mathbf{H} = \frac{\partial \mathbf{D}}{\partial t}\]</span></p>
+<p>For plane waves with harmonic time dependence <span class="math inline">\(\mathbf{E}(\mathbf{r},t) = \mathbf{E}(\mathbf{r})e^{-i\omega t}\)</span> and <span class="math inline">\(\mathbf{H}(\mathbf{r},t) = \mathbf{H}(\mathbf{r})e^{-i\omega t}\)</span>:</p>
+<ul>
+<li>Time derivatives: <span class="math inline">\(\frac{\partial}{\partial t} \rightarrow -i\omega\)</span></li>
+<li>Spatial derivatives for plane waves <span class="math inline">\(e^{i\mathbf{k} \cdot \mathbf{r}}\)</span>: <span class="math inline">\(\nabla \rightarrow i\mathbf{k}\)</span></li>
+</ul>
 <p>This transforms Maxwell’s equations to: <span class="math display">\[i\mathbf{k} \times \mathbf{E} = -\mu_0(-i\omega)\mathbf{H} = i\omega\mu_0\mathbf{H}\]</span> <span class="math display">\[i\mathbf{k} \times \mathbf{H} = (-i\omega)\mathbf{D} = -i\omega\mathbf{D}\]</span></p>
 <p>Dividing by <span class="math inline">\(i\)</span> gives us the <strong>frequency domain plane wave Maxwell equations</strong>:</p>
 <p><span class="math display">\[\mathbf{k} \times \mathbf{E} = \omega \mu_0 \mathbf{H}\]</span> <span class="math display">\[\mathbf{k} \times \mathbf{H} = -\omega \mathbf{D}\]</span></p>
@@ -961,17 +1015,19 @@ n^2 - n_x^2 - \sin^2\theta &amp; 0 &amp; -\sin\theta\cos\theta \\
 </section>
 <section id="two-distinct-solutions-1" class="level3">
 <h3 class="anchored" data-anchor-id="two-distinct-solutions-1">Two Distinct Solutions</h3>
-<p><strong>Solution 1 (β-ray):</strong> <span class="math display">\[n^2 = n_y^2\]</span></p>
+<p><strong>Solution 1 (<span class="math inline">\(\beta\)</span>-ray):</strong> <span class="math inline">\(n^2 = n_y^2\)</span></p>
 <p>This gives <span class="math inline">\(n = n_y\)</span> independent of propagation direction <span class="math inline">\(\theta\)</span> when propagating in the <span class="math inline">\(xz\)</span>-plane.</p>
-<p><strong>Solution 2 (αγ-ray):</strong> From the remaining factor: <span class="math display">\[(n^2 - n_x^2 - \sin^2\theta)(n^2 - n_z^2 - \cos^2\theta) = \sin^2\theta\cos^2\theta\]</span></p>
+<p><strong>Solution 2 (<span class="math inline">\(\alpha\gamma\)</span>-ray):</strong> From the remaining factor: <span class="math display">\[(n^2 - n_x^2 - \sin^2\theta)(n^2 - n_z^2 - \cos^2\theta) = \sin^2\theta\cos^2\theta\]</span></p>
 <p>Expanding and solving this quadratic equation in <span class="math inline">\(n^2\)</span>: <span class="math display">\[n^4 - n^2(n_x^2 + n_z^2 + 1) + n_x^2n_z^2 + n_x^2\cos^2\theta + n_z^2\sin^2\theta = 0\]</span></p>
 <p>This yields the <strong>biaxial dispersion relation</strong>: <span class="math display">\[\frac{1}{n^2} = \frac{\cos^2\theta}{n_x^2} + \frac{\sin^2\theta}{n_z^2}\]</span></p>
 <p>for propagation in the <span class="math inline">\(xz\)</span>-plane, where <span class="math inline">\(\theta\)</span> is the angle between the wave vector <strong>k</strong> and the <span class="math inline">\(z\)</span>-axis.</p>
 <p><strong>Key points:</strong></p>
 <ul>
-<li>For <span class="math inline">\(\theta = 0°\)</span> (propagation along <span class="math inline">\(z\)</span>-axis): <span class="math inline">\(n = n_x\)</span></li>
-<li>For <span class="math inline">\(\theta = 90°\)</span> (propagation along <span class="math inline">\(x\)</span>-axis): <span class="math inline">\(n = n_z\)</span></li>
-<li>The optical axes occur at angles where the two solutions become equal</li>
+<li>For <span class="math inline">\(\theta = 0°\)</span> (propagation along <span class="math inline">\(z\)</span>-axis): Light experiences two refractive indices (<span class="math inline">\(n_x\)</span> and <span class="math inline">\(n_y\)</span>) depending on its polarization direction</li>
+<li>For <span class="math inline">\(\theta = 90°\)</span> (propagation along <span class="math inline">\(x\)</span>-axis): Light experiences two refractive indices (<span class="math inline">\(n_y\)</span> and <span class="math inline">\(n_z\)</span>) depending on its polarization direction</li>
+<li>The optical axes do not align with the principal axes but instead lie in the <span class="math inline">\(xz\)</span>-plane at specific angles where the two refractive indices become equal</li>
+<li>These optical axes occur at angles <span class="math inline">\(\pm V\)</span> from the <span class="math inline">\(z\)</span>-axis, where <span class="math inline">\(\cos^2 V = \frac{n_y^2 - n_x^2}{n_z^2 - n_x^2}\)</span></li>
+<li>Light propagating along these optical axes experiences no birefringence</li>
 </ul>
 </section>
 <section id="classification-of-biaxial-crystals" class="level3">
@@ -1009,21 +1065,26 @@ Figure&nbsp;2.6— The k-surface of a biaxial crystal showing the complex inters
 <h2 class="anchored" data-anchor-id="applications">Applications</h2>
 <section id="wave-plates" class="level3">
 <h3 class="anchored" data-anchor-id="wave-plates">Wave Plates</h3>
-<p>Wave plates (retarders) are birefringent crystals of controlled thickness that introduce precise phase differences between orthogonal polarization components. Let’s analyze how a linearly polarized wave is modified as it propagates through these crystals.</p>
-<p><strong>Input Wave Analysis:</strong> Consider a linearly polarized wave entering a wave plate:</p>
+<p>Wave plates (retarders) are practical applications of the birefringent properties we’ve derived from the permittivity tensor. They are carefully cut crystals of controlled thickness that leverage the different refractive indices along principal axes to introduce precise phase differences between orthogonal polarization components.</p>
+<p>A wave plate is typically oriented so that two of the principal axes of the permittivity tensor lie in the plane perpendicular to the direction of propagation. When viewed in this orientation, the axis with the lower refractive index is called the <strong>fast axis</strong> (where light travels faster), and the axis with the higher refractive index is the <strong>slow axis</strong> (where light travels slower). In uniaxial crystals: - When <span class="math inline">\(n_e &lt; n_o\)</span> (negative uniaxial): the fast axis corresponds to the extraordinary ray direction - When <span class="math inline">\(n_e &gt; n_o\)</span> (positive uniaxial): the fast axis corresponds to the ordinary ray direction</p>
+<p><strong>Input Wave Analysis:</strong> Consider a linearly polarized wave entering a wave plate whose principal axes (in the diagonalized permittivity tensor) are aligned with our coordinate system:</p>
 <p><span class="math display">\[\mathbf{E}_{input} = E_0(\cos\alpha \hat{\mathbf{f}} + \sin\alpha \hat{\mathbf{s}})e^{i(kz-\omega t)}\]</span></p>
-<p>In this expression, <span class="math inline">\(\hat{\mathbf{f}}\)</span> and <span class="math inline">\(\hat{\mathbf{s}}\)</span> represent unit vectors along the crystal’s fast and slow axes respectively, while <span class="math inline">\(\alpha\)</span> denotes the angle between the input polarization and the fast axis, and <span class="math inline">\(E_0\)</span> is the amplitude of the electric field.</p>
-<p><strong>Propagation Through Crystal:</strong> As the wave propagates through the crystal of thickness <span class="math inline">\(d\)</span>, each polarization component experiences a different refractive index. The component along the fast axis evolves as <span class="math inline">\(E_f = E_0\cos\alpha \cdot e^{i(k_f z - \omega t)}\)</span> where <span class="math inline">\(k_f = \frac{2\pi n_f}{\lambda}\)</span>, while the slow axis component propagates as <span class="math inline">\(E_s = E_0\sin\alpha \cdot e^{i(k_s z - \omega t)}\)</span> where <span class="math inline">\(k_s = \frac{2\pi n_s}{\lambda}\)</span>. This differential propagation is the fundamental mechanism that enables wave plates to manipulate polarization states.</p>
+<p>In this expression, <span class="math inline">\(\hat{\mathbf{f}}\)</span> and <span class="math inline">\(\hat{\mathbf{s}}\)</span> represent unit vectors along the crystal’s fast and slow axes respectively (corresponding to two of the principal axes of the permittivity tensor), while <span class="math inline">\(\alpha\)</span> denotes the angle between the input polarization and the fast axis, and <span class="math inline">\(E_0\)</span> is the amplitude of the electric field.</p>
+<p><strong>Propagation Through Crystal:</strong> As the wave propagates through the crystal of thickness <span class="math inline">\(d\)</span>, each polarization component experiences a different refractive index based on the permittivity tensor elements. The component along the fast axis evolves as <span class="math inline">\(E_f = E_0\cos\alpha \cdot e^{i(k_f z - \omega t)}\)</span> where <span class="math inline">\(k_f = \frac{2\pi n_f}{\lambda}\)</span>, while the slow axis component propagates as <span class="math inline">\(E_s = E_0\sin\alpha \cdot e^{i(k_s z - \omega t)}\)</span> where <span class="math inline">\(k_s = \frac{2\pi n_s}{\lambda}\)</span>.</p>
+<p>For a wave plate cut from a uniaxial crystal, these refractive indices correspond to the principal values we derived earlier: - <span class="math inline">\(n_f\)</span> corresponds to one of the principal refractive indices (either <span class="math inline">\(n_e\)</span> or <span class="math inline">\(n_o\)</span>, depending on crystal type) - <span class="math inline">\(n_s\)</span> corresponds to the other principal refractive index</p>
+<p>This differential propagation arising from the tensor nature of the permittivity is the fundamental mechanism that enables wave plates to manipulate polarization states.</p>
 <p>After propagating through thickness <span class="math inline">\(d\)</span>, the wave becomes:</p>
 <p><span class="math display">\[\mathbf{E}_{output} = E_0\cos\alpha \cdot e^{i(k_f d - \omega t)}\hat{\mathbf{f}} + E_0\sin\alpha \cdot e^{i(k_s d - \omega t)}\hat{\mathbf{s}}\]</span></p>
 <p><strong>Phase Difference:</strong> The crucial parameter is the phase difference (retardance) acquired between the two components:</p>
 <p><span class="math display">\[\delta = (k_s - k_f)d = \frac{2\pi d}{\lambda}(n_s - n_f) = \frac{2\pi d}{\lambda}|n_e - n_o|\]</span></p>
+<p>This retardance directly results from the anisotropic nature of the permittivity tensor that we examined earlier, which creates the different principal refractive indices for different polarization directions.</p>
+<p><strong>Design Considerations:</strong> It’s important to note that in real wave plates, the wave/ray vector distinction we discussed earlier has practical implications. The walk-off effect (where energy flow direction deviates from the wavefront normal) can affect beam displacement and the effective optical path, particularly in thicker crystals. Modern wave plate designs often use compound structures or specific crystal cuts to minimize these effects while maintaining the desired retardance.</p>
 <p><strong>Output Wave:</strong> Factoring out the common phase term:</p>
 <p><span class="math display">\[\mathbf{E}_{output} = E_0 e^{i(k_f d - \omega t)}[\cos\alpha \hat{\mathbf{f}} + \sin\alpha \cdot e^{i\delta}\hat{\mathbf{s}}]\]</span></p>
 <p>The relative phase shift <span class="math inline">\(e^{i\delta}\)</span> between the components determines the output polarization state.</p>
 <section id="quarter-wave-plate" class="level4">
 <h4 class="anchored" data-anchor-id="quarter-wave-plate">Quarter-Wave Plate</h4>
-<p>A quarter-wave plate is designed to introduce a phase difference of <span class="math inline">\(\delta = \pi/2\)</span> between orthogonal polarization components, requiring a thickness of <span class="math inline">\(d = \frac{\lambda}{4|n_e - n_o|}\)</span>. This specific phase relationship enables the conversion between linear and circular polarization states.</p>
+<p>A quarter-wave plate is designed to introduce a phase difference of <span class="math inline">\(\delta = \pi/2\)</span> between orthogonal polarization components, requiring a thickness of <span class="math inline">\(d = \frac{\lambda}{4|n_e - n_o|}\)</span>, where <span class="math inline">\(n_e\)</span> and <span class="math inline">\(n_o\)</span> are the extraordinary and ordinary refractive indices derived from the principal values of the permittivity tensor. This specific phase relationship enables the conversion between linear and circular polarization states.</p>
 <p><strong>Polarization transformation:</strong> For <span class="math inline">\(\alpha = 45°\)</span> (input at 45° to crystal axes): <span class="math display">\[\mathbf{E}_{output} = \frac{E_0}{\sqrt{2}} e^{i(k_f d - \omega t)}[\hat{\mathbf{f}} + e^{i\pi/2}\hat{\mathbf{s}}] = \frac{E_0}{\sqrt{2}} e^{i(k_f d - \omega t)}[\hat{\mathbf{f}} + i\hat{\mathbf{s}}]\]</span></p>
 <p>This represents <strong>circularly polarized light</strong> since the two orthogonal components have equal amplitudes and are 90° out of phase.</p>
 <p>For arbitrary input angle <span class="math inline">\(\alpha\)</span>, the output becomes: <span class="math display">\[\mathbf{E}_{output} = E_0 e^{i(k_f d - \omega t)}[\cos\alpha \hat{\mathbf{f}} + i\sin\alpha \hat{\mathbf{s}}]\]</span></p>
@@ -1031,10 +1092,11 @@ Figure&nbsp;2.6— The k-surface of a biaxial crystal showing the complex inters
 </section>
 <section id="half-wave-plate" class="level4">
 <h4 class="anchored" data-anchor-id="half-wave-plate">Half-Wave Plate</h4>
-<p>A half-wave plate introduces a phase difference of <span class="math inline">\(\delta = \pi\)</span> between orthogonal components, achieved with a thickness of <span class="math inline">\(d = \frac{\lambda}{2|n_e - n_o|}\)</span>. This design creates a fundamentally different polarization transformation compared to the quarter-wave plate.</p>
+<p>A half-wave plate introduces a phase difference of <span class="math inline">\(\delta = \pi\)</span> between orthogonal components, achieved with a thickness of <span class="math inline">\(d = \frac{\lambda}{2|n_e - n_o|}\)</span>, where the difference between extraordinary and ordinary indices comes directly from the eigenvalues of the diagonalized permittivity tensor we derived earlier. This design creates a fundamentally different polarization transformation compared to the quarter-wave plate.</p>
 <p><strong>Polarization transformation:</strong> <span class="math display">\[\mathbf{E}_{output} = E_0 e^{i(k_f d - \omega t)}[\cos\alpha \hat{\mathbf{f}} + \sin\alpha \cdot e^{i\pi}\hat{\mathbf{s}}] = E_0 e^{i(k_f d - \omega t)}[\cos\alpha \hat{\mathbf{f}} - \sin\alpha \hat{\mathbf{s}}]\]</span></p>
 <p>The key result is that the output remains linearly polarized but is <strong>rotated by <span class="math inline">\(2\alpha\)</span></strong> relative to the input. If the input makes angle <span class="math inline">\(\alpha\)</span> with the fast axis, the output makes angle <span class="math inline">\(-\alpha\)</span> with the fast axis, resulting in a total rotation of <span class="math inline">\(2\alpha\)</span>. The <span class="math inline">\(\pi\)</span> phase shift effectively reverses the slow-axis component, causing the polarization vector to flip across the fast axis, doubling the rotation angle.</p>
 <p>These wave plates find extensive applications in modern photonics. Quarter-wave plates enable the conversion between linear and circular or elliptical polarization states, making them crucial for circular dichroism spectroscopy, optical communication systems, and laser applications. Half-wave plates provide precise polarization rotation and linear polarization direction control, essential for optical isolators, variable attenuators, and polarization-sensitive measurement systems.</p>
+<p>Wave plates represent a practical engineering application of the mathematical framework we’ve developed for anisotropic media. The tensor nature of the permittivity, the resulting birefringence, and the propagation characteristics we’ve derived all come together in these components to enable precise manipulation of light’s polarization state.</p>
 <div id="fig-polarizing-optics" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-polarizing-optics-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1045,9 +1107,144 @@ Figure&nbsp;2.7— Polarizing optics diagram showing the operation of half-wave 
 </figcaption>
 </figure>
 </div>
-
-
 </section>
+</section>
+<section id="phase-matching-for-nonlinear-optics" class="level3">
+<h3 class="anchored" data-anchor-id="phase-matching-for-nonlinear-optics">Phase Matching for Nonlinear Optics</h3>
+<p>Anisotropic crystals are not only critical for linear polarization control but also enable a phenomenon known as <strong>phase matching</strong> - essential for efficient nonlinear optical processes. Phase matching addresses a fundamental challenge in nonlinear optics: different wavelengths typically experience different refractive indices, causing them to propagate at different phase velocities.</p>
+<p><strong>The Phase Matching Challenge:</strong> In nonlinear processes like second harmonic generation (SHG), where two photons at frequency <span class="math inline">\(\omega\)</span> combine to create one photon at frequency <span class="math inline">\(2\omega\)</span>, the efficiency depends critically on maintaining proper phase relationships between the interacting waves. The <strong>phase mismatch</strong> is quantified by:</p>
+<p><span class="math display">\[\Delta k = k_{2\omega} - 2k_{\omega} = \frac{4\pi}{\lambda}[n(2\omega) - n(\omega)]\]</span></p>
+<p>Without phase matching (<span class="math inline">\(\Delta k \neq 0\)</span>), the generated second harmonic undergoes destructive interference over a characteristic distance called the <strong>coherence length</strong>:</p>
+<p><span class="math display">\[L_c = \frac{\pi}{|\Delta k|} = \frac{\lambda}{4|n(2\omega) - n(\omega)|}\]</span></p>
+<p>This severely limits conversion efficiency in typical materials where <span class="math inline">\(n(2\omega) &gt; n(\omega)\)</span> due to normal dispersion.</p>
+<p><strong>Birefringence-Based Solutions:</strong> The direction-dependent refractive indices of birefringent crystals offer an elegant solution. By aligning the polarization and propagation directions appropriately, we can achieve:</p>
+<p><span class="math display">\[n_e(\omega,\theta) = n_o(2\omega)\]</span></p>
+<p>This condition ensures <span class="math inline">\(\Delta k = 0\)</span>, allowing constructive interference of the generated wave throughout the entire crystal length. Two common approaches are:</p>
+<ol type="1">
+<li><p><strong>Type I phase matching</strong>: Both fundamental photons have the same polarization (e.g., both ordinary), while the second harmonic has orthogonal polarization (extraordinary)</p></li>
+<li><p><strong>Type II phase matching</strong>: The two fundamental photons have orthogonal polarizations (one ordinary, one extraordinary), while the second harmonic has a third polarization state</p></li>
+</ol>
+<p>The appropriate choice of crystal cut angle <span class="math inline">\(\theta\)</span> relative to the optic axis creates the precise birefringence needed to offset normal dispersion, enabling efficient nonlinear conversion.</p>
+<p>This critical application of anisotropic media fundamentally enables many nonlinear optical technologies including frequency doublers, optical parametric oscillators, and sum/difference frequency generation systems. We will explore nonlinear optics in greater detail in the next lecture.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Modern Applications of Anisotropic Materials
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>While the fundamental theories of anisotropic media were developed centuries ago, technological advances have enabled sophisticated applications that leverage these unique optical properties. This section explores cutting-edge implementations that rely on anisotropic materials.</p>
+<section id="polarization-maintaining-fibers" class="level3">
+<h3 class="anchored" data-anchor-id="polarization-maintaining-fibers">Polarization-Maintaining Fibers</h3>
+<p>Conventional optical fibers suffer from random polarization fluctuations due to subtle stresses, temperature variations, and manufacturing imperfections. For applications requiring stable polarization states (such as interferometric sensors, coherent communications, and fiber optic gyroscopes), <strong>polarization-maintaining (PM) fibers</strong> provide a critical solution.</p>
+<p>PM fibers introduce deliberate birefringence through structural anisotropy:</p>
+<ol type="1">
+<li><strong>PANDA fibers</strong>: Include stress-applying parts (SAPs) - cylindrical regions of borosilicate glass with higher thermal expansion coefficients than the surrounding cladding</li>
+<li><strong>Bow-tie fibers</strong>: Employ asymmetric stress members resembling bow-ties in cross-section</li>
+<li><strong>Elliptical-core fibers</strong>: Feature geometrically anisotropic cores</li>
+</ol>
+<p>The induced birefringence creates distinct fast and slow axes with significantly different propagation constants, preventing polarization coupling. Typical birefringence values (<span class="math inline">\(\Delta n = |n_x - n_y|\)</span>) range from <span class="math inline">\(10^{-4}\)</span> to <span class="math inline">\(10^{-3}\)</span>, corresponding to beat lengths (<span class="math inline">\(L_B = \lambda/\Delta n\)</span>) of a few millimeters.</p>
+<div id="fig-panda-fibers" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-panda-fibers-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="img/pandas.png" class="img-fluid figure-img" style="width:60.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-panda-fibers-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.8— Cross-section of a PANDA (Polarization-maintaining AND Absorption-reducing) fiber showing the characteristic stress-applying parts (SAPs). The two circular borosilicate regions create mechanical stress in the core, inducing strong birefringence that maintains polarization states over long distances. This structural anisotropy creates distinct fast and slow axes with different refractive indices, preventing polarization mode coupling that would otherwise occur in standard single-mode fibers.
+</figcaption>
+</figure>
+</div>
+<p>Modern PM fibers enable coherent optical communications with advanced modulation schemes, ultra-precise fiber optic sensing, and quantum key distribution systems.</p>
+</section>
+<section id="liquid-crystal-displays-and-photonic-devices" class="level3">
+<h3 class="anchored" data-anchor-id="liquid-crystal-displays-and-photonic-devices">Liquid Crystal Displays and Photonic Devices</h3>
+<p>Liquid crystals represent a fascinating class of anisotropic materials that combine crystalline ordering with fluid properties. Their optical anisotropy can be dynamically controlled through electrical fields, forming the basis for numerous display and photonic technologies.</p>
+<p><strong>Twisted Nematic Liquid Crystal Displays:</strong></p>
+<p>In the classic LCD configuration: 1. Light passes through a polarizer 2. Enters a twisted nematic liquid crystal layer (typically 90° twist) 3. The molecular director reorients under applied voltage 4. Changes in birefringence modulate light transmission through the analyzer</p>
+<p>Modern implementations include: - <strong>In-Plane Switching (IPS)</strong>: Electrodes on same substrate create horizontal fields - <strong>Vertical Alignment (VA)</strong>: Molecules initially perpendicular to substrates - <strong>Fringe Field Switching (FFS)</strong>: Improved viewing angles and transmission</p>
+<div id="fig-ips-lcd" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ips-lcd-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="img/IPS.png" class="img-fluid figure-img" style="width:60.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ips-lcd-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.9— Schematic illustration of In-Plane Switching (IPS) liquid crystal display technology. Unlike traditional twisted nematic displays, IPS uses parallel electrodes on the same substrate to create an electric field that rotates liquid crystal molecules within the plane. This configuration results in wider viewing angles, better color reproduction, and improved contrast ratios compared to conventional LCD technologies.
+</figcaption>
+</figure>
+</div>
+<p>Beyond displays, tunable liquid crystal elements enable: - Adaptive optics - Beam steering devices - Tunable spectral filters - Spatial light modulators for holography and optical processing</p>
+</section>
+<section id="metamaterials-with-engineered-anisotropy" class="level3">
+<h3 class="anchored" data-anchor-id="metamaterials-with-engineered-anisotropy">Metamaterials with Engineered Anisotropy</h3>
+<p><strong>Metamaterials</strong> - artificial structures with sub-wavelength features - can exhibit optical properties not found in natural materials, including precisely engineered anisotropy.</p>
+<p><strong>Key implementations include:</strong></p>
+<ol type="1">
+<li><strong>Hyperbolic metamaterials</strong>: Extreme anisotropy where permittivity components have opposite signs along different axes, creating hyperbolic rather than elliptical dispersion relations. This enables:
+<ul>
+<li>Super-resolution imaging beyond the diffraction limit</li>
+<li>Enhanced spontaneous emission</li>
+<li>Unusual wave propagation effects</li>
+</ul></li>
+<li><strong>Metasurfaces</strong>: 2D arrays of subwavelength scatterers that impart spatially varying phase, amplitude, and polarization changes to incident light. Anisotropic metasurfaces enable:
+<ul>
+<li>Flat optical components (metalenses)</li>
+<li>Polarization-dependent beam splitting</li>
+<li>Complex wavefront shaping</li>
+</ul></li>
+<li><strong>Photonic topological insulators</strong>: Structures with topologically protected edge states that allow unidirectional light propagation immune to backscattering from defects and disorder</li>
+</ol>
+</section>
+<section id="quantum-information-and-computing-applications" class="level3">
+<h3 class="anchored" data-anchor-id="quantum-information-and-computing-applications">Quantum Information and Computing Applications</h3>
+<p>Anisotropic crystals play pivotal roles in quantum information processing:</p>
+<ol type="1">
+<li><strong>Entangled photon generation</strong>: Birefringent crystals enable spontaneous parametric down-conversion (SPDC) for creating polarization-entangled photon pairs. Beta barium borate (BBO), lithium niobate (LiNbO₃), and potassium titanyl phosphate (KTP) are commonly used.</li>
+</ol>
+<div id="fig-entangled-photons" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-entangled-photons-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="img/entangled.png" class="img-fluid figure-img" style="width:60.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-entangled-photons-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.10— Illustration of spontaneous parametric down-conversion (SPDC) process in a birefringent crystal. A pump photon is converted into a pair of entangled photons with correlated polarization states that form the foundation for quantum information protocols. The phase-matching conditions provided by the crystal’s anisotropy ensure conservation of energy and momentum during this quantum process.
+</figcaption>
+</figure>
+</div>
+<ol start="2" type="1">
+<li><p><strong>Quantum memory</strong>: Rare-earth-doped birefringent crystals (e.g., Pr:YSiO₅) serve as solid-state quantum memories by preserving photonic quantum states.</p></li>
+<li><p><strong>Integrated quantum photonics</strong>: Anisotropic thin films like lithium niobate on insulator (LNOI) enable on-chip quantum operations with unprecedented efficiency and scalability.</p></li>
+</ol>
+</section>
+<section id="biophotonics-and-medical-applications" class="level3">
+<h3 class="anchored" data-anchor-id="biophotonics-and-medical-applications">Biophotonics and Medical Applications</h3>
+<p>The interaction between polarized light and anisotropic biological structures provides powerful diagnostic capabilities:</p>
+<ol type="1">
+<li><strong>Mueller matrix polarimetry</strong>: Measures the complete polarization response of tissue, revealing structural information invisible to conventional imaging. Applications include:
+<ul>
+<li>Early cancer detection</li>
+<li>Monitoring collagen remodeling in wounds</li>
+<li>Assessing retinal health</li>
+</ul></li>
+<li><strong>Polarization-sensitive optical coherence tomography (PS-OCT)</strong>: Combines interferometric imaging with polarization analysis to visualize birefringent structures like:
+<ul>
+<li>Collagen fiber organization</li>
+<li>Myelin in neural tissue</li>
+<li>Muscle fiber orientation</li>
+</ul></li>
+<li><strong>Glucose monitoring</strong>: Optically active (chiral) glucose molecules rotate polarized light proportionally to concentration, enabling non-invasive sensing approaches.</li>
+</ol>
+<p>The rapidly evolving field of modern applications demonstrates that anisotropic optical materials remain at the forefront of photonic technology development, with impacts ranging from telecommunications to quantum computing and medical diagnostics.</p>
+</section>
+</div>
+</div>
+</div>
+
+
 </section>
 </section>
 </section>
@@ -1452,6 +1649,15 @@ Figure&nbsp;2.7— Polarizing optics diagram showing the operation of half-wave 
     }
   });
   </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../lectures/lecture10/02-lecture10.html" class="pagination-link" aria-label="Electromagnetic &amp; Polarization Optics">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Electromagnetic &amp; Polarization Optics</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
 </div> <!-- /content -->
 
 
