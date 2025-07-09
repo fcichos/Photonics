@@ -1,0 +1,1359 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.29">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Principles of Nonlinear Optics – Photonics</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../lectures/lecture12/anisotropic_media.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-0815c480559380816a4d1ea211a47e91.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-9344fb9851b4da3cab95007ef9d770dc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../assets/css/styles.css">
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Photonics</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../../index.html" aria-current="page"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">FOURIER OPTICS AND IMAGING</li><li class="breadcrumb-item"><a href="../../lectures/lecture13/lecture13.html">Lecture 13</a></li><li class="breadcrumb-item"><a href="../../lectures/lecture13/lecture13.html">Nonlinear Optics</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="../../index.html" class="sidebar-logo-link">
+      <img src="../../assets/images/mona_logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home</span></a>
+  </div>
+</li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Course Info</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-info/intructors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Instructor</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-info/schedule.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Schedule</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-info/resources.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Ressources</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-info/labcourse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lab Course</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-info/exam.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exams</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">FOUNDATIONS OF PHOTONICS</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Lecture 1</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture01/01-lecture01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Ray Optics</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Lecture 2</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture02/01-lecture02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Matrix Optics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture02/02-lecture02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wave Optics Introduction</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Lecture 3</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture03/01-lecture03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Interference</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Lecture 4</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture04/01-lecture04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Gaussian Beams</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text">FOURIER OPTICS AND IMAGING</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
+ <span class="menu-text">Lecture 5</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture05/01-lecture05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Fourier Optics I</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true">
+ <span class="menu-text">Lecture 6</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture06/01-lecture06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Fourier Optics II</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true">
+ <span class="menu-text">Lecture 8</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture08/02-lecture04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Photon Optics</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true">
+ <span class="menu-text">Lecture 9</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture09/03-lecture04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Quantum Optics</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="true">
+ <span class="menu-text">Lecture 10</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture10/01-lecture10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Quadrature States</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture10/02-lecture10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Electromagnetic &amp; Polarization Optics</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="true">
+ <span class="menu-text">Lecture 11</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-13" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture10/02-lecture10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Electromagnetic Optics</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-14" role="navigation" aria-expanded="true">
+ <span class="menu-text">Lecture 12</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-14" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-14" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture12/anisotropic_media.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Anisotropic Materials</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-15" role="navigation" aria-expanded="true">
+ <span class="menu-text">Lecture 13</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-15" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-15" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture13/lecture13.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Nonlinear Optics</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#linear-vs.-nonlinear-optical-response" id="toc-linear-vs.-nonlinear-optical-response" class="nav-link active" data-scroll-target="#linear-vs.-nonlinear-optical-response">Linear vs.&nbsp;Nonlinear Optical Response</a>
+  <ul class="collapse">
+  <li><a href="#the-linear-regime" id="toc-the-linear-regime" class="nav-link" data-scroll-target="#the-linear-regime">The Linear Regime</a></li>
+  <li><a href="#the-nonlinear-regime" id="toc-the-nonlinear-regime" class="nav-link" data-scroll-target="#the-nonlinear-regime">The Nonlinear Regime</a></li>
+  </ul></li>
+  <li><a href="#second-order-nonlinear-processes" id="toc-second-order-nonlinear-processes" class="nav-link" data-scroll-target="#second-order-nonlinear-processes">Second-Order Nonlinear Processes</a>
+  <ul class="collapse">
+  <li><a href="#second-harmonic-generation-shg" id="toc-second-harmonic-generation-shg" class="nav-link" data-scroll-target="#second-harmonic-generation-shg">Second Harmonic Generation (SHG)</a></li>
+  <li><a href="#optical-rectification" id="toc-optical-rectification" class="nav-link" data-scroll-target="#optical-rectification">Optical Rectification</a></li>
+  <li><a href="#electro-optic-effect" id="toc-electro-optic-effect" class="nav-link" data-scroll-target="#electro-optic-effect">Electro-Optic Effect</a></li>
+  <li><a href="#sum-and-difference-frequency-generation" id="toc-sum-and-difference-frequency-generation" class="nav-link" data-scroll-target="#sum-and-difference-frequency-generation">Sum and Difference Frequency Generation</a></li>
+  <li><a href="#optical-parametric-amplification-and-oscillation" id="toc-optical-parametric-amplification-and-oscillation" class="nav-link" data-scroll-target="#optical-parametric-amplification-and-oscillation">Optical Parametric Amplification and Oscillation</a></li>
+  </ul></li>
+  <li><a href="#three-wave-mixing-a-general-framework" id="toc-three-wave-mixing-a-general-framework" class="nav-link" data-scroll-target="#three-wave-mixing-a-general-framework">Three-Wave Mixing: A General Framework</a>
+  <ul class="collapse">
+  <li><a href="#the-general-three-wave-mixing-process" id="toc-the-general-three-wave-mixing-process" class="nav-link" data-scroll-target="#the-general-three-wave-mixing-process">The General Three-Wave Mixing Process</a></li>
+  <li><a href="#coupled-wave-equations" id="toc-coupled-wave-equations" class="nav-link" data-scroll-target="#coupled-wave-equations">Coupled Wave Equations</a></li>
+  <li><a href="#unifying-second-order-processes" id="toc-unifying-second-order-processes" class="nav-link" data-scroll-target="#unifying-second-order-processes">Unifying Second-Order Processes</a></li>
+  <li><a href="#energy-flow-and-conservation" id="toc-energy-flow-and-conservation" class="nav-link" data-scroll-target="#energy-flow-and-conservation">Energy Flow and Conservation</a></li>
+  <li><a href="#the-role-of-phase-matching" id="toc-the-role-of-phase-matching" class="nav-link" data-scroll-target="#the-role-of-phase-matching">The Role of Phase Matching</a></li>
+  </ul></li>
+  <li><a href="#third-order-nonlinear-processes" id="toc-third-order-nonlinear-processes" class="nav-link" data-scroll-target="#third-order-nonlinear-processes">Third-Order Nonlinear Processes</a>
+  <ul class="collapse">
+  <li><a href="#third-harmonic-generation" id="toc-third-harmonic-generation" class="nav-link" data-scroll-target="#third-harmonic-generation">Third Harmonic Generation</a></li>
+  <li><a href="#intensity-dependent-refractive-index-kerr-effect" id="toc-intensity-dependent-refractive-index-kerr-effect" class="nav-link" data-scroll-target="#intensity-dependent-refractive-index-kerr-effect">Intensity-Dependent Refractive Index (Kerr Effect)</a></li>
+  <li><a href="#four-wave-mixing" id="toc-four-wave-mixing" class="nav-link" data-scroll-target="#four-wave-mixing">Four-Wave Mixing</a></li>
+  <li><a href="#self-phase-modulation-and-self-focusing" id="toc-self-phase-modulation-and-self-focusing" class="nav-link" data-scroll-target="#self-phase-modulation-and-self-focusing">Self-Phase Modulation and Self-Focusing</a></li>
+  </ul></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="lecture13.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">FOURIER OPTICS AND IMAGING</li><li class="breadcrumb-item"><a href="../../lectures/lecture13/lecture13.html">Lecture 13</a></li><li class="breadcrumb-item"><a href="../../lectures/lecture13/lecture13.html">Nonlinear Optics</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Principles of Nonlinear Optics</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>In conventional (linear) optics, the response of a material to an applied electric field is linearly proportional to the field strength. However, when light becomes intense enough, typically from laser sources, materials begin to respond in a nonlinear fashion. This nonlinear response forms the foundation of nonlinear optics, a field with numerous applications in modern technology and fundamental research.</p>
+<section id="linear-vs.-nonlinear-optical-response" class="level2">
+<h2 class="anchored" data-anchor-id="linear-vs.-nonlinear-optical-response">Linear vs.&nbsp;Nonlinear Optical Response</h2>
+<section id="the-linear-regime" class="level3">
+<h3 class="anchored" data-anchor-id="the-linear-regime">The Linear Regime</h3>
+<p>In the linear regime, the polarization <span class="math inline">\(\mathbf{P}\)</span> of a material is directly proportional to the applied electric field <span class="math inline">\(\mathbf{E}\)</span>:</p>
+<p><span class="math display">\[\mathbf{P} = \varepsilon_0 \chi^{(1)} \mathbf{E}\]</span></p>
+<p>where <span class="math inline">\(\varepsilon_0\)</span> is the permittivity of free space and <span class="math inline">\(\chi^{(1)}\)</span> is the linear susceptibility tensor.</p>
+<p>This polarization field contributes to Maxwell’s equations, specifically through the electric displacement field <span class="math inline">\(\mathbf{D} = \varepsilon_0 \mathbf{E} + \mathbf{P}\)</span>. Starting with Maxwell’s equations in a source-free dielectric medium:</p>
+<p><span class="math display">\[\nabla \times \mathbf{E} = -\frac{\partial \mathbf{B}}{\partial t}\]</span> <span class="math display">\[\nabla \times \mathbf{H} = \frac{\partial \mathbf{D}}{\partial t}\]</span></p>
+<p>We can derive the wave equation:</p>
+<p><span class="math display">\[\nabla^2 \mathbf{E} - \mu_0 \frac{\partial^2 \mathbf{D}}{\partial t^2} = 0\]</span></p>
+<p>Substituting the linear polarization relation, we get:</p>
+<p><span class="math display">\[\nabla^2 \mathbf{E} - \mu_0 \frac{\partial^2}{\partial t^2}[\varepsilon_0 \mathbf{E} + \varepsilon_0 \chi^{(1)} \mathbf{E}] = 0\]</span></p>
+<p><span class="math display">\[\nabla^2 \mathbf{E} - \mu_0 \varepsilon_0 (1 + \chi^{(1)}) \frac{\partial^2 \mathbf{E}}{\partial t^2} = 0\]</span></p>
+<p>Defining the relative permittivity <span class="math inline">\(\varepsilon_r = 1 + \chi^{(1)}\)</span> and refractive index <span class="math inline">\(n = \sqrt{\varepsilon_r}\)</span>, and using <span class="math inline">\(c = \frac{1}{\sqrt{\mu_0 \varepsilon_0}}\)</span> for the speed of light in vacuum, the wave equation becomes:</p>
+<p><span class="math display">\[\nabla^2 \mathbf{E} - \frac{n^2}{c^2} \frac{\partial^2 \mathbf{E}}{\partial t^2} = 0\]</span></p>
+<p>This transformed wave equation shows that the phase velocity in the medium is <span class="math inline">\(v_p = \frac{c}{n}\)</span>, demonstrating how the material’s linear response modifies the propagation of light through the medium.</p>
+</section>
+<section id="the-nonlinear-regime" class="level3">
+<h3 class="anchored" data-anchor-id="the-nonlinear-regime">The Nonlinear Regime</h3>
+<p>When the applied field becomes strong, we need to express the polarization as a power series:</p>
+<p><span class="math display">\[\mathbf{P} = \varepsilon_0 [\chi^{(1)} \mathbf{E} + \chi^{(2)} \mathbf{E}^2 + \chi^{(3)} \mathbf{E}^3 + ...]\]</span></p>
+<p>where <span class="math inline">\(\chi^{(2)}\)</span> and <span class="math inline">\(\chi^{(3)}\)</span> are the second-order and third-order nonlinear susceptibility tensors, respectively.</p>
+<p>To understand how this nonlinear polarization affects light propagation, we can separate the polarization into linear and nonlinear parts:</p>
+<p><span class="math display">\[\mathbf{P} = \mathbf{P}^{(1)} + \mathbf{P}^{NL}\]</span></p>
+<p>where <span class="math inline">\(\mathbf{P}^{(1)} = \varepsilon_0 \chi^{(1)} \mathbf{E}\)</span> is the linear polarization and <span class="math inline">\(\mathbf{P}^{NL} = \varepsilon_0 [\chi^{(2)} \mathbf{E}^2 + \chi^{(3)} \mathbf{E}^3 + ...]\)</span> is the nonlinear polarization.</p>
+<p>Substituting this into the wave equation derived earlier, we get:</p>
+<p><span class="math display">\[\nabla^2 \mathbf{E} - \mu_0 \frac{\partial^2}{\partial t^2}[\varepsilon_0 \mathbf{E} + \mathbf{P}^{(1)} + \mathbf{P}^{NL}] = 0\]</span></p>
+<p>Rearranging terms and using the definition of the linear refractive index:</p>
+<p><span class="math display">\[\nabla^2 \mathbf{E} - \frac{n^2}{c^2} \frac{\partial^2 \mathbf{E}}{\partial t^2} = \mu_0 \frac{\partial^2 \mathbf{P}^{NL}}{\partial t^2}\]</span></p>
+<p>This reformulation of the wave equation reveals a critical insight: the nonlinear polarization term acts as a source term in the wave equation. The left side describes wave propagation in a linear medium, while the right side represents a driving term arising from nonlinear optical processes.</p>
+<p>The Born approximation provides a useful framework for analyzing this equation. This approximation assumes that the nonlinear effects are much weaker than the linear response, allowing us to treat the nonlinear polarization as a perturbation. Under this approximation, we first solve for the electric field considering only linear effects, then use this solution to calculate the nonlinear polarization, which in turn acts as a source for new field components.</p>
+<p>Physically, this means that the nonlinear medium not only modifies the incident light but actually generates new electromagnetic radiation at different frequencies. For example, when the nonlinear polarization contains a term oscillating at frequency <span class="math inline">\(2\omega\)</span> (as in second-harmonic generation), it acts as a source that radiates an electromagnetic wave at this new frequency. This perspective elegantly explains how nonlinear optical processes can create light with frequencies not present in the original input fields.</p>
+</section>
+</section>
+<section id="second-order-nonlinear-processes" class="level2">
+<h2 class="anchored" data-anchor-id="second-order-nonlinear-processes">Second-Order Nonlinear Processes</h2>
+<p>Second-order nonlinear effects occur only in materials without inversion symmetry. This fundamental restriction arises from symmetry considerations: in a material with inversion symmetry, if we apply an electric field <span class="math inline">\(\mathbf{E}\)</span>, the induced polarization <span class="math inline">\(\mathbf{P}\)</span> must change sign if <span class="math inline">\(\mathbf{E}\)</span> changes sign. Mathematically, if <span class="math inline">\(\mathbf{P}(\mathbf{E}) = -\mathbf{P}(-\mathbf{E})\)</span>, then any even-order terms in the polarization expansion must vanish, including <span class="math inline">\(\chi^{(2)}\)</span>. This explains why glasses, liquids, and many crystals (those with inversion symmetry) cannot exhibit second-order nonlinear effects, while non-centrosymmetric crystals like LiNbO₃, KDP, and BBO are widely used for these applications.</p>
+<p><strong>Experimental Identification through Intensity Dependence</strong></p>
+<p>A key experimental signature of second-order nonlinear processes is their quadratic dependence on the incident laser intensity:</p>
+<p><span class="math display">\[\mathbf{P}^{(2)} \propto \chi^{(2)} \mathbf{E}^2\]</span> <span class="math display">\[I \propto |\mathbf{E}|^2 \Rightarrow |\mathbf{E}| \propto \sqrt{I}\]</span> <span class="math display">\[\mathbf{P}^{(2)} \propto \chi^{(2)} (\sqrt{I})^2 \propto I\]</span> <span class="math display">\[I_{signal} \propto |\mathbf{P}^{(2)}|^2 \propto I^2\]</span></p>
+<p>This quadratic scaling (<span class="math inline">\(I_{signal} \propto I^2\)</span>) provides a definitive way to identify second-order processes: plotting the nonlinear signal intensity versus incident power on a log-log scale yields a slope of 2. This intensity dependence makes second-order effects particularly efficient with high-intensity, pulsed laser sources.</p>
+<div id="fig-franken-shg" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-franken-shg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="img/2omega.png" class="img-fluid figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-franken-shg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1— The first experimental observation of second harmonic generation by Franken et al.&nbsp;(1961). This landmark experiment demonstrated frequency doubling of a ruby laser (694.3 nm) to generate ultraviolet light (347.15 nm) using a quartz crystal, establishing the field of nonlinear optics.
+</figcaption>
+</figure>
+</div>
+<section id="second-harmonic-generation-shg" class="level3">
+<h3 class="anchored" data-anchor-id="second-harmonic-generation-shg">Second Harmonic Generation (SHG)</h3>
+<p>Using the complex representation of electric fields, we can more elegantly describe nonlinear processes. For a monochromatic wave at frequency <span class="math inline">\(\omega\)</span>, the electric field is:</p>
+<p><span class="math display">\[\mathbf{E}(t) = \mathbf{E}_\omega e^{-i\omega t} + \mathbf{E}_\omega^* e^{i\omega t}\]</span></p>
+<p>where <span class="math inline">\(\mathbf{E}_\omega\)</span> is the complex amplitude and <span class="math inline">\(\mathbf{E}_\omega^*\)</span> is its complex conjugate.</p>
+<p>The second-order polarization then becomes:</p>
+<p><span class="math display">\[\mathbf{P}^{(2)}(t) = \varepsilon_0 \chi^{(2)} \mathbf{E}^2(t) = \varepsilon_0 \chi^{(2)} (\mathbf{E}_\omega e^{-i\omega t} + \mathbf{E}_\omega^* e^{i\omega t})^2\]</span></p>
+<p>Expanding this expression:</p>
+<p><span class="math display">\[\mathbf{P}^{(2)}(t) = \varepsilon_0 \chi^{(2)} [\mathbf{E}_\omega^2 e^{-2i\omega t} + (\mathbf{E}_\omega^*)^2 e^{2i\omega t} + 2|\mathbf{E}_\omega|^2]\]</span></p>
+<p>This reveals three distinct components:</p>
+<ol type="1">
+<li>A component oscillating at <span class="math inline">\(2\omega\)</span> (second harmonic)</li>
+<li>Its complex conjugate also at <span class="math inline">\(2\omega\)</span></li>
+<li>A DC (zero-frequency) component proportional to the intensity <span class="math inline">\(|\mathbf{E}_\omega|^2\)</span></li>
+</ol>
+<p>The second harmonic term <span class="math inline">\(\mathbf{E}_\omega^2 e^{-2i\omega t}\)</span> radiates at twice the input frequency, forming the basis of SHG.</p>
+<div id="fig-shg-rectification" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-shg-rectification-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="img/secondorder.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-shg-rectification-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2— Second-order polarization effects. The input electric field E(t) (left) creates a nonlinear polarization P^(2)(t) (right) with two components: one oscillating at twice the input frequency (second harmonic generation) and a static component (optical rectification).
+</figcaption>
+</figure>
+</div>
+<p>The figure illustrates how the square of the electric field leads to both the second harmonic generation (oscillating at 2ω) and optical rectification (the DC component) as previously derived mathematically. This visualization helps conceptualize how a single-frequency input creates multiple frequency components in the polarization response of a nonlinear medium.</p>
+</section>
+<section id="optical-rectification" class="level3">
+<h3 class="anchored" data-anchor-id="optical-rectification">Optical Rectification</h3>
+<p>Optical rectification is a second-order nonlinear process where an intense optical field generates a static (DC) polarization in a nonlinear medium. As previously noted in our discussion of SHG, when a monochromatic field is applied:</p>
+<p><span class="math display">\[\mathbf{E}(t) = \mathbf{E}_\omega e^{-i\omega t} + \mathbf{E}_\omega^* e^{i\omega t}\]</span></p>
+<p>The second-order polarization includes a DC term:</p>
+<p><span class="math display">\[\mathbf{P}^{(2)}_{DC} = \varepsilon_0 \chi^{(2)} \cdot 2|\mathbf{E}_\omega|^2\]</span></p>
+<p>This DC polarization is proportional to the intensity of the incident light. The direction of the induced polarization <span class="math inline">\(\mathbf{P}\)</span> depends on the crystal structure through the second-order susceptibility tensor <span class="math inline">\(\chi^{(2)}\)</span>, which relates the components of <span class="math inline">\(\mathbf{P}\)</span> to the square of <span class="math inline">\(\mathbf{E}\)</span>. More explicitly, we can write:</p>
+<p><span class="math display">\[P_i^{(2)} = \varepsilon_0 \sum_{j,k} \chi_{ijk}^{(2)} E_j E_k\]</span></p>
+<p>where the indices <span class="math inline">\(i\)</span>, <span class="math inline">\(j\)</span>, and <span class="math inline">\(k\)</span> represent the Cartesian components. This tensorial relationship means that the polarization direction is not necessarily parallel to the electric field, but is determined by the symmetry properties of the nonlinear medium. Physically, optical rectification can be viewed as a process that “rectifies” the oscillating electric field of light into a static electric field.</p>
+<p>One important application of optical rectification is the generation of terahertz (THz) radiation. When ultrashort laser pulses (with broad frequency spectra) undergo optical rectification, the resulting time-varying polarization can radiate electromagnetic waves in the THz region. This provides a convenient method for generating broadband THz radiation for spectroscopy and imaging applications.</p>
+</section>
+<section id="electro-optic-effect" class="level3">
+<h3 class="anchored" data-anchor-id="electro-optic-effect">Electro-Optic Effect</h3>
+<p>The electro-optic effect, also known as the Pockels effect, can be derived from the second-order nonlinear mixing of an optical wave and a static electric field. Consider a total electric field consisting of an optical component at frequency <span class="math inline">\(\omega\)</span> and a DC field:</p>
+<p><span class="math display">\[\mathbf{E}(t) = \mathbf{E}_\omega e^{-i\omega t} + \mathbf{E}_\omega^* e^{i\omega t} + \mathbf{E}_{DC}\]</span></p>
+<p>The second-order polarization in the nonlinear medium is:</p>
+<p><span class="math display">\[\mathbf{P}^{(2)}(t) = \varepsilon_0 \chi^{(2)} \mathbf{E}^2(t)\]</span></p>
+<p>Expanding this expression:</p>
+<p><span class="math display">\[\mathbf{P}^{(2)}(t) = \varepsilon_0 \chi^{(2)} [\mathbf{E}_\omega^2 e^{-2i\omega t} + (\mathbf{E}_\omega^*)^2 e^{2i\omega t} + \mathbf{E}_{DC}^2 + 2|\mathbf{E}_\omega|^2 + 2\mathbf{E}_\omega \mathbf{E}_{DC} e^{-i\omega t} + 2\mathbf{E}_\omega^* \mathbf{E}_{DC} e^{i\omega t}]\]</span></p>
+<p>The terms oscillating at frequency <span class="math inline">\(\omega\)</span> are particularly significant as they modify the propagation of the optical wave:</p>
+<p><span class="math display">\[\mathbf{P}^{(2)}_\omega = 2\varepsilon_0 \chi^{(2)} \mathbf{E}_\omega \mathbf{E}_{DC} e^{-i\omega t}\]</span></p>
+<p>This adds to the linear polarization at frequency <span class="math inline">\(\omega\)</span>:</p>
+<p><span class="math display">\[\mathbf{P}^{(1)}_\omega = \varepsilon_0 \chi^{(1)} \mathbf{E}_\omega e^{-i\omega t}\]</span></p>
+<p>The total polarization at frequency <span class="math inline">\(\omega\)</span> becomes:</p>
+<p><span class="math display">\[\mathbf{P}_\omega = \varepsilon_0 [\chi^{(1)} + 2\chi^{(2)}\mathbf{E}_{DC}] \mathbf{E}_\omega e^{-i\omega t}\]</span></p>
+<p>This can be viewed as a modification of the effective susceptibility due to the applied DC field:</p>
+<p><span class="math display">\[\chi^{eff} = \chi^{(1)} + 2\chi^{(2)}\mathbf{E}_{DC}\]</span></p>
+<p>Since the refractive index is related to susceptibility by <span class="math inline">\(n^2 = 1 + \chi\)</span>, we can directly calculate how the DC field changes the refractive index. For the case without a DC field, we have:</p>
+<p><span class="math display">\[n_0^2 = 1 + \chi^{(1)}\]</span></p>
+<p>When the DC field is applied, the effective refractive index becomes:</p>
+<p><span class="math display">\[n^2 = 1 + \chi^{eff} = 1 + \chi^{(1)} + 2\chi^{(2)}\mathbf{E}_{DC}\]</span></p>
+<p>This gives us:</p>
+<p><span class="math display">\[n^2 = n_0^2 + 2\chi^{(2)}\mathbf{E}_{DC}\]</span></p>
+<p>The change in refractive index is <span class="math inline">\(\Delta n = n - n_0\)</span>. We can express this as:</p>
+<p><span class="math display">\[n = \sqrt{n_0^2 + 2\chi^{(2)}\mathbf{E}_{DC}}\]</span></p>
+<p>For typical situations where the nonlinear effect is small compared to the linear refractive index (<span class="math inline">\(2\chi^{(2)}\mathbf{E}_{DC} \ll n_0^2\)</span>), we can use the binomial approximation:</p>
+<p><span class="math display">\[\sqrt{a + b} \approx \sqrt{a} + \frac{b}{2\sqrt{a}} \text{ when } b \ll a\]</span></p>
+<p>Applying this approximation:</p>
+<p><span class="math display">\[n \approx n_0 + \frac{2\chi^{(2)}\mathbf{E}_{DC}}{2n_0} = n_0 + \frac{\chi^{(2)}\mathbf{E}_{DC}}{n_0}\]</span></p>
+<p>Therefore, the change in refractive index due to the DC field is:</p>
+<p><span class="math display">\[\Delta n \approx \frac{\chi^{(2)}\mathbf{E}_{DC}}{n_0}\]</span></p>
+<p>This direct relationship shows how the second-order nonlinear susceptibility couples with the DC electric field to modify the refractive index of the material.</p>
+<p>The electro-optic effect enables several important devices:</p>
+<ol type="1">
+<li>Electro-optic modulators: Used to modulate the amplitude, phase, or polarization of light</li>
+<li>Q-switches: For generating short, intense laser pulses</li>
+<li>Optical isolators: For preventing back-reflections in optical systems</li>
+<li>Pockels cells: For rapidly switching polarization states</li>
+</ol>
+<p>Common electro-optic materials include lithium niobate (LiNbO₃), potassium dihydrogen phosphate (KDP), and various organic crystals.</p>
+<div id="fig-pockels-cell" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-pockels-cell-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="img/pockels.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pockels-cell-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3— The principle of operation of a Pockels cell. A Pockels cell uses the electro-optic effect to modulate light by applying a voltage that changes the refractive index of the crystal. This changes the polarization state of transmitted light, which can be converted to amplitude modulation using polarizers.
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="sum-and-difference-frequency-generation" class="level3">
+<h3 class="anchored" data-anchor-id="sum-and-difference-frequency-generation">Sum and Difference Frequency Generation</h3>
+<p>Sum and difference frequency generation is a natural extension of the electro-optic effect discussed earlier. While the electro-optic effect involved the interaction between a DC field and an optical wave, we now consider the interaction between two optical waves of different frequencies, allowing for the generation of new frequencies that are either the sum or difference of the input frequencies.</p>
+<p>When two laser beams with frequencies <span class="math inline">\(\omega_1\)</span> and <span class="math inline">\(\omega_2\)</span> interact in a nonlinear medium, the total electric field can be written as:</p>
+<p><span class="math display">\[\mathbf{E}(t) = \mathbf{E}_1 e^{-i\omega_1 t} + \mathbf{E}_2 e^{-i\omega_2 t} + c.c.\]</span></p>
+<p>The second-order polarization is proportional to the square of this field. Expanding this expression:</p>
+<p><span class="math display">\[\begin{align}
+\mathbf{P}^{(2)}(t) &amp;= \varepsilon_0 \chi^{(2)} [ \\
+&amp;\mathbf{E}_1^2 e^{-2i\omega_1 t} + \mathbf{E}_2^2 e^{-2i\omega_2 t} + \\
+&amp;2\mathbf{E}_1\mathbf{E}_2 e^{-i(\omega_1+\omega_2) t} + 2\mathbf{E}_1\mathbf{E}_2^* e^{-i(\omega_1-\omega_2) t} + \\
+&amp;c.c. + 2|\mathbf{E}_1|^2 + 2|\mathbf{E}_2|^2]
+\end{align}\]</span></p>
+<p>This expression contains several important terms:</p>
+<ul>
+<li>Second harmonic terms at <span class="math inline">\(2\omega_1\)</span> and <span class="math inline">\(2\omega_2\)</span></li>
+<li>Sum frequency term at <span class="math inline">\(\omega_1 + \omega_2\)</span> (from <span class="math inline">\(\mathbf{E}_1 \mathbf{E}_2 e^{-i(\omega_1+\omega_2)t}\)</span>)</li>
+<li>Difference frequency term at <span class="math inline">\(\omega_1 - \omega_2\)</span> (from <span class="math inline">\(\mathbf{E}_1 \mathbf{E}_2^* e^{-i(\omega_1-\omega_2)t}\)</span>)</li>
+<li>DC terms from <span class="math inline">\(2|\mathbf{E}_1|^2\)</span> and <span class="math inline">\(2|\mathbf{E}_2|^2\)</span> (optical rectification)</li>
+</ul>
+<p>While the electro-optic effect can be viewed as a special case where one of the fields is at zero frequency (DC), the sum and difference frequency generation involves two oscillating fields, creating new optical frequencies through their nonlinear interaction. This fundamental process enables frequency conversion across the electromagnetic spectrum and forms the basis for many applications, including infrared spectroscopy, tunable laser sources, and optical parametric amplifiers.</p>
+</section>
+<section id="optical-parametric-amplification-and-oscillation" class="level3">
+<h3 class="anchored" data-anchor-id="optical-parametric-amplification-and-oscillation">Optical Parametric Amplification and Oscillation</h3>
+<p>One of the most powerful and versatile applications of nonlinear optics is optical parametric amplification and oscillation. These processes enable the generation of tunable coherent light across spectral regions that are difficult or impossible to access with conventional lasers—a capability that has revolutionized fields from spectroscopy to quantum optics.</p>
+<p>In optical parametric processes, a pump photon of frequency <span class="math inline">\(\omega_p\)</span> splits into signal (<span class="math inline">\(\omega_s\)</span>) and idler (<span class="math inline">\(\omega_i\)</span>) photons, where <span class="math inline">\(\omega_p = \omega_s + \omega_i\)</span>. This can be viewed as the reverse of sum-frequency generation. What makes this process particularly valuable is that by adjusting phase-matching conditions through temperature tuning or crystal orientation, researchers can continuously select which frequencies are generated, effectively creating a “laser” whose output wavelength is tunable over an extremely broad range.</p>
+<p>In the complex notation, this process is described by a polarization term:</p>
+<p><span class="math display">\[\mathbf{P}^{(2)}(\omega_s) \propto \varepsilon_0 \chi^{(2)} \mathbf{E}_p \mathbf{E}_i^*\]</span></p>
+<p>This term acts as a driving force that amplifies the signal field. When placed in a resonant cavity, this becomes an optical parametric oscillator (OPO), producing tunable output frequencies. Today, OPOs are indispensable tools in applications requiring mid-infrared light, including molecular spectroscopy, remote sensing, medical diagnostics, and as sources for nondestructive material testing where conventional laser sources are unavailable.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Spontaneous Parametric Downconversion for Entangled Photon Generation
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Spontaneous parametric downconversion (SPDC) represents the quantum mechanical limit of the parametric amplification process, where vacuum fluctuations stimulate the creation of photon pairs. In this process, a pump photon spontaneously converts into two lower-energy photons (signal and idler) within a nonlinear crystal, with no initial seed field required. This process is governed by the same energy conservation (<span class="math inline">\(\omega_p = \omega_s + \omega_i\)</span>) and phase-matching (<span class="math inline">\(\mathbf{k}_p = \mathbf{k}_s + \mathbf{k}_i\)</span>) conditions as classical parametric amplification.</p>
+<div id="fig-spdc" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-spdc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="img/spdc.png" class="img-fluid figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-spdc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4— Spontaneous parametric downconversion (SPDC). A pump photon enters a nonlinear crystal and splits into two lower-energy photons (signal and idler) with correlated properties, forming the basis for entangled photon generation.
+</figcaption>
+</figure>
+</div>
+<p>What makes SPDC particularly significant for quantum information science is that the generated photon pairs exhibit quantum entanglement—a non-classical correlation that Einstein famously referred to as “spooky action at a distance.” The photons can be entangled in various degrees of freedom:</p>
+<ol type="1">
+<li><p><strong>Polarization entanglement</strong>: The polarization states of the two photons are correlated such that measuring the polarization of one photon instantly determines the polarization of its partner, regardless of their separation distance. This can be achieved using Type-II phase matching where the signal and idler photons have orthogonal polarizations, and their emission cones overlap.</p></li>
+<li><p><strong>Momentum entanglement</strong>: The emission direction (wavevector) of one photon is correlated with that of its partner, constrained by the phase-matching conditions.</p></li>
+<li><p><strong>Energy-time entanglement</strong>: The exact time of photon pair creation is uncertain within the coherence time of the pump laser, leading to entanglement in the energy-time domain.</p></li>
+</ol>
+<p>The quantum state of the generated photon pair can be written as:</p>
+<p><span class="math display">\[|\Psi\rangle = \frac{1}{\sqrt{2}}(|H\rangle_s|V\rangle_i + e^{i\phi}|V\rangle_s|H\rangle_i)\]</span></p>
+<p>for polarization-entangled photons, where <span class="math inline">\(|H\rangle\)</span> and <span class="math inline">\(|V\rangle\)</span> represent horizontal and vertical polarization states, and <span class="math inline">\(\phi\)</span> is a relative phase that can be controlled experimentally.</p>
+<div id="fig-type-I-II-spdc" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-type-I-II-spdc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="img/pdc_I_II.png" class="img-fluid figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-type-I-II-spdc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5— Type I and Type II spontaneous parametric down-conversion (SPDC) configurations. In Type I, the signal and idler photons have the same polarization, creating a single emission cone. In Type II, they have orthogonal polarizations, creating two distinct cones that intersect at two points, which provides a source of polarization-entangled photon pairs.
+</figcaption>
+</figure>
+</div>
+<p>Entangled photon sources based on SPDC have become foundational tools for quantum information processing, including:</p>
+<ul>
+<li>Quantum key distribution for secure communication</li>
+<li>Bell inequality tests for verification of quantum mechanics</li>
+<li>Quantum teleportation protocols</li>
+<li>Optical quantum computing experiments</li>
+<li>Quantum metrology and imaging with enhanced sensitivity</li>
+</ul>
+<p>A typical experimental setup for generating polarization-entangled photons consists of a UV pump laser (often 405nm) illuminating a nonlinear crystal such as beta-barium borate (BBO). The downconverted photons pass through polarization optics and narrow-band filters before being collected into single-mode fibers connected to single-photon detectors. Coincidence counting electronics then identify the correlated photon pairs, confirming their entangled nature through quantum state tomography or Bell inequality measurements.</p>
+<p>The efficiency of SPDC is typically quite low (approximately 10^-10 to 10^-8 pair generation probability per pump photon), but recent advances in periodically poled materials, waveguide structures, and cavity enhancement have significantly improved brightness and collection efficiency, making these sources increasingly practical for quantum technologies.</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="three-wave-mixing-a-general-framework" class="level2">
+<h2 class="anchored" data-anchor-id="three-wave-mixing-a-general-framework">Three-Wave Mixing: A General Framework</h2>
+<p>All the second-order nonlinear processes we’ve discussed—second harmonic generation, optical rectification, electro-optic effect, sum and difference frequency generation, and optical parametric amplification—can be understood within a unified theoretical framework called three-wave mixing. This general approach provides deeper insight into the fundamental physics underlying these phenomena and reveals the common principles that govern their behavior.</p>
+<section id="the-general-three-wave-mixing-process" class="level3">
+<h3 class="anchored" data-anchor-id="the-general-three-wave-mixing-process">The General Three-Wave Mixing Process</h3>
+<p>In three-wave mixing, three electromagnetic waves interact through the second-order nonlinear susceptibility <span class="math inline">\(\chi^{(2)}\)</span> of a medium. These three waves, with frequencies <span class="math inline">\(\omega_1\)</span>, <span class="math inline">\(\omega_2\)</span>, and <span class="math inline">\(\omega_3\)</span>, are coupled through the nonlinear polarization. The key insight is that energy and momentum conservation require:</p>
+<p><strong>Energy Conservation (Photon Picture):</strong> <span class="math display">\[\omega_3 = \omega_1 + \omega_2\]</span></p>
+<p><strong>Momentum Conservation (Phase Matching):</strong> <span class="math display">\[\mathbf{k}_3 = \mathbf{k}_1 + \mathbf{k}_2\]</span></p>
+<p>where <span class="math inline">\(\mathbf{k}_i = n_i \omega_i / c\)</span> are the wave vectors of the three waves.</p>
+</section>
+<section id="coupled-wave-equations" class="level3">
+<h3 class="anchored" data-anchor-id="coupled-wave-equations">Coupled Wave Equations</h3>
+<p>The evolution of the three interacting waves can be described by a set of coupled differential equations. Starting from Maxwell’s equations with the nonlinear polarization as a source term, we can derive:</p>
+<p><span class="math display">\[\frac{dA_1}{dz} = -i\frac{\omega_1 d_\text{eff}}{n_1 c} A_2^* A_3 e^{i\Delta k z}\]</span></p>
+<p><span class="math display">\[\frac{dA_2}{dz} = -i\frac{\omega_2 d_\text{eff}}{n_2 c} A_1^* A_3 e^{i\Delta k z}\]</span></p>
+<p><span class="math display">\[\frac{dA_3}{dz} = -i\frac{\omega_3 d_\text{eff}}{n_3 c} A_1 A_2 e^{-i\Delta k z}\]</span></p>
+<p>where <span class="math inline">\(A_i\)</span> are the slowly varying amplitudes of the three waves, <span class="math inline">\(d_\text{eff}\)</span> is the effective nonlinear coefficient, and <span class="math inline">\(\Delta k = k_3 - k_1 - k_2\)</span> is the phase mismatch.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Derivation of the Coupled Wave Equations
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>To derive these coupled wave equations:</p>
+<ol type="1">
+<li><p>Start with Maxwell’s wave equation including the nonlinear polarization: <span class="math display">\[\nabla^2 \mathbf{E} - \frac{n^2}{c^2} \frac{\partial^2 \mathbf{E}}{\partial t^2} = \mu_0 \frac{\partial^2 \mathbf{P}^{NL}}{\partial t^2}\]</span></p></li>
+<li><p>Express the total electric field as a sum of three waves: <span class="math display">\[\mathbf{E}(z,t) = \frac{1}{2}\sum_{j=1}^{3} [A_j(z) e^{i(k_j z - \omega_j t)} + c.c.]\]</span> where <span class="math inline">\(A_j(z)\)</span> are slowly varying amplitudes.</p></li>
+<li><p>The second-order nonlinear polarization is: <span class="math display">\[\mathbf{P}^{(2)}(z,t) = \varepsilon_0 \chi^{(2)} \mathbf{E}^2(z,t)\]</span></p></li>
+<li><p>For each frequency component <span class="math inline">\(\omega_j\)</span>, extract the relevant polarization term:</p>
+<ul>
+<li>For <span class="math inline">\(\omega_1\)</span>: <span class="math inline">\(\mathbf{P}^{(2)}(\omega_1) \propto \varepsilon_0 \chi^{(2)} A_2^* A_3 e^{i[(k_3-k_2)z - \omega_1 t]}\)</span></li>
+<li>For <span class="math inline">\(\omega_2\)</span>: <span class="math inline">\(\mathbf{P}^{(2)}(\omega_2) \propto \varepsilon_0 \chi^{(2)} A_1^* A_3 e^{i[(k_3-k_1)z - \omega_2 t]}\)</span></li>
+<li>For <span class="math inline">\(\omega_3\)</span>: <span class="math inline">\(\mathbf{P}^{(2)}(\omega_3) \propto \varepsilon_0 \chi^{(2)} A_1 A_2 e^{i[(k_1+k_2)z - \omega_3 t]}\)</span></li>
+</ul></li>
+<li><p>Substitute into the wave equation and apply the slowly varying amplitude approximation: <span class="math display">\[\left|\frac{d^2 A_j}{dz^2}\right| \ll \left|k_j \frac{dA_j}{dz}\right|\]</span></p></li>
+<li><p>Define <span class="math inline">\(\Delta k = k_3 - k_1 - k_2\)</span> and the effective nonlinear coefficient <span class="math inline">\(d_{eff} = \frac{1}{2}\chi^{(2)}\)</span></p></li>
+<li><p>After simplification, we obtain the three coupled equations: <span class="math display">\[\frac{dA_1}{dz} = -i\frac{\omega_1 d_\text{eff}}{n_1 c} A_2^* A_3 e^{i\Delta k z}\]</span></p>
+<p><span class="math display">\[\frac{dA_2}{dz} = -i\frac{\omega_2 d_\text{eff}}{n_2 c} A_1^* A_3 e^{i\Delta k z}\]</span></p>
+<p><span class="math display">\[\frac{dA_3}{dz} = -i\frac{\omega_3 d_\text{eff}}{n_3 c} A_1 A_2 e^{-i\Delta k z}\]</span></p></li>
+</ol>
+<p>These equations describe the energy exchange between the three waves and form the foundation for analyzing all three-wave mixing processes.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="unifying-second-order-processes" class="level3">
+<h3 class="anchored" data-anchor-id="unifying-second-order-processes">Unifying Second-Order Processes</h3>
+<p>This general framework elegantly encompasses all the second-order processes we’ve studied:</p>
+<ul>
+<li><strong>Second Harmonic Generation</strong>: Set <span class="math inline">\(\omega_1 = \omega_2 = \omega\)</span> and <span class="math inline">\(\omega_3 = 2\omega\)</span></li>
+<li><strong>Optical Rectification</strong>: Set <span class="math inline">\(\omega_1 = \omega\)</span>, <span class="math inline">\(\omega_2 = -\omega\)</span>, and <span class="math inline">\(\omega_3 = 0\)</span> (DC)</li>
+<li><strong>Electro-Optic Effect</strong>: Set <span class="math inline">\(\omega_1 = 0\)</span> (DC field), <span class="math inline">\(\omega_2 = \omega\)</span>, and <span class="math inline">\(\omega_3 = \omega\)</span></li>
+<li><strong>Sum Frequency Generation</strong>: All three frequencies are different with <span class="math inline">\(\omega_3 = \omega_1 + \omega_2\)</span></li>
+<li><strong>Difference Frequency Generation</strong>: Set <span class="math inline">\(\omega_2 = -\omega_2'\)</span> so that <span class="math inline">\(\omega_3 = \omega_1 - \omega_2'\)</span></li>
+<li><strong>Optical Parametric Amplification</strong>: Pump at <span class="math inline">\(\omega_3\)</span> generates signal at <span class="math inline">\(\omega_1\)</span> and idler at <span class="math inline">\(\omega_2\)</span></li>
+</ul>
+</section>
+<section id="energy-flow-and-conservation" class="level3">
+<h3 class="anchored" data-anchor-id="energy-flow-and-conservation">Energy Flow and Conservation</h3>
+<p>The coupled wave equations reveal that energy flows between the three waves in a way that conserves total energy. The Manley-Rowe relations, derived from these equations, show that:</p>
+<p><span class="math display">\[\frac{1}{\omega_1}\frac{d}{dz}\left(\frac{|A_1|^2}{2}\right) + \frac{1}{\omega_3}\frac{d}{dz}\left(\frac{|A_3|^2}{2}\right) = 0\]</span></p>
+<p><span class="math display">\[\frac{1}{\omega_2}\frac{d}{dz}\left(\frac{|A_2|^2}{2}\right) + \frac{1}{\omega_3}\frac{d}{dz}\left(\frac{|A_3|^2}{2}\right) = 0\]</span></p>
+<p>These relations ensure that the number of photons is conserved in the interaction: when one photon at <span class="math inline">\(\omega_3\)</span> is destroyed, one photon each at <span class="math inline">\(\omega_1\)</span> and <span class="math inline">\(\omega_2\)</span> is created, and vice versa.</p>
+</section>
+<section id="the-role-of-phase-matching" class="level3">
+<h3 class="anchored" data-anchor-id="the-role-of-phase-matching">The Role of Phase Matching</h3>
+<p>The exponential factor <span class="math inline">\(e^{i\Delta k z}\)</span> in the coupled wave equations reveals a critical requirement for efficient nonlinear interactions: phase matching, where <span class="math inline">\(\Delta k \approx 0\)</span>. Phase matching ensures that the nonlinear polarization and the generated electromagnetic wave maintain proper phase alignment throughout the propagation distance. When perfectly phase-matched (<span class="math inline">\(\Delta k = 0\)</span>), the energy transfer between interacting waves accumulates constructively along the entire crystal length, maximizing conversion efficiency. Without phase matching (<span class="math inline">\(\Delta k \neq 0\)</span>), the direction of energy flow oscillates with a coherence length <span class="math inline">\(L_c = \pi/|\Delta k|\)</span>, severely limiting the effective interaction length and conversion efficiency.</p>
+<p>Several techniques have been developed to achieve phase matching:</p>
+<ol type="1">
+<li><p>Birefringent phase matching: This technique exploits the refractive index difference between orthogonal polarization states in anisotropic crystals. By carefully orienting the crystal and selecting appropriate polarizations, one can satisfy the condition <span class="math inline">\(n_1(\omega_1) = n_3(\omega_3)\)</span> for type-I phase matching or other analogous conditions for different processes. Temperature tuning can provide fine adjustment of these conditions in many materials.</p></li>
+<li><p>Quasi-phase matching: When birefringent phase matching is difficult or impossible, quasi-phase matching offers an elegant alternative. Rather than maintaining <span class="math inline">\(\Delta k = 0\)</span>, this approach periodically inverts the sign of the nonlinear coefficient (typically by creating periodic domain inversions in ferroelectric materials) with period <span class="math inline">\(\Lambda = 2L_c\)</span>. This effectively resets the phase relationship at precisely the distance where destructive interference would begin, allowing efficient nonlinear conversion even in materials that cannot be birefringently phase-matched.</p></li>
+<li><p>Modal phase matching: In waveguides and fibers, the different propagation constants of various spatial modes can be exploited to achieve phase matching between waves of different frequencies traveling in different modes.</p></li>
+</ol>
+</section>
+</section>
+<section id="third-order-nonlinear-processes" class="level2">
+<h2 class="anchored" data-anchor-id="third-order-nonlinear-processes">Third-Order Nonlinear Processes</h2>
+<p>Third-order nonlinear processes arise from the third-order susceptibility <span class="math inline">\(\chi^{(3)}\)</span> and represent a fundamentally different class of optical phenomena compared to second-order effects. While second-order processes require non-centrosymmetric materials and involve three-wave mixing, third-order effects can occur in all materials, including centrosymmetric crystals, glasses, and liquids, making them universally accessible across a broad range of optical materials.</p>
+<p><strong>Experimental Identification through Intensity Dependence</strong></p>
+<p>Third-order nonlinear processes are characterized by their cubic dependence on the incident laser intensity. The third-order polarization is given by:</p>
+<p><span class="math display">\[\mathbf{P}^{(3)} = \varepsilon_0 \chi^{(3)} \mathbf{E}^3\]</span></p>
+<p>Since intensity <span class="math inline">\(I \propto |\mathbf{E}|^2\)</span>, the nonlinear signal scales as:</p>
+<p><span class="math display">\[I_{signal} \propto I^3\]</span></p>
+<p>This scaling is verifiable by measuring the slope on a log-log plot of signal versus input power. The strong intensity dependence makes third-order effects prominent in ultrafast optics and high-intensity laser applications, enabling phenomena such as four-wave mixing, intensity-dependent refractive indices, and self-action effects.</p>
+<section id="third-harmonic-generation" class="level3">
+<h3 class="anchored" data-anchor-id="third-harmonic-generation">Third Harmonic Generation</h3>
+<p>Third harmonic generation (THG) is the simplest third-order frequency conversion process, where three photons at frequency <span class="math inline">\(\omega\)</span> combine to produce one photon at frequency <span class="math inline">\(3\omega\)</span>. Unlike second harmonic generation, THG can occur in any material since it doesn’t require the breaking of inversion symmetry.</p>
+<p>For a monochromatic wave <span class="math inline">\(\mathbf{E}(t) = \mathbf{E}_0 e^{-i\omega t} + c.c.\)</span>, the third-order polarization contains a term:</p>
+<p><span class="math display">\[\mathbf{P}^{(3)}(3\omega) = \varepsilon_0 \chi^{(3)} \mathbf{E}_0^3 e^{-3i\omega t}\]</span></p>
+<p>This polarization oscillates at <span class="math inline">\(3\omega\)</span> and can drive the generation of third harmonic radiation. The conversion efficiency depends on the cube of the incident intensity, making THG particularly sensitive to peak power. This cubic dependence means that THG is most efficient with ultrashort, high-intensity pulses.</p>
+<p>The phase matching condition for THG is:</p>
+<p><span class="math display">\[\Delta k = k_{3\omega} - 3k_{\omega} = 0\]</span></p>
+<p>where <span class="math inline">\(k_{\omega} = n(\omega)\omega/c\)</span> and <span class="math inline">\(k_{3\omega} = n(3\omega)3\omega/c\)</span>. Due to normal dispersion, this condition is typically not satisfied in bulk materials, but can be achieved in specially designed waveguides or by using focused beams where the Gouy phase shift can compensate for the material dispersion.</p>
+<p>THG is widely used in microscopy applications, particularly for biological imaging, because it provides excellent depth resolution and can penetrate deeper into tissues than two-photon fluorescence. The technique is also valuable for characterizing ultrashort pulses and for generating UV light from near-infrared sources.</p>
+</section>
+<section id="intensity-dependent-refractive-index-kerr-effect" class="level3">
+<h3 class="anchored" data-anchor-id="intensity-dependent-refractive-index-kerr-effect">Intensity-Dependent Refractive Index (Kerr Effect)</h3>
+<p>One of the most important third-order nonlinear effects is the intensity-dependent refractive index, also known as the optical Kerr effect. This phenomenon occurs because the third-order polarization includes a term that oscillates at the same frequency as the driving field, effectively modifying the material’s linear response.</p>
+<p>For a field <span class="math inline">\(\mathbf{E}(t) = \mathbf{E}_0 e^{-i\omega t} + c.c.\)</span>, the third-order polarization includes:</p>
+<p><span class="math display">\[\mathbf{P}^{(3)}(\omega) = 3\varepsilon_0 \chi^{(3)} |\mathbf{E}_0|^2 \mathbf{E}_0 e^{-i\omega t}\]</span></p>
+<p>This term is proportional to the intensity <span class="math inline">\(I = (n\varepsilon_0 c/2)|\mathbf{E}_0|^2\)</span> and modifies the effective susceptibility. The resulting refractive index becomes:</p>
+<p><span class="math display">\[n = n_0 + n_2 I\]</span></p>
+<p>where <span class="math inline">\(n_0\)</span> is the linear refractive index and <span class="math inline">\(n_2\)</span> is the nonlinear refractive index coefficient:</p>
+<p><span class="math display">\[n_2 = \frac{3\operatorname{Re}(\chi^{(3)})}{2n_0^2\varepsilon_0 c}\]</span></p>
+<p>The sign of <span class="math inline">\(n_2\)</span> depends on the material: most common optical materials have <span class="math inline">\(n_2 &gt; 0\)</span> (self-focusing), while some materials exhibit <span class="math inline">\(n_2 &lt; 0\)</span> (self-defocusing). The magnitude of <span class="math inline">\(n_2\)</span> varies dramatically between materials, from <span class="math inline">\(10^{-20}\)</span> m²/W in silica glass to <span class="math inline">\(10^{-17}\)</span> m²/W in some semiconductors.</p>
+<p>This intensity-dependent refractive index is the foundation for many important nonlinear optical phenomena, including self-phase modulation, self-focusing, and soliton formation in optical fibers.</p>
+</section>
+<section id="four-wave-mixing" class="level3">
+<h3 class="anchored" data-anchor-id="four-wave-mixing">Four-Wave Mixing</h3>
+<p>Four-wave mixing (FWM) is a third-order nonlinear process where four photons interact through the material’s <span class="math inline">\(\chi^{(3)}\)</span> susceptibility. The general energy conservation condition is:</p>
+<p><span class="math display">\[\omega_1 + \omega_2 = \omega_3 + \omega_4\]</span></p>
+<p>with corresponding momentum conservation:</p>
+<p><span class="math display">\[\mathbf{k}_1 + \mathbf{k}_2 = \mathbf{k}_3 + \mathbf{k}_4\]</span></p>
+<p>Consider two strong pump waves at frequencies <span class="math inline">\(\omega_1\)</span> and <span class="math inline">\(\omega_2\)</span>, and weaker signal and idler waves at <span class="math inline">\(\omega_3\)</span> and <span class="math inline">\(\omega_4\)</span>. The coupled wave equations for the signal and idler amplitudes are:</p>
+<p><span class="math display">\[\frac{dA_3}{dz} = i\gamma A_1 A_2 A_4^* e^{i\Delta k z}\]</span></p>
+<p><span class="math display">\[\frac{dA_4}{dz} = i\gamma A_1 A_2 A_3^* e^{i\Delta k z}\]</span></p>
+<p>where <span class="math inline">\(\gamma = \omega n_2/(cA_{eff})\)</span> is the nonlinear coefficient and <span class="math inline">\(A_{eff}\)</span> is the effective mode area.</p>
+<p>Special cases of four-wave mixing include:</p>
+<p><strong>Degenerate Four-Wave Mixing</strong>: When <span class="math inline">\(\omega_1 = \omega_2 = \omega_p\)</span> (pump frequency), the process becomes <span class="math inline">\(2\omega_p = \omega_s + \omega_i\)</span>, where a strong pump generates signal and idler waves symmetrically placed around the pump frequency.</p>
+<p><strong>Stimulated Raman Scattering</strong>: A special case where energy conservation is satisfied through molecular vibrations, leading to frequency downshift by the Raman shift.</p>
+<p><strong>Phase Conjugation</strong>: When <span class="math inline">\(\omega_1 = \omega_3\)</span> and <span class="math inline">\(\omega_2 = \omega_4\)</span>, the process can generate a phase-conjugated replica of an input beam.</p>
+<p>Four-wave mixing is extensively used in fiber optics for wavelength conversion, optical parametric amplification, and supercontinuum generation. It’s also the basis for many all-optical signal processing applications.</p>
+</section>
+<section id="self-phase-modulation-and-self-focusing" class="level3">
+<h3 class="anchored" data-anchor-id="self-phase-modulation-and-self-focusing">Self-Phase Modulation and Self-Focusing</h3>
+<p>Self-phase modulation (SPM) and self-focusing are two closely related phenomena that arise from the intensity-dependent refractive index. Both effects demonstrate how intense light can modify its own propagation characteristics.</p>
+<p><strong>Self-Phase Modulation</strong></p>
+<p>In self-phase modulation, the intensity-dependent refractive index causes the phase of a propagating wave to depend on its own intensity. For a pulse with temporally varying intensity <span class="math inline">\(I(t)\)</span>, the accumulated phase after propagation distance <span class="math inline">\(z\)</span> is:</p>
+<p><span class="math display">\[\phi(t) = \frac{\omega z}{c}[n_0 + n_2 I(t)] = \phi_0 + \phi_{NL}(t)\]</span></p>
+<p>The nonlinear phase <span class="math inline">\(\phi_{NL}(t) = \omega z n_2 I(t)/c\)</span> varies with time, leading to an instantaneous frequency shift:</p>
+<p><span class="math display">\[\omega_{inst}(t) = \omega_0 - \frac{d\phi_{NL}}{dt} = \omega_0 - \frac{\omega z n_2}{c}\frac{dI}{dt}\]</span></p>
+<p>This creates new frequency components: the leading edge of the pulse (where <span class="math inline">\(dI/dt &gt; 0\)</span>) is red-shifted, while the trailing edge (where <span class="math inline">\(dI/dt &lt; 0\)</span>) is blue-shifted. For <span class="math inline">\(n_2 &gt; 0\)</span>, this leads to significant spectral broadening while preserving the pulse energy.</p>
+<p>SPM is crucial for supercontinuum generation, where the combination of SPM and dispersion in optical fibers creates extremely broad spectral bandwidth from narrow-band input pulses.</p>
+<p><strong>Self-Focusing</strong></p>
+<p>Self-focusing occurs when the intensity-dependent refractive index creates a transverse gradient that acts like a positive lens. For a Gaussian beam with peak intensity <span class="math inline">\(I_0\)</span>, the on-axis refractive index is higher than at the beam edges, creating a waveguide effect.</p>
+<p>The critical power for self-focusing is:</p>
+<p><span class="math display">\[P_{crit} = \frac{\lambda^2}{2\pi n_0 n_2}\]</span></p>
+<p>When the beam power exceeds <span class="math inline">\(P_{crit}\)</span>, the nonlinear focusing effect overcomes natural diffraction, leading to catastrophic beam collapse. In practice, this process is limited by other nonlinear effects like multiphoton absorption or material breakdown.</p>
+<p>Self-focusing is both useful and problematic: it can enhance nonlinear interactions by increasing intensity, but it can also damage optical materials and limit the power handling capability of optical systems.</p>
+<p>These third-order effects are fundamental to many applications in modern photonics, including ultrafast optics, optical communications, and materials processing. Their universal occurrence in all materials makes them particularly important for developing nonlinear optical devices and understanding high-intensity light propagation.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Applications and Impact of Nonlinear Optics in Modern Technology
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><p><strong>Frequency conversion (lasers of new colors)</strong>: Nonlinear frequency conversion enables the generation of laser light at wavelengths that are difficult or impossible to achieve with conventional laser gain media. For example, green laser pointers typically use a 1064nm infrared laser with frequency doubling in a nonlinear crystal to produce 532nm green light. This capability has revolutionized laser technology by vastly expanding the available wavelength range.</p></li>
+<li><p><strong>Optical parametric oscillators for tunable light sources</strong>: OPOs provide continuously tunable coherent radiation across spectral regions from the visible to the mid-infrared. This tunability is crucial for spectroscopy, sensing applications, and quantum optics where specific wavelengths are required to interact with particular molecular transitions or quantum systems.</p></li>
+<li><p><strong>Ultrashort pulse generation</strong>: Nonlinear effects like Kerr lens mode-locking and saturable absorption enable the generation of femtosecond and even attosecond pulses. These ultrashort pulses allow scientists to observe and manipulate ultrafast phenomena like chemical reactions, electron dynamics, and molecular vibrations in real-time.</p></li>
+<li><p><strong>Optical switching and computing</strong>: The intensity-dependent properties of nonlinear materials enable all-optical switching without conversion to electronic signals. This capability is foundational for future photonic computing architectures that promise much higher speeds and lower power consumption than electronic equivalents.</p></li>
+<li><p><strong>Optical limiting for protection against intense light</strong>: Materials with nonlinear absorption can protect sensitive optical sensors and human eyes from damage by intense laser light. These materials become increasingly opaque as the incident intensity increases, providing automatic protection against optical damage.</p></li>
+<li><p><strong>Imaging techniques like second-harmonic generation microscopy</strong>: SHG microscopy provides label-free imaging of non-centrosymmetric structures like collagen fibers in biological tissues. This technique offers high contrast, three-dimensional resolution, and minimal photodamage compared to conventional fluorescence microscopy, making it invaluable for biomedical research.</p></li>
+</ol>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Materials and Experimental Setup for Nonlinear Optics
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<section id="typical-materials-for-nonlinear-optics" class="level3">
+<h3 class="anchored" data-anchor-id="typical-materials-for-nonlinear-optics">Typical Materials for Nonlinear Optics</h3>
+<ul>
+<li><p><strong>Lithium Niobate (LiNbO₃)</strong>: A versatile ferroelectric crystal with large electro-optic and nonlinear coefficients. It’s widely used for frequency doubling, parametric oscillation, and electro-optic modulation. Periodically poled lithium niobate (PPLN) enables efficient quasi-phase-matched interactions across a broad wavelength range.</p></li>
+<li><p><strong>Potassium Dihydrogen Phosphate (KDP)</strong>: An inexpensive crystal with good UV transparency, commonly used for frequency doubling and Pockels cells. It can be grown in large sizes with high optical quality, making it suitable for high-power laser systems.</p></li>
+<li><p><strong>Beta Barium Borate (BBO)</strong>: Features a wide transparency range (189-3500nm) and high damage threshold, making it excellent for UV generation and ultrafast applications. Its large birefringence allows phase matching across a broad spectral range.</p></li>
+<li><p><strong>Gallium Arsenide (GaAs)</strong>: A semiconductor with extremely high nonlinear coefficients, useful for mid-infrared applications. GaAs waveguides and orientation-patterned structures enable efficient nonlinear interactions at relatively low powers.</p></li>
+<li><p><strong>Silica fibers (for third-order effects)</strong>: While silica has modest nonlinear coefficients, the long interaction lengths and tight confinement in optical fibers enhance nonlinear effects like self-phase modulation, four-wave mixing, and stimulated Raman scattering.</p></li>
+</ul>
+</section>
+<section id="typical-experimental-setup" class="level3">
+<h3 class="anchored" data-anchor-id="typical-experimental-setup">Typical Experimental Setup</h3>
+<ol type="1">
+<li><p><strong>Laser source (typically pulsed for high intensity)</strong>: High peak intensities are essential for efficient nonlinear interactions. Mode-locked Ti:Sapphire lasers, fiber lasers, and Q-switched Nd:YAG systems are common choices depending on the application requirements.</p></li>
+<li><p><strong>Focusing optics</strong>: Properly designed lens systems concentrate the laser energy to achieve the necessary intensity while optimizing the beam size throughout the nonlinear medium for phase matching and avoiding damage.</p></li>
+<li><p><strong>The nonlinear medium</strong>: Often mounted on a precision rotation stage for angle tuning, and sometimes in a temperature-controlled oven for temperature tuning of phase matching conditions. Crystal orientation, temperature, and sometimes applied electric fields are adjusted to optimize the desired nonlinear process.</p></li>
+<li><p><strong>Filters to select the desired output frequency</strong>: Dichroic mirrors, prisms, or gratings separate the generated nonlinear signal from the fundamental beam and any other unwanted frequencies generated in the nonlinear process.</p></li>
+<li><p><strong>Detection and measurement equipment ::: modulation techniques. often employed for weak signal detection using-in amplifiers arelinear output. Lock temporal, and spatial properties of the nonize the spectral,odes, and cameras character, power meters, photodi</strong>: Spectrometers</p></li>
+</ol>
+
+
+</section>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/fcichos\.github\.io\/Photonics\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../lectures/lecture12/anisotropic_media.html" class="pagination-link" aria-label="Anisotropic Materials">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Anisotropic Materials</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
