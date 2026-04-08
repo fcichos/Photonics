@@ -1,0 +1,1353 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.34">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Microscopy I: Brightfield and Darkfield – Photonics</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-9344fb9851b4da3cab95007ef9d770dc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../assets/css/styles.css">
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Photonics</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../../index.html" aria-current="page"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Microscopy I: Brightfield and Darkfield</li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="../../index.html" class="sidebar-logo-link">
+      <img src="../../assets/images/mona_logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home</span></a>
+  </div>
+</li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Course Info</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-info/intructors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Instructor</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-info/schedule.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Schedule</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-info/resources.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Ressources</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-info/seminars.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Seminars</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-info/exam.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exams</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">PART I: FOUNDATIONS</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Lecture 1 — Introduction, Ray Optics &amp; Wave Optics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture01/introduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture01/01-lecture01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Ray Optics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture01/02-lecture01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Optical Elements</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture02/01-lecture02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Matrix Optics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture02/02-lecture02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wave Optics</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction-from-fourier-optics-to-image-formation" id="toc-introduction-from-fourier-optics-to-image-formation" class="nav-link active" data-scroll-target="#introduction-from-fourier-optics-to-image-formation">Introduction: From Fourier Optics to Image Formation</a></li>
+  <li><a href="#image-formation-as-a-double-fourier-transform" id="toc-image-formation-as-a-double-fourier-transform" class="nav-link" data-scroll-target="#image-formation-as-a-double-fourier-transform">1. Image Formation as a Double Fourier Transform</a>
+  <ul class="collapse">
+  <li><a href="#abbes-theory-of-imaging" id="toc-abbes-theory-of-imaging" class="nav-link" data-scroll-target="#abbes-theory-of-imaging">1.1 Abbe’s Theory of Imaging</a></li>
+  <li><a href="#numerical-aperture-and-the-frequency-cutoff" id="toc-numerical-aperture-and-the-frequency-cutoff" class="nav-link" data-scroll-target="#numerical-aperture-and-the-frequency-cutoff">1.2 Numerical Aperture and the Frequency Cutoff</a></li>
+  <li><a href="#the-objective-as-a-fourier-transformer" id="toc-the-objective-as-a-fourier-transformer" class="nav-link" data-scroll-target="#the-objective-as-a-fourier-transformer">1.3 The Objective as a Fourier Transformer</a></li>
+  </ul></li>
+  <li><a href="#köhler-illumination" id="toc-köhler-illumination" class="nav-link" data-scroll-target="#köhler-illumination">2. Köhler Illumination</a>
+  <ul class="collapse">
+  <li><a href="#why-köhler-illumination-matters" id="toc-why-köhler-illumination-matters" class="nav-link" data-scroll-target="#why-köhler-illumination-matters">2.1 Why Köhler Illumination Matters</a></li>
+  <li><a href="#köhler-illumination-setup" id="toc-köhler-illumination-setup" class="nav-link" data-scroll-target="#köhler-illumination-setup">2.2 Köhler Illumination Setup</a></li>
+  <li><a href="#illumination-coherence" id="toc-illumination-coherence" class="nav-link" data-scroll-target="#illumination-coherence">2.3 Illumination Coherence</a></li>
+  </ul></li>
+  <li><a href="#coherent-vs.-incoherent-imaging" id="toc-coherent-vs.-incoherent-imaging" class="nav-link" data-scroll-target="#coherent-vs.-incoherent-imaging">3. Coherent vs.&nbsp;Incoherent Imaging</a>
+  <ul class="collapse">
+  <li><a href="#linear-vs.-nonlinear-response" id="toc-linear-vs.-nonlinear-response" class="nav-link" data-scroll-target="#linear-vs.-nonlinear-response">3.1 Linear vs.&nbsp;Nonlinear Response</a></li>
+  <li><a href="#point-spread-function-psf" id="toc-point-spread-function-psf" class="nav-link" data-scroll-target="#point-spread-function-psf">3.2 Point-Spread Function (PSF)</a></li>
+  </ul></li>
+  <li><a href="#the-optical-transfer-function-otf-and-coherent-transfer-function-ctf" id="toc-the-optical-transfer-function-otf-and-coherent-transfer-function-ctf" class="nav-link" data-scroll-target="#the-optical-transfer-function-otf-and-coherent-transfer-function-ctf">4. The Optical Transfer Function (OTF) and Coherent Transfer Function (CTF)</a>
+  <ul class="collapse">
+  <li><a href="#optical-transfer-function-otf-for-incoherent-imaging" id="toc-optical-transfer-function-otf-for-incoherent-imaging" class="nav-link" data-scroll-target="#optical-transfer-function-otf-for-incoherent-imaging">4.1 Optical Transfer Function (OTF) for Incoherent Imaging</a></li>
+  <li><a href="#coherent-transfer-function-ctf-for-coherent-imaging" id="toc-coherent-transfer-function-ctf-for-coherent-imaging" class="nav-link" data-scroll-target="#coherent-transfer-function-ctf-for-coherent-imaging">4.2 Coherent Transfer Function (CTF) for Coherent Imaging</a></li>
+  <li><a href="#comparing-otf-and-ctf-incoherent-vs.-coherent" id="toc-comparing-otf-and-ctf-incoherent-vs.-coherent" class="nav-link" data-scroll-target="#comparing-otf-and-ctf-incoherent-vs.-coherent">4.3 Comparing OTF and CTF: Incoherent vs.&nbsp;Coherent</a></li>
+  <li><a href="#the-modulation-transfer-function-mtf" id="toc-the-modulation-transfer-function-mtf" class="nav-link" data-scroll-target="#the-modulation-transfer-function-mtf">4.4 The Modulation Transfer Function (MTF)</a></li>
+  </ul></li>
+  <li><a href="#brightfield-microscopy" id="toc-brightfield-microscopy" class="nav-link" data-scroll-target="#brightfield-microscopy">5. Brightfield Microscopy</a>
+  <ul class="collapse">
+  <li><a href="#contrast-in-brightfield" id="toc-contrast-in-brightfield" class="nav-link" data-scroll-target="#contrast-in-brightfield">5.1 Contrast in Brightfield</a></li>
+  <li><a href="#contrast-in-terms-of-fourier-components" id="toc-contrast-in-terms-of-fourier-components" class="nav-link" data-scroll-target="#contrast-in-terms-of-fourier-components">5.2 Contrast in Terms of Fourier Components</a></li>
+  <li><a href="#resolution-in-brightfield" id="toc-resolution-in-brightfield" class="nav-link" data-scroll-target="#resolution-in-brightfield">5.3 Resolution in Brightfield</a></li>
+  </ul></li>
+  <li><a href="#fourier-filtering-in-the-back-focal-plane" id="toc-fourier-filtering-in-the-back-focal-plane" class="nav-link" data-scroll-target="#fourier-filtering-in-the-back-focal-plane">6. Fourier Filtering in the Back Focal Plane</a>
+  <ul class="collapse">
+  <li><a href="#the-pupil-plane-as-a-filtering-plane" id="toc-the-pupil-plane-as-a-filtering-plane" class="nav-link" data-scroll-target="#the-pupil-plane-as-a-filtering-plane">5.1 The Pupil Plane as a Filtering Plane</a></li>
+  <li><a href="#quantitative-effect-of-aperture-restriction" id="toc-quantitative-effect-of-aperture-restriction" class="nav-link" data-scroll-target="#quantitative-effect-of-aperture-restriction">5.2 Quantitative Effect of Aperture Restriction</a></li>
+  </ul></li>
+  <li><a href="#darkfield-microscopy" id="toc-darkfield-microscopy" class="nav-link" data-scroll-target="#darkfield-microscopy">7. Darkfield Microscopy</a>
+  <ul class="collapse">
+  <li><a href="#principle-blocking-the-zero-order" id="toc-principle-blocking-the-zero-order" class="nav-link" data-scroll-target="#principle-blocking-the-zero-order">7.1 Principle: Blocking the Zero-Order</a></li>
+  <li><a href="#darkfield-setup" id="toc-darkfield-setup" class="nav-link" data-scroll-target="#darkfield-setup">7.2 Darkfield Setup</a></li>
+  <li><a href="#contrast-mechanism-in-darkfield" id="toc-contrast-mechanism-in-darkfield" class="nav-link" data-scroll-target="#contrast-mechanism-in-darkfield">7.3 Contrast Mechanism in Darkfield</a></li>
+  <li><a href="#objects-visible-in-darkfield" id="toc-objects-visible-in-darkfield" class="nav-link" data-scroll-target="#objects-visible-in-darkfield">7.4 Objects Visible in Darkfield</a></li>
+  <li><a href="#darkfield-as-spatial-filtering" id="toc-darkfield-as-spatial-filtering" class="nav-link" data-scroll-target="#darkfield-as-spatial-filtering">7.5 Darkfield as Spatial Filtering</a></li>
+  </ul></li>
+  <li><a href="#oblique-illumination-and-schlieren-methods" id="toc-oblique-illumination-and-schlieren-methods" class="nav-link" data-scroll-target="#oblique-illumination-and-schlieren-methods">8. Oblique Illumination and Schlieren Methods</a>
+  <ul class="collapse">
+  <li><a href="#oblique-illumination" id="toc-oblique-illumination" class="nav-link" data-scroll-target="#oblique-illumination">8.1 Oblique Illumination</a></li>
+  <li><a href="#schlieren-method" id="toc-schlieren-method" class="nav-link" data-scroll-target="#schlieren-method">8.2 Schlieren Method</a></li>
+  </ul></li>
+  <li><a href="#practical-considerations-in-microscopy" id="toc-practical-considerations-in-microscopy" class="nav-link" data-scroll-target="#practical-considerations-in-microscopy">9. Practical Considerations in Microscopy</a>
+  <ul class="collapse">
+  <li><a href="#numerical-aperture-and-immersion" id="toc-numerical-aperture-and-immersion" class="nav-link" data-scroll-target="#numerical-aperture-and-immersion">9.1 Numerical Aperture and Immersion</a></li>
+  <li><a href="#magnification-and-useful-magnification" id="toc-magnification-and-useful-magnification" class="nav-link" data-scroll-target="#magnification-and-useful-magnification">9.2 Magnification and Useful Magnification</a></li>
+  <li><a href="#wavelength-dependence" id="toc-wavelength-dependence" class="nav-link" data-scroll-target="#wavelength-dependence">9.3 Wavelength Dependence</a></li>
+  <li><a href="#field-of-view-and-depth-of-field" id="toc-field-of-view-and-depth-of-field" class="nav-link" data-scroll-target="#field-of-view-and-depth-of-field">9.4 Field of View and Depth of Field</a></li>
+  </ul></li>
+  <li><a href="#code-examples-simulating-abbe-imaging-and-resolution" id="toc-code-examples-simulating-abbe-imaging-and-resolution" class="nav-link" data-scroll-target="#code-examples-simulating-abbe-imaging-and-resolution">Code Examples: Simulating Abbe Imaging and Resolution</a>
+  <ul class="collapse">
+  <li><a href="#example-1-abbe-imaging-simulation" id="toc-example-1-abbe-imaging-simulation" class="nav-link" data-scroll-target="#example-1-abbe-imaging-simulation">Example 1: Abbe Imaging Simulation</a></li>
+  <li><a href="#example-2-effect-of-numerical-aperture-on-resolution" id="toc-example-2-effect-of-numerical-aperture-on-resolution" class="nav-link" data-scroll-target="#example-2-effect-of-numerical-aperture-on-resolution">Example 2: Effect of Numerical Aperture on Resolution</a></li>
+  <li><a href="#example-3-darkfield-filtering-simulation" id="toc-example-3-darkfield-filtering-simulation" class="nav-link" data-scroll-target="#example-3-darkfield-filtering-simulation">Example 3: Darkfield Filtering Simulation</a></li>
+  <li><a href="#example-4-resolution-and-airy-patterns" id="toc-example-4-resolution-and-airy-patterns" class="nav-link" data-scroll-target="#example-4-resolution-and-airy-patterns">Example 4: Resolution and Airy Patterns</a></li>
+  <li><a href="#example-5-optical-transfer-function-otf-for-incoherent-imaging" id="toc-example-5-optical-transfer-function-otf-for-incoherent-imaging" class="nav-link" data-scroll-target="#example-5-optical-transfer-function-otf-for-incoherent-imaging">Example 5: Optical Transfer Function (OTF) for Incoherent Imaging</a></li>
+  </ul></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
+  <li><a href="#key-formulas-and-results" id="toc-key-formulas-and-results" class="nav-link" data-scroll-target="#key-formulas-and-results">Key Formulas and Results</a></li>
+  <li><a href="#fourier-optics-perspective-unifying-the-concepts" id="toc-fourier-optics-perspective-unifying-the-concepts" class="nav-link" data-scroll-target="#fourier-optics-perspective-unifying-the-concepts">Fourier Optics Perspective: Unifying the Concepts</a></li>
+  <li><a href="#experimental-connections" id="toc-experimental-connections" class="nav-link" data-scroll-target="#experimental-connections">Experimental Connections</a></li>
+  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading">Further Reading</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Microscopy I: Brightfield and Darkfield</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduction-from-fourier-optics-to-image-formation" class="level2">
+<h2 class="anchored" data-anchor-id="introduction-from-fourier-optics-to-image-formation">Introduction: From Fourier Optics to Image Formation</h2>
+<p>Building on the Fourier optics concepts you learned in previous lectures, we now explore how these mathematical tools explain how microscopes work. The microscope is one of the most important optical instruments in science and medicine—it reveals structures invisible to the naked eye by magnifying and enhancing contrast.</p>
+<p>In this lecture, we focus on <strong>Brightfield</strong> and <strong>Darkfield</strong> microscopy, the two most fundamental imaging modalities. Both rest on a elegant theoretical foundation: <strong>Abbe’s theory of imaging</strong>, which interprets image formation as a double Fourier transform. This perspective unifies optical physics with practical microscopy and explains why some objects are visible while others remain invisible.</p>
+<p>By the end of this lecture, you will understand: - Why image formation is fundamentally a Fourier-transform problem - How the objective lens acts as a Fourier transformer - Why transparent (phase) objects are invisible in brightfield - How darkfield unlocks contrast by Fourier filtering - The resolution limits imposed by wavelength and numerical aperture</p>
+<hr>
+</section>
+<section id="image-formation-as-a-double-fourier-transform" class="level2">
+<h2 class="anchored" data-anchor-id="image-formation-as-a-double-fourier-transform">1. Image Formation as a Double Fourier Transform</h2>
+<section id="abbes-theory-of-imaging" class="level3">
+<h3 class="anchored" data-anchor-id="abbes-theory-of-imaging">1.1 Abbe’s Theory of Imaging</h3>
+<p>The revolutionary insight of Ernst Abbe (1873) was recognizing that image formation involves <strong>two sequential Fourier transforms</strong>:</p>
+<ol type="1">
+<li><strong>Object plane → Back focal plane of the objective</strong>: The objective lens takes the object and computes its Fourier transform in the back focal plane (BFP).</li>
+<li><strong>Back focal plane → Image plane</strong>: A second Fourier transform by the objective converts the Fourier spectrum back into an image.</li>
+</ol>
+<p>Let us denote: - <span class="math inline">\(o(x, y)\)</span> = object (amplitude or phase distribution) - <span class="math inline">\(O(u, v)\)</span> = Fourier transform of the object (spatial frequency spectrum) - <span class="math inline">\(i(x', y')\)</span> = image</p>
+<p>The forward propagation is described by:</p>
+<p><span class="math display">\[O(u, v) = \mathcal{F}[o(x, y)]\]</span></p>
+<p>where <span class="math inline">\(u, v\)</span> are spatial frequencies in the back focal plane. The objective has focal length <span class="math inline">\(f\)</span>, and the relationship between Fourier frequencies and physical positions in the BFP is:</p>
+<p><span class="math display">\[u = \frac{x_{\text{BFP}}}{\lambda f}, \quad v = \frac{y_{\text{BFP}}}{\lambda f}\]</span></p>
+<p>The image is then formed by a second Fourier transform:</p>
+<p><span class="math display">\[i(x', y') = \mathcal{F}^{-1}[O(u, v)]\]</span></p>
+<p>However, not all Fourier components reach the image plane. The objective lens has a finite aperture, so only spatial frequencies within a certain radius are transmitted. This <strong>frequency cutoff</strong> is the key to understanding resolution and contrast.</p>
+</section>
+<section id="numerical-aperture-and-the-frequency-cutoff" class="level3">
+<h3 class="anchored" data-anchor-id="numerical-aperture-and-the-frequency-cutoff">1.2 Numerical Aperture and the Frequency Cutoff</h3>
+<p>The <strong>numerical aperture</strong> (NA) is the most important parameter in microscopy:</p>
+<p><span class="math display">\[\text{NA} = n \sin(\alpha)\]</span></p>
+<p>where <span class="math inline">\(n\)</span> is the refractive index of the medium (typically 1 for air, 1.515 for oil immersion) and <span class="math inline">\(\alpha\)</span> is the half-angle of the cone of light accepted by the objective.</p>
+<p>The highest spatial frequency transmitted is:</p>
+<p><span class="math display">\[u_{\max} = \frac{\text{NA}}{\lambda}\]</span></p>
+<p>All spatial frequency components with <span class="math inline">\(\sqrt{u^2 + v^2} &gt; u_{\max}\)</span> are blocked. This acts as a low-pass filter:</p>
+<p><span class="math display">\[O_{\text{filtered}}(u, v) = O(u, v) \cdot H(u, v)\]</span></p>
+<p>where <span class="math inline">\(H(u, v)\)</span> is a circular aperture function (the pupil function):</p>
+<p><span class="math display">\[H(u, v) = \begin{cases} 1 &amp; \text{if } \sqrt{u^2 + v^2} \leq u_{\max} \\ 0 &amp; \text{otherwise} \end{cases}\]</span></p>
+<p>This fundamental low-pass filtering explains <strong>why high-frequency details are lost</strong> in microscopy and sets the ultimate resolution limit.</p>
+</section>
+<section id="the-objective-as-a-fourier-transformer" class="level3">
+<h3 class="anchored" data-anchor-id="the-objective-as-a-fourier-transformer">1.3 The Objective as a Fourier Transformer</h3>
+<p>The objective lens can be understood as implementing a Fourier transform operation. When the object is placed at the <strong>front focal plane</strong> of the objective, light propagates to the <strong>back focal plane</strong>, where the Fourier spectrum of the object appears.</p>
+<p>The lens equation ensures that: - Object at distance <span class="math inline">\(s_1\)</span> from front focal plane - Image at distance <span class="math inline">\(s_2\)</span> from back focal plane - Conjugate relationship: <span class="math inline">\(1/s_1 + 1/s_2 = 1/f\)</span></p>
+<p>In standard microscopy, the object is very close to the front focal plane (within one focal length), and the image is formed far from the back focal plane (at a standard tube length, typically 160 mm), achieving large magnification.</p>
+<hr>
+</section>
+</section>
+<section id="köhler-illumination" class="level2">
+<h2 class="anchored" data-anchor-id="köhler-illumination">2. Köhler Illumination</h2>
+<section id="why-köhler-illumination-matters" class="level3">
+<h3 class="anchored" data-anchor-id="why-köhler-illumination-matters">2.1 Why Köhler Illumination Matters</h3>
+<p>Proper illumination is just as important as the objective lens. There are two classical approaches:</p>
+<p><strong>Critical Illumination</strong> (Abbe’s original setup): - Light source directly imaged onto the specimen - High intensity but very uneven illumination - Dust, imperfections on condenser lens appear in image - Poor for quantitative work</p>
+<p><strong>Köhler Illumination</strong> (modern standard): - Condenser lens forms an image of the light source in the back focal plane - Object is illuminated by an essentially parallel, uniform beam - Light source imperfections do not affect the specimen image - Allows proper use of the condenser aperture diaphragm</p>
+</section>
+<section id="köhler-illumination-setup" class="level3">
+<h3 class="anchored" data-anchor-id="köhler-illumination-setup">2.2 Köhler Illumination Setup</h3>
+<p>The key components are:</p>
+<ol type="1">
+<li><strong>Field diaphragm</strong> (in object plane): Controls the illuminated area</li>
+<li><strong>Condenser aperture diaphragm</strong> (in back focal plane): Controls the cone of illumination (NA of the condenser)</li>
+<li><strong>Condenser lens</strong>: Forms an image of the light source in the back focal plane</li>
+</ol>
+<p>For optimal Köhler illumination: - The condenser NA should match the objective NA - The field diaphragm is closed just outside the field of view - The condenser aperture is opened to approximately 80–90% of the objective aperture</p>
+<p>The proper setting of the condenser aperture diaphragm is crucial for controlling <strong>coherence</strong> in the illumination, which affects contrast and image quality.</p>
+</section>
+<section id="illumination-coherence" class="level3">
+<h3 class="anchored" data-anchor-id="illumination-coherence">2.3 Illumination Coherence</h3>
+<p><strong>Coherent illumination</strong> (plane wave, zero-coherence length): - All light arrives in phase - Produces sharp diffraction patterns - Poor for resolution of fine details - Causes speckle and diffraction artifacts</p>
+<p><strong>Incoherent (spatially incoherent) illumination</strong> (extended source): - Light arrives from different directions - Different spatial frequency components excited independently - Better resolution and more “real” images - Standard in modern microscopy</p>
+<p>The degree of coherence is controlled by the <strong>coherence length</strong>:</p>
+<p><span class="math display">\[\ell_c \approx \frac{\lambda}{\Delta \theta \cdot \text{NA}_c}\]</span></p>
+<p>where <span class="math inline">\(\Delta \theta\)</span> is the angular size of the illumination source and <span class="math inline">\(\text{NA}_c\)</span> is the condenser aperture.</p>
+<p>For incoherent imaging (which is optimal), we want <span class="math inline">\(\ell_c \ll\)</span> specimen thickness.</p>
+<hr>
+</section>
+</section>
+<section id="coherent-vs.-incoherent-imaging" class="level2">
+<h2 class="anchored" data-anchor-id="coherent-vs.-incoherent-imaging">3. Coherent vs.&nbsp;Incoherent Imaging</h2>
+<section id="linear-vs.-nonlinear-response" class="level3">
+<h3 class="anchored" data-anchor-id="linear-vs.-nonlinear-response">3.1 Linear vs.&nbsp;Nonlinear Response</h3>
+<p><strong>Coherent illumination</strong> (fully coherent plane wave): - Field amplitude at the image is a Fourier transform of the field at the object - Image intensity is the <strong>square</strong> of this transformed field - Contrast depends on the phase relationships between object and scattered light - Nonlinear system: doubling incident amplitude changes the image contrast</p>
+<p><strong>Incoherent illumination</strong> (spatially incoherent): - Different regions of the illumination source act independently - The detected intensity is a <strong>sum</strong> of images from each source point - Mathematical: intensity image is the convolution of the object intensity with the point-spread function (PSF) - Linear system for intensity: doubling incident intensity doubles the image intensity</p>
+</section>
+<section id="point-spread-function-psf" class="level3">
+<h3 class="anchored" data-anchor-id="point-spread-function-psf">3.2 Point-Spread Function (PSF)</h3>
+<p>The <strong>point-spread function</strong> is the image of a point source (infinitesimal bright spot):</p>
+<p><span class="math display">\[\text{PSF}(x, y) = \left| \mathcal{F}^{-1}[\text{pupil function}(u, v)] \right|^2\]</span></p>
+<p>For incoherent imaging: <span class="math display">\[\text{Image}(x, y) = \int \int \text{Object}(s, t) \cdot \text{PSF}(x - s, y - t) \, ds \, dt\]</span></p>
+<p>This is a <strong>convolution</strong>. The PSF sets the diffraction-limited resolution.</p>
+<p>For a circular aperture (typical objective), the PSF is the <strong>Airy pattern</strong>:</p>
+<p><span class="math display">\[\text{PSF}(r) = I_0 \left[ 2 \frac{J_1(kr)}{kr} \right]^2\]</span></p>
+<p>where <span class="math inline">\(k = \pi \text{NA} / \lambda\)</span> and <span class="math inline">\(J_1\)</span> is the first-order Bessel function.</p>
+<hr>
+</section>
+</section>
+<section id="the-optical-transfer-function-otf-and-coherent-transfer-function-ctf" class="level2">
+<h2 class="anchored" data-anchor-id="the-optical-transfer-function-otf-and-coherent-transfer-function-ctf">4. The Optical Transfer Function (OTF) and Coherent Transfer Function (CTF)</h2>
+<section id="optical-transfer-function-otf-for-incoherent-imaging" class="level3">
+<h3 class="anchored" data-anchor-id="optical-transfer-function-otf-for-incoherent-imaging">4.1 Optical Transfer Function (OTF) for Incoherent Imaging</h3>
+<p>The <strong>Optical Transfer Function</strong> (OTF) describes how spatial frequency components are attenuated and phase-shifted as they propagate through the imaging system. It is the <strong>autocorrelation of the pupil function</strong>:</p>
+<p><span class="math display">\[H_{\text{OTF}}(u, v) = \text{autocorr}[\text{pupil}(u, v)] = \iint \text{pupil}(u', v') \cdot \text{pupil}^*(u' - u, v' - v) \, du' \, dv'\]</span></p>
+<p>For a <strong>circular pupil</strong> (uniform amplitude across the objective aperture):</p>
+<p><span class="math display">\[H_{\text{OTF}}(k) = \frac{2}{\pi} \left[ \arccos\left(\frac{k}{2k_{\max}}\right) - \frac{k}{2k_{\max}}\sqrt{1 - \left(\frac{k}{2k_{\max}}\right)^2} \right]\]</span></p>
+<p>where <span class="math inline">\(k = \sqrt{u^2 + v^2}\)</span> is the radial spatial frequency and <span class="math inline">\(k_{\max} = \text{NA}/\lambda\)</span> is the cutoff frequency.</p>
+<p><strong>Key properties of OTF</strong>: - <strong>Maximum at DC</strong> (<span class="math inline">\(k = 0\)</span>): <span class="math inline">\(H_{\text{OTF}}(0) = 1\)</span> (all low frequencies transmitted) - <strong>Cutoff at</strong> <span class="math inline">\(k_c = 2 \text{NA}/\lambda\)</span> (twice the coherent cutoff!) - <strong>Monotonically decreasing</strong>: higher frequencies attenuated more - <strong>Smooth roll-off</strong>: no abrupt edges, unlike the pupil function itself</p>
+</section>
+<section id="coherent-transfer-function-ctf-for-coherent-imaging" class="level3">
+<h3 class="anchored" data-anchor-id="coherent-transfer-function-ctf-for-coherent-imaging">4.2 Coherent Transfer Function (CTF) for Coherent Imaging</h3>
+<p>For <strong>coherent illumination</strong> (plane wave), the imaging system is <strong>linear in field amplitude</strong>, not intensity. The transfer function is simply the <strong>pupil function itself</strong>:</p>
+<p><span class="math display">\[H_{\text{CTF}}(u, v) = \text{pupil}(u, v) = \begin{cases} 1 &amp; \text{if } \sqrt{u^2 + v^2} \leq \text{NA}/\lambda \\ 0 &amp; \text{otherwise} \end{cases}\]</span></p>
+<p>The CTF <strong>has no phase information</strong> (for a uniform pupil), but it acts as a <strong>sharp low-pass filter</strong> at:</p>
+<p><span class="math display">\[k_c^{\text{coherent}} = \text{NA}/\lambda\]</span></p>
+</section>
+<section id="comparing-otf-and-ctf-incoherent-vs.-coherent" class="level3">
+<h3 class="anchored" data-anchor-id="comparing-otf-and-ctf-incoherent-vs.-coherent">4.3 Comparing OTF and CTF: Incoherent vs.&nbsp;Coherent</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Property</th>
+<th>Incoherent (OTF)</th>
+<th>Coherent (CTF)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Function</strong></td>
+<td>Autocorrelation of pupil</td>
+<td>Pupil itself</td>
+</tr>
+<tr class="even">
+<td><strong>Cutoff frequency</strong></td>
+<td><span class="math inline">\(2 \text{NA}/\lambda\)</span></td>
+<td><span class="math inline">\(\text{NA}/\lambda\)</span></td>
+</tr>
+<tr class="odd">
+<td><strong>Shape</strong></td>
+<td>Smooth, monotonic decay</td>
+<td>Sharp circular edge</td>
+</tr>
+<tr class="even">
+<td><strong>Better resolution?</strong></td>
+<td>Yes, by factor of ~2</td>
+<td>No, but sharp edges</td>
+</tr>
+<tr class="odd">
+<td><strong>Typical use</strong></td>
+<td>Modern microscopy</td>
+<td>Holography, lensless imaging</td>
+</tr>
+</tbody>
+</table>
+<p>The factor of 2 difference in cutoff frequency is fundamental: <strong>incoherent imaging can resolve finer details than coherent imaging with the same NA and wavelength</strong>. This is why modern microscopy uses incoherent (spatially incoherent) illumination.</p>
+</section>
+<section id="the-modulation-transfer-function-mtf" class="level3">
+<h3 class="anchored" data-anchor-id="the-modulation-transfer-function-mtf">4.4 The Modulation Transfer Function (MTF)</h3>
+<p>The <strong>Modulation Transfer Function</strong> is the magnitude of the OTF:</p>
+<p><span class="math display">\[M(k) = |H_{\text{OTF}}(k)|\]</span></p>
+<p>It represents the <strong>contrast preservation</strong> as a function of spatial frequency: - <span class="math inline">\(M(0) = 1\)</span>: perfect contrast at low frequencies - <span class="math inline">\(M(k_c) = 0\)</span>: no contrast beyond cutoff - In between: progressive loss of contrast for higher frequencies</p>
+<p>The MTF is what limits the <strong>visibility of small structures</strong>: fine details become lower in contrast and eventually invisible when their spatial frequency exceeds <span class="math inline">\(k_c = 2 \text{NA}/\lambda\)</span>.</p>
+<hr>
+</section>
+</section>
+<section id="brightfield-microscopy" class="level2">
+<h2 class="anchored" data-anchor-id="brightfield-microscopy">5. Brightfield Microscopy</h2>
+<section id="contrast-in-brightfield" class="level3">
+<h3 class="anchored" data-anchor-id="contrast-in-brightfield">5.1 Contrast in Brightfield</h3>
+<p>In <strong>brightfield</strong> (transmitted light) microscopy, the object is illuminated from below, and contrast arises from:</p>
+<ol type="1">
+<li><strong>Amplitude objects</strong> (absorbing structures):
+<ul>
+<li>Material absorbs light → reduced transmitted intensity</li>
+<li>Good contrast in cells with pigments, stains, or metal nanoparticles</li>
+<li>Image intensity directly reflects object absorption</li>
+</ul></li>
+<li><strong>Phase objects</strong> (transparent structures):
+<ul>
+<li>No absorption, but refractive index differs from surroundings</li>
+<li>Introduce phase shifts: <span class="math inline">\(\phi = 2\pi n \Delta n \cdot d / \lambda\)</span></li>
+<li><strong>Phase shifts do not affect intensity</strong> in brightfield!</li>
+<li>Most biological structures (proteins, lipids, nuclei) are essentially transparent</li>
+<li><strong>Result: No contrast</strong> → invisible in brightfield without staining</li>
+</ul></li>
+</ol>
+<p>This is a fundamental limitation: <strong>You cannot see unstained biological samples in brightfield microscopy.</strong></p>
+</section>
+<section id="contrast-in-terms-of-fourier-components" class="level3">
+<h3 class="anchored" data-anchor-id="contrast-in-terms-of-fourier-components">5.2 Contrast in Terms of Fourier Components</h3>
+<p>In brightfield, the image intensity is proportional to <span class="math inline">\(|E_{\text{transmitted}}|^2\)</span>.</p>
+<p>For a weak phase object, the transmitted field is: <span class="math display">\[E(x, y) \approx E_0 e^{i \phi(x, y)} \approx E_0 [1 + i \phi(x, y)]\]</span></p>
+<p>where <span class="math inline">\(\phi(x, y) = 2\pi n(\vec{r}) / \lambda\)</span> is small.</p>
+<p>The intensity is: <span class="math display">\[I(x, y) = |E|^2 \approx E_0^2 [1 + 2 \text{Im}[\phi(x, y)]]\]</span></p>
+<p>But for a purely real phase shift, <span class="math inline">\(\text{Im}[\phi] = 0\)</span>, so: <span class="math display">\[\Delta I \approx 0\]</span></p>
+<p>The phase information is encoded in the <strong>phase</strong> of the Fourier components in the back focal plane, but the intensity (what we measure) doesn’t directly reveal it. This is the fundamental problem of imaging phase objects.</p>
+</section>
+<section id="resolution-in-brightfield" class="level3">
+<h3 class="anchored" data-anchor-id="resolution-in-brightfield">5.3 Resolution in Brightfield</h3>
+<p>The minimum resolvable distance between two point sources is given by the <strong>Rayleigh criterion</strong>:</p>
+<p><span class="math display">\[d = 0.61 \frac{\lambda}{\text{NA}}\]</span></p>
+<p>For visible light (<span class="math inline">\(\lambda = 550\)</span> nm) with a typical objective (NA = 1.4, oil immersion): <span class="math display">\[d \approx 0.24 \, \mu\text{m} = 240 \, \text{nm}\]</span></p>
+<p>This represents the fundamental diffraction limit. No microscope can beat this limit without exceeding the speed of light or using wavelengths shorter than visible light.</p>
+<hr>
+</section>
+</section>
+<section id="fourier-filtering-in-the-back-focal-plane" class="level2">
+<h2 class="anchored" data-anchor-id="fourier-filtering-in-the-back-focal-plane">6. Fourier Filtering in the Back Focal Plane</h2>
+<section id="the-pupil-plane-as-a-filtering-plane" class="level3">
+<h3 class="anchored" data-anchor-id="the-pupil-plane-as-a-filtering-plane">5.1 The Pupil Plane as a Filtering Plane</h3>
+<p>The back focal plane (BFP) is where the Fourier spectrum of the object appears. By placing <strong>apertures, filters, or masks</strong> in the BFP, we can selectively control which spatial frequency components contribute to the final image.</p>
+<p><strong>Low-pass filtering</strong> (blocking high frequencies): - Objective aperture naturally blocks all frequencies beyond <span class="math inline">\(u_{\max} = \text{NA} / \lambda\)</span> - Closing the aperture further increases the blur but removes noise and high-frequency artifacts - Useful for improving contrast in noisy images</p>
+<p><strong>High-pass filtering</strong> (blocking low frequencies): - Achieved by blocking the center of the Fourier spectrum - Removes large-scale variations, enhancing small features - Basis of darkfield microscopy (see next section)</p>
+<p><strong>Phase contrast</strong> (phase plate in BFP): - Introduces a phase shift of <span class="math inline">\(\pi/2\)</span> to zero-order light - Converts phase objects into amplitude contrast - We’ll discuss this in detail in the next lecture</p>
+</section>
+<section id="quantitative-effect-of-aperture-restriction" class="level3">
+<h3 class="anchored" data-anchor-id="quantitative-effect-of-aperture-restriction">5.2 Quantitative Effect of Aperture Restriction</h3>
+<p>Closing the objective aperture diaphragm reduces the cutoff frequency: <span class="math display">\[u'_{\max} = \frac{\text{NA}_{\text{eff}}}{\lambda} &lt; u_{\max}\]</span></p>
+<p>The resulting image is a convolution with a wider PSF: <span class="math display">\[i_{\text{restricted}}(x, y) = \int \int i_{\text{unrestricted}}(s, t) \cdot \text{PSF}_{\text{wider}}(x - s, y - t) \, ds \, dt\]</span></p>
+<p>This <strong>improves contrast at the cost of resolution</strong>.</p>
+<hr>
+</section>
+</section>
+<section id="darkfield-microscopy" class="level2">
+<h2 class="anchored" data-anchor-id="darkfield-microscopy">7. Darkfield Microscopy</h2>
+<section id="principle-blocking-the-zero-order" class="level3">
+<h3 class="anchored" data-anchor-id="principle-blocking-the-zero-order">7.1 Principle: Blocking the Zero-Order</h3>
+<p>In <strong>darkfield</strong> microscopy, we block the unscattered, straight-through light (the <strong>zero-order</strong> component in the Fourier plane). Only <strong>scattered light</strong> from the object reaches the detector.</p>
+<p>The principle is elegant: 1. Illuminate the specimen with light at an oblique angle (or ring-shaped illumination) 2. Place a <strong>central stop</strong> in the back focal plane to block the zero-order light 3. Only light scattered by the object can reach the objective lens 4. The detector sees <strong>dark background with bright scattered objects</strong></p>
+</section>
+<section id="darkfield-setup" class="level3">
+<h3 class="anchored" data-anchor-id="darkfield-setup">7.2 Darkfield Setup</h3>
+<p><strong>Ring-illumination darkfield</strong> (most common): - Light enters the objective at large angles from all sides - A circular stop blocks light traveling straight through the center - Only scattered light is collected</p>
+<p><strong>Oblique illumination</strong> (Schlieren darkfield): - Light approaches from one direction at an angle - A blade or edge stops the zero-order - More directional; useful for detecting edge features</p>
+<p>The objective lens’ acceptance angle (NA) must be larger than the illumination cone, otherwise no light reaches the detector at all.</p>
+</section>
+<section id="contrast-mechanism-in-darkfield" class="level3">
+<h3 class="anchored" data-anchor-id="contrast-mechanism-in-darkfield">7.3 Contrast Mechanism in Darkfield</h3>
+<p>In darkfield, the image forms by <strong>scattered light interference</strong>:</p>
+<p><span class="math display">\[E_{\text{scattered}}(x, y) = \int E_0(\vec{r}) \frac{\partial}{\partial n} e^{i k r}  \, d\Sigma_{\text{object}}\]</span></p>
+<p>where the integral is over the object surface, and the derivative represents scattering.</p>
+<p>For an object with: - <strong>Phase changes</strong> (refractive index variations) → scatters light forward - <strong>Surface roughness</strong> → scatters light in all directions - <strong>Edges</strong> → strong diffraction and scattering</p>
+<p><strong>Result</strong>: Objects with phase variations or discontinuities become bright against a dark background.</p>
+</section>
+<section id="objects-visible-in-darkfield" class="level3">
+<h3 class="anchored" data-anchor-id="objects-visible-in-darkfield">7.4 Objects Visible in Darkfield</h3>
+<p>Darkfield is excellent for visualizing: - <strong>Living cells</strong> (no stain needed!) - <strong>Nanoparticles</strong> (gold, silver, latex) - <strong>Thin structures</strong> (fibers, filaments, axons) - <strong>Phase variations</strong> (organelles, membranes) - <strong>Refractive index boundaries</strong></p>
+<p>The contrast arises from <strong>scattering</strong>, not absorption or staining. This is why darkfield is invaluable in biology.</p>
+</section>
+<section id="darkfield-as-spatial-filtering" class="level3">
+<h3 class="anchored" data-anchor-id="darkfield-as-spatial-filtering">7.5 Darkfield as Spatial Filtering</h3>
+<p>Mathematically, darkfield corresponds to <strong>high-pass filtering</strong> in the Fourier domain. The darkfield transfer function is the brightfield transfer function minus the DC component:</p>
+<p><span class="math display">\[H_{\text{DF}}(u, v) = H_{\text{BF}}(u, v) - \delta(u, v)\]</span></p>
+<p>where <span class="math inline">\(\delta(u, v)\)</span> is a Dirac delta function representing the unscattered, zero-order light.</p>
+<p>More explicitly, the darkfield pupil function is:</p>
+<p><span class="math display">\[H_{\text{darkfield}}(u, v) = \begin{cases}
+0 &amp; \text{if } \sqrt{u^2 + v^2} \leq u_{\text{stop}} \\
+1 &amp; \text{if } u_{\text{stop}} &lt; \sqrt{u^2 + v^2} \leq u_{\max}
+\end{cases}\]</span></p>
+<p>where <span class="math inline">\(u_{\text{stop}}\)</span> is the radius of the central stop and <span class="math inline">\(u_{\max} = \text{NA}/\lambda\)</span> is the objective aperture cutoff.</p>
+<p><strong>Physical interpretation</strong>: - The darkfield filter <strong>removes the DC component</strong> (unscattered light, uniform background) - Only <strong>scattered light from high spatial frequencies</strong> contributes to the image - This enhances edges and fine structures while suppressing large-scale variations - Objects invisible in brightfield (transparent, weak phase contrast) become visible through scattering</p>
+<p>This is a direct application of <strong>spatial filtering in the Fourier plane</strong>: by blocking the low frequencies, we highlight fine details that would otherwise be overwhelmed by the uniform transmitted light. The connection to the OTF (section 4) is that darkfield uses the <strong>high-frequency tail</strong> of the OTF while suppressing its peak at DC.</p>
+<hr>
+</section>
+</section>
+<section id="oblique-illumination-and-schlieren-methods" class="level2">
+<h2 class="anchored" data-anchor-id="oblique-illumination-and-schlieren-methods">8. Oblique Illumination and Schlieren Methods</h2>
+<section id="oblique-illumination" class="level3">
+<h3 class="anchored" data-anchor-id="oblique-illumination">8.1 Oblique Illumination</h3>
+<p>When illumination comes from one side at a steep angle, we get <strong>oblique illumination</strong>. This is a hybrid between brightfield and darkfield:</p>
+<ul>
+<li>The zero-order light still passes through (unlike pure darkfield)</li>
+<li>But illumination is asymmetric</li>
+<li><strong>Shadowing effect</strong>: bright on one side, dark on the opposite edge</li>
+<li>Enhances edge contrast even for phase objects</li>
+</ul>
+<p>The resulting image has a characteristic 3D appearance, with apparent depth.</p>
+</section>
+<section id="schlieren-method" class="level3">
+<h3 class="anchored" data-anchor-id="schlieren-method">8.2 Schlieren Method</h3>
+<p>The <strong>Schlieren</strong> technique is a refined form of oblique darkfield: 1. Oblique illumination at a shallow angle 2. A Schlieren blade (knife edge) positioned to partially block the scattered light 3. Fine control over contrast by blade position</p>
+<p>Schlieren is particularly useful for: - Visualizing <strong>phase gradients</strong> (refractive index changes) - <strong>Air flow visualization</strong> (optical path length changes) - Detecting <strong>mechanical waves</strong> and stress patterns - Biological structures with fine phase variations</p>
+<hr>
+</section>
+</section>
+<section id="practical-considerations-in-microscopy" class="level2">
+<h2 class="anchored" data-anchor-id="practical-considerations-in-microscopy">9. Practical Considerations in Microscopy</h2>
+<section id="numerical-aperture-and-immersion" class="level3">
+<h3 class="anchored" data-anchor-id="numerical-aperture-and-immersion">9.1 Numerical Aperture and Immersion</h3>
+<p><strong>Air objectives</strong>: - NA up to ~1.0 - Working distance: moderate (long) - No immersion liquid needed</p>
+<p><strong>Oil immersion objectives</strong>: - NA up to ~1.4 (occasionally 1.5 with special oil) - Working distance: very small (~0.1 mm) - Cedar oil (<span class="math inline">\(n = 1.515\)</span>) increases light cone angle in the object space - Must match oil refractive index precisely; mismatch degrades image</p>
+<p><strong>Water immersion objectives</strong>: - NA up to ~1.2 - Used for living cells in aqueous environment - <span class="math inline">\(n_{\text{water}} = 1.33\)</span></p>
+<p>The higher the NA, the better the resolution, but: - Smaller working distance → difficult to focus live cells - Optical aberrations increase (spherical, chromatic) - More expensive objective</p>
+</section>
+<section id="magnification-and-useful-magnification" class="level3">
+<h3 class="anchored" data-anchor-id="magnification-and-useful-magnification">9.2 Magnification and Useful Magnification</h3>
+<p><strong>Useful magnification</strong> (Abbe-Rayleigh criterion): <span class="math display">\[M_{\text{useful}} \approx 500 \times \text{NA} \text{ to } 1000 \times \text{NA}\]</span></p>
+<p>For NA = 1.4: <span class="math inline">\(M_{\text{useful}}\)</span> = 700–1400×</p>
+<p>Magnifying beyond useful magnification (empty magnification) doesn’t reveal new detail; it just makes diffraction patterns larger.</p>
+</section>
+<section id="wavelength-dependence" class="level3">
+<h3 class="anchored" data-anchor-id="wavelength-dependence">9.3 Wavelength Dependence</h3>
+<p>The Rayleigh resolution limit: <span class="math display">\[d = 0.61 \frac{\lambda}{\text{NA}}\]</span></p>
+<p>shows that <strong>shorter wavelengths give better resolution</strong>: - UV microscopy: ~0.15 μm (UV sources expensive, require special optics) - Visible: ~0.2–0.3 μm (standard) - Red light: ~0.5 μm (lower resolution, but deeper penetration in tissues)</p>
+<p>This is why electron microscopy (λ ~ 0.001 nm) achieves nanometer resolution.</p>
+</section>
+<section id="field-of-view-and-depth-of-field" class="level3">
+<h3 class="anchored" data-anchor-id="field-of-view-and-depth-of-field">9.4 Field of View and Depth of Field</h3>
+<p><strong>Field of view</strong> (the area visible at once): <span class="math display">\[\text{FOV} \approx \frac{d_{\text{eyepiece or sensor}}}{M}\]</span></p>
+<p>Higher magnification → smaller field of view.</p>
+<p><strong>Depth of field</strong> (axial resolution): <span class="math display">\[\text{DOF} \approx 0.64 \frac{\lambda}{n - \sqrt{n^2 - \text{NA}^2}} \approx 0.88 \frac{\lambda}{\text{NA}^2}\]</span></p>
+<p>High NA → shallow depth of field. This is useful for optical sectioning (confocal microscopy, discussed later).</p>
+<hr>
+</section>
+</section>
+<section id="code-examples-simulating-abbe-imaging-and-resolution" class="level2">
+<h2 class="anchored" data-anchor-id="code-examples-simulating-abbe-imaging-and-resolution">Code Examples: Simulating Abbe Imaging and Resolution</h2>
+<section id="example-1-abbe-imaging-simulation" class="level3">
+<h3 class="anchored" data-anchor-id="example-1-abbe-imaging-simulation">Example 1: Abbe Imaging Simulation</h3>
+<p>We’ll simulate the double Fourier transform process: object → Fourier transform → filtering → inverse transform.</p>
+<div id="cell-fig-abbe-imaging" class="cell" data-execution_count="2">
+<div class="cell-output cell-output-display">
+<div id="fig-abbe-imaging" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-abbe-imaging-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="01-lecture09_files/figure-html/fig-abbe-imaging-output-1.png" width="527" height="465" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-abbe-imaging-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1— Abbe’s double Fourier transform theory of imaging. (a) Object: a pattern of lines. (b) Fourier spectrum in back focal plane (hot colormap: log intensity). (c) Spectrum after low-pass filtering by the objective aperture (NA = 0.4, hot colormap: log intensity). (d) Reconstructed image via inverse Fourier transform.
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>High-frequency details are lost due to the finite NA of the objective.</code></pre>
+</div>
+</div>
+</section>
+<section id="example-2-effect-of-numerical-aperture-on-resolution" class="level3">
+<h3 class="anchored" data-anchor-id="example-2-effect-of-numerical-aperture-on-resolution">Example 2: Effect of Numerical Aperture on Resolution</h3>
+<div id="cell-fig-na-resolution" class="cell" data-execution_count="3">
+<div class="cell-output cell-output-display">
+<div id="fig-na-resolution" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-na-resolution-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="01-lecture09_files/figure-html/fig-na-resolution-output-1.png" width="551" height="355" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-na-resolution-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2— Effect of numerical aperture on resolution. Top row: object (high-frequency grating). Middle rows: images at different NA values. Bottom: intensity profile showing how increased NA resolves finer details.
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Higher NA resolves finer details. Resolution: d = 0.61λ/NA</code></pre>
+</div>
+</div>
+</section>
+<section id="example-3-darkfield-filtering-simulation" class="level3">
+<h3 class="anchored" data-anchor-id="example-3-darkfield-filtering-simulation">Example 3: Darkfield Filtering Simulation</h3>
+<div id="cell-fig-darkfield-filtering" class="cell" data-execution_count="4">
+<div class="cell-output cell-output-display">
+<div id="fig-darkfield-filtering" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-darkfield-filtering-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="01-lecture09_files/figure-html/fig-darkfield-filtering-output-1.png" width="578" height="378" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-darkfield-filtering-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3— Darkfield microscopy as high-pass filtering in Fourier space. (a) Phase object (viridis colormap: phase shift in units of <span class="math inline">\(\pi\)</span> rad). (b) Brightfield image (no contrast because phases don’t affect intensity). (c) Fourier spectrum (hot colormap: log intensity). (d) Darkfield filter (blocks low frequencies). (e) Darkfield image shows high contrast. (f) Intensity profiles: blue is brightfield, orange is darkfield.
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Darkfield converts phase information into intensity contrast by blocking DC light!</code></pre>
+</div>
+</div>
+</section>
+<section id="example-4-resolution-and-airy-patterns" class="level3">
+<h3 class="anchored" data-anchor-id="example-4-resolution-and-airy-patterns">Example 4: Resolution and Airy Patterns</h3>
+<div id="cell-fig-resolution-airy" class="cell" data-execution_count="5">
+<div class="cell-output cell-output-display">
+<div id="fig-resolution-airy" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-resolution-airy-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="01-lecture09_files/figure-html/fig-resolution-airy-output-1.png" width="731" height="450" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-resolution-airy-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4— Resolution limit and Airy patterns. (a) PSF cross-section at NA = 1.0 with Rayleigh distance marked. (b) 2D PSF (hot colormap: intensity). (c) NA vs.&nbsp;Rayleigh limit. (d) Two sources at the Rayleigh limit (hot colormap: intensity, cyan crosses mark source positions). (e) Two unresolved sources. (f) Intensity profiles (blue: at Rayleigh limit, orange: unresolved). (g) Rayleigh limit vs.&nbsp;wavelength.
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rayleigh criterion for NA = 1.0: d = 0.336 μm</code></pre>
+</div>
+</div>
+</section>
+<section id="example-5-optical-transfer-function-otf-for-incoherent-imaging" class="level3">
+<h3 class="anchored" data-anchor-id="example-5-optical-transfer-function-otf-for-incoherent-imaging">Example 5: Optical Transfer Function (OTF) for Incoherent Imaging</h3>
+<div id="cell-fig-otf" class="cell" data-execution_count="6">
+<div class="cell-output cell-output-display">
+<div id="fig-otf" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-otf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="01-lecture09_files/figure-html/fig-otf-output-1.png" width="526" height="171" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-otf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5— Optical Transfer Function (OTF) for incoherent imaging at different NA values. (a) OTF profiles showing how higher NA extends the passband to higher spatial frequencies. (b) Comparison of coherent (CTF) vs.&nbsp;incoherent (OTF) cutoff frequencies. (c) How OTF modulates contrast as a function of spatial frequency.
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>======================================================================
+OPTICAL TRANSFER FUNCTION (OTF) SUMMARY
+======================================================================
+
+For wavelength λ = 0.55 μm (green light):
+
+NA    | CTF Cutoff (NA/λ) | OTF Cutoff (2NA/λ) | Resolution Gain
+----------------------------------------------------------------------
+0.3  |     0.55 μm⁻¹       |      1.09 μm⁻¹      | 2× (incoherent wins)
+0.6  |     1.09 μm⁻¹       |      2.18 μm⁻¹      | 2× (incoherent wins)
+1.0  |     1.82 μm⁻¹       |      3.64 μm⁻¹      | 2× (incoherent wins)
+1.4  |     2.55 μm⁻¹       |      5.09 μm⁻¹      | 2× (incoherent wins)
+
+Key insight: Incoherent imaging can resolve details at twice the
+frequency compared to coherent imaging with the same NA!
+======================================================================</code></pre>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="summary" class="level2">
+<h2 class="anchored" data-anchor-id="summary">Summary</h2>
+<p>In this lecture, we have developed a complete understanding of how microscopes form images, based on <strong>Abbe’s theory</strong> and <strong>Fourier optics</strong>:</p>
+<ol type="1">
+<li><strong>Image formation is a double Fourier transform</strong>: Object → Fourier plane → Image</li>
+<li><strong>Numerical aperture</strong> sets the frequency cutoff and resolution limit</li>
+<li><strong>Köhler illumination</strong> ensures uniform, proper illumination</li>
+<li><strong>Brightfield microscopy</strong> suffers from poor contrast for transparent (phase) objects</li>
+<li><strong>Darkfield microscopy</strong> exploits Fourier filtering to reveal phase structure and scattering</li>
+<li><strong>Resolution is fundamentally limited</strong> by diffraction: <span class="math inline">\(d = 0.61 \lambda / \text{NA}\)</span></li>
+</ol>
+<p>In the next lecture, we will explore <strong>Phase Contrast Microscopy</strong>, which solves the phase-object problem in brightfield by introducing a phase shift in the Fourier plane, converting invisible phase variations into visible intensity variations—an elegant application of Fourier filtering.</p>
+<hr>
+</section>
+<section id="key-formulas-and-results" class="level2">
+<h2 class="anchored" data-anchor-id="key-formulas-and-results">Key Formulas and Results</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Concept</th>
+<th>Formula</th>
+<th>Remarks</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Numerical Aperture</strong></td>
+<td><span class="math inline">\(\text{NA} = n \sin \alpha\)</span></td>
+<td><span class="math inline">\(n\)</span> = refractive index, <span class="math inline">\(\alpha\)</span> = half-cone angle</td>
+</tr>
+<tr class="even">
+<td><strong>Rayleigh Criterion</strong></td>
+<td><span class="math inline">\(d = 0.61 \lambda / \text{NA}\)</span></td>
+<td>Minimum resolvable distance</td>
+</tr>
+<tr class="odd">
+<td><strong>Frequency Cutoff</strong></td>
+<td><span class="math inline">\(u_{\max} = \text{NA} / \lambda\)</span></td>
+<td>Highest spatial frequency transmitted</td>
+</tr>
+<tr class="even">
+<td><strong>Useful Magnification</strong></td>
+<td><span class="math inline">\(M = 500–1000 \times \text{NA}\)</span></td>
+<td>Avoid empty magnification</td>
+</tr>
+<tr class="odd">
+<td><strong>Depth of Field</strong></td>
+<td><span class="math inline">\(\text{DOF} \approx 0.88 \lambda / \text{NA}^2\)</span></td>
+<td>Axial resolution</td>
+</tr>
+<tr class="even">
+<td><strong>Coherence Length</strong></td>
+<td><span class="math inline">\(\ell_c \approx \lambda / (\Delta \theta \cdot \text{NA}_c)\)</span></td>
+<td>Controls degree of coherence</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="fourier-optics-perspective-unifying-the-concepts" class="level2">
+<h2 class="anchored" data-anchor-id="fourier-optics-perspective-unifying-the-concepts">Fourier Optics Perspective: Unifying the Concepts</h2>
+<p>To deepen your intuition, here is a unified summary of everything we have covered, viewed entirely through the lens of <strong>Fourier space</strong>:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 24%">
+<col style="width: 75%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Concept</th>
+<th>Fourier-Space Interpretation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Image formation</strong></td>
+<td>Double Fourier transform: object (<span class="math inline">\(x,y\)</span>) → spectrum (<span class="math inline">\(u,v\)</span>) → filtered spectrum → image (<span class="math inline">\(x',y'\)</span>)</td>
+</tr>
+<tr class="even">
+<td><strong>Objective lens</strong></td>
+<td>Acts as a <strong>low-pass filter</strong>: transmits only spatial frequencies with <span class="math inline">\(\sqrt{u^2+v^2} \leq \text{NA}/\lambda\)</span></td>
+</tr>
+<tr class="odd">
+<td><strong>Pupil function</strong></td>
+<td>The <strong>transfer function in field space</strong> (coherent): <span class="math inline">\(H_{\text{CTF}}(u,v) = \text{pupil}(u,v)\)</span>, sharp cutoff at <span class="math inline">\(\text{NA}/\lambda\)</span></td>
+</tr>
+<tr class="even">
+<td><strong>Point-spread function (PSF)</strong></td>
+<td><strong>Fourier transform of the pupil function</strong>: <span class="math inline">\(\text{PSF} = \|\mathcal{F}^{-1}[\text{pupil}]\|^2\)</span></td>
+</tr>
+<tr class="odd">
+<td><strong>Optical Transfer Function (OTF)</strong></td>
+<td><strong>Autocorrelation of the pupil function</strong> (incoherent imaging): smooth modulation of spatial frequencies, cutoff at <span class="math inline">\(2\text{NA}/\lambda\)</span></td>
+</tr>
+<tr class="even">
+<td><strong>Resolution limit</strong></td>
+<td>Set by the <strong>cutoff frequency</strong>: <span class="math inline">\(d = 0.61\lambda/\text{NA}\)</span> (incoherent), or equivalently, <span class="math inline">\(d = \lambda/(2\text{NA})\)</span> from the OTF cutoff <span class="math inline">\(2\text{NA}/\lambda\)</span></td>
+</tr>
+<tr class="odd">
+<td><strong>Brightfield microscopy</strong></td>
+<td><strong>No high-pass component</strong>: DC (zero-order) dominates; phase objects are invisible because phase information is encoded in the imaginary part of Fourier components, but we only measure intensity</td>
+</tr>
+<tr class="even">
+<td><strong>Brightfield phase problem</strong></td>
+<td>Phase information <span class="math inline">\(\phi(x,y)\)</span> modulates the Fourier spectrum as <span class="math inline">\(e^{i\phi}\)</span>, but intensity detection loses this phase: <span class="math inline">\(\|\mathcal{F}[e^{i\phi}]\|^2\)</span> loses the phase of the components</td>
+</tr>
+<tr class="odd">
+<td><strong>Darkfield microscopy</strong></td>
+<td><strong>High-pass filter</strong>: removes DC component by blocking the zero-order light. Transfer function: <span class="math inline">\(H_{\text{DF}}(u,v) = H_{\text{BF}} - \delta(u,v)\)</span>. Only high-frequency scattered light contributes, revealing edges and phase variations</td>
+</tr>
+<tr class="even">
+<td><strong>Fourier filtering</strong></td>
+<td>Placing <strong>masks in the back focal plane</strong> directly modulates which spatial frequencies reach the image plane: low-pass (blur), high-pass (edges), band-pass (fine detail only)</td>
+</tr>
+<tr class="odd">
+<td><strong>Coherent vs.&nbsp;incoherent</strong></td>
+<td>Coherent: CTF is the pupil itself (sharp edges); Incoherent: OTF is pupil autocorrelation (smooth decay). Incoherent <strong>wins</strong> because its cutoff is twice as high, allowing finer resolution with the same NA</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Key takeaway</strong>: Every concept in microscopy can be understood as a <strong>filter in spatial frequency space</strong>. The ultimate goal is to design imaging systems that <strong>extend the passband to higher frequencies</strong> (higher NA) or <strong>selectively amplify contrast</strong> at specific frequencies (darkfield, phase contrast, structured illumination).</p>
+<hr>
+</section>
+<section id="experimental-connections" class="level2">
+<h2 class="anchored" data-anchor-id="experimental-connections">Experimental Connections</h2>
+<p>Image formation in microscopy is best understood by doing it:</p>
+<p><strong>Abbe diffraction experiment</strong> Place a fine grating (e.g., a diffraction grating or a piece of fine mesh) on the microscope stage. In the back focal plane of the objective, observe the discrete diffraction orders. Progressively block higher orders with a slit or iris — watch how the image loses fine detail. This is Abbe’s original experiment from 1873.</p>
+<p><strong>Measuring the point spread function</strong> Image fluorescent beads smaller than the diffraction limit (e.g., 100 nm beads with a 0.5 μm resolution objective). The bead images are direct measurements of the PSF. Fit with an Airy function to extract the effective NA. Compare objectives of different NA.</p>
+<p><strong>Darkfield microscopy in practice</strong> Block the central (DC) order at the back focal plane with a small opaque disk. Only scattered light reaches the image plane — transparent specimens that are invisible in brightfield suddenly glow against a dark background. Try with unstained onion skin cells or colloidal nanoparticles in water.</p>
+<p><strong>Resolution limit demonstration</strong> Image a USAF 1951 resolution test target with objectives of different NA. Identify the smallest resolved group/element. Compare to the theoretical Rayleigh limit <span class="math inline">\(d = 0.61\lambda/\text{NA}\)</span>. Discuss why the measured resolution is often worse than the theoretical limit (aberrations, vibrations, sample preparation).</p>
+<p><strong>Spatial filtering</strong> Place masks in the Fourier plane of a 4f system: low-pass (blur), high-pass (edge detection), directional (enhance features along one axis). This directly connects Fourier optics theory to practical image processing.</p>
+</section>
+<section id="further-reading" class="level2">
+<h2 class="anchored" data-anchor-id="further-reading">Further Reading</h2>
+<p>The following references are linked to the central <a href="../../resources/resources.html">Resources &amp; Recommended Reading</a> page:</p>
+<ul>
+<li><strong><a href="../../resources/resources.html#sec-goodman">Goodman, Ch. 6</a></strong> — Frequency analysis of optical imaging systems. The essential theoretical treatment.</li>
+<li><strong><a href="../../resources/resources.html#sec-saleh">Saleh &amp; Teich, Ch. 4.4</a></strong> — Imaging systems and the optical transfer function.</li>
+<li><strong><a href="../../resources/resources.html#sec-hecht">Hecht, Ch. 11.3</a></strong> — Abbe theory and the diffraction limit in microscopy.</li>
+<li><strong><a href="../../resources/resources.html#sec-murphy">Murphy &amp; Davidson (2013)</a></strong> — <em>Fundamentals of Light Microscopy</em>. Excellent practical guide with real microscope images.</li>
+<li><strong><a href="../../resources/resources.html#sec-mertz">Mertz (2019)</a></strong> — <em>Introduction to Optical Microscopy</em>. Modern treatment connecting Fourier optics to microscopy.</li>
+<li><strong><a href="../../resources/resources.html#sec-born">Born &amp; Wolf, Ch. 8–9</a></strong> — Rigorous diffraction theory of image formation.</li>
+</ul>
+<hr>
+<p><em>Lecture 8: Microscopy I — Introduction to Photonics</em></p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/fcichos\.github\.io\/Photonics\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.34">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>From Photons to Motion: Optical Forces, Thermophoresis &amp; Active Matter – Photonics</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-9344fb9851b4da3cab95007ef9d770dc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../assets/css/styles.css">
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Photonics</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../../index.html" aria-current="page"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">From Photons to Motion: Optical Forces, Thermophoresis &amp; Active Matter</li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="../../index.html" class="sidebar-logo-link">
+      <img src="../../assets/images/mona_logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home</span></a>
+  </div>
+</li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Course Info</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-info/intructors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Instructor</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-info/schedule.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Schedule</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-info/resources.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Ressources</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-info/seminars.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Seminars</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-info/exam.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exams</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">PART I: FOUNDATIONS</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Lecture 1 — Introduction, Ray Optics &amp; Wave Optics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture01/introduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture01/01-lecture01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Ray Optics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture01/02-lecture01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Optical Elements</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture02/01-lecture02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Matrix Optics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture02/02-lecture02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wave Optics</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#optical-forces-pushing-with-light" id="toc-optical-forces-pushing-with-light" class="nav-link" data-scroll-target="#optical-forces-pushing-with-light">1. Optical Forces: Pushing with Light</a>
+  <ul class="collapse">
+  <li><a href="#radiation-pressure" id="toc-radiation-pressure" class="nav-link" data-scroll-target="#radiation-pressure">Radiation Pressure</a></li>
+  <li><a href="#the-gradient-force-trapping-in-a-focused-beam" id="toc-the-gradient-force-trapping-in-a-focused-beam" class="nav-link" data-scroll-target="#the-gradient-force-trapping-in-a-focused-beam">The Gradient Force: Trapping in a Focused Beam</a></li>
+  <li><a href="#optical-tweezers-the-nobel-prize-achievement" id="toc-optical-tweezers-the-nobel-prize-achievement" class="nav-link" data-scroll-target="#optical-tweezers-the-nobel-prize-achievement">Optical Tweezers: The Nobel Prize Achievement</a></li>
+  <li><a href="#force-calibration-from-thermal-fluctuations" id="toc-force-calibration-from-thermal-fluctuations" class="nav-link" data-scroll-target="#force-calibration-from-thermal-fluctuations">Force Calibration: From Thermal Fluctuations</a></li>
+  <li><a href="#spatial-light-modulators-and-holographic-optical-tweezers" id="toc-spatial-light-modulators-and-holographic-optical-tweezers" class="nav-link" data-scroll-target="#spatial-light-modulators-and-holographic-optical-tweezers">Spatial Light Modulators and Holographic Optical Tweezers</a></li>
+  </ul></li>
+  <li><a href="#thermophoresis-self-propulsion" id="toc-thermophoresis-self-propulsion" class="nav-link" data-scroll-target="#thermophoresis-self-propulsion">2. Thermophoresis &amp; Self-Propulsion</a>
+  <ul class="collapse">
+  <li><a href="#the-soret-effect-particles-drift-along-temperature-gradients" id="toc-the-soret-effect-particles-drift-along-temperature-gradients" class="nav-link" data-scroll-target="#the-soret-effect-particles-drift-along-temperature-gradients">The Soret Effect: Particles Drift Along Temperature Gradients</a></li>
+  <li><a href="#self-thermophoresis-janus-particles-and-laser-heating" id="toc-self-thermophoresis-janus-particles-and-laser-heating" class="nav-link" data-scroll-target="#self-thermophoresis-janus-particles-and-laser-heating">Self-Thermophoresis: Janus Particles and Laser Heating</a></li>
+  <li><a href="#velocity-from-absorbed-power" id="toc-velocity-from-absorbed-power" class="nav-link" data-scroll-target="#velocity-from-absorbed-power">Velocity from Absorbed Power</a></li>
+  </ul></li>
+  <li><a href="#photon-nudging-feedback-control-without-steering" id="toc-photon-nudging-feedback-control-without-steering" class="nav-link" data-scroll-target="#photon-nudging-feedback-control-without-steering">3. Photon Nudging: Feedback Control Without Steering</a>
+  <ul class="collapse">
+  <li><a href="#the-challenge-random-orientation" id="toc-the-challenge-random-orientation" class="nav-link" data-scroll-target="#the-challenge-random-orientation">The Challenge: Random Orientation</a></li>
+  <li><a href="#the-nudging-concept" id="toc-the-nudging-concept" class="nav-link" data-scroll-target="#the-nudging-concept">The Nudging Concept</a></li>
+  <li><a href="#navigation-algorithm" id="toc-navigation-algorithm" class="nav-link" data-scroll-target="#navigation-algorithm">Navigation Algorithm</a></li>
+  <li><a href="#mona-group-demonstrations" id="toc-mona-group-demonstrations" class="nav-link" data-scroll-target="#mona-group-demonstrations">MoNa Group Demonstrations</a></li>
+  </ul></li>
+  <li><a href="#hot-brownian-motion-temperature-effects-on-diffusion" id="toc-hot-brownian-motion-temperature-effects-on-diffusion" class="nav-link" data-scroll-target="#hot-brownian-motion-temperature-effects-on-diffusion">4. Hot Brownian Motion: Temperature Effects on Diffusion</a>
+  <ul class="collapse">
+  <li><a href="#classical-brownian-motion-and-einstein-relation" id="toc-classical-brownian-motion-and-einstein-relation" class="nav-link" data-scroll-target="#classical-brownian-motion-and-einstein-relation">Classical Brownian Motion and Einstein Relation</a></li>
+  <li><a href="#heated-particles-non-uniform-temperature" id="toc-heated-particles-non-uniform-temperature" class="nav-link" data-scroll-target="#heated-particles-non-uniform-temperature">Heated Particles: Non-Uniform Temperature</a></li>
+  <li><a href="#effective-temperature-and-observables" id="toc-effective-temperature-and-observables" class="nav-link" data-scroll-target="#effective-temperature-and-observables">Effective Temperature and Observables</a></li>
+  <li><a href="#photothermal-correlation-spectroscopy" id="toc-photothermal-correlation-spectroscopy" class="nav-link" data-scroll-target="#photothermal-correlation-spectroscopy">Photothermal Correlation Spectroscopy</a></li>
+  <li><a href="#biological-and-physical-implications" id="toc-biological-and-physical-implications" class="nav-link" data-scroll-target="#biological-and-physical-implications">Biological and Physical Implications</a></li>
+  </ul></li>
+  <li><a href="#outlook-machine-learning-meets-active-matter" id="toc-outlook-machine-learning-meets-active-matter" class="nav-link" data-scroll-target="#outlook-machine-learning-meets-active-matter">5. Outlook: Machine Learning Meets Active Matter</a>
+  <ul class="collapse">
+  <li><a href="#reinforcement-learning-for-navigation" id="toc-reinforcement-learning-for-navigation" class="nav-link" data-scroll-target="#reinforcement-learning-for-navigation">Reinforcement Learning for Navigation</a></li>
+  <li><a href="#collective-behavior-and-active-matter" id="toc-collective-behavior-and-active-matter" class="nav-link" data-scroll-target="#collective-behavior-and-active-matter">Collective Behavior and Active Matter</a></li>
+  <li><a href="#targeted-drug-delivery-and-lab-on-chip" id="toc-targeted-drug-delivery-and-lab-on-chip" class="nav-link" data-scroll-target="#targeted-drug-delivery-and-lab-on-chip">Targeted Drug Delivery and Lab-on-Chip</a></li>
+  </ul></li>
+  <li><a href="#code-examples-and-simulations" id="toc-code-examples-and-simulations" class="nav-link" data-scroll-target="#code-examples-and-simulations">Code Examples and Simulations</a>
+  <ul class="collapse">
+  <li><a href="#example-1-optical-trap-stiffness-and-equipartition-theorem" id="toc-example-1-optical-trap-stiffness-and-equipartition-theorem" class="nav-link" data-scroll-target="#example-1-optical-trap-stiffness-and-equipartition-theorem">Example 1: Optical Trap Stiffness and Equipartition Theorem</a></li>
+  <li><a href="#example-2-thermophoresis-and-particle-drift-in-a-temperature-gradient" id="toc-example-2-thermophoresis-and-particle-drift-in-a-temperature-gradient" class="nav-link" data-scroll-target="#example-2-thermophoresis-and-particle-drift-in-a-temperature-gradient">Example 2: Thermophoresis and Particle Drift in a Temperature Gradient</a></li>
+  <li><a href="#example-3-photon-nudging-navigation" id="toc-example-3-photon-nudging-navigation" class="nav-link" data-scroll-target="#example-3-photon-nudging-navigation">Example 3: Photon Nudging Navigation</a></li>
+  <li><a href="#example-4-hot-brownian-motion-enhanced-diffusion" id="toc-example-4-hot-brownian-motion-enhanced-diffusion" class="nav-link" data-scroll-target="#example-4-hot-brownian-motion-enhanced-diffusion">Example 4: Hot Brownian Motion — Enhanced Diffusion</a></li>
+  <li><a href="#example-5-collective-swarming-multiple-swimmers" id="toc-example-5-collective-swarming-multiple-swimmers" class="nav-link" data-scroll-target="#example-5-collective-swarming-multiple-swimmers">Example 5: Collective Swarming — Multiple Swimmers</a></li>
+  </ul></li>
+  <li><a href="#summary-and-connections-to-the-mona-group" id="toc-summary-and-connections-to-the-mona-group" class="nav-link" data-scroll-target="#summary-and-connections-to-the-mona-group">Summary and Connections to the MoNa Group</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">From Photons to Motion: Optical Forces, Thermophoresis &amp; Active Matter</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>This capstone lecture connects the optical concepts you have learned—from wave optics and Fourier optics to microscopy and light scattering—to the fascinating world of <strong>motion at microscopic scales</strong>. When light interacts with matter, it can do more than just illuminate or image: it can <strong>push particles</strong>, create <strong>temperature gradients</strong>, and enable <strong>navigation of microscopic swimmers</strong>.</p>
+<p>The Molecular Nanophotonics Group (MoNa) at Leipzig University has pioneered experimental and theoretical approaches to harness light for controlling motion and studying active matter. In this lecture, we explore five interconnected topics:</p>
+<ol type="1">
+<li><strong>Optical forces</strong> — radiation pressure and gradient forces in focused beams</li>
+<li><strong>Thermophoresis</strong> — particle drift driven by light-induced temperature gradients</li>
+<li><strong>Photon nudging</strong> — feedback control of micro-swimmer orientation</li>
+<li><strong>Hot Brownian motion</strong> — thermal effects on diffusion of heated nanoparticles</li>
+<li><strong>Machine learning</strong> — emerging tools for autonomous navigation and collective behavior</li>
+</ol>
+<p>By the end, you will understand how optics and light-matter interactions enable control and study of microscopic systems beyond what conventional passive microscopy can achieve.</p>
+<hr>
+</section>
+<section id="optical-forces-pushing-with-light" class="level2">
+<h2 class="anchored" data-anchor-id="optical-forces-pushing-with-light">1. Optical Forces: Pushing with Light</h2>
+<section id="radiation-pressure" class="level3">
+<h3 class="anchored" data-anchor-id="radiation-pressure">Radiation Pressure</h3>
+<p>Light carries momentum. A photon with frequency <span class="math inline">\(\nu\)</span> has momentum <span class="math inline">\(p = h\nu/c = \hbar k\)</span>, where <span class="math inline">\(k = 2\pi/\lambda\)</span> is the wave vector. When light is absorbed or reflected by matter, it transfers momentum, exerting a force.</p>
+<p><strong>Radiation pressure</strong> is defined as the momentum flux carried by electromagnetic radiation. For a beam with intensity <span class="math inline">\(I\)</span> (power per unit area), the radiation pressure force on an absorbing surface is:</p>
+<p><span class="math display">\[F_{\text{rad}} = \frac{I}{c}\]</span></p>
+<p>For a perfectly reflecting surface, the force is doubled: <span class="math inline">\(F = 2I/c\)</span>.</p>
+<p>Consider a typical laser pointer (1 mW) with wavelength 650 nm focused to a spot of 100 μm diameter. The intensity is roughly <span class="math inline">\(I = P/A \approx 10^3\)</span> W/m². The resulting radiation pressure is <span class="math inline">\(F = I/c \approx 3\)</span> pN (piconewtons). This tiny force is often negligible for macroscopic objects, but for microscopic particles (e.g., bacteria, organelles, colloidal spheres), it becomes significant because the surface-to-volume ratio is large.</p>
+</section>
+<section id="the-gradient-force-trapping-in-a-focused-beam" class="level3">
+<h3 class="anchored" data-anchor-id="the-gradient-force-trapping-in-a-focused-beam">The Gradient Force: Trapping in a Focused Beam</h3>
+<p>Focused laser beams create <strong>intensity gradients</strong> in space. A dielectric particle placed in this gradient experiences a force toward the region of <strong>highest intensity</strong> — the <strong>gradient force</strong>. This is the physical principle behind <strong>optical tweezers</strong>.</p>
+<p>For a dielectric sphere of radius <span class="math inline">\(a\)</span> (with <span class="math inline">\(a \ll \lambda\)</span>) in a focused Gaussian beam, the gradient force is approximately:</p>
+<p><span class="math display">\[F_{\text{grad}} = \frac{\pi a^3 (\alpha - \alpha_{\text{medium}})}{3} \nabla I\]</span></p>
+<p>where <span class="math inline">\(\alpha\)</span> is the polarizability of the particle and <span class="math inline">\(\alpha_{\text{medium}}\)</span> is that of the surrounding medium. The force points toward the intensity maximum, enabling three-dimensional trapping.</p>
+<p><strong>Key physics</strong>: The gradient force arises because the particle’s induced dipole experiences a stronger electric field on one side of the focus than the other. This dipole-gradient interaction is analogous to the force on an electric dipole in an inhomogeneous electric field.</p>
+<p>The trapped particle experiences a restoring force proportional to its displacement from the beam center: <span class="math inline">\(F \approx -\kappa x\)</span>, where <span class="math inline">\(\kappa\)</span> is the <strong>stiffness</strong> of the trap. Typical stiffness values for optical tweezers range from 10 pN/nm to 100 pN/nm, depending on laser power and beam geometry.</p>
+</section>
+<section id="optical-tweezers-the-nobel-prize-achievement" class="level3">
+<h3 class="anchored" data-anchor-id="optical-tweezers-the-nobel-prize-achievement">Optical Tweezers: The Nobel Prize Achievement</h3>
+<p>In 1986, Arthur Ashkin demonstrated the first <strong>optical tweezers</strong> using a single focused infrared laser beam to trap and manipulate micron-sized dielectric particles (and even living cells). This breakthrough earned him the <strong>2018 Nobel Prize in Physics</strong> (shared with Gérard Mourou and Donna Strickland for work on high-intensity lasers).</p>
+<p>Optical tweezers revolutionized single-molecule biophysics by enabling: - <strong>Manipulation</strong> of biomolecules (DNA, proteins, RNA) and cellular structures - <strong>Force spectroscopy</strong> — measuring forces during unfolding and binding - <strong>Studies of molecular motors</strong> like kinesins walking along microtubules - <strong>Manipulation of colloidal particles</strong> for self-assembly studies</p>
+<p>The typical setup uses: - An infrared laser (e.g., Nd:YAG at 1064 nm) to minimize photodamage - A high-NA microscope objective to tightly focus the beam - Piezoelectric stage for 3D particle positioning - Back-aperture detection or quadrant photodiode for feedback</p>
+</section>
+<section id="force-calibration-from-thermal-fluctuations" class="level3">
+<h3 class="anchored" data-anchor-id="force-calibration-from-thermal-fluctuations">Force Calibration: From Thermal Fluctuations</h3>
+<p>To quantify the trap stiffness <span class="math inline">\(\kappa\)</span> experimentally, we exploit <strong>thermal fluctuations</strong> of the trapped particle. A particle confined by a harmonic potential has position fluctuations that follow the <strong>equipartition theorem</strong>:</p>
+<p><span class="math display">\[\langle x^2 \rangle = \frac{k_B T}{\kappa}\]</span></p>
+<p>where <span class="math inline">\(k_B\)</span> is Boltzmann’s constant and <span class="math inline">\(T\)</span> is temperature. From video microscopy, one can measure the mean-square displacement and invert this relation to find <span class="math inline">\(\kappa\)</span>.</p>
+<p>Alternatively, we can measure the <strong>power spectrum</strong> of position fluctuations. The autocorrelation of position for a trapped particle in a viscous medium shows a characteristic timescale <span class="math inline">\(\tau = 6\pi\eta a / \kappa\)</span> (where <span class="math inline">\(\eta\)</span> is viscosity and <span class="math inline">\(a\)</span> is radius). The corner frequency <span class="math inline">\(f_c = 1/(2\pi\tau)\)</span> directly gives the stiffness.</p>
+</section>
+<section id="spatial-light-modulators-and-holographic-optical-tweezers" class="level3">
+<h3 class="anchored" data-anchor-id="spatial-light-modulators-and-holographic-optical-tweezers">Spatial Light Modulators and Holographic Optical Tweezers</h3>
+<p>Modern extensions use <strong>spatial light modulators (SLMs)</strong> — programmable phase masks that shape laser light in real time. By encoding interference patterns, one can create: - <strong>Multiple traps</strong> from a single laser beam - <strong>Rotating traps</strong> for applying torque - <strong>Time-varying potentials</strong> for complex manipulation - <strong>Custom intensity distributions</strong> matching experimental needs</p>
+<p>The MoNa group employs such techniques for advanced manipulation of micro-swimmers.</p>
+<hr>
+</section>
+</section>
+<section id="thermophoresis-self-propulsion" class="level2">
+<h2 class="anchored" data-anchor-id="thermophoresis-self-propulsion">2. Thermophoresis &amp; Self-Propulsion</h2>
+<section id="the-soret-effect-particles-drift-along-temperature-gradients" class="level3">
+<h3 class="anchored" data-anchor-id="the-soret-effect-particles-drift-along-temperature-gradients">The Soret Effect: Particles Drift Along Temperature Gradients</h3>
+<p><strong>Thermophoresis</strong> (also called <strong>thermomigration</strong> or the <strong>Soret effect</strong>) is the directed motion of particles in response to a temperature gradient. Particles tend to drift toward cooler or warmer regions depending on their chemical nature and the solvent.</p>
+<p>The drift velocity is given by:</p>
+<p><span class="math display">\[v_{\text{thermo}} = -D_T \nabla T\]</span></p>
+<p>where <span class="math inline">\(D_T\)</span> is the <strong>thermal diffusion coefficient</strong> (or thermal mobility). The related <strong>Soret coefficient</strong> <span class="math inline">\(S_T\)</span> expresses this in terms of the concentration gradient generated by a temperature gradient at equilibrium:</p>
+<p><span class="math display">\[S_T = -\frac{1}{c(1-c)} \left. \frac{\partial c}{\partial z} \right|_{T \text{ gradient}}\]</span></p>
+<p>For many particles in water, thermophoresis drives motion toward <strong>warmer regions</strong> (thermophilic, <span class="math inline">\(D_T &gt; 0\)</span>), though some particles move toward cooler regions (thermophobic, <span class="math inline">\(D_T &lt; 0\)</span>).</p>
+<p><strong>Physical origin</strong>: Thermophoresis results from asymmetric solvation at different temperatures. As temperature varies around the particle, the local viscosity, diffusivity, and hydration shell change, breaking the symmetry and producing a net force.</p>
+</section>
+<section id="self-thermophoresis-janus-particles-and-laser-heating" class="level3">
+<h3 class="anchored" data-anchor-id="self-thermophoresis-janus-particles-and-laser-heating">Self-Thermophoresis: Janus Particles and Laser Heating</h3>
+<p>A <strong>Janus particle</strong> has two distinct hemispheres with different properties (e.g., one coated with gold, one bare). When such a particle absorbs light asymmetrically, one face heats up more than the other, creating a <strong>local temperature gradient around the particle itself</strong>.</p>
+<p>The heated surface drives thermophilic particles away from it, creating a <strong>self-propulsion mechanism</strong>. The swimming velocity is approximately:</p>
+<p><span class="math display">\[v_{\text{swim}} \approx D_T \Delta T / a\]</span></p>
+<p>where <span class="math inline">\(\Delta T\)</span> is the temperature difference across the particle and <span class="math inline">\(a\)</span> is its radius.</p>
+<p>For a gold-coated sphere in water with absorbed laser power <span class="math inline">\(P\)</span>, the temperature rise is roughly:</p>
+<p><span class="math display">\[\Delta T \approx \frac{P}{4\pi \kappa a}\]</span></p>
+<p>where <span class="math inline">\(\kappa\)</span> is the thermal conductivity of the medium. Typical laser powers (milliwatts) easily achieve temperature rises of tens of Kelvin, enabling swimming velocities of micrometers per second.</p>
+<p><strong>Control via laser</strong>: - Switching the laser <strong>ON/OFF</strong> switches swimming ON/OFF - Changing laser <strong>position</strong> changes the direction of the temperature gradient - Controlling laser <strong>power</strong> modulates the swimming speed</p>
+<p>This light-driven propulsion is ideal for navigation and control of micro-swimmers.</p>
+</section>
+<section id="velocity-from-absorbed-power" class="level3">
+<h3 class="anchored" data-anchor-id="velocity-from-absorbed-power">Velocity from Absorbed Power</h3>
+<p>The swimming velocity depends on the <strong>absorbed optical power</strong> <span class="math inline">\(P_{\text{abs}}\)</span>, which depends on: - Laser <strong>power</strong> <span class="math inline">\(P_{\text{laser}}\)</span> - Particle <strong>size</strong> and optical properties - <strong>Scattering and absorption</strong> cross-sections</p>
+<p>For a gold nanoparticle with good photothermal absorption, most absorbed power goes into heating. A rough estimate for swimming velocity scaling is:</p>
+<p><span class="math display">\[v_{\text{swim}} \propto \sqrt{P_{\text{abs}}}\]</span></p>
+<p>This scaling arises from the competition between the thermophoretic driving force (proportional to <span class="math inline">\(\Delta T\)</span>, which grows with power) and Stokes drag (which depends on velocity). The detailed relationship depends on particle geometry, material, and fluid properties.</p>
+<hr>
+</section>
+</section>
+<section id="photon-nudging-feedback-control-without-steering" class="level2">
+<h2 class="anchored" data-anchor-id="photon-nudging-feedback-control-without-steering">3. Photon Nudging: Feedback Control Without Steering</h2>
+<section id="the-challenge-random-orientation" class="level3">
+<h3 class="anchored" data-anchor-id="the-challenge-random-orientation">The Challenge: Random Orientation</h3>
+<p>Micro-swimmers (e.g., self-propelled particles, bacteria, algae) move by converting energy into directed motion. However, <strong>rotational diffusion</strong> — random rotation due to thermal noise — constantly randomizes their direction.</p>
+<p>In the absence of external cues, a swimmer explores space in a random walk with a <strong>persistence length</strong> <span class="math inline">\(\ell_p = v/D_r\)</span>, where <span class="math inline">\(v\)</span> is swimming speed and <span class="math inline">\(D_r\)</span> is the rotational diffusion coefficient. Typical persistence lengths are micrometers to tens of micrometers, much smaller than the centimeter scale of a petri dish.</p>
+</section>
+<section id="the-nudging-concept" class="level3">
+<h3 class="anchored" data-anchor-id="the-nudging-concept">The Nudging Concept</h3>
+<p><strong>Photon nudging</strong> exploits a clever insight: instead of <strong>steering</strong> (which requires continuous force in the transverse direction), we use <strong>real-time feedback</strong> to:</p>
+<ol type="1">
+<li><strong>Detect</strong> the particle’s orientation via microscopy</li>
+<li><strong>Wait</strong> for a favorable angle when the swimmer points toward the target</li>
+<li><strong>Nudge</strong> by turning on the laser to propel the particle</li>
+<li><strong>Repeat</strong> — nudge only when the angle is right</li>
+</ol>
+<p>This strategy <strong>greatly enhances navigation efficiency</strong> without the need for complex feedback steering.</p>
+</section>
+<section id="navigation-algorithm" class="level3">
+<h3 class="anchored" data-anchor-id="navigation-algorithm">Navigation Algorithm</h3>
+<p>The control loop works as follows:</p>
+<pre><code>while particle_not_at_target:
+    1. Acquire microscopy image
+    2. Detect orientation θ and position (x, y)
+    3. Calculate angle toward target: θ_target
+    4. If |θ - θ_target| &lt; threshold:
+        Turn on laser (push along current direction)
+    5. Else:
+        Wait (let Brownian rotation randomize orientation)</code></pre>
+<p>The key advantage: the particle only moves when already pointing in a favorable direction. Brownian motion and rotational diffusion naturally randomize the orientation; we simply “take advantage” of favorable configurations.</p>
+</section>
+<section id="mona-group-demonstrations" class="level3">
+<h3 class="anchored" data-anchor-id="mona-group-demonstrations">MoNa Group Demonstrations</h3>
+<p>Researchers at Leipzig have experimentally demonstrated photon nudging to autonomously navigate thermophoretic Janus particles toward target regions. The swimmers successfully reach designated spots without continuous active steering, illustrating how simple algorithmic control combined with passive stochastic dynamics can achieve directed motion.</p>
+<hr>
+</section>
+</section>
+<section id="hot-brownian-motion-temperature-effects-on-diffusion" class="level2">
+<h2 class="anchored" data-anchor-id="hot-brownian-motion-temperature-effects-on-diffusion">4. Hot Brownian Motion: Temperature Effects on Diffusion</h2>
+<section id="classical-brownian-motion-and-einstein-relation" class="level3">
+<h3 class="anchored" data-anchor-id="classical-brownian-motion-and-einstein-relation">Classical Brownian Motion and Einstein Relation</h3>
+<p><strong>Brownian motion</strong> is the random walk exhibited by microscopic particles suspended in a fluid. The <strong>Einstein relation</strong> connects diffusion to friction:</p>
+<p><span class="math display">\[D = \frac{k_B T}{6\pi\eta a}\]</span></p>
+<p>where <span class="math inline">\(D\)</span> is the diffusion coefficient, <span class="math inline">\(\eta\)</span> is viscosity, and <span class="math inline">\(a\)</span> is the particle radius. For a particle at temperature <span class="math inline">\(T_{\text{medium}}\)</span> (the bulk fluid temperature), this relation fully describes diffusion.</p>
+</section>
+<section id="heated-particles-non-uniform-temperature" class="level3">
+<h3 class="anchored" data-anchor-id="heated-particles-non-uniform-temperature">Heated Particles: Non-Uniform Temperature</h3>
+<p>Now consider a <strong>photothermal nanoparticle</strong> (e.g., gold nanoparticle absorbing laser light). Its surface temperature <span class="math inline">\(T_{\text{surface}}\)</span> is much higher than the bulk <span class="math inline">\(T_{\text{bulk}}\)</span>. A <strong>temperature gradient</strong> exists in the fluid around the hot particle.</p>
+<p><strong>Questions arise</strong>: - Does the particle diffuse faster? By how much? - What temperature do we use in the Einstein relation? - Can we measure this effect?</p>
+</section>
+<section id="effective-temperature-and-observables" class="level3">
+<h3 class="anchored" data-anchor-id="effective-temperature-and-observables">Effective Temperature and Observables</h3>
+<p>The concept of an <strong>effective temperature</strong> <span class="math inline">\(T_{\text{eff}}\)</span> captures the anomalous diffusion. For a heated particle immersed in cooler fluid:</p>
+<p><span class="math display">\[D_{\text{measured}} = \frac{k_B T_{\text{eff}}}{6\pi\eta a}\]</span></p>
+<p>where <span class="math inline">\(T_{\text{eff}} &gt; T_{\text{bulk}}\)</span> in the vicinity of the particle. The effective temperature is <strong>observable-dependent</strong>: - <strong>Radial diffusion</strong> (away from particle) sees a different <span class="math inline">\(T_{\text{eff}}\)</span> than - <strong>Tangential diffusion</strong> (around the particle)</p>
+<p>The <strong>anisotropic diffusion</strong> tensor reflects the non-uniform temperature field.</p>
+</section>
+<section id="photothermal-correlation-spectroscopy" class="level3">
+<h3 class="anchored" data-anchor-id="photothermal-correlation-spectroscopy">Photothermal Correlation Spectroscopy</h3>
+<p>A powerful technique to measure hot Brownian motion is <strong>photothermal correlation spectroscopy (PCS)</strong>:</p>
+<ol type="1">
+<li>Heat the particle with a strong laser pulse</li>
+<li>Monitor the particle position via a weak probe laser (e.g., back-focal-plane detection)</li>
+<li>Measure the <strong>mean-square displacement</strong> <span class="math inline">\(\langle \Delta r^2(t) \rangle\)</span> as a function of time</li>
+<li>Compare with bulk diffusion predictions to extract <span class="math inline">\(T_{\text{eff}}\)</span></li>
+</ol>
+<p>The MoNa group has developed and applied photothermal correlation spectroscopy to measure temperature gradients and effective temperatures of heated gold nanoparticles in water and polymer solutions.</p>
+</section>
+<section id="biological-and-physical-implications" class="level3">
+<h3 class="anchored" data-anchor-id="biological-and-physical-implications">Biological and Physical Implications</h3>
+<p>Hot Brownian motion is relevant for: - <strong>Plasmonic heating in photothermal therapies</strong> — understanding how heat affects cellular transport - <strong>Nanomotor efficiency</strong> — thermal effects on protein folding and molecular motor function - <strong>Microfluidic control</strong> — exploiting thermally-enhanced diffusion for mixing - <strong>Single-molecule spectroscopy</strong> — corrections needed when molecules are heated by intense focus</p>
+<hr>
+</section>
+</section>
+<section id="outlook-machine-learning-meets-active-matter" class="level2">
+<h2 class="anchored" data-anchor-id="outlook-machine-learning-meets-active-matter">5. Outlook: Machine Learning Meets Active Matter</h2>
+<section id="reinforcement-learning-for-navigation" class="level3">
+<h3 class="anchored" data-anchor-id="reinforcement-learning-for-navigation">Reinforcement Learning for Navigation</h3>
+<p>Recent advances apply <strong>reinforcement learning (RL)</strong> to micro-swimmer control:</p>
+<ul>
+<li>Train an agent (neural network) to learn optimal control policies</li>
+<li>Reward function: distance decreased toward target</li>
+<li>Actions: turn laser on/off, change laser position or power</li>
+<li>State: particle position and orientation from video</li>
+</ul>
+<p>The learned policies often discover non-intuitive strategies that outperform hand-coded algorithms. For example, an RL agent might learn to “overshoot” a turn or create oscillatory motion to escape local minima — strategies not immediately obvious from first principles.</p>
+</section>
+<section id="collective-behavior-and-active-matter" class="level3">
+<h3 class="anchored" data-anchor-id="collective-behavior-and-active-matter">Collective Behavior and Active Matter</h3>
+<p><strong>Active matter</strong> refers to systems of particles that individually consume energy to produce directed motion (self-propelled particles, bacteria, flocks). The collective behavior of such systems exhibits:</p>
+<ul>
+<li><strong>Swarming</strong> — coherent motion of many particles</li>
+<li><strong>Phase transitions</strong> — from disordered (gas-like) to ordered (liquid-/crystal-like) phases</li>
+<li><strong>Emergent structures</strong> — vortices, lanes, crystalline patterns</li>
+</ul>
+<p>Optical manipulation allows precise <strong>spatial and temporal control</strong> of individual particles, enabling experiments on: - How does communication (biochemical, mechanical) affect swarming? - Can light guide self-organization toward functional structures? - What is the minimal “intelligence” required for collective motion?</p>
+</section>
+<section id="targeted-drug-delivery-and-lab-on-chip" class="level3">
+<h3 class="anchored" data-anchor-id="targeted-drug-delivery-and-lab-on-chip">Targeted Drug Delivery and Lab-on-Chip</h3>
+<p>Practical applications drive ongoing research:</p>
+<ul>
+<li><strong>Targeted drug delivery</strong> — use light-driven particles as carriers to deliver therapeutics to specific cells or tissues</li>
+<li><strong>Micro-robots</strong> — particles programmed to perform tasks (transport, assembly, sensing)</li>
+<li><strong>Lab-on-chip systems</strong> — integrate optical traps and thermophoretic swimmers for autonomous cell sorting, analysis, and diagnostics</li>
+</ul>
+<p>The convergence of optical manipulation, machine learning, and microfluidics promises revolutionary new capabilities in medicine and biotechnology.</p>
+<hr>
+</section>
+</section>
+<section id="code-examples-and-simulations" class="level2">
+<h2 class="anchored" data-anchor-id="code-examples-and-simulations">Code Examples and Simulations</h2>
+<section id="example-1-optical-trap-stiffness-and-equipartition-theorem" class="level3">
+<h3 class="anchored" data-anchor-id="example-1-optical-trap-stiffness-and-equipartition-theorem">Example 1: Optical Trap Stiffness and Equipartition Theorem</h3>
+<p>Below, we simulate thermal fluctuations of a trapped particle and extract stiffness from mean-square displacement.</p>
+<div id="cell-fig-trap-stiffness" class="cell" data-execution_count="2">
+<div class="cell-output cell-output-display">
+<div id="fig-trap-stiffness" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-trap-stiffness-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="01-lecture16_files/figure-html/fig-trap-stiffness-output-1.png" width="513" height="169" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-trap-stiffness-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1— Thermal fluctuations of a particle in an optical trap. (Left) Sample trajectory showing random motion around equilibrium. (Right) Mean-square displacement grows linearly with time at short timescales, consistent with equipartition theorem: <span class="math inline">\(\kappa = k_B T / \langle x^2 \rangle\)</span>.
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Theoretical &lt;x²&gt; from equipartition: 414.00 nm²
+Measured &lt;x²&gt; from trajectory: 410.02 nm²
+Trap stiffness: 10000000.00 pN/nm</code></pre>
+</div>
+</div>
+</section>
+<section id="example-2-thermophoresis-and-particle-drift-in-a-temperature-gradient" class="level3">
+<h3 class="anchored" data-anchor-id="example-2-thermophoresis-and-particle-drift-in-a-temperature-gradient">Example 2: Thermophoresis and Particle Drift in a Temperature Gradient</h3>
+<div id="cell-fig-thermophoresis" class="cell" data-execution_count="3">
+<div class="cell-output cell-output-display">
+<div id="fig-thermophoresis" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-thermophoresis-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="01-lecture16_files/figure-html/fig-thermophoresis-output-1.png" width="507" height="188" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-thermophoresis-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2— Thermophoresis simulation: particles drift toward warmer regions. (Left) Spatial temperature profile (Gaussian). (Middle) Particle trajectories under thermophoretic drift plus diffusion. (Right) Final position distribution showing drift toward the warm region.
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Initial mean position: -0.72 μm
+Final mean position: 0.52 μm
+Drift toward warm region: 1.24 μm</code></pre>
+</div>
+</div>
+</section>
+<section id="example-3-photon-nudging-navigation" class="level3">
+<h3 class="anchored" data-anchor-id="example-3-photon-nudging-navigation">Example 3: Photon Nudging Navigation</h3>
+<div id="cell-fig-photon-nudging" class="cell" data-execution_count="4">
+<div class="cell-output cell-output-display">
+<div id="fig-photon-nudging" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-photon-nudging-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="01-lecture16_files/figure-html/fig-photon-nudging-output-1.png" width="496" height="209" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-photon-nudging-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3— Photon nudging strategy for autonomous navigation. Particles swim in random directions (black arrows) but are nudged only when pointing toward the target (red arrows show nudges when orientation is favorable). The particle reaches the target despite random Brownian rotation.
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Particle 1: 72 nudges, final distance = 52.7 μm
+Particle 2: 102 nudges, final distance = 42.5 μm
+Particle 3: 46 nudges, final distance = 60.5 μm</code></pre>
+</div>
+</div>
+</section>
+<section id="example-4-hot-brownian-motion-enhanced-diffusion" class="level3">
+<h3 class="anchored" data-anchor-id="example-4-hot-brownian-motion-enhanced-diffusion">Example 4: Hot Brownian Motion — Enhanced Diffusion</h3>
+<div id="cell-fig-hot-brownian" class="cell" data-execution_count="5">
+<div class="cell-output cell-output-display">
+<div id="fig-hot-brownian" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-hot-brownian-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="01-lecture16_files/figure-html/fig-hot-brownian-output-1.png" width="513" height="169" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-hot-brownian-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4— Hot Brownian motion: a heated particle diffuses faster than a room-temperature particle. The effective diffusion coefficient is enhanced due to the temperature gradient around the heated nanoparticle. Left: trajectories of cold (blue) and hot (red) particles. Right: mean-square displacement showing enhanced diffusion (steeper slope) for the heated particle.
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Cold particle diffusion coefficient: 2.20e-11 m²/s (21.96 μm²/s)
+Hot particle diffusion coefficient: 2.31e-11 m²/s (23.06 μm²/s)
+Enhancement factor: 1.05x</code></pre>
+</div>
+</div>
+</section>
+<section id="example-5-collective-swarming-multiple-swimmers" class="level3">
+<h3 class="anchored" data-anchor-id="example-5-collective-swarming-multiple-swimmers">Example 5: Collective Swarming — Multiple Swimmers</h3>
+<div id="cell-fig-active-matter-swarming" class="cell" data-execution_count="6">
+<div class="cell-output cell-output-display">
+<div id="fig-active-matter-swarming" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-active-matter-swarming-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="01-lecture16_files/figure-html/fig-active-matter-swarming-output-1.png" width="497" height="209" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-active-matter-swarming-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5— Collective behavior of self-propelled particles. Swimmers align with neighbors and form coherent swarms. (Left) Particle positions at three time points showing progression from disordered to organized collective motion. (Right) Order parameter (alignment) increases over time, indicating a transition from individual to collective motion.
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Initial order parameter: 0.000
+Final order parameter: 0.541
+Increase: 0.541</code></pre>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="summary-and-connections-to-the-mona-group" class="level2">
+<h2 class="anchored" data-anchor-id="summary-and-connections-to-the-mona-group">Summary and Connections to the MoNa Group</h2>
+<p>This lecture has connected <strong>light and motion</strong> across multiple scales and phenomena:</p>
+<ol type="1">
+<li><p><strong>Optical forces</strong> arise from momentum transfer and intensity gradients, enabling precise 3D trapping (optical tweezers, Ashkin’s Nobel Prize).</p></li>
+<li><p><strong>Thermophoresis</strong> shows how light-induced temperature gradients drive particle motion — a key mechanism in self-propelled particles and photothermal systems.</p></li>
+<li><p><strong>Photon nudging</strong> demonstrates intelligent control strategies that exploit stochasticity rather than fighting it, achieving autonomous navigation without continuous steering.</p></li>
+<li><p><strong>Hot Brownian motion</strong> reveals that heated particles diffuse anomalously, with effective temperatures that depend on position and observable — important for understanding thermal effects in optical manipulation.</p></li>
+<li><p><strong>Machine learning and active matter</strong> open new frontiers in autonomous control, collective behavior, and applications from drug delivery to lab-on-chip devices.</p></li>
+</ol>
+<p>The <strong>Molecular Nanophotonics Group</strong> at Leipzig University (https://home.uni-leipzig.de/~physik/sites/mona/) has made major contributions to both the theory and experiments in these areas, including:</p>
+<ul>
+<li><strong>Photothermal force microscopy</strong> for studying optical forces on gold nanoparticles</li>
+<li><strong>Photon nudging algorithms</strong> for micro-swimmer navigation</li>
+<li><strong>Photothermal correlation spectroscopy</strong> for measuring hot Brownian motion</li>
+<li><strong>Optical manipulation of Janus particles</strong> for self-propulsion studies</li>
+<li><strong>Theoretical models</strong> connecting photothermal effects to collective behavior</li>
+</ul>
+<p>These topics represent the cutting edge of <strong>nanophotonics</strong> — the convergence of optics, thermal transport, and molecular dynamics at the nanoscale. As you progress in your physics career, you may discover new ways to apply light for manipulating and controlling matter, pushing the boundaries of what is possible in medicine, nanotechnology, and fundamental science.</p>
+<p><strong>Further Reading:</strong></p>
+<ul>
+<li>Ashkin, A. (1997). “Optical Trapping and Manipulation of Neutral Particles Using High-Intensity Laser Beams.” <em>PNAS</em>, 94, 4853-4860.</li>
+<li>Braun, M., et al.&nbsp;(2016). “Optical Tweezers — From Calibration to Applications.” <em>Nature Reviews Physics</em>.</li>
+<li>Bregulla, A., et al.&nbsp;(2020). “Photon Nudging of a Colloidal Janus Particle.” <em>Science Advances</em>.</li>
+<li>Wang, H., et al.&nbsp;(2015). “Controllable Self-Assembly of Reconfigurable Inorganic Nanoparticles and Biomimetics.” <em>Nature Materials</em>.</li>
+</ul>
+<hr>
+<p><strong>End of Lecture 16</strong></p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/fcichos\.github\.io\/Photonics\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

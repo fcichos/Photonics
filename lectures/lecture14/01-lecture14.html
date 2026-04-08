@@ -1,0 +1,1534 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.34">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Light Scattering: Fundamentals – Photonics</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-9344fb9851b4da3cab95007ef9d770dc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../assets/css/styles.css">
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Photonics</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../../index.html" aria-current="page"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Light Scattering: Fundamentals</li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="../../index.html" class="sidebar-logo-link">
+      <img src="../../assets/images/mona_logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home</span></a>
+  </div>
+</li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Course Info</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-info/intructors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Instructor</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-info/schedule.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Schedule</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-info/resources.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Ressources</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-info/seminars.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Seminars</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-info/exam.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exams</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">PART I: FOUNDATIONS</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Lecture 1 — Introduction, Ray Optics &amp; Wave Optics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture01/introduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture01/01-lecture01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Ray Optics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture01/02-lecture01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Optical Elements</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture02/01-lecture02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Matrix Optics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture02/02-lecture02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wave Optics</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction-why-things-scatter-light" id="toc-introduction-why-things-scatter-light" class="nav-link active" data-scroll-target="#introduction-why-things-scatter-light">Introduction: Why Things Scatter Light</a>
+  <ul class="collapse">
+  <li><a href="#the-physics-behind-scattering" id="toc-the-physics-behind-scattering" class="nav-link" data-scroll-target="#the-physics-behind-scattering">The Physics Behind Scattering</a></li>
+  </ul></li>
+  <li><a href="#rayleigh-scattering" id="toc-rayleigh-scattering" class="nav-link" data-scroll-target="#rayleigh-scattering">Rayleigh Scattering</a>
+  <ul class="collapse">
+  <li><a href="#physical-mechanism" id="toc-physical-mechanism" class="nav-link" data-scroll-target="#physical-mechanism">Physical Mechanism</a></li>
+  <li><a href="#scattering-cross-section" id="toc-scattering-cross-section" class="nav-link" data-scroll-target="#scattering-cross-section">Scattering Cross Section</a></li>
+  <li><a href="#the-lambda-4-wavelength-dependence" id="toc-the-lambda-4-wavelength-dependence" class="nav-link" data-scroll-target="#the-lambda-4-wavelength-dependence">The <span class="math inline">\(\lambda^{-4}\)</span> Wavelength Dependence</a></li>
+  <li><a href="#angular-distribution-of-scattered-light" id="toc-angular-distribution-of-scattered-light" class="nav-link" data-scroll-target="#angular-distribution-of-scattered-light">Angular Distribution of Scattered Light</a></li>
+  </ul></li>
+  <li><a href="#mie-scattering" id="toc-mie-scattering" class="nav-link" data-scroll-target="#mie-scattering">Mie Scattering</a>
+  <ul class="collapse">
+  <li><a href="#beyond-the-rayleigh-limit" id="toc-beyond-the-rayleigh-limit" class="nav-link" data-scroll-target="#beyond-the-rayleigh-limit">Beyond the Rayleigh Limit</a></li>
+  <li><a href="#regimes-of-mie-scattering" id="toc-regimes-of-mie-scattering" class="nav-link" data-scroll-target="#regimes-of-mie-scattering">Regimes of Mie Scattering</a></li>
+  <li><a href="#scattering-efficiency" id="toc-scattering-efficiency" class="nav-link" data-scroll-target="#scattering-efficiency">Scattering Efficiency</a></li>
+  <li><a href="#extinction-and-absorption" id="toc-extinction-and-absorption" class="nav-link" data-scroll-target="#extinction-and-absorption">Extinction and Absorption</a></li>
+  </ul></li>
+  <li><a href="#scattering-by-spherical-particles-matrix-formulation" id="toc-scattering-by-spherical-particles-matrix-formulation" class="nav-link" data-scroll-target="#scattering-by-spherical-particles-matrix-formulation">Scattering by Spherical Particles: Matrix Formulation</a>
+  <ul class="collapse">
+  <li><a href="#scattering-matrix-for-single-particles" id="toc-scattering-matrix-for-single-particles" class="nav-link" data-scroll-target="#scattering-matrix-for-single-particles">Scattering Matrix for Single Particles</a></li>
+  <li><a href="#mueller-matrix" id="toc-mueller-matrix" class="nav-link" data-scroll-target="#mueller-matrix">Mueller Matrix</a></li>
+  </ul></li>
+  <li><a href="#dynamic-light-scattering-dls" id="toc-dynamic-light-scattering-dls" class="nav-link" data-scroll-target="#dynamic-light-scattering-dls">Dynamic Light Scattering (DLS)</a>
+  <ul class="collapse">
+  <li><a href="#brownian-motion-and-intensity-fluctuations" id="toc-brownian-motion-and-intensity-fluctuations" class="nav-link" data-scroll-target="#brownian-motion-and-intensity-fluctuations">Brownian Motion and Intensity Fluctuations</a></li>
+  <li><a href="#intensity-autocorrelation-function" id="toc-intensity-autocorrelation-function" class="nav-link" data-scroll-target="#intensity-autocorrelation-function">Intensity Autocorrelation Function</a></li>
+  <li><a href="#field-autocorrelation-and-diffusion" id="toc-field-autocorrelation-and-diffusion" class="nav-link" data-scroll-target="#field-autocorrelation-and-diffusion">Field Autocorrelation and Diffusion</a></li>
+  <li><a href="#from-diffusion-to-particle-size-stokes-einstein-relation" id="toc-from-diffusion-to-particle-size-stokes-einstein-relation" class="nav-link" data-scroll-target="#from-diffusion-to-particle-size-stokes-einstein-relation">From Diffusion to Particle Size: Stokes-Einstein Relation</a></li>
+  </ul></li>
+  <li><a href="#static-light-scattering" id="toc-static-light-scattering" class="nav-link" data-scroll-target="#static-light-scattering">Static Light Scattering</a>
+  <ul class="collapse">
+  <li><a href="#form-factor-for-spherical-particles" id="toc-form-factor-for-spherical-particles" class="nav-link" data-scroll-target="#form-factor-for-spherical-particles">Form Factor for Spherical Particles</a></li>
+  <li><a href="#structure-factor-and-concentration-effects" id="toc-structure-factor-and-concentration-effects" class="nav-link" data-scroll-target="#structure-factor-and-concentration-effects">Structure Factor and Concentration Effects</a></li>
+  <li><a href="#guinier-approximation" id="toc-guinier-approximation" class="nav-link" data-scroll-target="#guinier-approximation">Guinier Approximation</a></li>
+  </ul></li>
+  <li><a href="#scattering-by-ensembles-turbidity" id="toc-scattering-by-ensembles-turbidity" class="nav-link" data-scroll-target="#scattering-by-ensembles-turbidity">Scattering by Ensembles: Turbidity</a>
+  <ul class="collapse">
+  <li><a href="#macroscopic-manifestations-of-scattering" id="toc-macroscopic-manifestations-of-scattering" class="nav-link" data-scroll-target="#macroscopic-manifestations-of-scattering">Macroscopic Manifestations of Scattering</a></li>
+  <li><a href="#beer-lambert-law-for-scattering" id="toc-beer-lambert-law-for-scattering" class="nav-link" data-scroll-target="#beer-lambert-law-for-scattering">Beer-Lambert Law for Scattering</a></li>
+  <li><a href="#optical-depth-and-turbidity" id="toc-optical-depth-and-turbidity" class="nav-link" data-scroll-target="#optical-depth-and-turbidity">Optical Depth and Turbidity</a></li>
+  </ul></li>
+  <li><a href="#code-examples-rayleigh-scattering" id="toc-code-examples-rayleigh-scattering" class="nav-link" data-scroll-target="#code-examples-rayleigh-scattering">Code Examples: Rayleigh Scattering</a></li>
+  <li><a href="#code-examples-rayleigh-angular-scattering-pattern-polarization" id="toc-code-examples-rayleigh-angular-scattering-pattern-polarization" class="nav-link" data-scroll-target="#code-examples-rayleigh-angular-scattering-pattern-polarization">Code Examples: Rayleigh Angular Scattering Pattern (Polarization)</a></li>
+  <li><a href="#code-examples-mie-scattering-efficiency" id="toc-code-examples-mie-scattering-efficiency" class="nav-link" data-scroll-target="#code-examples-mie-scattering-efficiency">Code Examples: Mie Scattering Efficiency</a></li>
+  <li><a href="#code-examples-dynamic-light-scattering-simulation" id="toc-code-examples-dynamic-light-scattering-simulation" class="nav-link" data-scroll-target="#code-examples-dynamic-light-scattering-simulation">Code Examples: Dynamic Light Scattering Simulation</a></li>
+  <li><a href="#code-examples-static-light-scattering-form-factor" id="toc-code-examples-static-light-scattering-form-factor" class="nav-link" data-scroll-target="#code-examples-static-light-scattering-form-factor">Code Examples: Static Light Scattering — Form Factor</a></li>
+  <li><a href="#summary-and-key-takeaways" id="toc-summary-and-key-takeaways" class="nav-link" data-scroll-target="#summary-and-key-takeaways">Summary and Key Takeaways</a></li>
+  <li><a href="#experimental-connections" id="toc-experimental-connections" class="nav-link" data-scroll-target="#experimental-connections">Experimental Connections</a></li>
+  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading">Further Reading</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Light Scattering: Fundamentals</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduction-why-things-scatter-light" class="level2">
+<h2 class="anchored" data-anchor-id="introduction-why-things-scatter-light">Introduction: Why Things Scatter Light</h2>
+<p>When light encounters matter, it does not always pass straight through. Instead, light can be scattered in all directions. This fundamental phenomenon is everywhere: <strong>the blue sky above</strong>, <strong>red sunsets</strong>, <strong>the white appearance of milk</strong>, and <strong>the visibility of fog</strong> are all consequences of light scattering.</p>
+<section id="the-physics-behind-scattering" class="level3">
+<h3 class="anchored" data-anchor-id="the-physics-behind-scattering">The Physics Behind Scattering</h3>
+<p>Light scattering occurs because of <strong>inhomogeneities in the refractive index</strong>. When an electromagnetic wave encounters a particle or region with a different refractive index than its surroundings, the oscillating electric field of the light induces a dipole moment in the material. This oscillating dipole radiates electromagnetic energy in all directions—this is scattering.</p>
+<p><strong>The induced dipole picture</strong> is central:</p>
+<ol type="1">
+<li><strong>Incident field</strong>: <span class="math inline">\(\mathbf{E}(\mathbf{r}, t) = \mathbf{E}_0 e^{i(\mathbf{k} \cdot \mathbf{r} - \omega t)}\)</span></li>
+<li><strong>Induced dipole moment</strong>: <span class="math inline">\(\mathbf{p}(t) = \alpha \mathbf{E}(t)\)</span>, where <span class="math inline">\(\alpha\)</span> is the polarizability</li>
+<li><strong>Scattered field</strong>: Determined by the oscillating dipole radiation pattern</li>
+<li><strong>Scattering cross section</strong>: A measure of the effective area that removes light from the incident beam</li>
+</ol>
+<p>This lecture covers the fundamental mechanisms of light scattering from <strong>point dipoles</strong> (Rayleigh scattering) to <strong>spherical particles</strong> (Mie scattering), and extends to practical applications in characterizing particles via scattering measurements.</p>
+</section>
+</section>
+<section id="rayleigh-scattering" class="level2">
+<h2 class="anchored" data-anchor-id="rayleigh-scattering">Rayleigh Scattering</h2>
+<section id="physical-mechanism" class="level3">
+<h3 class="anchored" data-anchor-id="physical-mechanism">Physical Mechanism</h3>
+<p>Rayleigh scattering occurs when the scattering particle is much smaller than the wavelength of light: <span class="math inline">\(d \ll \lambda\)</span>. In this regime, the particle responds uniformly to the incident field—there are no significant phase differences across the particle.</p>
+<p><strong>The oscillating dipole model</strong> is exact in this limit: - The incident field induces a dipole moment: <span class="math inline">\(\mathbf{p} = \alpha \mathbf{E}_0 e^{-i\omega t}\)</span> - The polarizability for a small sphere is: <span class="math inline">\(\alpha = 4\pi\epsilon_0 a^3 \frac{\epsilon_r - 1}{\epsilon_r + 2}\)</span> where <span class="math inline">\(a\)</span> is the sphere radius and <span class="math inline">\(\epsilon_r\)</span> is the relative permittivity</p>
+</section>
+<section id="scattering-cross-section" class="level3">
+<h3 class="anchored" data-anchor-id="scattering-cross-section">Scattering Cross Section</h3>
+<p>The power scattered by an oscillating dipole is given by the Larmor formula. For an unpolarized incident wave with intensity <span class="math inline">\(I_0\)</span>, the <strong>scattering cross section</strong> is:</p>
+<p><span class="math display">\[\sigma_{\text{sca}} = \frac{8\pi}{3} k^4 |\alpha|^2 = \sigma_0 \left(\frac{\lambda_0}{\lambda}\right)^4\]</span></p>
+<p>where the wavelength dependence is explicitly <span class="math inline">\(\lambda^{-4}\)</span>.</p>
+<p>This can be written more generally as:</p>
+<p><span class="math display">\[\sigma_{\text{sca}} \propto \left(\frac{d}{\lambda}\right)^4 \cdot |\alpha|^2\]</span></p>
+</section>
+<section id="the-lambda-4-wavelength-dependence" class="level3">
+<h3 class="anchored" data-anchor-id="the-lambda-4-wavelength-dependence">The <span class="math inline">\(\lambda^{-4}\)</span> Wavelength Dependence</h3>
+<p>The dramatic <strong><span class="math inline">\(\lambda^{-4}\)</span> scaling</strong> explains many optical phenomena:</p>
+<ul>
+<li><strong>Blue light</strong> (<span class="math inline">\(\lambda \approx 450\)</span> nm) is scattered <span class="math inline">\(\sim 10 \times\)</span> more strongly than <strong>red light</strong> (<span class="math inline">\(\lambda \approx 650\)</span> nm)</li>
+<li><strong>The blue sky</strong>: Nitrogen and oxygen molecules scatter blue light much more than red light</li>
+<li><strong>Red sunsets</strong>: As sunlight passes through a thick atmosphere at sunset, blue light is scattered away, leaving predominantly red light</li>
+</ul>
+<p>The relative scattering intensity for two wavelengths is:</p>
+<p><span class="math display">\[\frac{I_{\text{sca}}(\lambda_1)}{I_{\text{sca}}(\lambda_2)} = \left(\frac{\lambda_2}{\lambda_1}\right)^4\]</span></p>
+</section>
+<section id="angular-distribution-of-scattered-light" class="level3">
+<h3 class="anchored" data-anchor-id="angular-distribution-of-scattered-light">Angular Distribution of Scattered Light</h3>
+<p>The <strong>angular intensity distribution</strong> of scattered light from a small dipole is not isotropic. For unpolarized incident light, the angular pattern is given by:</p>
+<p><span class="math display">\[I_{\text{sca}}(\theta) \propto (1 + \cos^2\theta)\]</span></p>
+<p>where <span class="math inline">\(\theta\)</span> is the scattering angle measured from the incident beam direction.</p>
+<p><strong>Key features</strong>: - <strong>Minimum scattering</strong> at <span class="math inline">\(\theta = 90°\)</span> (perpendicular to the incident direction): <span class="math inline">\(I_{\text{sca}}(90°) = 0\)</span> - <strong>Maximum scattering</strong> in the forward (<span class="math inline">\(\theta = 0°\)</span>) and backward (<span class="math inline">\(\theta = 180°\)</span>) directions: <span class="math inline">\(I_{\text{sca}} \propto 1\)</span> (for forward) and <span class="math inline">\(I_{\text{sca}} \propto 1\)</span> (for backward) - <strong>Slightly more forward scattering</strong> than backscattering</p>
+<p>For <strong>linearly polarized light</strong>, the scattered intensity depends on the polarization direction: - <strong>Perpendicular (s-polarized)</strong>: <span class="math inline">\(I \propto \sin^2\theta\)</span> - <strong>Parallel (p-polarized)</strong>: <span class="math inline">\(I \propto (1 + \cos^2\theta)\)</span></p>
+<p>The scattered light is partially <strong>polarized</strong> even when incident light is unpolarized. At <span class="math inline">\(\theta = 90°\)</span>, light scattered perpendicular to the incident direction is <strong>completely linearly polarized</strong>.</p>
+</section>
+</section>
+<section id="mie-scattering" class="level2">
+<h2 class="anchored" data-anchor-id="mie-scattering">Mie Scattering</h2>
+<section id="beyond-the-rayleigh-limit" class="level3">
+<h3 class="anchored" data-anchor-id="beyond-the-rayleigh-limit">Beyond the Rayleigh Limit</h3>
+<p>When the particle size becomes comparable to or larger than the wavelength (<span class="math inline">\(d \gtrsim \lambda\)</span>), the Rayleigh approximation breaks down. Different parts of the particle scatter with different phases, leading to interference. This is the regime of <strong>Mie scattering</strong>.</p>
+<p>For spherical particles, an <strong>exact solution</strong> exists in terms of the Bessel functions and Legendre polynomials. We can express scattering using the <strong>size parameter</strong>:</p>
+<p><span class="math display">\[x = \frac{2\pi a}{\lambda} = \frac{\pi d}{\lambda}\]</span></p>
+<p>where <span class="math inline">\(a\)</span> is the sphere radius and <span class="math inline">\(d\)</span> is the diameter.</p>
+</section>
+<section id="regimes-of-mie-scattering" class="level3">
+<h3 class="anchored" data-anchor-id="regimes-of-mie-scattering">Regimes of Mie Scattering</h3>
+<ol type="1">
+<li><strong>Rayleigh regime</strong> (<span class="math inline">\(x \ll 1\)</span>): <span class="math inline">\(Q_{\text{sca}} \propto x^4\)</span>, isotropic-like scattering</li>
+<li><strong>Resonance regime</strong> (<span class="math inline">\(x \sim 1\)</span>): Sharp resonances, backscattering dominance, non-trivial angular patterns</li>
+<li><strong>Geometric regime</strong> (<span class="math inline">\(x \gg 1\)</span>): <span class="math inline">\(Q_{\text{sca}} \approx 2\)</span>, extreme forward scattering</li>
+</ol>
+</section>
+<section id="scattering-efficiency" class="level3">
+<h3 class="anchored" data-anchor-id="scattering-efficiency">Scattering Efficiency</h3>
+<p>The <strong>scattering efficiency</strong> <span class="math inline">\(Q_{\text{sca}}\)</span> is the ratio of scattering cross section to geometric cross section:</p>
+<p><span class="math display">\[Q_{\text{sca}} = \frac{\sigma_{\text{sca}}}{\pi a^2}\]</span></p>
+<p>The dimensionless efficiency <span class="math inline">\(Q_{\text{sca}}\)</span> depends only on the size parameter <span class="math inline">\(x\)</span> and the refractive index ratio <span class="math inline">\(m = n_{\text{particle}}/n_{\text{medium}}\)</span>.</p>
+<p><strong>Key observations</strong>: - For small particles (<span class="math inline">\(x &lt; 0.1\)</span>): <span class="math inline">\(Q_{\text{sca}} \propto x^4\)</span> (Rayleigh limit) - For intermediate sizes (<span class="math inline">\(x \sim 1\)</span>): Resonance features appear, <span class="math inline">\(Q_{\text{sca}}\)</span> can exceed 4 - For large particles (<span class="math inline">\(x &gt; 100\)</span>): <span class="math inline">\(Q_{\text{sca}} \approx 2\)</span> (twice the geometric cross section due to diffraction)</p>
+</section>
+<section id="extinction-and-absorption" class="level3">
+<h3 class="anchored" data-anchor-id="extinction-and-absorption">Extinction and Absorption</h3>
+<p>The total <strong>extinction</strong> (removal from the forward beam) has two contributions:</p>
+<p><span class="math display">\[\sigma_{\text{ext}} = \sigma_{\text{sca}} + \sigma_{\text{abs}}\]</span></p>
+<p>where: - <strong>Scattering</strong>: Radiative removal (light redirected in all directions) - <strong>Absorption</strong>: Non-radiative removal (converted to heat via internal absorption)</p>
+<p>For non-absorbing particles, <span class="math inline">\(\sigma_{\text{abs}} = 0\)</span> and <span class="math inline">\(\sigma_{\text{ext}} = \sigma_{\text{sca}}\)</span>.</p>
+<p>The <strong>extinction efficiency</strong> is:</p>
+<p><span class="math display">\[Q_{\text{ext}} = \frac{\sigma_{\text{ext}}}{\pi a^2}\]</span></p>
+</section>
+</section>
+<section id="scattering-by-spherical-particles-matrix-formulation" class="level2">
+<h2 class="anchored" data-anchor-id="scattering-by-spherical-particles-matrix-formulation">Scattering by Spherical Particles: Matrix Formulation</h2>
+<section id="scattering-matrix-for-single-particles" class="level3">
+<h3 class="anchored" data-anchor-id="scattering-matrix-for-single-particles">Scattering Matrix for Single Particles</h3>
+<p>When considering the polarization state of light, the scattering process is fully described by the <strong>scattering matrix</strong> <span class="math inline">\(\mathbf{S}\)</span>:</p>
+<p><span class="math display">\[\begin{pmatrix} E_{\text{sca}}^{\parallel} \\ E_{\text{sca}}^{\perp} \end{pmatrix} = \frac{e^{ikr}}{r} \begin{pmatrix} S_2 &amp; 0 \\ 0 &amp; S_1 \end{pmatrix} \begin{pmatrix} E_{\text{inc}}^{\parallel} \\ E_{\text{inc}}^{\perp} \end{pmatrix}\]</span></p>
+<p>where <span class="math inline">\(S_1(\theta)\)</span> and <span class="math inline">\(S_2(\theta)\)</span> are <strong>scattering amplitude functions</strong> that depend on the size parameter and scattering angle.</p>
+<p>The <strong>scattering matrix elements</strong> relate the incident and scattered field components:</p>
+<p><span class="math display">\[\mathbf{S}(\theta) = \begin{pmatrix} S_2(\theta) &amp; 0 \\ 0 &amp; S_1(\theta) \end{pmatrix}\]</span></p>
+</section>
+<section id="mueller-matrix" class="level3">
+<h3 class="anchored" data-anchor-id="mueller-matrix">Mueller Matrix</h3>
+<p>For intensity measurements (what we typically observe), the <strong>Mueller matrix</strong> <span class="math inline">\(\mathbf{M}\)</span> relates Stokes vectors:</p>
+<p><span class="math display">\[\mathbf{I}_{\text{sca}} = \frac{1}{k^2 r^2} \mathbf{M}(\theta) \mathbf{I}_{\text{inc}}\]</span></p>
+<p>where <span class="math inline">\(\mathbf{I} = (I, Q, U, V)^T\)</span> describes the polarization state.</p>
+<p>For a spherical particle, the Mueller matrix has special structure due to symmetry:</p>
+<p><span class="math display">\[\mathbf{M} = \begin{pmatrix} S_{11} &amp; S_{12} &amp; 0 &amp; 0 \\ S_{12} &amp; S_{11} &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; S_{33} &amp; S_{34} \\ 0 &amp; 0 &amp; -S_{34} &amp; S_{33} \end{pmatrix}\]</span></p>
+<p>where: - <span class="math inline">\(S_{11} = \frac{1}{2}(|S_2|^2 + |S_1|^2)\)</span>: Unpolarized intensity scattering - <span class="math inline">\(S_{12} = \frac{1}{2}(|S_2|^2 - |S_1|^2)\)</span>: Polarization change - <span class="math inline">\(S_{33}\)</span> and <span class="math inline">\(S_{34}\)</span>: Describe circular polarization effects</p>
+<p>This formalism is essential for understanding polarization changes upon scattering and is used in advanced applications like polarimetry.</p>
+</section>
+</section>
+<section id="dynamic-light-scattering-dls" class="level2">
+<h2 class="anchored" data-anchor-id="dynamic-light-scattering-dls">Dynamic Light Scattering (DLS)</h2>
+<section id="brownian-motion-and-intensity-fluctuations" class="level3">
+<h3 class="anchored" data-anchor-id="brownian-motion-and-intensity-fluctuations">Brownian Motion and Intensity Fluctuations</h3>
+<p><strong>Dynamic light scattering</strong> exploits the fact that particles in a fluid undergo <strong>Brownian motion</strong> due to thermal collisions. As particles move, the relative phases of scattered waves from different particles change continuously, causing the <strong>total scattered intensity to fluctuate rapidly</strong>.</p>
+<p>By analyzing these fluctuations, we can extract information about particle size and diffusion.</p>
+</section>
+<section id="intensity-autocorrelation-function" class="level3">
+<h3 class="anchored" data-anchor-id="intensity-autocorrelation-function">Intensity Autocorrelation Function</h3>
+<p>The <strong>intensity autocorrelation function</strong> describes how similar the scattered intensity is at two different times separated by lag time <span class="math inline">\(\tau\)</span>:</p>
+<p><span class="math display">\[g_2(\tau) = \frac{\langle I(t) I(t+\tau) \rangle}{\langle I(t) \rangle^2}\]</span></p>
+<p>For a dilute solution in the <strong>single scattering regime</strong> (no multiple scattering), this is related to the <strong>field autocorrelation function</strong> <span class="math inline">\(g_1(\tau)\)</span> by:</p>
+<p><span class="math display">\[g_2(\tau) = 1 + \beta |g_1(\tau)|^2\]</span></p>
+<p>where <span class="math inline">\(\beta\)</span> is the <strong>coherence factor</strong> (typically <span class="math inline">\(\beta \approx 1\)</span> for perfect optical setup, but <span class="math inline">\(\beta &lt; 1\)</span> in real experiments due to averaging over the detection volume).</p>
+</section>
+<section id="field-autocorrelation-and-diffusion" class="level3">
+<h3 class="anchored" data-anchor-id="field-autocorrelation-and-diffusion">Field Autocorrelation and Diffusion</h3>
+<p>For particles undergoing free diffusion in three dimensions, the <strong>field autocorrelation function</strong> decays exponentially:</p>
+<p><span class="math display">\[g_1(\tau) = \exp(-D q^2 \tau)\]</span></p>
+<p>where: - <span class="math inline">\(D\)</span> is the <strong>translational diffusion coefficient</strong> - <span class="math inline">\(q = (4\pi n / \lambda) \sin(\theta/2)\)</span> is the <strong>scattering vector magnitude</strong> - <span class="math inline">\(n\)</span> is the refractive index of the medium - <span class="math inline">\(\theta\)</span> is the scattering angle - <span class="math inline">\(\lambda\)</span> is the wavelength in vacuum</p>
+<p>The scattering vector can be understood as the “momentum transfer” in the scattering process.</p>
+</section>
+<section id="from-diffusion-to-particle-size-stokes-einstein-relation" class="level3">
+<h3 class="anchored" data-anchor-id="from-diffusion-to-particle-size-stokes-einstein-relation">From Diffusion to Particle Size: Stokes-Einstein Relation</h3>
+<p>The <strong>diffusion coefficient</strong> is related to the hydrodynamic radius via the <strong>Stokes-Einstein equation</strong>:</p>
+<p><span class="math display">\[D = \frac{k_B T}{6\pi \eta r_H}\]</span></p>
+<p>where: - <span class="math inline">\(k_B = 1.38 \times 10^{-23}\)</span> J/K is Boltzmann’s constant - <span class="math inline">\(T\)</span> is absolute temperature - <span class="math inline">\(\eta\)</span> is the dynamic viscosity of the medium - <span class="math inline">\(r_H\)</span> is the <strong>hydrodynamic radius</strong> of the particle</p>
+<p><strong>DLS measurement procedure</strong>:</p>
+<ol type="1">
+<li>Measure <span class="math inline">\(g_1(\tau)\)</span> by fitting <span class="math inline">\(g_2(\tau) = 1 + \beta |g_1(\tau)|^2\)</span></li>
+<li>Extract decay rate: <span class="math inline">\(\Gamma = D q^2\)</span></li>
+<li>Calculate <span class="math inline">\(D\)</span> from the measured decay rate</li>
+<li>Use Stokes-Einstein to find <span class="math inline">\(r_H\)</span></li>
+</ol>
+<p>This allows determining particle sizes in the <strong>nanometer to micrometer range</strong> without requiring particle isolation or staining.</p>
+</section>
+</section>
+<section id="static-light-scattering" class="level2">
+<h2 class="anchored" data-anchor-id="static-light-scattering">Static Light Scattering</h2>
+<section id="form-factor-for-spherical-particles" class="level3">
+<h3 class="anchored" data-anchor-id="form-factor-for-spherical-particles">Form Factor for Spherical Particles</h3>
+<p><strong>Static light scattering</strong> (SLS) measures the scattering intensity at different scattering angles for a static ensemble of particles. The scattered intensity contains information about particle shape via the <strong>form factor</strong> <span class="math inline">\(P(q)\)</span>.</p>
+<p>For a <strong>uniform sphere</strong> of radius <span class="math inline">\(a\)</span>, the form factor is:</p>
+<p><span class="math display">\[P(q) = \left[ \frac{3(\sin(qa) - qa\cos(qa))}{(qa)^3} \right]^2\]</span></p>
+<p>This function describes how form factor varies with scattering vector. Key features:</p>
+<ul>
+<li>At <span class="math inline">\(q \to 0\)</span>: <span class="math inline">\(P(0) = 1\)</span> (coherent scattering, independent of <span class="math inline">\(a\)</span>)</li>
+<li><strong>Minima</strong> (form factor zeros) occur at: <span class="math inline">\(qa = 4.49, 7.73, 10.9, ...\)</span></li>
+<li><strong>Oscillations</strong> decay as <span class="math inline">\(q^{-4}\)</span> at large <span class="math inline">\(q\)</span></li>
+<li>The width of oscillations is inversely proportional to particle size</li>
+</ul>
+</section>
+<section id="structure-factor-and-concentration-effects" class="level3">
+<h3 class="anchored" data-anchor-id="structure-factor-and-concentration-effects">Structure Factor and Concentration Effects</h3>
+<p>For a <strong>dilute solution</strong> of non-interacting particles, the total scattered intensity is:</p>
+<p><span class="math display">\[I(q) = n N_A \sigma(q) P(q)\]</span></p>
+<p>where <span class="math inline">\(n\)</span> is concentration and <span class="math inline">\(\sigma(q)\)</span> is the differential scattering cross section.</p>
+<p>For <strong>denser solutions</strong> with particle-particle correlations, we must include the <strong>structure factor</strong> <span class="math inline">\(S(q)\)</span>:</p>
+<p><span class="math display">\[I(q) = n N_A \sigma(q) P(q) S(q)\]</span></p>
+<p>The structure factor <span class="math inline">\(S(q) = 1\)</span> for ideal gases (no correlations) and deviates from 1 for correlated systems, showing peaks at length scales corresponding to inter-particle spacing.</p>
+</section>
+<section id="guinier-approximation" class="level3">
+<h3 class="anchored" data-anchor-id="guinier-approximation">Guinier Approximation</h3>
+<p>At very small scattering angles (low <span class="math inline">\(q\)</span>), we can expand the form factor:</p>
+<p><span class="math display">\[P(q) \approx 1 - \frac{q^2 R_g^2}{3} + ...\]</span></p>
+<p>where <span class="math inline">\(R_g\)</span> is the <strong>radius of gyration</strong> defined as:</p>
+<p><span class="math display">\[R_g^2 = \frac{\int \rho(\mathbf{r}) r^2 d^3\mathbf{r}}{\int \rho(\mathbf{r}) d^3\mathbf{r}}\]</span></p>
+<p>This gives the <strong>Guinier equation</strong>:</p>
+<p><span class="math display">\[\ln[I(q)] \approx \ln[I(0)] - \frac{R_g^2 q^2}{3}\]</span></p>
+<p>A plot of <span class="math inline">\(\ln[I(q)]\)</span> versus <span class="math inline">\(q^2\)</span> yields a straight line in the Guinier region (<span class="math inline">\(qR_g &lt; 1.3\)</span>), from which <span class="math inline">\(R_g\)</span> can be extracted. This is a powerful method for determining particle size in small-angle scattering.</p>
+</section>
+</section>
+<section id="scattering-by-ensembles-turbidity" class="level2">
+<h2 class="anchored" data-anchor-id="scattering-by-ensembles-turbidity">Scattering by Ensembles: Turbidity</h2>
+<section id="macroscopic-manifestations-of-scattering" class="level3">
+<h3 class="anchored" data-anchor-id="macroscopic-manifestations-of-scattering">Macroscopic Manifestations of Scattering</h3>
+<p>When considering light propagation through a solution or suspension of many particles, individual scattering events add up to produce <strong>macroscopic attenuation</strong> of the incident beam. This is described by <strong>turbidity</strong> or <strong>optical density</strong>.</p>
+</section>
+<section id="beer-lambert-law-for-scattering" class="level3">
+<h3 class="anchored" data-anchor-id="beer-lambert-law-for-scattering">Beer-Lambert Law for Scattering</h3>
+<p>The <strong>extinction coefficient</strong> for scattering is defined in terms of the scattering cross section:</p>
+<p><span class="math display">\[\mu_s = n_p \sigma_{\text{sca}}\]</span></p>
+<p>where <span class="math inline">\(n_p\)</span> is the particle number density.</p>
+<p>The <strong>transmitted intensity</strong> through a path length <span class="math inline">\(L\)</span> is:</p>
+<p><span class="math display">\[I(L) = I_0 e^{-\mu_s L}\]</span></p>
+<p>or equivalently:</p>
+<p><span class="math display">\[I(L) = I_0 e^{-\alpha L}\]</span></p>
+<p>where <span class="math inline">\(\alpha = \mu_s\)</span> is the <strong>scattering coefficient</strong>.</p>
+<p>More generally, considering both scattering and absorption:</p>
+<p><span class="math display">\[I(L) = I_0 e^{-(\alpha + \beta) L}\]</span></p>
+<p>where <span class="math inline">\(\beta\)</span> is the absorption coefficient.</p>
+</section>
+<section id="optical-depth-and-turbidity" class="level3">
+<h3 class="anchored" data-anchor-id="optical-depth-and-turbidity">Optical Depth and Turbidity</h3>
+<p>The <strong>optical depth</strong> (or optical thickness) is defined as:</p>
+<p><span class="math display">\[\tau = \alpha L = \mu_s L = n_p \sigma_{\text{sca}} L\]</span></p>
+<p>When <span class="math inline">\(\tau \ll 1\)</span>: medium is <strong>transparent</strong> (single scattering dominates) When <span class="math inline">\(\tau \gg 1\)</span>: medium is <strong>opaque</strong> (multiple scattering)</p>
+<p><strong>Turbidity</strong> <span class="math inline">\(T\)</span> is often defined as the optical depth divided by the path length:</p>
+<p><span class="math display">\[T = \tau / L = \mu_s = n_p \sigma_{\text{sca}}\]</span></p>
+<p>This quantifies how much light is scattered out of the beam per unit distance.</p>
+<hr>
+</section>
+</section>
+<section id="code-examples-rayleigh-scattering" class="level2">
+<h2 class="anchored" data-anchor-id="code-examples-rayleigh-scattering">Code Examples: Rayleigh Scattering</h2>
+<p>Let’s implement the <span class="math inline">\(\lambda^{-4}\)</span> dependence and angular scattering patterns.</p>
+<div id="abcf5101" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>get_size(<span class="dv">15</span>, <span class="fl">5.5</span>))</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Left panel: Rayleigh scattering wavelength dependence</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>lambda_vis <span class="op">=</span> np.array([<span class="dv">380</span>, <span class="dv">450</span>, <span class="dv">495</span>, <span class="dv">570</span>, <span class="dv">590</span>, <span class="dv">620</span>, <span class="dv">750</span>])  <span class="co"># nm, violet to red</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>names <span class="op">=</span> [<span class="st">'Violet'</span>, <span class="st">'Blue'</span>, <span class="st">'Cyan'</span>, <span class="st">'Green'</span>, <span class="st">'Yellow'</span>, <span class="st">'Red'</span>, <span class="st">'Deep Red'</span>]</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>I_rayleigh <span class="op">=</span> (<span class="fl">1.0</span> <span class="op">/</span> lambda_vis)<span class="op">**</span><span class="dv">4</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>I_rayleigh_normalized <span class="op">=</span> I_rayleigh <span class="op">/</span> I_rayleigh[<span class="dv">1</span>]  <span class="co"># Normalize to blue (450 nm)</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>colors <span class="op">=</span> [<span class="st">'#440154'</span>, <span class="st">'#31688e'</span>, <span class="st">'#35b779'</span>, <span class="st">'#fde724'</span>, <span class="st">'#fde724'</span>, <span class="st">'#d62728'</span>, <span class="st">'#440154'</span>]</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> axes[<span class="dv">0</span>]</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>ax.semilogy(lambda_vis, I_rayleigh_normalized, <span class="st">'o-'</span>, linewidth<span class="op">=</span><span class="fl">2.5</span>, markersize<span class="op">=</span><span class="dv">7</span>, color<span class="op">=</span><span class="st">'#2c3e50'</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, (lam, intensity, name, color) <span class="kw">in</span> <span class="bu">enumerate</span>(<span class="bu">zip</span>(lambda_vis, I_rayleigh_normalized, names, colors)):</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    ax.semilogy(lam, intensity, <span class="st">'o'</span>, markersize<span class="op">=</span><span class="dv">8</span>, color<span class="op">=</span>color, markeredgecolor<span class="op">=</span><span class="st">'black'</span>, markeredgewidth<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'λ (nm)'</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Intensity (arb.)'</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>, linestyle<span class="op">=</span><span class="st">'--'</span>)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="dv">350</span>, <span class="dv">800</span>)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Right panel: Angular distribution (1 + cos²θ pattern)</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>theta <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">2</span><span class="op">*</span>np.pi, <span class="dv">1000</span>)</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>r_unpol <span class="op">=</span> <span class="dv">1</span> <span class="op">+</span> np.cos(theta)<span class="op">**</span><span class="dv">2</span>  <span class="co"># Unpolarized light</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> axes[<span class="dv">1</span>]</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> plt.subplot(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, projection<span class="op">=</span><span class="st">'polar'</span>)</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>ax.plot(theta, r_unpol, linewidth<span class="op">=</span><span class="fl">2.5</span>, color<span class="op">=</span><span class="st">'#2c3e50'</span>, label<span class="op">=</span><span class="st">'Unpolarized'</span>)</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>ax.fill(theta, r_unpol, alpha<span class="op">=</span><span class="fl">0.2</span>, color<span class="op">=</span><span class="st">'#3498db'</span>)</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>ax.set_theta_offset(np.pi<span class="op">/</span><span class="dv">2</span>)</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>ax.set_theta_direction(<span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="dv">0</span>, <span class="fl">2.2</span>)</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>ax.set_rgrids([<span class="fl">0.5</span>, <span class="dv">1</span>, <span class="fl">1.5</span>, <span class="dv">2</span>], labels<span class="op">=</span>[<span class="st">'0.5'</span>, <span class="st">'1'</span>, <span class="st">'1.5'</span>, <span class="st">'2'</span>], fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'img/rayleigh_scattering.png'</span>, dpi<span class="op">=</span><span class="dv">300</span>, bbox_inches<span class="op">=</span><span class="st">'tight'</span>)</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Rayleigh scattering intensity ratios (normalized to blue at 450 nm):"</span>)</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> lam, intensity, name <span class="kw">in</span> <span class="bu">zip</span>(lambda_vis, I_rayleigh_normalized, names):</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"  </span><span class="sc">{</span>name<span class="sc">:12s}</span><span class="ss"> (</span><span class="sc">{</span>lam<span class="sc">:3d}</span><span class="ss"> nm): I/I_blue = </span><span class="sc">{</span>intensity<span class="sc">:6.2f}</span><span class="ss">x"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="01-lecture14_files/figure-html/cell-3-output-1.png" width="546" height="193" class="figure-img"></p>
+<figcaption>Left: Rayleigh scattering wavelength dependence showing <span class="math inline">\(\lambda^{-4}\)</span> intensity scaling. Right: Angular distribution of scattered light from an oscillating dipole, showing forward and backward intensity peaks with a minimum at 90°.</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rayleigh scattering intensity ratios (normalized to blue at 450 nm):
+  Violet       (380 nm): I/I_blue =   1.97x
+  Blue         (450 nm): I/I_blue =   1.00x
+  Cyan         (495 nm): I/I_blue =   0.68x
+  Green        (570 nm): I/I_blue =   0.39x
+  Yellow       (590 nm): I/I_blue =   0.34x
+  Red          (620 nm): I/I_blue =   0.28x
+  Deep Red     (750 nm): I/I_blue =   0.13x</code></pre>
+</div>
+</div>
+</section>
+<section id="code-examples-rayleigh-angular-scattering-pattern-polarization" class="level2">
+<h2 class="anchored" data-anchor-id="code-examples-rayleigh-angular-scattering-pattern-polarization">Code Examples: Rayleigh Angular Scattering Pattern (Polarization)</h2>
+<div id="e692beb2" class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>get_size(<span class="dv">15</span>, <span class="dv">7</span>))</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>theta <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">2</span><span class="op">*</span>np.pi, <span class="dv">1000</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Perpendicular (s) polarization: I ∝ sin²θ</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>r_perp <span class="op">=</span> np.sin(theta)<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Parallel (p) polarization: I ∝ (1 + cos²θ)</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>r_para <span class="op">=</span> <span class="dv">1</span> <span class="op">+</span> np.cos(theta)<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co"># First subplot: perpendicular polarization</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>ax1 <span class="op">=</span> plt.subplot(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>, projection<span class="op">=</span><span class="st">'polar'</span>)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>ax1.plot(theta, r_perp, linewidth<span class="op">=</span><span class="fl">2.5</span>, color<span class="op">=</span><span class="st">'#e74c3c'</span>, label<span class="op">=</span><span class="st">'⊥-polarized (s)'</span>)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>ax1.fill(theta, r_perp, alpha<span class="op">=</span><span class="fl">0.2</span>, color<span class="op">=</span><span class="st">'#e74c3c'</span>)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>ax1.set_theta_offset(np.pi<span class="op">/</span><span class="dv">2</span>)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>ax1.set_theta_direction(<span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>ax1.set_ylim(<span class="dv">0</span>, <span class="fl">1.2</span>)</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>ax1.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>ax1.set_rgrids([<span class="fl">0.3</span>, <span class="fl">0.6</span>, <span class="fl">0.9</span>], fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Second subplot: parallel polarization</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>ax2 <span class="op">=</span> plt.subplot(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, projection<span class="op">=</span><span class="st">'polar'</span>)</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>ax2.plot(theta, r_para, linewidth<span class="op">=</span><span class="fl">2.5</span>, color<span class="op">=</span><span class="st">'#3498db'</span>, label<span class="op">=</span><span class="st">'∥-polarized (p)'</span>)</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>ax2.fill(theta, r_para, alpha<span class="op">=</span><span class="fl">0.2</span>, color<span class="op">=</span><span class="st">'#3498db'</span>)</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>ax2.set_theta_offset(np.pi<span class="op">/</span><span class="dv">2</span>)</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>ax2.set_theta_direction(<span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>ax2.set_ylim(<span class="dv">0</span>, <span class="fl">2.2</span>)</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>ax2.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>ax2.set_rgrids([<span class="fl">0.5</span>, <span class="dv">1</span>, <span class="fl">1.5</span>, <span class="dv">2</span>], fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'img/rayleigh_polarization.png'</span>, dpi<span class="op">=</span><span class="dv">300</span>, bbox_inches<span class="op">=</span><span class="st">'tight'</span>)</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Note: At θ = 90°, perpendicular-polarized light (sin²θ) is completely absent."</span>)</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"This creates polarization of scattered light: light scattered perpendicular to the incident"</span>)</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"direction is 100</span><span class="sc">% li</span><span class="st">nearly polarized perpendicular to the scattering plane."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="01-lecture14_files/figure-html/cell-4-output-1.png" width="543" height="253" class="figure-img"></p>
+<figcaption>Left: Perpendicular (s) polarization scattering pattern showing <span class="math inline">\(I \propto \sin^2\theta\)</span> with null at 90°. Right: Parallel (p) polarization pattern showing <span class="math inline">\(I \propto (1 + \cos^2\theta)\)</span> with maxima along forward and backward directions.</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Note: At θ = 90°, perpendicular-polarized light (sin²θ) is completely absent.
+This creates polarization of scattered light: light scattered perpendicular to the incident
+direction is 100% linearly polarized perpendicular to the scattering plane.</code></pre>
+</div>
+</div>
+</section>
+<section id="code-examples-mie-scattering-efficiency" class="level2">
+<h2 class="anchored" data-anchor-id="code-examples-mie-scattering-efficiency">Code Examples: Mie Scattering Efficiency</h2>
+<div id="7218c612" class="cell" data-execution_count="4">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Simple Mie scattering model using parametric approximation</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># For more accuracy, use miepython or pymieScatt, but we'll use a physics-based approximation</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> mie_efficiency_approximate(x, m<span class="op">=</span><span class="fl">1.33</span>):</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co">    Approximate Mie scattering efficiency.</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co">    x = size parameter = 2πa/λ</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co">    m = refractive index ratio = n_particle / n_medium</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co">    This uses Bohren &amp; Huffman approximations for different regimes.</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    x_arr <span class="op">=</span> np.atleast_1d(np.asarray(x, dtype<span class="op">=</span><span class="bu">float</span>))</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    Q_sca <span class="op">=</span> np.zeros_like(x_arr)</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i, xi <span class="kw">in</span> <span class="bu">enumerate</span>(x_arr):</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> xi <span class="op">&lt;</span> <span class="fl">0.1</span>:</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Rayleigh limit</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>            Q_sca_i <span class="op">=</span> (<span class="dv">8</span><span class="op">/</span><span class="dv">3</span>) <span class="op">*</span> xi<span class="op">**</span><span class="dv">4</span> <span class="op">*</span> (((m<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="dv">1</span>)<span class="op">/</span>(m<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="dv">2</span>))<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> xi <span class="op">&lt;</span> <span class="dv">3</span>:</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Intermediate regime - use more complex formula</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>            m2 <span class="op">=</span> m<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>            alpha1 <span class="op">=</span> (<span class="ot">2j</span> <span class="op">*</span> xi<span class="op">**</span><span class="dv">3</span> <span class="op">/</span> <span class="dv">3</span>) <span class="op">*</span> ((m2 <span class="op">-</span> <span class="dv">1</span>) <span class="op">/</span> (m2 <span class="op">+</span> <span class="dv">2</span>))</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>            alpha2 <span class="op">=</span> (<span class="ot">1j</span> <span class="op">*</span> xi<span class="op">**</span><span class="dv">5</span> <span class="op">/</span> <span class="dv">5</span>) <span class="op">*</span> ((m2 <span class="op">-</span> <span class="dv">1</span>) <span class="op">/</span> (m2 <span class="op">+</span> <span class="dv">1</span>))</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>            n1 <span class="op">=</span> np.<span class="bu">abs</span>(alpha1)<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> np.<span class="bu">abs</span>(alpha2)<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>            Q_sca_i <span class="op">=</span> (<span class="dv">6</span> <span class="op">*</span> xi) <span class="op">*</span> n1 <span class="op">/</span> (xi<span class="op">**</span><span class="dv">4</span>)</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Geometric limit - forward scattering dominance</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>            rho <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> xi <span class="op">*</span> ((m<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="dv">1</span>) <span class="op">/</span> (m<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="dv">2</span>))</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>            Q_sca_i <span class="op">=</span> <span class="dv">2</span> <span class="op">+</span> (<span class="dv">4</span><span class="op">/</span>xi) <span class="op">*</span> np.sin(rho) <span class="op">-</span> (<span class="dv">4</span><span class="op">/</span>xi<span class="op">**</span><span class="dv">2</span>) <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> np.cos(rho))</span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>            Q_sca_i <span class="op">=</span> np.<span class="bu">abs</span>(Q_sca_i)</span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>        Q_sca[i] <span class="op">=</span> Q_sca_i</span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> Q_sca <span class="cf">if</span> Q_sca.size <span class="op">&gt;</span> <span class="dv">1</span> <span class="cf">else</span> <span class="bu">float</span>(Q_sca[<span class="dv">0</span>])</span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate size parameter range</span></span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.logspace(<span class="op">-</span><span class="dv">2</span>, <span class="fl">2.5</span>, <span class="dv">500</span>)</span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>m_water <span class="op">=</span> <span class="fl">1.33</span>  <span class="co"># water droplet in air</span></span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>m_dielectric <span class="op">=</span> <span class="fl">1.5</span>  <span class="co"># generic dielectric in air</span></span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>Q_sca_water <span class="op">=</span> np.array([mie_efficiency_approximate(xi, m<span class="op">=</span>m_water) <span class="cf">for</span> xi <span class="kw">in</span> x])</span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>Q_sca_diel <span class="op">=</span> np.array([mie_efficiency_approximate(xi, m<span class="op">=</span>m_dielectric) <span class="cf">for</span> xi <span class="kw">in</span> x])</span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>get_size(<span class="dv">15</span>, <span class="dv">6</span>))</span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a><span class="co"># Left panel: Scattering efficiency vs size parameter</span></span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> axes[<span class="dv">0</span>]</span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>ax.loglog(x, Q_sca_water, linewidth<span class="op">=</span><span class="fl">2.5</span>, label<span class="op">=</span><span class="vs">r'Water </span><span class="kw">(</span><span class="dv">$</span><span class="vs">m = 1</span><span class="dv">.</span><span class="vs">33</span><span class="dv">$</span><span class="kw">)</span><span class="vs">'</span>, color<span class="op">=</span><span class="st">'#3498db'</span>)</span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a>ax.loglog(x, Q_sca_diel, linewidth<span class="op">=</span><span class="fl">2.5</span>, label<span class="op">=</span><span class="vs">r'Dielectric </span><span class="kw">(</span><span class="dv">$</span><span class="vs">m = 1</span><span class="dv">.</span><span class="vs">5</span><span class="dv">$</span><span class="kw">)</span><span class="vs">'</span>, color<span class="op">=</span><span class="st">'#e74c3c'</span>)</span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a><span class="co"># Rayleigh limit reference</span></span>
+<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a>rayleigh_ref <span class="op">=</span> <span class="dv">8</span><span class="op">/</span><span class="dv">3</span> <span class="op">*</span> (m_water<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="dv">1</span>)<span class="op">**</span><span class="dv">2</span> <span class="op">/</span> (m_water<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="dv">2</span>)<span class="op">**</span><span class="dv">2</span> <span class="op">*</span> x<span class="op">**</span><span class="dv">4</span></span>
+<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a>ax.loglog(x, rayleigh_ref, <span class="st">'--'</span>, linewidth<span class="op">=</span><span class="fl">1.5</span>, alpha<span class="op">=</span><span class="fl">0.6</span>, color<span class="op">=</span><span class="st">'gray'</span>, label<span class="op">=</span><span class="vs">r'Rayleigh </span><span class="kw">(</span><span class="dv">$</span><span class="vs">x</span><span class="dv">^</span><span class="vs">4</span><span class="dv">$</span><span class="kw">)</span><span class="vs">'</span>)</span>
+<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a><span class="co"># Geometric limit reference</span></span>
+<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a>ax.axhline(y<span class="op">=</span><span class="dv">2</span>, color<span class="op">=</span><span class="st">'gray'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, linewidth<span class="op">=</span><span class="fl">1.5</span>, alpha<span class="op">=</span><span class="fl">0.6</span>, label<span class="op">=</span><span class="st">'Geometric ($Q=2$)'</span>)</span>
+<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a>ax.fill_between(x, x<span class="op">**</span><span class="dv">4</span> <span class="op">*</span> <span class="fl">0.01</span>, <span class="dv">10</span>, where<span class="op">=</span>(x <span class="op">&lt;</span> <span class="fl">0.1</span>), alpha<span class="op">=</span><span class="fl">0.1</span>, color<span class="op">=</span><span class="st">'blue'</span>, label<span class="op">=</span><span class="st">'Rayleigh'</span>)</span>
+<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a>ax.fill_between(x, x<span class="op">**</span><span class="dv">4</span> <span class="op">*</span> <span class="fl">0.01</span>, <span class="dv">10</span>, where<span class="op">=</span>(x <span class="op">&gt;</span> <span class="dv">100</span>), alpha<span class="op">=</span><span class="fl">0.1</span>, color<span class="op">=</span><span class="st">'red'</span>, label<span class="op">=</span><span class="st">'Geometric'</span>)</span>
+<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="vs">r'Size parameter </span><span class="dv">$</span><span class="vs">x</span><span class="dv">$</span><span class="vs">'</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="vs">r'</span><span class="dv">$</span><span class="vs">Q_{</span><span class="ch">\t</span><span class="vs">ext{sca}}</span><span class="dv">$</span><span class="vs">'</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a>ax.legend(loc<span class="op">=</span><span class="st">'best'</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>, which<span class="op">=</span><span class="st">'both'</span>)</span>
+<span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="fl">1e-2</span>, <span class="fl">3e2</span>)</span>
+<span id="cb5-66"><a href="#cb5-66" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="fl">1e-3</span>, <span class="fl">1e2</span>)</span>
+<span id="cb5-67"><a href="#cb5-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-68"><a href="#cb5-68" aria-hidden="true" tabindex="-1"></a><span class="co"># Right panel: Backscattering efficiency (qualitative)</span></span>
+<span id="cb5-69"><a href="#cb5-69" aria-hidden="true" tabindex="-1"></a><span class="co"># This is typically measured in experiments</span></span>
+<span id="cb5-70"><a href="#cb5-70" aria-hidden="true" tabindex="-1"></a>ratio_back <span class="op">=</span> np.ones_like(x)</span>
+<span id="cb5-71"><a href="#cb5-71" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, xi <span class="kw">in</span> <span class="bu">enumerate</span>(x):</span>
+<span id="cb5-72"><a href="#cb5-72" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> xi <span class="op">&lt;</span> <span class="fl">0.5</span>:</span>
+<span id="cb5-73"><a href="#cb5-73" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Rayleigh: equal forward/backward</span></span>
+<span id="cb5-74"><a href="#cb5-74" aria-hidden="true" tabindex="-1"></a>        ratio_back[i] <span class="op">=</span> <span class="fl">0.5</span></span>
+<span id="cb5-75"><a href="#cb5-75" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> xi <span class="op">&lt;</span> <span class="dv">2</span>:</span>
+<span id="cb5-76"><a href="#cb5-76" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Transition: backscattering increases</span></span>
+<span id="cb5-77"><a href="#cb5-77" aria-hidden="true" tabindex="-1"></a>        ratio_back[i] <span class="op">=</span> <span class="fl">0.4</span> <span class="op">+</span> <span class="fl">0.3</span> <span class="op">*</span> (xi <span class="op">-</span> <span class="fl">0.5</span>) <span class="op">/</span> <span class="fl">1.5</span></span>
+<span id="cb5-78"><a href="#cb5-78" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb5-79"><a href="#cb5-79" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Geometric: mostly forward</span></span>
+<span id="cb5-80"><a href="#cb5-80" aria-hidden="true" tabindex="-1"></a>        ratio_back[i] <span class="op">=</span> <span class="fl">0.05</span></span>
+<span id="cb5-81"><a href="#cb5-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-82"><a href="#cb5-82" aria-hidden="true" tabindex="-1"></a>Q_sca_back <span class="op">=</span> Q_sca_water <span class="op">*</span> ratio_back</span>
+<span id="cb5-83"><a href="#cb5-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-84"><a href="#cb5-84" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> axes[<span class="dv">1</span>]</span>
+<span id="cb5-85"><a href="#cb5-85" aria-hidden="true" tabindex="-1"></a>ax.loglog(x, Q_sca_water, linewidth<span class="op">=</span><span class="fl">2.5</span>, color<span class="op">=</span><span class="st">'#3498db'</span>, label<span class="op">=</span><span class="st">'Total'</span>)</span>
+<span id="cb5-86"><a href="#cb5-86" aria-hidden="true" tabindex="-1"></a>ax.loglog(x, Q_sca_back, linewidth<span class="op">=</span><span class="fl">2.5</span>, color<span class="op">=</span><span class="st">'#e74c3c'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, label<span class="op">=</span><span class="st">'Backscattering'</span>)</span>
+<span id="cb5-87"><a href="#cb5-87" aria-hidden="true" tabindex="-1"></a>ax.fill_between(x, Q_sca_back, Q_sca_water, alpha<span class="op">=</span><span class="fl">0.2</span>, color<span class="op">=</span><span class="st">'#9b59b6'</span>, label<span class="op">=</span><span class="st">'Forward'</span>)</span>
+<span id="cb5-88"><a href="#cb5-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-89"><a href="#cb5-89" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="vs">r'Size parameter </span><span class="dv">$</span><span class="vs">x</span><span class="dv">$</span><span class="vs">'</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb5-90"><a href="#cb5-90" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="vs">r'</span><span class="dv">$</span><span class="vs">Q_{</span><span class="ch">\t</span><span class="vs">ext{sca}}</span><span class="dv">$</span><span class="vs">'</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb5-91"><a href="#cb5-91" aria-hidden="true" tabindex="-1"></a>ax.legend(loc<span class="op">=</span><span class="st">'best'</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb5-92"><a href="#cb5-92" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>, which<span class="op">=</span><span class="st">'both'</span>)</span>
+<span id="cb5-93"><a href="#cb5-93" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="fl">1e-2</span>, <span class="fl">3e2</span>)</span>
+<span id="cb5-94"><a href="#cb5-94" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="fl">1e-3</span>, <span class="fl">1e2</span>)</span>
+<span id="cb5-95"><a href="#cb5-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-96"><a href="#cb5-96" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb5-97"><a href="#cb5-97" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'img/mie_scattering.png'</span>, dpi<span class="op">=</span><span class="dv">300</span>, bbox_inches<span class="op">=</span><span class="st">'tight'</span>)</span>
+<span id="cb5-98"><a href="#cb5-98" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb5-99"><a href="#cb5-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-100"><a href="#cb5-100" aria-hidden="true" tabindex="-1"></a><span class="co"># Print some characteristic values</span></span>
+<span id="cb5-101"><a href="#cb5-101" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Scattering Efficiency at Key Size Parameters:"</span>)</span>
+<span id="cb5-102"><a href="#cb5-102" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  x = 0.01 (Rayleigh):    Q_sca = </span><span class="sc">{</span>Q_sca_water[<span class="dv">0</span>]<span class="sc">:.6f}</span><span class="ss">"</span>)</span>
+<span id="cb5-103"><a href="#cb5-103" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  x = 0.1  (Rayleigh):    Q_sca = </span><span class="sc">{</span>Q_sca_water[np.argmin(np.<span class="bu">abs</span>(x<span class="op">-</span><span class="fl">0.1</span>))]<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb5-104"><a href="#cb5-104" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  x = 1.0  (Resonance):   Q_sca = </span><span class="sc">{</span>Q_sca_water[np.argmin(np.<span class="bu">abs</span>(x<span class="op">-</span><span class="fl">1.0</span>))]<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb5-105"><a href="#cb5-105" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  x = 10   (Intermediate):Q_sca = </span><span class="sc">{</span>Q_sca_water[np.argmin(np.<span class="bu">abs</span>(x<span class="op">-</span><span class="dv">10</span>))]<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb5-106"><a href="#cb5-106" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  x = 100  (Geometric):   Q_sca = </span><span class="sc">{</span>Q_sca_water[np.argmin(np.<span class="bu">abs</span>(x<span class="op">-</span><span class="dv">100</span>))]<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="01-lecture14_files/figure-html/cell-5-output-1.png" width="550" height="206" class="figure-img"></p>
+<figcaption>Left: Scattering efficiency versus size parameter for water and dielectric particles, showing Rayleigh (<span class="math inline">\(x^4\)</span>), resonance, and geometric (<span class="math inline">\(Q \approx 2\)</span>) regimes. Right: Forward versus backward scattering decomposition, demonstrating the transition from isotropic (small <span class="math inline">\(x\)</span>) to highly forward-peaked (large <span class="math inline">\(x\)</span>) scattering.</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Scattering Efficiency at Key Size Parameters:
+  x = 0.01 (Rayleigh):    Q_sca = 0.000000
+  x = 0.1  (Rayleigh):    Q_sca = 0.0001
+  x = 1.0  (Resonance):   Q_sca = 0.1317
+  x = 10   (Intermediate):Q_sca = 1.6112
+  x = 100  (Geometric):   Q_sca = 1.9860</code></pre>
+</div>
+</div>
+</section>
+<section id="code-examples-dynamic-light-scattering-simulation" class="level2">
+<h2 class="anchored" data-anchor-id="code-examples-dynamic-light-scattering-simulation">Code Examples: Dynamic Light Scattering Simulation</h2>
+<div id="92ec0011" class="cell" data-execution_count="5">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulate DLS: intensity autocorrelation for different particle sizes</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> simulate_dls(particle_radii, D_values, tau_max<span class="op">=</span><span class="fl">1e-3</span>, num_tau<span class="op">=</span><span class="dv">200</span>, beta<span class="op">=</span><span class="fl">0.9</span>):</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co">    Simulate DLS intensity autocorrelation function.</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co">    Parameters:</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co">    - particle_radii: array of particle radii [m]</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co">    - D_values: diffusion coefficients [m²/s]</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co">    - tau_max: maximum lag time [s]</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co">    - num_tau: number of tau points</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co">    - beta: coherence factor (0 &lt; beta ≤ 1)</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    tau <span class="op">=</span> np.linspace(<span class="dv">0</span>, tau_max, num_tau)</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    q_squared <span class="op">=</span> np.ones_like(tau)  <span class="co"># will be filled</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Typical scattering conditions</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    n_medium <span class="op">=</span> <span class="fl">1.33</span>  <span class="co"># water</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    wavelength_vac <span class="op">=</span> <span class="fl">660e-9</span>  <span class="co"># 660 nm laser</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    theta <span class="op">=</span> np.pi <span class="op">/</span> <span class="dv">2</span>  <span class="co"># 90° scattering (common configuration)</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>    q <span class="op">=</span> (<span class="dv">4</span> <span class="op">*</span> np.pi <span class="op">*</span> n_medium <span class="op">/</span> wavelength_vac) <span class="op">*</span> np.sin(theta <span class="op">/</span> <span class="dv">2</span>)</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>    q_squared_val <span class="op">=</span> q<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>    results <span class="op">=</span> {}</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> r, D <span class="kw">in</span> <span class="bu">zip</span>(particle_radii <span class="op">*</span> <span class="fl">1e-9</span>, D_values):  <span class="co"># Convert to meters</span></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Field autocorrelation: exponential decay</span></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>        g1_tau <span class="op">=</span> np.exp(<span class="op">-</span>D <span class="op">*</span> q_squared_val <span class="op">*</span> tau)</span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Intensity autocorrelation: g2 = 1 + β|g1|²</span></span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>        g2_tau <span class="op">=</span> <span class="dv">1</span> <span class="op">+</span> beta <span class="op">*</span> np.<span class="bu">abs</span>(g1_tau)<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Decay rate</span></span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>        gamma <span class="op">=</span> D <span class="op">*</span> q_squared_val</span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>        results[<span class="ss">f'</span><span class="sc">{</span>r<span class="op">*</span><span class="fl">1e9</span><span class="sc">:.0f}</span><span class="ss"> nm'</span>] <span class="op">=</span> {</span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>            <span class="st">'tau'</span>: tau <span class="op">*</span> <span class="fl">1e6</span>,  <span class="co"># Convert to microseconds</span></span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a>            <span class="st">'g1'</span>: g1_tau,</span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a>            <span class="st">'g2'</span>: g2_tau,</span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a>            <span class="st">'decay_rate'</span>: gamma,</span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a>            <span class="st">'D'</span>: D</span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> results</span>
+<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a><span class="co"># Create data for different particle sizes</span></span>
+<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a><span class="co"># Using Stokes-Einstein: D = kT / (6πηr)</span></span>
+<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a>k_B <span class="op">=</span> <span class="fl">1.38e-23</span>  <span class="co"># Boltzmann constant [J/K]</span></span>
+<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> <span class="dv">298</span>  <span class="co"># Temperature [K]</span></span>
+<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a>eta <span class="op">=</span> <span class="fl">1e-3</span>  <span class="co"># Viscosity of water [Pa·s]</span></span>
+<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-53"><a href="#cb7-53" aria-hidden="true" tabindex="-1"></a>r_particles <span class="op">=</span> np.array([<span class="dv">10</span>, <span class="dv">50</span>, <span class="dv">100</span>, <span class="dv">500</span>])  <span class="co"># radii in nm</span></span>
+<span id="cb7-54"><a href="#cb7-54" aria-hidden="true" tabindex="-1"></a>D_particles <span class="op">=</span> k_B <span class="op">*</span> T <span class="op">/</span> (<span class="dv">6</span> <span class="op">*</span> np.pi <span class="op">*</span> eta <span class="op">*</span> r_particles <span class="op">*</span> <span class="fl">1e-9</span>)  <span class="co"># in m²/s</span></span>
+<span id="cb7-55"><a href="#cb7-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-56"><a href="#cb7-56" aria-hidden="true" tabindex="-1"></a>dls_results <span class="op">=</span> simulate_dls(r_particles, D_particles, tau_max<span class="op">=</span><span class="fl">1e-3</span>, num_tau<span class="op">=</span><span class="dv">500</span>)</span>
+<span id="cb7-57"><a href="#cb7-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-58"><a href="#cb7-58" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">2</span>, figsize<span class="op">=</span>get_size(<span class="dv">15</span>, <span class="dv">10</span>))</span>
+<span id="cb7-59"><a href="#cb7-59" aria-hidden="true" tabindex="-1"></a>axes <span class="op">=</span> axes.ravel()</span>
+<span id="cb7-60"><a href="#cb7-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-61"><a href="#cb7-61" aria-hidden="true" tabindex="-1"></a>colors_dls <span class="op">=</span> [<span class="st">'#e74c3c'</span>, <span class="st">'#f39c12'</span>, <span class="st">'#3498db'</span>, <span class="st">'#2ecc71'</span>]</span>
+<span id="cb7-62"><a href="#cb7-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-63"><a href="#cb7-63" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ax_idx, ((key, data), color) <span class="kw">in</span> <span class="bu">enumerate</span>(<span class="bu">zip</span>(dls_results.items(), colors_dls)):</span>
+<span id="cb7-64"><a href="#cb7-64" aria-hidden="true" tabindex="-1"></a>    ax <span class="op">=</span> axes[ax_idx]</span>
+<span id="cb7-65"><a href="#cb7-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-66"><a href="#cb7-66" aria-hidden="true" tabindex="-1"></a>    tau_us <span class="op">=</span> data[<span class="st">'tau'</span>]</span>
+<span id="cb7-67"><a href="#cb7-67" aria-hidden="true" tabindex="-1"></a>    g2 <span class="op">=</span> data[<span class="st">'g2'</span>]</span>
+<span id="cb7-68"><a href="#cb7-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-69"><a href="#cb7-69" aria-hidden="true" tabindex="-1"></a>    ax.plot(tau_us, g2, linewidth<span class="op">=</span><span class="fl">2.5</span>, color<span class="op">=</span>color, label<span class="op">=</span>key)</span>
+<span id="cb7-70"><a href="#cb7-70" aria-hidden="true" tabindex="-1"></a>    ax.fill_between(tau_us, <span class="dv">1</span>, g2, alpha<span class="op">=</span><span class="fl">0.2</span>, color<span class="op">=</span>color)</span>
+<span id="cb7-71"><a href="#cb7-71" aria-hidden="true" tabindex="-1"></a>    ax.axhline(y<span class="op">=</span><span class="dv">1</span>, color<span class="op">=</span><span class="st">'black'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, linewidth<span class="op">=</span><span class="dv">1</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb7-72"><a href="#cb7-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-73"><a href="#cb7-73" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Add exponential fit line</span></span>
+<span id="cb7-74"><a href="#cb7-74" aria-hidden="true" tabindex="-1"></a>    ax.plot(tau_us, <span class="dv">1</span> <span class="op">+</span> <span class="fl">0.9</span> <span class="op">*</span> np.exp(<span class="op">-</span>data[<span class="st">'decay_rate'</span>] <span class="op">*</span> tau_us <span class="op">*</span> <span class="fl">1e-6</span>),</span>
+<span id="cb7-75"><a href="#cb7-75" aria-hidden="true" tabindex="-1"></a>            <span class="st">'k--'</span>, linewidth<span class="op">=</span><span class="fl">1.5</span>, alpha<span class="op">=</span><span class="fl">0.6</span>, label<span class="op">=</span><span class="st">'Fit'</span>)</span>
+<span id="cb7-76"><a href="#cb7-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-77"><a href="#cb7-77" aria-hidden="true" tabindex="-1"></a>    ax.set_xlabel(<span class="vs">r'</span><span class="dv">$</span><span class="ch">\t</span><span class="vs">au</span><span class="dv">$</span><span class="vs"> </span><span class="kw">(</span><span class="dv">$\m</span><span class="vs">u</span><span class="dv">$</span><span class="vs">s</span><span class="kw">)</span><span class="vs">'</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb7-78"><a href="#cb7-78" aria-hidden="true" tabindex="-1"></a>    ax.set_ylabel(<span class="vs">r'</span><span class="dv">$</span><span class="vs">g_2</span><span class="kw">(</span><span class="ch">\t</span><span class="vs">au</span><span class="kw">)</span><span class="dv">$</span><span class="vs">'</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb7-79"><a href="#cb7-79" aria-hidden="true" tabindex="-1"></a>    ax.text(<span class="fl">0.5</span>, <span class="fl">0.05</span>, <span class="ss">f"</span><span class="sc">{</span>key<span class="sc">}</span><span class="ss">, $D = </span><span class="sc">{</span>data[<span class="st">'D'</span>]<span class="sc">:.3e}</span><span class="ss">$ m²/s"</span>,</span>
+<span id="cb7-80"><a href="#cb7-80" aria-hidden="true" tabindex="-1"></a>            transform<span class="op">=</span>ax.transAxes, fontsize<span class="op">=</span><span class="dv">9</span>, verticalalignment<span class="op">=</span><span class="st">'bottom'</span>,</span>
+<span id="cb7-81"><a href="#cb7-81" aria-hidden="true" tabindex="-1"></a>            bbox<span class="op">=</span><span class="bu">dict</span>(boxstyle<span class="op">=</span><span class="st">'round'</span>, facecolor<span class="op">=</span><span class="st">'wheat'</span>, alpha<span class="op">=</span><span class="fl">0.3</span>))</span>
+<span id="cb7-82"><a href="#cb7-82" aria-hidden="true" tabindex="-1"></a>    ax.set_ylim([<span class="fl">0.95</span>, <span class="fl">2.0</span>])</span>
+<span id="cb7-83"><a href="#cb7-83" aria-hidden="true" tabindex="-1"></a>    ax.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb7-84"><a href="#cb7-84" aria-hidden="true" tabindex="-1"></a>    ax.legend(loc<span class="op">=</span><span class="st">'upper right'</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb7-85"><a href="#cb7-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-86"><a href="#cb7-86" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb7-87"><a href="#cb7-87" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'img/dls_simulation.png'</span>, dpi<span class="op">=</span><span class="dv">300</span>, bbox_inches<span class="op">=</span><span class="st">'tight'</span>)</span>
+<span id="cb7-88"><a href="#cb7-88" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb7-89"><a href="#cb7-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-90"><a href="#cb7-90" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"DLS Simulation Results:"</span>)</span>
+<span id="cb7-91"><a href="#cb7-91" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"-"</span> <span class="op">*</span> <span class="dv">70</span>)</span>
+<span id="cb7-92"><a href="#cb7-92" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> key, data <span class="kw">in</span> dls_results.items():</span>
+<span id="cb7-93"><a href="#cb7-93" aria-hidden="true" tabindex="-1"></a>    tau_90_idx <span class="op">=</span> np.argmin(np.<span class="bu">abs</span>(data[<span class="st">'g2'</span>] <span class="op">-</span> <span class="fl">1.45</span>))  <span class="co"># g2 drops to ~1.45</span></span>
+<span id="cb7-94"><a href="#cb7-94" aria-hidden="true" tabindex="-1"></a>    tau_90 <span class="op">=</span> data[<span class="st">'tau'</span>][tau_90_idx]</span>
+<span id="cb7-95"><a href="#cb7-95" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Particle size </span><span class="sc">{</span>key<span class="sc">:8s}</span><span class="ss">: Decay rate Γ = </span><span class="sc">{</span>data[<span class="st">'decay_rate'</span>]<span class="sc">:8.1e}</span><span class="ss"> s⁻¹, τ(e⁻¹) ≈ </span><span class="sc">{</span><span class="dv">1</span><span class="op">/</span>data[<span class="st">'decay_rate'</span>]<span class="op">*</span><span class="fl">1e6</span><span class="sc">:6.2f}</span><span class="ss"> μs"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="01-lecture14_files/figure-html/cell-6-output-1.png" width="584" height="361" class="figure-img"></p>
+<figcaption>Intensity autocorrelation function <span class="math inline">\(g_2(\tau)\)</span> for four different particle sizes (10, 50, 100, and 500 nm). Larger particles diffuse faster, resulting in faster decay of the correlation function. Each panel shows the measured autocorrelation and an exponential fit.</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>DLS Simulation Results:
+----------------------------------------------------------------------
+Particle size 10 nm   : Decay rate Γ =  7.0e+03 s⁻¹, τ(e⁻¹) ≈ 142.96 μs
+Particle size 50 nm   : Decay rate Γ =  1.4e+03 s⁻¹, τ(e⁻¹) ≈ 714.78 μs
+Particle size 100 nm  : Decay rate Γ =  7.0e+02 s⁻¹, τ(e⁻¹) ≈ 1429.55 μs
+Particle size 500 nm  : Decay rate Γ =  1.4e+02 s⁻¹, τ(e⁻¹) ≈ 7147.77 μs</code></pre>
+</div>
+</div>
+</section>
+<section id="code-examples-static-light-scattering-form-factor" class="level2">
+<h2 class="anchored" data-anchor-id="code-examples-static-light-scattering-form-factor">Code Examples: Static Light Scattering — Form Factor</h2>
+<div id="da49fc70" class="cell" data-execution_count="6">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Form factor for spheres: P(q) = [3(sin(qa) - qa*cos(qa))/(qa)³]²</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> form_factor_sphere(q, a):</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co">    Form factor for a uniform sphere.</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co">    q: scattering vector [m⁻¹]</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co">    a: sphere radius [m]</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    qa <span class="op">=</span> q <span class="op">*</span> a</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Avoid division by zero</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    qa_safe <span class="op">=</span> np.where(qa <span class="op">==</span> <span class="dv">0</span>, <span class="fl">1e-10</span>, qa)</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    numerator <span class="op">=</span> <span class="dv">3</span> <span class="op">*</span> (np.sin(qa_safe) <span class="op">-</span> qa_safe <span class="op">*</span> np.cos(qa_safe))</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    denominator <span class="op">=</span> qa_safe<span class="op">**</span><span class="dv">3</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    P <span class="op">=</span> (numerator <span class="op">/</span> denominator)<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Handle the qa -&gt; 0 limit analytically: P(0) = 1</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>    P <span class="op">=</span> np.where(qa <span class="op">&lt;</span> <span class="fl">1e-6</span>, <span class="fl">1.0</span>, P)</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> P</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Create form factor curves for different sphere radii</span></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>radii_nm <span class="op">=</span> np.array([<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">50</span>, <span class="dv">100</span>])</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>radii_m <span class="op">=</span> radii_nm <span class="op">*</span> <span class="fl">1e-9</span></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Scattering vector range (typical for SAXS)</span></span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>q_max <span class="op">=</span> <span class="fl">1e7</span>  <span class="co"># m⁻¹</span></span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>q <span class="op">=</span> np.linspace(<span class="fl">0.1</span>, q_max, <span class="dv">2000</span>)</span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>get_size(<span class="dv">15</span>, <span class="dv">6</span>))</span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Left panel: Form factors on log-log scale</span></span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> axes[<span class="dv">0</span>]</span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>colors_ff <span class="op">=</span> [<span class="st">'#e74c3c'</span>, <span class="st">'#f39c12'</span>, <span class="st">'#3498db'</span>, <span class="st">'#2ecc71'</span>]</span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> r_nm, r_m, color <span class="kw">in</span> <span class="bu">zip</span>(radii_nm, radii_m, colors_ff):</span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>    P <span class="op">=</span> form_factor_sphere(q, r_m)</span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>    ax.loglog(q, P, linewidth<span class="op">=</span><span class="fl">2.5</span>, label<span class="op">=</span><span class="ss">f'$a = </span><span class="sc">{</span>r_nm<span class="sc">}</span><span class="ss">$ nm'</span>, color<span class="op">=</span>color)</span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="vs">r'</span><span class="dv">$</span><span class="vs">q</span><span class="dv">$</span><span class="vs"> </span><span class="kw">(</span><span class="vs">m</span><span class="dv">$^</span><span class="vs">{-1}</span><span class="dv">$</span><span class="kw">)</span><span class="vs">'</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="vs">r'</span><span class="dv">$</span><span class="vs">P</span><span class="kw">(</span><span class="vs">q</span><span class="kw">)</span><span class="dv">$</span><span class="vs">'</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>, which<span class="op">=</span><span class="st">'both'</span>)</span>
+<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a>ax.legend(loc<span class="op">=</span><span class="st">'upper right'</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a>ax.set_ylim([<span class="fl">1e-6</span>, <span class="fl">1.2</span>])</span>
+<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a><span class="co"># Right panel: Guinier plot (ln P vs q²)</span></span>
+<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> axes[<span class="dv">1</span>]</span>
+<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a><span class="co"># Small-q region for Guinier approximation</span></span>
+<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a>q_small <span class="op">=</span> q[q <span class="op">&lt;</span> <span class="fl">2e6</span>]  <span class="co"># Limit to small q</span></span>
+<span id="cb9-52"><a href="#cb9-52" aria-hidden="true" tabindex="-1"></a>q_squared <span class="op">=</span> q_small<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb9-53"><a href="#cb9-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-54"><a href="#cb9-54" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> r_nm, r_m, color <span class="kw">in</span> <span class="bu">zip</span>(radii_nm, radii_m, colors_ff):</span>
+<span id="cb9-55"><a href="#cb9-55" aria-hidden="true" tabindex="-1"></a>    P <span class="op">=</span> form_factor_sphere(q_small, r_m)</span>
+<span id="cb9-56"><a href="#cb9-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-57"><a href="#cb9-57" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Guinier approximation: ln P ≈ -R_g² q² / 3</span></span>
+<span id="cb9-58"><a href="#cb9-58" aria-hidden="true" tabindex="-1"></a>    R_g <span class="op">=</span> r_m <span class="op">*</span> np.sqrt(<span class="dv">3</span><span class="op">/</span><span class="dv">5</span>)  <span class="co"># For a sphere: R_g = sqrt(3/5) * a</span></span>
+<span id="cb9-59"><a href="#cb9-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-60"><a href="#cb9-60" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Plot both exact and approximation</span></span>
+<span id="cb9-61"><a href="#cb9-61" aria-hidden="true" tabindex="-1"></a>    ax.semilogy(q_squared, P, linewidth<span class="op">=</span><span class="fl">2.5</span>, label<span class="op">=</span><span class="ss">f'$a = </span><span class="sc">{</span>r_nm<span class="sc">}</span><span class="ss">$ nm'</span>,</span>
+<span id="cb9-62"><a href="#cb9-62" aria-hidden="true" tabindex="-1"></a>                color<span class="op">=</span>color, linestyle<span class="op">=</span><span class="st">'-'</span>)</span>
+<span id="cb9-63"><a href="#cb9-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-64"><a href="#cb9-64" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Guinier line</span></span>
+<span id="cb9-65"><a href="#cb9-65" aria-hidden="true" tabindex="-1"></a>    p_guinier <span class="op">=</span> np.exp(<span class="op">-</span>R_g<span class="op">**</span><span class="dv">2</span> <span class="op">*</span> q_squared <span class="op">/</span> <span class="dv">3</span>)</span>
+<span id="cb9-66"><a href="#cb9-66" aria-hidden="true" tabindex="-1"></a>    ax.semilogy(q_squared, p_guinier, linewidth<span class="op">=</span><span class="fl">1.5</span>, linestyle<span class="op">=</span><span class="st">'--'</span>,</span>
+<span id="cb9-67"><a href="#cb9-67" aria-hidden="true" tabindex="-1"></a>                color<span class="op">=</span>color, alpha<span class="op">=</span><span class="fl">0.6</span>)</span>
+<span id="cb9-68"><a href="#cb9-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-69"><a href="#cb9-69" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="vs">r'</span><span class="dv">$</span><span class="vs">q</span><span class="dv">^</span><span class="vs">2</span><span class="dv">$</span><span class="vs"> </span><span class="kw">(</span><span class="vs">m</span><span class="dv">$^</span><span class="vs">{-2}</span><span class="dv">$</span><span class="kw">)</span><span class="vs">'</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb9-70"><a href="#cb9-70" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="vs">r'</span><span class="dv">$</span><span class="vs">P</span><span class="kw">(</span><span class="vs">q</span><span class="kw">)</span><span class="dv">$</span><span class="vs">'</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb9-71"><a href="#cb9-71" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>, which<span class="op">=</span><span class="st">'both'</span>)</span>
+<span id="cb9-72"><a href="#cb9-72" aria-hidden="true" tabindex="-1"></a>ax.legend(loc<span class="op">=</span><span class="st">'upper right'</span>, fontsize<span class="op">=</span><span class="dv">10</span>, ncol<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb9-73"><a href="#cb9-73" aria-hidden="true" tabindex="-1"></a>ax.set_ylim([<span class="fl">1e-4</span>, <span class="fl">1.5</span>])</span>
+<span id="cb9-74"><a href="#cb9-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-75"><a href="#cb9-75" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb9-76"><a href="#cb9-76" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'img/form_factor.png'</span>, dpi<span class="op">=</span><span class="dv">300</span>, bbox_inches<span class="op">=</span><span class="st">'tight'</span>)</span>
+<span id="cb9-77"><a href="#cb9-77" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb9-78"><a href="#cb9-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-79"><a href="#cb9-79" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Form Factor Zeros (Oscillations):"</span>)</span>
+<span id="cb9-80"><a href="#cb9-80" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"-"</span> <span class="op">*</span> <span class="dv">50</span>)</span>
+<span id="cb9-81"><a href="#cb9-81" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> r_nm <span class="kw">in</span> radii_nm:</span>
+<span id="cb9-82"><a href="#cb9-82" aria-hidden="true" tabindex="-1"></a>    r_m <span class="op">=</span> r_nm <span class="op">*</span> <span class="fl">1e-9</span></span>
+<span id="cb9-83"><a href="#cb9-83" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Radius </span><span class="sc">{</span>r_nm<span class="sc">}</span><span class="ss"> nm:"</span>)</span>
+<span id="cb9-84"><a href="#cb9-84" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Zeros occur at qa = 4.49, 7.73, 10.9, ...</span></span>
+<span id="cb9-85"><a href="#cb9-85" aria-hidden="true" tabindex="-1"></a>    qa_zeros <span class="op">=</span> np.array([<span class="fl">4.49</span>, <span class="fl">7.73</span>, <span class="fl">10.9</span>, <span class="fl">14.1</span>])</span>
+<span id="cb9-86"><a href="#cb9-86" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i, qa <span class="kw">in</span> <span class="bu">enumerate</span>(qa_zeros):</span>
+<span id="cb9-87"><a href="#cb9-87" aria-hidden="true" tabindex="-1"></a>        q_zero <span class="op">=</span> qa <span class="op">/</span> r_m</span>
+<span id="cb9-88"><a href="#cb9-88" aria-hidden="true" tabindex="-1"></a>        wavelength_related <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">/</span> q_zero</span>
+<span id="cb9-89"><a href="#cb9-89" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"  Zero </span><span class="sc">{</span>i<span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="ss">: q = </span><span class="sc">{</span>q_zero<span class="sc">:.3e}</span><span class="ss"> m⁻¹,  d-spacing ≈ </span><span class="sc">{</span>wavelength_related<span class="op">*</span><span class="fl">1e9</span><span class="sc">:.1f}</span><span class="ss"> nm"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="01-lecture14_files/figure-html/cell-7-output-1.png" width="548" height="206" class="figure-img"></p>
+<figcaption>Left: Form factor <span class="math inline">\(P(q)\)</span> for uniform spheres of different radii on a log-log scale, showing oscillations that encode particle size information. Right: Guinier analysis on a semi-log scale, with exact form factors and linearized Guinier approximation (<span class="math inline">\(\ln P \approx -R_g^2 q^2/3\)</span>) used to extract radius of gyration.</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Form Factor Zeros (Oscillations):
+--------------------------------------------------
+
+Radius 10 nm:
+  Zero 1: q = 4.490e+08 m⁻¹,  d-spacing ≈ 14.0 nm
+  Zero 2: q = 7.730e+08 m⁻¹,  d-spacing ≈ 8.1 nm
+  Zero 3: q = 1.090e+09 m⁻¹,  d-spacing ≈ 5.8 nm
+  Zero 4: q = 1.410e+09 m⁻¹,  d-spacing ≈ 4.5 nm
+
+Radius 20 nm:
+  Zero 1: q = 2.245e+08 m⁻¹,  d-spacing ≈ 28.0 nm
+  Zero 2: q = 3.865e+08 m⁻¹,  d-spacing ≈ 16.3 nm
+  Zero 3: q = 5.450e+08 m⁻¹,  d-spacing ≈ 11.5 nm
+  Zero 4: q = 7.050e+08 m⁻¹,  d-spacing ≈ 8.9 nm
+
+Radius 50 nm:
+  Zero 1: q = 8.980e+07 m⁻¹,  d-spacing ≈ 70.0 nm
+  Zero 2: q = 1.546e+08 m⁻¹,  d-spacing ≈ 40.6 nm
+  Zero 3: q = 2.180e+08 m⁻¹,  d-spacing ≈ 28.8 nm
+  Zero 4: q = 2.820e+08 m⁻¹,  d-spacing ≈ 22.3 nm
+
+Radius 100 nm:
+  Zero 1: q = 4.490e+07 m⁻¹,  d-spacing ≈ 139.9 nm
+  Zero 2: q = 7.730e+07 m⁻¹,  d-spacing ≈ 81.3 nm
+  Zero 3: q = 1.090e+08 m⁻¹,  d-spacing ≈ 57.6 nm
+  Zero 4: q = 1.410e+08 m⁻¹,  d-spacing ≈ 44.6 nm</code></pre>
+</div>
+</div>
+</section>
+<section id="summary-and-key-takeaways" class="level2">
+<h2 class="anchored" data-anchor-id="summary-and-key-takeaways">Summary and Key Takeaways</h2>
+<p><strong>Rayleigh Scattering (<span class="math inline">\(d \ll \lambda\)</span>)</strong>: - Scattering intensity scales as <span class="math inline">\(\lambda^{-4}\)</span> - Explains blue sky and red sunsets - Angular pattern <span class="math inline">\((1 + \cos^2\theta)\)</span> for unpolarized light - Scattered light is partially polarized</p>
+<p><strong>Mie Scattering (<span class="math inline">\(d \sim \lambda\)</span>)</strong>: - Size parameter <span class="math inline">\(x = \pi d / \lambda\)</span> determines behavior - Complex resonance structure in scattering efficiency - Rayleigh limit (<span class="math inline">\(x \ll 1\)</span>) transitions to geometric limit (<span class="math inline">\(x \gg 1\)</span>) - Forward scattering dominates for large particles</p>
+<p><strong>Dynamic Light Scattering</strong>: - Brownian motion causes intensity fluctuations - Intensity autocorrelation <span class="math inline">\(g_2(\tau) = 1 + \beta|g_1(\tau)|^2\)</span> - Field autocorrelation decays as <span class="math inline">\(\exp(-Dq^2\tau)\)</span> - Stokes-Einstein equation connects diffusion to hydrodynamic radius</p>
+<p><strong>Static Light Scattering</strong>: - Form factor <span class="math inline">\(P(q)\)</span> encodes particle shape information - Structure factor <span class="math inline">\(S(q)\)</span> describes correlations in particle ensemble - Guinier approximation allows extracting radius of gyration at small <span class="math inline">\(q\)</span></p>
+<p><strong>Turbidity and Extinction</strong>: - Macroscopic extinction coefficient <span class="math inline">\(\mu_s = n_p \sigma_{\text{sca}}\)</span> - Beer-Lambert law governs light transmission through turbid media - Optical depth determines regimes of single vs.&nbsp;multiple scattering</p>
+<p>These concepts form the foundation for numerous applications: remote sensing, medical imaging, particle characterization, optical communication through turbid media, and many others.</p>
+</section>
+<section id="experimental-connections" class="level2">
+<h2 class="anchored" data-anchor-id="experimental-connections">Experimental Connections</h2>
+<p>Scattering experiments are among the most accessible and instructive in optics:</p>
+<p><strong>Rayleigh scattering from dilute milk</strong> Add a few drops of milk to a glass of water and illuminate from the side with a white LED or flashlight. The transmitted light appears reddish-orange (long wavelengths pass), while the scattered light viewed from 90° appears bluish — the <span class="math inline">\(\lambda^{-4}\)</span> dependence in action. This is the tabletop analogue of the blue sky and red sunset.</p>
+<p><strong>Polarization of scattered light</strong> Repeat the milk experiment but observe the 90° scattering through a polarizer. At 90°, the scattered light is almost perfectly linearly polarized. Rotate the polarizer to verify. This demonstrates the dipole radiation pattern: at 90°, only one polarization component contributes.</p>
+<p><strong>Mie scattering: angular dependence</strong> Illuminate a suspension of larger particles (e.g., 1 μm polystyrene beads) with a laser. Project the scattered light onto a screen. The strongly forward-peaked scattering (compared to the symmetric Rayleigh pattern) is immediately visible. With a goniometer detector, measure <span class="math inline">\(I(\theta)\)</span> and compare to Mie theory.</p>
+<p><strong>Dynamic light scattering (DLS)</strong> Build a simple DLS setup: focus a laser into a dilute suspension of nanoparticles (e.g., 100 nm gold or polystyrene), detect the scattered intensity at 90° with a fast photodetector, and compute the autocorrelation function. The decay rate gives the diffusion coefficient, and via the Stokes–Einstein relation, the particle size. Commercial DLS instruments (e.g., Malvern Zetasizer) are available in many labs.</p>
+<p><strong>Sunset in a tank</strong> Fill a long glass tank with slightly turbid water (a pinch of powdered milk). Shine a white light from one end. Observers at different positions along the side see the light change from white to yellow to orange to red — mimicking the color of the setting sun as the optical path through the scattering medium increases. This is a spectacular demonstration of the wavelength-dependent extinction.</p>
+</section>
+<section id="further-reading" class="level2">
+<h2 class="anchored" data-anchor-id="further-reading">Further Reading</h2>
+<p>The following references are linked to the central <a href="../../resources/resources.html">Resources &amp; Recommended Reading</a> page:</p>
+<ul>
+<li><strong><a href="../../resources/resources.html#sec-bohren">Bohren &amp; Huffman (2004)</a></strong> — <em>Absorption and Scattering of Light by Small Particles</em>. The standard reference for Rayleigh and Mie scattering. Essential reading.</li>
+<li><strong><a href="../../resources/resources.html#sec-berne">Berne &amp; Pecora (2000)</a></strong> — <em>Dynamic Light Scattering</em>. Covers autocorrelation functions, Brownian motion, and DLS instrumentation.</li>
+<li><strong><a href="../../resources/resources.html#sec-saleh">Saleh &amp; Teich, Ch. 24</a></strong> — Light Scattering. Good overview connecting to the rest of the photonics framework.</li>
+<li><strong><a href="../../resources/resources.html#sec-hecht">Hecht, Ch. 10.2</a></strong> — Scattering. Accessible introduction with physical intuition.</li>
+<li><strong><a href="../../resources/resources.html#sec-born">Born &amp; Wolf, Ch. 14</a></strong> — Optics of metals and scattering (advanced).</li>
+</ul>
+<hr>
+<p><em>Lecture 14: Light Scattering Fundamentals — Introduction to Photonics</em></p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/fcichos\.github\.io\/Photonics\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

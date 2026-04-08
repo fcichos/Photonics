@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.29">
+<meta name="generator" content="quarto-1.7.34">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -30,18 +30,17 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
+<link href="../../lectures/lecture01/01-lecture01.html" rel="next">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-0815c480559380816a4d1ea211a47e91.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-d521dac1687b568bac4cd80e48eb8185.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-<script src="../../site_libs/quarto-contrib/live-runtime/live-runtime.js" type="module"></script>
-<link href="../../site_libs/quarto-contrib/live-runtime/live-runtime.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-9344fb9851b4da3cab95007ef9d770dc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -69,10 +68,38 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script type="module" src="../../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
-<link href="../../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../assets/css/styles.css">
 </head>
 
 <body class="nav-sidebar floating nav-fixed quarto-light">
@@ -111,7 +138,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Introduction</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">PART I: FOUNDATIONS</li><li class="breadcrumb-item"><a href="../../lectures/lecture01/introduction.html">Lecture 1 — Introduction, Ray Optics &amp; Wave Optics</a></li><li class="breadcrumb-item"><a href="../../lectures/lecture01/introduction.html">Introduction</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -164,8 +191,8 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../course-info/labcourse.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Lab Course</span></a>
+  <a href="../../course-info/seminars.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Seminars</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -180,7 +207,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">FOUNDATIONS OF PHOTONICS</span></a>
+ <span class="menu-text">PART I: FOUNDATIONS</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -189,7 +216,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">Lecture 1</span></a>
+ <span class="menu-text">Lecture 1 — Introduction, Ray Optics &amp; Wave Optics</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -197,21 +224,22 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture01/introduction.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../lectures/lecture01/01-lecture01.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Ray Optics</span></a>
   </div>
 </li>
-      </ul>
-  </li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text">Lecture 2</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture01/02-lecture01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Optical Elements</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../lectures/lecture02/01-lecture02.html" class="sidebar-item-text sidebar-link">
@@ -221,195 +249,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../lectures/lecture02/02-lecture02.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Wave Optics Introduction</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
- <span class="menu-text">Lecture 3</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../lectures/lecture03/01-lecture03.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Interference</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
- <span class="menu-text">Lecture 4</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../lectures/lecture04/01-lecture04.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Gaussian Beams</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-      </ul>
-  </li>
-        <li class="px-0"><hr class="sidebar-divider hi "></li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
- <span class="menu-text">FOURIER OPTICS AND IMAGING</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
- <span class="menu-text">Lecture 5</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth2 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../lectures/lecture05/01-lecture05.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Fourier Optics I</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true">
- <span class="menu-text">Lecture 6</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth2 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../lectures/lecture06/01-lecture06.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Fourier Optics II</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true">
- <span class="menu-text">Lecture 8</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth2 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../lectures/lecture08/02-lecture04.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Photon Optics</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true">
- <span class="menu-text">Lecture 9</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth2 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../lectures/lecture09/03-lecture04.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Quantum Optics</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="true">
- <span class="menu-text">Lecture 10</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth2 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../lectures/lecture10/01-lecture10.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Quadrature States</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../lectures/lecture10/02-lecture10.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Electromagnetic &amp; Polarization Optics</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="true">
- <span class="menu-text">Lecture 11</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-13" class="collapse list-unstyled sidebar-section depth2 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../lectures/lecture10/02-lecture10.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Electromagnetic Optics</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-14" role="navigation" aria-expanded="true">
- <span class="menu-text">Lecture 12</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-14" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-14" class="collapse list-unstyled sidebar-section depth2 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../lectures/lecture12/anisotropic_media.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Anisotropic Materials</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-15" role="navigation" aria-expanded="true">
- <span class="menu-text">Lecture 13</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-15" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-15" class="collapse list-unstyled sidebar-section depth2 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../lectures/lecture13/lecture13.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Nonlinear Optics</span></a>
+ <span class="menu-text">Wave Optics</span></a>
   </div>
 </li>
       </ul>
@@ -427,16 +267,19 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#fundamental-physical-limitations-of-electronics" id="toc-fundamental-physical-limitations-of-electronics" class="nav-link active" data-scroll-target="#fundamental-physical-limitations-of-electronics">Fundamental Physical Limitations of Electronics</a></li>
-  <li><a href="#advantages-from-maxwells-equations-perspective" id="toc-advantages-from-maxwells-equations-perspective" class="nav-link" data-scroll-target="#advantages-from-maxwells-equations-perspective">Advantages from Maxwell’s Equations Perspective</a></li>
+  <li><a href="#why-photonics-advantages-from-maxwells-equations" id="toc-why-photonics-advantages-from-maxwells-equations" class="nav-link" data-scroll-target="#why-photonics-advantages-from-maxwells-equations">Why Photonics? Advantages from Maxwell’s Equations</a></li>
   <li><a href="#quantitative-comparisons" id="toc-quantitative-comparisons" class="nav-link" data-scroll-target="#quantitative-comparisons">Quantitative Comparisons</a></li>
   <li><a href="#quantum-mechanical-considerations" id="toc-quantum-mechanical-considerations" class="nav-link" data-scroll-target="#quantum-mechanical-considerations">Quantum Mechanical Considerations</a></li>
+  <li><a href="#photonic-computing-and-wavefront-control" id="toc-photonic-computing-and-wavefront-control" class="nav-link" data-scroll-target="#photonic-computing-and-wavefront-control">Photonic Computing and Wavefront Control</a></li>
+  <li><a href="#optical-microscopy-seeing-beyond-the-diffraction-limit" id="toc-optical-microscopy-seeing-beyond-the-diffraction-limit" class="nav-link" data-scroll-target="#optical-microscopy-seeing-beyond-the-diffraction-limit">Optical Microscopy: Seeing Beyond the Diffraction Limit</a></li>
+  <li><a href="#light-in-biology-and-biophotonics" id="toc-light-in-biology-and-biophotonics" class="nav-link" data-scroll-target="#light-in-biology-and-biophotonics">Light in Biology and Biophotonics</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">PART I: FOUNDATIONS</li><li class="breadcrumb-item"><a href="../../lectures/lecture01/introduction.html">Lecture 1 — Introduction, Ray Optics &amp; Wave Optics</a></li><li class="breadcrumb-item"><a href="../../lectures/lecture01/introduction.html">Introduction</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Introduction</h1>
 </div>
@@ -457,65 +300,74 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="fundamental-physical-limitations-of-electronics" class="level2">
 <h2 class="anchored" data-anchor-id="fundamental-physical-limitations-of-electronics">Fundamental Physical Limitations of Electronics</h2>
-<ul>
-<li><strong>RC Time Constants</strong>: As circuit dimensions shrink, the RC time constant doesn’t scale favorably, creating a fundamental speed limit for electronic signal propagation.</li>
-<li><strong>Joule Heating</strong>: Current flow through resistive elements produces heat proportional to I²R, which becomes increasingly problematic as device density increases according to Moore’s Law.</li>
-<li><strong>Skin Effect</strong>: At high frequencies, current flows primarily near conductor surfaces due to electromagnetic field penetration limitations, increasing effective resistance.</li>
-<li><strong>Electromagnetic Interference</strong>: Current-carrying wires act as both transmitters and receivers of electromagnetic radiation, creating cross-talk issues that worsen with frequency.</li>
-</ul>
+<p>Modern electronics has achieved remarkable miniaturization, yet several fundamental physical effects impose hard limits on how fast and how densely electronic circuits can operate.</p>
+<p>As circuit dimensions shrink, the product of resistance and capacitance, the RC time constant, does not scale favorably. Every wire and every transistor gate contributes parasitic resistance and capacitance, and their product sets a minimum switching time that cannot be reduced simply by making things smaller. This creates a fundamental speed ceiling for electronic signal propagation in integrated circuits.</p>
+<p>Closely related is the problem of heat dissipation. Every current flowing through a resistive element produces Joule heat proportional to <span class="math inline">\(I^2 R\)</span>. As transistor density increases following Moore’s Law, the power density on a chip rises dramatically. Modern processors already dissipate on the order of 100 W/cm², approaching the limits of what conventional cooling can handle.</p>
+<!-- Suggested figure: Schematic of an RC circuit with annotation showing how shrinking dimensions affect R and C; side-by-side plot of power density vs. year for microprocessors (data from ITRS roadmaps). -->
+<p>At high frequencies, a more subtle effect emerges: the skin effect. Electromagnetic fields penetrate conductors only to a characteristic depth <span class="math inline">\(\delta = \sqrt{2\rho / (\omega \mu)}\)</span>, which decreases with frequency. At GHz frequencies, current is confined to a thin shell near the conductor surface, dramatically increasing the effective resistance and limiting signal integrity.</p>
+<p>Finally, current-carrying wires inevitably act as antennas. They both radiate and receive electromagnetic energy. As clock frequencies rise, electromagnetic interference and cross-talk between neighboring signal lines become increasingly severe, requiring elaborate shielding and signal-processing techniques that add complexity, cost, and latency.</p>
+<!-- Suggested figure: Cross-section of a conductor illustrating the skin effect at different frequencies (e.g., 1 MHz, 1 GHz, 100 GHz) with shading showing current density distribution. -->
 </section>
-<section id="advantages-from-maxwells-equations-perspective" class="level2">
-<h2 class="anchored" data-anchor-id="advantages-from-maxwells-equations-perspective">Advantages from Maxwell’s Equations Perspective</h2>
-<ul>
-<li><strong>Photon vs.&nbsp;Electron Energy</strong>: Photons at optical frequencies (~10^14 Hz) have energies of ~1-2 eV, while electronic transitions in semiconductors operate at much lower energies, enabling fundamentally higher information bandwidth.</li>
-<li><strong>Wave-Particle Nature</strong>: Light’s dual nature allows it to be guided, focused, and manipulated without the scattering mechanisms that limit electron transport in solids.</li>
-<li><strong>Dispersion Relations</strong>: The dispersion relation for photons in waveguides can be engineered more flexibly than electronic band structures in semiconductors.</li>
-</ul>
+<section id="why-photonics-advantages-from-maxwells-equations" class="level2">
+<h2 class="anchored" data-anchor-id="why-photonics-advantages-from-maxwells-equations">Why Photonics? Advantages from Maxwell’s Equations</h2>
+<p>Given these electronic bottlenecks, it is natural to ask whether a different information carrier could circumvent them. Photons, the quanta of the electromagnetic field at optical frequencies, offer several fundamental advantages rooted directly in Maxwell’s equations.</p>
+<p>Photons at optical frequencies (<span class="math inline">\(\sim 10^{14}\)</span> Hz) carry energies of roughly 1–2 eV per quantum. This is far above the thermal noise floor at room temperature (<span class="math inline">\(k_B T \approx 25\)</span> meV), giving optical signals an inherently high signal-to-noise ratio. More importantly, the enormous carrier frequency enables modulation bandwidths that are simply inaccessible to electronics.</p>
+<p>Light can be guided in dielectric waveguides and optical fibers through total internal reflection, focused to diffraction-limited spots, and split or combined using passive optical elements, all without the scattering, defect interactions, and phonon coupling that limit electron transport in solids. Photons in a waveguide propagate as guided electromagnetic modes whose dispersion relation <span class="math inline">\(\omega(\beta)\)</span> can be engineered through geometry and material choice with far greater flexibility than the electronic band structure of a semiconductor crystal.</p>
+<!-- Suggested figure: Side-by-side comparison, (left) electron scattering processes in a semiconductor (impurities, phonons, boundaries) vs. (right) photon propagation in a glass fiber with only weak Rayleigh scattering. Could use simple ray/wave diagrams. -->
 </section>
 <section id="quantitative-comparisons" class="level2">
 <h2 class="anchored" data-anchor-id="quantitative-comparisons">Quantitative Comparisons</h2>
-<ul>
-<li><strong>Information Capacity</strong>: According to Shannon’s theorem, channel capacity increases linearly with bandwidth. Optical frequencies (~100 THz) offer approximately 10,000 times more bandwidth than the highest practical electronic frequencies (~10 GHz).</li>
-<li><strong>Propagation Losses</strong>: Modern optical fibers achieve losses of ~0.2 dB/km, while electronic transmission lines typically experience losses of 10-100 dB/km at high frequencies.</li>
-<li><strong>Energy Per Bit</strong>: Theoretical minimum energy to transmit one bit optically is orders of magnitude lower than electronic transmission (~10^-18 J vs ~10^-15 J).</li>
-</ul>
+<p>The practical consequences of these physical differences are striking.</p>
+<p><strong>Bandwidth.</strong> According to Shannon’s theorem, the capacity of a communication channel scales linearly with its bandwidth. Optical frequencies offer a usable bandwidth of roughly 100 THz, compared to about 10 GHz for the highest practical electronic channels, a factor of 10,000. A single optical fiber can carry data rates exceeding 100 Tbit/s using wavelength-division multiplexing, while the fastest electronic interconnects plateau in the tens of Gbit/s range.</p>
+<p><strong>Propagation losses.</strong> Modern optical fibers achieve attenuation as low as 0.2 dB/km near the 1550 nm wavelength window. By contrast, electronic transmission lines (coaxial cables, microstrip lines) typically suffer losses of 10–100 dB/km at GHz frequencies. This difference is why transcontinental and transoceanic communication is carried entirely by fiber optics.</p>
+<!-- Suggested figure: Log-scale plot comparing attenuation (dB/km) vs. frequency for optical fiber, coaxial cable, and twisted-pair copper, illustrating the orders-of-magnitude advantage of fiber at high frequencies. -->
+<p><strong>Energy per bit.</strong> The theoretical minimum energy required to transmit one bit of information optically is on the order of <span class="math inline">\(10^{-18}\)</span> J (a few photons at telecom wavelengths), while electronic transmission requires roughly <span class="math inline">\(10^{-15}\)</span> J per bit, three orders of magnitude more. In an era of rapidly growing data-center energy consumption, this difference has profound practical implications.</p>
+<!-- Suggested figure: Bar chart or table comparing key metrics (bandwidth, loss, energy/bit) between electronic and photonic interconnects, making the quantitative gap visually immediate. -->
 </section>
 <section id="quantum-mechanical-considerations" class="level2">
 <h2 class="anchored" data-anchor-id="quantum-mechanical-considerations">Quantum Mechanical Considerations</h2>
-<ul>
-<li><strong>Coherence Properties</strong>: Photons maintain quantum coherence over much longer distances than electrons in solid-state environments, enabling quantum information applications.</li>
-<li><strong>Non-interacting Bosons</strong>: Unlike electrons (fermions), photons don’t directly interact with each other, allowing signals to cross without interference.</li>
-</ul>
+<p>Beyond classical advantages, photons possess unique quantum-mechanical properties that open entirely new technological possibilities.</p>
+<p>Photons maintain quantum coherence, meaning a well-defined phase relationship, over remarkably long distances. In optical fibers, coherence lengths of hundreds of kilometers are routinely achieved. Electrons in solid-state environments, by contrast, lose coherence after nanometers to micrometers due to interactions with lattice vibrations, impurities, and other electrons. This makes photons the natural carrier for quantum communication and quantum key distribution, where coherence is essential for security guarantees.</p>
+<p>There is a deeper reason for this robustness: photons are bosons that, under normal conditions, do not interact with each other. Two light beams can cross in free space without any mutual disturbance, a property that has no analogue in electronic circuits, where signals sharing a conductor inevitably interfere. This non-interaction is both a strength (enabling wavelength-division multiplexing and crossing waveguides) and a challenge (making photon-photon interactions for all-optical switching difficult to achieve), a theme we will revisit throughout this course.</p>
+<!-- Suggested figure: Illustration of two crossing optical beams passing through each other undisturbed, contrasted with two electrical signals on a shared bus creating cross-talk. -->
+</section>
+<section id="photonic-computing-and-wavefront-control" class="level2">
+<h2 class="anchored" data-anchor-id="photonic-computing-and-wavefront-control">Photonic Computing and Wavefront Control</h2>
+<p>The advantages of photons for information transport raise a compelling question: can light be used not only to carry data but also to process it? Over the past decade, this idea has moved from theoretical speculation to active experimental reality.</p>
+<p><strong>Optical neural networks.</strong> A conventional electronic neural network performs repeated matrix-vector multiplications followed by nonlinear activation functions. Each multiplication requires many transistor switching events, each dissipating energy. In an optical neural network, the same linear operation can be performed by passing light through a carefully designed arrangement of beam splitters and phase shifters, or through a diffractive optical element. Because light propagation through a passive optical system is inherently a linear transformation, the matrix multiplication happens at the speed of light and with near-zero energy cost. The key challenge lies in implementing the nonlinear activation, which typically still requires electronic or optical nonlinear elements. Recent integrated photonic circuits on silicon have demonstrated neural network inference at speeds and energy efficiencies that electronic accelerators cannot match for certain tasks, particularly in the low-latency regime relevant to signal processing and autonomous systems.</p>
+<!-- Suggested figure: Schematic of a photonic neural network layer: input light fields entering a mesh of Mach-Zehnder interferometers (beam splitters + phase shifters) that implements a unitary matrix, followed by a nonlinear activation stage. Compare with a diagram of the equivalent electronic matrix multiplication. -->
+<p><strong>Reservoir computing with random scattering media.</strong> A particularly elegant approach exploits what might initially seem like a nuisance: the complex multiple scattering of light in disordered media such as ground glass, white paint, or biological tissue. When a coherent light field enters such a medium, it undergoes a high-dimensional, nonlinear transformation. The resulting speckle pattern at the output encodes the input in a complex but reproducible way. In the framework of reservoir computing, this scattering medium acts as a fixed, high-dimensional “reservoir” that projects inputs into a rich feature space. Only a simple linear readout layer needs to be trained, drastically reducing the computational cost of learning. Experiments have demonstrated that a scattering slab of zinc oxide, just micrometers thick, can classify handwritten digits, perform speech recognition, and solve time-series prediction tasks. The medium provides millions of effective degrees of freedom for free, powered only by the propagating light itself.</p>
+<!-- Suggested figure: Reservoir computing with a scattering medium. Left: coherent laser light modulated with an input signal enters a disordered scattering slab. Center: the complex speckle pattern at the output represents a high-dimensional nonlinear transformation. Right: a trained linear readout (e.g. a camera plus simple weights) extracts the classification result. -->
+<p><strong>Adaptive optics.</strong> Both optical computing and deep-tissue imaging face a common obstacle: light propagating through complex or turbulent media accumulates wavefront distortions that scramble the phase and amplitude of the field. Adaptive optics provides the tools to measure and correct these distortions in real time. Originally developed for ground-based astronomy, where atmospheric turbulence limits telescope resolution, adaptive optics systems use a wavefront sensor (typically a Shack-Hartmann sensor) to measure the phase aberration and a deformable mirror to apply the conjugate correction, restoring diffraction-limited performance.</p>
+<p>The same principle has been adapted for microscopy, where scattering and refractive index variations in biological tissue degrade image quality at depths beyond a few tens of micrometers. Adaptive optical elements integrated into multiphoton and light-sheet microscopes now enable diffraction-limited imaging hundreds of micrometers deep into living tissue. More recently, wavefront shaping has gone further: by measuring the full transmission matrix of a scattering medium, it becomes possible to focus light through and even inside opaque materials. This connects directly back to reservoir computing, where the same transmission matrix that enables computation also enables focusing, highlighting a deep link between optical information processing and imaging through complex media.</p>
+<!-- Suggested figure: Adaptive optics principle. Top row (astronomy): distorted wavefront from a star, Shack-Hartmann sensor measurement, deformable mirror correction, corrected image. Bottom row (microscopy): same sequence applied to imaging a fluorescent neuron deep in brain tissue. -->
+</section>
+<section id="optical-microscopy-seeing-beyond-the-diffraction-limit" class="level2">
+<h2 class="anchored" data-anchor-id="optical-microscopy-seeing-beyond-the-diffraction-limit">Optical Microscopy: Seeing Beyond the Diffraction Limit</h2>
+<p>The impact of photonics extends far beyond information technology. One of the fastest growing subfields is optical microscopy, where a series of breakthroughs over the past three decades has fundamentally changed what can be observed in the natural sciences.</p>
+<p>For more than a century, the resolution of optical microscopes was considered to be fundamentally limited by diffraction. Ernst Abbe established in 1873 that two point sources cannot be distinguished if they are closer than roughly <span class="math inline">\(d \approx \lambda / (2\, \mathrm{NA})\)</span>, where <span class="math inline">\(\lambda\)</span> is the wavelength and NA the numerical aperture of the objective. For visible light, this sets a hard floor around 200 nm, leaving the entire nanoscale world inaccessible to optical imaging.</p>
+<p>Beginning in the 1990s, several techniques broke through this barrier. Confocal and multiphoton microscopy improved contrast and optical sectioning by rejecting out-of-focus light and by exploiting the nonlinear intensity dependence of two-photon absorption. Structured illumination microscopy (SIM) doubled the effective resolution by encoding high-frequency spatial information into detectable Moiré patterns. Most dramatically, stimulated emission depletion (STED) microscopy and single-molecule localization techniques such as PALM and STORM achieved resolutions of 20 nm and below, earning the 2014 Nobel Prize in Chemistry for Stefan Hell, Eric Betzig, and William Moerner.</p>
+<!-- Suggested figure: Resolution timeline showing the diffraction limit as a horizontal line and the progression of super-resolution techniques (confocal, SIM, STED, PALM/STORM) pushing below it, with representative images at each scale. -->
+<p>These advances rely on distinctly photonic phenomena: the precise control of stimulated emission, the stochastic switching of single fluorescent molecules, and the coherent structuring of illumination patterns. They have transformed cell biology by making it possible to observe the organization of proteins, membranes, and organelles in living cells at the molecular scale. Light-sheet microscopy, another recent development, combines optical sectioning with gentle illumination to image entire embryos and organs over hours and days with minimal photodamage.</p>
+<!-- Suggested figure: Comparison of a conventional fluorescence image and a super-resolution (STED or STORM) image of the same biological structure, e.g. microtubules or nuclear pore complexes, showing the dramatic gain in detail. -->
+</section>
+<section id="light-in-biology-and-biophotonics" class="level2">
+<h2 class="anchored" data-anchor-id="light-in-biology-and-biophotonics">Light in Biology and Biophotonics</h2>
+<p>The interaction of light with biological matter opens a third major domain of photonics, one that bridges physics, biology, and medicine.</p>
+<p>Biological tissue is a complex optical medium. It absorbs, scatters, and emits light in ways that carry rich information about molecular composition, cellular structure, and physiological state. Biophotonics exploits these interactions for both diagnostics and therapy.</p>
+<p><strong>Spectroscopic sensing.</strong> Every molecule has a characteristic absorption and emission spectrum. Fluorescence spectroscopy can detect specific biomolecules at the single-molecule level, while Raman spectroscopy provides a chemical fingerprint without any labeling. These techniques enable rapid, non-invasive identification of pathogens, cancer biomarkers, and metabolic states. In clinical settings, pulse oximetry, one of the most widespread photonic sensors, determines blood oxygen saturation simply by measuring the differential absorption of hemoglobin at two wavelengths.</p>
+<!-- Suggested figure: Absorption spectra of oxygenated and deoxygenated hemoglobin in the visible and near-infrared range, illustrating the principle behind pulse oximetry. -->
+<p><strong>Optical coherence tomography (OCT).</strong> By measuring the interference of backscattered broadband light, OCT produces cross-sectional images of tissue with micrometer resolution and millimeter penetration depth. It has become the standard imaging modality in ophthalmology and is increasingly used in cardiology, dermatology, and developmental biology. The technique is a direct application of low-coherence interferometry, connecting fundamental wave optics to clinical practice.</p>
+<p><strong>Optical trapping and manipulation.</strong> Tightly focused laser beams exert piconewton-scale forces on microscopic objects through radiation pressure and gradient forces. Optical tweezers, recognized with the 2018 Nobel Prize in Physics for Arthur Ashkin, allow researchers to hold, move, and measure the mechanical properties of individual cells, bacteria, and even single DNA molecules. This has opened an entire field of single-molecule biophysics, revealing the forces and step sizes of molecular motors, the elastic properties of biopolymers, and the mechanics of cell division.</p>
+<!-- Suggested figure: Schematic of an optical tweezers setup showing a tightly focused Gaussian beam trapping a dielectric microsphere, with arrows indicating the gradient and scattering forces. -->
+<p><strong>Therapeutic applications.</strong> In medicine, laser light is used for precision surgery (e.g.&nbsp;LASIK eye correction, tumor ablation), photodynamic therapy where light activates drug molecules to destroy cancer cells, and optogenetics where genetically encoded light-sensitive proteins allow neurons to be switched on and off with millisecond precision using focused light pulses. Optogenetics in particular has revolutionized neuroscience by enabling causal studies of neural circuits in behaving animals.</p>
+<!-- Suggested figure: Principle of optogenetics: a neuron expressing channelrhodopsin is activated by blue light, showing the ion channel opening and the resulting action potential. -->
+<p>These examples illustrate that photonics is not merely an alternative to electronics for information processing. Light interacts with matter across all scales, from single molecules to whole organisms, and the ability to generate, shape, and detect photons with ever greater precision continues to open new scientific and technological frontiers.</p>
 
 
-<script type="ojs-module-contents">
-eyJjb250ZW50cyI6W119
-</script>
-<div id="exercise-loading-indicator" class="exercise-loading-indicator d-none d-flex align-items-center gap-2">
-<div id="exercise-loading-status" class="d-flex gap-2">
-
-</div>
-<div class="spinner-grow spinner-grow-sm">
-
-</div>
-</div>
-<script type="vfs-file">
-W10=
-</script>
 </section>
 
 </main> <!-- /main -->
-<script type="ojs-module-contents">
-eyJjb250ZW50cyI6W119
-</script>
-<script type="module">
-if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
-window._ojs.paths.runtimeToDoc = "../../lectures/lecture01";
-window._ojs.paths.runtimeToRoot = "../..";
-window._ojs.paths.docToRoot = "../..";
-window._ojs.selfContained = false;
-window._ojs.runtime.interpretFromScriptTags();
-</script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -915,6 +767,15 @@ window._ojs.runtime.interpretFromScriptTags();
     }
   });
   </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../lectures/lecture01/01-lecture01.html" class="pagination-link" aria-label="Ray Optics">
+        <span class="nav-page-text">Ray Optics</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
 
 

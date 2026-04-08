@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.34">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Light Transport in Random Media – Photonics</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-9344fb9851b4da3cab95007ef9d770dc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../assets/css/styles.css">
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Photonics</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../../index.html" aria-current="page"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Light Transport in Random Media</li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="../../index.html" class="sidebar-logo-link">
+      <img src="../../assets/images/mona_logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home</span></a>
+  </div>
+</li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Course Info</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-info/intructors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Instructor</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-info/schedule.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Schedule</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-info/resources.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Ressources</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-info/seminars.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Seminars</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-info/exam.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exams</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">PART I: FOUNDATIONS</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Lecture 1 — Introduction, Ray Optics &amp; Wave Optics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture01/introduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture01/01-lecture01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Ray Optics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture01/02-lecture01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Optical Elements</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture02/01-lecture02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Matrix Optics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture02/02-lecture02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wave Optics</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#light-transport-in-random-media" id="toc-light-transport-in-random-media" class="nav-link active" data-scroll-target="#light-transport-in-random-media">Light Transport in Random Media</a>
+  <ul class="collapse">
+  <li><a href="#motivation-and-overview" id="toc-motivation-and-overview" class="nav-link" data-scroll-target="#motivation-and-overview">Motivation and Overview</a></li>
+  <li><a href="#from-single-to-multiple-scattering" id="toc-from-single-to-multiple-scattering" class="nav-link" data-scroll-target="#from-single-to-multiple-scattering">1. From Single to Multiple Scattering</a>
+  <ul class="collapse">
+  <li><a href="#the-optical-depth-and-the-transition" id="toc-the-optical-depth-and-the-transition" class="nav-link" data-scroll-target="#the-optical-depth-and-the-transition">The optical depth and the transition</a></li>
+  <li><a href="#mean-free-path-and-scattering-coefficient" id="toc-mean-free-path-and-scattering-coefficient" class="nav-link" data-scroll-target="#mean-free-path-and-scattering-coefficient">Mean free path and scattering coefficient</a></li>
+  </ul></li>
+  <li><a href="#scattering-mean-free-path-and-the-anisotropy-factor" id="toc-scattering-mean-free-path-and-the-anisotropy-factor" class="nav-link" data-scroll-target="#scattering-mean-free-path-and-the-anisotropy-factor">2. Scattering Mean Free Path and the Anisotropy Factor</a>
+  <ul class="collapse">
+  <li><a href="#phase-function-and-anisotropy" id="toc-phase-function-and-anisotropy" class="nav-link" data-scroll-target="#phase-function-and-anisotropy">Phase function and anisotropy</a></li>
+  <li><a href="#transport-mean-free-path" id="toc-transport-mean-free-path" class="nav-link" data-scroll-target="#transport-mean-free-path">Transport mean free path</a></li>
+  </ul></li>
+  <li><a href="#random-walk-of-photons-the-diffusion-picture" id="toc-random-walk-of-photons-the-diffusion-picture" class="nav-link" data-scroll-target="#random-walk-of-photons-the-diffusion-picture">3. Random Walk of Photons — The Diffusion Picture</a>
+  <ul class="collapse">
+  <li><a href="#photon-trajectories-in-a-scattering-medium" id="toc-photon-trajectories-in-a-scattering-medium" class="nav-link" data-scroll-target="#photon-trajectories-in-a-scattering-medium">Photon trajectories in a scattering medium</a></li>
+  <li><a href="#diffusion-equation" id="toc-diffusion-equation" class="nav-link" data-scroll-target="#diffusion-equation">Diffusion equation</a></li>
+  </ul></li>
+  <li><a href="#radiative-transfer-equation-qualitative" id="toc-radiative-transfer-equation-qualitative" class="nav-link" data-scroll-target="#radiative-transfer-equation-qualitative">4. Radiative Transfer Equation (Qualitative)</a></li>
+  <li><a href="#diffusion-approximation" id="toc-diffusion-approximation" class="nav-link" data-scroll-target="#diffusion-approximation">5. Diffusion Approximation</a>
+  <ul class="collapse">
+  <li><a href="#derivation-from-random-walk" id="toc-derivation-from-random-walk" class="nav-link" data-scroll-target="#derivation-from-random-walk">Derivation from random walk</a></li>
+  <li><a href="#steady-state-and-time-resolved-solutions" id="toc-steady-state-and-time-resolved-solutions" class="nav-link" data-scroll-target="#steady-state-and-time-resolved-solutions">Steady-state and time-resolved solutions</a></li>
+  <li><a href="#boundary-conditions" id="toc-boundary-conditions" class="nav-link" data-scroll-target="#boundary-conditions">Boundary conditions</a></li>
+  <li><a href="#validity-of-the-diffusion-approximation" id="toc-validity-of-the-diffusion-approximation" class="nav-link" data-scroll-target="#validity-of-the-diffusion-approximation">Validity of the diffusion approximation</a></li>
+  </ul></li>
+  <li><a href="#speckle-patterns" id="toc-speckle-patterns" class="nav-link" data-scroll-target="#speckle-patterns">6. Speckle Patterns</a>
+  <ul class="collapse">
+  <li><a href="#origin-random-interference" id="toc-origin-random-interference" class="nav-link" data-scroll-target="#origin-random-interference">Origin: Random interference</a></li>
+  <li><a href="#speckle-statistics" id="toc-speckle-statistics" class="nav-link" data-scroll-target="#speckle-statistics">Speckle statistics</a></li>
+  <li><a href="#speckle-size-and-correlations" id="toc-speckle-size-and-correlations" class="nav-link" data-scroll-target="#speckle-size-and-correlations">Speckle size and correlations</a></li>
+  <li><a href="#angular-memory-effect" id="toc-angular-memory-effect" class="nav-link" data-scroll-target="#angular-memory-effect">Angular memory effect</a></li>
+  </ul></li>
+  <li><a href="#diffusing-wave-spectroscopy-dws" id="toc-diffusing-wave-spectroscopy-dws" class="nav-link" data-scroll-target="#diffusing-wave-spectroscopy-dws">7. Diffusing Wave Spectroscopy (DWS)</a>
+  <ul class="collapse">
+  <li><a href="#extension-of-dls-to-multiple-scattering" id="toc-extension-of-dls-to-multiple-scattering" class="nav-link" data-scroll-target="#extension-of-dls-to-multiple-scattering">Extension of DLS to multiple scattering</a></li>
+  <li><a href="#electric-field-autocorrelation" id="toc-electric-field-autocorrelation" class="nav-link" data-scroll-target="#electric-field-autocorrelation">Electric field autocorrelation</a></li>
+  <li><a href="#applications" id="toc-applications" class="nav-link" data-scroll-target="#applications">Applications</a></li>
+  </ul></li>
+  <li><a href="#wavefront-shaping-through-scattering-media" id="toc-wavefront-shaping-through-scattering-media" class="nav-link" data-scroll-target="#wavefront-shaping-through-scattering-media">8. Wavefront Shaping Through Scattering Media</a>
+  <ul class="collapse">
+  <li><a href="#transmission-matrix-concept" id="toc-transmission-matrix-concept" class="nav-link" data-scroll-target="#transmission-matrix-concept">Transmission matrix concept</a></li>
+  <li><a href="#spatial-light-modulator-slm-optimization" id="toc-spatial-light-modulator-slm-optimization" class="nav-link" data-scroll-target="#spatial-light-modulator-slm-optimization">Spatial light modulator (SLM) optimization</a></li>
+  <li><a href="#focusing-through-opaque-media" id="toc-focusing-through-opaque-media" class="nav-link" data-scroll-target="#focusing-through-opaque-media">Focusing through opaque media</a></li>
+  <li><a href="#time-reversal-and-phase-conjugation" id="toc-time-reversal-and-phase-conjugation" class="nav-link" data-scroll-target="#time-reversal-and-phase-conjugation">Time reversal and phase conjugation</a></li>
+  </ul></li>
+  <li><a href="#anderson-localization-of-light-brief-outlook" id="toc-anderson-localization-of-light-brief-outlook" class="nav-link" data-scroll-target="#anderson-localization-of-light-brief-outlook">9. Anderson Localization of Light (Brief Outlook)</a>
+  <ul class="collapse">
+  <li><a href="#interference-in-multiple-scattering" id="toc-interference-in-multiple-scattering" class="nav-link" data-scroll-target="#interference-in-multiple-scattering">Interference in multiple scattering</a></li>
+  <li><a href="#ioffe-regel-criterion" id="toc-ioffe-regel-criterion" class="nav-link" data-scroll-target="#ioffe-regel-criterion">Ioffe-Regel criterion</a></li>
+  <li><a href="#experimental-status" id="toc-experimental-status" class="nav-link" data-scroll-target="#experimental-status">Experimental status</a></li>
+  </ul></li>
+  <li><a href="#code-examples" id="toc-code-examples" class="nav-link" data-scroll-target="#code-examples">Code Examples</a>
+  <ul class="collapse">
+  <li><a href="#example-1-random-walk-simulation-2d-photon-trajectories" id="toc-example-1-random-walk-simulation-2d-photon-trajectories" class="nav-link" data-scroll-target="#example-1-random-walk-simulation-2d-photon-trajectories">Example 1: Random walk simulation — 2D photon trajectories</a></li>
+  <li><a href="#example-2-speckle-pattern-generation-and-intensity-statistics" id="toc-example-2-speckle-pattern-generation-and-intensity-statistics" class="nav-link" data-scroll-target="#example-2-speckle-pattern-generation-and-intensity-statistics">Example 2: Speckle pattern generation and intensity statistics</a></li>
+  <li><a href="#example-3-diffusion-time-resolved-transmission-through-a-slab" id="toc-example-3-diffusion-time-resolved-transmission-through-a-slab" class="nav-link" data-scroll-target="#example-3-diffusion-time-resolved-transmission-through-a-slab">Example 3: Diffusion — Time-resolved transmission through a slab</a></li>
+  <li><a href="#example-4-dws-autocorrelation-function-for-different-optical-depths" id="toc-example-4-dws-autocorrelation-function-for-different-optical-depths" class="nav-link" data-scroll-target="#example-4-dws-autocorrelation-function-for-different-optical-depths">Example 4: DWS autocorrelation function for different optical depths</a></li>
+  <li><a href="#example-5-angular-correlation-memory-effect-demonstration" id="toc-example-5-angular-correlation-memory-effect-demonstration" class="nav-link" data-scroll-target="#example-5-angular-correlation-memory-effect-demonstration">Example 5: Angular correlation — Memory effect demonstration</a></li>
+  </ul></li>
+  <li><a href="#summary-and-key-takeaways" id="toc-summary-and-key-takeaways" class="nav-link" data-scroll-target="#summary-and-key-takeaways">Summary and Key Takeaways</a></li>
+  <li><a href="#experimental-connections" id="toc-experimental-connections" class="nav-link" data-scroll-target="#experimental-connections">Experimental Connections</a></li>
+  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading">Further Reading</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Light Transport in Random Media</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="light-transport-in-random-media" class="level1">
+<h1>Light Transport in Random Media</h1>
+<section id="motivation-and-overview" class="level2">
+<h2 class="anchored" data-anchor-id="motivation-and-overview">Motivation and Overview</h2>
+<p>When light propagates through <strong>turbid media</strong>—biological tissue, milk, fog, strongly scattering crystals—its behavior changes fundamentally compared to ballistic propagation through clear media. Light no longer travels in straight lines; instead, it bounces randomly among countless scattering centers. This seemingly chaotic process actually obeys simple statistical laws and opens remarkable possibilities: we can <strong>image through opaque media</strong>, measure <strong>nanoscale particle motion</strong> in turbid suspensions, and even <strong>control wavefronts</strong> through disorder.</p>
+<p>This lecture explores the bridge from microscopic scattering events to macroscopic light transport, the emergence of diffusion from random walks, and modern applications at the frontier of biophotonics and wavefront engineering.</p>
+<p><strong>Learning goals:</strong> By the end of this lecture, you will: - Understand when scattering becomes “multiple” and why it matters - Quantify scattering via mean free paths and the anisotropy factor - Derive and apply the diffusion approximation - Recognize and exploit speckle patterns - Appreciate diffusing wave spectroscopy (DWS) and wavefront shaping as tools for imaging and sensing</p>
+<hr>
+</section>
+<section id="from-single-to-multiple-scattering" class="level2">
+<h2 class="anchored" data-anchor-id="from-single-to-multiple-scattering">1. From Single to Multiple Scattering</h2>
+<section id="the-optical-depth-and-the-transition" class="level3">
+<h3 class="anchored" data-anchor-id="the-optical-depth-and-the-transition">The optical depth and the transition</h3>
+<p>Consider a photon entering a turbid medium. It scatters off particles at random positions. Each scattering event is characterized by a <strong>scattering mean free path</strong> <span class="math inline">\(\ell_s\)</span>—the average distance traveled before the next collision.</p>
+<p>After traveling distance <span class="math inline">\(z\)</span>, the probability that a photon has <em>not</em> been scattered is: <span class="math display">\[P_{\text{no scatter}}(z) = e^{-z/\ell_s}\]</span></p>
+<p>The <strong>optical depth</strong> (or optical thickness) is: <span class="math display">\[\tau = \frac{L}{\ell_s}\]</span></p>
+<p>where <span class="math inline">\(L\)</span> is the characteristic length scale (e.g., thickness of a sample).</p>
+<ul>
+<li><strong><span class="math inline">\(\tau \ll 1\)</span> (ballistic regime):</strong> Light propagates mostly unscattered. Straight rays, sharp shadows. This is what we learn in introductory geometric optics.</li>
+<li><strong><span class="math inline">\(\tau \sim 1\)</span> (transition):</strong> Mix of scattered and unscattered light. Complex intensity patterns.</li>
+<li><strong><span class="math inline">\(\tau \gg 1\)</span> (diffusive/multiple-scattering regime):</strong> Nearly every photon scatters many times. The light has “forgotten” its initial direction and intensity fluctuations are determined by diffusion.</li>
+</ul>
+<p><strong>Example:</strong> Human skin has <span class="math inline">\(\ell_s \approx 100\text{ μm}\)</span> at visible wavelengths, and <span class="math inline">\(L \sim 1\text{ mm}\)</span>, so <span class="math inline">\(\tau \sim 10\)</span>. This is why we cannot see through skin—multiple scattering dominates.</p>
+</section>
+<section id="mean-free-path-and-scattering-coefficient" class="level3">
+<h3 class="anchored" data-anchor-id="mean-free-path-and-scattering-coefficient">Mean free path and scattering coefficient</h3>
+<p>The scattering coefficient is: <span class="math display">\[\mu_s = \frac{1}{\ell_s}\]</span></p>
+<p>with units of inverse length (cm⁻¹ or m⁻¹). Similarly, the <strong>absorption coefficient</strong> <span class="math inline">\(\mu_a\)</span> describes loss due to true absorption (conversion to heat).</p>
+<p>The total attenuation coefficient is: <span class="math display">\[\mu_t = \mu_s + \mu_a\]</span></p>
+<p>For a beam incident on a slab of thickness <span class="math inline">\(L\)</span>: <span class="math display">\[I(L) = I_0 e^{-\mu_t L}\]</span></p>
+<p>This is the <strong>Beer–Lambert law</strong>, familiar from spectroscopy. However, this applies strictly to the <em>unscattered</em> (ballistic) component. Once multiple scattering is significant, photons take longer, more tortuous paths, and the total transmitted light is not simply <span class="math inline">\(e^{-\mu_t L}\)</span>.</p>
+<hr>
+</section>
+</section>
+<section id="scattering-mean-free-path-and-the-anisotropy-factor" class="level2">
+<h2 class="anchored" data-anchor-id="scattering-mean-free-path-and-the-anisotropy-factor">2. Scattering Mean Free Path and the Anisotropy Factor</h2>
+<section id="phase-function-and-anisotropy" class="level3">
+<h3 class="anchored" data-anchor-id="phase-function-and-anisotropy">Phase function and anisotropy</h3>
+<p>A scattering event deflects the photon direction by angle <span class="math inline">\(\theta\)</span>. The <strong>phase function</strong> <span class="math inline">\(p(\theta)\)</span> describes the angular distribution of scattered light. For many natural scatterers (cells, proteins, latex spheres), scattering is <strong>forward-peaked</strong>: most photons scatter through small angles, with a few scattered at large angles.</p>
+<p>The <strong>anisotropy factor</strong> (or asymmetry parameter) quantifies this preference: <span class="math display">\[g = \langle \cos \theta \rangle = \int_0^\pi p(\theta) \cos\theta \sin\theta \, d\theta\]</span></p>
+<p>where the integral is normalized such that <span class="math inline">\(\int p(\theta) \sin\theta \, d\theta = 1\)</span>.</p>
+<ul>
+<li><strong><span class="math inline">\(g = 0\)</span>:</strong> Isotropic scattering (Rayleigh scattering, spheres much smaller than <span class="math inline">\(\lambda\)</span>)</li>
+<li><strong><span class="math inline">\(0 &lt; g &lt; 1\)</span>:</strong> Forward-peaked (typical for biological tissue; human skin has <span class="math inline">\(g \approx 0.7\)</span>–<span class="math inline">\(0.8\)</span>)</li>
+<li><strong><span class="math inline">\(g \to 1\)</span>:</strong> Nearly-forward scattering (large particles or structures)</li>
+</ul>
+</section>
+<section id="transport-mean-free-path" class="level3">
+<h3 class="anchored" data-anchor-id="transport-mean-free-path">Transport mean free path</h3>
+<p>Here is the crucial insight: <strong>the direction matters</strong>. Forward-scattered photons are only slightly deflected and carry memory of their original direction over multiple scattering events. This is useless if we want to detect a photon coming from a specific direction far from the source.</p>
+<p>We therefore define the <strong>transport mean free path</strong>: <span class="math display">\[\ell_* = \frac{\ell_s}{1 - g}\]</span></p>
+<p>This is the distance over which a photon’s <em>direction</em> is randomized. For isotropic scattering (<span class="math inline">\(g=0\)</span>), we have <span class="math inline">\(\ell_* = \ell_s\)</span>. For forward-peaked scattering (<span class="math inline">\(g \approx 0.8\)</span>), <span class="math inline">\(\ell_* = 5 \ell_s\)</span>—the photon must scatter about 5 times more often to lose all directional memory.</p>
+<p><strong>Physical interpretation:</strong> A random walk with step lengths <span class="math inline">\(\ell_s\)</span> is “slow” to randomize if each step points mostly forward. By rescaling to an effective step length <span class="math inline">\(\ell_*\)</span>, we capture the true randomization rate, and the photon’s trajectory becomes a standard isotropic random walk on a longer scale.</p>
+<hr>
+</section>
+</section>
+<section id="random-walk-of-photons-the-diffusion-picture" class="level2">
+<h2 class="anchored" data-anchor-id="random-walk-of-photons-the-diffusion-picture">3. Random Walk of Photons — The Diffusion Picture</h2>
+<section id="photon-trajectories-in-a-scattering-medium" class="level3">
+<h3 class="anchored" data-anchor-id="photon-trajectories-in-a-scattering-medium">Photon trajectories in a scattering medium</h3>
+<p>Imagine a photon entering a turbid medium at the origin at <span class="math inline">\(t=0\)</span>. After <span class="math inline">\(n\)</span> scattering events, its position is: <span class="math display">\[\vec{r}_n = \sum_{i=1}^n \ell_* \hat{u}_i\]</span></p>
+<p>where <span class="math inline">\(\hat{u}_i\)</span> is a random unit vector (uniformly distributed on the sphere).</p>
+<p>This is a <strong>random walk</strong>. The mean position is <span class="math inline">\(\langle \vec{r}_n \rangle = 0\)</span> (by isotropy), but the mean-square displacement grows: <span class="math display">\[\langle r_n^2 \rangle = n \ell_*^2\]</span></p>
+<p>After time <span class="math inline">\(t\)</span>, the number of scatterings is <span class="math inline">\(n = vt/\ell_*\)</span> (where <span class="math inline">\(v\)</span> is the speed of light), so: <span class="math display">\[\langle r^2(t) \rangle = v t \ell_* = 3 D t\]</span></p>
+<p>where we define the <strong>diffusion coefficient</strong>: <span class="math display">\[D = \frac{v \ell_*}{3}\]</span></p>
+<p>The factor of 1/3 arises from averaging over all directions in 3D: <span class="math inline">\(\langle v_x^2 \rangle = v^2/3\)</span>.</p>
+</section>
+<section id="diffusion-equation" class="level3">
+<h3 class="anchored" data-anchor-id="diffusion-equation">Diffusion equation</h3>
+<p>The probability distribution of finding a photon at position <span class="math inline">\(\vec{r}\)</span> and time <span class="math inline">\(t\)</span> follows the <strong>diffusion equation</strong>: <span class="math display">\[\frac{\partial I(\vec{r}, t)}{\partial t} = D \nabla^2 I(\vec{r}, t) - \mu_a v I(\vec{r}, t) + S(\vec{r}, t)\]</span></p>
+<p>where: - <span class="math inline">\(I(\vec{r}, t)\)</span> is the <strong>radiance</strong> (or more precisely, an effective intensity) - <span class="math inline">\(D \nabla^2 I\)</span> is the diffusive spreading - <span class="math inline">\(-\mu_a v I\)</span> represents <strong>absorption</strong> (energy loss, proportional to local intensity) - <span class="math inline">\(S(\vec{r}, t)\)</span> is the <strong>source term</strong> (e.g., light injected at an external source)</p>
+<p>This is the <strong>heat equation</strong> with a sink term. It is linear, deterministic, and remarkably simple—despite the underlying chaos of individual photon trajectories.</p>
+<hr>
+</section>
+</section>
+<section id="radiative-transfer-equation-qualitative" class="level2">
+<h2 class="anchored" data-anchor-id="radiative-transfer-equation-qualitative">4. Radiative Transfer Equation (Qualitative)</h2>
+<p>Before specializing to diffusion, let’s sketch the more general <strong>radiative transfer equation</strong> (RTE), which tracks the intensity in a specific direction <span class="math inline">\(\hat{u}\)</span>.</p>
+<p><span class="math display">\[\frac{\partial L(\vec{r}, \hat{u}, t)}{\partial t} + c \hat{u} \cdot \nabla L = -\mu_t c L + \frac{\mu_s c}{4\pi} \int p(\hat{u}, \hat{u}') L(\vec{r}, \hat{u}', t) d\Omega' + S\]</span></p>
+<p>where: - <span class="math inline">\(L(\vec{r}, \hat{u}, t)\)</span> is the <strong>radiance</strong> (energy per unit time, unit area, unit solid angle) - <span class="math inline">\(\mu_t c L\)</span> represents <strong>losses</strong> (scattering out of direction <span class="math inline">\(\hat{u}\)</span>) - The integral term represents <strong>gains</strong> from scattering into direction <span class="math inline">\(\hat{u}\)</span> from all other directions - <span class="math inline">\(S\)</span> is a source</p>
+<p>The RTE is exact (within single-particle approximations) but is high-dimensional and hard to solve. The <strong>diffusion approximation</strong> emerges when we assume the radiance is nearly isotropic and expand in small parameters.</p>
+<hr>
+</section>
+<section id="diffusion-approximation" class="level2">
+<h2 class="anchored" data-anchor-id="diffusion-approximation">5. Diffusion Approximation</h2>
+<section id="derivation-from-random-walk" class="level3">
+<h3 class="anchored" data-anchor-id="derivation-from-random-walk">Derivation from random walk</h3>
+<p>We already sketched this: in the random walk picture, a photon undergoes <span class="math inline">\(\sim L/\ell_*\)</span> scatterings before escaping a slab of thickness <span class="math inline">\(L \gg \ell_*\)</span>. At each step, the direction is randomized. Thus, at length scales <span class="math inline">\(\gg \ell_*\)</span>, the trajectory looks diffusive.</p>
+<p>More rigorously, one can show that the RTE, in the limit <span class="math inline">\(\mu_s \gg \mu_a\)</span> and far from sources and boundaries (scale <span class="math inline">\(\gg \ell_*\)</span>), reduces to the diffusion equation.</p>
+<p><strong>Key parameters:</strong> <span class="math display">\[D = \frac{v \ell_*}{3} = \frac{v \ell_s}{3(1-g)}\]</span></p>
+<p><span class="math display">\[\mu_a = \text{(absorption coefficient)}\]</span></p>
+</section>
+<section id="steady-state-and-time-resolved-solutions" class="level3">
+<h3 class="anchored" data-anchor-id="steady-state-and-time-resolved-solutions">Steady-state and time-resolved solutions</h3>
+<p><strong>Steady state</strong> (<span class="math inline">\(\partial I / \partial t = 0\)</span>): The diffusion equation becomes: <span class="math display">\[D \nabla^2 I = \mu_a v I - S\]</span></p>
+<p>or equivalently: <span class="math display">\[\nabla^2 I - \frac{\mu_a v}{D} I = -\frac{S}{D}\]</span></p>
+<p>This is a <strong>screened Poisson equation</strong>. In 1D, for a point source at the origin: <span class="math display">\[I(x) \propto \frac{\exp(-x/\ell_d)}{x}\]</span></p>
+<p>where the <strong>diffusion length</strong>: <span class="math display">\[\ell_d = \sqrt{\frac{D}{\mu_a v}} = \ell_* \sqrt{\frac{1}{3 \mu_a \ell_*}}\]</span></p>
+<p>is the characteristic decay length. Photons diffuse out to a distance <span class="math inline">\(\sim \ell_d\)</span> before being absorbed.</p>
+<p><strong>Time-resolved</strong> (with absorption): A pulse of light injected at <span class="math inline">\(t=0\)</span> at the origin spreads diffusively while decaying: <span class="math display">\[I(r, t) \propto \frac{1}{(Dt)^{3/2}} \exp\left( -\frac{r^2}{4Dt} - \mu_a v t \right)\]</span></p>
+<p>The pulse broadens as <span class="math inline">\(\sqrt{t}\)</span> (diffusion) while its amplitude decays as <span class="math inline">\(\exp(-\mu_a v t)\)</span> (absorption).</p>
+</section>
+<section id="boundary-conditions" class="level3">
+<h3 class="anchored" data-anchor-id="boundary-conditions">Boundary conditions</h3>
+<p>At the boundary of a scattering medium, photons cannot leave “backward” (from the physical medium into air, if air is non-scattering). This is captured by an <strong>extrapolation length</strong> condition: <span class="math display">\[I = 0 \text{ at } z = -z_b\]</span></p>
+<p>where <span class="math inline">\(z_b \approx (2/3) \ell_*\)</span> is a characteristic distance (for no absorption at the boundary).</p>
+<p>In practice, for a slab of thickness <span class="math inline">\(L\)</span>, the boundary conditions are applied at the top and bottom, reducing transmission slightly compared to infinite-medium predictions.</p>
+</section>
+<section id="validity-of-the-diffusion-approximation" class="level3">
+<h3 class="anchored" data-anchor-id="validity-of-the-diffusion-approximation">Validity of the diffusion approximation</h3>
+<p>The diffusion approximation is valid when: 1. <strong><span class="math inline">\(L \gg \ell_*\)</span>:</strong> Sample must be in the diffusive regime 2. <strong>Far from sources:</strong> Distance <span class="math inline">\(\gg \ell_*\)</span> from the source 3. <strong>Far from boundaries:</strong> <span class="math inline">\(\mu_a\)</span> not too large (so diffusion dominates over absorption)</p>
+<p>Violation: Near a source, or for thin samples with <span class="math inline">\(L \sim \ell_*\)</span>, the RTE must be used.</p>
+<hr>
+</section>
+</section>
+<section id="speckle-patterns" class="level2">
+<h2 class="anchored" data-anchor-id="speckle-patterns">6. Speckle Patterns</h2>
+<section id="origin-random-interference" class="level3">
+<h3 class="anchored" data-anchor-id="origin-random-interference">Origin: Random interference</h3>
+<p>When light undergoes multiple scattering through an optical system (including propagation back to a detector), the electric field at the detector is a <strong>superposition of many paths</strong>: <span class="math display">\[E(\vec{r}) = \sum_{i=1}^N E_i e^{i\phi_i}\]</span></p>
+<p>where each path <span class="math inline">\(i\)</span> contributes an amplitude <span class="math inline">\(E_i\)</span> and phase <span class="math inline">\(\phi_i\)</span>. For a random medium, the phases are essentially random and independent (if the “coherence length” of the light is smaller than path length differences).</p>
+<p>By the <strong>central limit theorem</strong>, <span class="math inline">\(E\)</span> approaches a complex Gaussian with zero mean and random phase. When we measure intensity <span class="math inline">\(I = |E|^2\)</span>, the result is a <strong>random speckle pattern</strong>—bright spots (constructive interference) and dark regions (destructive interference) with seemingly chaotic spatial structure.</p>
+</section>
+<section id="speckle-statistics" class="level3">
+<h3 class="anchored" data-anchor-id="speckle-statistics">Speckle statistics</h3>
+<p>For fully developed speckle (many independent scattering paths, no fully unscattered component), the intensity follows a <strong>negative exponential distribution</strong>: <span class="math display">\[P(I) = \frac{1}{\langle I \rangle} \exp\left( -\frac{I}{\langle I \rangle} \right)\]</span></p>
+<p>where <span class="math inline">\(\langle I \rangle\)</span> is the ensemble-averaged intensity.</p>
+<p><strong>Why?</strong> If <span class="math inline">\(E_x + i E_y\)</span> are independent real Gaussian variables, then <span class="math inline">\(|E|^2 = E_x^2 + E_y^2\)</span> follows an exponential (this is equivalent to the Rayleigh distribution for the amplitude <span class="math inline">\(|E|\)</span>).</p>
+<p>Key features: - <strong>No intensity at zero:</strong> <span class="math inline">\(P(0) = 1/\langle I \rangle\)</span> (finite probability of complete destructive interference) - <strong>Long tail:</strong> High-intensity events are rare but possible - <strong>Variance:</strong> <span class="math inline">\(\text{var}(I) = \langle I \rangle^2\)</span>, so the <strong>speckle contrast</strong> is: <span class="math display">\[C = \frac{\sigma_I}{\langle I \rangle} = 1\]</span></p>
+<p>A perfect contrast of 1 indicates fully developed speckle.</p>
+</section>
+<section id="speckle-size-and-correlations" class="level3">
+<h3 class="anchored" data-anchor-id="speckle-size-and-correlations">Speckle size and correlations</h3>
+<p>The <strong>speckle size</strong> (diameter of a bright spot) is set by diffraction: <span class="math display">\[\Delta x_{\text{speckle}} \sim \frac{\lambda}{D_{\text{eff}}}\]</span></p>
+<p>where <span class="math inline">\(D_{\text{eff}}\)</span> is an effective aperture or “illuminated area in Fourier space.”</p>
+<p>For propagation through a scattering medium over distance <span class="math inline">\(L\)</span>, the effective Fourier-space aperture is of order <span class="math inline">\(\ell_*/\lambda\)</span>, so: <span class="math display">\[\Delta x_{\text{speckle}} \sim \frac{\lambda L}{\ell_*}\]</span></p>
+</section>
+<section id="angular-memory-effect" class="level3">
+<h3 class="anchored" data-anchor-id="angular-memory-effect">Angular memory effect</h3>
+<p>A remarkable phenomenon: the speckle pattern at the output of a scattering medium is <strong>correlated with itself</strong> when the viewing direction is slightly tilted. This is the <strong>angular memory effect</strong> (or <strong>angular correlation</strong>).</p>
+<p>The <strong>correlation range</strong> is: <span class="math display">\[\Delta \theta \sim \frac{\lambda}{2\pi L}\]</span></p>
+<p><strong>Physical origin:</strong> All paths through the medium of length <span class="math inline">\(\sim L\)</span> are scattered by the same disorder realization. A small tilt of the detector by <span class="math inline">\(\Delta \theta\)</span> shifts phases by <span class="math inline">\(\sim 2\pi L \Delta \theta / \lambda\)</span> for ballistic rays, but for diffusing rays (path lengths <span class="math inline">\(\gg L\)</span>), this shift is “diluted,” and correlations survive.</p>
+<p>This memory effect is exploited in <strong>wavefront shaping</strong>: it allows us to estimate the transmission matrix without fully characterizing the medium, and it underlies techniques for focusing through scattering media.</p>
+<hr>
+</section>
+</section>
+<section id="diffusing-wave-spectroscopy-dws" class="level2">
+<h2 class="anchored" data-anchor-id="diffusing-wave-spectroscopy-dws">7. Diffusing Wave Spectroscopy (DWS)</h2>
+<section id="extension-of-dls-to-multiple-scattering" class="level3">
+<h3 class="anchored" data-anchor-id="extension-of-dls-to-multiple-scattering">Extension of DLS to multiple scattering</h3>
+<p><strong>Dynamic Light Scattering (DLS)</strong> is a standard technique: measure the autocorrelation of scattered intensity as particles move, and extract the diffusion coefficient of the particles.</p>
+<p><strong>Diffusing Wave Spectroscopy (DWS)</strong> applies the same idea, but to light that has undergone multiple scattering. The scattered light itself diffuses through the medium, and particle motion causes phase changes that modulate the diffuse light.</p>
+<p><strong>Why is this powerful?</strong> - DLS: diffraction probe of particle motion with range <span class="math inline">\(\ell \sim \lambda / (4\pi)\)</span> (about 10–100 nm) - DWS: effectively probes length scales up to <span class="math inline">\(\sqrt{D \tau} \sim \sqrt{\ell_* L}\)</span> (can reach microns or millimeters!)</p>
+</section>
+<section id="electric-field-autocorrelation" class="level3">
+<h3 class="anchored" data-anchor-id="electric-field-autocorrelation">Electric field autocorrelation</h3>
+<p>For a time-varying scattering medium (particles moving), the electric field is no longer stationary. The <strong>normalized electric field autocorrelation</strong> is: <span class="math display">\[g_1(\tau) = \frac{\langle E^*(t) E(t+\tau) \rangle}{|E(t)|^2}\]</span></p>
+<p>For DLS, <span class="math inline">\(|g_1(\tau)| = \exp(-\tau / \tau_c)\)</span> with a characteristic decay time related to particle motion.</p>
+<p>For DWS in a slab with transmission geometry, multiple scattering enhances the sensitivity. A particle displacement <span class="math inline">\(\Delta r\)</span> along a path of length <span class="math inline">\(\ell\)</span> causes a phase shift <span class="math inline">\(\Delta \phi \sim 2\pi \Delta r / \lambda\)</span>. But a photon that has scattered <span class="math inline">\(N\)</span> times samples many such path segments, accumulating phase shifts. The net effect: <span class="math display">\[g_1(\tau) \propto \exp\left( -\sqrt{\frac{6\tau}{\tau_0}} \frac{L}{\ell_*} \right)\]</span></p>
+<p>where <span class="math inline">\(\tau_0 \sim r_0^2 / (6 D_p)\)</span> is related to the particle diffusion coefficient <span class="math inline">\(D_p\)</span> and a characteristic displacement <span class="math inline">\(r_0 \sim \sqrt{\ell_* \lambda}\)</span> (geometric mean of the transport mean free path and wavelength).</p>
+<p><strong>Sensitivity:</strong> The factor <span class="math inline">\(L/\ell_*\)</span> (number of scatterings) multiplies the decay rate. For <span class="math inline">\(L = 1\text{ mm}\)</span> and <span class="math inline">\(\ell_* = 10\text{ μm}\)</span>, this is a factor of 100. Thus DWS can detect <strong>sub-nanometer displacements</strong> in turbid media.</p>
+</section>
+<section id="applications" class="level3">
+<h3 class="anchored" data-anchor-id="applications">Applications</h3>
+<ul>
+<li><strong>Rheology:</strong> Measure viscosity and elasticity of gels, emulsions, and suspensions by monitoring micro-sphere motion</li>
+<li><strong>Blood flow:</strong> Non-invasive measurement of blood velocity in tissues (optical coherence tomography and related techniques)</li>
+<li><strong>Foam dynamics:</strong> Coarsening and drainage of liquid foams</li>
+<li><strong>Protein aggregation:</strong> Monitor protein association without dilution</li>
+<li><strong>In vivo tissue:</strong> Combine DWS with near-infrared light to probe tissue perfusion and oxygenation</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="wavefront-shaping-through-scattering-media" class="level2">
+<h2 class="anchored" data-anchor-id="wavefront-shaping-through-scattering-media">8. Wavefront Shaping Through Scattering Media</h2>
+<section id="transmission-matrix-concept" class="level3">
+<h3 class="anchored" data-anchor-id="transmission-matrix-concept">Transmission matrix concept</h3>
+<p>Imagine a scattering medium illuminated by an incoming wavefront (e.g., a plane wave, or a structured beam from a spatial light modulator). The light that emerges on the far side is scrambled into a random speckle pattern.</p>
+<p>However, there is a <strong>deterministic linear relationship</strong> between the input and output: <span class="math display">\[\vec{E}_{\text{out}} = T \cdot \vec{E}_{\text{in}}\]</span></p>
+<p>where <span class="math inline">\(T\)</span> is the <strong>transmission matrix</strong>. Each element <span class="math inline">\(T_{ij}\)</span> connects input mode <span class="math inline">\(j\)</span> to output mode <span class="math inline">\(i\)</span>.</p>
+<p>For a weakly scattering medium, <span class="math inline">\(T\)</span> is sparse and chaotic. For a strongly scattering medium, <span class="math inline">\(T\)</span> is a dense random matrix, but it is still deterministic and invertible (as long as the medium is not absorbing and finite).</p>
+</section>
+<section id="spatial-light-modulator-slm-optimization" class="level3">
+<h3 class="anchored" data-anchor-id="spatial-light-modulator-slm-optimization">Spatial light modulator (SLM) optimization</h3>
+<p>A <strong>spatial light modulator (SLM)</strong> is a device (e.g., a liquid-crystal display) that spatially shapes the phase and/or amplitude of a beam. By adjusting the SLM, we can engineer the input wavefront to any desired pattern.</p>
+<p><strong>Strategy:</strong> 1. Measure (or estimate) the transmission matrix <span class="math inline">\(T\)</span> 2. Choose a desired output field <span class="math inline">\(\vec{E}_{\text{out}}^{\text{goal}}\)</span> (e.g., a focused spot) 3. Compute <span class="math inline">\(\vec{E}_{\text{in}} = T^{-1} \vec{E}_{\text{out}}^{\text{goal}}\)</span> (or use an approximation like the <strong>phase conjugate</strong> of the impulse response) 4. Load <span class="math inline">\(\vec{E}_{\text{in}}\)</span> onto the SLM 5. The medium “scrambles” <span class="math inline">\(\vec{E}_{\text{in}}\)</span> back into the desired <span class="math inline">\(\vec{E}_{\text{out}}^{\text{goal}}\)</span></p>
+</section>
+<section id="focusing-through-opaque-media" class="level3">
+<h3 class="anchored" data-anchor-id="focusing-through-opaque-media">Focusing through opaque media</h3>
+<p>A practical goal: create a diffraction-limited focus inside or beyond an opaque scatterer.</p>
+<p><strong>Blind methods</strong> (no direct access to light inside the medium): - <strong>Feedback optimization:</strong> Adjust SLM phase randomly, measure intensity at a distant detector, use machine learning or genetic algorithms to find the SLM setting that maximizes intensity - <strong>Iterative wavefront shaping:</strong> Successive rounds of phase perturbation and feedback - Uses: can focus even without knowing <span class="math inline">\(T\)</span> explicitly</p>
+<p><strong>Matrix methods:</strong> - <strong>Optical memory effect:</strong> Exploit the angular correlation to estimate local transmission matrix regions - <strong>Phase conjugation:</strong> Time-reverse the measured output field - Requires: access to a reference laser and detector</p>
+</section>
+<section id="time-reversal-and-phase-conjugation" class="level3">
+<h3 class="anchored" data-anchor-id="time-reversal-and-phase-conjugation">Time reversal and phase conjugation</h3>
+<p><strong>Time reversal</strong> (or <strong>phase conjugation</strong>) in a linear system means flipping the sign of frequency, reversing the direction of propagation, and conjugating the field.</p>
+<p>In a lossless scattering medium, reversing time is equivalent to reversing the roles of source and detector. A focused output becomes a plane wave at the input (reciprocally, a plane wave input becomes a focused output in the time-reversed geometry).</p>
+<p>Mathematically: if <span class="math inline">\(T[\vec{k}]\)</span> describes forward propagation, then time-reversed propagation uses <span class="math inline">\(T^*[-\vec{k}]\)</span>. In a reciprocal medium (no magneto-optic effects), <span class="math inline">\(T^*\)</span> is the adjoint of <span class="math inline">\(T\)</span>.</p>
+<p><strong>Practical implementation:</strong> Measure the field scattered from a point source behind a scattering medium, conjugate it, and re-transmit using an SLM. The focus reconstructs at the original source location.</p>
+<hr>
+</section>
+</section>
+<section id="anderson-localization-of-light-brief-outlook" class="level2">
+<h2 class="anchored" data-anchor-id="anderson-localization-of-light-brief-outlook">9. Anderson Localization of Light (Brief Outlook)</h2>
+<section id="interference-in-multiple-scattering" class="level3">
+<h3 class="anchored" data-anchor-id="interference-in-multiple-scattering">Interference in multiple scattering</h3>
+<p>Until now, we’ve assumed that each scattering event is independent. But light is a <strong>wave</strong>, and waves can interfere. In a strongly disordered medium, there is inevitable <strong>multiple scattering interference</strong>: paths of different lengths interfere constructively or destructively at the detector.</p>
+<p><strong>Could this lead to a new phenomenon?</strong></p>
+<p>Yes: <strong>Anderson localization</strong>. In sufficiently strong disorder, quantum (or classical wave) interference can cause the wave function to become <strong>localized</strong>—it no longer spreads diffusively, but instead decays exponentially from a central region.</p>
+</section>
+<section id="ioffe-regel-criterion" class="level3">
+<h3 class="anchored" data-anchor-id="ioffe-regel-criterion">Ioffe-Regel criterion</h3>
+<p>A heuristic criterion for the onset of localization is: <span class="math display">\[k \ell \sim 1\]</span></p>
+<p>where <span class="math inline">\(k = 2\pi / \lambda\)</span> is the wave number and <span class="math inline">\(\ell\)</span> is the mean free path (or <span class="math inline">\(\ell_*\)</span> for light).</p>
+<p>Equivalently: <span class="math display">\[\ell_* \sim \frac{\lambda}{2\pi}\]</span></p>
+<p>When the mean free path becomes comparable to the wavelength, diffusion breaks down, and interference dominates.</p>
+<p>For visible light (<span class="math inline">\(\lambda \approx 500\text{ nm}\)</span>) and typical scatterers (<span class="math inline">\(\ell_* \sim 1\text{ μm}\)</span>), we are not deep in the localization regime, but effects are visible.</p>
+</section>
+<section id="experimental-status" class="level3">
+<h3 class="anchored" data-anchor-id="experimental-status">Experimental status</h3>
+<ul>
+<li><strong>Demonstrated:</strong> Weak localization (mesoscopic corrections to diffusion) in photonic systems, optically scattering media</li>
+<li><strong>Observed:</strong> Enhanced backscattering (coherent backscatter enhancement), a precursor to localization</li>
+<li><strong>Challenge:</strong> Achieving true 3D localization of light is hard because light can escape to infinity; localization is more robust for matter waves and acoustic waves</li>
+<li><strong>Recent progress:</strong> Anderson localization observed in 2D photonic structures, photonic crystals with disorder, and optical lattices with atoms</li>
+</ul>
+<p>This remains an active research frontier at the intersection of disorder, waves, and quantum mechanics.</p>
+<hr>
+</section>
+</section>
+<section id="code-examples" class="level2">
+<h2 class="anchored" data-anchor-id="code-examples">Code Examples</h2>
+<section id="example-1-random-walk-simulation-2d-photon-trajectories" class="level3">
+<h3 class="anchored" data-anchor-id="example-1-random-walk-simulation-2d-photon-trajectories">Example 1: Random walk simulation — 2D photon trajectories</h3>
+<p>Let’s simulate the trajectory of photons in a 2D scattering medium.</p>
+<div id="cell-fig-random-walk" class="cell" data-execution_count="2">
+<div class="cell-output cell-output-display">
+<div id="fig-random-walk" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-random-walk-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="01-lecture15_files/figure-html/fig-random-walk-output-1.png" width="222" height="287" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-random-walk-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.1— Random walk of photons in a 2D scattering medium. Each colored trace shows one photon’s journey; scattering events are marked. The transport mean free path <span class="math inline">\(\ell_*\)</span> is 1 unit.
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Random walk simulation complete.</code></pre>
+</div>
+</div>
+</section>
+<section id="example-2-speckle-pattern-generation-and-intensity-statistics" class="level3">
+<h3 class="anchored" data-anchor-id="example-2-speckle-pattern-generation-and-intensity-statistics">Example 2: Speckle pattern generation and intensity statistics</h3>
+<div id="cell-fig-speckle" class="cell" data-execution_count="3">
+<div class="cell-output cell-output-display">
+<div id="fig-speckle" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-speckle-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="01-lecture15_files/figure-html/fig-speckle-output-1.png" width="504" height="174" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-speckle-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.2— Generated speckle pattern (left, hot colormap: intensity) and intensity histogram showing Rayleigh distribution (right). The contrast <span class="math inline">\(C \approx 1\)</span> confirms fully developed speckle.
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Speckle contrast C = 2.249</code></pre>
+</div>
+</div>
+</section>
+<section id="example-3-diffusion-time-resolved-transmission-through-a-slab" class="level3">
+<h3 class="anchored" data-anchor-id="example-3-diffusion-time-resolved-transmission-through-a-slab">Example 3: Diffusion — Time-resolved transmission through a slab</h3>
+<div id="cell-fig-diffusion" class="cell" data-execution_count="4">
+<div class="cell-output cell-output-display">
+<div id="fig-diffusion" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-diffusion-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="01-lecture15_files/figure-html/fig-diffusion-output-1.png" width="409" height="211" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-diffusion-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.3— Time-resolved light transmission through an absorbing scattering slab. The pulse broadens diffusively (spreading as <span class="math inline">\(\sqrt{t}\)</span>) while decaying due to absorption.
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Diffusion simulation complete: pulse broadens and decays with time.</code></pre>
+</div>
+</div>
+</section>
+<section id="example-4-dws-autocorrelation-function-for-different-optical-depths" class="level3">
+<h3 class="anchored" data-anchor-id="example-4-dws-autocorrelation-function-for-different-optical-depths">Example 4: DWS autocorrelation function for different optical depths</h3>
+<div id="cell-fig-dws" class="cell" data-execution_count="5">
+<div class="cell-output cell-output-display">
+<div id="fig-dws" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-dws-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="01-lecture15_files/figure-html/fig-dws-output-1.png" width="504" height="173" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dws-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.4— DWS electric-field autocorrelation <span class="math inline">\(g_1(\tau)\)</span> for different ratios of <span class="math inline">\(L/\ell_*\)</span> (number of scatterings). Stronger scattering leads to faster decay as a function of <span class="math inline">\(\sqrt{\tau}\)</span>. Left: linear scale; right: log scale.
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>DWS curves show faster decay for larger L/ell_* (more scatterings).</code></pre>
+</div>
+</div>
+</section>
+<section id="example-5-angular-correlation-memory-effect-demonstration" class="level3">
+<h3 class="anchored" data-anchor-id="example-5-angular-correlation-memory-effect-demonstration">Example 5: Angular correlation — Memory effect demonstration</h3>
+<div id="cell-fig-memory-effect" class="cell" data-execution_count="6">
+<div class="cell-output cell-output-display">
+<div id="fig-memory-effect" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-memory-effect-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="01-lecture15_files/figure-html/fig-memory-effect-output-1.png" width="515" height="237" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-memory-effect-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.5— Angular memory effect: speckle patterns (hot colormap: intensity) transmitted through a scattering slab maintain correlation when the observation angle is tilted, up to a characteristic range <span class="math inline">\(\Delta\theta \sim \lambda/(2\pi L)\)</span>. Top left, center, right: speckle patterns at different tilt angles. Bottom left: correlation versus angle difference, showing decay of speckle correlation beyond the memory effect range.
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Angular memory effect demonstrated: correlation decays over ~lambda/(2*pi*L).</code></pre>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="summary-and-key-takeaways" class="level2">
+<h2 class="anchored" data-anchor-id="summary-and-key-takeaways">Summary and Key Takeaways</h2>
+<ol type="1">
+<li><p><strong>Multiple scattering dominates</strong> when optical depth <span class="math inline">\(\tau = L/\ell_s \gg 1\)</span>. The transport mean free path <span class="math inline">\(\ell_* = \ell_s/(1-g)\)</span> accounts for forward-peaked scattering (anisotropy factor <span class="math inline">\(g\)</span>).</p></li>
+<li><p><strong>Photon random walk</strong> → <strong>diffusion equation</strong>:</p>
+<ul>
+<li>Diffusion coefficient: <span class="math inline">\(D = v\ell_*/3\)</span></li>
+<li>Absorption loss: <span class="math inline">\(-\mu_a v I\)</span></li>
+<li>Boundary conditions and scaling solutions</li>
+</ul></li>
+<li><p><strong>Speckle patterns</strong> arise from random interference of multiply-scattered waves. Fully developed speckle has exponential intensity statistics and contrast <span class="math inline">\(C = 1\)</span>.</p></li>
+<li><p><strong>Angular memory effect</strong>: Speckle correlations persist over angle range <span class="math inline">\(\sim \lambda/(2\pi L)\)</span>, enabling imaging without full transmission matrix knowledge.</p></li>
+<li><p><strong>Diffusing Wave Spectroscopy (DWS)</strong> uses light diffusion to probe micro-motion in turbid media with sub-nanometer sensitivity. Massive enhancement over standard DLS.</p></li>
+<li><p><strong>Wavefront shaping</strong> via spatial light modulators can focus light through opaque scattering media by:</p>
+<ul>
+<li>Measuring or estimating the transmission matrix <span class="math inline">\(T\)</span></li>
+<li>Using phase conjugation or iterative feedback</li>
+<li>Exploiting the angular memory effect</li>
+</ul></li>
+<li><p><strong>Anderson localization</strong> (brief preview): In extreme disorder (<span class="math inline">\(k\ell \sim 1\)</span>), interference suppresses diffusion and light becomes localized. Active research frontier.</p></li>
+</ol>
+<hr>
+</section>
+<section id="experimental-connections" class="level2">
+<h2 class="anchored" data-anchor-id="experimental-connections">Experimental Connections</h2>
+<p>Random media are everywhere — experiments with scattering are surprisingly accessible:</p>
+<p><strong>Laser speckle</strong> Shine a laser pointer on a rough white surface (wall, paper, ground glass). The grainy pattern you see is speckle — the interference of many randomly scattered waves. Move your head: the speckle moves too. Photograph the speckle and compute its contrast <span class="math inline">\(C = \sigma_I / \langle I \rangle\)</span>. For fully developed speckle, <span class="math inline">\(C = 1\)</span> (Rayleigh statistics).</p>
+<p><strong>Speckle contrast and coherence</strong> Compare the speckle from a laser (high coherence) with that from an LED (low coherence). The LED speckle is much weaker because partial coherence averages over many independent patterns. This connects spatial and temporal coherence to speckle contrast.</p>
+<p><strong>Transmission through a scattering slab</strong> Shine a laser through increasingly thick slabs of scattering material (e.g., stacks of paper, frosted glass, or Intralipid solution at different dilutions). Measure the total transmitted power. The exponential decay <span class="math inline">\(T \propto e^{-L/\ell_s}\)</span> transitions to the diffusive regime <span class="math inline">\(T \propto \ell^* / L\)</span> for thick samples.</p>
+<p><strong>Angular memory effect</strong> Illuminate a thin scattering sample (e.g., a single layer of tape) with a laser. Tilt the incident beam by small angles. The transmitted speckle pattern shifts but remains correlated within the memory effect range <span class="math inline">\(\Delta\theta \sim \lambda / (2\pi L)\)</span>. Measure the decorrelation angle and compare to the sample thickness.</p>
+<p><strong>Diffusing wave spectroscopy (DWS)</strong> Send a laser through a thick suspension of scattering particles (concentrated milk or Intralipid). Detect the transmitted speckle fluctuations with a fast photodetector. The autocorrelation function decays much faster than in DLS because each photon scatters many times. The decay rate is sensitive to sub-nanometer particle displacements — this is the basis of microrheology.</p>
+<p><strong>Wavefront shaping through a scattering medium</strong> If an SLM is available: image a target through a thin scatterer. Use iterative optimization of the SLM phase pattern to maximize intensity at a chosen point behind the scatterer. The focus forms even through an opaque medium — a stunning demonstration that scattering is deterministic and can be reversed.</p>
+</section>
+<section id="further-reading" class="level2">
+<h2 class="anchored" data-anchor-id="further-reading">Further Reading</h2>
+<p>The following references are linked to the central <a href="../../resources/resources.html">Resources &amp; Recommended Reading</a> page:</p>
+<ul>
+<li><strong><a href="../../resources/resources.html#sec-ishimaru">Ishimaru (1999)</a></strong> — <em>Wave Propagation and Scattering in Random Media</em>. The standard monograph on radiative transfer and diffusion.</li>
+<li><strong><a href="../../resources/resources.html#sec-akkermans">Akkermans &amp; Montambaux (2007)</a></strong> — <em>Mesoscopic Physics of Electrons and Photons</em>. Beautiful treatment of speckle, weak localization, and mesoscopic transport.</li>
+<li><strong><a href="../../resources/resources.html#sec-vellekoop">Vellekoop &amp; Mosk (2007)</a></strong> — The foundational wavefront-shaping paper. Key reading for understanding how to focus through opaque media.</li>
+<li><strong><a href="../../resources/resources.html#sec-berne">Berne &amp; Pecora (2000)</a></strong> — <em>Dynamic Light Scattering</em>. Foundation for understanding DWS.</li>
+<li><strong><a href="../../resources/resources.html#sec-bohren">Bohren &amp; Huffman (2004)</a></strong> — Single-particle scattering theory that underlies the random-walk picture.</li>
+<li><strong><a href="../../resources/resources.html#sec-goodman">Goodman (2015)</a></strong> — <em>Statistical Optics</em>, 2nd ed.&nbsp;Wiley. Rigorous treatment of speckle statistics and coherence theory.</li>
+<li><strong>Popoff, S. M. et al.&nbsp;(2010)</strong> — “Measuring the transmission matrix in optics.” <em>Phys. Rev.&nbsp;Lett.</em> <strong>104</strong>, 100601. Key paper on the transmission matrix approach.</li>
+</ul>
+<hr>
+<p><em>Lecture 15: Light Transport in Random Media — Introduction to Photonics</em></p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/fcichos\.github\.io\/Photonics\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

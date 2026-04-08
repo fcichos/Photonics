@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.29">
+<meta name="generator" content="quarto-1.7.34">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>lecture07 – Photonics</title>
+<title>Polarization of Light – Photonics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -36,7 +71,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-0815c480559380816a4d1ea211a47e91.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap-9344fb9851b4da3cab95007ef9d770dc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -137,7 +172,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Transfer Function of Free space</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Polarization of Light</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -190,8 +225,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../course-info/labcourse.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Lab Course</span></a>
+  <a href="../../course-info/seminars.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Seminars</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -206,7 +241,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">FOUNDATIONS OF PHOTONICS</span></a>
+ <span class="menu-text">PART I: FOUNDATIONS</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -215,7 +250,7 @@ window.Quarto = {
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">Lecture 1</span></a>
+ <span class="menu-text">Lecture 1 — Introduction, Ray Optics &amp; Wave Optics</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -223,21 +258,22 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture01/introduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../lectures/lecture01/01-lecture01.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Ray Optics</span></a>
   </div>
 </li>
-      </ul>
-  </li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text">Lecture 2</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture01/02-lecture01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Optical Elements</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../lectures/lecture02/01-lecture02.html" class="sidebar-item-text sidebar-link">
@@ -247,195 +283,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../lectures/lecture02/02-lecture02.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Wave Optics Introduction</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
- <span class="menu-text">Lecture 3</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../lectures/lecture03/01-lecture03.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Interference</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
- <span class="menu-text">Lecture 4</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../lectures/lecture04/01-lecture04.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Gaussian Beams</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-      </ul>
-  </li>
-        <li class="px-0"><hr class="sidebar-divider hi "></li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
- <span class="menu-text">FOURIER OPTICS AND IMAGING</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
- <span class="menu-text">Lecture 5</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth2 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../lectures/lecture05/01-lecture05.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Fourier Optics I</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true">
- <span class="menu-text">Lecture 6</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth2 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../lectures/lecture06/01-lecture06.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Fourier Optics II</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true">
- <span class="menu-text">Lecture 8</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth2 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../lectures/lecture08/02-lecture04.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Photon Optics</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true">
- <span class="menu-text">Lecture 9</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth2 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../lectures/lecture09/03-lecture04.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Quantum Optics</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="true">
- <span class="menu-text">Lecture 10</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth2 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../lectures/lecture10/01-lecture10.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Quadrature States</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../lectures/lecture10/02-lecture10.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Electromagnetic &amp; Polarization Optics</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="true">
- <span class="menu-text">Lecture 11</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-13" class="collapse list-unstyled sidebar-section depth2 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../lectures/lecture10/02-lecture10.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Electromagnetic Optics</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-14" role="navigation" aria-expanded="true">
- <span class="menu-text">Lecture 12</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-14" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-14" class="collapse list-unstyled sidebar-section depth2 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../lectures/lecture12/anisotropic_media.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Anisotropic Materials</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-15" role="navigation" aria-expanded="true">
- <span class="menu-text">Lecture 13</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-15" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-15" class="collapse list-unstyled sidebar-section depth2 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../lectures/lecture13/lecture13.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Nonlinear Optics</span></a>
+ <span class="menu-text">Wave Optics</span></a>
   </div>
 </li>
       </ul>
@@ -452,11 +300,45 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#input-output-relation" id="toc-input-output-relation" class="nav-link active" data-scroll-target="#input-output-relation">Input Output Relation</a></li>
-  <li><a href="#impuls-response-function" id="toc-impuls-response-function" class="nav-link" data-scroll-target="#impuls-response-function">Impuls Response Function</a></li>
-  <li><a href="#free-space-propagation-as-convolution" id="toc-free-space-propagation-as-convolution" class="nav-link" data-scroll-target="#free-space-propagation-as-convolution">Free Space Propagation as Convolution</a></li>
-  <li><a href="#far-field" id="toc-far-field" class="nav-link" data-scroll-target="#far-field">Far Field</a></li>
-  <li><a href="#fourier-transform-using-a-lens" id="toc-fourier-transform-using-a-lens" class="nav-link" data-scroll-target="#fourier-transform-using-a-lens">Fourier Transform using a Lens</a></li>
+  <li><a href="#introduction-the-nature-of-polarization" id="toc-introduction-the-nature-of-polarization" class="nav-link active" data-scroll-target="#introduction-the-nature-of-polarization">Introduction: The Nature of Polarization</a></li>
+  <li><a href="#electromagnetic-waves-and-polarization" id="toc-electromagnetic-waves-and-polarization" class="nav-link" data-scroll-target="#electromagnetic-waves-and-polarization">Electromagnetic Waves and Polarization</a>
+  <ul class="collapse">
+  <li><a href="#the-wave-equation-from-maxwells-equations" id="toc-the-wave-equation-from-maxwells-equations" class="nav-link" data-scroll-target="#the-wave-equation-from-maxwells-equations">The Wave Equation from Maxwell’s Equations</a></li>
+  <li><a href="#plane-wave-solutions" id="toc-plane-wave-solutions" class="nav-link" data-scroll-target="#plane-wave-solutions">Plane Wave Solutions</a></li>
+  </ul></li>
+  <li><a href="#polarization-states" id="toc-polarization-states" class="nav-link" data-scroll-target="#polarization-states">Polarization States</a>
+  <ul class="collapse">
+  <li><a href="#linear-polarization" id="toc-linear-polarization" class="nav-link" data-scroll-target="#linear-polarization">Linear Polarization</a></li>
+  <li><a href="#circular-polarization" id="toc-circular-polarization" class="nav-link" data-scroll-target="#circular-polarization">Circular Polarization</a></li>
+  <li><a href="#elliptical-polarization" id="toc-elliptical-polarization" class="nav-link" data-scroll-target="#elliptical-polarization">Elliptical Polarization</a></li>
+  </ul></li>
+  <li><a href="#python-visualization-polarization-states" id="toc-python-visualization-polarization-states" class="nav-link" data-scroll-target="#python-visualization-polarization-states">Python Visualization: Polarization States</a></li>
+  <li><a href="#jones-vector-formalism" id="toc-jones-vector-formalism" class="nav-link" data-scroll-target="#jones-vector-formalism">Jones Vector Formalism</a>
+  <ul class="collapse">
+  <li><a href="#common-jones-vectors" id="toc-common-jones-vectors" class="nav-link" data-scroll-target="#common-jones-vectors">Common Jones Vectors</a></li>
+  </ul></li>
+  <li><a href="#jones-matrices-and-optical-elements" id="toc-jones-matrices-and-optical-elements" class="nav-link" data-scroll-target="#jones-matrices-and-optical-elements">Jones Matrices and Optical Elements</a>
+  <ul class="collapse">
+  <li><a href="#polarizers" id="toc-polarizers" class="nav-link" data-scroll-target="#polarizers">Polarizers</a></li>
+  <li><a href="#retardance-plates" id="toc-retardance-plates" class="nav-link" data-scroll-target="#retardance-plates">Retardance Plates</a></li>
+  </ul></li>
+  <li><a href="#jones-matrix-example" id="toc-jones-matrix-example" class="nav-link" data-scroll-target="#jones-matrix-example">Jones Matrix Example</a></li>
+  <li><a href="#maluss-law" id="toc-maluss-law" class="nav-link" data-scroll-target="#maluss-law">Malus’s Law</a></li>
+  <li><a href="#stokes-parameters" id="toc-stokes-parameters" class="nav-link" data-scroll-target="#stokes-parameters">Stokes Parameters</a>
+  <ul class="collapse">
+  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples">Examples</a></li>
+  </ul></li>
+  <li><a href="#the-poincaré-sphere" id="toc-the-poincaré-sphere" class="nav-link" data-scroll-target="#the-poincaré-sphere">The Poincaré Sphere</a></li>
+  <li><a href="#müller-matrices" id="toc-müller-matrices" class="nav-link" data-scroll-target="#müller-matrices">Müller Matrices</a></li>
+  <li><a href="#practical-polarizing-elements" id="toc-practical-polarizing-elements" class="nav-link" data-scroll-target="#practical-polarizing-elements">Practical Polarizing Elements</a>
+  <ul class="collapse">
+  <li><a href="#linear-polarizers" id="toc-linear-polarizers" class="nav-link" data-scroll-target="#linear-polarizers">Linear Polarizers</a></li>
+  <li><a href="#retardance-plates-1" id="toc-retardance-plates-1" class="nav-link" data-scroll-target="#retardance-plates-1">Retardance Plates</a></li>
+  <li><a href="#optical-rotation" id="toc-optical-rotation" class="nav-link" data-scroll-target="#optical-rotation">Optical Rotation</a></li>
+  </ul></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
+  <li><a href="#experimental-connections" id="toc-experimental-connections" class="nav-link" data-scroll-target="#experimental-connections">Experimental Connections</a></li>
+  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading">Further Reading</a></li>
   </ul>
 </nav>
     </div>
@@ -465,7 +347,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Transfer Function of Free space</h1>
+<h1 class="title">Polarization of Light</h1>
 </div>
 
 
@@ -482,67 +364,280 @@ window.Quarto = {
 </header>
 
 
-<p>We now examine the propagation of a monochromatic optical wave of wavelength <span class="math inline">\(\lambda\)</span> and complex amplitude <span class="math inline">\(U(x, y, z)\)</span> in the free space between the planes <span class="math inline">\(z=0\)</span> and <span class="math inline">\(z=d\)</span>, called the input and output planes, respectively. Given the complex amplitude of the wave at the input plane, <span class="math inline">\(f(x, y)=U(x, y, 0)\)</span>, we want to determine the complex amplitude at the output plane, <span class="math inline">\(g(x, y)=U(x, y, d)\)</span>.</p>
-<p>The input field <span class="math inline">\(f(x,y)\)</span> propagates through free space to form the output field <span class="math inline">\(g(x,y)\)</span>. Using the angular spectrum representation, we can express the relationship between input and output as:</p>
-<p><span class="math display">\[g(x,y) = \iint_{-\infty}^{\infty} F(\nu_x,\nu_y) e^{i 2\pi(\nu_x x + \nu_y y)} e^{-i k_z d} d\nu_x d\nu_y\]</span></p>
-<p>where <span class="math inline">\(F(\nu_x,\nu_y)\)</span> is the Fourier transform of <span class="math inline">\(f(x,y)\)</span>, and <span class="math inline">\(k_z = 2\pi\sqrt{(1/\lambda)^2 - \nu_x^2 - \nu_y^2}\)</span> is the z-component of the wavevector.</p>
-<p>The transfer function of free space, denoted as <span class="math inline">\(H(\nu_x,\nu_y)\)</span>, is defined as the ratio of the output spectrum to the input spectrum:</p>
-<p><span class="math display">\[H(\nu_x,\nu_y) = e^{-i k_z d} = e^{-i 2\pi d\sqrt{(1/\lambda)^2 - \nu_x^2 - \nu_y^2}}\]</span></p>
-<p>This transfer function has two distinct regimes based on the values of <span class="math inline">\(\nu_x\)</span> and <span class="math inline">\(\nu_y\)</span>:</p>
+<section id="introduction-the-nature-of-polarization" class="level2">
+<h2 class="anchored" data-anchor-id="introduction-the-nature-of-polarization">Introduction: The Nature of Polarization</h2>
+<p>Light is a transverse electromagnetic wave. The electric field oscillates perpendicular to the propagation direction. <strong>Optical effects depend almost entirely on the electric field oscillation</strong>. The way the electric field oscillates in space and time defines the <strong>polarization state</strong> of light.</p>
+<p>Polarization is fundamentally important in photonics: - <strong>Optical communication</strong>: Polarization-division multiplexing (PDM) increases bandwidth - <strong>Display technology</strong>: Liquid crystal displays (LCDs) rely on polarization control - <strong>Stress analysis</strong>: Photoelasticity uses polarized light to visualize strain - <strong>Quantum optics</strong>: Single photons carry quantum information in polarization - <strong>Remote sensing</strong>: Depolarization indicates atmospheric properties</p>
+<p>This lecture develops the mathematical formalism to describe and manipulate light polarization.</p>
+</section>
+<section id="electromagnetic-waves-and-polarization" class="level2">
+<h2 class="anchored" data-anchor-id="electromagnetic-waves-and-polarization">Electromagnetic Waves and Polarization</h2>
+<section id="the-wave-equation-from-maxwells-equations" class="level3">
+<h3 class="anchored" data-anchor-id="the-wave-equation-from-maxwells-equations">The Wave Equation from Maxwell’s Equations</h3>
+<p>Starting from Maxwell’s equations in vacuum:</p>
+<p><span class="math display">\[\nabla \times \mathbf{E} = -\frac{\partial \mathbf{B}}{\partial t}\]</span> <span class="math display">\[\nabla \times \mathbf{B} = \mu_0 \epsilon_0 \frac{\partial \mathbf{E}}{\partial t}\]</span></p>
+<p>Taking the curl of the first equation yields:</p>
+<p><span id="eq-wave-eq"><span class="math display">\[\nabla^2 \mathbf{E} = \mu_0 \epsilon_0 \frac{\partial^2 \mathbf{E}}{\partial t^2} \tag{1}\]</span></span></p>
+<p>This is the <strong>wave equation</strong>, with wave speed <span class="math inline">\(c = 1/\sqrt{\mu_0 \epsilon_0}\)</span>.</p>
+</section>
+<section id="plane-wave-solutions" class="level3">
+<h3 class="anchored" data-anchor-id="plane-wave-solutions">Plane Wave Solutions</h3>
+<p>For a plane wave propagating in the <span class="math inline">\(+z\)</span> direction:</p>
+<p><span class="math display">\[\mathbf{E}(z,t) = \mathbf{E}_0 \cos(kz - \omega t + \phi)\]</span></p>
+<p>where <span class="math inline">\(k = 2\pi/\lambda\)</span> is the wavenumber and <span class="math inline">\(\omega = 2\pi f\)</span> is the angular frequency.</p>
+<p>The electric field has transverse components:</p>
+<p><span class="math display">\[E_x(z,t) = E_{0x} \cos(kz - \omega t + \phi_x)\]</span> <span id="eq-field-components"><span class="math display">\[E_y(z,t) = E_{0y} \cos(kz - \omega t + \phi_y) \tag{2}\]</span></span></p>
+<p>At a fixed position (<span class="math inline">\(z = 0\)</span>):</p>
+<p><span class="math display">\[E_x(t) = E_{0x} \cos(\omega t - \phi_x)\]</span> <span class="math display">\[E_y(t) = E_{0y} \cos(\omega t - \phi_y)\]</span></p>
+<p>The <strong>relative phase</strong> <span class="math inline">\(\delta = \phi_y - \phi_x\)</span> determines the polarization state.</p>
+</section>
+</section>
+<section id="polarization-states" class="level2">
+<h2 class="anchored" data-anchor-id="polarization-states">Polarization States</h2>
+<section id="linear-polarization" class="level3">
+<h3 class="anchored" data-anchor-id="linear-polarization">Linear Polarization</h3>
+<p>When <span class="math inline">\(\delta = 0\)</span> or <span class="math inline">\(\delta = \pi\)</span>:</p>
+<p><span class="math display">\[E_y = \frac{E_{0y}}{E_{0x}} E_x\]</span></p>
+<p>The electric field vector oscillates along a <strong>straight line</strong> in the <span class="math inline">\(xy\)</span> plane.</p>
+</section>
+<section id="circular-polarization" class="level3">
+<h3 class="anchored" data-anchor-id="circular-polarization">Circular Polarization</h3>
+<p>When <span class="math inline">\(E_{0x} = E_{0y} = E_0\)</span> and <span class="math inline">\(\delta = \pm \pi/2\)</span>:</p>
+<p><span class="math display">\[E_x(t) = E_0 \cos(\omega t)\]</span> <span class="math display">\[E_y(t) = E_0 \sin(\omega t) \quad \text{(right circular)}\]</span></p>
+<p>The electric field vector rotates with constant magnitude <span class="math inline">\(E_0\)</span>.</p>
+</section>
+<section id="elliptical-polarization" class="level3">
+<h3 class="anchored" data-anchor-id="elliptical-polarization">Elliptical Polarization</h3>
+<p>For arbitrary amplitudes and phases, the E-field vector tip traces an <strong>ellipse</strong>.</p>
+</section>
+</section>
+<section id="python-visualization-polarization-states" class="level2">
+<h2 class="anchored" data-anchor-id="python-visualization-polarization-states">Python Visualization: Polarization States</h2>
+<div id="421c0765" class="cell" data-execution_count="2">
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="01-lecture07_files/figure-html/cell-3-output-1.png" width="509" height="159" class="figure-img"></p>
+<figcaption>Electric field vector tip traces for different polarization states. (a) Linear: straight line at 45°. (b) Right circular: circle. (c) Elliptical: ellipse.</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Polarization states: E-field vector traces in the transverse plane</code></pre>
+</div>
+</div>
+<div id="fig-polarization" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-polarization-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="polarization_states.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-polarization-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1— Electric field vector tip traces for different polarization states. (a) Linear: straight line. (b) Right circular: circle. (c) Elliptical: ellipse.
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="jones-vector-formalism" class="level2">
+<h2 class="anchored" data-anchor-id="jones-vector-formalism">Jones Vector Formalism</h2>
+<p>The <strong>Jones vector</strong> represents a plane wave:</p>
+<p><span id="eq-jones-vector"><span class="math display">\[\mathbf{J} = \begin{pmatrix} E_x \\ E_y \end{pmatrix} = \begin{pmatrix} E_{0x} e^{-i\phi_x} \\ E_{0y} e^{-i\phi_y} \end{pmatrix} \tag{3}\]</span></span></p>
+<section id="common-jones-vectors" class="level3">
+<h3 class="anchored" data-anchor-id="common-jones-vectors">Common Jones Vectors</h3>
+<p><strong>Horizontal:</strong> <span class="math inline">\(\mathbf{J}_H = \begin{pmatrix} 1 \\ 0 \end{pmatrix}\)</span>, <strong>Vertical:</strong> <span class="math inline">\(\mathbf{J}_V = \begin{pmatrix} 0 \\ 1 \end{pmatrix}\)</span></p>
+<p><strong>Right circular:</strong> <span class="math inline">\(\mathbf{J}_{RCP} = \frac{1}{\sqrt{2}} \begin{pmatrix} 1 \\ -i \end{pmatrix}\)</span>, <strong>Left circular:</strong> <span class="math inline">\(\mathbf{J}_{LCP} = \frac{1}{\sqrt{2}} \begin{pmatrix} 1 \\ i \end{pmatrix}\)</span></p>
+<p><strong>Intensity</strong>: <span class="math inline">\(I = |\mathbf{J}|^2 = |E_x|^2 + |E_y|^2\)</span></p>
+</section>
+</section>
+<section id="jones-matrices-and-optical-elements" class="level2">
+<h2 class="anchored" data-anchor-id="jones-matrices-and-optical-elements">Jones Matrices and Optical Elements</h2>
+<section id="polarizers" class="level3">
+<h3 class="anchored" data-anchor-id="polarizers">Polarizers</h3>
+<p><strong>Horizontal:</strong> <span class="math inline">\(M_H = \begin{pmatrix} 1 &amp; 0 \\ 0 &amp; 0 \end{pmatrix}\)</span>, <strong>Vertical:</strong> <span class="math inline">\(M_V = \begin{pmatrix} 0 &amp; 0 \\ 0 &amp; 1 \end{pmatrix}\)</span></p>
+<p><strong>At angle</strong> <span class="math inline">\(\theta\)</span>: <span class="math inline">\(M(\theta) = \begin{pmatrix} \cos^2\theta &amp; \cos\theta\sin\theta \\ \cos\theta\sin\theta &amp; \sin^2\theta \end{pmatrix}\)</span> {#eq-jones-polarizer}</p>
+</section>
+<section id="retardance-plates" class="level3">
+<h3 class="anchored" data-anchor-id="retardance-plates">Retardance Plates</h3>
+<p><strong>Quarter-wave at 45°:</strong> <span class="math inline">\(M_{QWP} = \frac{1}{\sqrt{2}} \begin{pmatrix} 1 &amp; i \\ i &amp; 1 \end{pmatrix}\)</span></p>
+<p><strong>Half-wave at angle</strong> <span class="math inline">\(\alpha\)</span>: <span class="math inline">\(M_{HWP}(\alpha) = \begin{pmatrix} \cos 2\alpha &amp; \sin 2\alpha \\ \sin 2\alpha &amp; -\cos 2\alpha \end{pmatrix}\)</span></p>
+<p><strong>Rotation:</strong> <span class="math inline">\(R(\theta) = \begin{pmatrix} \cos\theta &amp; -\sin\theta \\ \sin\theta &amp; \cos\theta \end{pmatrix}\)</span></p>
+</section>
+</section>
+<section id="jones-matrix-example" class="level2">
+<h2 class="anchored" data-anchor-id="jones-matrix-example">Jones Matrix Example</h2>
+<div id="2f1b642f" class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example: H-polarized light → QWP at 45° → Right circular</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Matrices</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>M_pol <span class="op">=</span> np.array([[<span class="dv">1</span>, <span class="dv">0</span>], [<span class="dv">0</span>, <span class="dv">0</span>]], dtype<span class="op">=</span><span class="bu">complex</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>M_qwp <span class="op">=</span> (<span class="dv">1</span><span class="op">/</span>np.sqrt(<span class="dv">2</span>)) <span class="op">*</span> np.array([[<span class="dv">1</span>, <span class="ot">1j</span>], [<span class="ot">1j</span>, <span class="dv">1</span>]], dtype<span class="op">=</span><span class="bu">complex</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Initial: horizontal linear</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>J <span class="op">=</span> np.array([<span class="dv">1</span>, <span class="dv">0</span>], dtype<span class="op">=</span><span class="bu">complex</span>)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Initial: H-polarized"</span>)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Intensity: </span><span class="sc">{</span>np<span class="sc">.</span><span class="bu">sum</span>(np.<span class="bu">abs</span>(J)<span class="op">**</span><span class="dv">2</span>)<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="co"># After polarizer</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>J <span class="op">=</span> M_pol <span class="op">@</span> J</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"After H-polarizer: intensity ="</span>, np.<span class="bu">sum</span>(np.<span class="bu">abs</span>(J)<span class="op">**</span><span class="dv">2</span>).real)</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="co"># After QWP at 45°</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>J <span class="op">=</span> M_qwp <span class="op">@</span> J</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"After QWP at 45°: Jones vector ="</span>, J)</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Result: Right Circular Polarization!"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Initial: H-polarized
+  Intensity: 1.00
+After H-polarizer: intensity = 1.0
+After QWP at 45°: Jones vector = [0.70710678+0.j         0.        +0.70710678j]
+Result: Right Circular Polarization!</code></pre>
+</div>
+</div>
+</section>
+<section id="maluss-law" class="level2">
+<h2 class="anchored" data-anchor-id="maluss-law">Malus’s Law</h2>
+<p>When linearly polarized light passes through a second polarizer at angle <span class="math inline">\(\theta\)</span>:</p>
+<p><span id="eq-malus"><span class="math display">\[I_{\text{transmitted}} = I_0 \cos^2(\theta) \tag{4}\]</span></span></p>
+<div id="dafdb2e2" class="cell" data-execution_count="4">
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="01-lecture07_files/figure-html/cell-5-output-1.png" width="424" height="136" class="figure-img"></p>
+<figcaption>Malus’s Law visualization. (a) Cartesian plot showing transmitted intensity vs analyzer angle. (b) Polar plot showing the <span class="math inline">\(\cos^2(\theta)\)</span> dependence.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div id="fig-malus" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-malus-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="malus_law.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-malus-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2— Malus’s Law: Intensity through two polarizers as a function of angle between them.
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="stokes-parameters" class="level2">
+<h2 class="anchored" data-anchor-id="stokes-parameters">Stokes Parameters</h2>
+<p><strong>Stokes parameters</strong> describe any polarization state (fully or partially polarized):</p>
+<p><span id="eq-stokes-s0"><span class="math display">\[S_0 = \langle E_x E_x^* \rangle + \langle E_y E_y^* \rangle \tag{5}\]</span></span> <span class="math display">\[S_1 = \langle E_x E_x^* \rangle - \langle E_y E_y^* \rangle\]</span> <span class="math display">\[S_2 = \langle E_x E_y^* + E_y E_x^* \rangle\]</span> <span class="math display">\[S_3 = i\langle E_x E_y^* - E_y E_x^* \rangle\]</span></p>
+<section id="examples" class="level3">
+<h3 class="anchored" data-anchor-id="examples">Examples</h3>
+<p><strong>Unpolarized:</strong> <span class="math inline">\(\mathbf{S} = I_0 \begin{pmatrix} 1 \\ 0 \\ 0 \\ 0 \end{pmatrix}\)</span></p>
+<p><strong>H-linear:</strong> <span class="math inline">\(\mathbf{S}_H = I_0 \begin{pmatrix} 1 \\ 1 \\ 0 \\ 0 \end{pmatrix}\)</span></p>
+<p><strong>Right circular:</strong> <span class="math inline">\(\mathbf{S}_{RCP} = I_0 \begin{pmatrix} 1 \\ 0 \\ 0 \\ 1 \end{pmatrix}\)</span></p>
+<p><strong>Degree of polarization</strong>: <span class="math inline">\(P = \frac{\sqrt{S_1^2 + S_2^2 + S_3^2}}{S_0}\)</span></p>
+</section>
+</section>
+<section id="the-poincaré-sphere" class="level2">
+<h2 class="anchored" data-anchor-id="the-poincaré-sphere">The Poincaré Sphere</h2>
+<p>The <strong>Poincaré sphere</strong> geometrically represents all fully polarized states using normalized Stokes parameters:</p>
+<p><span class="math display">\[x = S_1/S_0, \quad y = S_2/S_0, \quad z = S_3/S_0\]</span></p>
+<p>Each point on the unit sphere represents a unique polarization state: - <strong>North pole:</strong> Right circular - <strong>South pole:</strong> Left circular<br>
+- <strong>Equator:</strong> All linear polarizations</p>
+<div id="4a58bebb" class="cell" data-execution_count="5">
+<div class="cell-output cell-output-stderr">
+<pre><code>/Users/fci/python_default_env/.venv/lib/python3.13/site-packages/mpl_toolkits/mplot3d/art3d.py:1403: RuntimeWarning:
+
+divide by zero encountered in matmul
+
+/Users/fci/python_default_env/.venv/lib/python3.13/site-packages/mpl_toolkits/mplot3d/art3d.py:1403: RuntimeWarning:
+
+overflow encountered in matmul
+</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="01-lecture07_files/figure-html/cell-6-output-2.png" width="401" height="363" class="figure-img"></p>
+<figcaption>Poincaré sphere: geometric representation of all fully polarized states. North pole: right circular (RCP), South pole: left circular (LCP), Equator: all linear polarizations (H, V, ±45°).</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Poincaré sphere: geometric representation of polarization states</code></pre>
+</div>
+</div>
+<div id="fig-poincare" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-poincare-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="poincare_sphere.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-poincare-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3— The Poincaré sphere represents all fully polarized states geometrically.
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="müller-matrices" class="level2">
+<h2 class="anchored" data-anchor-id="müller-matrices">Müller Matrices</h2>
+<p>The Stokes vector transforms through optical elements via <strong>Müller matrices</strong> (<span class="math inline">\(4 \times 4\)</span>):</p>
+<p><strong>Horizontal polarizer:</strong> <span class="math display">\[M_H = \frac{1}{2} \begin{pmatrix} 1 &amp; 1 &amp; 0 &amp; 0 \\ 1 &amp; 1 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 0 \end{pmatrix}\]</span></p>
+<p><strong>Retarder</strong> (retardance <span class="math inline">\(\Gamma\)</span>): <span class="math display">\[M_{\text{ret}} = \begin{pmatrix} 1 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; \cos\Gamma &amp; \sin\Gamma \\ 0 &amp; 0 &amp; -\sin\Gamma &amp; \cos\Gamma \end{pmatrix}\]</span></p>
+<p>Müller matrices work for <strong>any</strong> polarization state.</p>
+</section>
+<section id="practical-polarizing-elements" class="level2">
+<h2 class="anchored" data-anchor-id="practical-polarizing-elements">Practical Polarizing Elements</h2>
+<section id="linear-polarizers" class="level3">
+<h3 class="anchored" data-anchor-id="linear-polarizers">Linear Polarizers</h3>
+<p><strong>Wire-grid:</strong> Parallel metal wires transmit perpendicular polarization, reflect parallel.</p>
+<p><strong>Dichroic (Polaroid):</strong> Absorbing aligned molecules. Affordable, used in displays.</p>
+<p><strong>Glan-Thompson:</strong> Calcite crystals at Brewster angle. Extinction ratio <span class="math inline">\(&gt; 10^{-8}\)</span>, highest quality.</p>
+<p><strong>Brewster angle:</strong> p-polarized light has zero reflection at <span class="math inline">\(\theta_B = \arctan(n)\)</span>.</p>
+</section>
+<section id="retardance-plates-1" class="level3">
+<h3 class="anchored" data-anchor-id="retardance-plates-1">Retardance Plates</h3>
+<p><strong>Materials:</strong> Quartz, calcite, mica (birefringent crystals)</p>
+<p><strong>Retardance:</strong> <span class="math inline">\(\Gamma = \frac{2\pi \Delta n d}{\lambda}\)</span> where <span class="math inline">\(\Delta n = |n_e - n_o|\)</span></p>
+<p><strong>Quarter-wave (QWP):</strong> <span class="math inline">\(\Gamma = \pi/2\)</span> converts linear ↔︎ circular at 45°</p>
+<p><strong>Half-wave (HWP):</strong> <span class="math inline">\(\Gamma = \pi\)</span> rotates linear polarization</p>
+<p><strong>Achromatic:</strong> Multiple plates cancel wavelength dependence</p>
+</section>
+<section id="optical-rotation" class="level3">
+<h3 class="anchored" data-anchor-id="optical-rotation">Optical Rotation</h3>
+<p><strong>Optical rotation</strong> (chiral materials): <span class="math inline">\(\theta = \alpha \ell\)</span> (rotatory power <span class="math inline">\(\alpha\)</span>)</p>
+<p><strong>Faraday rotation</strong> (magneto-optic): <span class="math inline">\(\theta = V B \ell\)</span> (non-reciprocal, used in isolators)</p>
+</section>
+</section>
+<section id="summary" class="level2">
+<h2 class="anchored" data-anchor-id="summary">Summary</h2>
 <ol type="1">
-<li><p><strong>Propagating waves</strong>: When <span class="math inline">\(\nu_x^2 + \nu_y^2 &lt; (1/\lambda)^2\)</span>, <span class="math inline">\(k_z\)</span> is real, and <span class="math inline">\(H(\nu_x,\nu_y) = e^{-i k_z d}\)</span> represents a pure phase shift. These are propagating waves that carry energy from the input to the output plane.</p></li>
-<li><p><strong>Evanescent waves</strong>: When <span class="math inline">\(\nu_x^2 + \nu_y^2 &gt; (1/\lambda)^2\)</span>, <span class="math inline">\(k_z\)</span> becomes imaginary, and <span class="math inline">\(H(\nu_x,\nu_y) = e^{-|k_z| d}\)</span> represents an exponential decay. These evanescent waves decay exponentially with distance and do not propagate energy to the far field. For spatial frequencies slightly beyond the propagating limit, where <span class="math inline">\(\nu_x^2 + \nu_y^2 \approx (1/\lambda)^2 + \Delta\)</span>, the decay constant can be approximated as <span class="math inline">\(|k_z| \approx 2\pi\sqrt{\Delta} \approx \pi\lambda/(2d^2)\)</span>, where <span class="math inline">\(d\)</span> is the characteristic distance from the object. This means that features with spatial frequencies significantly above <span class="math inline">\(1/\lambda\)</span> become effectively undetectable at distances greater than a few wavelengths.</p></li>
+<li><p><strong>Polarization</strong> is the oscillation direction of the electric field perpendicular to propagation.</p></li>
+<li><p><strong>Three states:</strong> linear (straight oscillation), circular (rotation), elliptical (combination).</p></li>
+<li><p><strong>Jones vectors/matrices</strong> for fully polarized light; <strong>Stokes parameters/Müller matrices</strong> for any state.</p></li>
+<li><p><strong>Poincaré sphere:</strong> Geometric representation of all polarization states.</p></li>
+<li><p><strong>Optical elements:</strong> Polarizers (select axis), retarders (introduce phase), rotators (rotate axis).</p></li>
+<li><p><strong>Key applications:</strong> Fiber optics, LCD displays, stress analysis, quantum optics.</p></li>
 </ol>
-<p>A simplification of the transfer function of free space maybe obtained when considering only spatial frequencies that are much smaller than the cut-off frequency. This simplificaltion is called the Fresnel approximation and leads to</p>
-<p><span class="math display">\[
-H\left(\nu_x, \nu_y\right) \approx H_0 \exp \left[i \pi \lambda d\left(\nu_x^2+\nu_y^2\right)\right]
-\]</span></p>
-<p>Its inverse Fourier transform is the impulse response function <span class="math inline">\(h(x,y)\)</span>, which is given by</p>
-<p><span class="math display">\[
-h(x, y) \approx h_0 \exp \left[-i k \frac{x^2+y^2}{2 d}\right]
-\]</span></p>
-<p>with <span class="math inline">\(h_0=(i / \lambda d) \exp (-i k d)\)</span>.</p>
-<section id="input-output-relation" class="level3">
-<h3 class="anchored" data-anchor-id="input-output-relation">Input Output Relation</h3>
-<p><span class="math display">\[g(x, y)=\iint_{-\infty}^{\infty} H\left(\nu_x, \nu_y\right) F\left(\nu_x, \nu_y\right) \exp \left[-i 2 \pi\left(\nu_x x+\nu_y y\right)\right] d \nu_x d \nu_y\]</span></p>
-<p><span class="math display">\[
-g(x, y)=H_0 \iint_{-\infty}^{\infty} F\left(\nu_x, \nu_y\right) \exp \left[j \pi \lambda d\left(\nu_x^2+\nu_y^2\right)\right] \exp \left[-i 2 \pi\left(\nu_x x+\nu_y y\right)\right] d \nu_x d \nu_y
-\]</span></p>
+<p>The elegant mathematical structure—from Maxwell’s equations through Jones calculus to Poincaré geometry—demonstrates the remarkable unity underlying optical phenomena.</p>
 </section>
-<section id="impuls-response-function" class="level3">
-<h3 class="anchored" data-anchor-id="impuls-response-function">Impuls Response Function</h3>
-<p>Its inverse Fourier transform is the impulse response function <span class="math inline">\(h(x,y)\)</span>, which is given by</p>
-<p><span class="math display">\[
-h(x, y) \approx h_0 \exp \left[-i k \frac{x^2+y^2}{2 d}\right]
-\]</span></p>
-<p>with <span class="math inline">\(h_0=(i / \lambda d) \exp (-i k d)\)</span>.</p>
+<section id="experimental-connections" class="level2">
+<h2 class="anchored" data-anchor-id="experimental-connections">Experimental Connections</h2>
+<p>Polarization is one of the most accessible optical phenomena for hands-on experiments. The following activities connect the theory above to real laboratory practice:</p>
+<p><strong>Polarizer and analyzer (Malus’s law)</strong> Set up two linear polarizers on an optical rail with a white-light source or laser. Rotate the analyzer in 10° steps and measure the transmitted intensity with a photodetector. Plot <span class="math inline">\(I(\theta)\)</span> and fit to <span class="math inline">\(I_0 \cos^2\theta\)</span>. Deviations from perfect extinction reveal the quality of your polarizers and any residual birefringence in optical components.</p>
+<p><strong>Quarter-wave plate: linear → circular</strong> Insert a quarter-wave plate between crossed polarizers. Rotate it until the fast axis is at 45° to the first polarizer — you should recover maximum transmission through the analyzer (since circular polarization has equal projections on any linear axis). Verify by rotating the analyzer: intensity should be nearly constant.</p>
+<p><strong>Stress birefringence (photoelasticity)</strong> Place a transparent plastic ruler or protractor between crossed polarizers and illuminate with white light. The colorful fringe patterns reveal internal stress from the manufacturing process. This directly visualizes how mechanical stress creates birefringence. Quantitative analysis connects stress to the retardance via the stress-optic coefficient.</p>
+<p><strong>Optical activity in sugar solutions</strong> Fill a glass tube with sugar solution of known concentration. Place between crossed polarizers and observe the rotation of the polarization plane. By varying concentration and tube length, verify the linear dependence <span class="math inline">\(\theta = [\alpha] \cdot c \cdot L\)</span>. This is the basis of saccharimetry (sugar concentration measurement in the food industry).</p>
+<p><strong>Brewster angle measurement</strong> Reflect a laser beam off a glass surface (microscope slide) and vary the angle of incidence. At Brewster’s angle <span class="math inline">\(\theta_B = \arctan(n)\)</span>, the reflected beam is perfectly linearly polarized. Verify with a polarizer. This gives an elegant measurement of the refractive index.</p>
 </section>
-<section id="free-space-propagation-as-convolution" class="level3">
-<h3 class="anchored" data-anchor-id="free-space-propagation-as-convolution">Free Space Propagation as Convolution</h3>
-<p><span class="math display">\[
-g(x, y)=h_0 \iint_{-\infty}^{\infty} f\left(x^{\prime}, y^{\prime}\right) \exp \left[-j \pi \frac{\left(x-x^{\prime}\right)^2+\left(y-y^{\prime}\right)^2}{\lambda d}\right] d x^{\prime} d y^{\prime}
-\]</span></p>
-</section>
-<section id="far-field" class="level3">
-<h3 class="anchored" data-anchor-id="far-field">Far Field</h3>
-<p>We now proceed to show that if the propagation distance <span class="math inline">\(d\)</span> is sufficiently long, the only plane wave that contributes to the complex amplitude at a point <span class="math inline">\((x, y)\)</span> in the output plane is the wave with direction making angles <span class="math inline">\(\theta_x \approx x / d\)</span> and <span class="math inline">\(\theta_y \approx y / d\)</span> with the optical axis (see Fig. 4.2-1). This is the wave with wavevector components <span class="math inline">\(k_x \approx(x / d) k\)</span> and <span class="math inline">\(k_y \approx(y / d) k\)</span> and amplitude <span class="math inline">\(F\left(\nu_x, \nu_y\right)\)</span> with <span class="math inline">\(\nu_x=x / \lambda d\)</span>, and <span class="math inline">\(\nu_y=y / \lambda d\)</span>. The complex amplitudes <span class="math inline">\(g(x, y)\)</span> and <span class="math inline">\(f(x, y)\)</span> of the wave at the <span class="math inline">\(z=d\)</span> and <span class="math inline">\(z=0\)</span> planes are related by</p>
-<p><span class="math display">\[
-g(x, y)=h_0 F\left(\frac{x}{\lambda d}, \frac{y}{\lambda d}\right)
-\]</span></p>
-</section>
-<section id="fourier-transform-using-a-lens" class="level3">
-<h3 class="anchored" data-anchor-id="fourier-transform-using-a-lens">Fourier Transform using a Lens</h3>
-<p><span class="math display">\[
-g(x, y) \propto F\left(\frac{x}{\lambda f}, \frac{y}{\lambda f}\right)
-\]</span></p>
-<p>with prefactor</p>
-<p><span class="math display">\[
-g(x, y)=h_l \exp \left[j \pi \frac{\left(x^2+y^2\right)(d-f)}{\lambda f^2}\right] F\left(\frac{x}{\lambda f}, \frac{y}{\lambda f}\right)
-\]</span></p>
-<p>intensity</p>
-<p><span class="math display">\[
-I(x, y)=\frac{1}{(\lambda f)^2}\left|F\left(\frac{x}{\lambda f}, \frac{y}{\lambda f}\right)\right|^2
-\]</span></p>
+<section id="further-reading" class="level2">
+<h2 class="anchored" data-anchor-id="further-reading">Further Reading</h2>
+<p>The following references are linked to the central <a href="../../resources/resources.html">Resources &amp; Recommended Reading</a> page:</p>
+<ul>
+<li><strong><a href="../../resources/resources.html#sec-saleh">Saleh &amp; Teich, Ch. 6</a></strong> — Polarization Optics. Systematic development of Jones and Müller calculus with many worked examples.</li>
+<li><strong><a href="../../resources/resources.html#sec-hecht">Hecht, Ch. 8</a></strong> — Polarization. Excellent physical intuition, many photographs of real polarization effects.</li>
+<li><strong><a href="../../resources/resources.html#sec-goldstein">Goldstein (2011)</a></strong> — <em>Polarized Light</em>. Comprehensive reference for Stokes parameters, Müller matrices, and the Poincaré sphere.</li>
+<li><strong><a href="../../resources/resources.html#sec-collett">Collett (2005)</a></strong> — <em>Field Guide to Polarization</em>. Compact summary of all key formulae.</li>
+<li><strong><a href="../../resources/resources.html#sec-born">Born &amp; Wolf, Ch. 1, 14–15</a></strong> — Rigorous EM treatment of polarization and crystal optics.</li>
+</ul>
+<hr>
+<p><em>Lecture 3: Polarization of Light — Introduction to Photonics</em></p>
 
 
 </section>

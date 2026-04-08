@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.34">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Photothermal Detection and Sensing – Photonics</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-9344fb9851b4da3cab95007ef9d770dc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../assets/css/styles.css">
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Photonics</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../../index.html" aria-current="page"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Photothermal Detection and Sensing</li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="../../index.html" class="sidebar-logo-link">
+      <img src="../../assets/images/mona_logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home</span></a>
+  </div>
+</li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Course Info</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-info/intructors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Instructor</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-info/schedule.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Schedule</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-info/resources.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Ressources</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-info/seminars.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Seminars</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-info/exam.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exams</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">PART I: FOUNDATIONS</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Lecture 1 — Introduction, Ray Optics &amp; Wave Optics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture01/introduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture01/01-lecture01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Ray Optics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture01/02-lecture01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Optical Elements</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture02/01-lecture02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Matrix Optics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture02/02-lecture02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wave Optics</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#light-absorption-and-heat-generation" id="toc-light-absorption-and-heat-generation" class="nav-link active" data-scroll-target="#light-absorption-and-heat-generation">1. Light Absorption and Heat Generation</a>
+  <ul class="collapse">
+  <li><a href="#absorption-cross-section-and-energy-conversion" id="toc-absorption-cross-section-and-energy-conversion" class="nav-link" data-scroll-target="#absorption-cross-section-and-energy-conversion">Absorption Cross Section and Energy Conversion</a></li>
+  <li><a href="#temperature-profile-around-a-heated-nanoparticle" id="toc-temperature-profile-around-a-heated-nanoparticle" class="nav-link" data-scroll-target="#temperature-profile-around-a-heated-nanoparticle">Temperature Profile Around a Heated Nanoparticle</a></li>
+  </ul></li>
+  <li><a href="#the-photothermal-effect-refractive-index-modulation" id="toc-the-photothermal-effect-refractive-index-modulation" class="nav-link" data-scroll-target="#the-photothermal-effect-refractive-index-modulation">2. The Photothermal Effect: Refractive Index Modulation</a>
+  <ul class="collapse">
+  <li><a href="#temperature-dependent-refractive-index" id="toc-temperature-dependent-refractive-index" class="nav-link" data-scroll-target="#temperature-dependent-refractive-index">Temperature-Dependent Refractive Index</a></li>
+  <li><a href="#thermal-lensing-effect" id="toc-thermal-lensing-effect" class="nav-link" data-scroll-target="#thermal-lensing-effect">Thermal Lensing Effect</a></li>
+  </ul></li>
+  <li><a href="#pump-probe-detection-architecture" id="toc-pump-probe-detection-architecture" class="nav-link" data-scroll-target="#pump-probe-detection-architecture">3. Pump-Probe Detection Architecture</a>
+  <ul class="collapse">
+  <li><a href="#time-modulated-heating-and-lock-in-detection" id="toc-time-modulated-heating-and-lock-in-detection" class="nav-link" data-scroll-target="#time-modulated-heating-and-lock-in-detection">Time-Modulated Heating and Lock-in Detection</a></li>
+  <li><a href="#why-modulation" id="toc-why-modulation" class="nav-link" data-scroll-target="#why-modulation">Why Modulation?</a></li>
+  <li><a href="#signal-model" id="toc-signal-model" class="nav-link" data-scroll-target="#signal-model">Signal Model</a></li>
+  <li><a href="#pump-modulation-with-acousto-optic-modulators" id="toc-pump-modulation-with-acousto-optic-modulators" class="nav-link" data-scroll-target="#pump-modulation-with-acousto-optic-modulators">Pump Modulation with Acousto-Optic Modulators</a></li>
+  </ul></li>
+  <li><a href="#photothermal-microscopy-practical-implementation" id="toc-photothermal-microscopy-practical-implementation" class="nav-link" data-scroll-target="#photothermal-microscopy-practical-implementation">4. Photothermal Microscopy: Practical Implementation</a>
+  <ul class="collapse">
+  <li><a href="#point-scanning-configuration" id="toc-point-scanning-configuration" class="nav-link" data-scroll-target="#point-scanning-configuration">Point-Scanning Configuration</a></li>
+  <li><a href="#advantages-of-photothermal-microscopy" id="toc-advantages-of-photothermal-microscopy" class="nav-link" data-scroll-target="#advantages-of-photothermal-microscopy">Advantages of Photothermal Microscopy</a></li>
+  </ul></li>
+  <li><a href="#single-particle-and-single-molecule-detection" id="toc-single-particle-and-single-molecule-detection" class="nav-link" data-scroll-target="#single-particle-and-single-molecule-detection">5. Single-Particle and Single-Molecule Detection</a>
+  <ul class="collapse">
+  <li><a href="#gold-nanoparticles" id="toc-gold-nanoparticles" class="nav-link" data-scroll-target="#gold-nanoparticles">Gold Nanoparticles</a></li>
+  <li><a href="#single-molecule-photothermal-detection" id="toc-single-molecule-photothermal-detection" class="nav-link" data-scroll-target="#single-molecule-photothermal-detection">Single-Molecule Photothermal Detection</a></li>
+  </ul></li>
+  <li><a href="#photothermal-heterodyne-imaging-phi" id="toc-photothermal-heterodyne-imaging-phi" class="nav-link" data-scroll-target="#photothermal-heterodyne-imaging-phi">6. Photothermal Heterodyne Imaging (PHI)</a>
+  <ul class="collapse">
+  <li><a href="#heterodyne-detection-principle" id="toc-heterodyne-detection-principle" class="nav-link" data-scroll-target="#heterodyne-detection-principle">Heterodyne Detection Principle</a></li>
+  <li><a href="#mathematical-formulation" id="toc-mathematical-formulation" class="nav-link" data-scroll-target="#mathematical-formulation">Mathematical Formulation</a></li>
+  <li><a href="#phi-sensitivity-scaling" id="toc-phi-sensitivity-scaling" class="nav-link" data-scroll-target="#phi-sensitivity-scaling">PHI Sensitivity Scaling</a></li>
+  </ul></li>
+  <li><a href="#applications-from-nanoscience-to-biosensing" id="toc-applications-from-nanoscience-to-biosensing" class="nav-link" data-scroll-target="#applications-from-nanoscience-to-biosensing">7. Applications: From Nanoscience to Biosensing</a>
+  <ul class="collapse">
+  <li><a href="#label-free-nanoparticle-imaging" id="toc-label-free-nanoparticle-imaging" class="nav-link" data-scroll-target="#label-free-nanoparticle-imaging">1. Label-Free Nanoparticle Imaging</a></li>
+  <li><a href="#single-molecule-absorption-spectroscopy" id="toc-single-molecule-absorption-spectroscopy" class="nav-link" data-scroll-target="#single-molecule-absorption-spectroscopy">2. Single-Molecule Absorption Spectroscopy</a></li>
+  <li><a href="#biosensing-and-molecular-diagnostics" id="toc-biosensing-and-molecular-diagnostics" class="nav-link" data-scroll-target="#biosensing-and-molecular-diagnostics">3. Biosensing and Molecular Diagnostics</a></li>
+  <li><a href="#nanoparticle-tracking-analysis-nta" id="toc-nanoparticle-tracking-analysis-nta" class="nav-link" data-scroll-target="#nanoparticle-tracking-analysis-nta">4. Nanoparticle Tracking Analysis (NTA)</a></li>
+  </ul></li>
+  <li><a href="#connection-to-photoacoustic-imaging" id="toc-connection-to-photoacoustic-imaging" class="nav-link" data-scroll-target="#connection-to-photoacoustic-imaging">8. Connection to Photoacoustic Imaging</a>
+  <ul class="collapse">
+  <li><a href="#pulsed-excitation-and-acoustic-transduction" id="toc-pulsed-excitation-and-acoustic-transduction" class="nav-link" data-scroll-target="#pulsed-excitation-and-acoustic-transduction">Pulsed Excitation and Acoustic Transduction</a></li>
+  <li><a href="#why-pulsed-deeper-penetration" id="toc-why-pulsed-deeper-penetration" class="nav-link" data-scroll-target="#why-pulsed-deeper-penetration">Why Pulsed? Deeper Penetration</a></li>
+  <li><a href="#unified-framework" id="toc-unified-framework" class="nav-link" data-scroll-target="#unified-framework">Unified Framework</a></li>
+  </ul></li>
+  <li><a href="#code-example-1-temperature-profile-around-a-heated-nanoparticle" id="toc-code-example-1-temperature-profile-around-a-heated-nanoparticle" class="nav-link" data-scroll-target="#code-example-1-temperature-profile-around-a-heated-nanoparticle">Code Example 1: Temperature Profile Around a Heated Nanoparticle</a></li>
+  <li><a href="#code-example-2-thermal-lens-effectprobe-beam-phase-shift" id="toc-code-example-2-thermal-lens-effectprobe-beam-phase-shift" class="nav-link" data-scroll-target="#code-example-2-thermal-lens-effectprobe-beam-phase-shift">Code Example 2: Thermal Lens Effect—Probe Beam Phase Shift</a></li>
+  <li><a href="#code-example-3-lock-in-detection-principle" id="toc-code-example-3-lock-in-detection-principle" class="nav-link" data-scroll-target="#code-example-3-lock-in-detection-principle">Code Example 3: Lock-in Detection Principle</a></li>
+  <li><a href="#code-example-4-photothermal-signal-vs.-nanoparticle-size" id="toc-code-example-4-photothermal-signal-vs.-nanoparticle-size" class="nav-link" data-scroll-target="#code-example-4-photothermal-signal-vs.-nanoparticle-size">Code Example 4: Photothermal Signal vs.&nbsp;Nanoparticle Size</a></li>
+  <li><a href="#summary-and-key-takeaways" id="toc-summary-and-key-takeaways" class="nav-link" data-scroll-target="#summary-and-key-takeaways">Summary and Key Takeaways</a></li>
+  <li><a href="#experimental-connections" id="toc-experimental-connections" class="nav-link" data-scroll-target="#experimental-connections">Experimental Connections</a></li>
+  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading">Further Reading</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Photothermal Detection and Sensing</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Photothermal detection represents one of the most powerful and elegant techniques in modern optical sensing. While absorption spectroscopy measures light that is removed from a beam, <strong>photothermal sensing directly detects the heat generated when matter absorbs light</strong>. This seemingly simple idea opens an entirely new window into characterizing nanoparticles, single molecules, and biomolecules with unprecedented sensitivity and label-free contrast.</p>
+<p>In this lecture, we connect fundamental principles of light-matter interaction, thermal diffusion, and optical interferometry to build a complete picture of photothermal microscopy and detection. By the end of this 90-minute session, you will understand:</p>
+<ul>
+<li>How absorbed light energy converts to heat and creates thermal gradients</li>
+<li>How thermal effects modulate optical properties (refractive index, phase)</li>
+<li>How lock-in detection enables background-free sensing</li>
+<li>Why photothermal microscopy achieves single-molecule sensitivity</li>
+<li>How this technique bridges to photoacoustic imaging in the pulsed regime</li>
+</ul>
+<p>This is a field at the intersection of condensed matter physics, biophysics, and optical engineering—with major applications from biomedicine to nanomaterial characterization.</p>
+<section id="light-absorption-and-heat-generation" class="level2">
+<h2 class="anchored" data-anchor-id="light-absorption-and-heat-generation">1. Light Absorption and Heat Generation</h2>
+<section id="absorption-cross-section-and-energy-conversion" class="level3">
+<h3 class="anchored" data-anchor-id="absorption-cross-section-and-energy-conversion">Absorption Cross Section and Energy Conversion</h3>
+<p>When light propagates through an absorbing medium, the intensity decreases according to:</p>
+<p><span class="math display">\[I(z) = I_0 e^{-\alpha z}\]</span></p>
+<p>where <span class="math inline">\(\alpha\)</span> is the absorption coefficient (units: cm<span class="math inline">\(^{-1}\)</span>). For a nanoparticle much smaller than the wavelength, we define the <strong>absorption cross section</strong> <span class="math inline">\(\sigma_{\text{abs}}\)</span> (units: nm<span class="math inline">\(^2\)</span>), which represents the effective area over which the particle absorbs photons.</p>
+<p>If a plane wave of intensity <span class="math inline">\(I_0\)</span> illuminates the nanoparticle, the <strong>absorbed power</strong> is:</p>
+<p><span class="math display">\[P_{\text{abs}} = \sigma_{\text{abs}} \cdot I_0\]</span></p>
+<p>This absorbed energy must be dissipated as heat. In the <strong>steady-state regime</strong> (continuous-wave laser illumination), the thermal energy flows outward through conduction in the surrounding medium.</p>
+</section>
+<section id="temperature-profile-around-a-heated-nanoparticle" class="level3">
+<h3 class="anchored" data-anchor-id="temperature-profile-around-a-heated-nanoparticle">Temperature Profile Around a Heated Nanoparticle</h3>
+<p>Consider a small spherical heat source at temperature <span class="math inline">\(T_0\)</span> dissipating power <span class="math inline">\(P_{\text{abs}}\)</span> into an infinite medium with thermal conductivity <span class="math inline">\(\kappa\)</span>. The steady-state temperature profile in 3D is:</p>
+<p><span class="math display">\[\Delta T(r) = T(r) - T_\infty = \frac{P_{\text{abs}}}{4\pi \kappa r}\]</span></p>
+<p>This <span class="math inline">\(1/r\)</span> decay is fundamental to heat diffusion. For a nanoparticle of radius <span class="math inline">\(a\)</span> embedded in a medium:</p>
+<ul>
+<li>At the surface <span class="math inline">\((r = a)\)</span>: <span class="math inline">\(\Delta T(a) = \frac{P_{\text{abs}}}{4\pi \kappa a}\)</span></li>
+<li>Characteristic thermal length scale: <span class="math inline">\(\ell_T = \frac{\kappa}{|\text{absorption rate}|}\)</span></li>
+</ul>
+<p>Key observations: - Smaller particles → larger temperature rise (for fixed power) - Higher thermal conductivity → faster heat dissipation - Modulation frequency → limited by thermal diffusion time <span class="math inline">\(\tau_T \sim a^2/D_T\)</span>, where <span class="math inline">\(D_T = \kappa/(\rho c)\)</span> is thermal diffusivity</p>
+<p>The thermal energy deposited at the particle scales with the <strong>absorption cross section</strong>, which for gold nanoparticles can be enormous—much larger than their geometric cross section!</p>
+</section>
+</section>
+<section id="the-photothermal-effect-refractive-index-modulation" class="level2">
+<h2 class="anchored" data-anchor-id="the-photothermal-effect-refractive-index-modulation">2. The Photothermal Effect: Refractive Index Modulation</h2>
+<section id="temperature-dependent-refractive-index" class="level3">
+<h3 class="anchored" data-anchor-id="temperature-dependent-refractive-index">Temperature-Dependent Refractive Index</h3>
+<p>The key insight of photothermal detection is that <strong>most transparent media have a refractive index that changes with temperature</strong>:</p>
+<p><span class="math display">\[\Delta n = \left(\frac{\mathrm{d}n}{\mathrm{d}T}\right) \Delta T = \beta \, \Delta T\]</span></p>
+<p>where <span class="math inline">\(\beta = \mathrm{d}n/\mathrm{d}T\)</span> is the thermo-optic coefficient (typically <span class="math inline">\(10^{-4}\)</span> to <span class="math inline">\(10^{-3}\)</span> K<span class="math inline">\(^{-1}\)</span>).</p>
+<p>Examples: - <strong>Water</strong>: <span class="math inline">\(\beta \approx -1.0 \times 10^{-4}\)</span> K<span class="math inline">\(^{-1}\)</span> (refractive index decreases with temperature) - <strong>Typical oils</strong>: <span class="math inline">\(\beta \approx -4 \times 10^{-4}\)</span> K<span class="math inline">\(^{-1}\)</span> - <strong>Fused silica</strong>: <span class="math inline">\(\beta \approx 1.0 \times 10^{-5}\)</span> K<span class="math inline">\(^{-1}\)</span></p>
+<p>Therefore, a heated absorber creates a <strong>spatial variation in refractive index</strong>:</p>
+<p><span class="math display">\[n(\mathbf{r}) = n_0 + \beta \Delta T(\mathbf{r}) = n_0 + \beta \frac{P_{\text{abs}}}{4\pi \kappa |\mathbf{r}|}\]</span></p>
+</section>
+<section id="thermal-lensing-effect" class="level3">
+<h3 class="anchored" data-anchor-id="thermal-lensing-effect">Thermal Lensing Effect</h3>
+<p>When a probe beam passes through this refractive index gradient, it experiences a <strong>lens effect</strong>. The spatial phase modulation creates focusing (for <span class="math inline">\(\beta &gt; 0\)</span>) or defocusing (for <span class="math inline">\(\beta &lt; 0\)</span>).</p>
+<p>The <strong>phase shift</strong> experienced by a probe beam passing at distance <span class="math inline">\(r_0\)</span> from the heat source is approximately:</p>
+<p><span class="math display">\[\Delta \phi(r_0) \approx \frac{2\pi}{\lambda} \int_{-\infty}^{\infty} \beta \frac{P_{\text{abs}}}{4\pi \kappa r(x,y)} \, \mathrm{d}z\]</span></p>
+<p>For a probe beam co-aligned with the pump, the phase gradient creates an angular deflection and/or intensity redistribution—the <strong>thermal lensing effect</strong>.</p>
+<p>This is <strong>not absorption</strong> of the probe: it is a <strong>phase modulation</strong>. A weak probe beam passing through the thermal lens experiences: - Spatial phase shift - Angular deflection (tilt) - Transverse intensity redistribution</p>
+<p>These effects are the basis of all photothermal detection schemes.</p>
+</section>
+</section>
+<section id="pump-probe-detection-architecture" class="level2">
+<h2 class="anchored" data-anchor-id="pump-probe-detection-architecture">3. Pump-Probe Detection Architecture</h2>
+<section id="time-modulated-heating-and-lock-in-detection" class="level3">
+<h3 class="anchored" data-anchor-id="time-modulated-heating-and-lock-in-detection">Time-Modulated Heating and Lock-in Detection</h3>
+<p>The strategy is simple but powerful: 1. <strong>Pump beam</strong> (at frequency <span class="math inline">\(\nu_0\)</span>): absorbed → heats the sample 2. <strong>Probe beam</strong> (at frequency <span class="math inline">\(\nu_p\)</span>): senses the refractive index change 3. <strong>Modulation</strong>: amplitude-modulate the pump at frequency <span class="math inline">\(f_m\)</span> (typically 1–100 kHz) 4. <strong>Detection</strong>: use <strong>lock-in amplification</strong> at frequency <span class="math inline">\(f_m\)</span> to extract the photothermal signal</p>
+</section>
+<section id="why-modulation" class="level3">
+<h3 class="anchored" data-anchor-id="why-modulation">Why Modulation?</h3>
+<ul>
+<li>The <strong>DC temperature</strong> and its associated refractive index change are usually slow or masked by other noise</li>
+<li>By <strong>modulating the pump</strong>, we create a signal at frequency <span class="math inline">\(f_m\)</span></li>
+<li><strong>Lock-in detection</strong> (synchronous demodulation) rejects noise at other frequencies</li>
+<li>This achieves <strong>background-free</strong> detection</li>
+</ul>
+</section>
+<section id="signal-model" class="level3">
+<h3 class="anchored" data-anchor-id="signal-model">Signal Model</h3>
+<p>If the pump intensity is modulated as: <span class="math display">\[I_{\text{pump}}(t) = I_0 (1 + m \cos(2\pi f_m t))\]</span></p>
+<p>then the absorbed power oscillates: <span class="math display">\[P_{\text{abs}}(t) = \sigma_{\text{abs}} I_0 (1 + m \cos(2\pi f_m t))\]</span></p>
+<p>This drives a temperature oscillation: <span class="math display">\[\Delta T(t) = \Delta T_0 (1 + m \cos(2\pi f_m t - \phi))\]</span></p>
+<p>where the phase lag <span class="math inline">\(\phi\)</span> depends on the thermal diffusion time. The probe beam experiences a phase modulation, which creates an intensity modulation in the detection optics.</p>
+<p>A <strong>lock-in detector</strong> multiplies the detected signal <span class="math inline">\(S(t)\)</span> by a reference oscillation at <span class="math inline">\(f_m\)</span> and low-pass filters:</p>
+<p><span class="math display">\[S_{\text{LIA}} \propto \langle S(t) \cos(2\pi f_m t) \rangle_{\text{filtered}}\]</span></p>
+<p>This rejects all noise at frequencies different from <span class="math inline">\(f_m\)</span>, achieving <strong>shot-noise-limited sensitivity</strong>.</p>
+</section>
+<section id="pump-modulation-with-acousto-optic-modulators" class="level3">
+<h3 class="anchored" data-anchor-id="pump-modulation-with-acousto-optic-modulators">Pump Modulation with Acousto-Optic Modulators</h3>
+<p>In practice, the pump beam intensity is often modulated using an <strong>acousto-optic modulator (AOM)</strong>, a device that leverages the interaction between light and sound waves. An AOM consists of a transparent crystal (typically tellurium dioxide) with a piezoelectric transducer bonded to it. When a radiofrequency (RF) signal drives the transducer, it generates an acoustic wave (ultrasound) that propagates through the crystal, creating a periodic <strong>refractive index grating</strong>. Incident light diffracts off this acoustic grating according to the Bragg condition, and the first-order diffracted beam emerges with its frequency shifted by the acoustic frequency (Doppler shift) and with intensity directly modulated by the acoustic amplitude.</p>
+<p>The key advantages of AOMs for photothermal microscopy are: (1) <strong>switching speed</strong>: typically ~100 ns, much faster than mechanical choppers; (2) <strong>modulation frequencies</strong>: 100 kHz to &gt;1 MHz, well-suited for lock-in detection; (3) <strong>efficiency</strong>: 80–90% of light can be directed into the first-order beam; (4) <strong>programmability</strong>: RF frequency and amplitude can be dynamically controlled. In a typical photothermal setup, the AOM modulates the pump beam at 100 kHz–1 MHz, and the lock-in amplifier is tuned to detect the photothermal signal at that exact frequency. Beyond photothermal microscopy, AOMs are ubiquitous in confocal scanning, STED (stimulated emission depletion microscopy for depletion beam control), and optical trapping, where precise, fast modulation of laser beams is essential.</p>
+</section>
+</section>
+<section id="photothermal-microscopy-practical-implementation" class="level2">
+<h2 class="anchored" data-anchor-id="photothermal-microscopy-practical-implementation">4. Photothermal Microscopy: Practical Implementation</h2>
+<section id="point-scanning-configuration" class="level3">
+<h3 class="anchored" data-anchor-id="point-scanning-configuration">Point-Scanning Configuration</h3>
+<p>A typical photothermal microscope operates as follows:</p>
+<ol type="1">
+<li><strong>Pump beam</strong> (high-power, typically 532 nm or 660 nm):
+<ul>
+<li>Focused to a diffraction-limited spot via high-NA objective</li>
+<li>Positioned at sample plane</li>
+</ul></li>
+<li><strong>Probe beam</strong> (low-power, often at different wavelength like 780 nm):
+<ul>
+<li>Co-aligned with pump (small offset possible)</li>
+<li>Focused to same spot</li>
+<li>Typically continuous-wave (CW)</li>
+</ul></li>
+<li><strong>Detected signal</strong>:
+<ul>
+<li>Forward transmission: probe transmitted through sample</li>
+<li>Backward (reflection): probe scattered by thermal lens</li>
+<li>Usually prefer backward detection (higher signal for small scatterers)</li>
+</ul></li>
+<li><strong>Scanning</strong>:
+<ul>
+<li>Raster-scan the objective (or sample)</li>
+<li>Record lock-in amplitude <span class="math inline">\(A(x, y)\)</span> at each pixel</li>
+<li>Build a <strong>photothermal image</strong></li>
+</ul></li>
+</ol>
+</section>
+<section id="advantages-of-photothermal-microscopy" class="level3">
+<h3 class="anchored" data-anchor-id="advantages-of-photothermal-microscopy">Advantages of Photothermal Microscopy</h3>
+<ul>
+<li><strong>Label-free</strong>: no fluorescent dyes needed</li>
+<li><strong>Background-free</strong>: lock-in at modulation frequency eliminates autofluorescence, scattered light</li>
+<li><strong>Sensitive</strong>: single nanoparticles, eventually single molecules</li>
+<li><strong>Contrast mechanism directly related to absorption</strong>: measures <span class="math inline">\(\sigma_{\text{abs}}\)</span> directly</li>
+</ul>
+</section>
+</section>
+<section id="single-particle-and-single-molecule-detection" class="level2">
+<h2 class="anchored" data-anchor-id="single-particle-and-single-molecule-detection">5. Single-Particle and Single-Molecule Detection</h2>
+<section id="gold-nanoparticles" class="level3">
+<h3 class="anchored" data-anchor-id="gold-nanoparticles">Gold Nanoparticles</h3>
+<p>Gold nanoparticles (AuNPs) are ideal model systems for photothermal detection:</p>
+<ul>
+<li><strong>Plasmonic resonance</strong>: localized surface plasmon resonance (LSPR) near 520 nm</li>
+<li><strong>Large absorption cross section</strong>: <span class="math inline">\(\sigma_{\text{abs}} \approx 10\text{–}100\)</span> nm<span class="math inline">\(^2\)</span> for <span class="math inline">\(d \approx 20\text{–}100\)</span> nm (much larger than geometric cross section <span class="math inline">\(\sim \pi (d/2)^2\)</span>)</li>
+<li><strong>Tunable absorption</strong>: resonance wavelength shifts with size and environment</li>
+<li><strong>Biocompatible</strong>: can be functionalized with antibodies, targeting ligands</li>
+</ul>
+<p>For a 50 nm AuNP at resonance with 1 mW focused into a <span class="math inline">\(\sim 500\)</span> nm spot: <span class="math display">\[I_0 \sim 10^9 \text{ W/cm}^2 = 10^5 \text{ W/m}^2\]</span> <span class="math display">\[P_{\text{abs}} = \sigma_{\text{abs}} I_0 \approx (10 \text{ nm}^2) \cdot (10^5 \text{ W/m}^2) \sim 1\text{–}10 \text{ pW}\]</span></p>
+<p>This tiny power still produces a measurable temperature rise and detectable phase shift!</p>
+</section>
+<section id="single-molecule-photothermal-detection" class="level3">
+<h3 class="anchored" data-anchor-id="single-molecule-photothermal-detection">Single-Molecule Photothermal Detection</h3>
+<p>Can we detect individual <strong>organic dye molecules</strong> or <strong>small proteins</strong>?</p>
+<ul>
+<li>Absorption cross section of a dye: <span class="math inline">\(\sigma_{\text{abs}} \sim 10^{-3}\text{–}10^{-2}\)</span> nm<span class="math inline">\(^2\)</span> (much smaller than AuNP)</li>
+<li>Required pump intensity: <span class="math inline">\(I_0 \sim 10^{10}\text{–}10^{11}\)</span> W/cm<span class="math inline">\(^2\)</span> (high photodamage risk)</li>
+<li>Temperature rise around molecule: ΔT <span class="math inline">\(\sim\)</span> 0.1–1 K</li>
+<li>Signal: <span class="math inline">\(\Delta \phi \sim 10^{-5}\text{–}10^{-3}\)</span> rad (still detectable with lock-in!)</li>
+</ul>
+<p><strong>Challenge</strong>: photobleaching at such high intensities. But under controlled conditions, <strong>single dyes and small proteins</strong> have been detected phototermally with good signal-to-noise ratio.</p>
+<p><strong>Key advantage</strong>: unlike fluorescence, no quantum yield limit—every absorbed photon counts, independent of emission efficiency.</p>
+</section>
+</section>
+<section id="photothermal-heterodyne-imaging-phi" class="level2">
+<h2 class="anchored" data-anchor-id="photothermal-heterodyne-imaging-phi">6. Photothermal Heterodyne Imaging (PHI)</h2>
+<section id="heterodyne-detection-principle" class="level3">
+<h3 class="anchored" data-anchor-id="heterodyne-detection-principle">Heterodyne Detection Principle</h3>
+<p>A more sensitive variant of photothermal microscopy uses <strong>heterodyne detection</strong>. The idea:</p>
+<ul>
+<li>Interfere the <strong>scattered probe field</strong> (from the thermal lens) with a <strong>reference field</strong></li>
+<li>This interference creates a signal proportional to the <strong>amplitude</strong> of the thermal lens effect</li>
+<li>Similar to heterodyne interferometry in laser Doppler velocimetry</li>
+</ul>
+</section>
+<section id="mathematical-formulation" class="level3">
+<h3 class="anchored" data-anchor-id="mathematical-formulation">Mathematical Formulation</h3>
+<p>Let: - <span class="math inline">\(E_{\text{scat}}(t) = A_{\text{scat}} e^{i(\mathbf{k}_p \cdot \mathbf{r} + 2\pi f_p t)}\)</span>: scattered probe field due to thermal lens - <span class="math inline">\(E_{\text{ref}}(t) = A_{\text{ref}} e^{i(2\pi f_p t + \phi_0)}\)</span>: reference field - <span class="math inline">\(E_{\text{beat}}(t) = A_{\text{ref}} e^{i\phi_0}\)</span>: beating at the detector</p>
+<p>The <strong>heterodyne gain</strong> comes from the term: <span class="math display">\[I_{\text{het}} \propto 2 A_{\text{ref}} A_{\text{scat}} \cos(\phi_{\text{scat}} - \phi_0)\]</span></p>
+<p>For weak scattering (<span class="math inline">\(A_{\text{scat}} \ll A_{\text{ref}}\)</span>): <span class="math display">\[I_{\text{het}} \approx 2 A_{\text{ref}} A_{\text{scat}}\]</span></p>
+<p>Compared to <strong>homodyne</strong> (direct intensity) detection: <span class="math display">\[I_{\text{hom}} \propto A_{\text{scat}}^2\]</span></p>
+<p>Heterodyne amplifies the signal by the reference amplitude—a <strong>gain of <span class="math inline">\(A_{\text{ref}}/A_{\text{scat}} \gg 1\)</span></strong>.</p>
+</section>
+<section id="phi-sensitivity-scaling" class="level3">
+<h3 class="anchored" data-anchor-id="phi-sensitivity-scaling">PHI Sensitivity Scaling</h3>
+<p>The photothermal heterodyne signal is proportional to: <span class="math display">\[S_{\text{PHI}} \propto A_{\text{ref}} \cdot (\nabla n) \cdot P_{\text{abs}} \propto \sigma_{\text{abs}}\]</span></p>
+<p><strong>Direct measurement of absorption cross section!</strong></p>
+<p>This makes PHI particularly powerful for: - Comparing absorption spectra of single nanoparticles - Measuring small changes in absorption (e.g., conformational changes in proteins) - Wavelength-dependent single-particle spectroscopy</p>
+</section>
+</section>
+<section id="applications-from-nanoscience-to-biosensing" class="level2">
+<h2 class="anchored" data-anchor-id="applications-from-nanoscience-to-biosensing">7. Applications: From Nanoscience to Biosensing</h2>
+<section id="label-free-nanoparticle-imaging" class="level3">
+<h3 class="anchored" data-anchor-id="label-free-nanoparticle-imaging">1. Label-Free Nanoparticle Imaging</h3>
+<p>Map the spatial distribution of absorbing nanoparticles (Au, Ag, carbon dots) without adding fluorescent labels.</p>
+<p><strong>Example</strong>: imaging plasmonic nanoparticles in cellular uptake studies - Detect size-dependent absorption changes - Map nanoparticle localization to subcellular organelles - No photobleaching, no fluorescence intermittency</p>
+</section>
+<section id="single-molecule-absorption-spectroscopy" class="level3">
+<h3 class="anchored" data-anchor-id="single-molecule-absorption-spectroscopy">2. Single-Molecule Absorption Spectroscopy</h3>
+<p>Measure absorption spectra of individual protein molecules, oligonucleotides, or chromophore complexes.</p>
+<p><strong>Key results</strong>: - Heterogeneous absorption profiles not visible in bulk measurements - Direct access to intrinsic absorption without fluorescence yield assumptions - Dynamic absorption changes during protein folding/unfolding</p>
+</section>
+<section id="biosensing-and-molecular-diagnostics" class="level3">
+<h3 class="anchored" data-anchor-id="biosensing-and-molecular-diagnostics">3. Biosensing and Molecular Diagnostics</h3>
+<p>Use photothermal microscopy to detect: - <strong>Biomarker binding</strong>: functionalize Au nanoparticles with antibodies; signal increases upon antigen binding - <strong>DNA hybridization</strong>: Au particles conjugated to complementary probes; detectable upon target DNA capture - <strong>Protein-protein interactions</strong>: monitor absorption changes at single-molecule level</p>
+<p>Advantages: - No enzyme-linked assays needed - Label-free (or minimal labeling) - Real-time kinetics - Multiplexing possible (different wavelengths, sizes)</p>
+</section>
+<section id="nanoparticle-tracking-analysis-nta" class="level3">
+<h3 class="anchored" data-anchor-id="nanoparticle-tracking-analysis-nta">4. Nanoparticle Tracking Analysis (NTA)</h3>
+<p>Combine photothermal detection with particle tracking: - Track Brownian motion of gold nanoparticles through viscous fluid - <strong>Measure diffusion coefficient</strong>: <span class="math inline">\(D = k_B T / (6\pi \eta r)\)</span> (Stokes relation) - <strong>Infer hydrodynamic size</strong> of viruses, exosomes, micelles - Distinguish aggregation states in real-time</p>
+<p>Signal-to-noise is excellent because photothermal detection is <strong>background-free</strong>.</p>
+</section>
+</section>
+<section id="connection-to-photoacoustic-imaging" class="level2">
+<h2 class="anchored" data-anchor-id="connection-to-photoacoustic-imaging">8. Connection to Photoacoustic Imaging</h2>
+<section id="pulsed-excitation-and-acoustic-transduction" class="level3">
+<h3 class="anchored" data-anchor-id="pulsed-excitation-and-acoustic-transduction">Pulsed Excitation and Acoustic Transduction</h3>
+<p>Photothermal detection operates in the <strong>thermal regime</strong> (modulation frequencies 1–100 kHz, thermal diffusion time <span class="math inline">\(\sim 1\)</span> μs for micron-scale structures).</p>
+<p><strong>Photoacoustic imaging</strong> uses <strong>pulsed laser excitation</strong> (short pulses, sub-nanosecond timescale):</p>
+<ol type="1">
+<li><strong>Ultrashort pulse</strong> (<span class="math inline">\(\tau_p \ll \tau_T\)</span>) deposits energy locally</li>
+<li><strong>Rapid heating</strong> creates <strong>pressure transient</strong>: <span class="math inline">\(\Delta p \propto \beta \Delta T\)</span></li>
+<li><strong>Acoustic wave propagation</strong>: ultrasonic frequency, ~1 MHz</li>
+<li><strong>Detection</strong>: piezo transducers, microphone, or interferometric detection</li>
+</ol>
+</section>
+<section id="why-pulsed-deeper-penetration" class="level3">
+<h3 class="anchored" data-anchor-id="why-pulsed-deeper-penetration">Why Pulsed? Deeper Penetration</h3>
+<ul>
+<li><strong>Photothermal imaging</strong> limited by thermal diffusion: penetration depth <span class="math inline">\(\sim \sqrt{D_T / f_m}\)</span> (typically few hundred μm at 1 kHz modulation)</li>
+<li><strong>Photoacoustic imaging</strong> uses acoustic propagation (much longer range in tissue): penetration depth ~ few mm to cm</li>
+<li>Acoustic scattering is much weaker than optical scattering</li>
+<li>Perfect for <strong>biomedical imaging</strong>: can visualize hemoglobin, melanin in deep tissue layers</li>
+</ul>
+</section>
+<section id="unified-framework" class="level3">
+<h3 class="anchored" data-anchor-id="unified-framework">Unified Framework</h3>
+<p>Both techniques detect the <strong>same fundamental process</strong>: <span class="math display">\[\text{Photon absorption} \to \text{Heat generation} \to \text{Refractive index/acoustic change}\]</span></p>
+<ul>
+<li><strong>Photothermal</strong> (CW, modulated): measures spatially-resolved temperature field via optical phase</li>
+<li><strong>Photoacoustic</strong> (pulsed): measures temporal pressure transient via acoustic wave</li>
+</ul>
+<p>For molecules and nanoparticles, both measure the <strong>absorption cross section</strong> <span class="math inline">\(\sigma_{\text{abs}}\)</span>.</p>
+<hr>
+</section>
+</section>
+<section id="code-example-1-temperature-profile-around-a-heated-nanoparticle" class="level2">
+<h2 class="anchored" data-anchor-id="code-example-1-temperature-profile-around-a-heated-nanoparticle">Code Example 1: Temperature Profile Around a Heated Nanoparticle</h2>
+<div id="332e0385" class="cell" data-execution_count="2">
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="01-lecture13_files/figure-html/cell-3-output-1.png" width="569" height="276" class="figure-img"></p>
+<figcaption>Temperature profile and 2D heat distribution (hot colormap: temperature rise <span class="math inline">\(\Delta T\)</span> in K) around an absorbing nanoparticle (Gaussian pump profile).</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Temperature rise at r = 0.1 μm: ΔT ≈ 0.00 K
+Temperature rise at r = 1 μm: ΔT ≈ 0.00 K</code></pre>
+</div>
+</div>
+</section>
+<section id="code-example-2-thermal-lens-effectprobe-beam-phase-shift" class="level2">
+<h2 class="anchored" data-anchor-id="code-example-2-thermal-lens-effectprobe-beam-phase-shift">Code Example 2: Thermal Lens Effect—Probe Beam Phase Shift</h2>
+<div id="44e39e2f" class="cell" data-execution_count="3">
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="01-lecture13_files/figure-html/cell-4-output-1.png" width="473" height="248" class="figure-img"></p>
+<figcaption>Phase shift experienced by probe beam passing through thermal lens created by heated nanoparticle.</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Maximum phase shift (co-aligned beams): 0.000 mrad
+Phase shift at 1 μm separation: 0.0000 mrad</code></pre>
+</div>
+</div>
+</section>
+<section id="code-example-3-lock-in-detection-principle" class="level2">
+<h2 class="anchored" data-anchor-id="code-example-3-lock-in-detection-principle">Code Example 3: Lock-in Detection Principle</h2>
+<div id="ffdaa9ba" class="cell" data-execution_count="4">
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="01-lecture13_files/figure-html/cell-5-output-1.png" width="551" height="250" class="figure-img"></p>
+<figcaption>Lock-in detection principle: modulated signal buried in noise is recovered through synchronous demodulation and low-pass filtering.</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>SNR before lock-in: 0.053 (-12.7 dB)
+SNR after lock-in: 99.809 (20.0 dB)
+Noise rejection: 1867.0× improvement</code></pre>
+</div>
+</div>
+</section>
+<section id="code-example-4-photothermal-signal-vs.-nanoparticle-size" class="level2">
+<h2 class="anchored" data-anchor-id="code-example-4-photothermal-signal-vs.-nanoparticle-size">Code Example 4: Photothermal Signal vs.&nbsp;Nanoparticle Size</h2>
+<div id="d0867877" class="cell" data-execution_count="5">
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="01-lecture13_files/figure-html/cell-6-output-1.png" width="549" height="249" class="figure-img"></p>
+<figcaption>Photothermal signal scales with absorption cross section, which varies strongly with nanoparticle size and material.</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Absorption cross section (relative units):
+  r = 20 nm: σ_abs = 11.9
+  r = 50 nm: σ_abs = 620.3 (resonance peak)
+  r = 80 nm: σ_abs = 789.5
+
+Photothermal signal enhancement from 20→50 nm: 52.3×</code></pre>
+</div>
+</div>
+<hr>
+</section>
+<section id="summary-and-key-takeaways" class="level2">
+<h2 class="anchored" data-anchor-id="summary-and-key-takeaways">Summary and Key Takeaways</h2>
+<p><strong>Photothermal detection</strong> is a powerful, label-free technique that exploits a fundamental connection:</p>
+<p><span class="math display">\[\text{Absorbed light} \longrightarrow \text{Heat} \longrightarrow \text{Refractive index change} \longrightarrow \text{Phase/intensity modulation}\]</span></p>
+<p>Key concepts: 1. <strong>Temperature gradients</strong> scale as <span class="math inline">\(\Delta T(r) = P_{\text{abs}} / (4\pi \kappa r)\)</span> in 3D 2. <strong>Thermal lensing</strong> creates phase shifts detectable with a probe beam 3. <strong>Lock-in detection</strong> at the pump modulation frequency provides background-free signal 4. <strong>Absorption cross section</strong> is directly measured—especially large for plasmonic nanoparticles 5. <strong>Single-particle and single-molecule</strong> sensitivity is achievable with appropriate configurations 6. <strong>PHI</strong> (photothermal heterodyne imaging) uses interference for enhanced sensitivity 7. <strong>Applications</strong> span nanoscience (nanoparticle tracking), biosensing (molecular binding), and deep-tissue imaging (photoacoustic variant)</p>
+<p>This technique beautifully demonstrates how fundamental physics principles—thermal conduction, optics, and signal processing—combine to create modern analytical tools used daily in research labs worldwide.</p>
+<hr>
+</section>
+<section id="experimental-connections" class="level2">
+<h2 class="anchored" data-anchor-id="experimental-connections">Experimental Connections</h2>
+<p>Photothermal detection combines optics, thermodynamics, and signal processing — a rich playground for experiments:</p>
+<p><strong>Thermal lens effect in absorbing liquids</strong> Focus a laser (even a laser pointer) into a cuvette of dilute ink or coffee. Place a screen behind the cuvette and observe the far-field beam profile changing over seconds — the thermal lens causes the beam to diverge. Block the beam and watch it relax. The timescale is set by thermal diffusion.</p>
+<p><strong>Lock-in detection principle</strong> Modulate a light source (LED with a function generator) at a known frequency. Detect with a photodiode and an oscilloscope — the signal is buried in noise. Now use a lock-in amplifier (or a software lock-in: multiply by the reference and low-pass filter). The signal-to-noise improvement is dramatic and teaches why modulation is essential for sensitive detection.</p>
+<p><strong>Photothermal contrast of metal nanoparticles</strong> Gold nanoparticles (50–100 nm) absorb strongly at 532 nm. Deposit them on a coverslip, illuminate with a modulated green laser (heating beam), and probe the refractive index change with a red probe beam. Even without a commercial photothermal microscope, the principle can be demonstrated with a simple two-beam setup and a lock-in amplifier.</p>
+<p><strong>Absorption vs.&nbsp;scattering: comparing nanoparticle signals</strong> Compare darkfield (scattering) and photothermal (absorption) images of the same gold nanoparticle sample. Small particles (&lt; 40 nm) are nearly invisible in darkfield but clearly detected in photothermal imaging — this teaches the <span class="math inline">\(a^3\)</span> vs.&nbsp;<span class="math inline">\(a^6\)</span> scaling of absorption vs.&nbsp;scattering cross-sections.</p>
+<p><strong>Thermal diffusion timescale measurement</strong> Vary the modulation frequency of the heating beam and measure the photothermal signal amplitude. The roll-off frequency corresponds to <span class="math inline">\(f_c \sim D_\text{th} / w_0^2\)</span>, where <span class="math inline">\(D_\text{th}\)</span> is the thermal diffusivity and <span class="math inline">\(w_0\)</span> the beam waist. This connects the signal to the heat equation solved in the lecture.</p>
+</section>
+<section id="further-reading" class="level2">
+<h2 class="anchored" data-anchor-id="further-reading">Further Reading</h2>
+<p>The following references are linked to the central <a href="../../resources/resources.html">Resources &amp; Recommended Reading</a> page:</p>
+<ul>
+<li><strong><a href="../../resources/resources.html#sec-bialkowski">Bialkowski (2019)</a></strong> — <em>Photothermal Spectroscopy Methods</em>. Comprehensive on thermal lensing, deflection, and interferometric detection.</li>
+<li><strong><a href="../../resources/resources.html#sec-berciaud">Berciaud et al.&nbsp;(2004)</a></strong> — Seminal paper on photothermal heterodyne imaging of single nanoparticles.</li>
+<li><strong><a href="../../resources/resources.html#sec-novotny">Novotny &amp; Hecht (2012)</a></strong> — <em>Principles of Nano-Optics</em>. Single-molecule and single-particle detection theory.</li>
+<li><strong><a href="../../resources/resources.html#sec-bohren">Bohren &amp; Huffman (2004)</a></strong> — <em>Absorption and Scattering of Light by Small Particles</em>. Cross-section calculations for understanding signal strength.</li>
+<li><strong><a href="../../resources/resources.html#sec-saleh">Saleh &amp; Teich, Ch. 22</a></strong> — Acousto-optics and modulation techniques (relevant to lock-in methods).</li>
+</ul>
+<hr>
+<p><em>Lecture 13: Photothermal Detection &amp; Sensing — Introduction to Photonics</em></p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/fcichos\.github\.io\/Photonics\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

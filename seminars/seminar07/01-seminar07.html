@@ -1,0 +1,1573 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.34">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Seminar 7 — Active Matter Workshop &amp; Course Review – Photonics</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-9344fb9851b4da3cab95007ef9d770dc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../assets/css/styles.css">
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Photonics</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../../index.html" aria-current="page"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Seminar 7 — Active Matter Workshop &amp; Course Review</li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="../../index.html" class="sidebar-logo-link">
+      <img src="../../assets/images/mona_logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home</span></a>
+  </div>
+</li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Course Info</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-info/intructors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Instructor</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-info/schedule.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Schedule</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-info/resources.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Ressources</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-info/seminars.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Seminars</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-info/exam.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exams</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">PART I: FOUNDATIONS</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Lecture 1 — Introduction, Ray Optics &amp; Wave Optics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture01/introduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture01/01-lecture01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Ray Optics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture01/02-lecture01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Optical Elements</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture02/01-lecture02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Matrix Optics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture02/02-lecture02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wave Optics</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#problem-1-optical-trap-stiffness-and-equipartition-theorem" id="toc-problem-1-optical-trap-stiffness-and-equipartition-theorem" class="nav-link" data-scroll-target="#problem-1-optical-trap-stiffness-and-equipartition-theorem">Problem 1: Optical Trap Stiffness and Equipartition Theorem</a></li>
+  <li><a href="#problem-2-thermophoresis-in-janus-particles" id="toc-problem-2-thermophoresis-in-janus-particles" class="nav-link" data-scroll-target="#problem-2-thermophoresis-in-janus-particles">Problem 2: Thermophoresis in Janus Particles</a></li>
+  <li><a href="#problem-3-brownian-vs.-active-motion" id="toc-problem-3-brownian-vs.-active-motion" class="nav-link" data-scroll-target="#problem-3-brownian-vs.-active-motion">Problem 3: Brownian vs.&nbsp;Active Motion</a></li>
+  <li><a href="#problem-4-monte-carlo-simulation-of-brownian-and-active-motion" id="toc-problem-4-monte-carlo-simulation-of-brownian-and-active-motion" class="nav-link" data-scroll-target="#problem-4-monte-carlo-simulation-of-brownian-and-active-motion">Problem 4: Monte Carlo Simulation of Brownian and Active Motion</a></li>
+  <li><a href="#problem-5-photon-nudging-strategy" id="toc-problem-5-photon-nudging-strategy" class="nav-link" data-scroll-target="#problem-5-photon-nudging-strategy">Problem 5: Photon Nudging Strategy</a></li>
+  <li><a href="#problem-6-course-review-summary-of-key-formulas" id="toc-problem-6-course-review-summary-of-key-formulas" class="nav-link" data-scroll-target="#problem-6-course-review-summary-of-key-formulas">Problem 6: Course Review — Summary of Key Formulas</a></li>
+  <li><a href="#reflection-questions" id="toc-reflection-questions" class="nav-link" data-scroll-target="#reflection-questions">Reflection Questions</a></li>
+  <li><a href="#final-note" id="toc-final-note" class="nav-link" data-scroll-target="#final-note">Final Note</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Seminar 7 — Active Matter Workshop &amp; Course Review</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>This final seminar explores active matter and optical manipulation, with a focus on microswimmers and light-driven particles. We then provide a comprehensive review of key concepts and formulas from the entire course.</p>
+<hr>
+</section>
+<section id="problem-1-optical-trap-stiffness-and-equipartition-theorem" class="level2">
+<h2 class="anchored" data-anchor-id="problem-1-optical-trap-stiffness-and-equipartition-theorem">Problem 1: Optical Trap Stiffness and Equipartition Theorem</h2>
+<p><strong>Problem Statement:</strong></p>
+<p>When a dielectric particle is trapped in a tightly focused laser beam, it experiences a restoring force proportional to displacement:</p>
+<p><span class="math display">\[F = -\kappa x\]</span></p>
+<p>where <span class="math inline">\(\kappa\)</span> is the <strong>trap stiffness</strong>. At thermal equilibrium, the equipartition theorem tells us:</p>
+<p><span class="math display">\[\left\langle \frac{1}{2} \kappa x^2 \right\rangle = \frac{1}{2} k_B T\]</span></p>
+<p><strong>a)</strong> A <strong>1 µm polystyrene bead</strong> in an optical trap has stiffness <span class="math inline">\(\kappa = 10\)</span> pN/µm. Calculate the position variance <span class="math inline">\(\langle x^2 \rangle\)</span> at room temperature (T = 300 K).</p>
+<p><strong>b)</strong> What is the typical position fluctuation (standard deviation) in nm?</p>
+<p><strong>c)</strong> Why does a stiffer trap lead to smaller positional variance? Explain physically.</p>
+<div id="75487a6b" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Optical trap stiffness and equipartition</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>k_B <span class="op">=</span> <span class="fl">1.38e-23</span>  <span class="co"># J/K</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> <span class="dv">300</span>  <span class="co"># K</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>kappa <span class="op">=</span> <span class="dv">10</span>  <span class="co"># pN/µm</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to SI units for consistency</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>kappa_SI <span class="op">=</span> kappa <span class="op">*</span> <span class="fl">1e-12</span> <span class="op">/</span> <span class="fl">1e-6</span>  <span class="co"># pN/µm → N/m = 10e-3 N/m = 0.01 N/m</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Optical Trap Stiffness (Equipartition Theorem)"</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span> <span class="op">*</span> <span class="dv">50</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Trap stiffness: κ = </span><span class="sc">{</span>kappa<span class="sc">}</span><span class="ss"> pN/µm = </span><span class="sc">{</span>kappa_SI<span class="sc">:.3e}</span><span class="ss"> N/m"</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Temperature: T = </span><span class="sc">{</span>T<span class="sc">}</span><span class="ss"> K"</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Boltzmann constant: k_B = </span><span class="sc">{</span>k_B<span class="sc">:.3e}</span><span class="ss"> J/K"</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Part a): variance from equipartition</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co"># &lt;1/2 · κ · x²&gt; = 1/2 · k_B · T</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co"># &lt;x²&gt; = k_B · T / κ</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>x2_variance_SI <span class="op">=</span> k_B <span class="op">*</span> T <span class="op">/</span> kappa_SI  <span class="co"># m²</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>x2_variance_um <span class="op">=</span> x2_variance_SI <span class="op">*</span> <span class="fl">1e12</span>  <span class="co"># µm²</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>x2_variance_nm <span class="op">=</span> x2_variance_SI <span class="op">*</span> <span class="fl">1e18</span>  <span class="co"># nm²</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Part a) Position variance:"</span>)</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  &lt;x²&gt; = k_B·T / κ"</span>)</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  &lt;x²&gt; = </span><span class="sc">{</span>x2_variance_SI<span class="sc">:.3e}</span><span class="ss"> m²"</span>)</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  &lt;x²&gt; = </span><span class="sc">{</span>x2_variance_nm<span class="sc">:.1f}</span><span class="ss"> nm²"</span>)</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Part b): standard deviation (RMS displacement)</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>x_rms <span class="op">=</span> np.sqrt(x2_variance_SI) <span class="op">*</span> <span class="fl">1e9</span>  <span class="co"># convert to nm</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Part b) RMS displacement (position fluctuation):"</span>)</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  σ_x = √&lt;x²&gt; = </span><span class="sc">{</span>x_rms<span class="sc">:.2f}</span><span class="ss"> nm"</span>)</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="co"># Part c): show dependence on trap stiffness</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>kappas <span class="op">=</span> np.array([<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">50</span>]) <span class="op">*</span> <span class="fl">1e-3</span>  <span class="co"># N/m</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>x_rms_array <span class="op">=</span> np.sqrt(k_B <span class="op">*</span> T <span class="op">/</span> kappas) <span class="op">*</span> <span class="fl">1e9</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Part c) Dependence on trap stiffness:"</span>)</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> k, x <span class="kw">in</span> <span class="bu">zip</span>(kappas<span class="op">*</span><span class="fl">1e3</span>, x_rms_array):</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"  κ = </span><span class="sc">{</span>k<span class="sc">:.2e}</span><span class="ss"> N/m (</span><span class="sc">{</span>k<span class="op">/</span><span class="fl">1e-3</span><span class="sc">:.1f}</span><span class="ss"> pN/µm) → σ_x = </span><span class="sc">{</span>x<span class="sc">:.2f}</span><span class="ss"> nm"</span>)</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">  Stiffer trap → smaller variance (weaker thermal fluctuations)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Optical Trap Stiffness (Equipartition Theorem)
+==================================================
+Trap stiffness: κ = 10 pN/µm = 1.000e-05 N/m
+Temperature: T = 300 K
+Boltzmann constant: k_B = 1.380e-23 J/K
+
+Part a) Position variance:
+  &lt;x²&gt; = k_B·T / κ
+  &lt;x²&gt; = 4.140e-16 m²
+  &lt;x²&gt; = 414.0 nm²
+
+Part b) RMS displacement (position fluctuation):
+  σ_x = √&lt;x²&gt; = 20.35 nm
+
+Part c) Dependence on trap stiffness:
+  κ = 1.00e+00 N/m (1000.0 pN/µm) → σ_x = 2.03 nm
+  κ = 5.00e+00 N/m (5000.0 pN/µm) → σ_x = 0.91 nm
+  κ = 1.00e+01 N/m (10000.0 pN/µm) → σ_x = 0.64 nm
+  κ = 2.00e+01 N/m (20000.0 pN/µm) → σ_x = 0.45 nm
+  κ = 5.00e+01 N/m (50000.0 pN/µm) → σ_x = 0.29 nm
+
+  Stiffer trap → smaller variance (weaker thermal fluctuations)</code></pre>
+</div>
+</div>
+<hr>
+</section>
+<section id="problem-2-thermophoresis-in-janus-particles" class="level2">
+<h2 class="anchored" data-anchor-id="problem-2-thermophoresis-in-janus-particles">Problem 2: Thermophoresis in Janus Particles</h2>
+<p><strong>Problem Statement:</strong></p>
+<p>A <strong>Janus particle</strong> (half-coated with gold, half with silica) is heated by a focused laser. The temperature gradient induces a <strong>thermophoretic drift</strong> toward the cold side.</p>
+<p>The thermophoretic velocity is:</p>
+<p><span class="math display">\[v_{\text{TP}} = -D_T \nabla T\]</span></p>
+<p>where <span class="math inline">\(D_T = D \cdot S_T\)</span> is the thermophoretic diffusion coefficient, <span class="math inline">\(D\)</span> is the Brownian diffusion coefficient, and <span class="math inline">\(S_T\)</span> is the <strong>Soret coefficient</strong>.</p>
+<p><strong>a)</strong> A 1 µm Janus sphere has <span class="math inline">\(D = 1\)</span> µm²/s (from Stokes-Einstein) and Soret coefficient <span class="math inline">\(S_T = 0.1\)</span> K⁻¹. A focused laser creates a temperature gradient <span class="math inline">\(\nabla T = 1\)</span> K/µm.</p>
+<p>Calculate the thermophoretic drift velocity.</p>
+<p><strong>b)</strong> In an optical trap, the particle experiences both a trapping force and thermophoretic force. At equilibrium:</p>
+<p><span class="math display">\[\kappa (x - x_0) = -D_T \frac{\partial T}{\partial x}\]</span></p>
+<p>where <span class="math inline">\(x_0\)</span> is the trap equilibrium without temperature gradient. If <span class="math inline">\(\kappa = 10\)</span> pN/µm, estimate the trap displacement <span class="math inline">\(\Delta x\)</span>.</p>
+<p><strong>c)</strong> How would you use this effect to propel a microswimmer toward a target?</p>
+<div id="0d9fa6d5" class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Thermophoresis calculation</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>D <span class="op">=</span> <span class="dv">1</span>  <span class="co"># µm²/s</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>S_T <span class="op">=</span> <span class="fl">0.1</span>  <span class="co"># K⁻¹</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>dT_dx <span class="op">=</span> <span class="dv">1</span>  <span class="co"># K/µm</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Thermophoresis in Janus Particles"</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span> <span class="op">*</span> <span class="dv">50</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Diffusion coefficient: D = </span><span class="sc">{</span>D<span class="sc">}</span><span class="ss"> µm²/s"</span>)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Soret coefficient: S_T = </span><span class="sc">{</span>S_T<span class="sc">}</span><span class="ss"> K⁻¹"</span>)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Temperature gradient: ∇T = </span><span class="sc">{</span>dT_dx<span class="sc">}</span><span class="ss"> K/µm"</span>)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Part a): thermophoretic velocity</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>D_T <span class="op">=</span> D <span class="op">*</span> S_T  <span class="co"># µm²/(s·K)</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>v_TP <span class="op">=</span> <span class="op">-</span>D_T <span class="op">*</span> dT_dx  <span class="co"># µm/s (negative = toward cold)</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Part a) Thermophoretic velocity:"</span>)</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  D_T = D·S_T = </span><span class="sc">{</span>D<span class="sc">}</span><span class="ss"> × </span><span class="sc">{</span>S_T<span class="sc">}</span><span class="ss"> = </span><span class="sc">{</span>D_T<span class="sc">}</span><span class="ss"> µm²/(s·K)"</span>)</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  v_TP = -D_T·(∇T) = -</span><span class="sc">{</span>D_T<span class="sc">}</span><span class="ss"> × </span><span class="sc">{</span>dT_dx<span class="sc">}</span><span class="ss"> = </span><span class="sc">{</span>v_TP<span class="sc">}</span><span class="ss"> µm/s"</span>)</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  (moves toward cold side at </span><span class="sc">{</span><span class="bu">abs</span>(v_TP)<span class="sc">}</span><span class="ss"> µm/s)"</span>)</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Part b): trap displacement at equilibrium</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>kappa <span class="op">=</span> <span class="dv">10</span>  <span class="co"># pN/µm</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>kappa_SI <span class="op">=</span> kappa <span class="op">*</span> <span class="fl">1e-12</span> <span class="op">/</span> <span class="fl">1e-6</span>  <span class="co"># N/m</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Force balance: κ·Δx = D_T·(∇T)</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="co"># D_T in SI units: D = 1 µm²/s = 1e-12 m²/s</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="co"># S_T is in K⁻¹, so D_T·(∇T) has units m²/s × K⁻¹ × K/m = m/s</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="co"># But we need force...</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Actually: thermophoretic force F_TP ~ D_T·∇T (drift velocity × friction)</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a><span class="co"># F = -ξ·v_TP = -6πηa·v_TP, but it's easier to use equilibrium directly</span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>D_SI <span class="op">=</span> D <span class="op">*</span> <span class="fl">1e-12</span>  <span class="co"># m²/s</span></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>dT_dx_SI <span class="op">=</span> dT_dx <span class="op">*</span> <span class="fl">1e3</span>  <span class="co"># K/m</span></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>v_TP_SI <span class="op">=</span> <span class="bu">abs</span>(D_T <span class="op">*</span> <span class="fl">1e-12</span> <span class="op">*</span> dT_dx_SI)  <span class="co"># m/s</span></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a><span class="co"># In equilibrium with trap: κ·Δx = ξ·v_TP where ξ = 6πηa ≈ F/v</span></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Alternative: use that particle sits at position where thermal gradient force balances trap</span></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a><span class="co"># F_thermal ~ k_B·T·S_T·∇T (rough estimate from thermal energy)</span></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>F_thermal_approx <span class="op">=</span> k_B <span class="op">*</span> T <span class="op">*</span> S_T <span class="op">*</span> dT_dx_SI</span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>Delta_x <span class="op">=</span> F_thermal_approx <span class="op">/</span> kappa_SI <span class="op">*</span> <span class="fl">1e9</span>  <span class="co"># nm</span></span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Part b) Trap displacement:"</span>)</span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Estimated thermophoretic force ~"</span>)</span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"    F ~ k_B·T·S_T·(∇T) ~ </span><span class="sc">{</span>F_thermal_approx<span class="sc">:.3e}</span><span class="ss"> N"</span>)</span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Trap displacement:"</span>)</span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"    Δx = F / κ ~ </span><span class="sc">{</span>Delta_x<span class="sc">:.2f}</span><span class="ss"> nm"</span>)</span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  (particle shifts toward hot side inside trap)"</span>)</span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Part c) Thermophoretic guidance:"</span>)</span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  - Design a temperature gradient pointing toward target"</span>)</span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  - Particle drifts thermophoretically at ~</span><span class="sc">{</span><span class="bu">abs</span>(v_TP)<span class="sc">:.2f}</span><span class="ss"> µm/s"</span>)</span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  - Can be combined with other propulsion (self-phoresis)"</span>)</span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  - Example: gold half acts as heater and plasmonic engine"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Thermophoresis in Janus Particles
+==================================================
+Diffusion coefficient: D = 1 µm²/s
+Soret coefficient: S_T = 0.1 K⁻¹
+Temperature gradient: ∇T = 1 K/µm
+
+Part a) Thermophoretic velocity:
+  D_T = D·S_T = 1 × 0.1 = 0.1 µm²/(s·K)
+  v_TP = -D_T·(∇T) = -0.1 × 1 = -0.1 µm/s
+  (moves toward cold side at 0.1 µm/s)
+
+Part b) Trap displacement:
+  Estimated thermophoretic force ~
+    F ~ k_B·T·S_T·(∇T) ~ 4.140e-19 N
+  Trap displacement:
+    Δx = F / κ ~ 0.00 nm
+  (particle shifts toward hot side inside trap)
+
+Part c) Thermophoretic guidance:
+  - Design a temperature gradient pointing toward target
+  - Particle drifts thermophoretically at ~0.10 µm/s
+  - Can be combined with other propulsion (self-phoresis)
+  - Example: gold half acts as heater and plasmonic engine</code></pre>
+</div>
+</div>
+<hr>
+</section>
+<section id="problem-3-brownian-vs.-active-motion" class="level2">
+<h2 class="anchored" data-anchor-id="problem-3-brownian-vs.-active-motion">Problem 3: Brownian vs.&nbsp;Active Motion</h2>
+<p><strong>Problem Statement:</strong></p>
+<p>For a <strong>passive Brownian particle</strong> in 2D, the mean-squared displacement grows linearly with time:</p>
+<p><span class="math display">\[\langle r^2 \rangle = 4Dt\]</span></p>
+<p>where <span class="math inline">\(D\)</span> is the diffusion coefficient.</p>
+<p>For an <strong>active Brownian particle</strong> (self-propelled with speed <span class="math inline">\(v\)</span>), the MSD is:</p>
+<p><span class="math display">\[\langle r^2 \rangle = v^2 \tau_r^2 \left[ \frac{2t}{\tau_r} + e^{-2t/\tau_r} - 1 \right]\]</span></p>
+<p>where <span class="math inline">\(\tau_r = 1/(2D_r)\)</span> is the rotational diffusion time and <span class="math inline">\(D_r\)</span> is the rotational diffusion coefficient.</p>
+<p><strong>a)</strong> Show that at short times (<span class="math inline">\(t \ll \tau_r\)</span>), active motion gives <span class="math inline">\(\langle r^2 \rangle \approx v^2 t^2\)</span> (ballistic motion).</p>
+<p><strong>b)</strong> Show that at long times (<span class="math inline">\(t \gg \tau_r\)</span>), both Brownian and active particles give <span class="math inline">\(\langle r^2 \rangle \approx v_{\text{eff}}^2 \tau_r \cdot t\)</span> (diffusive motion).</p>
+<p><strong>c)</strong> Plot both MSD curves on a log-log scale to illustrate the crossover from ballistic to diffusive behavior.</p>
+<div id="b80d6a09" class="cell" data-execution_count="4">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># MSD for Brownian vs. active motion</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>D <span class="op">=</span> <span class="dv">1</span>  <span class="co"># µm²/s, diffusion coefficient</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> <span class="dv">5</span>  <span class="co"># µm/s, active velocity</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>D_r <span class="op">=</span> <span class="fl">0.5</span>  <span class="co"># rad²/s, rotational diffusion</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>tau_r <span class="op">=</span> <span class="dv">1</span> <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> D_r)  <span class="co"># rotational diffusion time</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Brownian vs. Active Motion"</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span> <span class="op">*</span> <span class="dv">50</span>)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Diffusion coefficient: D = </span><span class="sc">{</span>D<span class="sc">}</span><span class="ss"> µm²/s"</span>)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Active velocity: v = </span><span class="sc">{</span>v<span class="sc">}</span><span class="ss"> µm/s"</span>)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Rotational diffusion: D_r = </span><span class="sc">{</span>D_r<span class="sc">}</span><span class="ss"> rad²/s"</span>)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Rotational time: τ_r = 1/(2D_r) = </span><span class="sc">{</span>tau_r<span class="sc">:.2f}</span><span class="ss"> s"</span>)</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Time vector</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> np.logspace(<span class="op">-</span><span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1000</span>)  <span class="co"># 0.1 to 100 s</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Brownian MSD</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>msd_brownian <span class="op">=</span> <span class="dv">4</span> <span class="op">*</span> D <span class="op">*</span> t</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Active MSD</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>msd_active <span class="op">=</span> v<span class="op">**</span><span class="dv">2</span> <span class="op">*</span> tau_r<span class="op">**</span><span class="dv">2</span> <span class="op">*</span> (<span class="dv">2</span><span class="op">*</span>t<span class="op">/</span>tau_r <span class="op">+</span> np.exp(<span class="op">-</span><span class="dv">2</span><span class="op">*</span>t<span class="op">/</span>tau_r) <span class="op">-</span> <span class="dv">1</span>)</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot on log-log scale</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>get_size(<span class="dv">12</span>, <span class="dv">8</span>))</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>ax.loglog(t, msd_brownian, <span class="st">'b-'</span>, linewidth<span class="op">=</span><span class="fl">2.5</span>, label<span class="op">=</span><span class="st">'Brownian: $</span><span class="ch">\\</span><span class="st">langle r^2 </span><span class="ch">\\</span><span class="st">rangle = 4Dt$'</span>)</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>ax.loglog(t, msd_active, <span class="st">'r-'</span>, linewidth<span class="op">=</span><span class="fl">2.5</span>, label<span class="op">=</span><span class="ss">f'Active: $v = </span><span class="sc">{</span>v<span class="sc">}</span><span class="ss">$ µm/s, $</span><span class="ch">\\</span><span class="ss">tau_r = </span><span class="sc">{</span>tau_r<span class="sc">:.1f}</span><span class="ss">$ s'</span>)</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Add reference lines for ballistic and diffusive regimes</span></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>t_ballistic <span class="op">=</span> np.logspace(<span class="op">-</span><span class="dv">1</span>, <span class="fl">0.5</span>, <span class="dv">100</span>)</span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>msd_ballistic <span class="op">=</span> v<span class="op">**</span><span class="dv">2</span> <span class="op">*</span> t_ballistic<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>ax.loglog(t_ballistic, msd_ballistic, <span class="st">'r--'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>, linewidth<span class="op">=</span><span class="dv">1</span>, label<span class="op">=</span><span class="st">'Ballistic: $</span><span class="ch">\\</span><span class="st">propto t^2$'</span>)</span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>t_diffusive <span class="op">=</span> np.logspace(<span class="fl">0.5</span>, <span class="dv">2</span>, <span class="dv">100</span>)</span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>msd_diffusive <span class="op">=</span> v<span class="op">**</span><span class="dv">2</span> <span class="op">*</span> tau_r <span class="op">*</span> t_diffusive</span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>ax.loglog(t_diffusive, msd_diffusive, <span class="st">'r:'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>, linewidth<span class="op">=</span><span class="dv">1</span>, label<span class="op">=</span><span class="st">'Diffusive: $</span><span class="ch">\\</span><span class="st">propto t$'</span>)</span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a><span class="co"># Mark crossover time</span></span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>ax.axvline(x<span class="op">=</span>tau_r, color<span class="op">=</span><span class="st">'gray'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>, label<span class="op">=</span><span class="ss">f'Crossover: $t = </span><span class="ch">\\</span><span class="ss">tau_r = </span><span class="sc">{</span>tau_r<span class="sc">:.1f}</span><span class="ss">$ s'</span>)</span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Time $t$ (s)'</span>)</span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="vs">r'Mean-squared displacement </span><span class="dv">$</span><span class="er">\</span><span class="vs">langle r</span><span class="dv">^</span><span class="vs">2 </span><span class="ch">\r</span><span class="vs">angle</span><span class="dv">$</span><span class="vs"> </span><span class="kw">(</span><span class="vs">µm²</span><span class="kw">)</span><span class="vs">'</span>)</span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>, which<span class="op">=</span><span class="st">'both'</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a>ax.legend(fontsize<span class="op">=</span><span class="dv">8</span>, loc<span class="op">=</span><span class="st">'upper left'</span>)</span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>ax.set_xlim([<span class="fl">0.1</span>, <span class="dv">100</span>])</span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'img/brownian_vs_active.png'</span>, dpi<span class="op">=</span><span class="dv">150</span>, bbox_inches<span class="op">=</span><span class="st">'tight'</span>)</span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>plt.close()</span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Figure saved to img/brownian_vs_active.png"</span>)</span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a><span class="co"># Analysis of scaling laws</span></span>
+<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Part a) Short-time limit (t ≪ τ_r):"</span>)</span>
+<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a>t_short <span class="op">=</span> <span class="fl">0.01</span>  <span class="co"># s</span></span>
+<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a>msd_active_short <span class="op">=</span> v<span class="op">**</span><span class="dv">2</span> <span class="op">*</span> t_short<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a>msd_approx_short <span class="op">=</span> v<span class="op">**</span><span class="dv">2</span> <span class="op">*</span> tau_r<span class="op">**</span><span class="dv">2</span> <span class="op">*</span> (<span class="dv">2</span><span class="op">*</span>t_short<span class="op">/</span>tau_r <span class="op">+</span> np.exp(<span class="op">-</span><span class="dv">2</span><span class="op">*</span>t_short<span class="op">/</span>tau_r) <span class="op">-</span> <span class="dv">1</span>)</span>
+<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  t = </span><span class="sc">{</span>t_short<span class="sc">}</span><span class="ss"> s ≪ τ_r = </span><span class="sc">{</span>tau_r<span class="sc">:.2f}</span><span class="ss"> s"</span>)</span>
+<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Active MSD (exact) ≈ </span><span class="sc">{</span>msd_approx_short<span class="sc">:.4f}</span><span class="ss"> µm²"</span>)</span>
+<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  v²·t² = </span><span class="sc">{</span>msd_active_short<span class="sc">:.4f}</span><span class="ss"> µm²  ✓ Ballistic"</span>)</span>
+<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Part b) Long-time limit (t ≫ τ_r):"</span>)</span>
+<span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a>t_long <span class="op">=</span> <span class="dv">10</span>  <span class="co"># s</span></span>
+<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a>msd_active_long <span class="op">=</span> v<span class="op">**</span><span class="dv">2</span> <span class="op">*</span> tau_r<span class="op">**</span><span class="dv">2</span> <span class="op">*</span> (<span class="dv">2</span><span class="op">*</span>t_long<span class="op">/</span>tau_r <span class="op">+</span> np.exp(<span class="op">-</span><span class="dv">2</span><span class="op">*</span>t_long<span class="op">/</span>tau_r) <span class="op">-</span> <span class="dv">1</span>)</span>
+<span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a>msd_approx_long <span class="op">=</span> v<span class="op">**</span><span class="dv">2</span> <span class="op">*</span> tau_r <span class="op">*</span> t_long</span>
+<span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  t = </span><span class="sc">{</span>t_long<span class="sc">}</span><span class="ss"> s ≫ τ_r = </span><span class="sc">{</span>tau_r<span class="sc">:.2f}</span><span class="ss"> s"</span>)</span>
+<span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Active MSD (exact) ≈ </span><span class="sc">{</span>msd_active_long<span class="sc">:.4f}</span><span class="ss"> µm²"</span>)</span>
+<span id="cb5-66"><a href="#cb5-66" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  v²·τ_r·t = </span><span class="sc">{</span>msd_approx_long<span class="sc">:.4f}</span><span class="ss"> µm²  ✓ Diffusive"</span>)</span>
+<span id="cb5-67"><a href="#cb5-67" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Effective diffusion: D_eff ~ v²·τ_r = </span><span class="sc">{</span>v<span class="op">**</span><span class="dv">2</span> <span class="op">*</span> tau_r<span class="sc">:.2f}</span><span class="ss"> µm²/s"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Brownian vs. Active Motion
+==================================================
+Diffusion coefficient: D = 1 µm²/s
+Active velocity: v = 5 µm/s
+Rotational diffusion: D_r = 0.5 rad²/s
+Rotational time: τ_r = 1/(2D_r) = 1.00 s
+
+Figure saved to img/brownian_vs_active.png
+
+Part a) Short-time limit (t ≪ τ_r):
+  t = 0.01 s ≪ τ_r = 1.00 s
+  Active MSD (exact) ≈ 0.0050 µm²
+  v²·t² = 0.0025 µm²  ✓ Ballistic
+
+Part b) Long-time limit (t ≫ τ_r):
+  t = 10 s ≫ τ_r = 1.00 s
+  Active MSD (exact) ≈ 475.0000 µm²
+  v²·τ_r·t = 250.0000 µm²  ✓ Diffusive
+  Effective diffusion: D_eff ~ v²·τ_r = 25.00 µm²/s</code></pre>
+</div>
+</div>
+<hr>
+</section>
+<section id="problem-4-monte-carlo-simulation-of-brownian-and-active-motion" class="level2">
+<h2 class="anchored" data-anchor-id="problem-4-monte-carlo-simulation-of-brownian-and-active-motion">Problem 4: Monte Carlo Simulation of Brownian and Active Motion</h2>
+<p><strong>Problem Statement:</strong></p>
+<p>Simulate 2D trajectories for: 1. <strong>Passive Brownian particle</strong>: random walk with diffusion coefficient <span class="math inline">\(D\)</span> 2. <strong>Active Brownian particle</strong>: constant-speed swimmer with rotational diffusion</p>
+<p>Compare the trajectories and extract MSD to verify scaling laws.</p>
+<div id="bdd0dcb1" class="cell" data-execution_count="5">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.optimize <span class="im">import</span> curve_fit</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulation parameters</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>n_particles <span class="op">=</span> <span class="dv">10</span>  <span class="co"># number of trajectories</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>n_steps <span class="op">=</span> <span class="dv">1000</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>dt <span class="op">=</span> <span class="fl">0.01</span>  <span class="co"># s per step</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Brownian particle</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>sigma_brownian <span class="op">=</span> np.sqrt(<span class="dv">2</span> <span class="op">*</span> D <span class="op">*</span> dt)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Active particle</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>v_active <span class="op">=</span> v  <span class="co"># µm/s</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>D_r_active <span class="op">=</span> D_r  <span class="co"># rad²/s</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>sigma_theta <span class="op">=</span> np.sqrt(<span class="dv">2</span> <span class="op">*</span> D_r_active <span class="op">*</span> dt)</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Brownian and Active Motion Simulation"</span>)</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span> <span class="op">*</span> <span class="dv">50</span>)</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Number of particles: </span><span class="sc">{</span>n_particles<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Simulation steps: </span><span class="sc">{</span>n_steps<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Time step: </span><span class="sc">{</span>dt<span class="sc">}</span><span class="ss"> s"</span>)</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Total time: </span><span class="sc">{</span>n_steps <span class="op">*</span> dt<span class="sc">:.1f}</span><span class="ss"> s"</span>)</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulate trajectories</span></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>brownian_trajectories <span class="op">=</span> np.zeros((n_particles, n_steps, <span class="dv">2</span>))</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>active_trajectories <span class="op">=</span> np.zeros((n_particles, n_steps, <span class="dv">2</span>))</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> p <span class="kw">in</span> <span class="bu">range</span>(n_particles):</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Brownian motion</span></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> step <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, n_steps):</span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>        displacement <span class="op">=</span> np.random.normal(<span class="dv">0</span>, sigma_brownian, <span class="dv">2</span>)</span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>        brownian_trajectories[p, step] <span class="op">=</span> brownian_trajectories[p, step<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> displacement</span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Active motion</span></span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>    theta <span class="op">=</span> <span class="dv">0</span>  <span class="co"># initial orientation</span></span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> step <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, n_steps):</span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Update orientation with rotational diffusion</span></span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>        dtheta <span class="op">=</span> np.random.normal(<span class="dv">0</span>, sigma_theta)</span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>        theta <span class="op">+=</span> dtheta</span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Move in current direction</span></span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a>        dx <span class="op">=</span> v_active <span class="op">*</span> np.cos(theta) <span class="op">*</span> dt</span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a>        dy <span class="op">=</span> v_active <span class="op">*</span> np.sin(theta) <span class="op">*</span> dt</span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a>        active_trajectories[p, step] <span class="op">=</span> active_trajectories[p, step<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> np.array([dx, dy])</span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Trajectories simulated."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Brownian and Active Motion Simulation
+==================================================
+Number of particles: 10
+Simulation steps: 1000
+Time step: 0.01 s
+Total time: 10.0 s
+Trajectories simulated.</code></pre>
+</div>
+</div>
+<p>Now compute and plot MSD:</p>
+<div id="57158733" class="cell" data-execution_count="6">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute MSD for each trajectory</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>time_steps <span class="op">=</span> np.arange(n_steps)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>msd_brownian_sim <span class="op">=</span> np.zeros(n_steps)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>msd_active_sim <span class="op">=</span> np.zeros(n_steps)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> step <span class="kw">in</span> <span class="bu">range</span>(n_steps):</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    r2_brownian <span class="op">=</span> np.<span class="bu">sum</span>((brownian_trajectories[:, step, :] <span class="op">-</span> brownian_trajectories[:, <span class="dv">0</span>, :])<span class="op">**</span><span class="dv">2</span>, axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    r2_active <span class="op">=</span> np.<span class="bu">sum</span>((active_trajectories[:, step, :] <span class="op">-</span> active_trajectories[:, <span class="dv">0</span>, :])<span class="op">**</span><span class="dv">2</span>, axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    msd_brownian_sim[step] <span class="op">=</span> np.mean(r2_brownian)</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    msd_active_sim[step] <span class="op">=</span> np.mean(r2_active)</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to physical time</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>time_sim <span class="op">=</span> time_steps <span class="op">*</span> dt</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit to theoretical models</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> msd_brownian_model(t, D_fit):</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">4</span> <span class="op">*</span> D_fit <span class="op">*</span> t</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> msd_active_model(t, v_fit, tau_r_fit):</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> v_fit<span class="op">**</span><span class="dv">2</span> <span class="op">*</span> tau_r_fit<span class="op">**</span><span class="dv">2</span> <span class="op">*</span> (<span class="dv">2</span><span class="op">*</span>t<span class="op">/</span>tau_r_fit <span class="op">+</span> np.exp(<span class="op">-</span><span class="dv">2</span><span class="op">*</span>t<span class="op">/</span>tau_r_fit) <span class="op">-</span> <span class="dv">1</span>)</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit Brownian (linear regime)</span></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>mask_brownian <span class="op">=</span> (time_sim <span class="op">&gt;</span> <span class="fl">0.1</span>) <span class="op">&amp;</span> (time_sim <span class="op">&lt;</span> <span class="dv">5</span>)</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>popt_b, _ <span class="op">=</span> curve_fit(msd_brownian_model, time_sim[mask_brownian],</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>                       msd_brownian_sim[mask_brownian], p0<span class="op">=</span>[<span class="dv">1</span>], maxfev<span class="op">=</span><span class="dv">5000</span>)</span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>D_fit <span class="op">=</span> popt_b[<span class="dv">0</span>]</span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit active (full model)</span></span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>mask_active <span class="op">=</span> time_sim <span class="op">&gt;</span> <span class="dv">0</span></span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>popt_a, _ <span class="op">=</span> curve_fit(msd_active_model, time_sim[mask_active],</span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>                       msd_active_sim[mask_active], p0<span class="op">=</span>[v, tau_r], maxfev<span class="op">=</span><span class="dv">5000</span>)</span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>v_fit, tau_r_fit <span class="op">=</span> popt_a</span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Fit results:"</span>)</span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Brownian:"</span>)</span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"    D_true = </span><span class="sc">{</span>D<span class="sc">:.2f}</span><span class="ss"> µm²/s"</span>)</span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"    D_fit  = </span><span class="sc">{</span>D_fit<span class="sc">:.2f}</span><span class="ss"> µm²/s"</span>)</span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">  Active:"</span>)</span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"    v_true    = </span><span class="sc">{</span>v<span class="sc">:.2f}</span><span class="ss"> µm/s,  v_fit    = </span><span class="sc">{</span>v_fit<span class="sc">:.2f}</span><span class="ss"> µm/s"</span>)</span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"    τ_r_true  = </span><span class="sc">{</span>tau_r<span class="sc">:.2f}</span><span class="ss"> s,  τ_r_fit  = </span><span class="sc">{</span>tau_r_fit<span class="sc">:.2f}</span><span class="ss"> s"</span>)</span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot trajectories and MSD</span></span>
+<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">2</span>, figsize<span class="op">=</span>get_size(<span class="dv">15</span>, <span class="dv">12</span>))</span>
+<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a><span class="co"># Trajectory plots</span></span>
+<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> p <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">min</span>(<span class="dv">3</span>, n_particles)):</span>
+<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a>    axes[<span class="dv">0</span>, <span class="dv">0</span>].plot(brownian_trajectories[p, :, <span class="dv">0</span>], brownian_trajectories[p, :, <span class="dv">1</span>],</span>
+<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a>                    alpha<span class="op">=</span><span class="fl">0.6</span>, linewidth<span class="op">=</span><span class="fl">0.8</span>)</span>
+<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>, <span class="dv">0</span>].set_xlabel(<span class="st">'x (µm)'</span>)</span>
+<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>, <span class="dv">0</span>].set_ylabel(<span class="st">'y (µm)'</span>)</span>
+<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>, <span class="dv">0</span>].set_title(<span class="st">'Brownian Trajectories'</span>)</span>
+<span id="cb9-52"><a href="#cb9-52" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>, <span class="dv">0</span>].grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb9-53"><a href="#cb9-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-54"><a href="#cb9-54" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> p <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">min</span>(<span class="dv">3</span>, n_particles)):</span>
+<span id="cb9-55"><a href="#cb9-55" aria-hidden="true" tabindex="-1"></a>    axes[<span class="dv">0</span>, <span class="dv">1</span>].plot(active_trajectories[p, :, <span class="dv">0</span>], active_trajectories[p, :, <span class="dv">1</span>],</span>
+<span id="cb9-56"><a href="#cb9-56" aria-hidden="true" tabindex="-1"></a>                    alpha<span class="op">=</span><span class="fl">0.6</span>, linewidth<span class="op">=</span><span class="fl">0.8</span>)</span>
+<span id="cb9-57"><a href="#cb9-57" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>, <span class="dv">1</span>].set_xlabel(<span class="st">'x (µm)'</span>)</span>
+<span id="cb9-58"><a href="#cb9-58" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>, <span class="dv">1</span>].set_ylabel(<span class="st">'y (µm)'</span>)</span>
+<span id="cb9-59"><a href="#cb9-59" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>, <span class="dv">1</span>].set_title(<span class="st">'Active Trajectories'</span>)</span>
+<span id="cb9-60"><a href="#cb9-60" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>, <span class="dv">1</span>].grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb9-61"><a href="#cb9-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-62"><a href="#cb9-62" aria-hidden="true" tabindex="-1"></a><span class="co"># MSD plots (linear scale)</span></span>
+<span id="cb9-63"><a href="#cb9-63" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>, <span class="dv">0</span>].plot(time_sim, msd_brownian_sim, <span class="st">'b-'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">'Simulated'</span>)</span>
+<span id="cb9-64"><a href="#cb9-64" aria-hidden="true" tabindex="-1"></a>t_fit_b <span class="op">=</span> np.linspace(<span class="dv">0</span>, time_sim[<span class="op">-</span><span class="dv">1</span>], <span class="dv">500</span>)</span>
+<span id="cb9-65"><a href="#cb9-65" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>, <span class="dv">0</span>].plot(t_fit_b, msd_brownian_model(t_fit_b, D_fit), <span class="st">'b--'</span>,</span>
+<span id="cb9-66"><a href="#cb9-66" aria-hidden="true" tabindex="-1"></a>                linewidth<span class="op">=</span><span class="fl">1.5</span>, label<span class="op">=</span><span class="ss">f'Fit: D = </span><span class="sc">{</span>D_fit<span class="sc">:.2f}</span><span class="ss"> µm²/s'</span>)</span>
+<span id="cb9-67"><a href="#cb9-67" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>, <span class="dv">0</span>].set_xlabel(<span class="st">'Time (s)'</span>)</span>
+<span id="cb9-68"><a href="#cb9-68" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>, <span class="dv">0</span>].set_ylabel(<span class="vs">r'MSD </span><span class="kw">(</span><span class="vs">µm²</span><span class="kw">)</span><span class="vs">'</span>)</span>
+<span id="cb9-69"><a href="#cb9-69" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>, <span class="dv">0</span>].set_title(<span class="st">'Brownian MSD (Linear)'</span>)</span>
+<span id="cb9-70"><a href="#cb9-70" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>, <span class="dv">0</span>].legend(fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb9-71"><a href="#cb9-71" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>, <span class="dv">0</span>].grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb9-72"><a href="#cb9-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-73"><a href="#cb9-73" aria-hidden="true" tabindex="-1"></a><span class="co"># MSD plot (log-log)</span></span>
+<span id="cb9-74"><a href="#cb9-74" aria-hidden="true" tabindex="-1"></a>mask_plot <span class="op">=</span> msd_active_sim <span class="op">&gt;</span> <span class="fl">0.01</span></span>
+<span id="cb9-75"><a href="#cb9-75" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>, <span class="dv">1</span>].loglog(time_sim[mask_plot], msd_active_sim[mask_plot], <span class="st">'r-'</span>,</span>
+<span id="cb9-76"><a href="#cb9-76" aria-hidden="true" tabindex="-1"></a>                  linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">'Simulated'</span>)</span>
+<span id="cb9-77"><a href="#cb9-77" aria-hidden="true" tabindex="-1"></a>t_fit_a <span class="op">=</span> np.linspace(<span class="fl">0.001</span>, time_sim[<span class="op">-</span><span class="dv">1</span>], <span class="dv">500</span>)</span>
+<span id="cb9-78"><a href="#cb9-78" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>, <span class="dv">1</span>].loglog(t_fit_a, msd_active_model(t_fit_a, v_fit, tau_r_fit), <span class="st">'r--'</span>,</span>
+<span id="cb9-79"><a href="#cb9-79" aria-hidden="true" tabindex="-1"></a>                  linewidth<span class="op">=</span><span class="fl">1.5</span>, label<span class="op">=</span><span class="ss">f'Fit: v = </span><span class="sc">{</span>v_fit<span class="sc">:.1f}</span><span class="ss"> µm/s, τ_r = </span><span class="sc">{</span>tau_r_fit<span class="sc">:.2f}</span><span class="ss"> s'</span>)</span>
+<span id="cb9-80"><a href="#cb9-80" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>, <span class="dv">1</span>].axvline(x<span class="op">=</span>tau_r_fit, color<span class="op">=</span><span class="st">'gray'</span>, linestyle<span class="op">=</span><span class="st">':'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>, label<span class="op">=</span><span class="st">'Crossover'</span>)</span>
+<span id="cb9-81"><a href="#cb9-81" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>, <span class="dv">1</span>].set_xlabel(<span class="st">'Time (s)'</span>)</span>
+<span id="cb9-82"><a href="#cb9-82" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>, <span class="dv">1</span>].set_ylabel(<span class="vs">r'MSD </span><span class="kw">(</span><span class="vs">µm²</span><span class="kw">)</span><span class="vs">'</span>)</span>
+<span id="cb9-83"><a href="#cb9-83" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>, <span class="dv">1</span>].set_title(<span class="st">'Active MSD (Log-Log)'</span>)</span>
+<span id="cb9-84"><a href="#cb9-84" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>, <span class="dv">1</span>].legend(fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb9-85"><a href="#cb9-85" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>, <span class="dv">1</span>].grid(<span class="va">True</span>, which<span class="op">=</span><span class="st">'both'</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb9-86"><a href="#cb9-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-87"><a href="#cb9-87" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb9-88"><a href="#cb9-88" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'img/brownian_active_simulation.png'</span>, dpi<span class="op">=</span><span class="dv">150</span>, bbox_inches<span class="op">=</span><span class="st">'tight'</span>)</span>
+<span id="cb9-89"><a href="#cb9-89" aria-hidden="true" tabindex="-1"></a>plt.close()</span>
+<span id="cb9-90"><a href="#cb9-90" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Figure saved to img/brownian_active_simulation.png"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Fit results:
+  Brownian:
+    D_true = 1.00 µm²/s
+    D_fit  = 0.96 µm²/s
+
+  Active:
+    v_true    = 5.00 µm/s,  v_fit    = 3.37 µm/s
+    τ_r_true  = 1.00 s,  τ_r_fit  = 4.32 s
+
+Figure saved to img/brownian_active_simulation.png</code></pre>
+</div>
+</div>
+<hr>
+</section>
+<section id="problem-5-photon-nudging-strategy" class="level2">
+<h2 class="anchored" data-anchor-id="problem-5-photon-nudging-strategy">Problem 5: Photon Nudging Strategy</h2>
+<p><strong>Problem Statement:</strong></p>
+<p>A <strong>microswimmer</strong> with orientation <span class="math inline">\(\theta\)</span> undergoes rotational diffusion. The propulsion laser can be switched ON only when the swimmer’s orientation is close to a target direction <span class="math inline">\(\theta_{\text{target}}\)</span>.</p>
+<p>Implement a simple feedback control strategy: - <strong>IF</strong> <span class="math inline">\(|\theta - \theta_{\text{target}}| &lt; \theta_{\text{threshold}}\)</span>: laser is ON, particle swims at speed <span class="math inline">\(v\)</span> - <strong>ELSE</strong>: laser is OFF, particle only drifts with Brownian motion</p>
+<p>Simulate this strategy and show that the particle navigates toward and orbits the target.</p>
+<div id="897ea8d9" class="cell" data-execution_count="7">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Photon nudging simulation</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>v_swim <span class="op">=</span> <span class="dv">3</span>  <span class="co"># µm/s, swimming speed</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>theta_target <span class="op">=</span> <span class="dv">0</span>  <span class="co"># target direction (radians)</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>theta_threshold <span class="op">=</span> np.radians(<span class="dv">30</span>)  <span class="co"># 30° threshold cone</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>n_steps_nudge <span class="op">=</span> <span class="dv">2000</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>dt_nudge <span class="op">=</span> <span class="fl">0.01</span>  <span class="co"># s</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Photon Nudging Strategy"</span>)</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span> <span class="op">*</span> <span class="dv">50</span>)</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Swimming speed: v = </span><span class="sc">{</span>v_swim<span class="sc">}</span><span class="ss"> µm/s"</span>)</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Target direction: θ_target = </span><span class="sc">{</span>np<span class="sc">.</span>degrees(theta_target)<span class="sc">:.1f}</span><span class="ss">°"</span>)</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Threshold cone: ±</span><span class="sc">{</span>np<span class="sc">.</span>degrees(theta_threshold)<span class="sc">:.1f}</span><span class="ss">°"</span>)</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Simulation time: </span><span class="sc">{</span>n_steps_nudge <span class="op">*</span> dt_nudge<span class="sc">:.1f}</span><span class="ss"> s"</span>)</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Trajectory</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>position <span class="op">=</span> np.zeros((n_steps_nudge, <span class="dv">2</span>))</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>theta <span class="op">=</span> np.zeros(n_steps_nudge)</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>laser_on <span class="op">=</span> np.zeros(n_steps_nudge, dtype<span class="op">=</span><span class="bu">bool</span>)</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Initial random orientation</span></span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>theta[<span class="dv">0</span>] <span class="op">=</span> np.random.uniform(<span class="op">-</span>np.pi, np.pi)</span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> step <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, n_steps_nudge):</span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Rotational diffusion</span></span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>    dtheta <span class="op">=</span> np.random.normal(<span class="dv">0</span>, np.sqrt(<span class="dv">2</span> <span class="op">*</span> D_r_active <span class="op">*</span> dt_nudge))</span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>    theta[step] <span class="op">=</span> theta[step<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> dtheta</span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Decide if laser is ON</span></span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>    angle_error <span class="op">=</span> np.<span class="bu">abs</span>(np.angle(np.exp(<span class="ot">1j</span> <span class="op">*</span> (theta[step] <span class="op">-</span> theta_target))))</span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> angle_error <span class="op">&lt;</span> theta_threshold:</span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Laser ON: swim toward target</span></span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>        laser_on[step] <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a>        dx <span class="op">=</span> v_swim <span class="op">*</span> np.cos(theta_target) <span class="op">*</span> dt_nudge</span>
+<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>        dy <span class="op">=</span> v_swim <span class="op">*</span> np.sin(theta_target) <span class="op">*</span> dt_nudge</span>
+<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Laser OFF: only rotational diffusion (Brownian drift in lab frame is minimal)</span></span>
+<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a>        laser_on[step] <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a>        dx <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a>        dy <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Add small Brownian noise</span></span>
+<span id="cb11-42"><a href="#cb11-42" aria-hidden="true" tabindex="-1"></a>    dx <span class="op">+=</span> np.random.normal(<span class="dv">0</span>, sigma_brownian)</span>
+<span id="cb11-43"><a href="#cb11-43" aria-hidden="true" tabindex="-1"></a>    dy <span class="op">+=</span> np.random.normal(<span class="dv">0</span>, sigma_brownian)</span>
+<span id="cb11-44"><a href="#cb11-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-45"><a href="#cb11-45" aria-hidden="true" tabindex="-1"></a>    position[step] <span class="op">=</span> position[step<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> np.array([dx, dy])</span>
+<span id="cb11-46"><a href="#cb11-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-47"><a href="#cb11-47" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot results</span></span>
+<span id="cb11-48"><a href="#cb11-48" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>get_size(<span class="dv">15</span>, <span class="dv">6</span>))</span>
+<span id="cb11-49"><a href="#cb11-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-50"><a href="#cb11-50" aria-hidden="true" tabindex="-1"></a><span class="co"># Trajectory</span></span>
+<span id="cb11-51"><a href="#cb11-51" aria-hidden="true" tabindex="-1"></a>time_nudge <span class="op">=</span> np.arange(n_steps_nudge) <span class="op">*</span> dt_nudge</span>
+<span id="cb11-52"><a href="#cb11-52" aria-hidden="true" tabindex="-1"></a>on_indices <span class="op">=</span> np.where(laser_on)[<span class="dv">0</span>]</span>
+<span id="cb11-53"><a href="#cb11-53" aria-hidden="true" tabindex="-1"></a>off_indices <span class="op">=</span> np.where(<span class="op">~</span>laser_on)[<span class="dv">0</span>]</span>
+<span id="cb11-54"><a href="#cb11-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-55"><a href="#cb11-55" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].plot(position[off_indices, <span class="dv">0</span>], position[off_indices, <span class="dv">1</span>], <span class="st">'b.'</span>,</span>
+<span id="cb11-56"><a href="#cb11-56" aria-hidden="true" tabindex="-1"></a>            markersize<span class="op">=</span><span class="dv">2</span>, alpha<span class="op">=</span><span class="fl">0.3</span>, label<span class="op">=</span><span class="st">'Laser OFF'</span>)</span>
+<span id="cb11-57"><a href="#cb11-57" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].plot(position[on_indices, <span class="dv">0</span>], position[on_indices, <span class="dv">1</span>], <span class="st">'r.'</span>,</span>
+<span id="cb11-58"><a href="#cb11-58" aria-hidden="true" tabindex="-1"></a>            markersize<span class="op">=</span><span class="dv">2</span>, alpha<span class="op">=</span><span class="fl">0.5</span>, label<span class="op">=</span><span class="st">'Laser ON'</span>)</span>
+<span id="cb11-59"><a href="#cb11-59" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].plot(<span class="dv">0</span>, <span class="dv">0</span>, <span class="st">'g*'</span>, markersize<span class="op">=</span><span class="dv">15</span>, label<span class="op">=</span><span class="st">'Target'</span>)</span>
+<span id="cb11-60"><a href="#cb11-60" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_xlabel(<span class="st">'x (µm)'</span>)</span>
+<span id="cb11-61"><a href="#cb11-61" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_ylabel(<span class="st">'y (µm)'</span>)</span>
+<span id="cb11-62"><a href="#cb11-62" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_title(<span class="st">'Photon-Nudged Trajectory'</span>)</span>
+<span id="cb11-63"><a href="#cb11-63" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].legend(fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb11-64"><a href="#cb11-64" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb11-65"><a href="#cb11-65" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_aspect(<span class="st">'equal'</span>)</span>
+<span id="cb11-66"><a href="#cb11-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-67"><a href="#cb11-67" aria-hidden="true" tabindex="-1"></a><span class="co"># Orientation and laser state</span></span>
+<span id="cb11-68"><a href="#cb11-68" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].plot(time_nudge, np.degrees(theta), <span class="st">'b-'</span>, linewidth<span class="op">=</span><span class="fl">0.8</span>, alpha<span class="op">=</span><span class="fl">0.7</span>, label<span class="op">=</span><span class="st">'Orientation θ'</span>)</span>
+<span id="cb11-69"><a href="#cb11-69" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].axhline(y<span class="op">=</span>np.degrees(theta_target), color<span class="op">=</span><span class="st">'g'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>, label<span class="op">=</span><span class="st">'Target'</span>)</span>
+<span id="cb11-70"><a href="#cb11-70" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].fill_between(time_nudge, np.degrees(theta_target <span class="op">-</span> theta_threshold),</span>
+<span id="cb11-71"><a href="#cb11-71" aria-hidden="true" tabindex="-1"></a>                      np.degrees(theta_target <span class="op">+</span> theta_threshold), alpha<span class="op">=</span><span class="fl">0.2</span>, color<span class="op">=</span><span class="st">'green'</span>,</span>
+<span id="cb11-72"><a href="#cb11-72" aria-hidden="true" tabindex="-1"></a>                      label<span class="op">=</span><span class="st">'Laser ON zone'</span>)</span>
+<span id="cb11-73"><a href="#cb11-73" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_xlabel(<span class="st">'Time (s)'</span>)</span>
+<span id="cb11-74"><a href="#cb11-74" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_ylabel(<span class="st">'Orientation (degrees)'</span>)</span>
+<span id="cb11-75"><a href="#cb11-75" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_ylim([<span class="op">-</span><span class="dv">180</span>, <span class="dv">180</span>])</span>
+<span id="cb11-76"><a href="#cb11-76" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].legend(fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb11-77"><a href="#cb11-77" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb11-78"><a href="#cb11-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-79"><a href="#cb11-79" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb11-80"><a href="#cb11-80" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'img/photon_nudging.png'</span>, dpi<span class="op">=</span><span class="dv">150</span>, bbox_inches<span class="op">=</span><span class="st">'tight'</span>)</span>
+<span id="cb11-81"><a href="#cb11-81" aria-hidden="true" tabindex="-1"></a>plt.close()</span>
+<span id="cb11-82"><a href="#cb11-82" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Figure saved to img/photon_nudging.png"</span>)</span>
+<span id="cb11-83"><a href="#cb11-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-84"><a href="#cb11-84" aria-hidden="true" tabindex="-1"></a><span class="co"># Statistics</span></span>
+<span id="cb11-85"><a href="#cb11-85" aria-hidden="true" tabindex="-1"></a>frac_on <span class="op">=</span> np.<span class="bu">sum</span>(laser_on) <span class="op">/</span> n_steps_nudge</span>
+<span id="cb11-86"><a href="#cb11-86" aria-hidden="true" tabindex="-1"></a>avg_speed <span class="op">=</span> np.mean(np.linalg.norm(np.diff(position, axis<span class="op">=</span><span class="dv">0</span>), axis<span class="op">=</span><span class="dv">1</span>)) <span class="op">/</span> dt_nudge</span>
+<span id="cb11-87"><a href="#cb11-87" aria-hidden="true" tabindex="-1"></a>final_distance <span class="op">=</span> np.linalg.norm(position[<span class="op">-</span><span class="dv">1</span>])</span>
+<span id="cb11-88"><a href="#cb11-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-89"><a href="#cb11-89" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Results:"</span>)</span>
+<span id="cb11-90"><a href="#cb11-90" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Laser ON fraction: </span><span class="sc">{</span>frac_on<span class="op">*</span><span class="dv">100</span><span class="sc">:.1f}</span><span class="ss">%"</span>)</span>
+<span id="cb11-91"><a href="#cb11-91" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Average net speed: </span><span class="sc">{</span>avg_speed<span class="sc">:.2f}</span><span class="ss"> µm/s"</span>)</span>
+<span id="cb11-92"><a href="#cb11-92" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Final distance from origin: </span><span class="sc">{</span>final_distance<span class="sc">:.2f}</span><span class="ss"> µm"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Photon Nudging Strategy
+==================================================
+Swimming speed: v = 3 µm/s
+Target direction: θ_target = 0.0°
+Threshold cone: ±30.0°
+Simulation time: 20.0 s
+
+Figure saved to img/photon_nudging.png
+
+Results:
+  Laser ON fraction: 13.7%
+  Average net speed: 17.94 µm/s
+  Final distance from origin: 8.27 µm</code></pre>
+</div>
+</div>
+<hr>
+</section>
+<section id="problem-6-course-review-summary-of-key-formulas" class="level2">
+<h2 class="anchored" data-anchor-id="problem-6-course-review-summary-of-key-formulas">Problem 6: Course Review — Summary of Key Formulas</h2>
+<p><strong>Problem Statement:</strong></p>
+<p>Create a comprehensive reference table of the most important formulas and results from the entire course. Organize by topic.</p>
+<div id="007126b2" class="cell" data-execution_count="8">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create summary table</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>summary_text <span class="op">=</span> <span class="st">"""</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="st">INTRODUCTION TO PHOTONICS — KEY FORMULAS SUMMARY</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="st">================================================</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="st">1. DIFFRACTION AND RESOLUTION</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="st">   ─────────────────────────</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="st">   Abbe diffraction limit (lateral):   d = 0.51 λ / NA</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="st">   Rayleigh criterion:                  δθ = 1.22 λ / D</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="st">   Axial resolution (wide-field):       d_z = 2 λ / NA²</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="st">2. OPTICAL PROPERTIES &amp; MATERIALS</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="st">   ────────────────────────────────</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="st">   Snell's law:                         n₁ sin(θ₁) = n₂ sin(θ₂)</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="st">   Brewster angle:                      tan(θ_B) = n₂/n₁</span></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="st">   Refractive index (Cauchy):           n(λ) = A + B/λ²</span></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="st">   Sellmeier equation:                  n²(λ) = 1 + Σ Bₖλ²/(λ² - Cₖ)</span></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a><span class="st">   Group velocity:                      v_g = c / n_g, where n_g = n - λ dn/dλ</span></span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a><span class="st">3. CONFOCAL &amp; SUPERRESOLUTION</span></span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a><span class="st">   ──────────────────────────</span></span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a><span class="st">   Confocal PSF (Gaussian):             PSF_conf = PSF_exc · PSF_det</span></span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a><span class="st">   Confocal resolution improvement:     σ_conf = σ₀/√2 → factor of √2</span></span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a><span class="st">   Confocal pinhole (Airy disk):        Pinhole ≈ 1 Airy Unit (AU)</span></span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a><span class="st">   STED resolution:                     d = d₀ / √(1 + I/I_sat)</span></span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a><span class="st">   PALM/STORM localization precision:   σ ≈ s/√N + a²/(12N)</span></span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a><span class="st">   where s = PSF width, N = photons, a = pixel size</span></span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a><span class="st">   SIM resolution improvement:          d_SIM ≈ d₀/2</span></span>
+<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a><span class="st">   Two-photon excitation:               F ∝ I²  (quadratic)</span></span>
+<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a><span class="st">   Two-photon resolution:               d ≈ 0.51 λ_2P / NA</span></span>
+<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a><span class="st">   Axial sectioning (2-photon):         No pinhole needed; I² gives section</span></span>
+<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a><span class="st">4. SCATTERING &amp; OPTICAL PROPERTIES</span></span>
+<span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a><span class="st">   ────────────────────────────────</span></span>
+<span id="cb13-39"><a href="#cb13-39" aria-hidden="true" tabindex="-1"></a><span class="st">   Rayleigh scattering (small sphere):  σ_sca = (2π/λ⁴) |ε-1|²/|ε+2|² (2a)⁶</span></span>
+<span id="cb13-40"><a href="#cb13-40" aria-hidden="true" tabindex="-1"></a><span class="st">   Scattering efficiency:               Q_sca = σ_sca / σ_geom</span></span>
+<span id="cb13-41"><a href="#cb13-41" aria-hidden="true" tabindex="-1"></a><span class="st">   Mie scattering (arbitrary size):     Q = (2/x²) Σ (2n+1)/(n(n+1)) Re(aₙ+bₙ)</span></span>
+<span id="cb13-42"><a href="#cb13-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-43"><a href="#cb13-43" aria-hidden="true" tabindex="-1"></a><span class="st">   Dynamic light scattering (DLS):      q = 4πn/λ sin(θ/2)</span></span>
+<span id="cb13-44"><a href="#cb13-44" aria-hidden="true" tabindex="-1"></a><span class="st">   Decay rate:                          Γ = Dq²</span></span>
+<span id="cb13-45"><a href="#cb13-45" aria-hidden="true" tabindex="-1"></a><span class="st">   Stokes-Einstein relation:            D = k_B T / (6πηa)</span></span>
+<span id="cb13-46"><a href="#cb13-46" aria-hidden="true" tabindex="-1"></a><span class="st">   Autocorrelation:                     g₂(τ) = 1 + β exp(-2Γτ)</span></span>
+<span id="cb13-47"><a href="#cb13-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-48"><a href="#cb13-48" aria-hidden="true" tabindex="-1"></a><span class="st">5. PHOTOTHERMAL EFFECTS</span></span>
+<span id="cb13-49"><a href="#cb13-49" aria-hidden="true" tabindex="-1"></a><span class="st">   ────────────────────</span></span>
+<span id="cb13-50"><a href="#cb13-50" aria-hidden="true" tabindex="-1"></a><span class="st">   Steady-state temperature rise:       ΔT = P_abs / (4πκr)</span></span>
+<span id="cb13-51"><a href="#cb13-51" aria-hidden="true" tabindex="-1"></a><span class="st">   Thermophoretic velocity:             v_TP = -D_T ∇T = -D·S_T·∇T</span></span>
+<span id="cb13-52"><a href="#cb13-52" aria-hidden="true" tabindex="-1"></a><span class="st">   Thermal lens signal:                 Δn = (dn/dT) · ΔT</span></span>
+<span id="cb13-53"><a href="#cb13-53" aria-hidden="true" tabindex="-1"></a><span class="st">   Photothermal absorption cross-section: σ_abs ∝ Im(ε) (Rayleigh)</span></span>
+<span id="cb13-54"><a href="#cb13-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-55"><a href="#cb13-55" aria-hidden="true" tabindex="-1"></a><span class="st">6. OPTICAL MANIPULATION</span></span>
+<span id="cb13-56"><a href="#cb13-56" aria-hidden="true" tabindex="-1"></a><span class="st">   ────────────────────</span></span>
+<span id="cb13-57"><a href="#cb13-57" aria-hidden="true" tabindex="-1"></a><span class="st">   Optical trap stiffness:              F = -κx</span></span>
+<span id="cb13-58"><a href="#cb13-58" aria-hidden="true" tabindex="-1"></a><span class="st">   Equipartition theorem:               &lt;½κx²&gt; = ½k_B T</span></span>
+<span id="cb13-59"><a href="#cb13-59" aria-hidden="true" tabindex="-1"></a><span class="st">   Position variance in trap:           &lt;x²&gt; = k_B T / κ</span></span>
+<span id="cb13-60"><a href="#cb13-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-61"><a href="#cb13-61" aria-hidden="true" tabindex="-1"></a><span class="st">   Radiation pressure force:            F_rad = n·α·I/c  (for small particles)</span></span>
+<span id="cb13-62"><a href="#cb13-62" aria-hidden="true" tabindex="-1"></a><span class="st">   Gradient force:                       F_grad ∝ ∇(I²) (for dipoles)</span></span>
+<span id="cb13-63"><a href="#cb13-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-64"><a href="#cb13-64" aria-hidden="true" tabindex="-1"></a><span class="st">7. BROWNIAN MOTION &amp; ACTIVE MATTER</span></span>
+<span id="cb13-65"><a href="#cb13-65" aria-hidden="true" tabindex="-1"></a><span class="st">   ────────────────────────────────</span></span>
+<span id="cb13-66"><a href="#cb13-66" aria-hidden="true" tabindex="-1"></a><span class="st">   Brownian MSD (2D):                   &lt;r²&gt; = 4Dt</span></span>
+<span id="cb13-67"><a href="#cb13-67" aria-hidden="true" tabindex="-1"></a><span class="st">   Brownian MSD (3D):                   &lt;r²&gt; = 6Dt</span></span>
+<span id="cb13-68"><a href="#cb13-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-69"><a href="#cb13-69" aria-hidden="true" tabindex="-1"></a><span class="st">   Active Brownian particle MSD:        &lt;r²&gt; = v²τ_r²[2t/τ_r + exp(-2t/τ_r) - 1]</span></span>
+<span id="cb13-70"><a href="#cb13-70" aria-hidden="true" tabindex="-1"></a><span class="st">   Rotational diffusion time:           τ_r = 1/(2D_r)</span></span>
+<span id="cb13-71"><a href="#cb13-71" aria-hidden="true" tabindex="-1"></a><span class="st">   Crossover time (ballistic→diffusive): t_cross ~ τ_r</span></span>
+<span id="cb13-72"><a href="#cb13-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-73"><a href="#cb13-73" aria-hidden="true" tabindex="-1"></a><span class="st">   Effective diffusion (long time):     D_eff ~ v²τ_r</span></span>
+<span id="cb13-74"><a href="#cb13-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-75"><a href="#cb13-75" aria-hidden="true" tabindex="-1"></a><span class="st">8. FUNDAMENTAL CONSTANTS</span></span>
+<span id="cb13-76"><a href="#cb13-76" aria-hidden="true" tabindex="-1"></a><span class="st">   ─────────────────────</span></span>
+<span id="cb13-77"><a href="#cb13-77" aria-hidden="true" tabindex="-1"></a><span class="st">   Boltzmann constant:                  k_B = 1.38 × 10⁻²³ J/K</span></span>
+<span id="cb13-78"><a href="#cb13-78" aria-hidden="true" tabindex="-1"></a><span class="st">   Planck constant:                     h = 6.626 × 10⁻³⁴ J·s</span></span>
+<span id="cb13-79"><a href="#cb13-79" aria-hidden="true" tabindex="-1"></a><span class="st">   Elementary charge:                   e = 1.602 × 10⁻¹⁹ C</span></span>
+<span id="cb13-80"><a href="#cb13-80" aria-hidden="true" tabindex="-1"></a><span class="st">   Speed of light:                      c = 2.998 × 10⁸ m/s</span></span>
+<span id="cb13-81"><a href="#cb13-81" aria-hidden="true" tabindex="-1"></a><span class="st">   Vacuum permittivity:                 ε₀ = 8.854 × 10⁻¹² F/m</span></span>
+<span id="cb13-82"><a href="#cb13-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-83"><a href="#cb13-83" aria-hidden="true" tabindex="-1"></a><span class="st">9. TYPICAL PARAMETER VALUES</span></span>
+<span id="cb13-84"><a href="#cb13-84" aria-hidden="true" tabindex="-1"></a><span class="st">   ────────────────────────</span></span>
+<span id="cb13-85"><a href="#cb13-85" aria-hidden="true" tabindex="-1"></a><span class="st">   Water viscosity (25°C):              η ≈ 0.89 mPa·s</span></span>
+<span id="cb13-86"><a href="#cb13-86" aria-hidden="true" tabindex="-1"></a><span class="st">   Water thermal conductivity:          κ ≈ 0.6 W/(m·K)</span></span>
+<span id="cb13-87"><a href="#cb13-87" aria-hidden="true" tabindex="-1"></a><span class="st">   Water refractive index:              n ≈ 1.33</span></span>
+<span id="cb13-88"><a href="#cb13-88" aria-hidden="true" tabindex="-1"></a><span class="st">   Water dn/dT:                         ≈ -1.0 × 10⁻⁴ K⁻¹</span></span>
+<span id="cb13-89"><a href="#cb13-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-90"><a href="#cb13-90" aria-hidden="true" tabindex="-1"></a><span class="st">   Visible light wavelength:            λ ≈ 400–700 nm</span></span>
+<span id="cb13-91"><a href="#cb13-91" aria-hidden="true" tabindex="-1"></a><span class="st">   Near-infrared (two-photon):          λ ≈ 700–1000 nm</span></span>
+<span id="cb13-92"><a href="#cb13-92" aria-hidden="true" tabindex="-1"></a><span class="st">   NA (objective lens):                 0.5–1.4 (air/oil immersion)</span></span>
+<span id="cb13-93"><a href="#cb13-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-94"><a href="#cb13-94" aria-hidden="true" tabindex="-1"></a><span class="st">   Diffusion coefficient (1 µm bead):   D ≈ 0.5–1 µm²/s</span></span>
+<span id="cb13-95"><a href="#cb13-95" aria-hidden="true" tabindex="-1"></a><span class="st">   Optical trap stiffness:              κ ≈ 1–100 pN/nm</span></span>
+<span id="cb13-96"><a href="#cb13-96" aria-hidden="true" tabindex="-1"></a><span class="st">   Single-molecule photon count:        N ≈ 100–10000 photons</span></span>
+<span id="cb13-97"><a href="#cb13-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-98"><a href="#cb13-98" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
+<span id="cb13-99"><a href="#cb13-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-100"><a href="#cb13-100" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(summary_text)</span>
+<span id="cb13-101"><a href="#cb13-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-102"><a href="#cb13-102" aria-hidden="true" tabindex="-1"></a><span class="co"># Save as text file for reference</span></span>
+<span id="cb13-103"><a href="#cb13-103" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'course_summary.txt'</span>, <span class="st">'w'</span>) <span class="im">as</span> f:</span>
+<span id="cb13-104"><a href="#cb13-104" aria-hidden="true" tabindex="-1"></a>    f.write(summary_text)</span>
+<span id="cb13-105"><a href="#cb13-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-106"><a href="#cb13-106" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Summary saved to course_summary.txt"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+INTRODUCTION TO PHOTONICS — KEY FORMULAS SUMMARY
+================================================
+
+1. DIFFRACTION AND RESOLUTION
+   ─────────────────────────
+   Abbe diffraction limit (lateral):   d = 0.51 λ / NA
+   Rayleigh criterion:                  δθ = 1.22 λ / D
+   Axial resolution (wide-field):       d_z = 2 λ / NA²
+
+2. OPTICAL PROPERTIES &amp; MATERIALS
+   ────────────────────────────────
+   Snell's law:                         n₁ sin(θ₁) = n₂ sin(θ₂)
+   Brewster angle:                      tan(θ_B) = n₂/n₁
+   Refractive index (Cauchy):           n(λ) = A + B/λ²
+   Sellmeier equation:                  n²(λ) = 1 + Σ Bₖλ²/(λ² - Cₖ)
+   Group velocity:                      v_g = c / n_g, where n_g = n - λ dn/dλ
+
+3. CONFOCAL &amp; SUPERRESOLUTION
+   ──────────────────────────
+   Confocal PSF (Gaussian):             PSF_conf = PSF_exc · PSF_det
+   Confocal resolution improvement:     σ_conf = σ₀/√2 → factor of √2
+   Confocal pinhole (Airy disk):        Pinhole ≈ 1 Airy Unit (AU)
+
+   STED resolution:                     d = d₀ / √(1 + I/I_sat)
+
+   PALM/STORM localization precision:   σ ≈ s/√N + a²/(12N)
+   where s = PSF width, N = photons, a = pixel size
+
+   SIM resolution improvement:          d_SIM ≈ d₀/2
+
+   Two-photon excitation:               F ∝ I²  (quadratic)
+   Two-photon resolution:               d ≈ 0.51 λ_2P / NA
+   Axial sectioning (2-photon):         No pinhole needed; I² gives section
+
+4. SCATTERING &amp; OPTICAL PROPERTIES
+   ────────────────────────────────
+   Rayleigh scattering (small sphere):  σ_sca = (2π/λ⁴) |ε-1|²/|ε+2|² (2a)⁶
+   Scattering efficiency:               Q_sca = σ_sca / σ_geom
+   Mie scattering (arbitrary size):     Q = (2/x²) Σ (2n+1)/(n(n+1)) Re(aₙ+bₙ)
+
+   Dynamic light scattering (DLS):      q = 4πn/λ sin(θ/2)
+   Decay rate:                          Γ = Dq²
+   Stokes-Einstein relation:            D = k_B T / (6πηa)
+   Autocorrelation:                     g₂(τ) = 1 + β exp(-2Γτ)
+
+5. PHOTOTHERMAL EFFECTS
+   ────────────────────
+   Steady-state temperature rise:       ΔT = P_abs / (4πκr)
+   Thermophoretic velocity:             v_TP = -D_T ∇T = -D·S_T·∇T
+   Thermal lens signal:                 Δn = (dn/dT) · ΔT
+   Photothermal absorption cross-section: σ_abs ∝ Im(ε) (Rayleigh)
+
+6. OPTICAL MANIPULATION
+   ────────────────────
+   Optical trap stiffness:              F = -κx
+   Equipartition theorem:               &lt;½κx²&gt; = ½k_B T
+   Position variance in trap:           &lt;x²&gt; = k_B T / κ
+
+   Radiation pressure force:            F_rad = n·α·I/c  (for small particles)
+   Gradient force:                       F_grad ∝ ∇(I²) (for dipoles)
+
+7. BROWNIAN MOTION &amp; ACTIVE MATTER
+   ────────────────────────────────
+   Brownian MSD (2D):                   &lt;r²&gt; = 4Dt
+   Brownian MSD (3D):                   &lt;r²&gt; = 6Dt
+
+   Active Brownian particle MSD:        &lt;r²&gt; = v²τ_r²[2t/τ_r + exp(-2t/τ_r) - 1]
+   Rotational diffusion time:           τ_r = 1/(2D_r)
+   Crossover time (ballistic→diffusive): t_cross ~ τ_r
+
+   Effective diffusion (long time):     D_eff ~ v²τ_r
+
+8. FUNDAMENTAL CONSTANTS
+   ─────────────────────
+   Boltzmann constant:                  k_B = 1.38 × 10⁻²³ J/K
+   Planck constant:                     h = 6.626 × 10⁻³⁴ J·s
+   Elementary charge:                   e = 1.602 × 10⁻¹⁹ C
+   Speed of light:                      c = 2.998 × 10⁸ m/s
+   Vacuum permittivity:                 ε₀ = 8.854 × 10⁻¹² F/m
+
+9. TYPICAL PARAMETER VALUES
+   ────────────────────────
+   Water viscosity (25°C):              η ≈ 0.89 mPa·s
+   Water thermal conductivity:          κ ≈ 0.6 W/(m·K)
+   Water refractive index:              n ≈ 1.33
+   Water dn/dT:                         ≈ -1.0 × 10⁻⁴ K⁻¹
+
+   Visible light wavelength:            λ ≈ 400–700 nm
+   Near-infrared (two-photon):          λ ≈ 700–1000 nm
+   NA (objective lens):                 0.5–1.4 (air/oil immersion)
+
+   Diffusion coefficient (1 µm bead):   D ≈ 0.5–1 µm²/s
+   Optical trap stiffness:              κ ≈ 1–100 pN/nm
+   Single-molecule photon count:        N ≈ 100–10000 photons
+
+
+Summary saved to course_summary.txt</code></pre>
+</div>
+</div>
+<hr>
+</section>
+<section id="reflection-questions" class="level2">
+<h2 class="anchored" data-anchor-id="reflection-questions">Reflection Questions</h2>
+<ol type="1">
+<li><p><strong>Optical Sectioning</strong>: Compare the optical sectioning mechanisms of confocal and two-photon microscopy. Why is two-photon better for thick specimens?</p></li>
+<li><p><strong>Superresolution Trade-offs</strong>: STED requires high power and can cause phototoxicity. PALM/STORM requires many frames. SIM requires patterned illumination. Which would you choose for live-cell imaging of fast dynamics? Why?</p></li>
+<li><p><strong>Active vs.&nbsp;Passive</strong>: An optical trap can hold a passive bead or guide an active swimmer. How would you distinguish between these two scenarios by observing position fluctuations?</p></li>
+<li><p><strong>Detection Limits</strong>: Why does lock-in detection fail if noise is at the signal frequency? How would you detect a 1 Hz signal buried in 50 Hz line noise?</p></li>
+<li><p><strong>Course Integration</strong>: This course integrated several themes:</p>
+<ul>
+<li><strong>Light-matter interaction</strong> (absorption, scattering, fluorescence, trapping)</li>
+<li><strong>Optical design</strong> (lenses, aberrations, superresolution optics)</li>
+<li><strong>Signal detection</strong> (photons, noise, lock-in, autocorrelation)</li>
+<li><strong>Particle dynamics</strong> (Brownian motion, thermophoresis, propulsion)</li>
+</ul>
+<p>How would you design an experiment combining two of these themes?</p></li>
+</ol>
+<hr>
+</section>
+<section id="final-note" class="level2">
+<h2 class="anchored" data-anchor-id="final-note">Final Note</h2>
+<p>You have now completed the Introduction to Photonics course! You are equipped with: - Understanding of light-matter interactions across scales (molecules to micrometers) - Practical knowledge of modern optical microscopy (confocal, superresolution, nonlinear) - Tools for analyzing scattering, thermal effects, and particle dynamics - Experience with numerical simulation and data fitting - Critical thinking about experimental design and measurement limits</p>
+<p><strong>Further reading</strong>: Consult specialized textbooks on topics of interest: - <em>Born &amp; Wolf – Principles of Optics</em> (classical optics foundation) - <em>Goodman – Introduction to Fourier Optics</em> (diffraction and imaging) - <em>Hecht – Optics</em> (general reference) - <em>Hell et al.&nbsp;– Nanoscopy and Multidimensional Optical Microscopy</em> (superresolution) - <em>Evans &amp; Wong – Optical Materials and Photonics</em> (nonlinear effects)</p>
+<p>Good luck with your further studies!</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/fcichos\.github\.io\/Photonics\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

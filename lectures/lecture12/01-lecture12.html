@@ -1,0 +1,1439 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.34">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Superresolution Microscopy – Photonics</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-9344fb9851b4da3cab95007ef9d770dc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../assets/css/styles.css">
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Photonics</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../../index.html" aria-current="page"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Superresolution Microscopy</li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="../../index.html" class="sidebar-logo-link">
+      <img src="../../assets/images/mona_logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home</span></a>
+  </div>
+</li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Course Info</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-info/intructors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Instructor</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-info/schedule.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Schedule</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-info/resources.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Ressources</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-info/seminars.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Seminars</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-info/exam.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exams</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">PART I: FOUNDATIONS</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Lecture 1 — Introduction, Ray Optics &amp; Wave Optics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture01/introduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture01/01-lecture01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Ray Optics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture01/02-lecture01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Optical Elements</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture02/01-lecture02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Matrix Optics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture02/02-lecture02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wave Optics</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#overview-learning-objectives" id="toc-overview-learning-objectives" class="nav-link active" data-scroll-target="#overview-learning-objectives">Overview &amp; Learning Objectives</a></li>
+  <li><a href="#sec-diffraction-limit" id="toc-sec-diffraction-limit" class="nav-link" data-scroll-target="#sec-diffraction-limit">1. The Diffraction Limit Revisited</a>
+  <ul class="collapse">
+  <li><a href="#why-the-limit-exists" id="toc-why-the-limit-exists" class="nav-link" data-scroll-target="#why-the-limit-exists">1.1 Why the Limit Exists</a></li>
+  <li><a href="#abbe-and-rayleigh-criteria" id="toc-abbe-and-rayleigh-criteria" class="nav-link" data-scroll-target="#abbe-and-rayleigh-criteria">1.2 Abbe and Rayleigh Criteria</a></li>
+  <li><a href="#physical-root-cause" id="toc-physical-root-cause" class="nav-link" data-scroll-target="#physical-root-cause">1.3 Physical Root Cause</a></li>
+  <li><a href="#practical-implications" id="toc-practical-implications" class="nav-link" data-scroll-target="#practical-implications">1.4 Practical Implications</a></li>
+  </ul></li>
+  <li><a href="#sec-strategies" id="toc-sec-strategies" class="nav-link" data-scroll-target="#sec-strategies">2. Strategies to Break the Limit</a>
+  <ul class="collapse">
+  <li><a href="#far-field-vs.-near-field-approaches" id="toc-far-field-vs.-near-field-approaches" class="nav-link" data-scroll-target="#far-field-vs.-near-field-approaches">2.1 Far-Field vs.&nbsp;Near-Field Approaches</a></li>
+  <li><a href="#core-principle-nonlinear-optical-response" id="toc-core-principle-nonlinear-optical-response" class="nav-link" data-scroll-target="#core-principle-nonlinear-optical-response">2.2 Core Principle: Nonlinear Optical Response</a></li>
+  </ul></li>
+  <li><a href="#sec-sted" id="toc-sec-sted" class="nav-link" data-scroll-target="#sec-sted">3. STED: Stimulated Emission Depletion</a>
+  <ul class="collapse">
+  <li><a href="#physical-principle" id="toc-physical-principle" class="nav-link" data-scroll-target="#physical-principle">3.1 Physical Principle</a></li>
+  <li><a href="#effective-psf-and-resolution" id="toc-effective-psf-and-resolution" class="nav-link" data-scroll-target="#effective-psf-and-resolution">3.2 Effective PSF and Resolution</a></li>
+  <li><a href="#resolution-formula" id="toc-resolution-formula" class="nav-link" data-scroll-target="#resolution-formula">3.3 Resolution Formula</a></li>
+  <li><a href="#trade-offs" id="toc-trade-offs" class="nav-link" data-scroll-target="#trade-offs">3.4 Trade-offs</a></li>
+  <li><a href="#doughnut-beam-generation" id="toc-doughnut-beam-generation" class="nav-link" data-scroll-target="#doughnut-beam-generation">3.5 Doughnut Beam Generation</a></li>
+  </ul></li>
+  <li><a href="#sec-smlm" id="toc-sec-smlm" class="nav-link" data-scroll-target="#sec-smlm">4. Single-Molecule Localization Microscopy (SMLM)</a>
+  <ul class="collapse">
+  <li><a href="#core-idea-temporal-separation" id="toc-core-idea-temporal-separation" class="nav-link" data-scroll-target="#core-idea-temporal-separation">4.1 Core Idea: Temporal Separation</a></li>
+  <li><a href="#localization-precision" id="toc-localization-precision" class="nav-link" data-scroll-target="#localization-precision">4.2 Localization Precision</a></li>
+  <li><a href="#palm-photoactivatable-localization-microscopy" id="toc-palm-photoactivatable-localization-microscopy" class="nav-link" data-scroll-target="#palm-photoactivatable-localization-microscopy">4.3 PALM: Photoactivatable Localization Microscopy</a></li>
+  <li><a href="#storm-stochastic-optical-reconstruction-microscopy" id="toc-storm-stochastic-optical-reconstruction-microscopy" class="nav-link" data-scroll-target="#storm-stochastic-optical-reconstruction-microscopy">4.4 STORM: Stochastic Optical Reconstruction Microscopy</a></li>
+  <li><a href="#localization-algorithm" id="toc-localization-algorithm" class="nav-link" data-scroll-target="#localization-algorithm">4.5 Localization Algorithm</a></li>
+  <li><a href="#connection-to-psf-fitting-and-information-theory" id="toc-connection-to-psf-fitting-and-information-theory" class="nav-link" data-scroll-target="#connection-to-psf-fitting-and-information-theory">4.6 Connection to PSF Fitting and Information Theory</a></li>
+  </ul></li>
+  <li><a href="#sec-sim" id="toc-sec-sim" class="nav-link" data-scroll-target="#sec-sim">5. Structured Illumination Microscopy (SIM)</a>
+  <ul class="collapse">
+  <li><a href="#linear-sim-2-resolution-improvement" id="toc-linear-sim-2-resolution-improvement" class="nav-link" data-scroll-target="#linear-sim-2-resolution-improvement">5.1 Linear SIM: 2× Resolution Improvement</a></li>
+  <li><a href="#frequency-domain-picture" id="toc-frequency-domain-picture" class="nav-link" data-scroll-target="#frequency-domain-picture">5.2 Frequency-Domain Picture</a></li>
+  <li><a href="#nonlinear-sim-saturated-sim" id="toc-nonlinear-sim-saturated-sim" class="nav-link" data-scroll-target="#nonlinear-sim-saturated-sim">5.3 Nonlinear SIM / Saturated SIM</a></li>
+  <li><a href="#advantages-of-sim" id="toc-advantages-of-sim" class="nav-link" data-scroll-target="#advantages-of-sim">5.4 Advantages of SIM</a></li>
+  <li><a href="#disadvantages" id="toc-disadvantages" class="nav-link" data-scroll-target="#disadvantages">5.5 Disadvantages</a></li>
+  </ul></li>
+  <li><a href="#sec-minflux" id="toc-sec-minflux" class="nav-link" data-scroll-target="#sec-minflux">6. MINFLUX: Minimal Photon Fluxes</a>
+  <ul class="collapse">
+  <li><a href="#motivation-extreme-photon-efficiency" id="toc-motivation-extreme-photon-efficiency" class="nav-link" data-scroll-target="#motivation-extreme-photon-efficiency">6.1 Motivation: Extreme Photon Efficiency</a></li>
+  <li><a href="#principle-doughnut-scanning" id="toc-principle-doughnut-scanning" class="nav-link" data-scroll-target="#principle-doughnut-scanning">6.2 Principle: Doughnut Scanning</a></li>
+  <li><a href="#localization-precision-with-few-photons" id="toc-localization-precision-with-few-photons" class="nav-link" data-scroll-target="#localization-precision-with-few-photons">6.3 Localization Precision with Few Photons</a></li>
+  <li><a href="#d-minflux" id="toc-d-minflux" class="nav-link" data-scroll-target="#d-minflux">6.4 3D MINFLUX</a></li>
+  <li><a href="#advantages" id="toc-advantages" class="nav-link" data-scroll-target="#advantages">6.5 Advantages</a></li>
+  <li><a href="#disadvantages-1" id="toc-disadvantages-1" class="nav-link" data-scroll-target="#disadvantages-1">6.6 Disadvantages</a></li>
+  </ul></li>
+  <li><a href="#sec-comparison" id="toc-sec-comparison" class="nav-link" data-scroll-target="#sec-comparison">7. Comparison of Superresolution Methods</a>
+  <ul class="collapse">
+  <li><a href="#qualitative-comparison-table" id="toc-qualitative-comparison-table" class="nav-link" data-scroll-target="#qualitative-comparison-table">7.1 Qualitative Comparison Table</a></li>
+  <li><a href="#resolution-vs.-speed-trade-off" id="toc-resolution-vs.-speed-trade-off" class="nav-link" data-scroll-target="#resolution-vs.-speed-trade-off">7.2 Resolution vs.&nbsp;Speed Trade-off</a></li>
+  <li><a href="#choosing-a-method" id="toc-choosing-a-method" class="nav-link" data-scroll-target="#choosing-a-method">7.3 Choosing a Method</a></li>
+  </ul></li>
+  <li><a href="#sec-computational" id="toc-sec-computational" class="nav-link" data-scroll-target="#sec-computational">8. Computational Aspects</a>
+  <ul class="collapse">
+  <li><a href="#smlm-reconstruction-pipeline" id="toc-smlm-reconstruction-pipeline" class="nav-link" data-scroll-target="#smlm-reconstruction-pipeline">8.1 SMLM Reconstruction Pipeline</a></li>
+  <li><a href="#drift-correction" id="toc-drift-correction" class="nav-link" data-scroll-target="#drift-correction">8.2 Drift Correction</a></li>
+  <li><a href="#rendering-and-display" id="toc-rendering-and-display" class="nav-link" data-scroll-target="#rendering-and-display">8.3 Rendering and Display</a></li>
+  </ul></li>
+  <li><a href="#sec-python" id="toc-sec-python" class="nav-link" data-scroll-target="#sec-python">9. Python Demonstrations</a>
+  <ul class="collapse">
+  <li><a href="#demo-1-diffraction-limit-and-two-point-resolution" id="toc-demo-1-diffraction-limit-and-two-point-resolution" class="nav-link" data-scroll-target="#demo-1-diffraction-limit-and-two-point-resolution">Demo 1: Diffraction Limit and Two-Point Resolution</a></li>
+  <li><a href="#demo-2-sted-doughnut-depletion" id="toc-demo-2-sted-doughnut-depletion" class="nav-link" data-scroll-target="#demo-2-sted-doughnut-depletion">Demo 2: STED — Doughnut Depletion</a></li>
+  <li><a href="#demo-3-smlm-simulation-single-molecule-blinking-and-reconstruction" id="toc-demo-3-smlm-simulation-single-molecule-blinking-and-reconstruction" class="nav-link" data-scroll-target="#demo-3-smlm-simulation-single-molecule-blinking-and-reconstruction">Demo 3: SMLM Simulation — Single-Molecule Blinking and Reconstruction</a></li>
+  <li><a href="#demo-4-comparison-of-superresolution-methods" id="toc-demo-4-comparison-of-superresolution-methods" class="nav-link" data-scroll-target="#demo-4-comparison-of-superresolution-methods">Demo 4: Comparison of Superresolution Methods</a></li>
+  </ul></li>
+  <li><a href="#sec-fourier-thread" id="toc-sec-fourier-thread" class="nav-link" data-scroll-target="#sec-fourier-thread">10. Fourier Optics Thread: Superresolution Through Frequency-Space Engineering</a></li>
+  <li><a href="#sec-summary" id="toc-sec-summary" class="nav-link" data-scroll-target="#sec-summary">11. Summary and Outlook</a>
+  <ul class="collapse">
+  <li><a href="#key-takeaways" id="toc-key-takeaways" class="nav-link" data-scroll-target="#key-takeaways">11.1 Key Takeaways</a></li>
+  <li><a href="#emerging-trends" id="toc-emerging-trends" class="nav-link" data-scroll-target="#emerging-trends">11.2 Emerging Trends</a></li>
+  <li><a href="#outlook" id="toc-outlook" class="nav-link" data-scroll-target="#outlook">11.3 Outlook</a></li>
+  </ul></li>
+  <li><a href="#experimental-connections" id="toc-experimental-connections" class="nav-link" data-scroll-target="#experimental-connections">Experimental Connections</a></li>
+  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading">Further Reading</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Superresolution Microscopy</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="overview-learning-objectives" class="level2">
+<h2 class="anchored" data-anchor-id="overview-learning-objectives">Overview &amp; Learning Objectives</h2>
+<p>Superresolution microscopy comprises a collection of techniques that overcome the classical diffraction limit of optical microscopy, enabling visualization of cellular structures below <span class="math inline">\(\sim 200\)</span> nm with far-field light microscopy. This lecture explores:</p>
+<ul>
+<li>Why the diffraction limit exists and can be broken</li>
+<li>The main physical principles behind STED, SMLM, SIM, and MINFLUX</li>
+<li>How photophysics (fluorescence, photoswitching, saturation) enables resolution enhancement</li>
+<li>Practical trade-offs: resolution, speed, phototoxicity, and labeling</li>
+<li>Computational reconstruction from limited photon data</li>
+</ul>
+<p>By the end of this lecture, you will understand the physical foundations of modern superresolution methods and appreciate the ingenuity of breaking a 150-year-old fundamental limit.</p>
+<hr>
+</section>
+<section id="sec-diffraction-limit" class="level2">
+<h2 class="anchored" data-anchor-id="sec-diffraction-limit">1. The Diffraction Limit Revisited</h2>
+<section id="why-the-limit-exists" class="level3">
+<h3 class="anchored" data-anchor-id="why-the-limit-exists">1.1 Why the Limit Exists</h3>
+<p>In conventional microscopy, the point-spread function (PSF) dictates the minimum resolvable distance between two point sources. The PSF is determined by diffraction at the objective lens aperture.</p>
+<p>For a circular aperture of numerical aperture <span class="math inline">\(\text{NA}\)</span>, illuminated with light of wavelength <span class="math inline">\(\lambda\)</span>, the intensity distribution follows an Airy disk pattern:</p>
+<p><span class="math display">\[I(r) = I_0 \left[ \frac{2 J_1(u)}{u} \right]^2\]</span></p>
+<p>where <span class="math inline">\(u = \frac{\pi r}{\lambda/(2\text{NA})}\)</span> is the normalized radial coordinate, and <span class="math inline">\(J_1\)</span> is the Bessel function of the first kind.</p>
+</section>
+<section id="abbe-and-rayleigh-criteria" class="level3">
+<h3 class="anchored" data-anchor-id="abbe-and-rayleigh-criteria">1.2 Abbe and Rayleigh Criteria</h3>
+<p>Two classical criteria quantify the resolution limit:</p>
+<p><strong>Abbe criterion</strong> (derived from diffraction theory): <span class="math display">\[d_{\text{Abbe}} = \frac{\lambda}{2 \text{NA}}\]</span></p>
+<p>For visible light (<span class="math inline">\(\lambda \approx 500\)</span> nm) and a high-NA objective (<span class="math inline">\(\text{NA} = 1.4\)</span> oil immersion), we obtain: <span class="math display">\[d_{\text{Abbe}} \approx \frac{500\text{ nm}}{2 \times 1.4} \approx 180\text{ nm}\]</span></p>
+<p><strong>Rayleigh criterion</strong> (two point sources are just resolved when the maximum of one Airy disk coincides with the first minimum of the other): <span class="math display">\[d_{\text{Rayleigh}} = 0.61 \frac{\lambda}{\text{NA}} \approx 220\text{ nm (visible)}\]</span></p>
+</section>
+<section id="physical-root-cause" class="level3">
+<h3 class="anchored" data-anchor-id="physical-root-cause">1.3 Physical Root Cause</h3>
+<p>The diffraction limit arises from two fundamental constraints:</p>
+<ol type="1">
+<li><strong>Finite numerical aperture</strong>: The microscope objective only collects light within a cone of half-angle <span class="math inline">\(\theta = \sin^{-1}(\text{NA}/n)\)</span>. This limits the k-vectors available in the far field.</li>
+<li><strong>Wavelength</strong>: Diffraction is inversely proportional to wavelength. Shorter wavelengths (UV, X-rays) can achieve better resolution but come with photodamage and experimental challenges.</li>
+</ol>
+<p>A point source is described by all spatial frequencies up to <span class="math inline">\(k_{\max} = 2\pi \text{NA} / \lambda\)</span> in the pupil plane. Frequencies beyond this cutoff are evanescent in the far field and cannot be collected by a conventional objective.</p>
+</section>
+<section id="practical-implications" class="level3">
+<h3 class="anchored" data-anchor-id="practical-implications">1.4 Practical Implications</h3>
+<ul>
+<li><strong>Lateral resolution</strong> (xy-plane, perpendicular to optical axis): <span class="math inline">\(\sim 200\)</span> nm</li>
+<li><strong>Axial resolution</strong> (z-direction, along optical axis): <span class="math inline">\(\sim 500\)</span> nm (worse by ~2.5×)</li>
+<li>Typical cell nucleus diameter: <span class="math inline">\(\sim 5\)</span> µm (so diffraction-limited microscopy resolves structures ~25× larger than a nucleus)</li>
+<li>Many protein complexes (<span class="math inline">\(\sim 10\)</span>–<span class="math inline">\(50\)</span> nm) and synaptic ultrastructure (<span class="math inline">\(\sim 50\)</span>–<span class="math inline">\(200\)</span> nm) lie below the diffraction limit</li>
+</ul>
+<p>This motivated decades of ingenious schemes to beat the limit while using conventional far-field optics.</p>
+<hr>
+</section>
+</section>
+<section id="sec-strategies" class="level2">
+<h2 class="anchored" data-anchor-id="sec-strategies">2. Strategies to Break the Limit</h2>
+<section id="far-field-vs.-near-field-approaches" class="level3">
+<h3 class="anchored" data-anchor-id="far-field-vs.-near-field-approaches">2.1 Far-Field vs.&nbsp;Near-Field Approaches</h3>
+<p>Superresolution strategies fall into two broad categories:</p>
+<p><strong>Near-field microscopy:</strong> - Uses evanescent waves (non-propagating, decay over ~<span class="math inline">\(\lambda/(2\pi)\)</span> distance) - Examples: scanning near-field optical microscopy (SNOM), total internal reflection fluorescence (TIRF) - Advantage: sub-wavelength resolution in principle - Disadvantage: requires scanning, low signal, poor penetration depth (<span class="math inline">\(\sim 100\)</span> nm into sample)</p>
+<p><strong>Far-field superresolution</strong> (main focus of this lecture): - Exploits nonlinear fluorescence response or clever use of propagating waves - Can work with standard confocal or widefield optics - Examples: STED, PALM/STORM, SIM, MINFLUX - Advantage: faster, deeper penetration, better signal - Disadvantage: requires saturating fluorophore properties or clever photophysics</p>
+<p>We focus on <strong>far-field superresolution</strong> because: - It is more practical for live-cell imaging - It leverages modern fluorescence microscopy infrastructure - It illustrates deep principles of nonlinear optics and information theory</p>
+</section>
+<section id="core-principle-nonlinear-optical-response" class="level3">
+<h3 class="anchored" data-anchor-id="core-principle-nonlinear-optical-response">2.2 Core Principle: Nonlinear Optical Response</h3>
+<p>All far-field superresolution methods exploit <strong>nonlinearity</strong>:</p>
+<p><span class="math display">\[\text{Fluorescence intensity} \neq \text{(linear function of excitation intensity)}\]</span></p>
+<p>When a fluorophore is saturated or driven to a special state (off, on, red-shifted), the fluorescence response becomes:</p>
+<p><span class="math display">\[F(I) = \frac{\sigma I^n}{1 + (I/I_{\text{sat}})^m}\]</span></p>
+<p>where <span class="math inline">\(n &gt; 1\)</span> (nonlinearity order) and <span class="math inline">\(I_{\text{sat}}\)</span> is the saturation intensity. This nonlinearity enables selective activation/depletion in narrow spatial regions, effectively shrinking the PSF.</p>
+<hr>
+</section>
+</section>
+<section id="sec-sted" class="level2">
+<h2 class="anchored" data-anchor-id="sec-sted">3. STED: Stimulated Emission Depletion</h2>
+<section id="physical-principle" class="level3">
+<h3 class="anchored" data-anchor-id="physical-principle">3.1 Physical Principle</h3>
+<p>STED microscopy was invented by Stefan Hell (Nobel Prize 2014) and works by the following mechanism:</p>
+<ol type="1">
+<li><strong>Excitation pulse</strong> (488 nm, for example): excites fluorophores to the excited state <span class="math inline">\(S_1\)</span> within the diffraction-limited volume.</li>
+<li><strong>STED pulse</strong> (longer wavelength, e.g., 592 nm for red dyes): delivered as a doughnut-shaped beam (zero intensity at the center, high intensity in an annulus).</li>
+<li><strong>Stimulated emission</strong>: The STED photons induce <strong>stimulated emission</strong> from <span class="math inline">\(S_1 \to S_0\)</span>, forcing fluorophores to relax non-radiatively.</li>
+<li><strong>Depletion</strong>: Only fluorophores at the <strong>center</strong> of the doughnut (where STED intensity is zero) can fluoresce. All others are depleted.</li>
+</ol>
+<p>The effective PSF shrinks because fluorescence is suppressed outside the depletion-free zone.</p>
+</section>
+<section id="effective-psf-and-resolution" class="level3">
+<h3 class="anchored" data-anchor-id="effective-psf-and-resolution">3.2 Effective PSF and Resolution</h3>
+<p>The excitation PSF is the diffraction-limited Airy disk: <span class="math display">\[\text{PSF}_{\text{exc}} \propto \left[ \frac{2 J_1(u)}{u} \right]^2\]</span></p>
+<p>The depletion efficiency depends on STED intensity <span class="math inline">\(I_{\text{STED}}(x,y)\)</span> and the transition cross-section <span class="math inline">\(\sigma_{\text{stim}}\)</span>:</p>
+<p><span class="math display">\[P_{\text{on}}(x,y) = \exp\left( -\frac{\sigma_{\text{stim}} I_{\text{STED}}(x,y)}{\hbar \omega_{\text{STED}}} \right)\]</span></p>
+<p>For a doughnut beam (azimuthal phase modulation), the STED intensity near the center can be approximated as:</p>
+<p><span class="math display">\[I_{\text{STED}}(r) \propto r^2 \quad \text{(at the center)}\]</span></p>
+<p>The effective PSF becomes: <span class="math display">\[\text{PSF}_{\text{eff}}(x,y) = \text{PSF}_{\text{exc}}(x,y) \times P_{\text{on}}(x,y)\]</span></p>
+<p>This yields a <strong>Gaussian-like PSF with shrunk width</strong>:</p>
+<p><span class="math display">\[w_{\text{STED}} = \frac{w_0}{\sqrt{1 + I_{\text{STED}}/I_{\text{sat}}}}\]</span></p>
+<p>where <span class="math inline">\(w_0\)</span> is the diffraction-limited waist and <span class="math inline">\(I_{\text{sat}}\)</span> is the saturation intensity for stimulated emission.</p>
+</section>
+<section id="resolution-formula" class="level3">
+<h3 class="anchored" data-anchor-id="resolution-formula">3.3 Resolution Formula</h3>
+<p>The STED resolution is given by:</p>
+<p><span class="math display">\[d_{\text{STED}} = \frac{\lambda}{2 \text{NA}} \cdot \frac{1}{\sqrt{1 + I_{\text{STED}}/I_{\text{sat}}}}\]</span></p>
+<p><strong>Key insight</strong>: By increasing <span class="math inline">\(I_{\text{STED}}\)</span>, the depletion factor <span class="math inline">\(\sqrt{1 + I_{\text{STED}}/I_{\text{sat}}}\)</span> grows, reducing <span class="math inline">\(d_{\text{STED}}\)</span> arbitrarily (in principle). With high saturation, sub-50 nm resolution is achievable.</p>
+<section id="a-fourier-optics-perspective" class="level4">
+<h4 class="anchored" data-anchor-id="a-fourier-optics-perspective">3.3a Fourier Optics Perspective</h4>
+<p>In Fourier space, STED effectively <strong>extends the optical transfer function (OTF)</strong> beyond the diffraction-limited cutoff frequency <span class="math inline">\(2\text{NA}/\lambda\)</span>. The narrower effective PSF (from nonlinear depletion) corresponds to a wider, extended OTF in frequency space, recovering spatial frequencies that would normally be lost to evanescence. This is why STED can resolve features smaller than the diffraction limit: the nonlinear response fundamentally changes which frequencies are accessible to the microscope.</p>
+</section>
+</section>
+<section id="trade-offs" class="level3">
+<h3 class="anchored" data-anchor-id="trade-offs">3.4 Trade-offs</h3>
+<ul>
+<li><strong>Pro</strong>: Fast scanning, volumetric (3D with appropriate phase mask), direct detection (no reconstruction), live-cell capable</li>
+<li><strong>Con</strong>: High STED intensity → phototoxicity and phototranslation (sample damage), requires red-shifted dyes, complex optics (doughnut mask, phase plate)</li>
+</ul>
+</section>
+<section id="doughnut-beam-generation" class="level3">
+<h3 class="anchored" data-anchor-id="doughnut-beam-generation">3.5 Doughnut Beam Generation</h3>
+<p>The doughnut (azimuthal phase modulation) is typically generated by:</p>
+<ol type="1">
+<li><strong>Vortex plate</strong> (spatial light modulator or diffractive optic): imparts a phase ramp <span class="math inline">\(e^{i m \phi}\)</span> (usually <span class="math inline">\(m=1\)</span>)</li>
+<li><strong>Result</strong>: conversion from Gaussian TEM<span class="math inline">\(_{00}\)</span> to a doughnut-like Laguerre-Gaussian beam with orbital angular momentum</li>
+</ol>
+<hr>
+</section>
+</section>
+<section id="sec-smlm" class="level2">
+<h2 class="anchored" data-anchor-id="sec-smlm">4. Single-Molecule Localization Microscopy (SMLM)</h2>
+<section id="core-idea-temporal-separation" class="level3">
+<h3 class="anchored" data-anchor-id="core-idea-temporal-separation">4.1 Core Idea: Temporal Separation</h3>
+<p>SMLM (PALM, STORM, fSTORM) exploits a radically different approach:</p>
+<ol type="1">
+<li><strong>Stochastic switching</strong>: Only a small, random subset of fluorophores is active (on) at any given time.</li>
+<li><strong>Sparse sampling</strong>: Since few molecules fluoresce simultaneously, their PSFs don’t overlap, allowing individual molecule localization.</li>
+<li><strong>Repeating</strong>: Cycle on/off many times to build up a superresolved image from single-molecule localizations.</li>
+</ol>
+<p>Mathematically, the fluorescence signal at position <span class="math inline">\((x, y)\)</span> in frame <span class="math inline">\(n\)</span> is:</p>
+<p><span class="math display">\[F_n(x,y) = \sum_{i=1}^{M} a_i^{(n)} \, \text{PSF}(x - x_i, y - y_i) + \text{noise}\]</span></p>
+<p>where: - <span class="math inline">\(a_i^{(n)}\)</span> = on/off state of molecule <span class="math inline">\(i\)</span> in frame <span class="math inline">\(n\)</span> - <span class="math inline">\(M\)</span> = total number of molecules - PSF = diffraction-limited point-spread function</p>
+</section>
+<section id="localization-precision" class="level3">
+<h3 class="anchored" data-anchor-id="localization-precision">4.2 Localization Precision</h3>
+<p>For a single bright molecule with <span class="math inline">\(N\)</span> photons detected in its PSF, the localization uncertainty (from the Cramér-Rao bound) is:</p>
+<p><span class="math display">\[\sigma_{\text{loc}} = \frac{\sigma_{\text{PSF}}}{\sqrt{N}}\]</span></p>
+<p>where <span class="math inline">\(\sigma_{\text{PSF}} \sim \lambda/(4\pi \text{NA})\)</span> is the PSF width (typically <span class="math inline">\(\sim 100\)</span>–<span class="math inline">\(150\)</span> nm in widefield).</p>
+<p><strong>Remarkable</strong>: By detecting <span class="math inline">\(N \sim 1000\)</span> photons per molecule, we achieve: <span class="math display">\[\sigma_{\text{loc}} \sim \frac{120 \text{ nm}}{\sqrt{1000}} \sim 4 \text{ nm}\]</span></p>
+<p>This sub-10 nm precision from a diffraction-limited PSF is the power of <strong>photon statistics</strong> and single-molecule localization.</p>
+</section>
+<section id="palm-photoactivatable-localization-microscopy" class="level3">
+<h3 class="anchored" data-anchor-id="palm-photoactivatable-localization-microscopy">4.3 PALM: Photoactivatable Localization Microscopy</h3>
+<p><strong>Principle</strong>: Use photoactivatable fluorescent proteins (PA-FPs) that switch from dark to fluorescent upon UV illumination (<span class="math inline">\(\sim 405\)</span> nm).</p>
+<ul>
+<li>Frame 1: activate a few PA-FP molecules with weak 405 nm pulse</li>
+<li>Image with 488 nm excitation, collect <span class="math inline">\(\sim 1000\)</span> photons per molecule</li>
+<li>Fit PSF to each molecule → localize to <span class="math inline">\(\sim 20\)</span>–<span class="math inline">\(50\)</span> nm</li>
+<li>Photobleach</li>
+<li>Repeat thousands of times</li>
+</ul>
+<p>Result: super-resolved reconstruction with final resolution <span class="math inline">\(\sim 20\)</span>–<span class="math inline">\(50\)</span> nm.</p>
+</section>
+<section id="storm-stochastic-optical-reconstruction-microscopy" class="level3">
+<h3 class="anchored" data-anchor-id="storm-stochastic-optical-reconstruction-microscopy">4.4 STORM: Stochastic Optical Reconstruction Microscopy</h3>
+<p><strong>Principle</strong>: Use photoswitchable dyes (e.g., cyanine 5 / cyanine 3 pairs, Alexa 647 + MEA) that repeatedly cycle between bright and dark states.</p>
+<ul>
+<li>Cycle dark/bright states thermally or via activation light</li>
+<li>Detection field illumination (widefield) or total internal reflection fluorescence (TIRF)</li>
+<li>Same localization and reconstruction as PALM</li>
+</ul>
+<p><strong>Advantage over PALM</strong>: Uses conventional organic dyes; easier labeling.</p>
+</section>
+<section id="localization-algorithm" class="level3">
+<h3 class="anchored" data-anchor-id="localization-algorithm">4.5 Localization Algorithm</h3>
+<p>For each frame, identify bright regions (potential molecules):</p>
+<ol type="1">
+<li><strong>Peak detection</strong>: Find local maxima above background + threshold</li>
+<li><strong>PSF fitting</strong>: Fit 2D Gaussian (or more accurate models) to each peak <span class="math display">\[\text{PSF}_{\text{fit}}(x,y) = A \exp\left( -\frac{(x-x_0)^2 + (y-y_0)^2}{2\sigma^2} \right) + B\]</span> where <span class="math inline">\(A\)</span> = amplitude, <span class="math inline">\((x_0, y_0)\)</span> = position, <span class="math inline">\(\sigma\)</span> = width, <span class="math inline">\(B\)</span> = background</li>
+<li><strong>Parameter extraction</strong>: Obtain position <span class="math inline">\((x_0, y_0)\)</span> and photon count <span class="math inline">\(N\)</span></li>
+<li><strong>Filter</strong>: Discard low-photon molecules (poor localization)</li>
+<li><strong>Combine</strong>: Pool all molecule positions across all frames</li>
+</ol>
+</section>
+<section id="connection-to-psf-fitting-and-information-theory" class="level3">
+<h3 class="anchored" data-anchor-id="connection-to-psf-fitting-and-information-theory">4.6 Connection to PSF Fitting and Information Theory</h3>
+<p>The PSF fitting process relies on <strong>maximum likelihood estimation</strong>:</p>
+<p><span class="math display">\[\hat{\theta} = \arg\max_{\theta} \log p(\text{image} \mid \theta)\]</span></p>
+<p>where <span class="math inline">\(\theta = (x_0, y_0, A, \sigma, B)\)</span> are the fitted parameters.</p>
+<p>For Poisson-distributed photon counts, the Cramér-Rao lower bound gives the fundamental limit on localization precision:</p>
+<p><span class="math display">\[\text{var}(x_0) \geq \frac{1}{I_{\text{Fisher}}(x_0)}\]</span></p>
+<p>where the Fisher information depends on photon count <span class="math inline">\(N\)</span>, PSF shape, and background. This explains why: - More photons → better precision (as <span class="math inline">\(1/\sqrt{N}\)</span>) - Brighter dyes → better precision - Lower background → better precision</p>
+<section id="fourier-optics-perspective" class="level4">
+<h4 class="anchored" data-anchor-id="fourier-optics-perspective">4.7 Fourier Optics Perspective</h4>
+<p>Unlike STED or SIM, SMLM (PALM/STORM) does <strong>not directly extend the OTF</strong> in the classical diffraction-limit sense. Instead, it <strong>circumvents the OTF constraint</strong> by detecting individual molecules sequentially and reconstructing their positions computationally. Each localized molecule contributes a point in the final image; the achievable resolution is determined by the <strong>localization precision</strong> (<span class="math inline">\(\sigma \propto 1/\sqrt{N}\)</span>), not by the OTF cutoff. In this sense, SMLM is a nonlinear inverse problem: rather than measuring the object’s Fourier spectrum directly, it extracts spatial information through single-molecule localization. The effective “resolution” is thus fundamentally different from traditional diffraction-limited concepts—it reflects the precision with which individual emitters can be positioned, independent of the microscope’s diffraction-limited OTF.</p>
+<hr>
+</section>
+</section>
+</section>
+<section id="sec-sim" class="level2">
+<h2 class="anchored" data-anchor-id="sec-sim">5. Structured Illumination Microscopy (SIM)</h2>
+<section id="linear-sim-2-resolution-improvement" class="level3">
+<h3 class="anchored" data-anchor-id="linear-sim-2-resolution-improvement">5.1 Linear SIM: 2× Resolution Improvement</h3>
+<p>We briefly reviewed SIM in <a href="#sec-diffraction-limit" class="quarto-xref">Section&nbsp;0.2</a> (Lecture 10). Here we recap in the superresolution context.</p>
+<p><strong>Principle</strong>: Illuminate the sample with a spatially periodic pattern (sinusoidal fringe):</p>
+<p><span class="math display">\[I_{\text{illum}}(x) = I_0 \left[ 1 + \alpha \cos(k_{\text{pattern}} x + \phi) \right]\]</span></p>
+<p>where <span class="math inline">\(k_{\text{pattern}} \approx 2 \pi \text{NA} / \lambda\)</span> is the grating wavevector and <span class="math inline">\(\alpha\)</span> is the modulation depth.</p>
+<section id="a-the-moiré-effect-and-frequency-mixing" class="level4">
+<h4 class="anchored" data-anchor-id="a-the-moiré-effect-and-frequency-mixing">5.1a The Moiré Effect and Frequency Mixing</h4>
+<p>When a structured illumination pattern is superimposed on a fine sample structure (e.g., closely spaced fluorophores), the product creates a <strong>Moiré pattern</strong>—a low-frequency interference pattern whose contrast encodes high-frequency information. This is the key to SIM: by mixing the sample’s high-frequency structure (<span class="math inline">\(\tilde{O}(\mathbf{k})\)</span>) with the illumination’s low-frequency pattern via multiplication in real space, we create <strong>sum and difference frequencies</strong> in Fourier space.</p>
+<p>Mathematically, the measured fluorescence intensity is:</p>
+<p><span class="math display">\[I(\mathbf{r}) = O(\mathbf{r}) \times I_{\text{illum}}(\mathbf{r})\]</span></p>
+<p>where <span class="math inline">\(O(\mathbf{r})\)</span> is the object and <span class="math inline">\(I_{\text{illum}}(\mathbf{r})\)</span> is the sinusoidal illumination pattern. In Fourier space, multiplication becomes convolution:</p>
+<p><span class="math display">\[\tilde{I}(\mathbf{k}) = \tilde{O}(\mathbf{k}) \otimes \tilde{I}_{\text{illum}}(\mathbf{k})\]</span></p>
+<p>The illumination pattern in Fourier space consists of delta functions (point sources):</p>
+<p><span class="math display">\[\tilde{I}_{\text{illum}}(\mathbf{k}) = \delta(\mathbf{k}) + \frac{m}{2}\delta(\mathbf{k} - \mathbf{k}_{\text{ill}}) + \frac{m}{2}\delta(\mathbf{k} + \mathbf{k}_{\text{ill}})\]</span></p>
+<p>where <span class="math inline">\(m = \alpha\)</span> is the modulation depth and <span class="math inline">\(\mathbf{k}_{\text{ill}} = k_{\text{pattern}} \hat{x}\)</span> is the illumination wavevector. Thus:</p>
+<p><span class="math display">\[\tilde{I}(\mathbf{k}) = \tilde{O}(\mathbf{k}) + \frac{m}{2}\tilde{O}(\mathbf{k} - \mathbf{k}_{\text{ill}}) + \frac{m}{2}\tilde{O}(\mathbf{k} + \mathbf{k}_{\text{ill}})\]</span></p>
+<p>This shows explicitly how the illumination pattern <strong>shifts copies</strong> of the object spectrum by <span class="math inline">\(\pm \mathbf{k}_{\text{ill}}\)</span>, bringing previously evanescent high frequencies into the observable region. By acquiring multiple phase-shifted images and computationally separating these terms, SIM recovers spatial frequencies up to <span class="math inline">\(2|\mathbf{k}_{\text{ill}}|\)</span>, doubling the resolution.</p>
+</section>
+</section>
+<section id="frequency-domain-picture" class="level3">
+<h3 class="anchored" data-anchor-id="frequency-domain-picture">5.2 Frequency-Domain Picture</h3>
+<p>In the Fourier domain, the detected fluorescence has contributions at: - <span class="math inline">\(k = 0\)</span> (DC, unmodulated emission) - <span class="math inline">\(k = \pm k_{\text{pattern}}\)</span> (first-order fringes from beating of illumination and sample structure)</p>
+<p>Normally, spatial frequencies <span class="math inline">\(|k| &gt; 2\pi \text{NA}/\lambda\)</span> are evanescent (lost). But the illumination pattern creates <strong>sum and difference frequencies</strong> that shift high-frequency information into the observable range.</p>
+<p>By rotating the grating orientation and varying the phase <span class="math inline">\(\phi\)</span> (typically 5 different angles × 3 phases = 15 raw images), we recover spatial frequencies up to <span class="math inline">\(|k| \sim 4\pi \text{NA}/\lambda\)</span>, doubling the resolution:</p>
+<p><span class="math display">\[d_{\text{SIM}} = \frac{\lambda}{2(2 \text{NA})} = \frac{d_{\text{Abbe}}}{2}\]</span></p>
+<p>For visible light: <span class="math inline">\(d_{\text{SIM}} \approx 100\)</span> nm (vs.&nbsp;180 nm diffraction limit).</p>
+<section id="a-practical-implementation-phase-shifts-and-orientations" class="level4">
+<h4 class="anchored" data-anchor-id="a-practical-implementation-phase-shifts-and-orientations">5.2a Practical Implementation: Phase Shifts and Orientations</h4>
+<p>To extract the shifted frequency components <span class="math inline">\(\tilde{O}(\mathbf{k} \pm \mathbf{k}_{\text{ill}})\)</span> from the measured data, we acquire multiple images with different illumination phases and grating orientations:</p>
+<ul>
+<li><strong>Phase shifts</strong>: At each grating orientation, acquire 3–4 images with phase shifts <span class="math inline">\(\phi = 0, 2\pi/3, 4\pi/3\)</span> (or more). This allows separation of the DC term and the ±<span class="math inline">\(\mathbf{k}_{\text{ill}}\)</span> components.</li>
+<li><strong>Grating orientations</strong>: Rotate the grating through several angles (typically 3–5 orientations, e.g., 0°, 60°, 120°) to capture high-frequency information in multiple directions.</li>
+<li><strong>Total acquisition</strong>: For 2D SIM, ~9–15 raw images are typically required per z-section (5 orientations × 3 phases = 15 images). For 3D, this is repeated across multiple z-planes.</li>
+</ul>
+<p>In post-processing, computational deconvolution separates the frequency components and reconstructs an extended-bandwidth image, revealing features <span class="math inline">\(\sim 100\)</span> nm for visible light (2× improvement over diffraction limit).</p>
+</section>
+<section id="b-sim-frequency-domain-visualization" class="level4">
+<h4 class="anchored" data-anchor-id="b-sim-frequency-domain-visualization">5.2b SIM Frequency-Domain Visualization</h4>
+<p>The following code demonstrates how SIM extends the frequency passband by shifting copies of the object spectrum:</p>
+<div id="4e825334" class="cell" data-execution_count="2">
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="01-lecture12_files/figure-html/cell-3-output-1.png" width="594" height="162" class="figure-img"></p>
+<figcaption>SIM frequency mixing: illumination pattern shifts copies of the object spectrum into the observable passband. Panel 1: Object spectrum (blue shaded) with OTF cutoff (red dashed). Panel 2: Illumination pattern in Fourier space (green bars) with OTF cutoff (red dashed). Panel 3: Measured intensity after frequency mixing (purple shaded), with orange-shaded regions indicating high-frequency info shifted into the passband. Panel 4: SIM reconstruction (orange) compared to the original object spectrum (blue dashed), showing the extended passband (dark green dotted) reaching approximately twice the original OTF cutoff (red dashed).</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="nonlinear-sim-saturated-sim" class="level3">
+<h3 class="anchored" data-anchor-id="nonlinear-sim-saturated-sim">5.3 Nonlinear SIM / Saturated SIM</h3>
+<p>Further improvement comes from <strong>saturation</strong> of the fluorescence:</p>
+<p><span class="math display">\[F(I) = \frac{I}{1 + I/I_{\text{sat}}}\]</span></p>
+<p>This nonlinearity generates <strong>higher harmonics</strong> in the illumination pattern: <span class="math display">\[I_{\text{illum}} = I_0 [1 + \alpha \cos(k_{\text{pattern}} x)]\]</span> <span class="math display">\[F(I_{\text{illum}}) \approx F_0 + F_1 \cos(k_{\text{pattern}} x) + F_2 \cos(2 k_{\text{pattern}} x) + \cdots\]</span></p>
+<p>The second harmonic <span class="math inline">\(\cos(2 k_{\text{pattern}} x)\)</span> contains information at <span class="math inline">\(2 k_{\text{pattern}}\)</span>, further increasing frequency resolution. With multiple harmonics accessible through saturation, resolution can approach:</p>
+<p><span class="math display">\[d_{\text{sat-SIM}} \approx \frac{\lambda}{3 \text{NA}} \quad \text{or better}\]</span></p>
+<p><strong>Trade-off</strong>: Requires high saturation intensity and photon budget; can cause photodamage.</p>
+</section>
+<section id="advantages-of-sim" class="level3">
+<h3 class="anchored" data-anchor-id="advantages-of-sim">5.4 Advantages of SIM</h3>
+<ul>
+<li>Works with conventional fluorophores (no special photophysics)</li>
+<li>Parallelized detection (widefield), so fast imaging (<span class="math inline">\(\sim 100\)</span> ms per 3D stack)</li>
+<li>Live-cell compatible (low phototoxicity in linear regime)</li>
+<li>Intuitive Fourier interpretation</li>
+</ul>
+</section>
+<section id="disadvantages" class="level3">
+<h3 class="anchored" data-anchor-id="disadvantages">5.5 Disadvantages</h3>
+<ul>
+<li>Requires computational reconstruction (deconvolution of illumination pattern)</li>
+<li>Artifacts if pattern not perfectly calibrated</li>
+<li>2× improvement is modest (3–5 nm for visible light)</li>
+<li>Requires high signal-to-noise for robust frequency shifting</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="sec-minflux" class="level2">
+<h2 class="anchored" data-anchor-id="sec-minflux">6. MINFLUX: Minimal Photon Fluxes</h2>
+<section id="motivation-extreme-photon-efficiency" class="level3">
+<h3 class="anchored" data-anchor-id="motivation-extreme-photon-efficiency">6.1 Motivation: Extreme Photon Efficiency</h3>
+<p>MINFLUX (developed by Stefan Hell’s group, 2017–2021) is a paradigm shift: instead of collecting many photons and localizing to high precision, use <strong>minimal photon fluxes</strong> (few photons per molecule) with clever beam geometry.</p>
+<p><strong>Key insight</strong>: The spatial information is encoded not in the <strong>number</strong> of photons but in their <strong>spatial distribution pattern</strong>.</p>
+</section>
+<section id="principle-doughnut-scanning" class="level3">
+<h3 class="anchored" data-anchor-id="principle-doughnut-scanning">6.2 Principle: Doughnut Scanning</h3>
+<ol type="1">
+<li><strong>Excitation beam</strong>: A donut (doughnut) with zero intensity at the center</li>
+<li><strong>Sample</strong>: Scanned through the donut via piezo stage (or beam scan)</li>
+<li><strong>Detection</strong>: Bright fluorescence when molecule is <strong>off-axis</strong> (in the annulus), minimum when <strong>on-axis</strong> (at the hole)</li>
+<li><strong>Inference</strong>: The dip in fluorescence signal vs.&nbsp;lateral position reveals the molecule position with <strong>sub-nm precision</strong></li>
+</ol>
+<p>Mathematically, the fluorescence detected as a function of doughnut position is:</p>
+<p><span class="math display">\[F(x, y) = N \times \text{Doughnut}(x, y)\]</span></p>
+<p>where <span class="math inline">\(N\)</span> is the number of photons and Doughnut<span class="math inline">\((x,y)\)</span> is the normalized beam intensity.</p>
+<p>The position of the <strong>minimum</strong> in the measured signal directly reports the molecule position. Scanning the donut through the region and recording the 2D fluorescence map gives a “negative image” of the PSF.</p>
+</section>
+<section id="localization-precision-with-few-photons" class="level3">
+<h3 class="anchored" data-anchor-id="localization-precision-with-few-photons">6.3 Localization Precision with Few Photons</h3>
+<p>Even with just <span class="math inline">\(N \sim 50\)</span>–<span class="math inline">\(100\)</span> photons, the doughnut geometry and sharp intensity gradients allow localization to:</p>
+<p><span class="math display">\[\sigma_{\text{MINFLUX}} \sim 1\text{–}5 \text{ nm}\]</span></p>
+<p>This is achieved because: 1. <strong>High gradient</strong> at the doughnut minimum: <span class="math inline">\(\frac{d I_{\text{donut}}}{d x} \gg 0\)</span> 2. <strong>Photons are concentrated</strong> where they matter most (edges of the donut, not the center) 3. <strong>Information content</strong> is maximized per photon</p>
+</section>
+<section id="d-minflux" class="level3">
+<h3 class="anchored" data-anchor-id="d-minflux">6.4 3D MINFLUX</h3>
+<p>By adding a <strong>z-dependent</strong> modulation to the doughnut (e.g., astigmatism or helical phase), axial position can also be encoded. Result: <strong>3D localization at nm-scale precision with few photons</strong>.</p>
+</section>
+<section id="advantages" class="level3">
+<h3 class="anchored" data-anchor-id="advantages">6.5 Advantages</h3>
+<ul>
+<li><strong>Extraordinary photon efficiency</strong>: <span class="math inline">\(\sim 5\)</span> nm precision with 50 photons (vs.&nbsp;SMLM needing 1000 photons for similar precision)</li>
+<li><strong>Ultra-low phototoxicity</strong>: Minimal excitation light</li>
+<li><strong>Fast</strong>: Can be implemented in volume-scanning geometry</li>
+<li><strong>No photobleaching artifacts</strong>: Since fewer photons needed, molecule survives longer</li>
+</ul>
+</section>
+<section id="disadvantages-1" class="level3">
+<h3 class="anchored" data-anchor-id="disadvantages-1">6.6 Disadvantages</h3>
+<ul>
+<li>Requires <strong>scanning</strong> (not widefield); slower per frame but still fast for many molecules</li>
+<li>Scanning stage (piezo) must be very precise and fast</li>
+<li>Requires custom optical alignment (doughnut generation, beam steering)</li>
+<li>Reconstruction/localization requires model of the doughnut beam</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="sec-comparison" class="level2">
+<h2 class="anchored" data-anchor-id="sec-comparison">7. Comparison of Superresolution Methods</h2>
+<section id="qualitative-comparison-table" class="level3">
+<h3 class="anchored" data-anchor-id="qualitative-comparison-table">7.1 Qualitative Comparison Table</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 7%">
+<col style="width: 18%">
+<col style="width: 16%">
+<col style="width: 17%">
+<col style="width: 10%">
+<col style="width: 16%">
+<col style="width: 12%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Method</th>
+<th>Lateral Resolution</th>
+<th>Axial Resolution</th>
+<th>Speed (frames/s)</th>
+<th>Live-cell</th>
+<th>Photons/molecule</th>
+<th>Photodamage</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Confocal diffraction-limited</td>
+<td>~200 nm</td>
+<td>~500 nm</td>
+<td>1–10</td>
+<td>Yes</td>
+<td>Moderate</td>
+<td>Low</td>
+</tr>
+<tr class="even">
+<td>SIM (linear)</td>
+<td>~100 nm</td>
+<td>~300 nm</td>
+<td>1–5</td>
+<td>Yes</td>
+<td>Moderate</td>
+<td>Very Low</td>
+</tr>
+<tr class="odd">
+<td>SIM (saturated)</td>
+<td>~50 nm</td>
+<td>~200 nm</td>
+<td>0.5–2</td>
+<td>Maybe</td>
+<td>High</td>
+<td>Moderate</td>
+</tr>
+<tr class="even">
+<td>STED</td>
+<td>~20–50 nm</td>
+<td>~50–100 nm</td>
+<td>1–10</td>
+<td>Yes</td>
+<td>Moderate–High</td>
+<td>Moderate–High</td>
+</tr>
+<tr class="odd">
+<td>PALM/STORM</td>
+<td>~10–30 nm</td>
+<td>~50 nm</td>
+<td>0.01–0.1</td>
+<td>No</td>
+<td>1000</td>
+<td>High</td>
+</tr>
+<tr class="even">
+<td>MINFLUX (2D)</td>
+<td>~5 nm</td>
+<td>-</td>
+<td>0.1–1</td>
+<td>Maybe</td>
+<td>50–100</td>
+<td>Very Low</td>
+</tr>
+<tr class="odd">
+<td>MINFLUX (3D)</td>
+<td>~5 nm</td>
+<td>~10 nm</td>
+<td>0.01–0.1</td>
+<td>Maybe</td>
+<td>100–200</td>
+<td>Very Low</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="resolution-vs.-speed-trade-off" class="level3">
+<h3 class="anchored" data-anchor-id="resolution-vs.-speed-trade-off">7.2 Resolution vs.&nbsp;Speed Trade-off</h3>
+<p>A fundamental trade-off exists:</p>
+<ul>
+<li><strong>STED &amp; SIM</strong>: Fast but modest resolution gains (~2–10×)</li>
+<li><strong>SMLM (PALM/STORM)</strong>: Excellent resolution (~10–20 nm) but slow (requires thousands of frames)</li>
+<li><strong>MINFLUX</strong>: Best photon efficiency; bridges the gap (nm-scale precision, moderately fast with clever scanning)</li>
+</ul>
+</section>
+<section id="choosing-a-method" class="level3">
+<h3 class="anchored" data-anchor-id="choosing-a-method">7.3 Choosing a Method</h3>
+<p><strong>SMLM</strong> (PALM/STORM): - Use for: Fixed samples, 2D or shallow 3D, maximum resolution (<span class="math inline">\(\sim 10\)</span> nm), any fluorophore type - Avoid for: Live-cell, thick tissues, volumetric imaging, real-time applications</p>
+<p><strong>STED</strong>: - Use for: Live-cell, fast volumetric imaging, moderate resolution needs (<span class="math inline">\(\sim 30\)</span> nm), deep tissue - Avoid for: Extreme resolution requirements, cost-conscious labs (expensive, complex)</p>
+<p><strong>SIM</strong>: - Use for: Live-cell, modestly improved resolution, weak samples, conventional microscope conversion - Avoid for: Extreme resolution, single-molecule studies</p>
+<p><strong>MINFLUX</strong>: - Use for: Extreme precision (<span class="math inline">\(\sim 5\)</span> nm), ultra-low phototoxicity, single-molecule dynamics - Avoid for: Widefield mapping, low-precision requirements, conventional stage</p>
+<hr>
+</section>
+</section>
+<section id="sec-computational" class="level2">
+<h2 class="anchored" data-anchor-id="sec-computational">8. Computational Aspects</h2>
+<section id="smlm-reconstruction-pipeline" class="level3">
+<h3 class="anchored" data-anchor-id="smlm-reconstruction-pipeline">8.1 SMLM Reconstruction Pipeline</h3>
+<p>For SMLM, the computational workflow is:</p>
+<pre><code>Raw image stack (1000s of frames)
+  ↓
+Frame-by-frame peak detection
+  ↓
+PSF fitting (2D Gaussian)
+  ↓
+Localization + uncertainty estimates
+  ↓
+Rendering: paint each molecule as a Gaussian with width = σ_loc
+  ↓
+Final superresolved image</code></pre>
+</section>
+<section id="drift-correction" class="level3">
+<h3 class="anchored" data-anchor-id="drift-correction">8.2 Drift Correction</h3>
+<p>Over acquisition time, mechanical drift can shift the sample by tens to hundreds of nm. <strong>Drift correction</strong> is essential:</p>
+<ol type="1">
+<li><strong>Fiducial markers</strong>: Track fixed fluorescent beads embedded in/on the sample</li>
+<li><strong>Cross-correlation</strong>: Compute shift by correlating each frame against a reference</li>
+<li><strong>Apply correction</strong>: Adjust all localized coordinates by the measured drift</li>
+</ol>
+</section>
+<section id="rendering-and-display" class="level3">
+<h3 class="anchored" data-anchor-id="rendering-and-display">8.3 Rendering and Display</h3>
+<p>The final superresolved image is constructed by summing Gaussians at each localization:</p>
+<p><span class="math display">\[I_{\text{final}}(x,y) = \sum_i \exp\left( -\frac{(x - x_i)^2 + (y - y_i)^2}{2\sigma_i^2} \right)\]</span></p>
+<p>where <span class="math inline">\(\sigma_i\)</span> is the localization precision of molecule <span class="math inline">\(i\)</span>. Pixel size should be much smaller than localization precision (typically <span class="math inline">\(\sim \sigma_{\text{loc}}/5\)</span>) to avoid undersampling.</p>
+<hr>
+</section>
+</section>
+<section id="sec-python" class="level2">
+<h2 class="anchored" data-anchor-id="sec-python">9. Python Demonstrations</h2>
+<section id="demo-1-diffraction-limit-and-two-point-resolution" class="level3">
+<h3 class="anchored" data-anchor-id="demo-1-diffraction-limit-and-two-point-resolution">Demo 1: Diffraction Limit and Two-Point Resolution</h3>
+<div id="6d4b6fbb" class="cell" data-execution_count="3">
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="01-lecture12_files/figure-html/cell-4-output-1.png" width="540" height="200" class="figure-img"></p>
+<figcaption>Point-Spread Function (PSF). Left: 2D Airy disk intensity pattern (hot colormap) with cyan dashed lines marking the Abbe diffraction limit. Center: 1D radial profile of the Airy disk (blue) with the Abbe limit indicated by a red dashed vertical line. Right: Summed intensity of two point sources separated by 1.5 times the Abbe limit (blue), showing the dip characteristic of the Rayleigh criterion.</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Wavelength: 550 nm
+Numerical Aperture: 1.4
+Abbe diffraction limit: 196.4 nm
+Lateral resolution (Rayleigh): ~239.6 nm</code></pre>
+</div>
+</div>
+</section>
+<section id="demo-2-sted-doughnut-depletion" class="level3">
+<h3 class="anchored" data-anchor-id="demo-2-sted-doughnut-depletion">Demo 2: STED — Doughnut Depletion</h3>
+<div id="568a7c84" class="cell" data-execution_count="4">
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="01-lecture12_files/figure-html/cell-5-output-1.png" width="579" height="350" class="figure-img"></p>
+<figcaption>STED microscopy. Top row: Excitation PSF (blue colormap), doughnut depletion beam (red colormap), and depletion factor (green colormap). Bottom left: Effective PSF after STED depletion (hot colormap). Bottom center: 1D radial profiles comparing the excitation PSF (blue) and the narrowed effective STED PSF (red). Bottom right: Resolution (nm) vs.&nbsp;STED intensity normalized to saturation intensity (green curve), with the gray dashed line indicating the diffraction limit.</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>STED wavelength: 660 nm
+Saturation parameter α: 5.0
+Diffraction-limited resolution: 196.4 nm
+STED resolution (α=5.0): 80.2 nm
+Resolution improvement factor: 2.45×</code></pre>
+</div>
+</div>
+</section>
+<section id="demo-3-smlm-simulation-single-molecule-blinking-and-reconstruction" class="level3">
+<h3 class="anchored" data-anchor-id="demo-3-smlm-simulation-single-molecule-blinking-and-reconstruction">Demo 3: SMLM Simulation — Single-Molecule Blinking and Reconstruction</h3>
+<div id="a77f686d" class="cell" data-execution_count="5">
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="01-lecture12_files/figure-html/cell-6-output-1.png" width="577" height="351" class="figure-img"></p>
+<figcaption>Single-molecule localization microscopy (SMLM). Top left: Average widefield image (viridis colormap). Top center: Single frame showing stochastically activated molecules (hot colormap). Top right: Histogram of localization precisions (nm). Bottom left: Scatter plot of all localizations colored by frame number (viridis colormap). Bottom center: Superresolved reconstruction (hot colormap). Bottom right: Cross-sectional intensity comparison between widefield (blue) and superresolved SMLM reconstruction (red).</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Total frames acquired: 200
+Molecules in sample: 50
+Total localizations detected: 509
+Average localizations per frame: 2.5
+Mean localization precision: 7.4 nm
+Median localization precision: 10.8 nm</code></pre>
+</div>
+</div>
+</section>
+<section id="demo-4-comparison-of-superresolution-methods" class="level3">
+<h3 class="anchored" data-anchor-id="demo-4-comparison-of-superresolution-methods">Demo 4: Comparison of Superresolution Methods</h3>
+<div id="51ca9057" class="cell" data-execution_count="6">
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="01-lecture12_files/figure-html/cell-7-output-1.png" width="681" height="461" class="figure-img"></p>
+<figcaption>Superresolution methods comprehensive comparison. Top left: Resolution (nm) vs.&nbsp;speed (frames/s) on log-log axes, with each method shown as a colored dot. Top center: Resolution vs.&nbsp;phototoxicity (relative scale). Top right: Photon efficiency (fewer photons needed is better) as horizontal bars. Bottom left: Radar plot comparing normalized resolution, speed, and low phototoxicity for Confocal (yellow-green), SIM Linear (light green), SIM Saturated (teal), STED (salmon), PALM/STORM (lavender), and MINFLUX (pink). Bottom right: Application suitability guide.</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+==========================================================================================
+Method               Resolution      Speed        Phototox     Efficiency  
+==========================================================================================
+Confocal (Diffraction)    200 nm           2.00 f/s       2.0       10.00
+SIM (Linear)            100 nm           2.00 f/s       1.0       10.00
+SIM (Saturated)          50 nm           0.50 f/s       4.0        5.00
+STED                     25 nm           2.00 f/s       6.0        3.00
+PALM/STORM               15 nm           0.05 f/s       8.0        1.00
+MINFLUX                   5 nm           0.20 f/s       1.5        0.10
+==========================================================================================</code></pre>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="sec-fourier-thread" class="level2">
+<h2 class="anchored" data-anchor-id="sec-fourier-thread">10. Fourier Optics Thread: Superresolution Through Frequency-Space Engineering</h2>
+<p>The diverse superresolution techniques can be unified by examining how each manipulates the optical transfer function (OTF) and frequency passband:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 26%">
+<col style="width: 73%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Technique</th>
+<th>Fourier-Space Interpretation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Diffraction limit</strong></td>
+<td>OTF cutoff at <span class="math inline">\(k_{\text{max}} = 2\text{NA}/\lambda\)</span> for incoherent imaging; frequencies beyond are evanescent (lost)</td>
+</tr>
+<tr class="even">
+<td><strong>SIM</strong></td>
+<td>Structured illumination creates frequency mixing (convolution): object spectrum is shifted by <span class="math inline">\(\pm \mathbf{k}_{\text{ill}}\)</span>, bringing high-frequency information into the passband. Effective passband extends to <span class="math inline">\(\sim 2 \times 2\text{NA}/\lambda\)</span>, yielding 2× resolution gain. Nonlinear SIM (saturation) generates harmonics, extending further.</td>
+</tr>
+<tr class="odd">
+<td><strong>STED</strong></td>
+<td>Nonlinear depletion narrows the effective PSF, which corresponds to a <strong>wider, extended OTF</strong> in frequency space. Frequencies beyond the diffraction cutoff become observable; resolution arbitrarily improvable with higher depletion intensity.</td>
+</tr>
+<tr class="even">
+<td><strong>PALM/STORM</strong></td>
+<td>Bypasses the classical OTF framework: single-molecule localization extracts spatial information through sequential detection and computational reconstruction. Resolution = localization precision (<span class="math inline">\(\sigma \propto 1/\sqrt{N}\)</span>), independent of the diffraction-limited OTF cutoff.</td>
+</tr>
+<tr class="odd">
+<td><strong>MINFLUX</strong></td>
+<td>Combines structured illumination (doughnut beam) with single-molecule sensitivity, optimally encoding position information in the spatial distribution of detected photons. Achieves nm-scale precision through beam engineering, not OTF extension.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Unifying insight</strong>: All superresolution techniques exploit <strong>nonlinearity</strong> (saturation, photoswitching, or structured modulation) or <strong>clever information encoding</strong> to extract spatial information beyond the diffraction limit. Whether by extending the OTF (STED, SIM) or circumventing it (SMLM, MINFLUX), the underlying principle is the same: convert optical hardware or computational ingenuity into spatial resolution.</p>
+<hr>
+</section>
+<section id="sec-summary" class="level2">
+<h2 class="anchored" data-anchor-id="sec-summary">11. Summary and Outlook</h2>
+<section id="key-takeaways" class="level3">
+<h3 class="anchored" data-anchor-id="key-takeaways">11.1 Key Takeaways</h3>
+<ol type="1">
+<li><p><strong>The diffraction limit is not fundamental</strong>: It reflects the finite NA of optical systems, but can be broken using clever physics and mathematics.</p></li>
+<li><p><strong>Nonlinearity is the key</strong>: STED, SMLM, SIM, and MINFLUX all exploit nonlinear fluorescence response (saturation, photoswitching, or spatial modulation) to gain information beyond the diffraction limit.</p></li>
+<li><p><strong>Trade-offs matter</strong>:</p>
+<ul>
+<li>Speed vs.&nbsp;resolution (SMLM is slow but very precise; STED is fast but moderate precision)</li>
+<li>Photon efficiency vs.&nbsp;speed (MINFLUX uses few photons but requires scanning)</li>
+<li>Sample preparation vs.&nbsp;capability (fixed vs.&nbsp;live-cell)</li>
+</ul></li>
+<li><p><strong>Information is photons</strong>: The Cramér-Rao bound shows that localization precision scales as <span class="math inline">\(1/\sqrt{N}\)</span>. Clever beam engineering (MINFLUX) extracts maximum information per photon.</p></li>
+<li><p><strong>Computation is essential</strong>: SMLM reconstruction, SIM deconvolution, and drift correction are inseparable from modern superresolution.</p></li>
+</ol>
+</section>
+<section id="emerging-trends" class="level3">
+<h3 class="anchored" data-anchor-id="emerging-trends">11.2 Emerging Trends</h3>
+<ul>
+<li><strong>Machine learning</strong>: Neural networks for PSF fitting, drift correction, and artifact removal</li>
+<li><strong>Hybrid approaches</strong>: Combining STED + SIM, or MINFLUX + computational optics</li>
+<li><strong>Volumetric fast imaging</strong>: 3D STED with adaptive optics, or light-sheet SIM</li>
+<li><strong>Live-cell long-term imaging</strong>: MINFLUX for ultra-low phototoxicity</li>
+<li><strong>Multimodal integration</strong>: Superresolution + spectroscopy, electron microscopy correlative imaging</li>
+</ul>
+</section>
+<section id="outlook" class="level3">
+<h3 class="anchored" data-anchor-id="outlook">11.3 Outlook</h3>
+<p>Superresolution microscopy has transformed cell biology and nanoscience. As techniques mature and merge with AI, we expect:</p>
+<ul>
+<li>Routine <span class="math inline">\(\sim 10\)</span> nm resolution in live cells (&lt; 5 years)</li>
+<li>Real-time 3D volumetric superresolution (current frontier)</li>
+<li>Integration with cryo-EM for in situ structural biology</li>
+<li>Quantum optics for sub-shot-noise localization precision</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="experimental-connections" class="level2">
+<h2 class="anchored" data-anchor-id="experimental-connections">Experimental Connections</h2>
+<p>Superresolution microscopy is the cutting edge of modern optics, but the core principles can be explored in teaching labs:</p>
+<p><strong>Resolution limit verification</strong> Image fluorescent beads of known diameter (e.g., 200 nm, 100 nm, 40 nm) with a standard widefield microscope. Beads smaller than the diffraction limit all appear as the same PSF — directly demonstrating the resolution barrier. Fit the PSF width to verify the Rayleigh/Abbe limit.</p>
+<p><strong>Single-molecule localization</strong> Prepare a very dilute sample of fluorescent molecules on a coverslip (&lt; 1 molecule per diffraction-limited area). Image single molecules — each appears as an Airy disk. Fit 2D Gaussians to localize the center with nanometer precision. This teaches the localization precision formula <span class="math inline">\(\sigma \approx \sigma_\text{PSF}/\sqrt{N}\)</span>.</p>
+<p><strong>Blinking and photoactivation</strong> Some fluorescent proteins (e.g., mEos, PA-GFP) can be photoactivated with UV light. Illuminate a densely labeled sample with low UV power — sparse molecules turn on stochastically. This is the basis of PALM. Even without a full PALM reconstruction, students see how stochastic activation enables sequential localization.</p>
+<p><strong>Structured illumination in 1D</strong> Project a 1D sinusoidal pattern onto a fluorescent sample (e.g., using a Ronchi ruling). Acquire three phase-shifted images and reconstruct computationally. Compare the frequency content of the raw and SIM images — the extended bandwidth (2× in 1D) is visible in the Fourier transform.</p>
+<p><strong>STED concept demonstration</strong> While a full STED setup requires a pulsed depletion laser, the concept can be demonstrated optically: show that stimulated emission depletes fluorescence by co-illuminating a fluorescent cuvette with an excitation and a strong depletion beam. Measure the fluorescence decrease as a function of depletion power — this is the saturation curve that underlies STED resolution.</p>
+</section>
+<section id="further-reading" class="level2">
+<h2 class="anchored" data-anchor-id="further-reading">Further Reading</h2>
+<p>The following references are linked to the central <a href="../../resources/resources.html">Resources &amp; Recommended Reading</a> page:</p>
+<ul>
+<li><strong><a href="../../resources/resources.html#sec-schermelleh">Schermelleh et al.&nbsp;(2019)</a></strong> — “Super-resolution microscopy demystified.” Excellent review covering STED, PALM/STORM, SIM, and MINFLUX.</li>
+<li><strong><a href="../../resources/resources.html#sec-minflux">Balzarotti et al.&nbsp;(2017)</a></strong> — The original MINFLUX paper by the Hell group.</li>
+<li><strong><a href="../../resources/resources.html#sec-novotny">Novotny &amp; Hecht (2012)</a></strong> — <em>Principles of Nano-Optics</em>. Advanced treatment of resolution limits and single-molecule detection.</li>
+<li><strong><a href="../../resources/resources.html#sec-mertz">Mertz (2019)</a></strong> — <em>Introduction to Optical Microscopy</em>. Good chapters on SIM and resolution enhancement.</li>
+<li><strong><a href="../../resources/resources.html#sec-goodman">Goodman, Ch. 7</a></strong> — Wavefront modulation (relevant to SLM-based superresolution methods).</li>
+<li><strong>Hell, S. W. (2007)</strong> — “Far-field optical nanoscopy.” <em>Science</em> <strong>316</strong>, 1153–1158. Nobel lecture on breaking the diffraction limit.</li>
+</ul>
+<hr>
+<p><em>Lecture 12: Superresolution Microscopy — Introduction to Photonics</em></p>
+<hr>
+<p><strong>End of Lecture 12</strong></p>
+<p><em>Total duration: ~90 minutes (including ~30 min demos, 15 min questions/discussion)</em></p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/fcichos\.github\.io\/Photonics\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

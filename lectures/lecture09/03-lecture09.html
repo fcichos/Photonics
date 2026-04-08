@@ -1,0 +1,1182 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.34">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Confocal Microscopy &amp; Wavefront Control – Photonics</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-9344fb9851b4da3cab95007ef9d770dc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../assets/css/styles.css">
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Photonics</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../../index.html" aria-current="page"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Confocal Microscopy &amp; Wavefront Control</li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="../../index.html" class="sidebar-logo-link">
+      <img src="../../assets/images/mona_logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home</span></a>
+  </div>
+</li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Course Info</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-info/intructors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Instructor</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-info/schedule.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Schedule</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-info/resources.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Ressources</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-info/seminars.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Seminars</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-info/exam.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exams</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">PART I: FOUNDATIONS</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Lecture 1 — Introduction, Ray Optics &amp; Wave Optics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture01/introduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture01/01-lecture01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Ray Optics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture01/02-lecture01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Optical Elements</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture02/01-lecture02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Matrix Optics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture02/02-lecture02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wave Optics</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction-ideal-pupils-and-real-aberrations" id="toc-introduction-ideal-pupils-and-real-aberrations" class="nav-link active" data-scroll-target="#introduction-ideal-pupils-and-real-aberrations">Introduction: Ideal Pupils and Real Aberrations</a></li>
+  <li><a href="#confocal-microscopy-revisited-the-otf-perspective" id="toc-confocal-microscopy-revisited-the-otf-perspective" class="nav-link" data-scroll-target="#confocal-microscopy-revisited-the-otf-perspective">1. Confocal Microscopy Revisited: The OTF Perspective</a>
+  <ul class="collapse">
+  <li><a href="#beyond-widefield-confocal-fluorescence-detection" id="toc-beyond-widefield-confocal-fluorescence-detection" class="nav-link" data-scroll-target="#beyond-widefield-confocal-fluorescence-detection">Beyond Widefield: Confocal Fluorescence Detection</a>
+  <ul class="collapse">
+  <li><a href="#confocal-psf-in-real-space" id="toc-confocal-psf-in-real-space" class="nav-link" data-scroll-target="#confocal-psf-in-real-space">Confocal PSF in Real Space</a></li>
+  <li><a href="#confocal-otf-fourier-space-view" id="toc-confocal-otf-fourier-space-view" class="nav-link" data-scroll-target="#confocal-otf-fourier-space-view">Confocal OTF: Fourier-Space View</a></li>
+  <li><a href="#pinhole-as-spatial-frequency-filter" id="toc-pinhole-as-spatial-frequency-filter" class="nav-link" data-scroll-target="#pinhole-as-spatial-frequency-filter">Pinhole as Spatial Frequency Filter</a></li>
+  <li><a href="#fast-beam-scanning-aoms-and-mirrors" id="toc-fast-beam-scanning-aoms-and-mirrors" class="nav-link" data-scroll-target="#fast-beam-scanning-aoms-and-mirrors">Fast Beam Scanning: AOMs and Mirrors</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#aberrations-and-the-pupil-function" id="toc-aberrations-and-the-pupil-function" class="nav-link" data-scroll-target="#aberrations-and-the-pupil-function">2. Aberrations and the Pupil Function</a>
+  <ul class="collapse">
+  <li><a href="#the-general-pupil-function" id="toc-the-general-pupil-function" class="nav-link" data-scroll-target="#the-general-pupil-function">The General Pupil Function</a></li>
+  <li><a href="#how-aberrations-degrade-the-otf" id="toc-how-aberrations-degrade-the-otf" class="nav-link" data-scroll-target="#how-aberrations-degrade-the-otf">How Aberrations Degrade the OTF</a></li>
+  <li><a href="#the-strehl-ratio-a-quantitative-measure" id="toc-the-strehl-ratio-a-quantitative-measure" class="nav-link" data-scroll-target="#the-strehl-ratio-a-quantitative-measure">The Strehl Ratio: A Quantitative Measure</a>
+  <ul class="collapse">
+  <li><a href="#example-spherical-aberration-from-cover-slip-mismatch" id="toc-example-spherical-aberration-from-cover-slip-mismatch" class="nav-link" data-scroll-target="#example-spherical-aberration-from-cover-slip-mismatch">Example: Spherical Aberration from Cover Slip Mismatch</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#zernike-polynomials-the-natural-pupil-plane-basis" id="toc-zernike-polynomials-the-natural-pupil-plane-basis" class="nav-link" data-scroll-target="#zernike-polynomials-the-natural-pupil-plane-basis">3. Zernike Polynomials: The Natural Pupil-Plane Basis</a>
+  <ul class="collapse">
+  <li><a href="#why-zernike" id="toc-why-zernike" class="nav-link" data-scroll-target="#why-zernike">Why Zernike?</a>
+  <ul class="collapse">
+  <li><a href="#orthonormality" id="toc-orthonormality" class="nav-link" data-scroll-target="#orthonormality">Orthonormality</a></li>
+  </ul></li>
+  <li><a href="#low-order-zernike-modes-and-physical-meaning" id="toc-low-order-zernike-modes-and-physical-meaning" class="nav-link" data-scroll-target="#low-order-zernike-modes-and-physical-meaning">Low-Order Zernike Modes and Physical Meaning</a></li>
+  </ul></li>
+  <li><a href="#zernike-visualization-and-aberration-impact" id="toc-zernike-visualization-and-aberration-impact" class="nav-link" data-scroll-target="#zernike-visualization-and-aberration-impact">4. Zernike Visualization and Aberration Impact</a></li>
+  <li><a href="#impact-of-aberrations-on-psf-and-otf" id="toc-impact-of-aberrations-on-psf-and-otf" class="nav-link" data-scroll-target="#impact-of-aberrations-on-psf-and-otf">5. Impact of Aberrations on PSF and OTF</a></li>
+  <li><a href="#wavefront-sensing-the-shack-hartmann-sensor" id="toc-wavefront-sensing-the-shack-hartmann-sensor" class="nav-link" data-scroll-target="#wavefront-sensing-the-shack-hartmann-sensor">6. Wavefront Sensing: The Shack-Hartmann Sensor</a>
+  <ul class="collapse">
+  <li><a href="#principle-from-wavefront-slope-to-phase" id="toc-principle-from-wavefront-slope-to-phase" class="nav-link" data-scroll-target="#principle-from-wavefront-slope-to-phase">Principle: From Wavefront Slope to Phase</a></li>
+  <li><a href="#fourier-space-perspective-connection-to-slope-and-frequency" id="toc-fourier-space-perspective-connection-to-slope-and-frequency" class="nav-link" data-scroll-target="#fourier-space-perspective-connection-to-slope-and-frequency">Fourier-Space Perspective: Connection to Slope and Frequency</a></li>
+  <li><a href="#reconstruction-algorithm" id="toc-reconstruction-algorithm" class="nav-link" data-scroll-target="#reconstruction-algorithm">Reconstruction Algorithm</a></li>
+  </ul></li>
+  <li><a href="#adaptive-optics-for-microscopy" id="toc-adaptive-optics-for-microscopy" class="nav-link" data-scroll-target="#adaptive-optics-for-microscopy">7. Adaptive Optics for Microscopy</a>
+  <ul class="collapse">
+  <li><a href="#wavefront-correction-devices" id="toc-wavefront-correction-devices" class="nav-link" data-scroll-target="#wavefront-correction-devices">Wavefront Correction Devices</a>
+  <ul class="collapse">
+  <li><a href="#spatial-light-modulators-slms" id="toc-spatial-light-modulators-slms" class="nav-link" data-scroll-target="#spatial-light-modulators-slms">Spatial Light Modulators (SLMs)</a></li>
+  <li><a href="#deformable-mirrors" id="toc-deformable-mirrors" class="nav-link" data-scroll-target="#deformable-mirrors">Deformable Mirrors</a></li>
+  </ul></li>
+  <li><a href="#sensorless-adaptive-optics" id="toc-sensorless-adaptive-optics" class="nav-link" data-scroll-target="#sensorless-adaptive-optics">Sensorless Adaptive Optics</a></li>
+  </ul></li>
+  <li><a href="#application-deep-tissue-confocal-imaging-with-adaptive-optics" id="toc-application-deep-tissue-confocal-imaging-with-adaptive-optics" class="nav-link" data-scroll-target="#application-deep-tissue-confocal-imaging-with-adaptive-optics">8. Application: Deep-Tissue Confocal Imaging with Adaptive Optics</a>
+  <ul class="collapse">
+  <li><a href="#the-problem-spherical-aberration-at-depth" id="toc-the-problem-spherical-aberration-at-depth" class="nav-link" data-scroll-target="#the-problem-spherical-aberration-at-depth">The Problem: Spherical Aberration at Depth</a></li>
+  <li><a href="#adaptive-correction-strategy" id="toc-adaptive-correction-strategy" class="nav-link" data-scroll-target="#adaptive-correction-strategy">Adaptive Correction Strategy</a></li>
+  </ul></li>
+  <li><a href="#fourier-optics-thread-summary-table" id="toc-fourier-optics-thread-summary-table" class="nav-link" data-scroll-target="#fourier-optics-thread-summary-table">9. Fourier Optics Thread: Summary Table</a></li>
+  <li><a href="#code-example-comparing-psf-and-otf-widefield-vs.-confocal" id="toc-code-example-comparing-psf-and-otf-widefield-vs.-confocal" class="nav-link" data-scroll-target="#code-example-comparing-psf-and-otf-widefield-vs.-confocal">10. Code Example: Comparing PSF and OTF (Widefield vs.&nbsp;Confocal)</a></li>
+  <li><a href="#experimental-connections" id="toc-experimental-connections" class="nav-link" data-scroll-target="#experimental-connections">11. Experimental Connections</a>
+  <ul class="collapse">
+  <li><a href="#building-a-simple-confocal-path" id="toc-building-a-simple-confocal-path" class="nav-link" data-scroll-target="#building-a-simple-confocal-path">Building a Simple Confocal Path</a></li>
+  <li><a href="#measuring-zernike-aberrations-with-a-hartmann-sensor" id="toc-measuring-zernike-aberrations-with-a-hartmann-sensor" class="nav-link" data-scroll-target="#measuring-zernike-aberrations-with-a-hartmann-sensor">Measuring Zernike Aberrations with a Hartmann Sensor</a></li>
+  <li><a href="#adaptive-optics-in-practice-slm-based-correction" id="toc-adaptive-optics-in-practice-slm-based-correction" class="nav-link" data-scroll-target="#adaptive-optics-in-practice-slm-based-correction">Adaptive Optics in Practice: SLM-Based Correction</a></li>
+  </ul></li>
+  <li><a href="#summary-fourier-optics-in-microscopy" id="toc-summary-fourier-optics-in-microscopy" class="nav-link" data-scroll-target="#summary-fourier-optics-in-microscopy">12. Summary: Fourier Optics in Microscopy</a>
+  <ul class="collapse">
+  <li><a href="#key-concepts-revisited" id="toc-key-concepts-revisited" class="nav-link" data-scroll-target="#key-concepts-revisited">Key Concepts Revisited</a></li>
+  </ul></li>
+  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading">Further Reading</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Confocal Microscopy &amp; Wavefront Control</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduction-ideal-pupils-and-real-aberrations" class="level1">
+<h1>Introduction: Ideal Pupils and Real Aberrations</h1>
+<p>In Lectures 8 and 9, we established the <strong>Optical Transfer Function (OTF)</strong> framework for understanding microscope resolution. The OTF connects the pupil function <span class="math inline">\(P(\mathbf{k})\)</span> to image contrast through the autocorrelation: <span class="math display">\[\text{OTF}(\mathbf{k}) = \frac{\mathcal{F}\{|\text{PSF}|^2\}(\mathbf{k})}{\text{OTF}(0)}\]</span></p>
+<p>In those lectures, we assumed an <strong>ideal</strong>, aberration-free pupil. Real microscopes are not so fortunate: a cover slip of wrong thickness causes spherical aberration; misalignment introduces coma; high-NA systems suffer field curvature. All of these distortions modify the <strong>pupil function</strong>—and hence degrade the OTF and resolution.</p>
+<p><strong>Learning objectives:</strong></p>
+<ul>
+<li>Understand how confocal microscopy improves the OTF by combining illumination and detection in Fourier space</li>
+<li>Recognize that <strong>aberrations are pupil-plane defects</strong>: real <span class="math inline">\(P(\rho) = A(\rho) \exp(i W(\rho))\)</span> where <span class="math inline">\(W\)</span> is wavefront error</li>
+<li>Use <strong>Zernike polynomials</strong> to decompose and visualize aberrations on circular apertures</li>
+<li>Learn <strong>wavefront sensing</strong> (Shack-Hartmann) as a measurement tool</li>
+<li>Apply <strong>adaptive optics</strong> to correct aberrations and recover diffraction-limited performance</li>
+<li>Connect all concepts to practical tools used in the MoNa lab: SLMs, AOMs, and deformable mirrors</li>
+</ul>
+<hr>
+</section>
+<section id="confocal-microscopy-revisited-the-otf-perspective" class="level1">
+<h1>1. Confocal Microscopy Revisited: The OTF Perspective</h1>
+<section id="beyond-widefield-confocal-fluorescence-detection" class="level2">
+<h2 class="anchored" data-anchor-id="beyond-widefield-confocal-fluorescence-detection">Beyond Widefield: Confocal Fluorescence Detection</h2>
+<p>In Lecture 9, we briefly introduced confocal microscopy. Recall the setup: - <strong>Illumination:</strong> Focused laser beam (illumination PSF: <span class="math inline">\(\text{PSF}_\text{ill}\)</span>) - <strong>Detection:</strong> Fluorescence collected through a pinhole (<strong>detection PSF</strong>: <span class="math inline">\(\text{PSF}_\text{det}\)</span>) - <strong>Effective PSF:</strong> Product of the two: <span class="math inline">\(\text{PSF}_\text{conf} = \text{PSF}_\text{ill} \times \text{PSF}_\text{det}\)</span></p>
+<section id="confocal-psf-in-real-space" class="level3">
+<h3 class="anchored" data-anchor-id="confocal-psf-in-real-space">Confocal PSF in Real Space</h3>
+<p>The key insight is that the <strong>confocal PSF is narrower</strong> than widefield. For a pinhole diameter comparable to the Airy disk, the axial FWHM narrows by ~40 %, and lateral resolution improves by ~1.4×.</p>
+</section>
+<section id="confocal-otf-fourier-space-view" class="level3">
+<h3 class="anchored" data-anchor-id="confocal-otf-fourier-space-view">Confocal OTF: Fourier-Space View</h3>
+<p>In Fourier space, multiplication becomes <strong>convolution</strong>: <span class="math display">\[\text{OTF}_\text{conf}(\mathbf{k}) = \text{OTF}_\text{ill}(\mathbf{k}) \otimes \text{OTF}_\text{det}(\mathbf{k})\]</span></p>
+<p><strong>What this means:</strong> - Each OTF independently is real and non-negative (pupil is real and positive) - Their convolution is the product of autocorrelations - The result: <strong>higher contrast at high spatial frequencies</strong> - <strong>Missing cone is filled</strong>: the axial frequencies that widefield cannot capture are recovered by confocal detection</p>
+<p>This is the essence of confocal’s advantage: it exploits the fact that illumination and detection can be independently controlled in Fourier space.</p>
+</section>
+<section id="pinhole-as-spatial-frequency-filter" class="level3">
+<h3 class="anchored" data-anchor-id="pinhole-as-spatial-frequency-filter">Pinhole as Spatial Frequency Filter</h3>
+<p>The pinhole diameter directly controls the width of <span class="math inline">\(\text{OTF}_\text{det}\)</span>: - <strong>Large pinhole</strong> → broad <span class="math inline">\(\text{OTF}_\text{det}\)</span> → approaches widefield behavior - <strong>Small pinhole (≪ Airy disk)</strong> → narrow <span class="math inline">\(\text{OTF}_\text{det}\)</span> → strong rejection of out-of-focus light, but signal loss - <strong>Optimal pinhole</strong> (~0.5–1.0 Airy unit): best trade-off between contrast and signal</p>
+</section>
+<section id="fast-beam-scanning-aoms-and-mirrors" class="level3">
+<h3 class="anchored" data-anchor-id="fast-beam-scanning-aoms-and-mirrors">Fast Beam Scanning: AOMs and Mirrors</h3>
+<p>To build a practical confocal microscope, the illumination beam must scan the specimen in <span class="math inline">\(x\)</span>, <span class="math inline">\(y\)</span>, and <span class="math inline">\(z\)</span>. Two approaches dominate:</p>
+<p><strong>Acousto-Optic Modulators (AOMs):</strong> - Diffract a laser beam using an acoustic wave traveling through a crystal - Frequency shift: <span class="math inline">\(\nu_\text{out} = \nu_\text{in} \pm \nu_\text{acoustic}\)</span> - Beam deflection angle proportional to acoustic frequency (tunable) - Speed: microsecond switching, MHz modulation bandwidth - Application in MoNa: Fast beam steering, modulation, and raster scanning - Advantage: no moving parts, electrically controlled</p>
+<p><strong>Galvanometric Mirrors (Galvos):</strong> - Electromagnetically controlled mirrors for <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> beam deflection - Speed: kHz scanning rates for video-rate imaging - Common in commercial confocal systems</p>
+<p>Both tools exploit the pupil plane (back aperture of the objective): modulating the beam’s angle there directly translates to lateral scan position at the specimen plane.</p>
+<hr>
+</section>
+</section>
+</section>
+<section id="aberrations-and-the-pupil-function" class="level1">
+<h1>2. Aberrations and the Pupil Function</h1>
+<section id="the-general-pupil-function" class="level2">
+<h2 class="anchored" data-anchor-id="the-general-pupil-function">The General Pupil Function</h2>
+<p>We now recognize that the pupil function is not always ideal. The <strong>general form</strong> is: <span class="math display">\[P(\rho, \theta) = A(\rho) \, e^{i W(\rho, \theta)}\]</span></p>
+<p>where: - <span class="math inline">\(A(\rho)\)</span> is the <strong>aperture function</strong> (amplitude; typically = 1 inside the pupil, 0 outside) - <span class="math inline">\(W(\rho, \theta)\)</span> is the <strong>wavefront error</strong> (in units of length, or often in units of wavelength) - <span class="math inline">\((\rho, \theta)\)</span> are polar coordinates in the pupil plane</p>
+<p><strong>Physical sources of wavefront error:</strong> 1. <strong>Cover slip mismatch</strong>: Incorrect cover slip thickness introduces spherical aberration 2. <strong>Refractive index mismatch</strong>: Specimen immersion medium differs from design medium (water vs.&nbsp;oil) 3. <strong>Misalignment</strong>: Objective not perpendicular to specimen plane → coma 4. <strong>Field curvature</strong>: Aberration increases toward the edge of the field 5. <strong>Lens defects</strong>: Manufacturing imperfections in optical coatings or surfaces</p>
+</section>
+<section id="how-aberrations-degrade-the-otf" class="level2">
+<h2 class="anchored" data-anchor-id="how-aberrations-degrade-the-otf">How Aberrations Degrade the OTF</h2>
+<p>The <strong>aberrated OTF</strong> is: <span class="math display">\[\text{OTF}_\text{aberr}(\mathbf{k}) \propto \left| \mathcal{F}\left\{ P(\mathbf{r}) \right\}(\mathbf{k}) \right|^2 = \left| \int e^{i W(\mathbf{r})} e^{i \mathbf{k} \cdot \mathbf{r}} d^2\mathbf{r} \right|^2\]</span></p>
+<p><strong>Key observation:</strong> Even small wavefront errors reduce the contrast of the OTF, especially at high spatial frequencies. The effect is multiplicative: if <span class="math inline">\(W \ll 1\)</span> rad, the OTF scales approximately as: <span class="math display">\[\text{OTF}_\text{aberr} \approx \text{OTF}_\text{ideal} \cdot \exp(-\sigma_W^2 / 2)\]</span></p>
+<p>where <span class="math inline">\(\sigma_W^2 = \langle W^2 \rangle\)</span> is the variance of the wavefront error.</p>
+</section>
+<section id="the-strehl-ratio-a-quantitative-measure" class="level2">
+<h2 class="anchored" data-anchor-id="the-strehl-ratio-a-quantitative-measure">The Strehl Ratio: A Quantitative Measure</h2>
+<p>The <strong>Strehl ratio</strong> <span class="math inline">\(S\)</span> measures the reduction in peak intensity of the PSF due to aberrations: <span class="math display">\[S = \frac{\max(\text{PSF}_\text{aberr})}{\max(\text{PSF}_\text{ideal})} = \left| \langle e^{i W} \rangle \right|^2\]</span></p>
+<p>where the angle brackets denote averaging over the pupil.</p>
+<p>For small aberrations (Maréchal approximation): <span class="math display">\[S \approx e^{-\sigma_W^2} \approx 1 - \sigma_W^2\]</span></p>
+<p><strong>Rule of thumb:</strong> - <span class="math inline">\(S &gt; 0.8\)</span> (good): system diffraction-limited - <span class="math inline">\(S = 0.5\)</span>–0.8: noticeable degradation - <span class="math inline">\(S &lt; 0.5\)</span>: severe, visible loss of resolution</p>
+<p><strong>Wavelength dependence:</strong> Aberrations are always expressed relative to <span class="math inline">\(\lambda\)</span>. A fixed defocus (e.g., 1 μm) is worse for shorter wavelengths (where it corresponds to more wavelengths) and negligible for longer wavelengths.</p>
+<section id="example-spherical-aberration-from-cover-slip-mismatch" class="level3">
+<h3 class="anchored" data-anchor-id="example-spherical-aberration-from-cover-slip-mismatch">Example: Spherical Aberration from Cover Slip Mismatch</h3>
+<p>A typical case: specimen imaged through a 170 μm cover slip with water immersion (<span class="math inline">\(n = 1.33\)</span>), but objective designed for oil (<span class="math inline">\(n = 1.515\)</span>).</p>
+<p>The aberration magnitude is roughly: <span class="math display">\[W_\text{sph} \sim (n_\text{oil} - n_\text{water}) \cdot t / \text{NA}^2\]</span></p>
+<p>where <span class="math inline">\(t\)</span> is the mismatch. For <span class="math inline">\(\Delta n \sim 0.2\)</span>, <span class="math inline">\(t \sim 10\)</span> μm, <span class="math inline">\(\text{NA} = 1.4\)</span>: <span class="math display">\[W_\text{sph} \sim 1 \text{ μm} \sim 3 \text{ wavelengths at } 488 \text{ nm}\]</span></p>
+<p>This causes a dramatic loss of contrast and axial resolution—a major problem in deep-tissue imaging.</p>
+<hr>
+</section>
+</section>
+</section>
+<section id="zernike-polynomials-the-natural-pupil-plane-basis" class="level1">
+<h1>3. Zernike Polynomials: The Natural Pupil-Plane Basis</h1>
+<section id="why-zernike" class="level2">
+<h2 class="anchored" data-anchor-id="why-zernike">Why Zernike?</h2>
+<p>Circular apertures (objectives) naturally admit an <strong>orthonormal basis of functions</strong>: the <strong>Zernike polynomials</strong>. These are defined on the unit disk and indexed by two integers: - <span class="math inline">\(n\)</span> = radial order (polynomial degree) - <span class="math inline">\(m\)</span> = azimuthal order (angular frequency)</p>
+<section id="orthonormality" class="level3">
+<h3 class="anchored" data-anchor-id="orthonormality">Orthonormality</h3>
+<p>The Zernike polynomials <span class="math inline">\(Z_n^m(\rho, \theta)\)</span> satisfy: <span class="math display">\[\int_0^{2\pi} \int_0^1 Z_n^m(\rho, \theta) \, Z_{n'}^{m'}(\rho, \theta) \, \rho \, d\rho \, d\theta = \delta_{nn'} \delta_{mm'}\]</span></p>
+<p>This makes them ideal for decomposing any wavefront error on a circular pupil: <span class="math display">\[W(\rho, \theta) = \sum_{n,m} c_{n,m} \, Z_n^m(\rho, \theta)\]</span></p>
+<p>The coefficients <span class="math inline">\(c_{n,m}\)</span> directly represent the “strength” of each aberration mode.</p>
+</section>
+</section>
+<section id="low-order-zernike-modes-and-physical-meaning" class="level2">
+<h2 class="anchored" data-anchor-id="low-order-zernike-modes-and-physical-meaning">Low-Order Zernike Modes and Physical Meaning</h2>
+<p>The first 15 Zernike modes are shown below with their conventional names (using Noll indexing):</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Mode</th>
+<th><span class="math inline">\(n\)</span></th>
+<th><span class="math inline">\(m\)</span></th>
+<th>Name</th>
+<th>Physical Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>Piston</td>
+<td>Uniform phase shift (no effect)</td>
+</tr>
+<tr class="even">
+<td>2–3</td>
+<td>1</td>
+<td>±1</td>
+<td>Tip/Tilt</td>
+<td>Linear phase; equivalent to beam pointing error</td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td>2</td>
+<td>0</td>
+<td>Defocus</td>
+<td>Quadratic wavefront; changes focal plane</td>
+</tr>
+<tr class="even">
+<td>5–6</td>
+<td>2</td>
+<td>±2</td>
+<td>Astigmatism</td>
+<td>Cylindrical lens effect; different focus in <span class="math inline">\(x\)</span>, <span class="math inline">\(y\)</span></td>
+</tr>
+<tr class="odd">
+<td>7–8</td>
+<td>3</td>
+<td>±1</td>
+<td>Coma</td>
+<td>Asymmetric aberration from misalignment</td>
+</tr>
+<tr class="even">
+<td>9–10</td>
+<td>3</td>
+<td>±3</td>
+<td>Trefoil</td>
+<td>Three-fold asymmetry</td>
+</tr>
+<tr class="odd">
+<td>11</td>
+<td>4</td>
+<td>0</td>
+<td>Spherical Aberration</td>
+<td>Paraxial and marginal rays focus differently</td>
+</tr>
+<tr class="even">
+<td>12–13</td>
+<td>4</td>
+<td>±2</td>
+<td>Secondary Astigmatism</td>
+<td>Higher-order version of astigmatism</td>
+</tr>
+<tr class="odd">
+<td>14–15</td>
+<td>4</td>
+<td>±4</td>
+<td>Quatrefoil</td>
+<td>Four-fold asymmetry</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Physical importance:</strong> - <strong>Piston</strong> (mode 1): Just a global phase shift; doesn’t affect intensity (image-forming modes start at 2) - <strong>Tip/Tilt</strong> (modes 2–3): Beam walk; can be corrected by an AOM - <strong>Defocus</strong> (mode 4): Most common aberration; easily corrected by z-stage adjustment - <strong>Astigmatism</strong> (modes 5–6): Common in high-NA systems; requires SLM or deformable mirror to correct - <strong>Coma</strong> (modes 7–8): Signature of misalignment; usually fixed mechanically - <strong>Spherical aberration</strong> (mode 11): Depth-dependent; increases with depth in scattering tissue; adaptive optics gold standard target</p>
+<hr>
+</section>
+</section>
+<section id="zernike-visualization-and-aberration-impact" class="level1">
+<h1>4. Zernike Visualization and Aberration Impact</h1>
+<div id="cell-fig-zernike" class="cell" data-execution_count="2">
+<div class="cell-output cell-output-display">
+<div id="fig-zernike" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-zernike-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="03-lecture09_files/figure-html/fig-zernike-output-1.png" width="552" height="238" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-zernike-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.1— Zernike polynomial modes (first 15, Noll indexing). Each panel shows the phase pattern <span class="math inline">\(Z_n^m(\rho, \theta)\)</span> on the unit disk. Colors represent phase from <span class="math inline">\(-\pi\)</span> (blue) to <span class="math inline">\(+\pi\)</span> (red). Modes 2–3 (tip/tilt) are linear; mode 4 (defocus) is parabolic; mode 11 (spherical aberration) is quartic.
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>✓ Zernike polynomial modes visualized</code></pre>
+</div>
+</div>
+<hr>
+</section>
+<section id="impact-of-aberrations-on-psf-and-otf" class="level1">
+<h1>5. Impact of Aberrations on PSF and OTF</h1>
+<p>To understand how aberrations degrade imaging performance, we now visualize the effect on PSF and OTF for realistic aberration magnitudes.</p>
+<div id="cell-fig-aberration-impact" class="cell" data-execution_count="3">
+<div class="cell-output cell-output-display">
+<div id="fig-aberration-impact" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-aberration-impact-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="03-lecture09_files/figure-html/fig-aberration-impact-output-1.png" width="494" height="368" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-aberration-impact-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.1— Effect of aberrations on PSF and OTF. Top row: pupil phase (hsv colormap, units of <span class="math inline">\(\lambda\)</span>) for ideal (aberration-free), spherical aberration (~2 wavelengths), and coma (~1.5 wavelengths). Middle row: corresponding point-spread functions (lateral cross-section). Bottom row: magnitude of the OTF (frequency response), showing degradation of contrast at high spatial frequencies.
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>✓ Aberration impact on PSF and OTF visualized
+
+Strehl ratio relationship: good (&gt;0.8), acceptable (0.5-0.8), poor (&lt;0.5)</code></pre>
+</div>
+</div>
+<hr>
+</section>
+<section id="wavefront-sensing-the-shack-hartmann-sensor" class="level1">
+<h1>6. Wavefront Sensing: The Shack-Hartmann Sensor</h1>
+<p>To correct aberrations, we must first <strong>measure</strong> them. The most common wavefront sensing technique is the <strong>Shack-Hartmann sensor</strong>.</p>
+<section id="principle-from-wavefront-slope-to-phase" class="level2">
+<h2 class="anchored" data-anchor-id="principle-from-wavefront-slope-to-phase">Principle: From Wavefront Slope to Phase</h2>
+<p>A Shack-Hartmann sensor comprises a <strong>microlens array</strong> (typically 10×10 to 40×40 lenslets) placed at the pupil plane, with a detector at the focal plane.</p>
+<p><strong>Key insight:</strong> Each lenslet measures the <strong>local slope</strong> of the wavefront: <span class="math display">\[\frac{\partial W}{\partial x} \bigg|_{(\rho,\theta)} = \text{slope in } x \text{ direction}\]</span></p>
+<p>The <strong>centroid shift</strong> of the focused spot from each lenslet is proportional to the local slope. By measuring all lenslet spots, we reconstruct the 2D slope field: <span class="math display">\[\nabla W = \left( \frac{\partial W}{\partial x}, \frac{\partial W}{\partial y} \right)\]</span></p>
+<p>Then we <strong>integrate</strong> to recover the phase <span class="math inline">\(W(\mathbf{r})\)</span>.</p>
+</section>
+<section id="fourier-space-perspective-connection-to-slope-and-frequency" class="level2">
+<h2 class="anchored" data-anchor-id="fourier-space-perspective-connection-to-slope-and-frequency">Fourier-Space Perspective: Connection to Slope and Frequency</h2>
+<p>In Fourier space, taking a spatial derivative is equivalent to multiplication by <span class="math inline">\(i \mathbf{k}\)</span>: <span class="math display">\[\mathcal{F}\left\{ \frac{\partial W}{\partial x} \right\}(\mathbf{k}) = i k_x \, \widetilde{W}(\mathbf{k})\]</span></p>
+<p>The Shack-Hartmann measurement is thus a <strong>high-pass filter</strong> on the phase: it emphasizes high-frequency ripples and is blind to low-frequency (piston, tip, tilt) modes.</p>
+<p>This is <strong>identical to the mathematical principle</strong> of <strong>Differential Interference Contrast (DIC)</strong> microscopy, where a pair of orthogonal Wollaston prisms create an interference between light that is spatially shifted by ~<span class="math inline">\(\lambda/2\)</span>. Both techniques exploit <strong>spatial derivatives</strong> in the Fourier domain.</p>
+</section>
+<section id="reconstruction-algorithm" class="level2">
+<h2 class="anchored" data-anchor-id="reconstruction-algorithm">Reconstruction Algorithm</h2>
+<p>Once slopes are measured: 1. Compute <span class="math inline">\(\nabla W\)</span> at all lenslet positions (from spot centroid displacements) 2. Reconstruct <span class="math inline">\(W(\mathbf{r})\)</span> by <strong>least-squares integration</strong> (Zonal method): <span class="math display">\[W(\mathbf{r}) = \arg \min \sum_{\text{grid points}} \left| \nabla W_\text{meas}(\mathbf{r}) - \nabla W_\text{recon}(\mathbf{r}) \right|^2\]</span> 3. Decompose into Zernike modes to identify which aberrations are present 4. Send correction signal to deformable mirror or SLM</p>
+<hr>
+</section>
+</section>
+<section id="adaptive-optics-for-microscopy" class="level1">
+<h1>7. Adaptive Optics for Microscopy</h1>
+<section id="wavefront-correction-devices" class="level2">
+<h2 class="anchored" data-anchor-id="wavefront-correction-devices">Wavefront Correction Devices</h2>
+<p>Once aberrations are measured, we correct them by modulating the wavefront. Two complementary approaches:</p>
+<section id="spatial-light-modulators-slms" class="level3">
+<h3 class="anchored" data-anchor-id="spatial-light-modulators-slms">Spatial Light Modulators (SLMs)</h3>
+<p><strong>Liquid-Crystal SLMs</strong> apply a spatially varying phase shift to the incident beam: <span class="math display">\[\Delta \phi(\mathbf{r}) = \frac{2\pi \Delta n(\mathbf{r}) \, d}{\lambda}\]</span></p>
+<p>where <span class="math inline">\(\Delta n\)</span> is the liquid-crystal birefringence (controlled electrically, 0–1 V) and <span class="math inline">\(d\)</span> is the cell thickness.</p>
+<p><strong>Advantages:</strong> - Arbitrary phase patterns (Zernike modes, holograms, custom aberration correction) - Reconfigurable in real time (frame rate: 60–1000 Hz) - Compact; can be placed at pupil plane or in Fourier plane</p>
+<p><strong>MoNa lab connection:</strong> SLMs are used for: - <strong>Beam shaping:</strong> Creating flat-top or Bessel beams - <strong>Holographic optical trapping:</strong> Generating multiple foci for particle manipulation - <strong>Aberration correction:</strong> Real-time feedback to flatten wavefront</p>
+<p><strong>Limitations:</strong> - Phase-only (cannot modulate amplitude in traditional LC-SLMs) - Pixelation limits high-frequency content - Efficiency ~70–90% (residual diffraction orders)</p>
+</section>
+<section id="deformable-mirrors" class="level3">
+<h3 class="anchored" data-anchor-id="deformable-mirrors">Deformable Mirrors</h3>
+<p><strong>Membrane or Piezo Mirrors</strong> physically deform a mirror surface to introduce a desired phase shift: <span class="math display">\[\Delta \phi = \frac{2 \times \text{surface deflection}}{\lambda} \times 2\pi\]</span></p>
+<p>(Factor of 2 because light reflects, doubling the optical path.)</p>
+<p><strong>Advantages:</strong> - Higher reflectance (&gt;95%) - Can correct large aberrations (many waves) - Continuous surface (no pixelation)</p>
+<p><strong>Disadvantages:</strong> - Limited to low-order corrections (typically &lt;50 actuators → low-order Zernike only) - Slower response time (ms)</p>
+<p><strong>Choice:</strong> - <strong>SLM</strong>: Fast correction, arbitrary modes, lab demonstration - <strong>Deformable mirror</strong>: High-NA systems, deep-tissue imaging where many aberration modes matter</p>
+</section>
+</section>
+<section id="sensorless-adaptive-optics" class="level2">
+<h2 class="anchored" data-anchor-id="sensorless-adaptive-optics">Sensorless Adaptive Optics</h2>
+<p>When a wavefront sensor is unavailable or impractical, we use <strong>sensorless AO</strong>: directly optimize an <strong>image quality metric</strong> (e.g., intensity variance, maximum intensity, or a deconvolution cost function) by <strong>iteratively adjusting Zernike coefficients</strong>.</p>
+<p><strong>Algorithm:</strong> 1. Start with <span class="math inline">\(W = 0\)</span> (flat wavefront) 2. Vary Zernike coefficient <span class="math inline">\(c_{n,m}\)</span> (e.g., defocus) and measure the quality metric 3. Move in the direction that improves metric 4. Repeat for all low-order modes 5. Refine with finer steps until convergence</p>
+<p><strong>Speed:</strong> 1–10 seconds per correction (much slower than sensor-based, but requires no extra hardware)</p>
+<p><strong>Best for:</strong> Deep-tissue imaging, where aberrations increase with depth and drift slowly over time.</p>
+<hr>
+</section>
+</section>
+<section id="application-deep-tissue-confocal-imaging-with-adaptive-optics" class="level1">
+<h1>8. Application: Deep-Tissue Confocal Imaging with Adaptive Optics</h1>
+<section id="the-problem-spherical-aberration-at-depth" class="level2">
+<h2 class="anchored" data-anchor-id="the-problem-spherical-aberration-at-depth">The Problem: Spherical Aberration at Depth</h2>
+<p>In thick, scattering tissue (e.g., brain, muscle), refractive index variations accumulate as light propagates. A homogeneous spherical aberration develops due to mismatched refractive indices (tissue ≠ design medium).</p>
+<p><strong>Effect:</strong> - PSF degrades: side lobes increase, peak intensity drops (Strehl → 0.3–0.5) - Axial resolution worsens dramatically - Image contrast collapses within 50–100 μm depth</p>
+</section>
+<section id="adaptive-correction-strategy" class="level2">
+<h2 class="anchored" data-anchor-id="adaptive-correction-strategy">Adaptive Correction Strategy</h2>
+<ol type="1">
+<li><strong>Measure</strong> the wavefront using Shack-Hartmann (either on a guide star or back-reflected from deep structures)</li>
+<li><strong>Decompose</strong> into Zernike modes: typically spherical aberration dominates (mode 11), with secondary astigmatism (modes 12–13)</li>
+<li><strong>Correct</strong> using an SLM or deformable mirror in the pupil plane</li>
+<li><strong>Iterate</strong> as you move deeper: aberration increases slowly; re-correct every 10–20 μm</li>
+</ol>
+<p><strong>Result:</strong> Confocal PSF remains ~1 μm lateral, ~2–3 μm axial, even at 200 μm depth.</p>
+<p><strong>Without AO:</strong> PSF broadens to 2–3 μm lateral, 10–15 μm axial at the same depth.</p>
+<hr>
+</section>
+</section>
+<section id="fourier-optics-thread-summary-table" class="level1">
+<h1>9. Fourier Optics Thread: Summary Table</h1>
+<p>All concepts in this lecture are connected through the <strong>pupil function</strong> and its Fourier properties:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 60%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Concept</th>
+<th>Pupil-Plane Representation</th>
+<th>Fourier-Space Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Confocal detection</strong></td>
+<td>Product of two apertures</td>
+<td>OTF is convolution of two OTFs → higher contrast</td>
+</tr>
+<tr class="even">
+<td><strong>Aberrations</strong></td>
+<td><span class="math inline">\(P = A \exp(iW)\)</span> with <span class="math inline">\(W \neq 0\)</span></td>
+<td>OTF is autocorrelation of aberrated pupil → lower contrast</td>
+</tr>
+<tr class="odd">
+<td><strong>Zernike modes</strong></td>
+<td>Basis expansion: <span class="math inline">\(W = \sum c_{n,m} Z_n^m\)</span></td>
+<td>Orthonormal set on unit disk; separates aberration types</td>
+</tr>
+<tr class="even">
+<td><strong>Wavefront slope</strong></td>
+<td><span class="math inline">\(\nabla W(\mathbf{r})\)</span></td>
+<td>Multiplication by <span class="math inline">\(i\mathbf{k}\)</span> in Fourier space; same as DIC</td>
+</tr>
+<tr class="odd">
+<td><strong>SLM correction</strong></td>
+<td>Modulate <span class="math inline">\(P\)</span> with <span class="math inline">\(\exp(i\Delta\phi_\text{SLM})\)</span></td>
+<td>Alter OTF by changing pupil; directly improve high-freq contrast</td>
+</tr>
+<tr class="even">
+<td><strong>Shack-Hartmann</strong></td>
+<td>Measure local slopes via lenslet array</td>
+<td>High-pass filtered wavefront measurement; insensitive to piston/tip/tilt</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="code-example-comparing-psf-and-otf-widefield-vs.-confocal" class="level1">
+<h1>10. Code Example: Comparing PSF and OTF (Widefield vs.&nbsp;Confocal)</h1>
+<div id="cell-fig-confocal-otf" class="cell" data-execution_count="4">
+<div class="cell-output cell-output-display">
+<div id="fig-confocal-otf" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-confocal-otf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="03-lecture09_files/figure-html/fig-confocal-otf-output-1.png" width="591" height="351" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-confocal-otf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11.1— Widefield vs.&nbsp;confocal microscopy in real space and Fourier space. Left: PSF (lateral cross-section) showing confocal narrowing (blue: widefield, red: confocal). Middle: OTF magnitude (1D profile) showing confocal gain at high frequencies (blue: widefield, red: confocal, cyan dashed: cutoff). Right: Full 2D confocal OTF (hot colormap), illustrating recovery of the missing cone.
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>✓ Confocal vs. widefield PSF and OTF comparison visualized</code></pre>
+</div>
+</div>
+<hr>
+</section>
+<section id="experimental-connections" class="level1">
+<h1>11. Experimental Connections</h1>
+<section id="building-a-simple-confocal-path" class="level2">
+<h2 class="anchored" data-anchor-id="building-a-simple-confocal-path">Building a Simple Confocal Path</h2>
+<p>A teaching-lab confocal microscope can be built from: 1. <strong>Laser source</strong> (e.g., 488 nm diode laser, 5 mW) 2. <strong>Dichroic mirror</strong> to combine excitation and collection paths 3. <strong>Objective lens</strong> (40× or 60×, high NA) 4. <strong>Pinhole</strong> (adjustable aperture, ~20–50 μm diameter) 5. <strong>PMT or avalanche photodiode</strong> for point detection</p>
+<p><strong>Procedure:</strong> - Align laser to objective back aperture - Focus on fluorescent sample (e.g., beads, labeled cells) - Mechanically or acousto-optically scan the beam - Adjust pinhole diameter to observe trade-off: signal vs.&nbsp;contrast</p>
+<p><strong>Key observation:</strong> As you <strong>close the pinhole</strong>, out-of-focus haze disappears, but signal drops. The optimal point is ~0.5–1.0 Airy unit (AU).</p>
+</section>
+<section id="measuring-zernike-aberrations-with-a-hartmann-sensor" class="level2">
+<h2 class="anchored" data-anchor-id="measuring-zernike-aberrations-with-a-hartmann-sensor">Measuring Zernike Aberrations with a Hartmann Sensor</h2>
+<p>A <strong>Hartmann test</strong> requires: 1. <strong>Collimated beam</strong> through the microscope objective (reverse direction) 2. <strong>Microlens array</strong> (40×40, ~300 μm focal length; can use printed diffractive element) 3. <strong>CCD camera</strong> at focal distance 4. <strong>Software</strong> to find lenslet spot centroids and compute slopes</p>
+<p><strong>Steps:</strong> - Acquire reference image (flat wavefront) - Acquire test image (with aberrations present) - Compute difference in centroid positions - Integrate slopes → recover phase map - Decompose into Zernike modes</p>
+<p><strong>Observation:</strong> You will see predominantly <strong>defocus</strong> and <strong>spherical aberration</strong>. Remove mechanical defects (tilted objective), and astigmatism typically vanishes.</p>
+</section>
+<section id="adaptive-optics-in-practice-slm-based-correction" class="level2">
+<h2 class="anchored" data-anchor-id="adaptive-optics-in-practice-slm-based-correction">Adaptive Optics in Practice: SLM-Based Correction</h2>
+<p>With an <strong>SLM at the pupil plane</strong>: 1. Apply an initial correction pattern (e.g., measured aberration phase) 2. Image the specimen; compute a quality metric (e.g., Laplacian variance) 3. Slightly perturb one Zernike coefficient; re-measure metric 4. Move in direction of improvement; repeat 5. Cycle through 5–10 low-order Zernike modes</p>
+<p><strong>Result:</strong> PSF sharpness visibly improves; axial sectioning becomes tighter; high-freq contrast recovers.</p>
+<hr>
+</section>
+</section>
+<section id="summary-fourier-optics-in-microscopy" class="level1">
+<h1>12. Summary: Fourier Optics in Microscopy</h1>
+<section id="key-concepts-revisited" class="level2">
+<h2 class="anchored" data-anchor-id="key-concepts-revisited">Key Concepts Revisited</h2>
+<ol type="1">
+<li><p><strong>Confocal microscopy</strong> uses the <strong>product of two PSFs</strong> (illumination × detection) to improve OTF, particularly at high spatial frequencies</p></li>
+<li><p><strong>Aberrations modify the pupil function</strong> <span class="math inline">\(P = A \exp(iW)\)</span>; even small wavefront errors degrade OTF and reduce Strehl ratio</p></li>
+<li><p><strong>Zernike polynomials</strong> provide an orthonormal basis on the unit disk; low-order modes (defocus, astigmatism, coma, spherical) account for most real-world aberrations</p></li>
+<li><p><strong>Wavefront sensing</strong> (Shack-Hartmann) measures the gradient of the phase field—a Fourier operation (<span class="math inline">\(\nabla W \leftrightarrow i\mathbf{k} \widetilde{W}\)</span>)—and reconstructs the full phase by integration</p></li>
+<li><p><strong>Adaptive optics</strong> uses <strong>SLMs or deformable mirrors</strong> to correct measured aberrations, restoring diffraction-limited PSF even in aberrating media (thick tissue)</p></li>
+<li><p><strong>SLMs and AOMs</strong> are essential tools in modern microscopy and in the MoNa lab for beam shaping, holographic manipulation, and real-time wavefront control</p></li>
+</ol>
+<p>All of these phenomena have a unified Fourier-optics interpretation: the <strong>pupil function</strong> is the master object that controls resolution, contrast, and aberration behavior.</p>
+<hr>
+</section>
+</section>
+<section id="further-reading" class="level1">
+<h1>Further Reading</h1>
+<p>The following resources expand on the topics in this lecture:</p>
+<ul>
+<li><strong><a href="../../resources/resources.html#sec-mertz">Mertz (2019)</a></strong> — <em>Introduction to Optical Microscopy</em>, Chapters 2–4. Comprehensive treatment of confocal imaging and the OTF framework.</li>
+<li><strong><a href="../../resources/resources.html#sec-goodman">Goodman (2017)</a></strong>, Ch. 6–7 — Fourier optics foundations and propagation through optical systems.</li>
+<li><strong><a href="../../resources/resources.html#sec-born">Born &amp; Wolf (1999)</a></strong>, Ch. 8 — Aberrations, Zernike polynomials, and the theory of optical systems.</li>
+<li><strong><a href="../../resources/resources.html#sec-tyson">Tyson (2015)</a></strong> — <em>Principles of Adaptive Optics</em>, 3rd ed.&nbsp;Standard reference for wavefront sensing and correction.</li>
+<li><strong>Booth, M.J., et al.&nbsp;(2021)</strong> — “Adaptive optics in microscopy.” <em>Phil. Trans. R. Soc. A</em> <strong>379</strong>, 20200110. Review of AO in biomedical imaging.</li>
+<li><strong>Shack, R.V. &amp; Platt, B.C. (1971)</strong> — “Production and use of a lenticular Hartmann screen.” <em>J. Opt. Soc. Am.</em> <strong>61</strong>, 656–660. Foundational Shack-Hartmann paper.</li>
+</ul>
+<hr>
+<p><em>Lecture 10: Confocal Microscopy &amp; Wavefront Control — Introduction to Photonics</em></p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/fcichos\.github\.io\/Photonics\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

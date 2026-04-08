@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.34">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>course_plan_v5 – Photonics</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-9344fb9851b4da3cab95007ef9d770dc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Photonics</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="./index.html" aria-current="page"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="./index.html" class="sidebar-logo-link">
+      <img src="./assets/images/mona_logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home</span></a>
+  </div>
+</li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Course Info</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./course-info/intructors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Instructor</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./course-info/schedule.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Schedule</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./course-info/resources.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Ressources</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./course-info/seminars.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Seminars</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./course-info/exam.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exams</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">PART I: FOUNDATIONS</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Lecture 1 — Introduction, Ray Optics &amp; Wave Optics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lectures/lecture01/introduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lectures/lecture01/01-lecture01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Ray Optics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lectures/lecture01/02-lecture01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Optical Elements</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lectures/lecture02/01-lecture02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Matrix Optics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lectures/lecture02/02-lecture02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wave Optics</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction-to-photonics-course-plan-v6" id="toc-introduction-to-photonics-course-plan-v6" class="nav-link active" data-scroll-target="#introduction-to-photonics-course-plan-v6">Introduction to Photonics — Course Plan v6</a>
+  <ul class="collapse">
+  <li><a href="#lectures-7-seminars-14-weeks" id="toc-lectures-7-seminars-14-weeks" class="nav-link" data-scroll-target="#lectures-7-seminars-14-weeks">14 Lectures + 7 Seminars (14 weeks)</a>
+  <ul class="collapse">
+  <li><a href="#course-arc" id="toc-course-arc" class="nav-link" data-scroll-target="#course-arc">Course Arc</a></li>
+  <li><a href="#week-by-week-plan" id="toc-week-by-week-plan" class="nav-link" data-scroll-target="#week-by-week-plan">Week-by-Week Plan</a></li>
+  <li><a href="#part-i-foundations-lectures-15" id="toc-part-i-foundations-lectures-15" class="nav-link" data-scroll-target="#part-i-foundations-lectures-15">Part I: Foundations (Lectures 1–5)</a></li>
+  <li><a href="#part-ii-fourier-optics-lectures-67" id="toc-part-ii-fourier-optics-lectures-67" class="nav-link" data-scroll-target="#part-ii-fourier-optics-lectures-67">Part II: Fourier Optics (Lectures 6–7)</a></li>
+  <li><a href="#part-iii-microscopy-as-applied-fourier-optics-lectures-811" id="toc-part-iii-microscopy-as-applied-fourier-optics-lectures-811" class="nav-link" data-scroll-target="#part-iii-microscopy-as-applied-fourier-optics-lectures-811">Part III: Microscopy as Applied Fourier Optics (Lectures 8–11)</a></li>
+  <li><a href="#part-iv-modern-photonics-lectures-1214" id="toc-part-iv-modern-photonics-lectures-1214" class="nav-link" data-scroll-target="#part-iv-modern-photonics-lectures-1214">Part IV: Modern Photonics (Lectures 12–14)</a></li>
+  <li><a href="#seminar-details" id="toc-seminar-details" class="nav-link" data-scroll-target="#seminar-details">Seminar Details</a></li>
+  <li><a href="#supplementary-material-online" id="toc-supplementary-material-online" class="nav-link" data-scroll-target="#supplementary-material-online">Supplementary Material (online)</a></li>
+  <li><a href="#content-status" id="toc-content-status" class="nav-link" data-scroll-target="#content-status">Content Status</a></li>
+  <li><a href="#content-mapping-files-lecture-slots" id="toc-content-mapping-files-lecture-slots" class="nav-link" data-scroll-target="#content-mapping-files-lecture-slots">Content Mapping: Files → Lecture Slots</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
+
+
+
+<section id="introduction-to-photonics-course-plan-v6" class="level1">
+<h1>Introduction to Photonics — Course Plan v6</h1>
+<section id="lectures-7-seminars-14-weeks" class="level2">
+<h2 class="anchored" data-anchor-id="lectures-7-seminars-14-weeks">14 Lectures + 7 Seminars (14 weeks)</h2>
+<p><strong>Target:</strong> 2nd/4th semester physics BSc, experimental physics elective <strong>Format:</strong> 1.5 h lecture every week + seminar every 2nd week <strong>Prerequisite:</strong> Experimental Physics III (<a href="https://fcichos.github.io/Exp3/">Exp3</a>)</p>
+<hr>
+<section id="course-arc" class="level3">
+<h3 class="anchored" data-anchor-id="course-arc">Course Arc</h3>
+<p>The course follows a clear narrative: <strong>from waves → to imaging → to single particles → to active matter</strong>. Each block builds on the previous one, and the final lectures connect directly to current research at the <a href="https://home.uni-leipzig.de/~physik/sites/mona/">Molecular Nanophotonics Group</a>.</p>
+<hr>
+</section>
+<section id="week-by-week-plan" class="level3">
+<h3 class="anchored" data-anchor-id="week-by-week-plan">Week-by-Week Plan</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 40%">
+<col style="width: 60%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Week</th>
+<th>Content</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td><strong>L1</strong> Introduction &amp; Ray Optics</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td><strong>L2</strong> Wave Optics &amp; Interference · <strong>S1</strong> Wave Optics Calculations</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td><strong>L3</strong> EM Waves &amp; Fresnel Equations</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td><strong>L4</strong> Gaussian Beams · <strong>S2</strong> Gaussian Beams &amp; Jones Calculus</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td><strong>L5</strong> Polarization &amp; Jones Calculus</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td><strong>L6</strong> Fourier Optics I · <strong>S3</strong> Fourier Optics Workshop</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td><strong>L7</strong> Fourier Optics II</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td><strong>L8</strong> Microscopy I: Brightfield &amp; Darkfield · <strong>S4</strong> Microscopy Lab Calculations</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td><strong>L9</strong> Microscopy II: Phase Contrast &amp; Fluorescence</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td><strong>L10</strong> Confocal &amp; Advanced Techniques · <strong>S5</strong> Superresolution Techniques</td>
+</tr>
+<tr class="odd">
+<td>11</td>
+<td><strong>L11</strong> Superresolution Microscopy</td>
+</tr>
+<tr class="even">
+<td>12</td>
+<td><strong>L12</strong> Light Scattering &amp; DLS · <strong>S6</strong> Scattering &amp; Photothermal Experiments</td>
+</tr>
+<tr class="odd">
+<td>13</td>
+<td><strong>L13</strong> Photothermal Detection &amp; Sensing</td>
+</tr>
+<tr class="even">
+<td>14</td>
+<td><strong>L14</strong> Microswimmers &amp; Active Matter · <strong>S7</strong> Active Matter Workshop &amp; Course Review</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="part-i-foundations-lectures-15" class="level3">
+<h3 class="anchored" data-anchor-id="part-i-foundations-lectures-15">Part I: Foundations (Lectures 1–5)</h3>
+<section id="lecture-1-introduction-ray-optics" class="level4">
+<h4 class="anchored" data-anchor-id="lecture-1-introduction-ray-optics">Lecture 1 — Introduction &amp; Ray Optics</h4>
+<p><em>Source files: lecture01/</em></p>
+<ul>
+<li>Course overview, what is photonics, where it matters</li>
+<li>Ray optics &amp; matrix (ABCD) formalism (fast recap)</li>
+<li>Lenses, mirrors, optical elements</li>
+<li><strong>Demo idea:</strong> Simple ray tracing through a lens system</li>
+</ul>
+</section>
+<section id="lecture-2-wave-optics-interference" class="level4">
+<h4 class="anchored" data-anchor-id="lecture-2-wave-optics-interference">Lecture 2 — Wave Optics &amp; Interference</h4>
+<p><em>Source files: lecture02/, lecture03/</em></p>
+<ul>
+<li>Wave equation, superposition, complex amplitudes</li>
+<li>Interference: Michelson, Fabry-Pérot, thin films</li>
+<li>Coherence length, temporal and spatial coherence</li>
+<li><strong>Demo idea:</strong> White-light interferometer or soap film colours</li>
+</ul>
+</section>
+<section id="lecture-3-em-waves-fresnel-equations" class="level4">
+<h4 class="anchored" data-anchor-id="lecture-3-em-waves-fresnel-equations">Lecture 3 — EM Waves &amp; Fresnel Equations</h4>
+<p><em>Source files: lecture10/</em></p>
+<ul>
+<li>EM waves in matter, Maxwell’s equations recap</li>
+<li>Reflection and refraction at interfaces</li>
+<li>Fresnel equations, Brewster angle, total internal reflection</li>
+<li>Anti-reflection coatings, dielectric mirrors</li>
+</ul>
+</section>
+<section id="lecture-4-gaussian-beams" class="level4">
+<h4 class="anchored" data-anchor-id="lecture-4-gaussian-beams">Lecture 4 — Gaussian Beams</h4>
+<p><em>Source files: lecture04/</em></p>
+<ul>
+<li>Gaussian beam: waist, Rayleigh range, divergence, q-parameter</li>
+<li>ABCD law for Gaussian beams (new for most students!)</li>
+<li>Beam propagation through optical systems</li>
+<li><strong>MoNa connection:</strong> Focused laser beams are the workhorse of every experiment in the lab</li>
+</ul>
+</section>
+<section id="lecture-5-polarization-jones-calculus" class="level4">
+<h4 class="anchored" data-anchor-id="lecture-5-polarization-jones-calculus">Lecture 5 — Polarization &amp; Jones Calculus</h4>
+<p><em>Source files: lecture07/</em></p>
+<ul>
+<li>Polarization states, Jones vectors &amp; matrices</li>
+<li>Wave plates (QWP, HWP), optical activity</li>
+<li>Poincaré sphere visualization</li>
+<li>Applications: optical isolators, AOMs, SLMs as polarization tools</li>
+<li><strong>MoNa connection:</strong> Polarization control is essential for microscopy and optical trapping setups</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="part-ii-fourier-optics-lectures-67" class="level3">
+<h3 class="anchored" data-anchor-id="part-ii-fourier-optics-lectures-67">Part II: Fourier Optics (Lectures 6–7)</h3>
+<section id="lecture-6-fourier-optics-i" class="level4">
+<h4 class="anchored" data-anchor-id="lecture-6-fourier-optics-i">Lecture 6 — Fourier Optics I</h4>
+<p><em>Source files: lecture05/</em></p>
+<ul>
+<li>Fourier transform review, spatial frequencies</li>
+<li>Angular spectrum propagation</li>
+<li>Fresnel &amp; Fraunhofer diffraction</li>
+<li>Lens as Fourier transformer</li>
+</ul>
+</section>
+<section id="lecture-7-fourier-optics-ii-spatial-filtering-resolution" class="level4">
+<h4 class="anchored" data-anchor-id="lecture-7-fourier-optics-ii-spatial-filtering-resolution">Lecture 7 — Fourier Optics II: Spatial Filtering &amp; Resolution</h4>
+<p><em>Source files: lecture06/</em></p>
+<ul>
+<li>PSF, OTF/MTF, Abbe diffraction limit</li>
+<li>Spatial filtering: low-pass, high-pass, band-pass</li>
+<li>SLM-based wavefront shaping (practical application of Fourier optics)</li>
+<li><strong>Demo idea:</strong> Optical Fourier filtering with laser and lenses</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="part-iii-microscopy-as-applied-fourier-optics-lectures-811" class="level3">
+<h3 class="anchored" data-anchor-id="part-iii-microscopy-as-applied-fourier-optics-lectures-811">Part III: Microscopy as Applied Fourier Optics (Lectures 8–11)</h3>
+<p>The microscopy block treats all imaging modalities through the lens of <strong>Fourier optics</strong>: image formation as double Fourier transform, contrast techniques as pupil-plane manipulations, resolution as OTF cutoff, and superresolution as extending the passband.</p>
+<section id="lecture-8-microscopy-i-brightfield-darkfield" class="level4">
+<h4 class="anchored" data-anchor-id="lecture-8-microscopy-i-brightfield-darkfield">Lecture 8 — Microscopy I: Brightfield &amp; Darkfield</h4>
+<p><em>Source files: lecture09/01</em></p>
+<ul>
+<li>Abbe’s imaging theory — image formation as double Fourier transform</li>
+<li><strong>OTF and CTF</strong>: incoherent OTF (autocorrelation of pupil, cutoff <span class="math inline">\(2\text{NA}/\lambda\)</span>) vs.&nbsp;coherent CTF (pupil itself, cutoff <span class="math inline">\(\text{NA}/\lambda\)</span>)</li>
+<li>Köhler illumination, coherent vs.&nbsp;incoherent imaging</li>
+<li>Brightfield phase problem: phase info lost in intensity detection</li>
+<li>Darkfield as high-pass filter: <span class="math inline">\(H_\text{DF} = H_\text{BF} - \delta\)</span></li>
+<li><strong>MoNa connection:</strong> These are the microscopes we use every day</li>
+</ul>
+</section>
+<section id="lecture-9-microscopy-ii-phase-contrast-fluorescence" class="level4">
+<h4 class="anchored" data-anchor-id="lecture-9-microscopy-ii-phase-contrast-fluorescence">Lecture 9 — Microscopy II: Phase Contrast &amp; Fluorescence</h4>
+<p><em>Source files: lecture09/02</em></p>
+<ul>
+<li>Phase contrast (Zernike): phase shift of DC in pupil plane → converts phase to amplitude</li>
+<li>DIC as differential filter in Fourier space: <span class="math inline">\(H_\text{DIC}(k) \propto k\)</span></li>
+<li>Fluorescence: Jablonski diagram, Stokes shift, filter cubes</li>
+<li><strong>3D OTF and the missing cone</strong>: widefield fluorescence has poor axial frequency transfer</li>
+<li>Confocal: product of illumination × detection OTFs → fills the missing cone</li>
+<li>Two-photon: nonlinear <span class="math inline">\(I^2\)</span> excitation → equivalent confocal OTF</li>
+<li><strong>MoNa connection:</strong> Fluorescence is how we see single molecules</li>
+</ul>
+</section>
+<section id="lecture-10-confocal-microscopy-wavefront-control" class="level4">
+<h4 class="anchored" data-anchor-id="lecture-10-confocal-microscopy-wavefront-control">Lecture 10 — Confocal Microscopy &amp; Wavefront Control</h4>
+<p><em>Source files: lecture09/03</em></p>
+<ul>
+<li>Confocal OTF revisited: convolution of illumination and detection OTFs</li>
+<li>Pinhole as spatial frequency filter; AOMs for fast beam scanning</li>
+<li><strong>Aberrations as pupil-plane phase errors</strong>: <span class="math inline">\(P = A \exp(iW)\)</span> degrades OTF</li>
+<li>Strehl ratio and Maréchal approximation</li>
+<li><strong>Zernike polynomials</strong>: orthonormal basis on unit disk for wavefront decomposition</li>
+<li><strong>Wavefront sensing</strong> (Shack-Hartmann): measures <span class="math inline">\(\nabla W\)</span>, i.e., <span class="math inline">\(ik\)</span> in Fourier space — same math as DIC</li>
+<li><strong>Adaptive optics</strong>: SLM-based correction, deformable mirrors, sensorless AO</li>
+<li><strong>MoNa connection:</strong> SLMs for beam shaping, holographic trapping, and aberration correction</li>
+</ul>
+</section>
+<section id="lecture-11-superresolution-microscopy" class="level4">
+<h4 class="anchored" data-anchor-id="lecture-11-superresolution-microscopy">Lecture 11 — Superresolution Microscopy</h4>
+<p><em>Source files: lecture12/</em></p>
+<ul>
+<li>The diffraction barrier as OTF cutoff at <span class="math inline">\(2\text{NA}/\lambda\)</span></li>
+<li><strong>SIM</strong>: frequency mixing via Moiré effect extends passband by factor 2</li>
+<li><strong>STED</strong>: nonlinear PSF engineering → wider effective OTF</li>
+<li><strong>PALM/STORM</strong>: bypasses OTF via single-molecule localization (<span class="math inline">\(\sigma \propto 1/\sqrt{N}\)</span>)</li>
+<li><strong>MINFLUX</strong>: structured illumination + single-molecule detection for nm precision</li>
+<li><strong>MoNa connection:</strong> Single-molecule imaging is central to our research</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="part-iv-modern-photonics-lectures-1214" class="level3">
+<h3 class="anchored" data-anchor-id="part-iv-modern-photonics-lectures-1214">Part IV: Modern Photonics (Lectures 12–14)</h3>
+<section id="lecture-12-light-scattering-dynamic-light-scattering" class="level4">
+<h4 class="anchored" data-anchor-id="lecture-12-light-scattering-dynamic-light-scattering">Lecture 12 — Light Scattering &amp; Dynamic Light Scattering</h4>
+<p><em>Source files: lecture14/</em></p>
+<ul>
+<li>Why is the sky blue? Rayleigh scattering (∝ λ⁻⁴)</li>
+<li>Mie scattering: when particles are comparable to λ</li>
+<li>Dynamic light scattering (DLS): measuring particle sizes from fluctuations</li>
+<li>Autocorrelation function, Stokes-Einstein equation</li>
+</ul>
+</section>
+<section id="lecture-13-photothermal-detection-sensing" class="level4">
+<h4 class="anchored" data-anchor-id="lecture-13-photothermal-detection-sensing">Lecture 13 — Photothermal Detection &amp; Sensing</h4>
+<p><em>Source files: lecture13/</em></p>
+<ul>
+<li><strong>Photothermal microscopy</strong> (core MoNa research!):
+<ul>
+<li>Absorbing nanoparticle → local heating → refractive index change → phase shift</li>
+<li>Pump-probe scheme, lock-in detection with AOMs</li>
+<li>Single gold nanoparticle detection (label-free!)</li>
+<li>Sensitivity: from 40 nm particles down to single molecules</li>
+</ul></li>
+<li><strong>MoNa connection:</strong> This is our flagship technique — show real photothermal images and signals</li>
+</ul>
+</section>
+<section id="lecture-14-from-photons-to-motion-microswimmers-active-matter" class="level4">
+<h4 class="anchored" data-anchor-id="lecture-14-from-photons-to-motion-microswimmers-active-matter">Lecture 14 — From Photons to Motion: Microswimmers &amp; Active Matter</h4>
+<p><em>Source files: lecture16/</em></p>
+<ul>
+<li>Optical forces: radiation pressure, gradient force, optical tweezers</li>
+<li>Thermophoresis: particles moving along temperature gradients</li>
+<li>Self-thermophoresis: Janus particles with asymmetric heating</li>
+<li><strong>Photon nudging:</strong> using real-time feedback to steer microswimmers</li>
+<li>Hot Brownian motion: what happens when the particle is hotter than the bath?</li>
+<li>Active matter: collective behaviour, machine learning for micro-machines</li>
+<li><strong>MoNa connection:</strong> This IS our current research frontier</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="seminar-details" class="level3">
+<h3 class="anchored" data-anchor-id="seminar-details">Seminar Details</h3>
+<p>Each seminar combines pen-and-paper calculations with Python exercises.</p>
+<section id="seminar-1-wave-optics-calculations-week-2-after-l2" class="level4">
+<h4 class="anchored" data-anchor-id="seminar-1-wave-optics-calculations-week-2-after-l2">Seminar 1 — Wave Optics Calculations (Week 2, after L2)</h4>
+<ul>
+<li>Ray tracing through lens systems (ABCD matrices)</li>
+<li>Interference fringe spacing calculations (Michelson, thin films)</li>
+<li>Fresnel reflection at glass-air interface</li>
+<li><strong>Python:</strong> Simulate multi-beam interference patterns</li>
+</ul>
+</section>
+<section id="seminar-2-gaussian-beams-jones-calculus-week-4-after-l4" class="level4">
+<h4 class="anchored" data-anchor-id="seminar-2-gaussian-beams-jones-calculus-week-4-after-l4">Seminar 2 — Gaussian Beams &amp; Jones Calculus (Week 4, after L4)</h4>
+<ul>
+<li>Gaussian beam propagation through a lens system</li>
+<li>Finding beam waist after focusing objectives</li>
+<li>Jones matrices: linear polarizer, QWP, HWP combinations</li>
+<li><strong>Python:</strong> Polarization state visualization on Poincaré sphere</li>
+</ul>
+</section>
+<section id="seminar-3-fourier-optics-workshop-week-6-after-l6" class="level4">
+<h4 class="anchored" data-anchor-id="seminar-3-fourier-optics-workshop-week-6-after-l6">Seminar 3 — Fourier Optics Workshop (Week 6, after L6)</h4>
+<ul>
+<li>Fourier transform of simple apertures (slit, circular, grating)</li>
+<li>Fraunhofer diffraction pattern calculations</li>
+<li>Design a spatial filter to remove specific frequencies</li>
+<li><strong>Python:</strong> 2D FFT of microscopy images, low-pass filtering</li>
+</ul>
+</section>
+<section id="seminar-4-microscopy-lab-calculations-week-8-after-l8" class="level4">
+<h4 class="anchored" data-anchor-id="seminar-4-microscopy-lab-calculations-week-8-after-l8">Seminar 4 — Microscopy Lab Calculations (Week 8, after L8)</h4>
+<ul>
+<li>Calculate resolution limits for given NA and λ</li>
+<li>PSF width for different objective types</li>
+<li>Compare contrast: brightfield vs.&nbsp;darkfield vs.&nbsp;phase contrast</li>
+<li>Fluorescence: estimate signal levels for given quantum yield</li>
+<li><strong>Python:</strong> Simulate Abbe imaging and Fourier filtering</li>
+</ul>
+</section>
+<section id="seminar-5-superresolution-techniques-week-10-after-l10" class="level4">
+<h4 class="anchored" data-anchor-id="seminar-5-superresolution-techniques-week-10-after-l10">Seminar 5 — Superresolution Techniques (Week 10, after L10)</h4>
+<ul>
+<li>STED: calculate effective PSF for given depletion intensity</li>
+<li>Localization precision: Thompson formula, photon budget</li>
+<li>SIM: frequency space construction (3 orientations, 5 raw images)</li>
+<li><strong>Python:</strong> Monte Carlo PALM/STORM simulation</li>
+</ul>
+</section>
+<section id="seminar-6-scattering-photothermal-experiments-week-12-after-l12" class="level4">
+<h4 class="anchored" data-anchor-id="seminar-6-scattering-photothermal-experiments-week-12-after-l12">Seminar 6 — Scattering &amp; Photothermal Experiments (Week 12, after L12)</h4>
+<ul>
+<li>Rayleigh scattering cross-section for gold nanoparticles</li>
+<li>DLS: extract diffusion coefficient from autocorrelation, Stokes-Einstein</li>
+<li>Photothermal signal estimation: absorption → temperature → phase shift</li>
+<li>SNR analysis: when can you see a single nanoparticle?</li>
+<li><strong>Python:</strong> Fit DLS correlation functions, simulate photothermal signals</li>
+</ul>
+</section>
+<section id="seminar-7-active-matter-workshop-course-review-week-14-after-l14" class="level4">
+<h4 class="anchored" data-anchor-id="seminar-7-active-matter-workshop-course-review-week-14-after-l14">Seminar 7 — Active Matter Workshop &amp; Course Review (Week 14, after L14)</h4>
+<ul>
+<li>Langevin equation for a Brownian particle</li>
+<li>Mean-square displacement: passive vs.&nbsp;active (ballistic regime)</li>
+<li>Thermophoretic drift velocity estimation</li>
+<li>Photon nudging: optimal switching strategy</li>
+<li><strong>Python:</strong> Simulate and analyze microswimmer trajectories</li>
+<li><strong>Course wrap-up:</strong> Review key concepts, Q&amp;A for exam preparation</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="supplementary-material-online" class="level3">
+<h3 class="anchored" data-anchor-id="supplementary-material-online">Supplementary Material (online)</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Topic</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Nonlinear Optics</td>
+<td>lecture08/</td>
+</tr>
+<tr class="even">
+<td>Wavefront Sensing &amp; Adaptive Optics</td>
+<td>lecture11/</td>
+</tr>
+<tr class="odd">
+<td>Light Transport in Random Media</td>
+<td>lecture15/</td>
+</tr>
+</tbody>
+</table>
+<p>These topics remain available for interested students but are not part of the core curriculum.</p>
+<hr>
+</section>
+<section id="content-status" class="level3">
+<h3 class="anchored" data-anchor-id="content-status">Content Status</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Lectures 1–5 (Foundations)</td>
+<td>✅ Existing content, reorganized</td>
+</tr>
+<tr class="even">
+<td>Lectures 6–7 (Fourier Optics)</td>
+<td>✅ Existing content, reorganized</td>
+</tr>
+<tr class="odd">
+<td>Lectures 8–11 (Microscopy)</td>
+<td>✅ Existing content, reorganized</td>
+</tr>
+<tr class="even">
+<td>Lecture 12 (Light Scattering)</td>
+<td>✅ Existing content</td>
+</tr>
+<tr class="odd">
+<td>Lecture 13 (Photothermal)</td>
+<td>✅ Existing content</td>
+</tr>
+<tr class="even">
+<td>Lecture 14 (Microswimmers)</td>
+<td>✅ Written (lecture16/)</td>
+</tr>
+<tr class="odd">
+<td>Seminars 1–7</td>
+<td>✅ Created</td>
+</tr>
+<tr class="even">
+<td>SLM / AOM / Two-photon integration</td>
+<td>✅ Woven into lectures 5, 7, 9, 10, 13</td>
+</tr>
+<tr class="odd">
+<td>Fourier optics thread in microscopy (L8–L11)</td>
+<td>✅ OTF/CTF, missing cone, aberrations, Zernike, SIM</td>
+</tr>
+<tr class="even">
+<td>Wavefront sensing &amp; AO integrated into L10</td>
+<td>✅ From supplementary lecture11</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="content-mapping-files-lecture-slots" class="level3">
+<h3 class="anchored" data-anchor-id="content-mapping-files-lecture-slots">Content Mapping: Files → Lecture Slots</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Lecture</th>
+<th>Source Directory</th>
+<th>Content</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>L1</td>
+<td>lecture01/</td>
+<td>Introduction, ray optics, optical elements</td>
+</tr>
+<tr class="even">
+<td>L2</td>
+<td>lecture02/, lecture03/</td>
+<td>Wave optics, interference</td>
+</tr>
+<tr class="odd">
+<td>L3</td>
+<td>lecture10/</td>
+<td>EM waves, Fresnel equations</td>
+</tr>
+<tr class="even">
+<td>L4</td>
+<td>lecture04/</td>
+<td>Gaussian beams</td>
+</tr>
+<tr class="odd">
+<td>L5</td>
+<td>lecture07/</td>
+<td>Polarization, Jones calculus</td>
+</tr>
+<tr class="even">
+<td>L6</td>
+<td>lecture05/</td>
+<td>Fourier optics fundamentals</td>
+</tr>
+<tr class="odd">
+<td>L7</td>
+<td>lecture06/</td>
+<td>Spatial filtering, resolution</td>
+</tr>
+<tr class="even">
+<td>L8</td>
+<td>lecture09/01</td>
+<td>Brightfield &amp; darkfield</td>
+</tr>
+<tr class="odd">
+<td>L9</td>
+<td>lecture09/02</td>
+<td>Phase contrast &amp; fluorescence</td>
+</tr>
+<tr class="even">
+<td>L10</td>
+<td>lecture09/03</td>
+<td>Confocal &amp; advanced techniques</td>
+</tr>
+<tr class="odd">
+<td>L11</td>
+<td>lecture12/</td>
+<td>Superresolution microscopy</td>
+</tr>
+<tr class="even">
+<td>L12</td>
+<td>lecture14/</td>
+<td>Light scattering &amp; DLS</td>
+</tr>
+<tr class="odd">
+<td>L13</td>
+<td>lecture13/</td>
+<td>Photothermal detection</td>
+</tr>
+<tr class="even">
+<td>L14</td>
+<td>lecture16/</td>
+<td>Microswimmers &amp; active matter</td>
+</tr>
+</tbody>
+</table>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/fcichos\.github\.io\/Photonics\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

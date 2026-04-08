@@ -1,0 +1,1369 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.34">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Microscopy II: Phase Contrast and Fluorescence – Photonics</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-9344fb9851b4da3cab95007ef9d770dc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../assets/css/styles.css">
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Photonics</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../../index.html" aria-current="page"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Microscopy II: Phase Contrast and Fluorescence</li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="../../index.html" class="sidebar-logo-link">
+      <img src="../../assets/images/mona_logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home</span></a>
+  </div>
+</li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Course Info</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-info/intructors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Instructor</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-info/schedule.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Schedule</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-info/resources.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Ressources</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-info/seminars.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Seminars</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-info/exam.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exams</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">PART I: FOUNDATIONS</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Lecture 1 — Introduction, Ray Optics &amp; Wave Optics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture01/introduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture01/01-lecture01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Ray Optics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture01/02-lecture01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Optical Elements</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture02/01-lecture02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Matrix Optics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture02/02-lecture02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wave Optics</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#microscopy-ii-phase-contrast-and-fluorescence" id="toc-microscopy-ii-phase-contrast-and-fluorescence" class="nav-link active" data-scroll-target="#microscopy-ii-phase-contrast-and-fluorescence">Microscopy II: Phase Contrast and Fluorescence</a>
+  <ul class="collapse">
+  <li><a href="#introduction-why-phase-contrast" id="toc-introduction-why-phase-contrast" class="nav-link" data-scroll-target="#introduction-why-phase-contrast">Introduction: Why Phase Contrast?</a></li>
+  <li><a href="#the-phase-problem-and-transparent-specimens" id="toc-the-phase-problem-and-transparent-specimens" class="nav-link" data-scroll-target="#the-phase-problem-and-transparent-specimens">1. The Phase Problem and Transparent Specimens</a>
+  <ul class="collapse">
+  <li><a href="#mathematical-description-of-phase-objects" id="toc-mathematical-description-of-phase-objects" class="nav-link" data-scroll-target="#mathematical-description-of-phase-objects">1.1 Mathematical Description of Phase Objects</a></li>
+  <li><a href="#why-transparent-specimens-are-invisible" id="toc-why-transparent-specimens-are-invisible" class="nav-link" data-scroll-target="#why-transparent-specimens-are-invisible">1.2 Why Transparent Specimens Are Invisible</a></li>
+  </ul></li>
+  <li><a href="#zernike-phase-contrast-microscopy" id="toc-zernike-phase-contrast-microscopy" class="nav-link" data-scroll-target="#zernike-phase-contrast-microscopy">2. Zernike Phase Contrast Microscopy</a>
+  <ul class="collapse">
+  <li><a href="#the-phase-contrast-principle" id="toc-the-phase-contrast-principle" class="nav-link" data-scroll-target="#the-phase-contrast-principle">2.1 The Phase Contrast Principle</a></li>
+  <li><a href="#mathematical-derivation-of-phase-contrast" id="toc-mathematical-derivation-of-phase-contrast" class="nav-link" data-scroll-target="#mathematical-derivation-of-phase-contrast">2.2 Mathematical Derivation of Phase Contrast</a></li>
+  <li><a href="#positive-and-negative-phase-contrast" id="toc-positive-and-negative-phase-contrast" class="nav-link" data-scroll-target="#positive-and-negative-phase-contrast">2.3 Positive and Negative Phase Contrast</a></li>
+  <li><a href="#practical-considerations-and-artifacts" id="toc-practical-considerations-and-artifacts" class="nav-link" data-scroll-target="#practical-considerations-and-artifacts">2.4 Practical Considerations and Artifacts</a></li>
+  </ul></li>
+  <li><a href="#differential-interference-contrast-dic-nomarski" id="toc-differential-interference-contrast-dic-nomarski" class="nav-link" data-scroll-target="#differential-interference-contrast-dic-nomarski">3. Differential Interference Contrast (DIC / Nomarski)</a>
+  <ul class="collapse">
+  <li><a href="#principle-of-dic" id="toc-principle-of-dic" class="nav-link" data-scroll-target="#principle-of-dic">3.1 Principle of DIC</a></li>
+  <li><a href="#mathematical-description" id="toc-mathematical-description" class="nav-link" data-scroll-target="#mathematical-description">3.2 Mathematical Description</a></li>
+  <li><a href="#fourier-space-perspective-dic-as-a-differential-filter" id="toc-fourier-space-perspective-dic-as-a-differential-filter" class="nav-link" data-scroll-target="#fourier-space-perspective-dic-as-a-differential-filter">3.3 Fourier Space Perspective: DIC as a Differential Filter</a></li>
+  <li><a href="#advantages-and-disadvantages-of-dic" id="toc-advantages-and-disadvantages-of-dic" class="nav-link" data-scroll-target="#advantages-and-disadvantages-of-dic">3.4 Advantages and Disadvantages of DIC</a></li>
+  </ul></li>
+  <li><a href="#fluorescence-microscopy-fundamentals" id="toc-fluorescence-microscopy-fundamentals" class="nav-link" data-scroll-target="#fluorescence-microscopy-fundamentals">4. Fluorescence Microscopy Fundamentals</a>
+  <ul class="collapse">
+  <li><a href="#the-jablonski-diagram" id="toc-the-jablonski-diagram" class="nav-link" data-scroll-target="#the-jablonski-diagram">4.1 The Jablonski Diagram</a></li>
+  <li><a href="#stokes-shift-and-fluorescence-filters" id="toc-stokes-shift-and-fluorescence-filters" class="nav-link" data-scroll-target="#stokes-shift-and-fluorescence-filters">4.2 Stokes Shift and Fluorescence Filters</a></li>
+  <li><a href="#filter-cube-setup" id="toc-filter-cube-setup" class="nav-link" data-scroll-target="#filter-cube-setup">4.3 Filter Cube Setup</a></li>
+  </ul></li>
+  <li><a href="#widefield-fluorescence-microscopy" id="toc-widefield-fluorescence-microscopy" class="nav-link" data-scroll-target="#widefield-fluorescence-microscopy">5. Widefield Fluorescence Microscopy</a>
+  <ul class="collapse">
+  <li><a href="#image-formation-and-psf" id="toc-image-formation-and-psf" class="nav-link" data-scroll-target="#image-formation-and-psf">5.1 Image Formation and PSF</a></li>
+  <li><a href="#out-of-focus-light-and-the-missing-cone-problem" id="toc-out-of-focus-light-and-the-missing-cone-problem" class="nav-link" data-scroll-target="#out-of-focus-light-and-the-missing-cone-problem">5.2 Out-of-Focus Light and the Missing Cone Problem</a></li>
+  </ul></li>
+  <li><a href="#confocal-laser-scanning-microscopy-clsm" id="toc-confocal-laser-scanning-microscopy-clsm" class="nav-link" data-scroll-target="#confocal-laser-scanning-microscopy-clsm">6. Confocal Laser Scanning Microscopy (CLSM)</a>
+  <ul class="collapse">
+  <li><a href="#principle-of-confocal-imaging" id="toc-principle-of-confocal-imaging" class="nav-link" data-scroll-target="#principle-of-confocal-imaging">6.1 Principle of Confocal Imaging</a></li>
+  <li><a href="#mathematical-analysis-of-confocal-psf" id="toc-mathematical-analysis-of-confocal-psf" class="nav-link" data-scroll-target="#mathematical-analysis-of-confocal-psf">6.2 Mathematical Analysis of Confocal PSF</a></li>
+  <li><a href="#resolution-improvement" id="toc-resolution-improvement" class="nav-link" data-scroll-target="#resolution-improvement">6.3 Resolution Improvement</a></li>
+  <li><a href="#optical-sectioning" id="toc-optical-sectioning" class="nav-link" data-scroll-target="#optical-sectioning">6.4 Optical Sectioning</a></li>
+  <li><a href="#pinhole-diameter-and-airy-units" id="toc-pinhole-diameter-and-airy-units" class="nav-link" data-scroll-target="#pinhole-diameter-and-airy-units">6.5 Pinhole Diameter and Airy Units</a></li>
+  <li><a href="#the-missing-cone-in-widefield-vs.-filled-cone-in-confocal" id="toc-the-missing-cone-in-widefield-vs.-filled-cone-in-confocal" class="nav-link" data-scroll-target="#the-missing-cone-in-widefield-vs.-filled-cone-in-confocal">6.6 The Missing Cone in Widefield vs.&nbsp;Filled Cone in Confocal</a></li>
+  </ul></li>
+  <li><a href="#two-photon-excitation-microscopy-brief-overview" id="toc-two-photon-excitation-microscopy-brief-overview" class="nav-link" data-scroll-target="#two-photon-excitation-microscopy-brief-overview">7. Two-Photon Excitation Microscopy (Brief Overview)</a></li>
+  <li><a href="#comparison-of-microscopy-techniques" id="toc-comparison-of-microscopy-techniques" class="nav-link" data-scroll-target="#comparison-of-microscopy-techniques">8. Comparison of Microscopy Techniques</a></li>
+  <li><a href="#numerical-examples-and-simulations" id="toc-numerical-examples-and-simulations" class="nav-link" data-scroll-target="#numerical-examples-and-simulations">9. Numerical Examples and Simulations</a>
+  <ul class="collapse">
+  <li><a href="#phase-object-simulation" id="toc-phase-object-simulation" class="nav-link" data-scroll-target="#phase-object-simulation">9.1 Phase Object Simulation</a></li>
+  <li><a href="#zernike-phase-contrast-in-fourier-space" id="toc-zernike-phase-contrast-in-fourier-space" class="nav-link" data-scroll-target="#zernike-phase-contrast-in-fourier-space">9.2 Zernike Phase Contrast in Fourier Space</a></li>
+  <li><a href="#confocal-vs.-widefield-psf" id="toc-confocal-vs.-widefield-psf" class="nav-link" data-scroll-target="#confocal-vs.-widefield-psf">9.3 Confocal vs.&nbsp;Widefield PSF</a></li>
+  </ul></li>
+  <li><a href="#two-photon-excitation-microscopy-brief-overview-1" id="toc-two-photon-excitation-microscopy-brief-overview-1" class="nav-link" data-scroll-target="#two-photon-excitation-microscopy-brief-overview-1">8. Two-Photon Excitation Microscopy (Brief Overview)</a></li>
+  <li><a href="#summary-and-key-takeaways" id="toc-summary-and-key-takeaways" class="nav-link" data-scroll-target="#summary-and-key-takeaways">10. Summary and Key Takeaways</a></li>
+  <li><a href="#fourier-optics-thread-unifying-the-microscopy-techniques" id="toc-fourier-optics-thread-unifying-the-microscopy-techniques" class="nav-link" data-scroll-target="#fourier-optics-thread-unifying-the-microscopy-techniques">10.1 Fourier Optics Thread: Unifying the Microscopy Techniques</a></li>
+  <li><a href="#experimental-connections" id="toc-experimental-connections" class="nav-link" data-scroll-target="#experimental-connections">Experimental Connections</a></li>
+  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading">10.3 Further Reading</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Microscopy II: Phase Contrast and Fluorescence</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="microscopy-ii-phase-contrast-and-fluorescence" class="level1">
+<h1>Microscopy II: Phase Contrast and Fluorescence</h1>
+<section id="introduction-why-phase-contrast" class="level2">
+<h2 class="anchored" data-anchor-id="introduction-why-phase-contrast">Introduction: Why Phase Contrast?</h2>
+<p>In the previous lecture on conventional brightfield microscopy and Fourier optics, we learned that microscopy resolution is fundamentally limited by diffraction. However, there exists an equally important problem that afflicts transparent biological specimens: <strong>the phase problem</strong>.</p>
+<p>Most living cells and organelles are nearly transparent—they have refractive indices very close to that of water (<span class="math inline">\(n \approx 1.33\)</span>). This means they scatter very little light and produce virtually no contrast in brightfield microscopy, even though they strongly interact with light through phase shifts. We cannot simply “turn up the brightness” to see transparent cells; we need to convert invisible phase variations into visible amplitude (intensity) variations.</p>
+<p>This lecture explores several elegant optical techniques that solve the phase problem, ultimately enabling us to visualize subcellular structures and to perform 3D imaging with fluorescence. These techniques form the foundation of modern biomedical microscopy.</p>
+<hr>
+</section>
+<section id="the-phase-problem-and-transparent-specimens" class="level2">
+<h2 class="anchored" data-anchor-id="the-phase-problem-and-transparent-specimens">1. The Phase Problem and Transparent Specimens</h2>
+<section id="mathematical-description-of-phase-objects" class="level3">
+<h3 class="anchored" data-anchor-id="mathematical-description-of-phase-objects">1.1 Mathematical Description of Phase Objects</h3>
+<p>When light passes through a thin transparent specimen, it is transmitted with a phase shift but negligible amplitude attenuation. We can describe the transmitted field as:</p>
+<p><span class="math display">\[
+\mathcal{E}_{\text{trans}}(x,y) = A_0 \, t(x,y) = A_0 \, e^{i\phi(x,y)}
+\]</span></p>
+<p>where: - <span class="math inline">\(A_0\)</span> is the incident field amplitude (constant) - <span class="math inline">\(t(x,y) = e^{i\phi(x,y)}\)</span> is the transmittance (a pure phase modulation) - <span class="math inline">\(\phi(x,y)\)</span> is the phase shift introduced by the specimen</p>
+<p>The phase shift is related to the optical path length through the specimen:</p>
+<p><span class="math display">\[
+\phi(x,y) = \frac{2\pi}{\lambda} \int_0^h [n(x,y,z) - n_0] \, dz
+\]</span></p>
+<p>where <span class="math inline">\(n(x,y,z)\)</span> is the refractive index of the specimen, <span class="math inline">\(n_0\)</span> is the refractive index of the surrounding medium (typically 1.33 for water or 1.0 for air), and <span class="math inline">\(h\)</span> is the thickness.</p>
+</section>
+<section id="why-transparent-specimens-are-invisible" class="level3">
+<h3 class="anchored" data-anchor-id="why-transparent-specimens-are-invisible">1.2 Why Transparent Specimens Are Invisible</h3>
+<p>The intensity recorded by a detector is:</p>
+<p><span class="math display">\[
+I = |\mathcal{E}_{\text{trans}}|^2 = |A_0|^2 \, |e^{i\phi(x,y)}|^2 = |A_0|^2
+\]</span></p>
+<p>Since <span class="math inline">\(|e^{i\phi}| = 1\)</span> for any phase <span class="math inline">\(\phi\)</span>, the intensity is <strong>constant everywhere</strong>—completely independent of the phase shift! This is why transparent cells are invisible in brightfield microscopy: there is no amplitude contrast to detect.</p>
+<p>However, for small phase shifts (<span class="math inline">\(\phi \ll 1\)</span> radian), we can use the approximation:</p>
+<p><span class="math display">\[
+e^{i\phi} \approx 1 + i\phi
+\]</span></p>
+<p>This suggests that if we could introduce additional amplitude variations that are <strong>proportional to <span class="math inline">\(\phi\)</span></strong>, we could then visualize the phase structure. This is the central idea behind phase contrast microscopy.</p>
+<hr>
+</section>
+</section>
+<section id="zernike-phase-contrast-microscopy" class="level2">
+<h2 class="anchored" data-anchor-id="zernike-phase-contrast-microscopy">2. Zernike Phase Contrast Microscopy</h2>
+<section id="the-phase-contrast-principle" class="level3">
+<h3 class="anchored" data-anchor-id="the-phase-contrast-principle">2.1 The Phase Contrast Principle</h3>
+<p>Fritz Zernike’s brilliant insight was to manipulate the light in the back focal plane (Fourier plane) of the microscope objective to convert phase variations into amplitude variations. The key steps are:</p>
+<ol type="1">
+<li><p><strong>Zero-order identification</strong>: The undiffracted (undeviated) light from the specimen forms the bright zero-order spot in the back focal plane. Light diffracted by the specimen forms higher-order diffraction patterns around it.</p></li>
+<li><p><strong>Phase plate insertion</strong>: A <strong>phase ring</strong> is placed over the zero-order spot. This ring introduces a phase shift of <span class="math inline">\(\lambda/4\)</span> (90°) and typically also reduces the amplitude of the zero-order by a factor of <span class="math inline">\(\beta\)</span> (usually <span class="math inline">\(\beta \approx 0.1\)</span>).</p></li>
+<li><p><strong>Interference and contrast</strong>: The phase-shifted and attenuated zero-order light interferes with the diffracted orders, converting the phase modulation into intensity variations.</p></li>
+</ol>
+</section>
+<section id="mathematical-derivation-of-phase-contrast" class="level3">
+<h3 class="anchored" data-anchor-id="mathematical-derivation-of-phase-contrast">2.2 Mathematical Derivation of Phase Contrast</h3>
+<p>Let us analyze this more carefully. The field in the back focal plane (Fourier plane) is:</p>
+<p><span class="math display">\[
+E_{\text{BFP}}(u,v) = \mathcal{F}\{A_0 e^{i\phi(x,y)}\}
+\]</span></p>
+<p>where <span class="math inline">\(\mathcal{F}\)</span> denotes the Fourier transform and <span class="math inline">\((u,v)\)</span> are spatial frequencies.</p>
+<p>For a small phase object, using <span class="math inline">\(e^{i\phi} \approx 1 + i\phi\)</span>:</p>
+<p><span class="math display">\[
+E_{\text{BFP}} \approx A_0 \delta(u,v) + A_0 \mathcal{F}\{i\phi(x,y)\}
+\]</span></p>
+<p>The first term is the zero-order (at the center), and the second term comprises the diffracted orders.</p>
+<p><strong>Without a phase plate</strong>, the intensity would be from the zero-order alone: <span class="math display">\[
+I_0 \propto A_0^2
+\]</span></p>
+<p><strong>With a phase plate</strong> over the zero-order, we apply: <span class="math display">\[
+M(u,v) = \begin{cases}
+\beta e^{i\pi/2} &amp; \text{at zero-order} \\
+1 &amp; \text{elsewhere}
+\end{cases}
+\]</span></p>
+<p>The field after the phase plate becomes: <span class="math display">\[
+E' = \beta A_0 e^{i\pi/2} + A_0 \mathcal{F}\{i\phi\} = i\beta A_0 + A_0 \mathcal{F}\{i\phi\}
+\]</span></p>
+<p>Transforming back to the image plane and computing intensity (assuming weak phase object so cross terms dominate):</p>
+<p><span class="math display">\[
+I \approx |i\beta A_0 + A_0 \mathcal{F}\{i\phi\}|^2 \approx A_0^2 \left[\beta^2 + 2\beta \text{Im}\{\mathcal{F}\{i\phi\}\}\right]
+\]</span></p>
+<p>In real space, this gives:</p>
+<p><span class="math display">\[
+I(x,y) \approx I_0 \left[1 + \frac{2\phi(x,y)}{\beta}\right]
+\]</span></p>
+<p>where we used the convolution theorem and small-angle approximation. For typical phase contrast (<span class="math inline">\(\beta \approx 0.1\)</span>):</p>
+<p><span class="math display">\[
+\boxed{I(x,y) \approx I_0(1 + 2\phi)}
+\]</span></p>
+<p><strong>Key result</strong>: The intensity now varies as the phase shift. Dark regions correspond to positive phase shifts (high refractive index), and bright regions correspond to negative phase shifts.</p>
+</section>
+<section id="positive-and-negative-phase-contrast" class="level3">
+<h3 class="anchored" data-anchor-id="positive-and-negative-phase-contrast">2.3 Positive and Negative Phase Contrast</h3>
+<ul>
+<li><strong>Positive phase contrast</strong>: Zero-order phase shift is <span class="math inline">\(+\lambda/4\)</span>. Regions with positive phase (high <span class="math inline">\(n\)</span>) appear dark. This is the standard configuration.</li>
+<li><strong>Negative phase contrast</strong>: Zero-order phase shift is <span class="math inline">\(-\lambda/4\)</span>. Regions with positive phase appear bright. Less commonly used.</li>
+</ul>
+</section>
+<section id="practical-considerations-and-artifacts" class="level3">
+<h3 class="anchored" data-anchor-id="practical-considerations-and-artifacts">2.4 Practical Considerations and Artifacts</h3>
+<p><strong>Advantages:</strong> - Simple optical setup (requires only phase ring in turret) - Good contrast for weakly absorbing specimens - No staining required - Excellent for observing living cells</p>
+<p><strong>Artifacts and limitations:</strong> - <strong>Halo artifacts</strong>: Dark halo around bright structures due to the abrupt phase transition at specimen boundaries. This arises from edge diffraction. - <strong>Limited field of view</strong>: The phase ring must match the back aperture of the objective; different objectives require different phase plates. - <strong>Shading</strong>: Uneven illumination across field - <strong>Thickness dependent</strong>: Works best for thin specimens</p>
+<p>The halo artifact can be understood as follows: at sharp boundaries of the specimen, there is a rapid phase gradient <span class="math inline">\(\nabla\phi\)</span>, which produces diffraction patterns that extend beyond the geometric size of the specimen.</p>
+<hr>
+</section>
+</section>
+<section id="differential-interference-contrast-dic-nomarski" class="level2">
+<h2 class="anchored" data-anchor-id="differential-interference-contrast-dic-nomarski">3. Differential Interference Contrast (DIC / Nomarski)</h2>
+<section id="principle-of-dic" class="level3">
+<h3 class="anchored" data-anchor-id="principle-of-dic">3.1 Principle of DIC</h3>
+<p>While phase contrast has excellent contrast, its halo artifacts and limited field of view motivate alternative techniques. <strong>Differential interference contrast (DIC)</strong>, also called <strong>Nomarski microscopy</strong>, provides an elegant solution.</p>
+<p>The basic principle is: 1. Use a <strong>birefringent prism</strong> (Wollaston prism) to split incident light into two orthogonally polarized beams 2. Introduce a <strong>lateral shear</strong> (typically <span class="math inline">\(\sim\!0.5\)</span>–<span class="math inline">\(2\)</span> pixels) between these beams 3. These sheared beams traverse slightly different paths through the specimen 4. Recombine them at the analyzer (another Wollaston prism) 5. The path difference is converted to a phase difference, creating contrast</p>
+</section>
+<section id="mathematical-description" class="level3">
+<h3 class="anchored" data-anchor-id="mathematical-description">3.2 Mathematical Description</h3>
+<p>The two beams travel paths displaced by a vector <span class="math inline">\(\vec{s}\)</span>:</p>
+<p><span class="math display">\[
+\mathcal{E}_1 = A_0 e^{i\phi(x,y)}
+\]</span> <span class="math display">\[
+\mathcal{E}_2 = A_0 e^{i\phi(x-s_x, y-s_y)}
+\]</span></p>
+<p>After the analyzer (assuming appropriate linear polarization), the intensity is:</p>
+<p><span class="math display">\[
+I \propto \left| e^{i\phi(x,y)} + e^{i\phi(x-s_x, y-s_y)} \right|^2
+\]</span></p>
+<p>For small shear <span class="math inline">\(s\)</span> and using the approximation <span class="math inline">\(\phi(x-s) \approx \phi(x) - s \nabla\phi\)</span>:</p>
+<p><span class="math display">\[
+I \propto \left| 1 + e^{-i s \cdot \nabla\phi} \right|^2 \approx 2[1 + \cos(s \cdot \nabla\phi)]
+\]</span></p>
+<p>For small gradients: <span class="math display">\[
+I \propto 1 + s \cdot \nabla\phi
+\]</span></p>
+<p><strong>Key insight</strong>: DIC creates contrast proportional to the <strong>gradient of phase</strong>, not the phase itself. This produces an edge-enhancement effect with minimal halos.</p>
+</section>
+<section id="fourier-space-perspective-dic-as-a-differential-filter" class="level3">
+<h3 class="anchored" data-anchor-id="fourier-space-perspective-dic-as-a-differential-filter">3.3 Fourier Space Perspective: DIC as a Differential Filter</h3>
+<p>To understand DIC more deeply through Fourier optics, consider the microscope’s response in Fourier space. The phase gradient operation <span class="math inline">\(\nabla\phi\)</span> corresponds to multiplication by the wavevector in Fourier space:</p>
+<p><span class="math display">\[
+\mathcal{F}\{\nabla\phi\} = i\vec{k} \, \tilde{\phi}(k)
+\]</span></p>
+<p>where <span class="math inline">\(\tilde{\phi}(k)\)</span> is the Fourier transform of <span class="math inline">\(\phi(x,y)\)</span> and <span class="math inline">\(\vec{k} = (k_x, k_y)\)</span> is the spatial frequency vector.</p>
+<p>The <strong>DIC transfer function</strong> in Fourier space is:</p>
+<p><span class="math display">\[
+\boxed{H_{\text{DIC}}(k_x, k_y) \propto k \, A_{\text{pupil}}(k_x, k_y)}
+\]</span></p>
+<p>where <span class="math inline">\(k = \sqrt{k_x^2 + k_y^2}\)</span> is the radial spatial frequency and <span class="math inline">\(A_{\text{pupil}}\)</span> is the objective’s pupil function (the Fourier-plane aperture). For weak phase objects, this simplifies to:</p>
+<p><span class="math display">\[
+H_{\text{DIC}}(k) \propto k
+\]</span></p>
+<p>This is a <strong>differential (gradient) filter</strong>: it has zero response at <span class="math inline">\(k = 0\)</span> (the DC component, corresponding to uniform phase), and its gain increases linearly with spatial frequency. This explains why DIC enhances edges and fine details—high-frequency components (sharp transitions in phase) are amplified, while low-frequency variations (slow phase gradients) are attenuated.</p>
+<p><strong>Comparison to phase contrast</strong>: Phase contrast converts the entire phase distribution via the DC component; DIC computes only the spatial derivative, which is why it avoids halo artifacts (the sharp discontinuities that create halos in phase contrast are smoothed in the gradient representation).</p>
+</section>
+<section id="advantages-and-disadvantages-of-dic" class="level3">
+<h3 class="anchored" data-anchor-id="advantages-and-disadvantages-of-dic">3.4 Advantages and Disadvantages of DIC</h3>
+<p><strong>Advantages:</strong> - Minimal halo artifacts - Full field of view (not limited by aperture size) - High contrast for fine structures - Beautiful three-dimensional appearance (pseudo-3D) - Works for thick specimens</p>
+<p><strong>Disadvantages:</strong> - More complex optical setup - Requires high-quality optics and careful alignment - More expensive - Only shows phase gradients (not phase itself) - Requires linearly polarized light</p>
+<hr>
+</section>
+</section>
+<section id="fluorescence-microscopy-fundamentals" class="level2">
+<h2 class="anchored" data-anchor-id="fluorescence-microscopy-fundamentals">4. Fluorescence Microscopy Fundamentals</h2>
+<section id="the-jablonski-diagram" class="level3">
+<h3 class="anchored" data-anchor-id="the-jablonski-diagram">4.1 The Jablonski Diagram</h3>
+<p>The foundation of fluorescence microscopy is understanding how excited molecules emit light. The <strong>Jablonski diagram</strong> (Figure <span class="citation" data-cites="fig:jablonski">@fig:jablonski</span>) illustrates the electronic states and transitions:</p>
+<div id="cell-fig:jablonski" class="cell" data-fig-height="4" data-fig-width="5.9" data-execution_count="2">
+<div class="cell-output cell-output-display">
+<div id="figjablonski" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="02-lecture09_files/figure-html/figjablonski-output-1.png" width="519" height="363" class="figure-img"></p>
+<figcaption>Jablonski diagram showing electronic states, excitation, relaxation, and fluorescence emission.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Key concepts:</strong></p>
+<ol type="1">
+<li><p><strong>Ground state (<span class="math inline">\(S_0\)</span>) and excited states (<span class="math inline">\(S_1\)</span>, <span class="math inline">\(S_2\)</span>, …)</strong>: Electronic states of the molecule. Each state has multiple vibrational levels (indicated by horizontal lines).</p></li>
+<li><p><strong>Absorption</strong>: A photon of energy <span class="math inline">\(h\nu_{ex}\)</span> excites the molecule from <span class="math inline">\(S_0\)</span> to a higher vibrational level of <span class="math inline">\(S_1\)</span>.</p></li>
+<li><p><strong>Vibrational relaxation</strong>: The excited molecule quickly (<span class="math inline">\(\sim\!\)</span>ps) loses energy through collisions with the solvent, cascading down vibrational levels within <span class="math inline">\(S_1\)</span>. This is essentially lossless and doesn’t contribute to photon emission.</p></li>
+<li><p><strong>Radiative decay (fluorescence)</strong>: From the lowest vibrational level of <span class="math inline">\(S_1\)</span>, the molecule decays back to <span class="math inline">\(S_0\)</span> (or a vibrational level thereof), emitting a fluorescence photon of energy <span class="math inline">\(h\nu_{em}\)</span>.</p></li>
+<li><p><strong>Intersystem crossing</strong>: Some molecules transition to a triplet state <span class="math inline">\(T_1\)</span> instead of fluorescing. This is usually non-radiative, but <span class="math inline">\(T_1 \to S_0\)</span> (phosphorescence) can be slow.</p></li>
+</ol>
+</section>
+<section id="stokes-shift-and-fluorescence-filters" class="level3">
+<h3 class="anchored" data-anchor-id="stokes-shift-and-fluorescence-filters">4.2 Stokes Shift and Fluorescence Filters</h3>
+<p><strong>Stokes shift</strong> is the difference between excitation and emission wavelengths:</p>
+<p><span class="math display">\[
+\Delta\lambda_{\text{Stokes}} = \lambda_{em} - \lambda_{ex}
+\]</span></p>
+<p>or in energy units:</p>
+<p><span class="math display">\[
+\Delta E = E_{ex} - E_{em} = h\nu_{ex} - h\nu_{em}
+\]</span></p>
+<p>This difference arises from the vibrational relaxation in the excited state and is typically <span class="math inline">\(20\)</span>–<span class="math inline">\(100\)</span> nm for common fluorophores.</p>
+<p><strong>Why is Stokes shift important?</strong> It allows us to: - <strong>Separate excitation from emission</strong>: Dichroic mirrors and filters can reflect excitation light but transmit emission light - <strong>Reduce autofluorescence</strong>: Background fluorescence is typically at shorter wavelengths - <strong>Enable multiplexing</strong>: Multiple fluorophores with different Stokes shifts can be used simultaneously</p>
+</section>
+<section id="filter-cube-setup" class="level3">
+<h3 class="anchored" data-anchor-id="filter-cube-setup">4.3 Filter Cube Setup</h3>
+<p>A typical widefield fluorescence microscope uses a <strong>filter cube</strong> (Figure <span class="citation" data-cites="fig:filtercube">@fig:filtercube</span>) containing:</p>
+<div id="cell-fig:filtercube" class="cell" data-fig-height="4" data-fig-width="5.9" data-execution_count="3">
+<div class="cell-output cell-output-display">
+<div id="figfiltercube" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="02-lecture09_files/figure-html/figfiltercube-output-1.png" width="568" height="336" class="figure-img"></p>
+<figcaption>Optical path through a fluorescence microscope filter cube showing dichroic and emission filters.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Components:</strong></p>
+<ol type="1">
+<li><strong>Excitation filter</strong> (blue, bandpass): Narrow wavelength band (e.g., 480–495 nm) to select desired excitation wavelength</li>
+<li><strong>Dichroic mirror</strong> (beamsplitter): Reflects short wavelengths (excitation) but transmits long wavelengths (emission). Typically at 45° angle.</li>
+<li><strong>Emission filter</strong> (green, bandpass): Narrow band (e.g., 500–550 nm) to select emission and block reflected excitation light</li>
+</ol>
+<p><strong>Advantage of dichroic separation</strong>: The ~20–100 nm Stokes shift is usually much larger than filter bandwidths, allowing almost complete separation of excitation and emission light.</p>
+<hr>
+</section>
+</section>
+<section id="widefield-fluorescence-microscopy" class="level2">
+<h2 class="anchored" data-anchor-id="widefield-fluorescence-microscopy">5. Widefield Fluorescence Microscopy</h2>
+<section id="image-formation-and-psf" class="level3">
+<h3 class="anchored" data-anchor-id="image-formation-and-psf">5.1 Image Formation and PSF</h3>
+<p>In widefield fluorescence, the entire specimen is illuminated simultaneously (in contrast to scanning techniques, which we’ll see below). The image is formed by:</p>
+<ol type="1">
+<li>Excitation light excites fluorophores throughout the focal plane (and out-of-focus planes)</li>
+<li>Emission light from all excited planes reaches the detector</li>
+<li>The three-dimensional spread of excited photons is given by the <strong>point spread function (PSF)</strong></li>
+</ol>
+<p>For a diffraction-limited system with circular aperture, the PSF is approximately the Airy disk pattern:</p>
+<p><span class="math display">\[
+h(x,y,z) = \left| \mathcal{F}\{A_{\text{pupil}}(u,v)\} \right|^2
+\]</span></p>
+<p>where <span class="math inline">\(A_{\text{pupil}}\)</span> is the aperture function at the back focal plane.</p>
+<p>In the lateral plane (at focus): <span class="math display">\[
+h_{\text{lat}}(r) \propto \left[ \frac{2 J_1(kr)}{kr} \right]^2
+\]</span></p>
+<p>where <span class="math inline">\(r = \sqrt{x^2 + y^2}\)</span> is the radial distance, <span class="math inline">\(J_1\)</span> is the Bessel function of the first kind, <span class="math inline">\(k = \pi/\lambda\)</span>, and <span class="math inline">\(NA = \sin\theta\)</span> is the numerical aperture.</p>
+<p>The <strong>Airy disk radius</strong> (full width between first minimum and first maximum) is:</p>
+<p><span class="math display">\[
+r_{\text{Airy}} \approx 0.61 \frac{\lambda}{NA}
+\]</span></p>
+</section>
+<section id="out-of-focus-light-and-the-missing-cone-problem" class="level3">
+<h3 class="anchored" data-anchor-id="out-of-focus-light-and-the-missing-cone-problem">5.2 Out-of-Focus Light and the Missing Cone Problem</h3>
+<p><strong>The fundamental problem with widefield fluorescence</strong>: Light from out-of-focus planes also contributes to the image.</p>
+<p>For a 3D specimen, the observed intensity at position <span class="math inline">\((x,y,z)\)</span> is:</p>
+<p><span class="math display">\[
+I_{\text{obs}}(x,y,z) = \int_{-\infty}^{\infty} F(x,y,z') \, h(x-x',y-y',z-z') \, dx'\,dy'\,dz'
+\]</span></p>
+<p>where <span class="math inline">\(F(x,y,z)\)</span> is the fluorophore distribution and <span class="math inline">\(h\)</span> is the 3D PSF.</p>
+<p>The <strong>axial extent</strong> (depth of field) of the PSF is:</p>
+<p><span class="math display">\[
+z_{\text{Rayleigh}} \approx \frac{\lambda}{2 NA^2}
+\]</span></p>
+<p>For a typical objective (<span class="math inline">\(NA = 0.9\)</span>, <span class="math inline">\(\lambda = 500\)</span> nm): <span class="math display">\[
+z_{\text{Rayleigh}} \approx \frac{500 \text{ nm}}{2 (0.9)^2} \approx 310 \text{ nm}
+\]</span></p>
+<p>This means that <strong>out-of-focus light from <span class="math inline">\(\pm\!310\)</span> nm above and below the focal plane</strong> significantly contributes to the image, severely degrading contrast and 3D information for thick specimens.</p>
+<p><strong>Fourier perspective—The 3D Optical Transfer Function:</strong></p>
+<p>In Fourier space, the contrast of spatial frequencies <span class="math inline">\(\vec{k} = (k_x, k_y)\)</span> at different depths is described by the 3D <strong>Optical Transfer Function (OTF)</strong>, defined as:</p>
+<p><span class="math display">\[
+\text{OTF}(k_x, k_y, k_z) = \mathcal{F}\{h(x,y,z)\}
+\]</span></p>
+<p>where <span class="math inline">\(k_z = 2\pi / \lambda_{eff}\)</span> characterizes the depth-dependent frequency response.</p>
+<p>For incoherent widefield fluorescence, the 3D OTF is the <strong>autocorrelation of the pupil function</strong>:</p>
+<p><span class="math display">\[
+\text{OTF}_{\text{widefield}}(k_x, k_y, k_z) = A_{\text{pupil}}(k_x/2 + k_z, k_y/2) \star A_{\text{pupil}}^*(k_x/2 - k_z, k_y/2)
+\]</span></p>
+<p>A critical feature of this 3D OTF is the <strong>“missing cone”</strong>: spatial frequencies near the optical axis (small <span class="math inline">\(k_x, k_y\)</span>) for <span class="math inline">\(k_z \neq 0\)</span> are not transferred. This is particularly severe along the <span class="math inline">\(k_z\)</span> axis itself—the microscope has poor axial frequency response. This explains why:</p>
+<ol type="1">
+<li>Out-of-focus planes at <span class="math inline">\(z \neq 0\)</span> contaminate the in-focus image</li>
+<li>Axial resolution is much poorer than lateral resolution (~5–10× worse)</li>
+<li>3D reconstruction requires computational deconvolution</li>
+</ol>
+<p><strong>Solutions:</strong> - <strong>Use thin specimens</strong> (&lt; 10 µm) to minimize out-of-focus contribution - <strong>Deconvolution</strong> (post-processing) to computationally remove out-of-focus blur - <strong>Optical sectioning</strong> with confocal or light-sheet microscopy (next section) to fill the missing cone</p>
+<hr>
+</section>
+</section>
+<section id="confocal-laser-scanning-microscopy-clsm" class="level2">
+<h2 class="anchored" data-anchor-id="confocal-laser-scanning-microscopy-clsm">6. Confocal Laser Scanning Microscopy (CLSM)</h2>
+<section id="principle-of-confocal-imaging" class="level3">
+<h3 class="anchored" data-anchor-id="principle-of-confocal-imaging">6.1 Principle of Confocal Imaging</h3>
+<p>The confocal microscope elegantly solves the optical sectioning problem by:</p>
+<ol type="1">
+<li><strong>Point illumination</strong>: A laser beam is focused to a diffraction-limited spot in the specimen</li>
+<li><strong>Pinhole detection</strong>: Emitted light from the focal plane is collected, but light from out-of-focus planes is rejected by a <strong>pinhole</strong> at the confocal aperture</li>
+<li><strong>Scanning</strong>: The laser spot is scanned across the specimen in a raster pattern, building an image pixel-by-pixel</li>
+</ol>
+<p><strong>Why is it called “confocal”?</strong> The illuminated point and the detection pinhole are conjugate—they are at confocal positions relative to the microscope optics.</p>
+</section>
+<section id="mathematical-analysis-of-confocal-psf" class="level3">
+<h3 class="anchored" data-anchor-id="mathematical-analysis-of-confocal-psf">6.2 Mathematical Analysis of Confocal PSF</h3>
+<p>The <strong>excitation PSF</strong> (due to laser focusing) is similar to widefield: <span class="math display">\[
+h_{\text{ill}}(x,y,z) \propto \left| \mathcal{F}\{A_{\text{pupil}}(u,v)\} \right|^2
+\]</span></p>
+<p>The <strong>detection PSF</strong> (through the pinhole) is also Airy-like, with width determined by the pinhole diameter <span class="math inline">\(D_p\)</span>: <span class="math display">\[
+h_{\text{det}}(x,y,z) \propto \left| \mathcal{F}\{A_{\text{pinhole}}(D_p)\} \right|^2
+\]</span></p>
+<p>The <strong>total confocal PSF</strong> is the product of illumination and detection: <span class="math display">\[
+\boxed{h_{\text{conf}}(x,y,z) = h_{\text{ill}}(x,y,z) \times h_{\text{det}}(x,y,z)}
+\]</span></p>
+<p>This multiplication in coordinate space corresponds to convolution in Fourier space, resulting in a <strong>narrower, more concentrated PSF</strong>.</p>
+<p><strong>Fourier perspective—Filling the Missing Cone:</strong></p>
+<p>In Fourier space, the confocal OTF is the <strong>product of the illumination and detection OTFs</strong>:</p>
+<p><span class="math display">\[
+\text{OTF}_{\text{confocal}}(k_x, k_y, k_z) = \text{OTF}_{\text{ill}}(k_x, k_y, k_z) \cdot \text{OTF}_{\text{det}}(k_x, k_y, k_z)
+\]</span></p>
+<p>This is the key Fourier insight: <strong>the product of two autocorrelations fills in spatial frequencies that are not transmitted by widefield alone</strong>, particularly along the optical axis (small <span class="math inline">\(k_x, k_y\)</span> for <span class="math inline">\(k_z \neq 0\)</span>).</p>
+<p>Specifically, the missing cone in widefield fluorescence arises because both illumination and detection have the same diffraction-limited support; the product of two OTFs with the same missing cone does not fill it completely, but <strong>the edges of the cone are partially restored</strong>. More importantly, the confocal pinhole prevents out-of-focus contributions from remote depths <span class="math inline">\(z \gg z_{\text{Rayleigh}}\)</span> from reaching the detector in the first place—only light from the focal plane and nearby planes passes through. This provides genuine <strong>depth filtering in the frequency domain</strong>.</p>
+<p>This is THE Fourier-space explanation for confocal’s optical sectioning power: the pinhole acts as a spatial frequency filter that suppresses low spatial frequencies from distant out-of-focus planes while preserving high frequencies from the in-focus plane.</p>
+</section>
+<section id="resolution-improvement" class="level3">
+<h3 class="anchored" data-anchor-id="resolution-improvement">6.3 Resolution Improvement</h3>
+<p>The lateral and axial FWHM (full width at half maximum) of the confocal PSF are:</p>
+<p><strong>Lateral FWHM:</strong> <span class="math display">\[
+\Delta x_{\text{conf}} \approx 0.4 \frac{\lambda}{NA}
+\]</span></p>
+<p><strong>Axial FWHM:</strong> <span class="math display">\[
+\Delta z_{\text{conf}} \approx \frac{0.7 \lambda}{NA^2}
+\]</span></p>
+<p>Compare these to widefield: <span class="math display">\[
+\Delta x_{\text{widefield}} \approx 0.61 \frac{\lambda}{NA}, \quad \Delta z_{\text{widefield}} \approx \frac{\lambda}{2NA^2}
+\]</span></p>
+<p>The <strong>resolution improvement factor</strong> is: <span class="math display">\[
+\text{Improvement} = \frac{h_{\text{widefield}}}{h_{\text{conf}}} \approx \sqrt{2} \approx 1.41
+\]</span></p>
+<p>This <span class="math inline">\(\sqrt{2}\)</span> factor arises from the quadratic relationship: <span class="math inline">\(h_{\text{conf}} = h_{\text{ill}} \times h_{\text{det}}\)</span>, so areas (which scale as <span class="math inline">\(h^2\)</span>) improve by a factor of 2.</p>
+</section>
+<section id="optical-sectioning" class="level3">
+<h3 class="anchored" data-anchor-id="optical-sectioning">6.4 Optical Sectioning</h3>
+<p>The dramatic improvement in axial resolution enables <strong>optical sectioning</strong>: the ability to image a single focal plane while rejecting out-of-focus light. This is the key advantage of confocal microscopy.</p>
+<p>For a specimen thicker than the axial PSF width, confocal allows us to: 1. Acquire a series of images at different focal depths <span class="math inline">\(z_1, z_2, \ldots, z_n\)</span> 2. Reconstruct a 3D volume from the stack 3. Visualize internal structures with true depth information</p>
+</section>
+<section id="pinhole-diameter-and-airy-units" class="level3">
+<h3 class="anchored" data-anchor-id="pinhole-diameter-and-airy-units">6.5 Pinhole Diameter and Airy Units</h3>
+<p>The pinhole diameter is often expressed in <strong>Airy units</strong> (AU): <span class="math display">\[
+D_p = \text{(Airy units)} \times D_{\text{Airy}}
+\]</span></p>
+<p>where <span class="math inline">\(D_{\text{Airy}}\)</span> is the diameter of the first Airy disk (<span class="math inline">\(\approx 1.22 \lambda/NA\)</span>).</p>
+<ul>
+<li><strong>1 AU pinhole</strong>: Optimal optical sectioning; transmits ~70% of light from focal plane</li>
+<li><strong>0.5 AU</strong>: Better sectioning but less light transmission</li>
+<li><strong>2–3 AU</strong>: Faster imaging with more light; reduced sectioning</li>
+</ul>
+</section>
+<section id="the-missing-cone-in-widefield-vs.-filled-cone-in-confocal" class="level3">
+<h3 class="anchored" data-anchor-id="the-missing-cone-in-widefield-vs.-filled-cone-in-confocal">6.6 The Missing Cone in Widefield vs.&nbsp;Filled Cone in Confocal</h3>
+<p>The following visualization demonstrates how confocal fills the missing cone problem in 3D Fourier space:</p>
+<div id="cell-fig:missingcone" class="cell" data-fig-width="15" data-execution_count="4">
+<div class="cell-output cell-output-display">
+<div id="figmissingcone" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="02-lecture09_files/figure-html/figmissingcone-output-1.png" width="527" height="238" class="figure-img"></p>
+<figcaption>3D OTF comparison (viridis colormap: OTF magnitude): widefield fluorescence (left) shows a pronounced missing cone along the optical axis in the <span class="math inline">\(k_x\)</span>-<span class="math inline">\(k_z\)</span> plane; confocal (right) has better coverage at low spatial frequencies along the optical axis, providing optical sectioning.</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Missing Cone Analysis:
+Maximum frequency: k_max = 2NA/λ = 4.10 µm⁻¹
+Widefield max OTF: 1.000
+Confocal max OTF: 1.000
+Low-frequency (|k| &lt; 0.2k_max) response improvement: 1.00×</code></pre>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="two-photon-excitation-microscopy-brief-overview" class="level2">
+<h2 class="anchored" data-anchor-id="two-photon-excitation-microscopy-brief-overview">7. Two-Photon Excitation Microscopy (Brief Overview)</h2>
+<p><strong>Two-photon excited fluorescence (2PEF)</strong> provides an alternative to confocal scanning for optical sectioning. Instead of using a pinhole to reject out-of-focus light, 2PEF exploits nonlinear excitation: the excitation probability scales as <span class="math inline">\(I^2\)</span> (intensity squared), so only the focal plane where intensity is maximum excites fluorophores significantly.</p>
+<p><strong>Fourier perspective:</strong> The quadratic intensity dependence of two-photon excitation produces an <strong>effective OTF equivalent to confocal</strong>. The nonlinear intensity profile <span class="math inline">\(I^2(z)\)</span> is much sharper than the linear intensity profile <span class="math inline">\(I(z)\)</span>, narrowing the excitation PSF along the optical axis. This provides intrinsic optical sectioning without a physical pinhole—depth filtering happens through the nonlinear excitation process itself.</p>
+<p><strong>Key advantage:</strong> Two-photon microscopy uses infrared light (typically 700–1000 nm), which scatters less and penetrates deeper into tissue, making it the preferred technique for deep 3D imaging in thick specimens and living tissue. The excitation-PSF narrowing provides sectioning comparable to confocal, with improved depth penetration.</p>
+<hr>
+</section>
+<section id="comparison-of-microscopy-techniques" class="level2">
+<h2 class="anchored" data-anchor-id="comparison-of-microscopy-techniques">8. Comparison of Microscopy Techniques</h2>
+<p>The following table summarizes the key characteristics of the main optical microscopy methods we’ve covered:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 13%">
+<col style="width: 12%">
+<col style="width: 17%">
+<col style="width: 13%">
+<col style="width: 13%">
+<col style="width: 8%">
+<col style="width: 7%">
+<col style="width: 12%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Technique</th>
+<th>Contrast</th>
+<th>Lateral Res.</th>
+<th>Axial Res.</th>
+<th>3D Capable</th>
+<th>Speed</th>
+<th>Cost</th>
+<th>Best For</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Brightfield</strong></td>
+<td>Amplitude</td>
+<td>~0.2 µm</td>
+<td>~0.6 µm</td>
+<td>No</td>
+<td>Fast</td>
+<td>Low</td>
+<td>Stained cells, crystals</td>
+</tr>
+<tr class="even">
+<td><strong>Phase contrast</strong></td>
+<td>Phase → amplitude</td>
+<td>~0.2 µm</td>
+<td>~0.6 µm</td>
+<td>No</td>
+<td>Fast</td>
+<td>Low</td>
+<td>Live cells, transparent</td>
+</tr>
+<tr class="odd">
+<td><strong>DIC</strong></td>
+<td>Phase gradient</td>
+<td>~0.2 µm</td>
+<td>~0.6 µm</td>
+<td>No*</td>
+<td>Fast</td>
+<td>Medium</td>
+<td>Cells, fine details</td>
+</tr>
+<tr class="even">
+<td><strong>Widefield fluor.</strong></td>
+<td>Fluorescence</td>
+<td>~0.2 µm</td>
+<td>~0.5 µm</td>
+<td>Deconv.</td>
+<td>Fast</td>
+<td>Medium</td>
+<td>Thin specimens</td>
+</tr>
+<tr class="odd">
+<td><strong>Confocal CLSM</strong></td>
+<td>Fluorescence</td>
+<td>~0.14 µm</td>
+<td>~0.35 µm</td>
+<td>Yes</td>
+<td>Slow</td>
+<td>High</td>
+<td>Thick 3D specimens</td>
+</tr>
+<tr class="even">
+<td><strong>Two-photon TPEF</strong></td>
+<td>Fluorescence</td>
+<td>~0.2 µm</td>
+<td>~0.5 µm</td>
+<td>Yes</td>
+<td>Slow</td>
+<td>Very high</td>
+<td>Deep tissue imaging</td>
+</tr>
+</tbody>
+</table>
+<p>*DIC can yield pseudo-3D information due to its gradient-based contrast.</p>
+<hr>
+</section>
+<section id="numerical-examples-and-simulations" class="level2">
+<h2 class="anchored" data-anchor-id="numerical-examples-and-simulations">9. Numerical Examples and Simulations</h2>
+<section id="phase-object-simulation" class="level3">
+<h3 class="anchored" data-anchor-id="phase-object-simulation">9.1 Phase Object Simulation</h3>
+<p>Let’s simulate how a phase object (e.g., a cell with density variations) appears in phase contrast microscopy:</p>
+<div id="cell-fig:phaseobject" class="cell" data-fig-height="3.5" data-fig-width="5.9" data-execution_count="5">
+<div class="cell-output cell-output-display">
+<div id="figphaseobject" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="02-lecture09_files/figure-html/figphaseobject-output-1.png" width="578" height="202" class="figure-img"></p>
+<figcaption>Simulation of a phase object (left, viridis colormap: phase in rad) and its appearance in brightfield (center, no contrast) and phase contrast microscopy (right, grayscale: intensity).</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Phase contrast image intensities: min=0.618, max=2.574
+Contrast range: 1.956</code></pre>
+</div>
+</div>
+</section>
+<section id="zernike-phase-contrast-in-fourier-space" class="level3">
+<h3 class="anchored" data-anchor-id="zernike-phase-contrast-in-fourier-space">9.2 Zernike Phase Contrast in Fourier Space</h3>
+<p>Now let’s visualize how the phase ring in the back focal plane converts phase to amplitude:</p>
+<div id="cell-fig:zernike" class="cell" data-fig-height="3.5" data-fig-width="5.9" data-execution_count="6">
+<div class="cell-output cell-output-display">
+<div id="figzernike" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="02-lecture09_files/figure-html/figzernike-output-1.png" width="578" height="198" class="figure-img"></p>
+<figcaption>Zernike phase contrast mechanism: Fourier spectrum (left, hot colormap), phase ring in back focal plane (center), and resulting intensity contrast (right, grayscale).</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="confocal-vs.-widefield-psf" class="level3">
+<h3 class="anchored" data-anchor-id="confocal-vs.-widefield-psf">9.3 Confocal vs.&nbsp;Widefield PSF</h3>
+<p>Finally, let’s compare the 3D point spread functions of confocal and widefield microscopy:</p>
+<div id="cell-fig:psf" class="cell" data-fig-height="4" data-fig-width="5.9" data-execution_count="7">
+<div class="cell-output cell-output-display">
+<div id="figpsf" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="02-lecture09_files/figure-html/figpsf-output-1.png" width="514" height="285" class="figure-img"></p>
+<figcaption>Axial point spread function comparison: widefield (thick) vs.&nbsp;confocal (thin), showing superior optical sectioning of confocal microscopy.</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Widefield axial FWHM: 0.309 µm
+Confocal axial FWHM (approx.): 0.218 µm
+Resolution improvement factor: 1.41×</code></pre>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="two-photon-excitation-microscopy-brief-overview-1" class="level2">
+<h2 class="anchored" data-anchor-id="two-photon-excitation-microscopy-brief-overview-1">8. Two-Photon Excitation Microscopy (Brief Overview)</h2>
+<p><strong>Two-photon excited fluorescence (2PEF)</strong> provides an alternative to confocal scanning for optical sectioning. Instead of using a pinhole to reject out-of-focus light, 2PEF exploits nonlinear excitation: the excitation probability scales as <span class="math inline">\(I^2\)</span> (intensity squared), so only the focal plane where intensity is maximum excites fluorophores significantly.</p>
+<p><strong>Fourier perspective:</strong> The quadratic intensity dependence of two-photon excitation produces an <strong>effective OTF equivalent to confocal</strong>. The nonlinear intensity profile <span class="math inline">\(I^2(z)\)</span> is much sharper than the linear intensity profile <span class="math inline">\(I(z)\)</span>, narrowing the excitation PSF along the optical axis. This provides intrinsic optical sectioning without a physical pinhole—depth filtering happens through the nonlinear excitation process itself.</p>
+<p><strong>Key advantage:</strong> Two-photon microscopy uses infrared light (typically 700–1000 nm), which scatters less and penetrates deeper into tissue, making it the preferred technique for deep 3D imaging in thick specimens and living tissue. The excitation-PSF narrowing provides sectioning comparable to confocal, with improved depth penetration.</p>
+<hr>
+</section>
+<section id="summary-and-key-takeaways" class="level2">
+<h2 class="anchored" data-anchor-id="summary-and-key-takeaways">10. Summary and Key Takeaways</h2>
+<ol type="1">
+<li><p><strong>Phase Problem</strong>: Transparent biological specimens produce phase shifts but no amplitude contrast in brightfield microscopy, making them invisible.</p></li>
+<li><p><strong>Zernike Phase Contrast</strong>: A λ/4 phase ring in the back focal plane converts phase variations into amplitude variations via interference, with the approximation <span class="math inline">\(I \approx I_0(1 + 2\phi)\)</span>. Halo artifacts are a limitation.</p></li>
+<li><p><strong>DIC/Nomarski</strong>: Uses birefringent prisms to create shearing and detects phase gradients. Superior to phase contrast for thick specimens with less haloing.</p></li>
+<li><p><strong>Fluorescence Fundamentals</strong>: The Jablonski diagram describes molecular excitation, relaxation, and radiative decay. Stokes shift enables filter separation of excitation and emission light.</p></li>
+<li><p><strong>Widefield Fluorescence</strong>: Entire specimen illuminated; simple but suffers from out-of-focus blur with depth resolution <span class="math inline">\(\sim \lambda/(2NA^2)\)</span>.</p></li>
+<li><p><strong>Confocal CLSM</strong>: Point illumination + pinhole detection provides optical sectioning. Axial resolution improves by factor ~√2 compared to widefield. 3D imaging of thick specimens is now possible.</p></li>
+<li><p><strong>Trade-offs</strong>: Confocal is slower and more expensive but gives superior 3D contrast and resolution. Advanced techniques (two-photon, light-sheet, STED) push beyond diffraction limits.</p></li>
+</ol>
+<p><strong>Next lecture</strong>: We will explore super-resolution microscopy techniques (STED, SIM, STORM) that break the diffraction barrier.</p>
+<hr>
+</section>
+<section id="fourier-optics-thread-unifying-the-microscopy-techniques" class="level2">
+<h2 class="anchored" data-anchor-id="fourier-optics-thread-unifying-the-microscopy-techniques">10.1 Fourier Optics Thread: Unifying the Microscopy Techniques</h2>
+<p>Throughout this lecture, we have repeatedly returned to Fourier optics to explain how different microscopy techniques manipulate light information. Here is the unifying thread:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 55%">
+<col style="width: 18%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Technique</th>
+<th>Fourier-Space Operation</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Phase contrast</strong></td>
+<td>Phase shift + amplitude reduction of DC component in pupil plane</td>
+<td>Converts phase into intensity via interference</td>
+</tr>
+<tr class="even">
+<td><strong>DIC</strong></td>
+<td>Differential (gradient) filter in Fourier space: <span class="math inline">\(H(k) \propto k\)</span></td>
+<td>Amplifies edges, suppresses low-frequency phase variations</td>
+</tr>
+<tr class="odd">
+<td><strong>Widefield fluorescence</strong></td>
+<td>Incoherent OTF = autocorrelation of pupil function</td>
+<td>Missing cone limits axial resolution and optical sectioning</td>
+</tr>
+<tr class="even">
+<td><strong>Confocal CLSM</strong></td>
+<td>Product of illumination and detection OTFs; pinhole filters depth</td>
+<td>Fills missing cone via nonlinear depth filtering</td>
+</tr>
+<tr class="odd">
+<td><strong>Two-photon excitation</strong></td>
+<td>Nonlinear <span class="math inline">\(I^2\)</span> excitation narrows effective PSF in <span class="math inline">\(z\)</span></td>
+<td>Equivalent confocal OTF; deep tissue penetration</td>
+</tr>
+</tbody>
+</table>
+<p>This perspective shows that <strong>modern optical microscopy is fundamentally about manipulating the 3D Fourier-space transfer of spatial frequencies</strong>. Each technique achieves improved contrast, resolution, or sectioning by strategically filtering, shifting, or multiplying frequency components in the pupil or Fourier plane.</p>
+<hr>
+</section>
+<section id="experimental-connections" class="level2">
+<h2 class="anchored" data-anchor-id="experimental-connections">Experimental Connections</h2>
+<p>These contrast techniques are the daily tools of biological microscopy:</p>
+<p><strong>Phase contrast ring alignment</strong> On a phase contrast microscope, use the Bertrand lens (or remove an eyepiece) to view the back focal plane. Align the phase annulus in the condenser with the phase ring in the objective. Misalignment drastically reduces contrast — this teaches students how sensitive the technique is to the Fourier-plane manipulation.</p>
+<p><strong>Comparing contrast modes on the same specimen</strong> Prepare a thin section of onion epidermis or cheek cells (unstained). Image the same field of view in: (i) brightfield, (ii) darkfield, (iii) phase contrast, (iv) DIC (if available). The dramatic differences illustrate how each technique encodes different information about the specimen.</p>
+<p><strong>Fluorescence microscopy basics</strong> Stain cells with a simple fluorescent dye (e.g., acridine orange for DNA). Set up the appropriate excitation filter, dichroic mirror, and emission filter. Discuss why the Stokes shift is essential for separating excitation from emission. Measure the filter spectra with a spectrometer.</p>
+<p><strong>Building a confocal from scratch</strong> A teaching confocal can be built with a laser, two lenses (4f system), a pinhole, and a detector. Scan a fluorescent sample by translating the stage. The pinhole rejects out-of-focus light — demonstrate by varying the pinhole size and observing the tradeoff between sectioning strength and signal level.</p>
+<p><strong>Photobleaching kinetics</strong> Continuously illuminate a fluorescent sample and record the intensity over time. The exponential decay reveals the photobleaching rate. Compare different dyes and discuss photostability, quantum yield, and the practical implications for long-term imaging.</p>
+</section>
+<section id="further-reading" class="level2">
+<h2 class="anchored" data-anchor-id="further-reading">10.3 Further Reading</h2>
+<p>The following references are linked to the central <a href="../../resources/resources.html">Resources &amp; Recommended Reading</a> page:</p>
+<ul>
+<li><strong><a href="../../resources/resources.html#sec-murphy">Murphy &amp; Davidson (2013)</a></strong> — <em>Fundamentals of Light Microscopy</em>. Outstanding on phase contrast, DIC, and fluorescence. Best entry point for experimental microscopy.</li>
+<li><strong><a href="../../resources/resources.html#sec-mertz">Mertz (2019)</a></strong> — <em>Introduction to Optical Microscopy</em>. Modern treatment with emphasis on contrast transfer functions.</li>
+<li><strong><a href="../../resources/resources.html#sec-saleh">Saleh &amp; Teich, Ch. 4.4–4.5</a></strong> — Imaging systems, coherent vs.&nbsp;incoherent imaging.</li>
+<li><strong><a href="../../resources/resources.html#sec-goodman">Goodman, Ch. 6</a></strong> — Transfer functions for coherent and incoherent imaging.</li>
+<li><strong><a href="../../resources/resources.html#sec-gu">Gu (2000)</a></strong> — <em>Advanced Optical Imaging Theory</em>. For those who want confocal PSF theory in depth.</li>
+<li><strong><a href="../../resources/resources.html#sec-born">Born &amp; Wolf, Ch. 8</a></strong> — Elements of the theory of interference and interferometers.</li>
+</ul>
+<hr>
+<p><em>Lecture 9: Microscopy II — Introduction to Photonics</em></p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/fcichos\.github\.io\/Photonics\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

@@ -1,0 +1,1311 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.34">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Seminar 6 — Scattering &amp; Photothermal Experiments – Photonics</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-9344fb9851b4da3cab95007ef9d770dc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../assets/css/styles.css">
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Photonics</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../../index.html" aria-current="page"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Seminar 6 — Scattering &amp; Photothermal Experiments</li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="../../index.html" class="sidebar-logo-link">
+      <img src="../../assets/images/mona_logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home</span></a>
+  </div>
+</li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Course Info</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-info/intructors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Instructor</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-info/schedule.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Schedule</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-info/resources.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Ressources</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-info/seminars.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Seminars</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-info/exam.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exams</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">PART I: FOUNDATIONS</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Lecture 1 — Introduction, Ray Optics &amp; Wave Optics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture01/introduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture01/01-lecture01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Ray Optics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture01/02-lecture01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Optical Elements</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture02/01-lecture02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Matrix Optics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture02/02-lecture02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wave Optics</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#problem-1-rayleigh-scattering-cross-section" id="toc-problem-1-rayleigh-scattering-cross-section" class="nav-link" data-scroll-target="#problem-1-rayleigh-scattering-cross-section">Problem 1: Rayleigh Scattering Cross-Section</a></li>
+  <li><a href="#problem-2-dynamic-light-scattering-dls" id="toc-problem-2-dynamic-light-scattering-dls" class="nav-link" data-scroll-target="#problem-2-dynamic-light-scattering-dls">Problem 2: Dynamic Light Scattering (DLS)</a></li>
+  <li><a href="#problem-3-photothermal-temperature-rise" id="toc-problem-3-photothermal-temperature-rise" class="nav-link" data-scroll-target="#problem-3-photothermal-temperature-rise">Problem 3: Photothermal Temperature Rise</a></li>
+  <li><a href="#problem-4-dls-simulation-autocorrelation-from-brownian-motion" id="toc-problem-4-dls-simulation-autocorrelation-from-brownian-motion" class="nav-link" data-scroll-target="#problem-4-dls-simulation-autocorrelation-from-brownian-motion">Problem 4: DLS Simulation (Autocorrelation from Brownian Motion)</a></li>
+  <li><a href="#problem-5-lock-in-detection" id="toc-problem-5-lock-in-detection" class="nav-link" data-scroll-target="#problem-5-lock-in-detection">Problem 5: Lock-in Detection</a></li>
+  <li><a href="#problem-6-acousto-optic-modulators-aom" id="toc-problem-6-acousto-optic-modulators-aom" class="nav-link" data-scroll-target="#problem-6-acousto-optic-modulators-aom">Problem 6: Acousto-Optic Modulators (AOM)</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Seminar 6 — Scattering &amp; Photothermal Experiments</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>This seminar covers light-matter interactions in the context of scattering and photothermal spectroscopy. We explore Rayleigh scattering from nanoparticles, dynamic light scattering (DLS), and photothermal experiments with lock-in detection.</p>
+<hr>
+</section>
+<section id="problem-1-rayleigh-scattering-cross-section" class="level2">
+<h2 class="anchored" data-anchor-id="problem-1-rayleigh-scattering-cross-section">Problem 1: Rayleigh Scattering Cross-Section</h2>
+<p><strong>Problem Statement:</strong></p>
+<p>The scattering cross-section for a small sphere (radius <span class="math inline">\(a \ll \lambda\)</span>) in the Rayleigh regime is:</p>
+<p><span class="math display">\[\sigma_{\text{sca}} = \frac{2\pi}{\lambda^4} \left(\frac{2a}{1}\right)^6 \frac{|\varepsilon - 1|^2}{|\varepsilon + 2|^2}\]</span></p>
+<p>where <span class="math inline">\(\varepsilon\)</span> is the complex relative permittivity.</p>
+<p><strong>a)</strong> Calculate the scattering cross-section of a <strong>20 nm gold nanoparticle</strong> at <strong>λ = 532 nm</strong> (green laser).</p>
+<p>Use the following optical constants for gold at 532 nm: <span class="math display">\[\varepsilon_{\text{gold}} = -4.6 + 2.4i\]</span></p>
+<p><strong>b)</strong> Compare the scattering cross-section with the geometric cross-section <span class="math inline">\(\sigma_{\text{geom}} = \pi a^2\)</span>. What is the scattering efficiency <span class="math inline">\(Q_{\text{sca}} = \sigma_{\text{sca}} / \sigma_{\text{geom}}\)</span>?</p>
+<p><strong>c)</strong> Discuss: does a 20 nm gold particle scatter or absorb more at 532 nm? (Hint: check if the imaginary part of ε dominates.)</p>
+<div id="d06ba72a" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Rayleigh scattering calculation</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>wavelength <span class="op">=</span> <span class="dv">532</span>  <span class="co"># nm</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="dv">20</span>  <span class="co"># nm, radius</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>eps_gold <span class="op">=</span> <span class="op">-</span><span class="fl">4.6</span> <span class="op">+</span> <span class="ot">2.4j</span>  <span class="co"># complex permittivity</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate scattering cross-section</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>numerator <span class="op">=</span> np.<span class="bu">abs</span>(eps_gold <span class="op">-</span> <span class="dv">1</span>)<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>denominator <span class="op">=</span> np.<span class="bu">abs</span>(eps_gold <span class="op">+</span> <span class="dv">2</span>)<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Rayleigh Scattering of 20 nm Gold Nanoparticle"</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span> <span class="op">*</span> <span class="dv">50</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Wavelength: </span><span class="sc">{</span>wavelength<span class="sc">}</span><span class="ss"> nm"</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Particle radius: </span><span class="sc">{</span>a<span class="sc">}</span><span class="ss"> nm"</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Permittivity: ε = </span><span class="sc">{</span>eps_gold<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"|ε - 1|² = </span><span class="sc">{</span>numerator<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"|ε + 2|² = </span><span class="sc">{</span>denominator<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate sigma_sca</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>sigma_sca <span class="op">=</span> (<span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">/</span> wavelength<span class="op">**</span><span class="dv">4</span>) <span class="op">*</span> (<span class="dv">2</span><span class="op">*</span>a)<span class="op">**</span><span class="dv">6</span> <span class="op">*</span> (numerator <span class="op">/</span> denominator)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Scattering cross-section:"</span>)</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  σ_sca = </span><span class="sc">{</span>sigma_sca<span class="sc">:.3e}</span><span class="ss"> nm² = </span><span class="sc">{</span>sigma_sca<span class="op">*</span><span class="fl">1e-3</span><span class="sc">:.3f}</span><span class="ss"> nm³"</span>)</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  σ_sca = </span><span class="sc">{</span>sigma_sca<span class="op">*</span><span class="fl">1e-6</span><span class="sc">:.6f}</span><span class="ss"> nm² = </span><span class="sc">{</span>sigma_sca<span class="op">*</span><span class="fl">1e-6</span> <span class="op">/</span> (wavelength<span class="op">**</span><span class="dv">2</span>)<span class="sc">:.3e}</span><span class="ss"> λ²"</span>)</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Geometric cross-section</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>sigma_geom <span class="op">=</span> np.pi <span class="op">*</span> a<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Geometric cross-section:"</span>)</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  σ_geom = πa² = </span><span class="sc">{</span>sigma_geom<span class="sc">:.1f}</span><span class="ss"> nm²"</span>)</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Scattering efficiency</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>Q_sca <span class="op">=</span> sigma_sca <span class="op">/</span> sigma_geom</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Scattering efficiency:"</span>)</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Q_sca = σ_sca / σ_geom = </span><span class="sc">{</span>Q_sca<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="co"># Absorption (rough estimate): absorption cross-section is proportional to Im(ε)</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="co"># σ_abs ~ Im(ε) for Rayleigh particles</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Absorption:"</span>)</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Im(ε) = </span><span class="sc">{</span>eps_gold<span class="sc">.</span>imag<span class="sc">}</span><span class="ss"> (significant)"</span>)</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Conclusion: 20 nm Au absorbs MORE than it scatters at 532 nm"</span>)</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  (This is why gold nanoparticles are used in photothermal applications)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rayleigh Scattering of 20 nm Gold Nanoparticle
+==================================================
+Wavelength: 532 nm
+Particle radius: 20 nm
+Permittivity: ε = (-4.6+2.4j)
+|ε - 1|² = 37.120
+|ε + 2|² = 12.520
+
+Scattering cross-section:
+  σ_sca = 9.526e-01 nm² = 0.001 nm³
+  σ_sca = 0.000001 nm² = 3.366e-12 λ²
+
+Geometric cross-section:
+  σ_geom = πa² = 1256.6 nm²
+
+Scattering efficiency:
+  Q_sca = σ_sca / σ_geom = 0.001
+
+Absorption:
+  Im(ε) = 2.4 (significant)
+  Conclusion: 20 nm Au absorbs MORE than it scatters at 532 nm
+  (This is why gold nanoparticles are used in photothermal applications)</code></pre>
+</div>
+</div>
+<hr>
+</section>
+<section id="problem-2-dynamic-light-scattering-dls" class="level2">
+<h2 class="anchored" data-anchor-id="problem-2-dynamic-light-scattering-dls">Problem 2: Dynamic Light Scattering (DLS)</h2>
+<p><strong>Problem Statement:</strong></p>
+<p>A <strong>100 nm diameter polystyrene sphere</strong> undergoes Brownian motion in water at <strong>T = 25°C</strong>.</p>
+<p>The diffusion coefficient is given by the <strong>Stokes-Einstein equation</strong>:</p>
+<p><span class="math display">\[D = \frac{k_B T}{6 \pi \eta a}\]</span></p>
+<p>where <span class="math inline">\(k_B = 1.38 \times 10^{-23}\)</span> J/K is Boltzmann’s constant, <span class="math inline">\(\eta\)</span> is the dynamic viscosity of water (~0.89 mPa·s at 25°C), and <span class="math inline">\(a\)</span> is the particle radius.</p>
+<p>In DLS, we measure intensity autocorrelation <span class="math inline">\(g_2(\tau) = \langle I(t) I(t+\tau) \rangle\)</span> which decays exponentially:</p>
+<p><span class="math display">\[g_2(\tau) = 1 + \beta e^{-2\Gamma \tau}\]</span></p>
+<p>where <span class="math inline">\(\beta\)</span> is a contrast factor and <span class="math inline">\(\Gamma = Dq^2\)</span> is the decay rate, with <strong>scattering wavevector</strong>:</p>
+<p><span class="math display">\[q = \frac{4\pi n}{\lambda} \sin(\theta/2)\]</span></p>
+<p><strong>a)</strong> Calculate the diffusion coefficient <span class="math inline">\(D\)</span> for a 100 nm polystyrene sphere in water at 25°C.</p>
+<p><strong>b)</strong> For <strong>backscattering detection</strong> (θ = 173°) with λ = 632 nm (He-Ne laser) and water refractive index <span class="math inline">\(n = 1.33\)</span>, calculate the scattering wavevector <span class="math inline">\(q\)</span> and decay rate <span class="math inline">\(\Gamma\)</span>.</p>
+<p><strong>c)</strong> Calculate the characteristic decay time <span class="math inline">\(\tau_c = 1/\Gamma\)</span> (autocorrelation lifetime).</p>
+<p><strong>d)</strong> Plot the expected autocorrelation function <span class="math inline">\(g_2(\tau)\)</span> with <span class="math inline">\(\beta = 0.05\)</span>.</p>
+<div id="28f412be" class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Physical constants</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>k_B <span class="op">=</span> <span class="fl">1.38e-23</span>  <span class="co"># J/K, Boltzmann constant</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> <span class="dv">25</span> <span class="op">+</span> <span class="fl">273.15</span>  <span class="co"># K, temperature</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>eta <span class="op">=</span> <span class="fl">0.89e-3</span>  <span class="co"># Pa·s, viscosity of water at 25°C</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="dv">100</span> <span class="op">/</span> <span class="dv">2</span>  <span class="co"># nm → radius = 50 nm</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>a_m <span class="op">=</span> a <span class="op">*</span> <span class="fl">1e-9</span>  <span class="co"># m</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Dynamic Light Scattering (DLS) Calculation"</span>)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span> <span class="op">*</span> <span class="dv">50</span>)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Temperature: </span><span class="sc">{</span>T<span class="sc">:.1f}</span><span class="ss"> K (</span><span class="sc">{</span>T <span class="op">-</span> <span class="fl">273.15</span><span class="sc">:.0f}</span><span class="ss">°C)"</span>)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Particle diameter: 100 nm (radius a = </span><span class="sc">{</span>a<span class="sc">}</span><span class="ss"> nm)"</span>)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Viscosity of water: </span><span class="sc">{</span>eta<span class="op">*</span><span class="fl">1e3</span><span class="sc">:.2f}</span><span class="ss"> mPa·s"</span>)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Part a): Diffusion coefficient</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>D <span class="op">=</span> k_B <span class="op">*</span> T <span class="op">/</span> (<span class="dv">6</span> <span class="op">*</span> np.pi <span class="op">*</span> eta <span class="op">*</span> a_m)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Part a) Diffusion coefficient:"</span>)</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  D = </span><span class="sc">{</span>D<span class="sc">:.3e}</span><span class="ss"> m²/s = </span><span class="sc">{</span>D<span class="op">*</span><span class="fl">1e12</span><span class="sc">:.2f}</span><span class="ss"> nm²/s"</span>)</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Part b): Scattering wavevector</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>wavelength <span class="op">=</span> <span class="dv">632</span>  <span class="co"># nm</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>n_water <span class="op">=</span> <span class="fl">1.33</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>theta <span class="op">=</span> <span class="dv">173</span>  <span class="co"># degrees, backscattering</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>theta_rad <span class="op">=</span> np.radians(theta)</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>q <span class="op">=</span> (<span class="dv">4</span> <span class="op">*</span> np.pi <span class="op">*</span> n_water <span class="op">/</span> wavelength) <span class="op">*</span> np.sin(theta_rad <span class="op">/</span> <span class="dv">2</span>)</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>q_nm <span class="op">=</span> q <span class="op">*</span> <span class="fl">1e-9</span>  <span class="co"># convert to nm⁻¹</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Part b) Scattering wavevector (backscattering):"</span>)</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  λ = </span><span class="sc">{</span>wavelength<span class="sc">}</span><span class="ss"> nm, θ = </span><span class="sc">{</span>theta<span class="sc">}</span><span class="ss">°"</span>)</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  q = </span><span class="sc">{</span>q<span class="sc">:.3e}</span><span class="ss"> m⁻¹ = </span><span class="sc">{</span>q_nm<span class="sc">:.4f}</span><span class="ss"> nm⁻¹"</span>)</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Decay rate</span></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>Gamma <span class="op">=</span> D <span class="op">*</span> q<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>tau_c <span class="op">=</span> <span class="dv">1</span> <span class="op">/</span> Gamma</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Part c) Decay rate and lifetime:"</span>)</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Γ = D·q² = </span><span class="sc">{</span>Gamma<span class="sc">:.3e}</span><span class="ss"> s⁻¹"</span>)</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  τ_c = 1/Γ = </span><span class="sc">{</span>tau_c<span class="sc">:.3e}</span><span class="ss"> s = </span><span class="sc">{</span>tau_c<span class="op">*</span><span class="fl">1e6</span><span class="sc">:.2f}</span><span class="ss"> µs"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Dynamic Light Scattering (DLS) Calculation
+==================================================
+Temperature: 298.1 K (25°C)
+Particle diameter: 100 nm (radius a = 50.0 nm)
+Viscosity of water: 0.89 mPa·s
+
+Part a) Diffusion coefficient:
+  D = 4.905e-12 m²/s = 4.91 nm²/s
+
+Part b) Scattering wavevector (backscattering):
+  λ = 632 nm, θ = 173°
+  q = 2.640e-02 m⁻¹ = 0.0000 nm⁻¹
+
+Part c) Decay rate and lifetime:
+  Γ = D·q² = 3.418e-15 s⁻¹
+  τ_c = 1/Γ = 2.926e+14 s = 292603816782511800320.00 µs</code></pre>
+</div>
+</div>
+<p>Now plot the autocorrelation function:</p>
+<div id="f27c452b" class="cell" data-execution_count="4">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot g2(tau)</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>beta <span class="op">=</span> <span class="fl">0.05</span>  <span class="co"># contrast factor</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>tau <span class="op">=</span> np.logspace(<span class="op">-</span><span class="dv">7</span>, <span class="op">-</span><span class="dv">3</span>, <span class="dv">1000</span>)  <span class="co"># 100 ns to 1 µs</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>g2 <span class="op">=</span> <span class="dv">1</span> <span class="op">+</span> beta <span class="op">*</span> np.exp(<span class="op">-</span><span class="dv">2</span> <span class="op">*</span> Gamma <span class="op">*</span> tau)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>get_size(<span class="dv">12</span>, <span class="dv">8</span>))</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>ax.semilogx(tau <span class="op">*</span> <span class="fl">1e6</span>, g2, <span class="st">'b-'</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>ax.axvline(x<span class="op">=</span>tau_c<span class="op">*</span><span class="fl">1e6</span>, color<span class="op">=</span><span class="st">'r'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>, label<span class="op">=</span><span class="ss">f'τ_c = </span><span class="sc">{</span>tau_c<span class="op">*</span><span class="fl">1e6</span><span class="sc">:.2f}</span><span class="ss"> µs'</span>)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="vs">r'Delay time </span><span class="dv">$</span><span class="ch">\t</span><span class="vs">au</span><span class="dv">$</span><span class="vs"> </span><span class="kw">(</span><span class="vs">µs</span><span class="kw">)</span><span class="vs">'</span>)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="vs">r'Autocorrelation </span><span class="dv">$</span><span class="vs">g_2</span><span class="kw">(</span><span class="ch">\t</span><span class="vs">au</span><span class="kw">)</span><span class="dv">$</span><span class="vs">'</span>)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>ax.set_ylim([<span class="fl">0.995</span>, <span class="fl">1.06</span>])</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>ax.legend(fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'img/dls_autocorrelation.png'</span>, dpi<span class="op">=</span><span class="dv">150</span>, bbox_inches<span class="op">=</span><span class="st">'tight'</span>)</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>plt.close()</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Figure saved to img/dls_autocorrelation.png"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Figure saved to img/dls_autocorrelation.png</code></pre>
+</div>
+</div>
+<hr>
+</section>
+<section id="problem-3-photothermal-temperature-rise" class="level2">
+<h2 class="anchored" data-anchor-id="problem-3-photothermal-temperature-rise">Problem 3: Photothermal Temperature Rise</h2>
+<p><strong>Problem Statement:</strong></p>
+<p>When a nanoparticle absorbs laser light, its temperature rises. For a small spherical particle surrounded by a medium (e.g., water), the steady-state temperature increase is:</p>
+<p><span class="math display">\[\Delta T = \frac{P_{\text{abs}}}{4 \pi \kappa r}\]</span></p>
+<p>where <span class="math inline">\(P_{\text{abs}}\)</span> is the absorbed power, <span class="math inline">\(\kappa\)</span> is the thermal conductivity of the surrounding medium, and <span class="math inline">\(r\)</span> is the distance from the particle.</p>
+<p><strong>a)</strong> A <strong>40 nm gold nanoparticle</strong> absorbs <span class="math inline">\(P_{\text{abs}} = 0.5\)</span> µW of laser power in water. Calculate the temperature rise at the particle surface (<span class="math inline">\(r = 20\)</span> nm).</p>
+<p>Use <span class="math inline">\(\kappa_{\text{water}} = 0.6\)</span> W/(m·K).</p>
+<p><strong>b)</strong> The refractive index of water changes with temperature: <span class="math inline">\(\partial n / \partial T = -1.0 \times 10^{-4}\)</span> K⁻¹. Calculate the refractive index change at the particle surface.</p>
+<p><strong>c)</strong> This refractive index perturbation can be detected via a <strong>photothermal lens</strong> effect. Why would a photothermal microscope measure a phase shift (or absorption change) when scanning over a nanoparticle?</p>
+<div id="0a62ba80" class="cell" data-execution_count="5">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Photothermal temperature rise</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>P_abs <span class="op">=</span> <span class="fl">0.5e-6</span>  <span class="co"># W, absorbed power</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>kappa_water <span class="op">=</span> <span class="fl">0.6</span>  <span class="co"># W/(m·K)</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> <span class="fl">20e-9</span>  <span class="co"># m, distance (particle surface)</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Photothermal Temperature Rise"</span>)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span> <span class="op">*</span> <span class="dv">50</span>)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Absorbed power: P_abs = </span><span class="sc">{</span>P_abs<span class="op">*</span><span class="fl">1e6</span><span class="sc">:.1f}</span><span class="ss"> µW"</span>)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Particle radius: 20 nm"</span>)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Thermal conductivity of water: κ = </span><span class="sc">{</span>kappa_water<span class="sc">}</span><span class="ss"> W/(m·K)"</span>)</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Part a): temperature rise</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>Delta_T <span class="op">=</span> P_abs <span class="op">/</span> (<span class="dv">4</span> <span class="op">*</span> np.pi <span class="op">*</span> kappa_water <span class="op">*</span> r)</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Part a) Temperature rise at particle surface:"</span>)</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  ΔT = </span><span class="sc">{</span>Delta_T<span class="sc">:.1f}</span><span class="ss"> K = </span><span class="sc">{</span>Delta_T<span class="sc">:.1f}</span><span class="ss"> °C"</span>)</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Part b): refractive index change</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>dn_dT <span class="op">=</span> <span class="op">-</span><span class="fl">1.0e-4</span>  <span class="co"># K⁻¹</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>Delta_n <span class="op">=</span> dn_dT <span class="op">*</span> Delta_T</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Part b) Refractive index change:"</span>)</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  ∂n/∂T = </span><span class="sc">{</span>dn_dT<span class="sc">:.2e}</span><span class="ss"> K⁻¹"</span>)</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Δn = (∂n/∂T) · ΔT = </span><span class="sc">{</span>Delta_n<span class="sc">:.3e}</span><span class="ss">"</span>)</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimated refractive index perturbation size</span></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Part c) Photothermal detection:"</span>)</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  The temperature gradient ∇T creates a radial refractive index"</span>)</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  gradient around the particle, acting as a weak lens."</span>)</span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  This lens deflects the probe beam, creating a phase shift"</span>)</span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  proportional to Δn. Detection methods:"</span>)</span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"    - Thermal lens microscopy: detect deflection"</span>)</span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"    - Photothermal heterodyne imaging: detect phase shift"</span>)</span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"    - Absorption contrast: detect out-of-phase modulation"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Photothermal Temperature Rise
+==================================================
+Absorbed power: P_abs = 0.5 µW
+Particle radius: 20 nm
+Thermal conductivity of water: κ = 0.6 W/(m·K)
+
+Part a) Temperature rise at particle surface:
+  ΔT = 3.3 K = 3.3 °C
+
+Part b) Refractive index change:
+  ∂n/∂T = -1.00e-04 K⁻¹
+  Δn = (∂n/∂T) · ΔT = -3.316e-04
+
+Part c) Photothermal detection:
+  The temperature gradient ∇T creates a radial refractive index
+  gradient around the particle, acting as a weak lens.
+  This lens deflects the probe beam, creating a phase shift
+  proportional to Δn. Detection methods:
+    - Thermal lens microscopy: detect deflection
+    - Photothermal heterodyne imaging: detect phase shift
+    - Absorption contrast: detect out-of-phase modulation</code></pre>
+</div>
+</div>
+<hr>
+</section>
+<section id="problem-4-dls-simulation-autocorrelation-from-brownian-motion" class="level2">
+<h2 class="anchored" data-anchor-id="problem-4-dls-simulation-autocorrelation-from-brownian-motion">Problem 4: DLS Simulation (Autocorrelation from Brownian Motion)</h2>
+<p><strong>Problem Statement:</strong></p>
+<p>Simulate a simplified DLS experiment:</p>
+<ol type="1">
+<li>Generate scattered light intensity from multiple scattering centers (particles) at random positions</li>
+<li>Model Brownian motion: particles walk randomly at each time step</li>
+<li>Compute the intensity autocorrelation function <span class="math inline">\(g_2(\tau)\)</span> from the scattered intensity</li>
+<li>Fit an exponential decay to extract the diffusion coefficient</li>
+</ol>
+<div id="969f8117" class="cell" data-execution_count="6">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># DLS simulation parameters</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>n_particles <span class="op">=</span> <span class="dv">100</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>n_timesteps <span class="op">=</span> <span class="dv">1000</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>timestep <span class="op">=</span> <span class="fl">1e-7</span>  <span class="co"># s, 100 ns per step</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>diffusion_coeff <span class="op">=</span> D  <span class="co"># from Problem 2 (nm²/s)</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert diffusion to per-step displacement</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Mean squared displacement in dt: &lt;Δr²&gt; = 4D·dt (2D)</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Standard deviation per step: σ = sqrt(2D·dt) in each dimension</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>dt_s <span class="op">=</span> timestep</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>dt_nm <span class="op">=</span> dt_s <span class="op">*</span> <span class="fl">1e9</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>sigma_step <span class="op">=</span> np.sqrt(<span class="dv">2</span> <span class="op">*</span> diffusion_coeff <span class="op">*</span> dt_nm)  <span class="co"># nm per step</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"DLS Simulation (Brownian Motion)"</span>)</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span> <span class="op">*</span> <span class="dv">50</span>)</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Number of particles: </span><span class="sc">{</span>n_particles<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Simulation steps: </span><span class="sc">{</span>n_timesteps<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Time step: </span><span class="sc">{</span>timestep<span class="op">*</span><span class="fl">1e6</span><span class="sc">:.1f}</span><span class="ss"> µs"</span>)</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Total time: </span><span class="sc">{</span>n_timesteps <span class="op">*</span> timestep<span class="op">*</span><span class="fl">1e6</span><span class="sc">:.1f}</span><span class="ss"> µs"</span>)</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Step displacement σ = </span><span class="sc">{</span>sigma_step<span class="sc">:.3f}</span><span class="ss"> nm"</span>)</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize particle positions (2D)</span></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>positions <span class="op">=</span> np.random.uniform(<span class="dv">0</span>, <span class="dv">500</span>, (n_particles, <span class="dv">2</span>, n_timesteps))</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Brownian motion: random walk</span></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> t <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, n_timesteps):</span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>    displacement <span class="op">=</span> np.random.normal(<span class="dv">0</span>, sigma_step, (n_particles, <span class="dv">2</span>))</span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>    positions[:, :, t] <span class="op">=</span> positions[:, :, t<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> displacement</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulate scattered intensity at each time step</span></span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Assume simple model: intensity is proportional to sum of waves from all particles</span></span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a><span class="co"># For simplicity, use uniform scattering from each particle</span></span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>scattered_intensity <span class="op">=</span> np.zeros(n_timesteps)</span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> t <span class="kw">in</span> <span class="bu">range</span>(n_timesteps):</span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Phase from particle position: φ ~ q·r</span></span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>    <span class="co"># For backscattering, q is large</span></span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>    phases <span class="op">=</span> q <span class="op">*</span> (positions[:, <span class="dv">0</span>, t] <span class="op">*</span> <span class="fl">1e-9</span>)  <span class="co"># convert nm to m</span></span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Scattered field: E ~ sum(exp(i·φ))</span></span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a>    E <span class="op">=</span> np.<span class="bu">sum</span>(np.exp(<span class="ot">1j</span> <span class="op">*</span> phases))</span>
+<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Intensity: I = |E|²</span></span>
+<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a>    scattered_intensity[t] <span class="op">=</span> np.<span class="bu">abs</span>(E)<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute autocorrelation g2(tau)</span></span>
+<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a>max_lag <span class="op">=</span> <span class="dv">200</span></span>
+<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a>g2_sim <span class="op">=</span> np.zeros(max_lag)</span>
+<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> lag <span class="kw">in</span> <span class="bu">range</span>(max_lag):</span>
+<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a>    I1 <span class="op">=</span> scattered_intensity[:<span class="op">-</span>lag] <span class="cf">if</span> lag <span class="op">&gt;</span> <span class="dv">0</span> <span class="cf">else</span> scattered_intensity</span>
+<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a>    I2 <span class="op">=</span> scattered_intensity[lag:]</span>
+<span id="cb9-52"><a href="#cb9-52" aria-hidden="true" tabindex="-1"></a>    mean_I <span class="op">=</span> np.mean(scattered_intensity)</span>
+<span id="cb9-53"><a href="#cb9-53" aria-hidden="true" tabindex="-1"></a>    g2_sim[lag] <span class="op">=</span> np.mean(I1 <span class="op">*</span> I2) <span class="op">/</span> (mean_I<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb9-54"><a href="#cb9-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-55"><a href="#cb9-55" aria-hidden="true" tabindex="-1"></a>tau_lags <span class="op">=</span> np.arange(max_lag) <span class="op">*</span> timestep</span>
+<span id="cb9-56"><a href="#cb9-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-57"><a href="#cb9-57" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Autocorrelation computed for </span><span class="sc">{</span>max_lag<span class="sc">}</span><span class="ss"> lags"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>DLS Simulation (Brownian Motion)
+==================================================
+Number of particles: 100
+Simulation steps: 1000
+Time step: 0.1 µs
+Total time: 100.0 µs
+Step displacement σ = 0.000 nm
+
+Autocorrelation computed for 200 lags</code></pre>
+</div>
+</div>
+<p>Now plot and fit:</p>
+<div id="956bfe18" class="cell" data-execution_count="7">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit exponential decay: g2 = 1 + β·exp(-2·Γ·τ)</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.optimize <span class="im">import</span> curve_fit</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> g2_model(tau, Gamma, beta):</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">1</span> <span class="op">+</span> beta <span class="op">*</span> np.exp(<span class="op">-</span><span class="dv">2</span> <span class="op">*</span> Gamma <span class="op">*</span> tau)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit to simulated data (use last 50 points for better fit)</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>popt, _ <span class="op">=</span> curve_fit(g2_model, tau_lags[<span class="dv">1</span>:<span class="dv">100</span>], g2_sim[<span class="dv">1</span>:<span class="dv">100</span>],</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>                     p0<span class="op">=</span>[Gamma, <span class="fl">0.1</span>], maxfev<span class="op">=</span><span class="dv">5000</span>)</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>Gamma_fit, beta_fit <span class="op">=</span> popt</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Fit results:"</span>)</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Γ_true = </span><span class="sc">{</span>Gamma<span class="sc">:.3e}</span><span class="ss"> s⁻¹"</span>)</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Γ_fit  = </span><span class="sc">{</span>Gamma_fit<span class="sc">:.3e}</span><span class="ss"> s⁻¹"</span>)</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  β_fit  = </span><span class="sc">{</span>beta_fit<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot comparison</span></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>get_size(<span class="dv">12</span>, <span class="dv">8</span>))</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>ax.semilogy(tau_lags[:<span class="dv">150</span>]<span class="op">*</span><span class="fl">1e6</span>, g2_sim[:<span class="dv">150</span>] <span class="op">-</span> <span class="dv">1</span>, <span class="st">'bo'</span>, markersize<span class="op">=</span><span class="dv">4</span>, label<span class="op">=</span><span class="st">'Simulated data'</span>)</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>tau_smooth <span class="op">=</span> np.linspace(<span class="dv">0</span>, tau_lags[<span class="dv">149</span>], <span class="dv">500</span>)</span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>g2_fit <span class="op">=</span> g2_model(tau_smooth, Gamma_fit, beta_fit) <span class="op">-</span> <span class="dv">1</span></span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>ax.semilogy(tau_smooth<span class="op">*</span><span class="fl">1e6</span>, g2_fit, <span class="st">'r-'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">'Fit'</span>)</span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="vs">r'Delay time </span><span class="dv">$</span><span class="ch">\t</span><span class="vs">au</span><span class="dv">$</span><span class="vs"> </span><span class="kw">(</span><span class="vs">µs</span><span class="kw">)</span><span class="vs">'</span>)</span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="vs">r'</span><span class="dv">$</span><span class="vs">g_2</span><span class="kw">(</span><span class="ch">\t</span><span class="vs">au</span><span class="kw">)</span><span class="vs"> - 1</span><span class="dv">$</span><span class="vs"> </span><span class="kw">(</span><span class="vs">log scale</span><span class="kw">)</span><span class="vs">'</span>)</span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>, which<span class="op">=</span><span class="st">'both'</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>ax.legend(fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'img/dls_simulation.png'</span>, dpi<span class="op">=</span><span class="dv">150</span>, bbox_inches<span class="op">=</span><span class="st">'tight'</span>)</span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>plt.close()</span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Figure saved to img/dls_simulation.png"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Fit results:
+  Γ_true = 3.418e-15 s⁻¹
+  Γ_fit  = 3.418e-15 s⁻¹
+  β_fit  = -0.0000
+
+Figure saved to img/dls_simulation.png</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/var/folders/t4/_9qps8wj56jc60nwkr3nrcr00000gn/T/ipykernel_79435/1644749267.py:8: OptimizeWarning:
+
+Covariance of the parameters could not be estimated
+
+/var/folders/t4/_9qps8wj56jc60nwkr3nrcr00000gn/T/ipykernel_79435/1644749267.py:30: UserWarning:
+
+Data has no positive values, and therefore cannot be log-scaled.
+</code></pre>
+</div>
+</div>
+<hr>
+</section>
+<section id="problem-5-lock-in-detection" class="level2">
+<h2 class="anchored" data-anchor-id="problem-5-lock-in-detection">Problem 5: Lock-in Detection</h2>
+<p><strong>Problem Statement:</strong></p>
+<p>A <strong>lock-in amplifier</strong> detects signals at a specific modulation frequency by multiplying the input signal by a reference oscillator at that frequency and low-pass filtering the result.</p>
+<p>Mathematically, for a signal <span class="math inline">\(s(t) = A \sin(\omega_0 t + \phi_s)\)</span> and reference <span class="math inline">\(r(t) = \cos(\omega_0 t)\)</span>:</p>
+<p><span class="math display">\[\text{out}(t) = \text{LPF}[s(t) \cdot r(t)] = \frac{A}{2} \cos(\phi_s)\]</span></p>
+<p>where LPF denotes low-pass filtering.</p>
+<p><strong>a)</strong> Derive why multiplying by the reference and low-pass filtering extracts the signal amplitude and phase.</p>
+<p><strong>b)</strong> Consider a photothermal signal with amplitude <span class="math inline">\(A_{\text{signal}} = 10\)</span> mV at modulation frequency <span class="math inline">\(f_0 = 1\)</span> kHz, plus white noise with amplitude <span class="math inline">\(\sigma_{\text{noise}} = 100\)</span> mV.</p>
+<p>Without lock-in (direct measurement): signal-to-noise ratio <span class="math inline">\(\text{SNR}_{\text{direct}} = A / \sigma\)</span>.</p>
+<p>With lock-in detection and bandwidth <span class="math inline">\(B_{\text{LPF}} = 1\)</span> Hz (from the low-pass filter), the noise is reduced by a factor <span class="math inline">\(\sqrt{f_0 / (2 B_{\text{LPF}})}\)</span> (Wiener-Khinchin theorem).</p>
+<p>Calculate the SNR improvement factor.</p>
+<p><strong>c)</strong> Why does lock-in detection not help if the noise is at the same frequency as the signal (e.g., 50 Hz power line noise modulating the signal)?</p>
+<div id="72955698" class="cell" data-execution_count="8">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Lock-in detection analysis</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>A_signal <span class="op">=</span> <span class="dv">10</span>  <span class="co"># mV</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>f_0 <span class="op">=</span> <span class="dv">1000</span>  <span class="co"># Hz, modulation frequency</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>sigma_noise <span class="op">=</span> <span class="dv">100</span>  <span class="co"># mV, noise amplitude</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>B_lpf <span class="op">=</span> <span class="dv">1</span>  <span class="co"># Hz, low-pass filter bandwidth</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Lock-in Detection Analysis"</span>)</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span> <span class="op">*</span> <span class="dv">50</span>)</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Signal amplitude: A = </span><span class="sc">{</span>A_signal<span class="sc">}</span><span class="ss"> mV"</span>)</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Modulation frequency: f_0 = </span><span class="sc">{</span>f_0<span class="sc">}</span><span class="ss"> Hz"</span>)</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Noise amplitude: σ = </span><span class="sc">{</span>sigma_noise<span class="sc">}</span><span class="ss"> mV"</span>)</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"LPF bandwidth: B = </span><span class="sc">{</span>B_lpf<span class="sc">}</span><span class="ss"> Hz"</span>)</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Part b): SNR improvement</span></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>SNR_direct <span class="op">=</span> A_signal <span class="op">/</span> sigma_noise</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Part b) SNR without lock-in:"</span>)</span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  SNR_direct = A / σ = </span><span class="sc">{</span>SNR_direct<span class="sc">:.4f}</span><span class="ss"> (</span><span class="sc">{</span><span class="dv">10</span><span class="op">*</span>np<span class="sc">.</span>log10(SNR_direct)<span class="sc">:.1f}</span><span class="ss"> dB)"</span>)</span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a><span class="co"># With lock-in: noise reduced by sqrt(f_0 / (2*B))</span></span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>noise_reduction_factor <span class="op">=</span> np.sqrt(f_0 <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> B_lpf))</span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>SNR_lockin <span class="op">=</span> SNR_direct <span class="op">*</span> noise_reduction_factor</span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">With lock-in (B = </span><span class="sc">{</span>B_lpf<span class="sc">}</span><span class="ss"> Hz):"</span>)</span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Noise reduction factor = √(f_0 / (2B)) = </span><span class="sc">{</span>noise_reduction_factor<span class="sc">:.1f}</span><span class="ss">"</span>)</span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  SNR_lock-in = </span><span class="sc">{</span>SNR_lockin<span class="sc">:.2f}</span><span class="ss"> (</span><span class="sc">{</span><span class="dv">10</span><span class="op">*</span>np<span class="sc">.</span>log10(SNR_lockin)<span class="sc">:.1f}</span><span class="ss"> dB)"</span>)</span>
+<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Improvement = </span><span class="sc">{</span>noise_reduction_factor<span class="sc">:.1f}</span><span class="ss">×"</span>)</span>
+<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Part c): explanation</span></span>
+<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Part c) Noise at signal frequency:"</span>)</span>
+<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  If noise is at the SAME frequency as the signal (e.g., both at 1 kHz),"</span>)</span>
+<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  then lock-in cannot distinguish them. Both will pass through the"</span>)</span>
+<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  multiplication and low-pass filtering step together."</span>)</span>
+<span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Lock-in ONLY rejects noise at OTHER frequencies (off-resonance noise)."</span>)</span>
+<span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  This is why modulation frequency should be chosen away from"</span>)</span>
+<span id="cb14-35"><a href="#cb14-35" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  common noise sources (50/60 Hz, harmonics, thermal noise, 1/f noise)."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Lock-in Detection Analysis
+==================================================
+Signal amplitude: A = 10 mV
+Modulation frequency: f_0 = 1000 Hz
+Noise amplitude: σ = 100 mV
+LPF bandwidth: B = 1 Hz
+
+Part b) SNR without lock-in:
+  SNR_direct = A / σ = 0.1000 (-10.0 dB)
+
+With lock-in (B = 1 Hz):
+  Noise reduction factor = √(f_0 / (2B)) = 22.4
+  SNR_lock-in = 2.24 (3.5 dB)
+  Improvement = 22.4×
+
+Part c) Noise at signal frequency:
+  If noise is at the SAME frequency as the signal (e.g., both at 1 kHz),
+  then lock-in cannot distinguish them. Both will pass through the
+  multiplication and low-pass filtering step together.
+  Lock-in ONLY rejects noise at OTHER frequencies (off-resonance noise).
+  This is why modulation frequency should be chosen away from
+  common noise sources (50/60 Hz, harmonics, thermal noise, 1/f noise).</code></pre>
+</div>
+</div>
+<hr>
+</section>
+<section id="problem-6-acousto-optic-modulators-aom" class="level2">
+<h2 class="anchored" data-anchor-id="problem-6-acousto-optic-modulators-aom">Problem 6: Acousto-Optic Modulators (AOM)</h2>
+<p><strong>Problem Statement:</strong></p>
+<p>An <strong>acousto-optic modulator</strong> (AOM) works by Bragg diffraction from a sound wave traveling through a crystal (typically TeO₂).</p>
+<p><strong>a)</strong> Briefly explain the AOM principle: how does a traveling acoustic wave create a diffraction grating for light?</p>
+<p><strong>b)</strong> In an AOM, the Bragg condition is:</p>
+<p><span class="math display">\[2 d \sin(\theta_B) = m \lambda\]</span></p>
+<p>where <span class="math inline">\(d\)</span> is the acoustic wavelength, <span class="math inline">\(\theta_B\)</span> is the Bragg angle, <span class="math inline">\(m\)</span> is the diffraction order, and <span class="math inline">\(\lambda\)</span> is the optical wavelength.</p>
+<p>The acoustic wavelength is related to the sound frequency <span class="math inline">\(f\)</span> and speed <span class="math inline">\(v_s\)</span>: <span class="math inline">\(d = v_s / f\)</span>.</p>
+<p>For a typical setup: <span class="math inline">\(v_s = 600\)</span> m/s (in TeO₂), <span class="math inline">\(f = 80\)</span> MHz, optical wavelength <span class="math inline">\(\lambda = 532\)</span> nm (green), first order <span class="math inline">\(m = 1\)</span>.</p>
+<p>Calculate the Bragg angle <span class="math inline">\(\theta_B\)</span>.</p>
+<p><strong>c)</strong> Why are AOMs used to <strong>modulate</strong> the pump beam in photothermal microscopy? What is the advantage?</p>
+<p><strong>Solution:</strong></p>
+<p><strong>(a)</strong> The acoustic wave creates a time-varying strain in the crystal, which modulates the refractive index periodically. This acts as a traveling diffracting grating. Light satisfying the Bragg condition is diffracted into a first-order beam.</p>
+<p><strong>(b)</strong> Calculation:</p>
+<div id="d2ff2469" class="cell" data-execution_count="9">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># AOM Bragg angle calculation</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>v_s <span class="op">=</span> <span class="dv">600</span>  <span class="co"># m/s, sound speed in TeO2</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>f_acoustic <span class="op">=</span> <span class="fl">80e6</span>  <span class="co"># Hz, acoustic frequency</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>wavelength_opt <span class="op">=</span> <span class="fl">532e-9</span>  <span class="co"># m, optical wavelength</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> <span class="dv">1</span>  <span class="co"># first order</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Acousto-Optic Modulator (AOM)"</span>)</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span> <span class="op">*</span> <span class="dv">50</span>)</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Sound speed (TeO₂): v_s = </span><span class="sc">{</span>v_s<span class="sc">}</span><span class="ss"> m/s"</span>)</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Acoustic frequency: f = </span><span class="sc">{</span>f_acoustic<span class="op">/</span><span class="fl">1e6</span><span class="sc">:.0f}</span><span class="ss"> MHz"</span>)</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Optical wavelength: λ = </span><span class="sc">{</span>wavelength_opt<span class="op">*</span><span class="fl">1e9</span><span class="sc">:.0f}</span><span class="ss"> nm"</span>)</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Diffraction order: m = </span><span class="sc">{</span>m<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Acoustic wavelength</span></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> v_s <span class="op">/</span> f_acoustic</span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Acoustic wavelength:"</span>)</span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Λ = v_s / f = </span><span class="sc">{</span>d<span class="op">*</span><span class="fl">1e6</span><span class="sc">:.3f}</span><span class="ss"> µm = </span><span class="sc">{</span>d<span class="op">*</span><span class="fl">1e9</span><span class="sc">:.1f}</span><span class="ss"> nm"</span>)</span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Bragg angle from 2·Λ·sin(θ_B) = m·λ</span></span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>sin_theta_B <span class="op">=</span> (m <span class="op">*</span> wavelength_opt) <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> d)</span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>theta_B <span class="op">=</span> np.degrees(np.arcsin(sin_theta_B))</span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Bragg angle:"</span>)</span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  2·Λ·sin(θ_B) = m·λ"</span>)</span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  sin(θ_B) = m·λ / (2·Λ) = </span><span class="sc">{</span>sin_theta_B<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  θ_B = </span><span class="sc">{</span>theta_B<span class="sc">:.2f}</span><span class="ss">°"</span>)</span>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Part c) AOM in photothermal microscopy:"</span>)</span>
+<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  - AOMs allow rapid ON/OFF switching (MHz speeds)"</span>)</span>
+<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  - Can modulate pump power without mechanical shutters"</span>)</span>
+<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  - Enable lock-in detection at the modulation frequency"</span>)</span>
+<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  - Reduce phototoxicity (pulsed excitation)"</span>)</span>
+<span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  - Improve signal-to-noise via frequency-selective detection"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Acousto-Optic Modulator (AOM)
+==================================================
+Sound speed (TeO₂): v_s = 600 m/s
+Acoustic frequency: f = 80 MHz
+Optical wavelength: λ = 532 nm
+Diffraction order: m = 1
+
+Acoustic wavelength:
+  Λ = v_s / f = 7.500 µm = 7500.0 nm
+
+Bragg angle:
+  2·Λ·sin(θ_B) = m·λ
+  sin(θ_B) = m·λ / (2·Λ) = 0.0355
+  θ_B = 2.03°
+
+Part c) AOM in photothermal microscopy:
+  - AOMs allow rapid ON/OFF switching (MHz speeds)
+  - Can modulate pump power without mechanical shutters
+  - Enable lock-in detection at the modulation frequency
+  - Reduce phototoxicity (pulsed excitation)
+  - Improve signal-to-noise via frequency-selective detection</code></pre>
+</div>
+</div>
+<hr>
+</section>
+<section id="summary" class="level2">
+<h2 class="anchored" data-anchor-id="summary">Summary</h2>
+<p>This seminar covered: - <strong>Rayleigh scattering</strong>: small nanoparticles scatter weakly at visible wavelengths; absorption dominates in plasmonic particles - <strong>DLS</strong>: Brownian motion causes intensity fluctuations; autocorrelation decay reveals diffusion and particle size - <strong>Photothermal effects</strong>: absorbed light generates local heat; refractive index changes can be detected - <strong>Lock-in detection</strong>: frequency-selective measurement dramatically improves SNR by rejecting broadband noise - <strong>AOMs</strong>: enable rapid, frequency-modulated excitation for synchronous detection</p>
+<p>These techniques are foundational for modern nano-optical experiments and bioimaging applications.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/fcichos\.github\.io\/Photonics\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
