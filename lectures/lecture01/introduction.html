@@ -236,12 +236,6 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../lectures/lecture01/02-lecture01.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Optical Elements</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../../lectures/lecture02/01-lecture02.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Matrix Optics</span></a>
   </div>
@@ -270,6 +264,7 @@ window.Quarto = {
   <li><a href="#why-photonics-advantages-from-maxwells-equations" id="toc-why-photonics-advantages-from-maxwells-equations" class="nav-link" data-scroll-target="#why-photonics-advantages-from-maxwells-equations">Why Photonics? Advantages from Maxwell’s Equations</a></li>
   <li><a href="#quantitative-comparisons" id="toc-quantitative-comparisons" class="nav-link" data-scroll-target="#quantitative-comparisons">Quantitative Comparisons</a></li>
   <li><a href="#quantum-mechanical-considerations" id="toc-quantum-mechanical-considerations" class="nav-link" data-scroll-target="#quantum-mechanical-considerations">Quantum Mechanical Considerations</a></li>
+  <li><a href="#optomechanics-when-light-moves-matter" id="toc-optomechanics-when-light-moves-matter" class="nav-link" data-scroll-target="#optomechanics-when-light-moves-matter">Optomechanics: When Light Moves Matter</a></li>
   <li><a href="#photonic-computing-and-wavefront-control" id="toc-photonic-computing-and-wavefront-control" class="nav-link" data-scroll-target="#photonic-computing-and-wavefront-control">Photonic Computing and Wavefront Control</a></li>
   <li><a href="#optical-microscopy-seeing-beyond-the-diffraction-limit" id="toc-optical-microscopy-seeing-beyond-the-diffraction-limit" class="nav-link" data-scroll-target="#optical-microscopy-seeing-beyond-the-diffraction-limit">Optical Microscopy: Seeing Beyond the Diffraction Limit</a></li>
   <li><a href="#light-in-biology-and-biophotonics" id="toc-light-in-biology-and-biophotonics" class="nav-link" data-scroll-target="#light-in-biology-and-biophotonics">Light in Biology and Biophotonics</a></li>
@@ -303,24 +298,55 @@ window.Quarto = {
 <p>Modern electronics has achieved remarkable miniaturization, yet several fundamental physical effects impose hard limits on how fast and how densely electronic circuits can operate.</p>
 <p>As circuit dimensions shrink, the product of resistance and capacitance, the RC time constant, does not scale favorably. Every wire and every transistor gate contributes parasitic resistance and capacitance, and their product sets a minimum switching time that cannot be reduced simply by making things smaller. This creates a fundamental speed ceiling for electronic signal propagation in integrated circuits.</p>
 <p>Closely related is the problem of heat dissipation. Every current flowing through a resistive element produces Joule heat proportional to <span class="math inline">\(I^2 R\)</span>. As transistor density increases following Moore’s Law, the power density on a chip rises dramatically. Modern processors already dissipate on the order of 100 W/cm², approaching the limits of what conventional cooling can handle.</p>
-<!-- Suggested figure: Schematic of an RC circuit with annotation showing how shrinking dimensions affect R and C; side-by-side plot of power density vs. year for microprocessors (data from ITRS roadmaps). -->
+<div id="fig-first-transistor" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-first-transistor-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="img/first_transistor.jpg" class="img-fluid figure-img" style="width:40.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-first-transistor-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1— The first point-contact transistor, invented at Bell Telephone Laboratories on December 23, 1947, by John Bardeen and Walter Brattain. Two gold point contacts press onto a germanium crystal, held in place by a plastic wedge and a spring. This device launched the microelectronics revolution. Photo courtesy of AT&amp;T Archives.
+</figcaption>
+</figure>
+</div>
 <p>At high frequencies, a more subtle effect emerges: the skin effect. Electromagnetic fields penetrate conductors only to a characteristic depth <span class="math inline">\(\delta = \sqrt{2\rho / (\omega \mu)}\)</span>, which decreases with frequency. At GHz frequencies, current is confined to a thin shell near the conductor surface, dramatically increasing the effective resistance and limiting signal integrity.</p>
 <p>Finally, current-carrying wires inevitably act as antennas. They both radiate and receive electromagnetic energy. As clock frequencies rise, electromagnetic interference and cross-talk between neighboring signal lines become increasingly severe, requiring elaborate shielding and signal-processing techniques that add complexity, cost, and latency.</p>
-<!-- Suggested figure: Cross-section of a conductor illustrating the skin effect at different frequencies (e.g., 1 MHz, 1 GHz, 100 GHz) with shading showing current density distribution. -->
+<!--![The skin effect: at high frequencies, current density is concentrated near the conductor surface within a characteristic skin depth $\delta$. The exponential decay of current density with depth increases the effective resistance. Source: [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Skin_depth.svg), CC BY-SA.](img/skin_depth.svg){#fig-skin-depth}-->
 </section>
 <section id="why-photonics-advantages-from-maxwells-equations" class="level2">
 <h2 class="anchored" data-anchor-id="why-photonics-advantages-from-maxwells-equations">Why Photonics? Advantages from Maxwell’s Equations</h2>
 <p>Given these electronic bottlenecks, it is natural to ask whether a different information carrier could circumvent them. Photons, the quanta of the electromagnetic field at optical frequencies, offer several fundamental advantages rooted directly in Maxwell’s equations.</p>
 <p>Photons at optical frequencies (<span class="math inline">\(\sim 10^{14}\)</span> Hz) carry energies of roughly 1–2 eV per quantum. This is far above the thermal noise floor at room temperature (<span class="math inline">\(k_B T \approx 25\)</span> meV), giving optical signals an inherently high signal-to-noise ratio. More importantly, the enormous carrier frequency enables modulation bandwidths that are simply inaccessible to electronics.</p>
 <p>Light can be guided in dielectric waveguides and optical fibers through total internal reflection, focused to diffraction-limited spots, and split or combined using passive optical elements, all without the scattering, defect interactions, and phonon coupling that limit electron transport in solids. Photons in a waveguide propagate as guided electromagnetic modes whose dispersion relation <span class="math inline">\(\omega(\beta)\)</span> can be engineered through geometry and material choice with far greater flexibility than the electronic band structure of a semiconductor crystal.</p>
-<!-- Suggested figure: Side-by-side comparison, (left) electron scattering processes in a semiconductor (impurities, phonons, boundaries) vs. (right) photon propagation in a glass fiber with only weak Rayleigh scattering. Could use simple ray/wave diagrams. -->
+<div id="cell-fig-scattering-comparison" class="cell" data-execution_count="1">
+<div class="cell-output cell-output-display">
+<div id="fig-scattering-comparison" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-scattering-comparison-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="introduction_files/figure-html/fig-scattering-comparison-output-1.png" width="754" height="248" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-scattering-comparison-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2— Comparison of signal transport in electronics vs.&nbsp;photonics. Left: an electron traversing a semiconductor crystal is scattered by impurities, phonon vibrations, and grain boundaries, losing energy and coherence at each event. Right: a photon propagating through a glass fiber experiences only weak Rayleigh scattering, maintaining its direction and coherence over kilometers.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
 </section>
 <section id="quantitative-comparisons" class="level2">
 <h2 class="anchored" data-anchor-id="quantitative-comparisons">Quantitative Comparisons</h2>
 <p>The practical consequences of these physical differences are striking.</p>
 <p><strong>Bandwidth.</strong> According to Shannon’s theorem, the capacity of a communication channel scales linearly with its bandwidth. Optical frequencies offer a usable bandwidth of roughly 100 THz, compared to about 10 GHz for the highest practical electronic channels, a factor of 10,000. A single optical fiber can carry data rates exceeding 100 Tbit/s using wavelength-division multiplexing, while the fastest electronic interconnects plateau in the tens of Gbit/s range.</p>
 <p><strong>Propagation losses.</strong> Modern optical fibers achieve attenuation as low as 0.2 dB/km near the 1550 nm wavelength window. By contrast, electronic transmission lines (coaxial cables, microstrip lines) typically suffer losses of 10–100 dB/km at GHz frequencies. This difference is why transcontinental and transoceanic communication is carried entirely by fiber optics.</p>
-<!-- Suggested figure: Log-scale plot comparing attenuation (dB/km) vs. frequency for optical fiber, coaxial cable, and twisted-pair copper, illustrating the orders-of-magnitude advantage of fiber at high frequencies. -->
+<div id="fig-fiber-attenuation" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-fiber-attenuation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="img/fiber_attenuation_vialite.png" class="img-fluid figure-img" style="width:50.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fiber-attenuation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3— Optical fibre transmission spectrum showing attenuation (dB/km) as a function of wavelength. The Rayleigh scattering baseline (dashed) decreases as <span class="math inline">\(\lambda^{-4}\)</span>, while OH absorption peaks and the infrared absorption tail from lattice transitions create distinct transmission windows at 0.85, 1.30, and 1.55 <span class="math inline">\(\mu\)</span>m. The minimum attenuation of about 0.2 dB/km near 1550 nm is orders of magnitude lower than electronic transmission lines at comparable data rates. Source: ViaLite Communications.
+</figcaption>
+</figure>
+</div>
 <p><strong>Energy per bit.</strong> The theoretical minimum energy required to transmit one bit of information optically is on the order of <span class="math inline">\(10^{-18}\)</span> J (a few photons at telecom wavelengths), while electronic transmission requires roughly <span class="math inline">\(10^{-15}\)</span> J per bit, three orders of magnitude more. In an era of rapidly growing data-center energy consumption, this difference has profound practical implications.</p>
 <!-- Suggested figure: Bar chart or table comparing key metrics (bandwidth, loss, energy/bit) between electronic and photonic interconnects, making the quantitative gap visually immediate. -->
 </section>
@@ -331,16 +357,81 @@ window.Quarto = {
 <p>There is a deeper reason for this robustness: photons are bosons that, under normal conditions, do not interact with each other. Two light beams can cross in free space without any mutual disturbance, a property that has no analogue in electronic circuits, where signals sharing a conductor inevitably interfere. This non-interaction is both a strength (enabling wavelength-division multiplexing and crossing waveguides) and a challenge (making photon-photon interactions for all-optical switching difficult to achieve), a theme we will revisit throughout this course.</p>
 <!-- Suggested figure: Illustration of two crossing optical beams passing through each other undisturbed, contrasted with two electrical signals on a shared bus creating cross-talk. -->
 </section>
+<section id="optomechanics-when-light-moves-matter" class="level2">
+<h2 class="anchored" data-anchor-id="optomechanics-when-light-moves-matter">Optomechanics: When Light Moves Matter</h2>
+<p>Photons carry momentum. Although the momentum of a single photon, <span class="math inline">\(p = \hbar k\)</span>, is extraordinarily small, it can produce measurable mechanical effects when photons interact repeatedly with a mechanical object. This idea goes back to Kepler’s observation that comet tails point away from the Sun and to Maxwell’s prediction of radiation pressure, but it has developed into a major field of physics only in the past two decades.</p>
+<p>In cavity optomechanics, a mechanical resonator, such as a vibrating mirror, a membrane, or a nanoscale beam, forms part of an optical cavity. Photons bouncing between the cavity mirrors exert radiation pressure on the mechanical element, and the displacement of that element in turn shifts the cavity resonance frequency. This mutual coupling between light and mechanical motion creates a rich dynamical system. By detuning the laser frequency relative to the cavity resonance, one can either amplify or damp the mechanical motion. Red-detuning the laser leads to net cooling of the mechanical oscillator: each photon that enters the cavity picks up energy from the mechanical mode through an anti-Stokes scattering process and carries it away when it leaves. Using this technique, several groups have cooled mechanical oscillators to their quantum ground state, reaching regimes where the zero-point fluctuations of a macroscopic object become the dominant source of motion.</p>
+<div id="fig-optomech-generic" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-optomech-generic-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="img/optomech_generic.png" class="img-fluid figure-img" style="width:50.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-optomech-generic-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4— Generic cavity optomechanical system: a laser-driven optical cavity with one movable end mirror acting as a mechanical oscillator. The cavity field (annihilation operator <span class="math inline">\(\hat{a}\)</span>) has resonance frequency <span class="math inline">\(\omega_\mathrm{cav}\)</span> and decay rate <span class="math inline">\(\kappa\)</span>; the mechanical mode (displacement <span class="math inline">\(\hat{x}\)</span>) has frequency <span class="math inline">\(\Omega_\mathrm{m}\)</span> and damping rate <span class="math inline">\(\Gamma_\mathrm{m}\)</span>. Adapted from Aspelmeyer, Kippenberg &amp; Marquardt, <em>Rev.&nbsp;Mod. Phys.</em> <strong>86</strong>, 1391 (2014).
+</figcaption>
+</figure>
+</div>
+<div id="fig-optomech-realizations" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-optomech-realizations-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="img/optomech_realizations.png" class="img-fluid figure-img" style="width:60.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-optomech-realizations-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5— Schematic representation of common optomechanical platforms showing radiation modes (blue) and vibrational degrees of freedom (gray lines). Top row, left to right: suspended mirror, microtoroid resonator with whispering gallery modes coupled via a tapered fiber, nano-object inside an optical cavity. Bottom row: photonic crystal nanobeam, trapped atom cloud, vibrating drum capacitor coupled to a microwave field. Adapted from Aspelmeyer, Kippenberg &amp; Marquardt, <em>Rev.&nbsp;Mod. Phys.</em> <strong>86</strong>, 1391 (2014).
+</figcaption>
+</figure>
+</div>
+<p>The practical impact of optomechanics extends across many domains. Gravitational wave detectors such as LIGO are, at their core, optomechanical instruments: laser interferometers whose sensitivity is ultimately limited by radiation pressure noise and the quantum back-action of photons on the test masses. The detection of gravitational waves in 2015, recognized with the 2017 Nobel Prize in Physics, represented a triumph of precision optomechanics at the kilogram scale. At the opposite extreme, nanomechanical resonators coupled to optical cavities are being developed as ultrasensitive mass, force, and acceleration sensors, with applications ranging from inertial navigation to the detection of single molecules.</p>
+<p>Optomechanics also provides a route toward testing quantum mechanics at macroscopic scales. Preparing a mechanical oscillator containing billions of atoms in a quantum superposition state or entangling two spatially separated mechanical resonators via shared optical fields are active experimental goals. These experiments probe the boundary between quantum and classical physics in a way that no other platform can, and they rely entirely on the coherent coupling between photons and mechanical degrees of freedom.</p>
+<p>The connection to the broader field of photonics is direct: optical tweezers (discussed below) are optomechanical systems in which the “cavity” is replaced by a tightly focused beam and the “mechanical resonator” is a trapped particle. Levitated optomechanics, where a nanoparticle is optically trapped in vacuum and cooled to its quantum ground state, has recently emerged as one of the most sensitive force-sensing platforms ever developed.</p>
+</section>
 <section id="photonic-computing-and-wavefront-control" class="level2">
 <h2 class="anchored" data-anchor-id="photonic-computing-and-wavefront-control">Photonic Computing and Wavefront Control</h2>
 <p>The advantages of photons for information transport raise a compelling question: can light be used not only to carry data but also to process it? Over the past decade, this idea has moved from theoretical speculation to active experimental reality.</p>
+<div id="fig-onn-timeline" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-onn-timeline-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="img/onn_timeline.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-onn-timeline-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6— Timeline of optical neural networks (ONNs) and related optical implementations, from early optical signal detection (1964) to modern on-chip diffractive and complex ONNs (2023). From Fu et al., <em>Light: Science &amp; Applications</em> <strong>13</strong>, 263 (2024), <a href="https://doi.org/10.1038/s41377-024-01590-3">doi:10.1038/s41377-024-01590-3</a>, CC BY 4.0.
+</figcaption>
+</figure>
+</div>
 <p><strong>Optical neural networks.</strong> A conventional electronic neural network performs repeated matrix-vector multiplications followed by nonlinear activation functions. Each multiplication requires many transistor switching events, each dissipating energy. In an optical neural network, the same linear operation can be performed by passing light through a carefully designed arrangement of beam splitters and phase shifters, or through a diffractive optical element. Because light propagation through a passive optical system is inherently a linear transformation, the matrix multiplication happens at the speed of light and with near-zero energy cost. The key challenge lies in implementing the nonlinear activation, which typically still requires electronic or optical nonlinear elements. Recent integrated photonic circuits on silicon have demonstrated neural network inference at speeds and energy efficiencies that electronic accelerators cannot match for certain tasks, particularly in the low-latency regime relevant to signal processing and autonomous systems.</p>
-<!-- Suggested figure: Schematic of a photonic neural network layer: input light fields entering a mesh of Mach-Zehnder interferometers (beam splitters + phase shifters) that implements a unitary matrix, followed by a nonlinear activation stage. Compare with a diagram of the equivalent electronic matrix multiplication. -->
+<div id="fig-onn-implementations" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-onn-implementations-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="img/onn_implementations.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-onn-implementations-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7— Different optical elements and systems for implementing optical matrix multiplication. (a) Cascaded Mach-Zehnder interferometers (MZIs). (b) Micro-ring resonator (MRR) weight banks with wavelength-division multiplexing. (c) Optical attenuator array. (d) Free-space diffractive metasurfaces. (e) Integrated metaline layers. (f) Mathematical representation of the physical inference process. From Fu et al., <em>Light: Science &amp; Applications</em> <strong>13</strong>, 263 (2024), <a href="https://doi.org/10.1038/s41377-024-01590-3">doi:10.1038/s41377-024-01590-3</a>, CC BY 4.0.
+</figcaption>
+</figure>
+</div>
 <p><strong>Reservoir computing with random scattering media.</strong> A particularly elegant approach exploits what might initially seem like a nuisance: the complex multiple scattering of light in disordered media such as ground glass, white paint, or biological tissue. When a coherent light field enters such a medium, it undergoes a high-dimensional, nonlinear transformation. The resulting speckle pattern at the output encodes the input in a complex but reproducible way. In the framework of reservoir computing, this scattering medium acts as a fixed, high-dimensional “reservoir” that projects inputs into a rich feature space. Only a simple linear readout layer needs to be trained, drastically reducing the computational cost of learning. Experiments have demonstrated that a scattering slab of zinc oxide, just micrometers thick, can classify handwritten digits, perform speech recognition, and solve time-series prediction tasks. The medium provides millions of effective degrees of freedom for free, powered only by the propagating light itself.</p>
-<!-- Suggested figure: Reservoir computing with a scattering medium. Left: coherent laser light modulated with an input signal enters a disordered scattering slab. Center: the complex speckle pattern at the output represents a high-dimensional nonlinear transformation. Right: a trained linear readout (e.g. a camera plus simple weights) extracts the classification result. -->
+<div id="fig-reservoir-computing" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-reservoir-computing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="img/reservoir_computing.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-reservoir-computing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8— Optical next generation reservoir computing. (a) Conventional reservoir computing maps inputs through a physical reservoir and a trained linear readout. (b) Next generation RC (NGRC) constructs polynomial features from time-delayed inputs without a physical reservoir. (c) Optical NGRC uses a disordered scattering medium as the optical reservoir. (d) Experimental setup: input data is encoded via a spatial light modulator (SLM) onto a laser beam that illuminates a scattering medium; the resulting speckle pattern is recorded by a camera. (e) Mathematical model relating reservoir states to a system-given matrix and polynomial input features. From Wang et al., <em>Light: Science &amp; Applications</em> <strong>14</strong>, 245 (2025), <a href="https://doi.org/10.1038/s41377-025-01927-6">doi:10.1038/s41377-025-01927-6</a>, CC BY 4.0.
+</figcaption>
+</figure>
+</div>
 <p><strong>Adaptive optics.</strong> Both optical computing and deep-tissue imaging face a common obstacle: light propagating through complex or turbulent media accumulates wavefront distortions that scramble the phase and amplitude of the field. Adaptive optics provides the tools to measure and correct these distortions in real time. Originally developed for ground-based astronomy, where atmospheric turbulence limits telescope resolution, adaptive optics systems use a wavefront sensor (typically a Shack-Hartmann sensor) to measure the phase aberration and a deformable mirror to apply the conjugate correction, restoring diffraction-limited performance.</p>
 <p>The same principle has been adapted for microscopy, where scattering and refractive index variations in biological tissue degrade image quality at depths beyond a few tens of micrometers. Adaptive optical elements integrated into multiphoton and light-sheet microscopes now enable diffraction-limited imaging hundreds of micrometers deep into living tissue. More recently, wavefront shaping has gone further: by measuring the full transmission matrix of a scattering medium, it becomes possible to focus light through and even inside opaque materials. This connects directly back to reservoir computing, where the same transmission matrix that enables computation also enables focusing, highlighting a deep link between optical information processing and imaging through complex media.</p>
-<!-- Suggested figure: Adaptive optics principle. Top row (astronomy): distorted wavefront from a star, Shack-Hartmann sensor measurement, deformable mirror correction, corrected image. Bottom row (microscopy): same sequence applied to imaging a fluorescent neuron deep in brain tissue. -->
+<div id="fig-adaptive-optics" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-adaptive-optics-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="img/adaptive_optics_system.svg" class="img-fluid figure-img" style="width:60.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-adaptive-optics-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9— Schematic of an adaptive optics system. A wavefront sensor measures the phase distortion introduced by the atmosphere (or biological tissue), and a deformable mirror applies the conjugate correction in a closed feedback loop. Source: <a href="https://commons.wikimedia.org/wiki/File:Adaptive_optics_system_full.svg">Wikimedia Commons</a>, CC BY-SA.
+</figcaption>
+</figure>
+</div>
 </section>
 <section id="optical-microscopy-seeing-beyond-the-diffraction-limit" class="level2">
 <h2 class="anchored" data-anchor-id="optical-microscopy-seeing-beyond-the-diffraction-limit">Optical Microscopy: Seeing Beyond the Diffraction Limit</h2>
@@ -349,20 +440,35 @@ window.Quarto = {
 <p>Beginning in the 1990s, several techniques broke through this barrier. Confocal and multiphoton microscopy improved contrast and optical sectioning by rejecting out-of-focus light and by exploiting the nonlinear intensity dependence of two-photon absorption. Structured illumination microscopy (SIM) doubled the effective resolution by encoding high-frequency spatial information into detectable Moiré patterns. Most dramatically, stimulated emission depletion (STED) microscopy and single-molecule localization techniques such as PALM and STORM achieved resolutions of 20 nm and below, earning the 2014 Nobel Prize in Chemistry for Stefan Hell, Eric Betzig, and William Moerner.</p>
 <!-- Suggested figure: Resolution timeline showing the diffraction limit as a horizontal line and the progression of super-resolution techniques (confocal, SIM, STED, PALM/STORM) pushing below it, with representative images at each scale. -->
 <p>These advances rely on distinctly photonic phenomena: the precise control of stimulated emission, the stochastic switching of single fluorescent molecules, and the coherent structuring of illumination patterns. They have transformed cell biology by making it possible to observe the organization of proteins, membranes, and organelles in living cells at the molecular scale. Light-sheet microscopy, another recent development, combines optical sectioning with gentle illumination to image entire embryos and organs over hours and days with minimal photodamage.</p>
-<!-- Suggested figure: Comparison of a conventional fluorescence image and a super-resolution (STED or STORM) image of the same biological structure, e.g. microtubules or nuclear pore complexes, showing the dramatic gain in detail. -->
+<p><strong>Spectroscopic sensing.</strong> Every molecule has a characteristic absorption and emission spectrum. Fluorescence spectroscopy can detect specific biomolecules at the single-molecule level, while Raman spectroscopy provides a chemical fingerprint without any labeling. These techniques enable rapid, non-invasive identification of pathogens, cancer biomarkers, and metabolic states.</p>
+<p><strong>Optical coherence tomography (OCT).</strong> By measuring the interference of backscattered broadband light, OCT produces cross-sectional images of tissue with micrometer resolution and millimeter penetration depth. It has become the standard imaging modality in ophthalmology and is increasingly used in cardiology, dermatology, and developmental biology. The technique is a direct application of low-coherence interferometry, connecting fundamental wave optics to clinical practice.</p>
 </section>
 <section id="light-in-biology-and-biophotonics" class="level2">
 <h2 class="anchored" data-anchor-id="light-in-biology-and-biophotonics">Light in Biology and Biophotonics</h2>
-<p>The interaction of light with biological matter opens a third major domain of photonics, one that bridges physics, biology, and medicine.</p>
-<p>Biological tissue is a complex optical medium. It absorbs, scatters, and emits light in ways that carry rich information about molecular composition, cellular structure, and physiological state. Biophotonics exploits these interactions for both diagnostics and therapy.</p>
-<p><strong>Spectroscopic sensing.</strong> Every molecule has a characteristic absorption and emission spectrum. Fluorescence spectroscopy can detect specific biomolecules at the single-molecule level, while Raman spectroscopy provides a chemical fingerprint without any labeling. These techniques enable rapid, non-invasive identification of pathogens, cancer biomarkers, and metabolic states. In clinical settings, pulse oximetry, one of the most widespread photonic sensors, determines blood oxygen saturation simply by measuring the differential absorption of hemoglobin at two wavelengths.</p>
-<!-- Suggested figure: Absorption spectra of oxygenated and deoxygenated hemoglobin in the visible and near-infrared range, illustrating the principle behind pulse oximetry. -->
-<p><strong>Optical coherence tomography (OCT).</strong> By measuring the interference of backscattered broadband light, OCT produces cross-sectional images of tissue with micrometer resolution and millimeter penetration depth. It has become the standard imaging modality in ophthalmology and is increasingly used in cardiology, dermatology, and developmental biology. The technique is a direct application of low-coherence interferometry, connecting fundamental wave optics to clinical practice.</p>
-<p><strong>Optical trapping and manipulation.</strong> Tightly focused laser beams exert piconewton-scale forces on microscopic objects through radiation pressure and gradient forces. Optical tweezers, recognized with the 2018 Nobel Prize in Physics for Arthur Ashkin, allow researchers to hold, move, and measure the mechanical properties of individual cells, bacteria, and even single DNA molecules. This has opened an entire field of single-molecule biophysics, revealing the forces and step sizes of molecular motors, the elastic properties of biopolymers, and the mechanics of cell division.</p>
-<!-- Suggested figure: Schematic of an optical tweezers setup showing a tightly focused Gaussian beam trapping a dielectric microsphere, with arrows indicating the gradient and scattering forces. -->
-<p><strong>Therapeutic applications.</strong> In medicine, laser light is used for precision surgery (e.g.&nbsp;LASIK eye correction, tumor ablation), photodynamic therapy where light activates drug molecules to destroy cancer cells, and optogenetics where genetically encoded light-sensitive proteins allow neurons to be switched on and off with millisecond precision using focused light pulses. Optogenetics in particular has revolutionized neuroscience by enabling causal studies of neural circuits in behaving animals.</p>
-<!-- Suggested figure: Principle of optogenetics: a neuron expressing channelrhodopsin is activated by blue light, showing the ion channel opening and the resulting action potential. -->
-<p>These examples illustrate that photonics is not merely an alternative to electronics for information processing. Light interacts with matter across all scales, from single molecules to whole organisms, and the ability to generate, shape, and detect photons with ever greater precision continues to open new scientific and technological frontiers.</p>
+<p>The interaction of light with biological matter opens a third major domain of photonics, one that bridges physics, biology, and medicine. This interaction has two complementary sides: on the one hand, photonic tools allow us to observe and manipulate biological systems with extraordinary precision; on the other hand, nature itself has evolved remarkably sophisticated structures to harvest and use light energy.</p>
+<p><strong>Light as a tool for biology.</strong> Biological tissue is a complex optical medium. It absorbs, scatters, and emits light in ways that carry rich information about molecular composition, cellular structure, and physiological state. Biophotonics exploits these interactions for both diagnostics and therapy. Optical microscopy, including the super-resolution techniques discussed above, has transformed our ability to observe subcellular structures in living organisms. Beyond imaging, tightly focused laser beams exert piconewton-scale forces on microscopic objects through radiation pressure and gradient forces. Optical tweezers, recognized with the 2018 Nobel Prize in Physics for Arthur Ashkin, allow researchers to hold, move, and measure the mechanical properties of individual cells, bacteria, and even single DNA molecules. This has opened an entire field of single-molecule biophysics, revealing the forces and step sizes of molecular motors, the elastic properties of biopolymers, and the mechanics of cell division.</p>
+<div id="fig-holographic-tweezers" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-holographic-tweezers-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="img/holographic_tweezers.png" class="img-fluid figure-img" style="width:55.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-holographic-tweezers-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10— Holographic optical tweezers. A computer-generated phase pattern <span class="math inline">\(\varphi(\vec{\rho})\)</span> displayed on a spatial light modulator (SLM) shapes a TEM<span class="math inline">\(_{00}\)</span> laser beam into an arbitrary intensity distribution <span class="math inline">\(I(\vec{r})\)</span> in the focal plane of a microscope objective, creating hundreds of independently controllable optical traps. The inset shows an array of optically trapped colloidal particles. From Grier, <em>Nature</em> <strong>424</strong>, 810 (2003).
+</figcaption>
+</figure>
+</div>
+<p><strong>Light harvesting in nature.</strong> On the other side of this relationship, living organisms have evolved exquisite photonic structures to capture and channel light energy. Perhaps the most profound example is photosynthesis itself. In purple bacteria, the light-harvesting complex II (LH2) consists of a ring of protein subunits that bind bacteriochlorophyll and carotenoid molecules in a highly symmetric cylindrical arrangement. Sunlight absorbed by the carotenoids and the outer ring of bacteriochlorophylls (absorbing at 800 nm) is funneled with near-unity quantum efficiency to the inner ring (absorbing at 850 nm) and from there to the reaction center, where charge separation occurs. The energy transfer proceeds via Förster resonance energy transfer (FRET) and excitonic coupling between the tightly packed chromophores. Recent experiments have even suggested that quantum coherence may play a role in optimizing energy transfer pathways at physiological temperatures, making photosynthetic antenna complexes a subject of active research at the intersection of quantum physics and biology.</p>
+<div id="fig-lh2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-lh2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="img/lh2_top_view.png" class="img-fluid figure-img" style="width:45.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-lh2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11— Top view of the light-harvesting complex II (LH2) from the purple bacterium <em>Rhodospirillum molischianum</em> (PDB entry <a href="https://www.rcsb.org/structure/1LGH">1LGH</a>). The ring of alpha-helical protein subunits (colored helices) encloses two concentric rings of bacteriochlorophyll molecules and carotenoids, arranged for highly efficient energy transfer from the outer B800 ring to the inner B850 ring and onward to the reaction center. Image from RCSB PDB.
+</figcaption>
+</figure>
+</div>
+<p>These two sides, light as a precision tool for probing biology and light as an energy source that biology has learned to exploit, are deeply connected. Understanding how natural photonic structures achieve near-perfect efficiency informs the design of artificial light-harvesting systems, while the photonic tools we develop enable us to study these very structures at the single-molecule level.</p>
 
 
 </section>
@@ -440,7 +546,7 @@ window.Quarto = {
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/fcichos\.github\.io\/Photonics\/");
+        var filterRegex = new RegExp('/' + window.location.host + '/');
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }

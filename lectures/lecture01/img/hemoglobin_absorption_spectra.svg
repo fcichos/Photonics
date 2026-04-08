@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" height="100%" viewBox="-57 -32 480 480">
+ <title>Oxy and Deoxy Hemoglobin Near-Infrared absorption spectra</title>
+ <desc>Absorption spectra of oxygenated hemoglobin (HbO&#8322;) and deoxygenated hemoglobin (Hb) for Near-infrared wavelengths (NIR) redrawn by CMG Lee based on http://commons.wikimedia.org/wiki/File:Oxy_and_Deoxy_Hemoglobin_Near-Infrared_absorption_spectra.png .</desc>
+ <style type="text/css">
+svg   { font-family:'Liberation Sans',Helvetica,Arial,sans-serif;
+        font-size:20px; text-anchor:middle; fill:#000000; stroke:none; }
+.grid { stroke:#000000; stroke-width:0.1; }
+ </style>
+ <pattern id="pattern_loglin_1" patternUnits="userSpaceOnUse" width="10" height="100">
+  <path class="grid" d="M 30.103,0 V 10 M 47.712,0 V 10 M 60.206,0 V 10 M 69.897,0 V 10
+                        M 77.815,0 V 10 M 84.510,0 V 10 M 90.309,0 V 10 M 95.424,0 V 10 M 0,0 V 10 H 100 V 0"
+        transform="matrix(0,-1 1,0 0,100)" fill="none"/>
+ </pattern>
+ <pattern id="pattern_loglin_5" patternUnits="userSpaceOnUse" width="50" height="500">
+  <rect class="grid" x="0" y="0" width="50" height="500" fill="url(#pattern_loglin_1)"/>
+ </pattern>
+ <circle cx="0" cy="0" r="99999" fill="#ffffff"/>
+ <rect x="0" y="0" width="400" height="170" fill="url(#pattern_loglin_5)" stroke="#000000" transform="scale(1,2)"/>
+ <text x="-165" y="-44" dy="0.7ex" transform="rotate(270)">Molar extinction coefficient (M&#8315;&#185;&#8202;cm&#8315;&#185;)</text>
+ <text x="-18"  y="0"   dy="0.7ex">10&#8308;</text>
+ <text x="-18"  y="200" dy="0.7ex">10&#179;</text>
+ <text x="-18"  y="340" dy="0.7ex">200</text>
+ <text x="0"    y="358" dy="0.7ex">600</text>
+ <text x="50"   y="358" dy="0.7ex">650</text>
+ <text x="100"  y="358" dy="0.7ex">700</text>
+ <text x="150"  y="358" dy="0.7ex">750</text>
+ <text x="200"  y="358" dy="0.7ex">800</text>
+ <text x="250"  y="358" dy="0.7ex">850</text>
+ <text x="300"  y="358" dy="0.7ex">900</text>
+ <text x="350"  y="358" dy="0.7ex">950</text>
+ <text x="398"  y="358" dy="0.7ex">1000</text>
+ <text x="200"  y="380" dy="0.7ex">Wavelength (nm)</text>
+ <text x="200"  y="-18" dy="0.7ex">Absorption spectra of hemoglobin</text>
+ <text x="200"  y="18"  dy="0.7ex">NIR region</text>
+ <text x="350"  y="18"  dy="0.7ex">FIR</text>
+ <text x="50"   y="18"  dy="0.7ex">Red</text>
+ <text x="180"  y="410" dy="0.7ex">MEDAL mnenomic: More than Eight hundred nm,</text>
+ <text x="180"  y="430" dy="0.7ex">Deoxygenated hemoglobin Absorbs Less</text>
+ <text x="50"   y="120" dy="0.7ex">Hb</text>
+ <text x="350"  y="292" dy="0.7ex">Hb</text>
+ <text x="40"   y="320" dy="0.7ex">HbO&#8322;</text>
+ <text x="350"  y="160" dy="0.7ex">HbO&#8322;</text>
+ <text x="215"  y="252" dy="0.7ex">isosbestic</text>
+ <text x="215"  y="268" dy="0.7ex">point</text>
+ <path d="M 100,0 V 340 M 300,0 V 340 M 197,227 v 15" stroke="#000000" stroke-dasharray="15,4"/>
+ <g fill="none" stroke-width="3">
+  <path d="M 1,100 C 8,170 3,140 36,265 C 75,331 95,331 156,250 C 240,175 350,170 400,200" stroke="#cc0000"/>
+  <path d="M 9,0 C 28,73 30,55 122,178 C 148,230 145,123 170,177 C 205,245 210,230 260,232 C 340,212 340,210 400,335" stroke="#0000ff"/>
+ </g>
+ <!--
+ <path d="M 197,225 v 20 M 110,75 l -10,5 l 10,5 m -10,-5 H 300 m -10,-5 l 10,5 l -10,5" stroke="#000000"/>
+ <image xlink:href="Oxy_and_Deoxy_Hemoglobin_Near-Infrared_absorption_spectra.png" x="-73.7" y="-29" transform="scale(0.912,1.07)" opacity="0.5"/>
+ <marker id="marker_" markerWidth="8" markerHeight="8" refX="4" refY="4">
+  <circle cx="4" cy="4" r="2" fill="none" stroke="#f0f"/>
+ </marker>
+ <path id="coords_" marker-start="url(#marker_)" marker-mid="url(#marker_)"
+       marker-end="url(#marker_)" fill="none" stroke="#f0f" stroke-width="1"/>
+ <path id="cursor_" fill-rule="evenodd" fill-opacity="0.25" fill="#f0f"
+       d="M9999,0H-9999V-9999H0V9999H9999 M0.5,0.5h-1v-1h1 M1,1h-2v-2h2"/>
+ <circle cx="0" cy="0" r="99999" fill-opacity="0" style="cursor:crosshair"
+         onmousemove="pick_coords(evt)" onmouseup="pick_coords(evt, true)"/>
+ <script type="text/ecmascript">
+  /// CMG Lee's coord picker based on http://stackoverflow.com/questions/2930625
+  function pick_coords(evt, do_save) {
+   var ctm = evt.target.getScreenCTM().inverse(), ROUND_TO = 1,
+       pos = document.getElementsByTagName('svg')[0].createSVGPoint();
+   pos.x   = evt.pageX; pos.y = evt.pageY;
+   if (ctm) { pos = pos.matrixTransform(ctm); }
+   function round_to(x) { return Math.floor(x / ROUND_TO + 0.5) * ROUND_TO; }
+   var x  = round_to(pos.x), y = round_to(pos.y), log = '#' + x + ',' + y;
+   pos    = null;
+   if (do_save) { location.href += log; } else { history.replaceState(null, '',
+            location.href.substring(0, location.href.lastIndexOf("#")) + log); }
+   document.getElementById('coords_').setAttribute(
+    'd', 'M' + location.hash.substring(1).replace(/#/g, 'L'));
+   document.getElementById('cursor_').setAttribute(
+    'transform', 'translate(' + x + ',' + y + ') scale(' + ROUND_TO + ')');
+  }
+ </script>
+ -->
+</svg>
