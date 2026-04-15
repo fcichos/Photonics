@@ -534,7 +534,7 @@ Figure&nbsp;1— Example of a practical paraxial cloak. (a)–(c) A hand is cloa
 \end{array}\right]
 \]</span></p>
 <p>Which perfectly mimics free space propagation, creating the optical cloaking effect.</p>
-<div id="e252f770" class="cell" data-execution_count="2">
+<div id="8a320197" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example of optical cloaking with four lenses using raytracing</span></span>
@@ -547,7 +547,7 @@ Figure&nbsp;1— Example of a practical paraxial cloak. (a)–(c) A hand is cloa
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>f4 <span class="op">=</span> f1  <span class="co"># f4 = f1 = 200</span></span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Create an optical path</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>path <span class="op">=</span> ImagingPath()</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>path <span class="op">=</span> OpticalPath()</span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Add the four lenses with proper spacing</span></span>
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>path.append(Space(d<span class="op">=</span><span class="dv">100</span>))  <span class="co"># Initial space before first lens</span></span>
@@ -599,7 +599,7 @@ Figure&nbsp;2— The multifocal adapter. (a) Composition of the multifocal imagi
 </figure>
 </div>
 <p>In the simplest configuration of an objective lens and a tube lens, the light first travels from the object to the objective lens in free space for a distance <span class="math inline">\(s\)</span>, which is represented by</p>
-<div id="d12e326e" class="cell" data-execution_count="4">
+<div id="1f9e6645" class="cell" data-execution_count="4">
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="4">
 <p><span class="math display">\[
 M_1=\left[\begin{matrix}1 &amp; s\\0 &amp; 1\end{matrix}\right]
@@ -607,7 +607,7 @@ M_1=\left[\begin{matrix}1 &amp; s\\0 &amp; 1\end{matrix}\right]
 </div>
 </div>
 <p>Then it is passing the objective lens with</p>
-<div id="c3d52e7b" class="cell" data-execution_count="5">
+<div id="f55f8084" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="5">
 <p><span class="math display">\[
 M_2=\left[\begin{matrix}1 &amp; 0\\- \frac{1}{f_{1}} &amp; 1\end{matrix}\right]
@@ -615,7 +615,7 @@ M_2=\left[\begin{matrix}1 &amp; 0\\- \frac{1}{f_{1}} &amp; 1\end{matrix}\right]
 </div>
 </div>
 <p>traveling further through free space with distance <span class="math inline">\(d\)</span></p>
-<div id="b82aff7d" class="cell" data-execution_count="6">
+<div id="8a4662a9" class="cell" data-execution_count="6">
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="6">
 <p><span class="math display">\[
 M_3=\left[\begin{matrix}1 &amp; d\\0 &amp; 1\end{matrix}\right]
@@ -623,7 +623,7 @@ M_3=\left[\begin{matrix}1 &amp; d\\0 &amp; 1\end{matrix}\right]
 </div>
 </div>
 <p>and then hitting the tube lens with</p>
-<div id="6c761c27" class="cell" data-execution_count="7">
+<div id="87cf3367" class="cell" data-execution_count="7">
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="7">
 <p><span class="math display">\[
 M_4=\left[\begin{matrix}1 &amp; 0\\- \frac{1}{\Delta_{ft} + f_{t}} &amp; 1\end{matrix}\right]
@@ -631,7 +631,7 @@ M_4=\left[\begin{matrix}1 &amp; 0\\- \frac{1}{\Delta_{ft} + f_{t}} &amp; 1\end{m
 </div>
 </div>
 <p>where <span class="math inline">\(\Delta_ft\)</span> is a parameter modifying the original tube lens focal distance <span class="math inline">\(f_t\)</span>. Finally, the light will propagate to the detector at distance <span class="math inline">\(f_t\)</span> from the tube lens</p>
-<div id="f3228119" class="cell" data-execution_count="8">
+<div id="e322dce0" class="cell" data-execution_count="8">
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="8">
 <p><span class="math display">\[
 M_s=\left[\begin{matrix}1 &amp; f_{t}\\0 &amp; 1\end{matrix}\right]
@@ -643,7 +643,7 @@ M_s=\left[\begin{matrix}1 &amp; f_{t}\\0 &amp; 1\end{matrix}\right]
 M_t=M_4 M_3 M_2 M_1
 \]</span></p>
 <p>The final matrix has again 4 parameters <span class="math inline">\(A,B,C\)</span> and <span class="math inline">\(D\)</span>. For sharp imaging the parameter <span class="math inline">\(B\)</span> of the system must be equal to zero, as the outgoing light should be independent of the incoming angle. This is achieved</p>
-<div id="3b1fc578" class="cell" data-execution_count="9">
+<div id="a7b72a8d" class="cell" data-execution_count="9">
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="9">
 <p><span class="math display">\[\delta s=\frac{f_{1} \left(\Delta_{ft} d + \Delta_{ft} f_{t} + f_{t}^{2}\right)}{\Delta_{ft} d - \Delta_{ft} f_{1} + \Delta_{ft} f_{t} + f_{t}^{2}}-s_0
 \]</span></p>
@@ -731,7 +731,7 @@ Figure&nbsp;4— Schematic of the reflection-based autofocus beam path. An off-a
 </div>
 </div>
 </div>
-<div id="d45a7e98" class="cell" data-execution_count="13">
+<div id="498afd99" class="cell" data-execution_count="13">
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="13">
 <p>The full system matrix is</p>
 <p><span class="math display">\[
@@ -747,7 +747,7 @@ y_\mathrm{cam}(s) = A_\mathrm{AF}(s)\cdot h
 <p><span class="math display">\[
 \Delta y(s) = y_\mathrm{cam}(s) - y_\mathrm{cam}(f_1).
 \]</span></p>
-<div id="74bb0251" class="cell" data-execution_count="14">
+<div id="1d25c97a" class="cell" data-execution_count="14">
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="14">
 <p>At perfect focus (<span class="math inline">\(s = f_1\)</span>) the A element simplifies to</p>
 <p><span class="math display">\[
