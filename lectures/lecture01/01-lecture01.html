@@ -331,8 +331,21 @@ window.Quarto = {
 <p><span class="math display">\[\frac{d}{ds}\left(n\frac{d\mathbf{r}}{ds}\right) = \nabla n\]</span></p>
 <p>This equation shows that rays bend toward regions of higher refractive index. In homogeneous media (<span class="math inline">\(\nabla n = 0\)</span>), it simplifies to <span class="math inline">\(\frac{d^2\mathbf{r}}{ds^2} = 0\)</span>, confirming that light follows straight lines.</p>
 </section>
+</section>
+<section id="differential-form-of-fermats-law" class="level3">
+<h3 class="anchored" data-anchor-id="differential-form-of-fermats-law">Differential Form of Fermat’s Law</h3>
+<p>To derive the differential ray equation from Fermat’s integral principle, we apply the calculus of variations. Starting with the optical path length functional:</p>
+<p><span class="math display">\[L = \int_C n(s)ds = \int_{t_1}^{t_2} n(\mathbf{r}(t)) \left|\frac{d\mathbf{r}}{dt}\right| dt\]</span></p>
+<p>Where <span class="math inline">\(\mathbf{r}(t)\)</span> parametrizes the path. The term <span class="math inline">\(\left|\frac{d\mathbf{r}}{dt}\right|\)</span> represents the differential element of arc length <span class="math inline">\(ds\)</span> along the path, so <span class="math inline">\(ds = \left|\frac{d\mathbf{r}}{dt}\right| dt\)</span>. This parametrization allows us to convert the path integral over the curve <span class="math inline">\(C\)</span> into a definite integral over the parameter <span class="math inline">\(t\)</span>. According to Fermat’s principle, the true path makes this integral stationary (δL = 0).</p>
+<p>Consider a small variation in the path: <span class="math inline">\(\mathbf{r}(t) \rightarrow \mathbf{r}(t) + \epsilon\mathbf{\eta}(t)\)</span> where <span class="math inline">\(\mathbf{\eta}(t_1) = \mathbf{\eta}(t_2) = 0\)</span> (fixed endpoints). Expanding the variation of the integral to first order in ε:</p>
+<p><span class="math display">\[\delta L = \frac{d}{d\epsilon}\bigg|_{\epsilon=0} \int_{t_1}^{t_2} n(\mathbf{r}(t) + \epsilon\mathbf{\eta}(t)) \left|\frac{d}{dt}(\mathbf{r}(t) + \epsilon\mathbf{\eta}(t))\right| dt\]</span></p>
+<p>Using the chain rule and reparametrizing with arc length <span class="math inline">\(s\)</span> (where <span class="math inline">\(\frac{d\mathbf{r}}{ds}\)</span> is a unit vector), the stationarity condition leads to:</p>
+<p><span class="math display">\[\int_C \left[ \nabla n \cdot \mathbf{\eta} - \frac{d}{ds}\left(n\frac{d\mathbf{r}}{ds}\right) \cdot \mathbf{\eta} \right] ds = 0\]</span></p>
+<p>Since this must hold for any variation <span class="math inline">\(\mathbf{\eta}\)</span>, we obtain the Euler-Lagrange equation:</p>
+<p><span class="math display">\[\frac{d}{ds}\left(n\frac{d\mathbf{r}}{ds}\right) = \nabla n\]</span></p>
+<p>This shows that rays bend toward regions of higher refractive index, directly analogous to how a mechanical particle’s trajectory is affected by a potential field in classical mechanics.</p>
 <section id="optical-laws-derived-from-fermats-principle" class="level4">
-<h4 class="anchored" data-anchor-id="optical-laws-derived-from-fermats-principle">Optical Laws Derived from Fermat’s Principle</h4>
+<h4 class="anchored">Optical Laws Derived from Fermat’s Principle</h4>
 <p><strong>Reflection</strong>: At a planar interface, Fermat’s Principle directly yields the law of reflection:</p>
 <p><span class="math display">\[\theta_i = \theta_r\]</span></p>
 <p>where <span class="math inline">\(\theta_i\)</span> is the angle of incidence and <span class="math inline">\(\theta_r\)</span> is the angle of reflection, both measured from the normal to the surface.</p>
@@ -674,7 +687,7 @@ Figure&nbsp;3— Snell’s law for different combinations of refractive indices.
 </div>
 </div>
 <section id="total-internal-reflection" class="level5">
-<h5 class="anchored" data-anchor-id="total-internal-reflection">Total Internal Reflection</h5>
+<h5 class="anchored">Total Internal Reflection</h5>
 <p>When light travels from a medium with a higher refractive index (<span class="math inline">\(n_1\)</span>) to one with a lower refractive index (<span class="math inline">\(n_2\)</span>), a fascinating phenomenon can occur. As the angle of incidence increases, the refracted ray bends away from the normal until, at a critical angle, it travels along the boundary between the two media. Beyond this critical angle, light can no longer pass into the second medium and is instead completely reflected back into the first medium. This phenomenon is known as <strong>total internal reflection</strong> (TIR).</p>
 <p>From Snell’s law, the critical angle <span class="math inline">\(\theta_c\)</span> occurs when the refracted angle <span class="math inline">\(\theta_2 = 90°\)</span>:</p>
 <p><span class="math display">\[n_1\sin\theta_c = n_2\sin(90°) = n_2\]</span></p>
@@ -752,21 +765,6 @@ Figure&nbsp;5— Rendering of different optical fibers types (from left to right
 </figcaption>
 </figure>
 </div>
-</section>
-</section>
-</section>
-<section id="differential-form-of-fermats-law" class="level3">
-<h3 class="anchored" data-anchor-id="differential-form-of-fermats-law">Differential Form of Fermat’s Law</h3>
-<p>To derive the differential ray equation from Fermat’s integral principle, we apply the calculus of variations. Starting with the optical path length functional:</p>
-<p><span class="math display">\[L = \int_C n(s)ds = \int_{t_1}^{t_2} n(\mathbf{r}(t)) \left|\frac{d\mathbf{r}}{dt}\right| dt\]</span></p>
-<p>Where <span class="math inline">\(\mathbf{r}(t)\)</span> parametrizes the path. The term <span class="math inline">\(\left|\frac{d\mathbf{r}}{dt}\right|\)</span> represents the differential element of arc length <span class="math inline">\(ds\)</span> along the path, so <span class="math inline">\(ds = \left|\frac{d\mathbf{r}}{dt}\right| dt\)</span>. This parametrization allows us to convert the path integral over the curve <span class="math inline">\(C\)</span> into a definite integral over the parameter <span class="math inline">\(t\)</span>. According to Fermat’s principle, the true path makes this integral stationary (δL = 0).</p>
-<p>Consider a small variation in the path: <span class="math inline">\(\mathbf{r}(t) \rightarrow \mathbf{r}(t) + \epsilon\mathbf{\eta}(t)\)</span> where <span class="math inline">\(\mathbf{\eta}(t_1) = \mathbf{\eta}(t_2) = 0\)</span> (fixed endpoints). Expanding the variation of the integral to first order in ε:</p>
-<p><span class="math display">\[\delta L = \frac{d}{d\epsilon}\bigg|_{\epsilon=0} \int_{t_1}^{t_2} n(\mathbf{r}(t) + \epsilon\mathbf{\eta}(t)) \left|\frac{d}{dt}(\mathbf{r}(t) + \epsilon\mathbf{\eta}(t))\right| dt\]</span></p>
-<p>Using the chain rule and reparametrizing with arc length <span class="math inline">\(s\)</span> (where <span class="math inline">\(\frac{d\mathbf{r}}{ds}\)</span> is a unit vector), the stationarity condition leads to:</p>
-<p><span class="math display">\[\int_C \left[ \nabla n \cdot \mathbf{\eta} - \frac{d}{ds}\left(n\frac{d\mathbf{r}}{ds}\right) \cdot \mathbf{\eta} \right] ds = 0\]</span></p>
-<p>Since this must hold for any variation <span class="math inline">\(\mathbf{\eta}\)</span>, we obtain the Euler-Lagrange equation:</p>
-<p><span class="math display">\[\frac{d}{ds}\left(n\frac{d\mathbf{r}}{ds}\right) = \nabla n\]</span></p>
-<p>This shows that rays bend toward regions of higher refractive index, directly analogous to how a mechanical particle’s trajectory is affected by a potential field in classical mechanics.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -877,6 +875,8 @@ Figure&nbsp;6— Ray-path inside a SELFOC gradient index optical fiber.
 </div>
 </div>
 </div>
+</section>
+</section>
 </section>
 <section id="fermats-principle-and-the-fma-analogy-in-optics" class="level3">
 <h3 class="anchored" data-anchor-id="fermats-principle-and-the-fma-analogy-in-optics">Fermat’s Principle and the “F=ma” Analogy in Optics</h3>
@@ -1087,7 +1087,7 @@ Paraxial Approximation
 <li>The error increases rapidly for larger angles, indicating the limitations of the paraxial approximation.</li>
 </ol>
 <p>In most optical systems, especially those involving lenses, the angles of incident and refracted rays are typically small enough for this approximation to be valid. However, it’s important to be aware of its limitations when dealing with wide-angle optical systems or scenarios where precision is critical.</p>
-<div id="ae9a59c5" class="cell" data-execution_count="7">
+<div id="a6c0ef51" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
