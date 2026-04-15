@@ -296,8 +296,7 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#refraction-at-spherical-surfaces" id="toc-refraction-at-spherical-surfaces" class="nav-link active" data-scroll-target="#refraction-at-spherical-surfaces">Refraction at Spherical Surfaces</a></li>
-  <li><a href="#matrix-optics" id="toc-matrix-optics" class="nav-link" data-scroll-target="#matrix-optics">Matrix Optics</a></li>
+  <li><a href="#matrix-optics" id="toc-matrix-optics" class="nav-link active" data-scroll-target="#matrix-optics">Matrix Optics</a></li>
   <li><a href="#multifocal-imaging" id="toc-multifocal-imaging" class="nav-link" data-scroll-target="#multifocal-imaging">Multifocal Imaging</a></li>
   <li><a href="#application-autofocus-by-beam-displacement" id="toc-application-autofocus-by-beam-displacement" class="nav-link" data-scroll-target="#application-autofocus-by-beam-displacement">Application: Autofocus by Beam Displacement</a></li>
   </ul>
@@ -325,32 +324,6 @@ window.Quarto = {
 </header>
 
 
-<section id="refraction-at-spherical-surfaces" class="level3">
-<h3 class="anchored" data-anchor-id="refraction-at-spherical-surfaces">Refraction at Spherical Surfaces</h3>
-<p>When light encounters a spherical boundary between two media, we can analyze its path using Snell’s law and geometric considerations as shown below:</p>
-<div id="fig-curved-surface" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-curved-surface-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="img/curved_surface.png" class="img-fluid figure-img" style="width:80.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-curved-surface-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1— Refraction at a curved surface.
-</figcaption>
-</figure>
-</div>
-<p>To determine how an image forms, we need to find where rays originating from a point at distance <span class="math inline">\(a\)</span> from the surface will converge after refraction. Using Snell’s law for a ray hitting the surface at angle <span class="math inline">\(\alpha+\theta_1\)</span>:</p>
-<p><span class="math display">\[n_{1}\sin(\alpha+\theta_1)=n_{2}\sin(\alpha-\theta_2)\]</span></p>
-<p>Where: <span class="math display">\[\sin(\alpha)=\frac{y}{R}, \quad \tan(\theta_1)=\frac{y}{a}, \quad \tan(\theta_2)=\frac{y}{b}\]</span></p>
-<p>For practical optical systems, we employ the <strong>paraxial approximation</strong>, where all angles are assumed small enough that:</p>
-<p><span class="math display">\[\sin(\theta) \approx \theta+ O(\theta^{3}), \quad \tan(\theta) \approx \theta + O(\theta^{3}),\quad \cos(\theta)\approx 1 + O(\theta^{2})\]</span></p>
-<p>This simplifies Snell’s law to:</p>
-<p><span class="math display">\[n_1(\alpha+\theta_1)=n_2(\alpha-\theta_2)\]</span></p>
-<p>After appropriate transformations (detailed in the online lecture), we obtain:</p>
-<p><span class="math display">\[\theta_2=\frac{n_2-n_1}{n_2 R}y -\frac{n_1}{n_2}\theta_1\]</span></p>
-<p>and</p>
-<p><span class="math display">\[y=y_1=y_2\]</span></p>
-<p>This linear relationship between input (<span class="math inline">\(y\)</span>, <span class="math inline">\(\theta_1\)</span>) and output (<span class="math inline">\(y\)</span>,<span class="math inline">\(\theta_2\)</span>) parameters is a hallmark of paraxial optics and a result of the linearization of Snells law.</p>
-</section>
 <section id="matrix-optics" class="level3">
 <h3 class="anchored" data-anchor-id="matrix-optics">Matrix Optics</h3>
 <p>The linear relation between input and output parameters allows us to express optical elements as linear transformations (matrices). This approach forms the foundation of <strong>matrix optics</strong>. For a lens, the matrix representation is:</p>
@@ -442,7 +415,7 @@ Example: Optical Cloaking with Lens Systems
 <img src="img/cloacking.png" class="img-fluid figure-img" style="width:80.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cloaking-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2— Example of a practical paraxial cloak. (a)–(c) A hand is cloaked for varying directions, while the background image is transmitted properly.(d) On-axis view of the ray optics cloaking device. (e) Setup using practical, easy to obtain optics, for demonstrating paraxial cloaking principles. (Photos by J. Adam Fenster, videos by Matthew Mann / University of Rochester) <a href="https://opg.optica.org/oe/fulltext.cfm?uri=oe-22-24-29465&amp;id=304785">Source</a>
+Figure&nbsp;1— Example of a practical paraxial cloak. (a)–(c) A hand is cloaked for varying directions, while the background image is transmitted properly.(d) On-axis view of the ray optics cloaking device. (e) Setup using practical, easy to obtain optics, for demonstrating paraxial cloaking principles. (Photos by J. Adam Fenster, videos by Matthew Mann / University of Rochester) <a href="https://opg.optica.org/oe/fulltext.cfm?uri=oe-22-24-29465&amp;id=304785">Source</a>
 </figcaption>
 </figure>
 </div>
@@ -561,7 +534,7 @@ Figure&nbsp;2— Example of a practical paraxial cloak. (a)–(c) A hand is cloa
 \end{array}\right]
 \]</span></p>
 <p>Which perfectly mimics free space propagation, creating the optical cloaking effect.</p>
-<div id="c912b798" class="cell" data-execution_count="2">
+<div id="e252f770" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example of optical cloaking with four lenses using raytracing</span></span>
@@ -621,12 +594,12 @@ BeginnerHint [in figure.py]: No aperture stop in the system: cannot use onlyPrin
 <img src="img/multifocal_imaging.png" class="img-fluid figure-img" style="width:80.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-multifocal-adapter-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3— The multifocal adapter. (a) Composition of the multifocal imaging setup. The multifocal adapter (MFA) is inserted into the light path between a standard dark-field microscope and a camera. (b) Composition of the multifocal adapter. Incoming light from the microscope is infinity projected by the lens f1 and split by three consecutive beam-splitters (b1 = 25/75; b2 = 33/67; b3 = 50/50). Five mirrors (m) guide the light into four separate optical paths. The lens f5 projects the four images onto the camera chip. The inter-plane distance is set by lenses of different focal length (f1 - f4). (c, d) Experimentally acquired (c) and simulated (d) (see Methods) multifocal dark-field images (planes 1 - 4, 20x objective) of a calibration grid at the four focal positions (indicated on the left side), where one of the four focal planes maps the grid sharply. Scale bar represents 20 µm. Experiment was performed six times with similar results. <a href="https://www.nature.com/articles/s41467-021-24768-4">Source</a>
+Figure&nbsp;2— The multifocal adapter. (a) Composition of the multifocal imaging setup. The multifocal adapter (MFA) is inserted into the light path between a standard dark-field microscope and a camera. (b) Composition of the multifocal adapter. Incoming light from the microscope is infinity projected by the lens f1 and split by three consecutive beam-splitters (b1 = 25/75; b2 = 33/67; b3 = 50/50). Five mirrors (m) guide the light into four separate optical paths. The lens f5 projects the four images onto the camera chip. The inter-plane distance is set by lenses of different focal length (f1 - f4). (c, d) Experimentally acquired (c) and simulated (d) (see Methods) multifocal dark-field images (planes 1 - 4, 20x objective) of a calibration grid at the four focal positions (indicated on the left side), where one of the four focal planes maps the grid sharply. Scale bar represents 20 µm. Experiment was performed six times with similar results. <a href="https://www.nature.com/articles/s41467-021-24768-4">Source</a>
 </figcaption>
 </figure>
 </div>
 <p>In the simplest configuration of an objective lens and a tube lens, the light first travels from the object to the objective lens in free space for a distance <span class="math inline">\(s\)</span>, which is represented by</p>
-<div id="cc615b64" class="cell" data-execution_count="4">
+<div id="d12e326e" class="cell" data-execution_count="4">
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="4">
 <p><span class="math display">\[
 M_1=\left[\begin{matrix}1 &amp; s\\0 &amp; 1\end{matrix}\right]
@@ -634,7 +607,7 @@ M_1=\left[\begin{matrix}1 &amp; s\\0 &amp; 1\end{matrix}\right]
 </div>
 </div>
 <p>Then it is passing the objective lens with</p>
-<div id="030217db" class="cell" data-execution_count="5">
+<div id="c3d52e7b" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="5">
 <p><span class="math display">\[
 M_2=\left[\begin{matrix}1 &amp; 0\\- \frac{1}{f_{1}} &amp; 1\end{matrix}\right]
@@ -642,7 +615,7 @@ M_2=\left[\begin{matrix}1 &amp; 0\\- \frac{1}{f_{1}} &amp; 1\end{matrix}\right]
 </div>
 </div>
 <p>traveling further through free space with distance <span class="math inline">\(d\)</span></p>
-<div id="653a9787" class="cell" data-execution_count="6">
+<div id="b82aff7d" class="cell" data-execution_count="6">
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="6">
 <p><span class="math display">\[
 M_3=\left[\begin{matrix}1 &amp; d\\0 &amp; 1\end{matrix}\right]
@@ -650,7 +623,7 @@ M_3=\left[\begin{matrix}1 &amp; d\\0 &amp; 1\end{matrix}\right]
 </div>
 </div>
 <p>and then hitting the tube lens with</p>
-<div id="2bdc2585" class="cell" data-execution_count="7">
+<div id="6c761c27" class="cell" data-execution_count="7">
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="7">
 <p><span class="math display">\[
 M_4=\left[\begin{matrix}1 &amp; 0\\- \frac{1}{\Delta_{ft} + f_{t}} &amp; 1\end{matrix}\right]
@@ -658,7 +631,7 @@ M_4=\left[\begin{matrix}1 &amp; 0\\- \frac{1}{\Delta_{ft} + f_{t}} &amp; 1\end{m
 </div>
 </div>
 <p>where <span class="math inline">\(\Delta_ft\)</span> is a parameter modifying the original tube lens focal distance <span class="math inline">\(f_t\)</span>. Finally, the light will propagate to the detector at distance <span class="math inline">\(f_t\)</span> from the tube lens</p>
-<div id="d9e464f4" class="cell" data-execution_count="8">
+<div id="f3228119" class="cell" data-execution_count="8">
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="8">
 <p><span class="math display">\[
 M_s=\left[\begin{matrix}1 &amp; f_{t}\\0 &amp; 1\end{matrix}\right]
@@ -670,7 +643,7 @@ M_s=\left[\begin{matrix}1 &amp; f_{t}\\0 &amp; 1\end{matrix}\right]
 M_t=M_4 M_3 M_2 M_1
 \]</span></p>
 <p>The final matrix has again 4 parameters <span class="math inline">\(A,B,C\)</span> and <span class="math inline">\(D\)</span>. For sharp imaging the parameter <span class="math inline">\(B\)</span> of the system must be equal to zero, as the outgoing light should be independent of the incoming angle. This is achieved</p>
-<div id="47b584d6" class="cell" data-execution_count="9">
+<div id="3b1fc578" class="cell" data-execution_count="9">
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="9">
 <p><span class="math display">\[\delta s=\frac{f_{1} \left(\Delta_{ft} d + \Delta_{ft} f_{t} + f_{t}^{2}\right)}{\Delta_{ft} d - \Delta_{ft} f_{1} + \Delta_{ft} f_{t} + f_{t}^{2}}-s_0
 \]</span></p>
@@ -684,7 +657,7 @@ M_t=M_4 M_3 M_2 M_1
 <img src="01-lecture02_files/figure-html/fig-shift-output-1.png" width="565" height="447" class="figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-shift-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;4— Required object-plane shift <span class="math inline">\(\delta s\)</span> (in µm) to restore sharp imaging (<span class="math inline">\(B=0\)</span>) as a function of tube-lens focal-length detuning <span class="math inline">\(\Delta_{ft}\)</span> for a two-lens microscope with objective focal length <span class="math inline">\(f_1 = 0.18\,\text{cm}\)</span>, nominal tube-lens focal length <span class="math inline">\(f_t = 18\,\text{cm}\)</span>, and objective-to-tube-lens separation <span class="math inline">\(d = 20\,\text{cm}\)</span>. A positive detuning of the tube lens forces the object to be moved closer to the objective to re-establish the imaging condition.
+Figure&nbsp;3— Required object-plane shift <span class="math inline">\(\delta s\)</span> (in µm) to restore sharp imaging (<span class="math inline">\(B=0\)</span>) as a function of tube-lens focal-length detuning <span class="math inline">\(\Delta_{ft}\)</span> for a two-lens microscope with objective focal length <span class="math inline">\(f_1 = 0.18\,\text{cm}\)</span>, nominal tube-lens focal length <span class="math inline">\(f_t = 18\,\text{cm}\)</span>, and objective-to-tube-lens separation <span class="math inline">\(d = 20\,\text{cm}\)</span>. A positive detuning of the tube lens forces the object to be moved closer to the objective to re-establish the imaging condition.
 </figcaption>
 </figure>
 </div>
@@ -752,13 +725,13 @@ M_\mathrm{camera} = \begin{pmatrix}1 &amp; f_t\\0 &amp; 1\end{pmatrix}\begin{pma
 <img src="01-lecture02_files/figure-html/fig-autofocus-schematic-output-1.png" width="661" height="184" class="figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-autofocus-schematic-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5— Schematic of the reflection-based autofocus beam path. An off-axis beam (blue) enters the infinity space via a beam splitter, is focused by the objective onto the reflecting surface, and returns (red/orange) through the objective and tube lens to the camera. When the reflector is displaced by <span class="math inline">\(\delta z\)</span> from the focal plane (dashed), the return beam arrives at a shifted lateral position <span class="math inline">\(\Delta y\)</span> on the detector.
+Figure&nbsp;4— Schematic of the reflection-based autofocus beam path. An off-axis beam (blue) enters the infinity space via a beam splitter, is focused by the objective onto the reflecting surface, and returns (red/orange) through the objective and tube lens to the camera. When the reflector is displaced by <span class="math inline">\(\delta z\)</span> from the focal plane (dashed), the return beam arrives at a shifted lateral position <span class="math inline">\(\Delta y\)</span> on the detector.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<div id="0b1f6ad2" class="cell" data-execution_count="13">
+<div id="d45a7e98" class="cell" data-execution_count="13">
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="13">
 <p>The full system matrix is</p>
 <p><span class="math display">\[
@@ -774,7 +747,7 @@ y_\mathrm{cam}(s) = A_\mathrm{AF}(s)\cdot h
 <p><span class="math display">\[
 \Delta y(s) = y_\mathrm{cam}(s) - y_\mathrm{cam}(f_1).
 \]</span></p>
-<div id="f5d9cfc2" class="cell" data-execution_count="14">
+<div id="74bb0251" class="cell" data-execution_count="14">
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="14">
 <p>At perfect focus (<span class="math inline">\(s = f_1\)</span>) the A element simplifies to</p>
 <p><span class="math display">\[
@@ -794,7 +767,7 @@ A_\mathrm{AF}(f_1) = 0
 <img src="01-lecture02_files/figure-html/fig-autofocus-output-1.png" width="694" height="448" class="figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-autofocus-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;6— Reflection-based autofocus: lateral beam displacement <span class="math inline">\(\Delta y\)</span> on the camera as a function of the defocus <span class="math inline">\(\delta z = s - f_1\)</span>. Parameters: <span class="math inline">\(f_1 = 0.18\,\text{cm}\)</span> (100× objective), <span class="math inline">\(f_t = 18\,\text{cm}\)</span>, <span class="math inline">\(d = 20\,\text{cm}\)</span>, <span class="math inline">\(h = 0.1\,\text{cm}\)</span>. The linear slope provides a sensitive focus-error signal whose sign indicates the direction of the defocus.
+Figure&nbsp;5— Reflection-based autofocus: lateral beam displacement <span class="math inline">\(\Delta y\)</span> on the camera as a function of the defocus <span class="math inline">\(\delta z = s - f_1\)</span>. Parameters: <span class="math inline">\(f_1 = 0.18\,\text{cm}\)</span> (100× objective), <span class="math inline">\(f_t = 18\,\text{cm}\)</span>, <span class="math inline">\(d = 20\,\text{cm}\)</span>, <span class="math inline">\(h = 0.1\,\text{cm}\)</span>. The linear slope provides a sensitive focus-error signal whose sign indicates the direction of the defocus.
 </figcaption>
 </figure>
 </div>
