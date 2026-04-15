@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -575,7 +610,50 @@ window.Quarto = {
 </section>
 <section id="code-example-1-temperature-profile-around-a-heated-nanoparticle" class="level2">
 <h2 class="anchored" data-anchor-id="code-example-1-temperature-profile-around-a-heated-nanoparticle">Code Example 1: Temperature Profile Around a Heated Nanoparticle</h2>
-<div id="332e0385" class="cell" data-execution_count="2">
+<div id="b975a6d1" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>fig, (ax1, ax2) <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>get_size(<span class="dv">15</span>, <span class="dv">7</span>))</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 1D radial temperature profile</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> np.linspace(<span class="fl">0.01</span>, <span class="dv">5</span>, <span class="dv">1000</span>)  <span class="co"># distance in micrometers</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>P_abs <span class="op">=</span> <span class="fl">10e-12</span>  <span class="co"># absorbed power in Watts (10 pW)</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>kappa <span class="op">=</span> <span class="fl">0.6</span>  <span class="co"># thermal conductivity of water, W/(m·K)</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>Delta_T_r <span class="op">=</span> (P_abs <span class="op">/</span> (<span class="dv">4</span> <span class="op">*</span> np.pi <span class="op">*</span> kappa)) <span class="op">/</span> (r <span class="op">*</span> <span class="fl">1e-6</span>)  <span class="co"># convert r to meters</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>ax1.loglog(r, Delta_T_r, <span class="st">'b-'</span>, linewidth<span class="op">=</span><span class="fl">2.5</span>, label<span class="op">=</span><span class="st">'Temperature rise'</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>ax1.axhline(y<span class="op">=</span><span class="fl">0.1</span>, color<span class="op">=</span><span class="st">'r'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.6</span>, label<span class="op">=</span><span class="st">'~0.1 K detection limit'</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>ax1.fill_between(r, <span class="fl">0.01</span>, <span class="fl">0.1</span>, alpha<span class="op">=</span><span class="fl">0.2</span>, color<span class="op">=</span><span class="st">'gray'</span>, label<span class="op">=</span><span class="st">'Detectable range'</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>ax1.set_xlabel(<span class="st">'Distance (μm)'</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>ax1.set_ylabel(<span class="st">'ΔT (K)'</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>ax1.legend(loc<span class="op">=</span><span class="st">'upper right'</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>ax1.grid(<span class="va">True</span>, which<span class="op">=</span><span class="st">'both'</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>ax1.set_ylim([<span class="fl">0.01</span>, <span class="dv">100</span>])</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co"># 2D temperature profile (Gaussian pump)</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">200</span>)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">200</span>)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>X, Y <span class="op">=</span> np.meshgrid(x, y)</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>R <span class="op">=</span> np.sqrt(X<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> Y<span class="op">**</span><span class="dv">2</span>) <span class="op">+</span> <span class="fl">0.1</span>  <span class="co"># distance, avoid singularity</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Pump with Gaussian profile (intensity)</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>w0 <span class="op">=</span> <span class="fl">0.5</span>  <span class="co"># beam waist in micrometers</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>I_pump <span class="op">=</span> np.exp(<span class="op">-</span>(X<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> Y<span class="op">**</span><span class="dv">2</span>)<span class="op">/</span>(w0<span class="op">**</span><span class="dv">2</span>))  <span class="co"># normalized Gaussian</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Temperature from local absorbed power</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>Delta_T_2D <span class="op">=</span> (I_pump <span class="op">/</span> (<span class="dv">4</span> <span class="op">*</span> np.pi <span class="op">*</span> kappa <span class="op">*</span> (R <span class="op">*</span> <span class="fl">1e-6</span>))) <span class="op">*</span> (P_abs <span class="op">*</span> <span class="fl">1e12</span>) <span class="op">/</span> <span class="dv">100</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>im <span class="op">=</span> ax2.contourf(X, Y, Delta_T_2D, levels<span class="op">=</span><span class="dv">20</span>, cmap<span class="op">=</span><span class="st">'hot'</span>)</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>ax2.contour(X, Y, Delta_T_2D, levels<span class="op">=</span><span class="dv">10</span>, colors<span class="op">=</span><span class="st">'white'</span>, alpha<span class="op">=</span><span class="fl">0.3</span>, linewidths<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>ax2.set_xlabel(<span class="st">'x (μm)'</span>)</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>ax2.set_ylabel(<span class="st">'y (μm)'</span>)</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>ax2.set_aspect(<span class="st">'equal'</span>)</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>fig.set_layout_engine(<span class="st">'constrained'</span>)</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'temp_profile.png'</span>, dpi<span class="op">=</span><span class="dv">150</span>, bbox_inches<span class="op">=</span><span class="st">'tight'</span>)</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Temperature rise at r = 0.1 μm: ΔT ≈ </span><span class="sc">{</span>Delta_T_r[np.argmin(np.<span class="bu">abs</span>(r <span class="op">-</span> <span class="fl">0.1</span>))]<span class="sc">:.2f}</span><span class="ss"> K"</span>)</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Temperature rise at r = 1 μm: ΔT ≈ </span><span class="sc">{</span>Delta_T_r[np.argmin(np.<span class="bu">abs</span>(r <span class="op">-</span> <span class="fl">1.0</span>))]<span class="sc">:.2f}</span><span class="ss"> K"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -592,7 +670,45 @@ Temperature rise at r = 1 μm: ΔT ≈ 0.00 K</code></pre>
 </section>
 <section id="code-example-2-thermal-lens-effectprobe-beam-phase-shift" class="level2">
 <h2 class="anchored" data-anchor-id="code-example-2-thermal-lens-effectprobe-beam-phase-shift">Code Example 2: Thermal Lens Effect—Probe Beam Phase Shift</h2>
-<div id="44e39e2f" class="cell" data-execution_count="3">
+<div id="e7da0815" class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Parameters</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>wavelength <span class="op">=</span> <span class="fl">780e-9</span>  <span class="co"># probe wavelength in meters (near-IR)</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>kappa <span class="op">=</span> <span class="fl">0.6</span>  <span class="co"># thermal conductivity of water, W/(m·K)</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>beta <span class="op">=</span> <span class="op">-</span><span class="fl">1e-4</span>  <span class="co"># thermo-optic coefficient of water, K^{-1}</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>P_abs <span class="op">=</span> <span class="fl">10e-12</span>  <span class="co"># absorbed pump power, W</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Probe beam position relative to pump</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>r_probe <span class="op">=</span> np.linspace(<span class="fl">0.05</span>, <span class="dv">5</span>, <span class="dv">500</span>)  <span class="co"># distance in micrometers</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Phase shift due to thermal lens</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Approximate: ∫ β ΔT(r) dz along probe path, assume 2D Gaussian profile</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>w0 <span class="op">=</span> <span class="fl">0.5</span>  <span class="co"># pump beam waist</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Integrated phase for probe at distance r from pump center</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>integral_Delta_n <span class="op">=</span> beta <span class="op">*</span> (P_abs <span class="op">/</span> (<span class="dv">4</span> <span class="op">*</span> np.pi <span class="op">*</span> kappa)) <span class="op">*</span> np.log(r_probe <span class="op">/</span> <span class="fl">0.1</span>)  <span class="co"># approx integral</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>Delta_phi <span class="op">=</span> (<span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">/</span> wavelength) <span class="op">*</span> integral_Delta_n <span class="op">*</span> (w0 <span class="op">*</span> <span class="fl">1e-6</span>) <span class="op">*</span> <span class="dv">2</span>  <span class="co"># path-integrated phase</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> plt.figure(figsize<span class="op">=</span>get_size(<span class="dv">13</span>, <span class="dv">7</span>)).add_subplot(<span class="dv">111</span>)</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>ax.plot(r_probe, np.<span class="bu">abs</span>(Delta_phi) <span class="op">*</span> <span class="fl">1e3</span>, <span class="st">'b-'</span>, linewidth<span class="op">=</span><span class="fl">2.5</span>, label<span class="op">=</span><span class="st">'|Δφ|'</span>)</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>ax.axhline(y<span class="op">=</span><span class="fl">0.001</span>, color<span class="op">=</span><span class="st">'g'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.6</span>, label<span class="op">=</span><span class="st">'Quantum noise limit (~mrad)'</span>)</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>ax.fill_between(r_probe, <span class="dv">0</span>, <span class="fl">0.001</span>, alpha<span class="op">=</span><span class="fl">0.1</span>, color<span class="op">=</span><span class="st">'green'</span>)</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>ax.fill_between(r_probe, <span class="fl">0.001</span>, np.<span class="bu">max</span>(np.<span class="bu">abs</span>(Delta_phi)<span class="op">*</span><span class="fl">1e3</span>), alpha<span class="op">=</span><span class="fl">0.15</span>, color<span class="op">=</span><span class="st">'blue'</span>, label<span class="op">=</span><span class="st">'Detectable range'</span>)</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Beam separation (μm)'</span>)</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'$|</span><span class="ch">\\</span><span class="st">Delta</span><span class="ch">\\</span><span class="st">phi|$ (mrad)'</span>)</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>ax.set_yscale(<span class="st">'log'</span>)</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>ax.legend(loc<span class="op">=</span><span class="st">'upper right'</span>)</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>, which<span class="op">=</span><span class="st">'both'</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>ax.set_ylim([<span class="fl">1e-4</span>, <span class="dv">10</span>])</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'thermal_lens_phase.png'</span>, dpi<span class="op">=</span><span class="dv">150</span>, bbox_inches<span class="op">=</span><span class="st">'tight'</span>)</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Maximum phase shift (co-aligned beams): </span><span class="sc">{</span>np<span class="sc">.</span><span class="bu">abs</span>(Delta_phi[<span class="dv">0</span>]) <span class="op">*</span> <span class="fl">1e3</span><span class="sc">:.3f}</span><span class="ss"> mrad"</span>)</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Phase shift at 1 μm separation: </span><span class="sc">{</span>np<span class="sc">.</span><span class="bu">abs</span>(Delta_phi[np.argmin(np.<span class="bu">abs</span>(r_probe <span class="op">-</span> <span class="fl">1.0</span>))]) <span class="op">*</span> <span class="fl">1e3</span><span class="sc">:.4f}</span><span class="ss"> mrad"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -609,25 +725,161 @@ Phase shift at 1 μm separation: 0.0000 mrad</code></pre>
 </section>
 <section id="code-example-3-lock-in-detection-principle" class="level2">
 <h2 class="anchored" data-anchor-id="code-example-3-lock-in-detection-principle">Code Example 3: Lock-in Detection Principle</h2>
-<div id="ffdaa9ba" class="cell" data-execution_count="4">
+<div id="af9c3729" class="cell" data-execution_count="4">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Time parameters</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>f_mod <span class="op">=</span> <span class="fl">10e3</span>  <span class="co"># modulation frequency, 10 kHz</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>t_total <span class="op">=</span> <span class="fl">500e-6</span>  <span class="co"># 500 microseconds</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>n_periods <span class="op">=</span> <span class="bu">int</span>(f_mod <span class="op">*</span> t_total)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> np.linspace(<span class="dv">0</span>, t_total, <span class="dv">5000</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Signal components</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>signal_amplitude <span class="op">=</span> <span class="fl">1.0</span>  <span class="co"># photothermal signal amplitude</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>noise_amplitude <span class="op">=</span> <span class="fl">3.0</span>  <span class="co"># broadband noise amplitude</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>noise_color <span class="op">=</span> np.random.randn(<span class="bu">len</span>(t))</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Modulated photothermal signal</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>signal <span class="op">=</span> signal_amplitude <span class="op">*</span> np.cos(<span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> f_mod <span class="op">*</span> t)</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Add broadband noise</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>noise <span class="op">=</span> noise_amplitude <span class="op">*</span> noise_color</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Total measured signal</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>measured <span class="op">=</span> signal <span class="op">+</span> noise</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Lock-in demodulation: multiply by reference and low-pass filter</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>reference <span class="op">=</span> np.cos(<span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> f_mod <span class="op">*</span> t)</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>demodulated <span class="op">=</span> measured <span class="op">*</span> reference</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Low-pass filter (simple moving average)</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>tau_filter <span class="op">=</span> <span class="fl">50e-6</span>  <span class="co"># filter time constant</span></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>n_filter <span class="op">=</span> <span class="bu">int</span>(tau_filter <span class="op">*</span> <span class="bu">len</span>(t) <span class="op">/</span> t_total)</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>demodulated_filtered <span class="op">=</span> np.convolve(demodulated, np.ones(n_filter)<span class="op">/</span>n_filter, mode<span class="op">=</span><span class="st">'same'</span>)</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot</span></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">3</span>, <span class="dv">1</span>, figsize<span class="op">=</span>get_size(<span class="dv">15</span>, <span class="dv">7</span>))</span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Raw measured signal</span></span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].plot(t<span class="op">*</span><span class="fl">1e6</span>, measured, <span class="st">'k-'</span>, linewidth<span class="op">=</span><span class="fl">0.8</span>, alpha<span class="op">=</span><span class="fl">0.7</span>, label<span class="op">=</span><span class="st">'Raw measured'</span>)</span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].plot(t<span class="op">*</span><span class="fl">1e6</span>, signal, <span class="st">'b-'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, alpha<span class="op">=</span><span class="fl">0.5</span>, label<span class="op">=</span><span class="st">'True signal'</span>)</span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_ylabel(<span class="st">'Signal (a.u.)'</span>)</span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].legend(loc<span class="op">=</span><span class="st">'upper right'</span>, fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_xlim([<span class="dv">0</span>, <span class="dv">200</span>])</span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a><span class="co"># Demodulated (before filtering)</span></span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].plot(t<span class="op">*</span><span class="fl">1e6</span>, demodulated, <span class="st">'r-'</span>, linewidth<span class="op">=</span><span class="fl">0.8</span>, alpha<span class="op">=</span><span class="fl">0.6</span>, label<span class="op">=</span><span class="st">'Demodulated × ref'</span>)</span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_ylabel(<span class="st">'Demod. (a.u.)'</span>)</span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].legend(loc<span class="op">=</span><span class="st">'upper right'</span>, fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_xlim([<span class="dv">0</span>, <span class="dv">200</span>])</span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a><span class="co"># Filtered output</span></span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>].plot(t<span class="op">*</span><span class="fl">1e6</span>, demodulated_filtered, <span class="st">'g-'</span>, linewidth<span class="op">=</span><span class="fl">2.5</span>, label<span class="op">=</span><span class="st">'After LPF'</span>)</span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>].axhline(y<span class="op">=</span>signal_amplitude<span class="op">/</span><span class="dv">2</span>, color<span class="op">=</span><span class="st">'b'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.6</span>, label<span class="op">=</span><span class="st">'Expected DC level'</span>)</span>
+<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>].set_xlabel(<span class="st">'Time (μs)'</span>)</span>
+<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>].set_ylabel(<span class="st">'Lock-in (a.u.)'</span>)</span>
+<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>].legend(loc<span class="op">=</span><span class="st">'upper right'</span>, fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>].grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>].set_xlim([<span class="dv">0</span>, <span class="dv">200</span>])</span>
+<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>].set_ylim([<span class="op">-</span><span class="fl">0.5</span>, <span class="fl">1.0</span>])</span>
+<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'lockin_detection.png'</span>, dpi<span class="op">=</span><span class="dv">150</span>, bbox_inches<span class="op">=</span><span class="st">'tight'</span>)</span>
+<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a><span class="co"># Quantitative noise rejection</span></span>
+<span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a>snr_before <span class="op">=</span> np.var(signal) <span class="op">/</span> np.var(noise)</span>
+<span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a>snr_after <span class="op">=</span> np.var(signal) <span class="op">/</span> np.var(demodulated_filtered[<span class="bu">int</span>(<span class="fl">0.1</span><span class="op">*</span><span class="bu">len</span>(t)):])</span>
+<span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"SNR before lock-in: </span><span class="sc">{</span>snr_before<span class="sc">:.3f}</span><span class="ss"> (</span><span class="sc">{</span><span class="dv">10</span><span class="op">*</span>np<span class="sc">.</span>log10(snr_before)<span class="sc">:.1f}</span><span class="ss"> dB)"</span>)</span>
+<span id="cb5-66"><a href="#cb5-66" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"SNR after lock-in: </span><span class="sc">{</span>snr_after<span class="sc">:.3f}</span><span class="ss"> (</span><span class="sc">{</span><span class="dv">10</span><span class="op">*</span>np<span class="sc">.</span>log10(snr_after)<span class="sc">:.1f}</span><span class="ss"> dB)"</span>)</span>
+<span id="cb5-67"><a href="#cb5-67" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Noise rejection: </span><span class="sc">{</span>snr_after<span class="op">/</span>snr_before<span class="sc">:.1f}</span><span class="ss">× improvement"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="01-lecture13_files/figure-html/cell-5-output-1.png" width="551" height="250" class="figure-img"></p>
+<p><img src="01-lecture13_files/figure-html/cell-5-output-1.png" width="551" height="251" class="figure-img"></p>
 <figcaption>Lock-in detection principle: modulated signal buried in noise is recovered through synchronous demodulation and low-pass filtering.</figcaption>
 </figure>
 </div>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>SNR before lock-in: 0.053 (-12.7 dB)
-SNR after lock-in: 99.809 (20.0 dB)
-Noise rejection: 1867.0× improvement</code></pre>
+<pre><code>SNR before lock-in: 0.054 (-12.6 dB)
+SNR after lock-in: 63.282 (18.0 dB)
+Noise rejection: 1163.4× improvement</code></pre>
 </div>
 </div>
 </section>
 <section id="code-example-4-photothermal-signal-vs.-nanoparticle-size" class="level2">
 <h2 class="anchored" data-anchor-id="code-example-4-photothermal-signal-vs.-nanoparticle-size">Code Example 4: Photothermal Signal vs.&nbsp;Nanoparticle Size</h2>
-<div id="d0867877" class="cell" data-execution_count="5">
+<div id="9fa9ad7a" class="cell" data-execution_count="5">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Gold nanoparticle absorption cross section (Mie theory, simplified)</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># For Au nanoparticles in resonance (λ ≈ 520 nm for ~50 nm particles)</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Scaling: σ_abs ∝ r³ (in the dipole regime) plus resonance enhancement</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Particle radius in nm</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>radii <span class="op">=</span> np.linspace(<span class="dv">5</span>, <span class="dv">100</span>, <span class="dv">200</span>)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Simplified model: σ_abs = C * r^3 * f(resonance)</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co"># where f(resonance) is a resonance factor peaking near 50 nm</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> resonance_factor(r):</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Approximate resonance factor for Au at λ = 532 nm"""</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    r0 <span class="op">=</span> <span class="dv">50</span>  <span class="co"># resonance peak radius</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    width <span class="op">=</span> <span class="dv">15</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fl">1.0</span> <span class="op">+</span> <span class="fl">4.0</span> <span class="op">*</span> np.exp(<span class="op">-</span>(r <span class="op">-</span> r0)<span class="op">**</span><span class="dv">2</span> <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> width<span class="op">**</span><span class="dv">2</span>))</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>sigma_abs <span class="op">=</span> (radii <span class="op">/</span> <span class="dv">10</span>)<span class="op">**</span><span class="dv">3</span> <span class="op">*</span> resonance_factor(radii)  <span class="co"># in units of 10 nm^2</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Photothermal signal: proportional to σ_abs</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>signal_strength <span class="op">=</span> sigma_abs</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Temperature rise for fixed pump intensity</span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>I_pump <span class="op">=</span> <span class="fl">1e9</span>  <span class="co"># W/cm^2 (typical focused laser)</span></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>P_abs <span class="op">=</span> sigma_abs <span class="op">*</span> <span class="fl">1e-18</span> <span class="op">*</span> I_pump <span class="op">*</span> <span class="fl">1e-4</span> <span class="op">*</span> <span class="fl">1e12</span>  <span class="co"># in pW (unit conversion)</span></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>Delta_T <span class="op">=</span> P_abs <span class="op">/</span> <span class="dv">10</span>  <span class="co"># rough estimate (linear in power)</span></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Figure</span></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>fig, (ax1, ax2) <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>get_size(<span class="dv">15</span>, <span class="dv">7</span>))</span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot 1: Absorption cross section</span></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>ax1.plot(radii, sigma_abs, <span class="st">'b-'</span>, linewidth<span class="op">=</span><span class="fl">2.5</span>)</span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>ax1.axvline(x<span class="op">=</span><span class="dv">50</span>, color<span class="op">=</span><span class="st">'r'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.6</span>, label<span class="op">=</span><span class="st">'Resonance peak'</span>)</span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>ax1.fill_between(radii, <span class="dv">0</span>, sigma_abs, alpha<span class="op">=</span><span class="fl">0.2</span>, color<span class="op">=</span><span class="st">'blue'</span>)</span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>ax1.set_xlabel(<span class="st">'Radius (nm)'</span>)</span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>ax1.set_ylabel(<span class="st">'$</span><span class="ch">\\</span><span class="st">sigma_a$ (×10 nm²)'</span>)</span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>ax1.legend()</span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>ax1.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>ax1.set_yscale(<span class="st">'log'</span>)</span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot 2: Photothermal signal (relative)</span></span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a><span class="co"># Signal ∝ σ_abs for heterodyne detection</span></span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a>ax2.semilogy(radii, sigma_abs, <span class="st">'g-'</span>, linewidth<span class="op">=</span><span class="fl">2.5</span>, label<span class="op">=</span><span class="st">'PHI signal ∝ σ_abs'</span>)</span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a>ax2.semilogy(radii, radii<span class="op">**</span><span class="dv">3</span><span class="op">/</span><span class="dv">1000</span>, <span class="st">'r--'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, alpha<span class="op">=</span><span class="fl">0.7</span>, label<span class="op">=</span><span class="st">'r³ scaling (dipole)'</span>)</span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a>ax2.axvline(x<span class="op">=</span><span class="dv">50</span>, color<span class="op">=</span><span class="st">'orange'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.6</span>, label<span class="op">=</span><span class="st">'Opt. size: ~50 nm'</span>)</span>
+<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a>ax2.set_xlabel(<span class="st">'Radius (nm)'</span>)</span>
+<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a>ax2.set_ylabel(<span class="st">'Signal (a.u.)'</span>)</span>
+<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a>ax2.legend(fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a>ax2.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>, which<span class="op">=</span><span class="st">'both'</span>)</span>
+<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'signal_vs_size.png'</span>, dpi<span class="op">=</span><span class="dv">150</span>, bbox_inches<span class="op">=</span><span class="st">'tight'</span>)</span>
+<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb7-53"><a href="#cb7-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-54"><a href="#cb7-54" aria-hidden="true" tabindex="-1"></a><span class="co"># Print some values</span></span>
+<span id="cb7-55"><a href="#cb7-55" aria-hidden="true" tabindex="-1"></a>idx_50 <span class="op">=</span> np.argmin(np.<span class="bu">abs</span>(radii <span class="op">-</span> <span class="dv">50</span>))</span>
+<span id="cb7-56"><a href="#cb7-56" aria-hidden="true" tabindex="-1"></a>idx_20 <span class="op">=</span> np.argmin(np.<span class="bu">abs</span>(radii <span class="op">-</span> <span class="dv">20</span>))</span>
+<span id="cb7-57"><a href="#cb7-57" aria-hidden="true" tabindex="-1"></a>idx_80 <span class="op">=</span> np.argmin(np.<span class="bu">abs</span>(radii <span class="op">-</span> <span class="dv">80</span>))</span>
+<span id="cb7-58"><a href="#cb7-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-59"><a href="#cb7-59" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Absorption cross section (relative units):"</span>)</span>
+<span id="cb7-60"><a href="#cb7-60" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  r = 20 nm: σ_abs = </span><span class="sc">{</span>sigma_abs[idx_20]<span class="sc">:.1f}</span><span class="ss">"</span>)</span>
+<span id="cb7-61"><a href="#cb7-61" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  r = 50 nm: σ_abs = </span><span class="sc">{</span>sigma_abs[idx_50]<span class="sc">:.1f}</span><span class="ss"> (resonance peak)"</span>)</span>
+<span id="cb7-62"><a href="#cb7-62" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  r = 80 nm: σ_abs = </span><span class="sc">{</span>sigma_abs[idx_80]<span class="sc">:.1f}</span><span class="ss">"</span>)</span>
+<span id="cb7-63"><a href="#cb7-63" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Photothermal signal enhancement from 20→50 nm: </span><span class="sc">{</span>sigma_abs[idx_50]<span class="op">/</span>sigma_abs[idx_20]<span class="sc">:.1f}</span><span class="ss">×"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">

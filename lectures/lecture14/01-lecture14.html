@@ -582,7 +582,7 @@ window.Quarto = {
 <section id="code-examples-rayleigh-scattering" class="level2">
 <h2 class="anchored" data-anchor-id="code-examples-rayleigh-scattering">Code Examples: Rayleigh Scattering</h2>
 <p>Let’s implement the <span class="math inline">\(\lambda^{-4}\)</span> dependence and angular scattering patterns.</p>
-<div id="abcf5101" class="cell" data-execution_count="2">
+<div id="05b73d9f" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>get_size(<span class="dv">15</span>, <span class="fl">5.5</span>))</span>
@@ -599,8 +599,8 @@ window.Quarto = {
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, (lam, intensity, name, color) <span class="kw">in</span> <span class="bu">enumerate</span>(<span class="bu">zip</span>(lambda_vis, I_rayleigh_normalized, names, colors)):</span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    ax.semilogy(lam, intensity, <span class="st">'o'</span>, markersize<span class="op">=</span><span class="dv">8</span>, color<span class="op">=</span>color, markeredgecolor<span class="op">=</span><span class="st">'black'</span>, markeredgewidth<span class="op">=</span><span class="fl">0.5</span>)</span>
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'λ (nm)'</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Intensity (arb.)'</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'λ (nm)'</span>)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Intensity (arb.)'</span>)</span>
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>, linestyle<span class="op">=</span><span class="st">'--'</span>)</span>
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="dv">350</span>, <span class="dv">800</span>)</span>
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
@@ -616,7 +616,7 @@ window.Quarto = {
 <span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>ax.set_theta_direction(<span class="op">-</span><span class="dv">1</span>)</span>
 <span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="dv">0</span>, <span class="fl">2.2</span>)</span>
 <span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>ax.set_rgrids([<span class="fl">0.5</span>, <span class="dv">1</span>, <span class="fl">1.5</span>, <span class="dv">2</span>], labels<span class="op">=</span>[<span class="st">'0.5'</span>, <span class="st">'1'</span>, <span class="st">'1.5'</span>, <span class="st">'2'</span>], fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>ax.set_rgrids([<span class="fl">0.5</span>, <span class="dv">1</span>, <span class="fl">1.5</span>, <span class="dv">2</span>], labels<span class="op">=</span>[<span class="st">'0.5'</span>, <span class="st">'1'</span>, <span class="st">'1.5'</span>, <span class="st">'2'</span>])</span>
 <span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
 <span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'img/rayleigh_scattering.png'</span>, dpi<span class="op">=</span><span class="dv">300</span>, bbox_inches<span class="op">=</span><span class="st">'tight'</span>)</span>
@@ -648,7 +648,7 @@ window.Quarto = {
 </section>
 <section id="code-examples-rayleigh-angular-scattering-pattern-polarization" class="level2">
 <h2 class="anchored" data-anchor-id="code-examples-rayleigh-angular-scattering-pattern-polarization">Code Examples: Rayleigh Angular Scattering Pattern (Polarization)</h2>
-<div id="e692beb2" class="cell" data-execution_count="3">
+<div id="341fc1cd" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>get_size(<span class="dv">15</span>, <span class="dv">7</span>))</span>
@@ -669,7 +669,7 @@ window.Quarto = {
 <span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>ax1.set_theta_direction(<span class="op">-</span><span class="dv">1</span>)</span>
 <span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>ax1.set_ylim(<span class="dv">0</span>, <span class="fl">1.2</span>)</span>
 <span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>ax1.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>ax1.set_rgrids([<span class="fl">0.3</span>, <span class="fl">0.6</span>, <span class="fl">0.9</span>], fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>ax1.set_rgrids([<span class="fl">0.3</span>, <span class="fl">0.6</span>, <span class="fl">0.9</span>])</span>
 <span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Second subplot: parallel polarization</span></span>
 <span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>ax2 <span class="op">=</span> plt.subplot(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, projection<span class="op">=</span><span class="st">'polar'</span>)</span>
@@ -679,7 +679,7 @@ window.Quarto = {
 <span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>ax2.set_theta_direction(<span class="op">-</span><span class="dv">1</span>)</span>
 <span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>ax2.set_ylim(<span class="dv">0</span>, <span class="fl">2.2</span>)</span>
 <span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>ax2.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>ax2.set_rgrids([<span class="fl">0.5</span>, <span class="dv">1</span>, <span class="fl">1.5</span>, <span class="dv">2</span>], fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>ax2.set_rgrids([<span class="fl">0.5</span>, <span class="dv">1</span>, <span class="fl">1.5</span>, <span class="dv">2</span>])</span>
 <span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
 <span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'img/rayleigh_polarization.png'</span>, dpi<span class="op">=</span><span class="dv">300</span>, bbox_inches<span class="op">=</span><span class="st">'tight'</span>)</span>
@@ -706,7 +706,7 @@ direction is 100% linearly polarized perpendicular to the scattering plane.</cod
 </section>
 <section id="code-examples-mie-scattering-efficiency" class="level2">
 <h2 class="anchored" data-anchor-id="code-examples-mie-scattering-efficiency">Code Examples: Mie Scattering Efficiency</h2>
-<div id="7218c612" class="cell" data-execution_count="4">
+<div id="9cb11a37" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Simple Mie scattering model using parametric approximation</span></span>
@@ -756,22 +756,22 @@ direction is 100% linearly polarized perpendicular to the scattering plane.</cod
 <span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a><span class="co"># Left panel: Scattering efficiency vs size parameter</span></span>
 <span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> axes[<span class="dv">0</span>]</span>
-<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>ax.loglog(x, Q_sca_water, linewidth<span class="op">=</span><span class="fl">2.5</span>, label<span class="op">=</span><span class="vs">r'Water </span><span class="kw">(</span><span class="dv">$</span><span class="vs">m = 1</span><span class="dv">.</span><span class="vs">33</span><span class="dv">$</span><span class="kw">)</span><span class="vs">'</span>, color<span class="op">=</span><span class="st">'#3498db'</span>)</span>
-<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a>ax.loglog(x, Q_sca_diel, linewidth<span class="op">=</span><span class="fl">2.5</span>, label<span class="op">=</span><span class="vs">r'Dielectric </span><span class="kw">(</span><span class="dv">$</span><span class="vs">m = 1</span><span class="dv">.</span><span class="vs">5</span><span class="dv">$</span><span class="kw">)</span><span class="vs">'</span>, color<span class="op">=</span><span class="st">'#e74c3c'</span>)</span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>ax.loglog(x, Q_sca_water, linewidth<span class="op">=</span><span class="fl">2.5</span>, label<span class="op">=</span><span class="vs">r'</span><span class="dv">$</span><span class="vs">m = 1</span><span class="dv">.</span><span class="vs">33</span><span class="dv">$</span><span class="vs">'</span>, color<span class="op">=</span><span class="st">'#3498db'</span>)</span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a>ax.loglog(x, Q_sca_diel, linewidth<span class="op">=</span><span class="fl">2.5</span>, label<span class="op">=</span><span class="vs">r'</span><span class="dv">$</span><span class="vs">m = 1</span><span class="dv">.</span><span class="vs">5</span><span class="dv">$</span><span class="vs">'</span>, color<span class="op">=</span><span class="st">'#e74c3c'</span>)</span>
 <span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a><span class="co"># Rayleigh limit reference</span></span>
 <span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a>rayleigh_ref <span class="op">=</span> <span class="dv">8</span><span class="op">/</span><span class="dv">3</span> <span class="op">*</span> (m_water<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="dv">1</span>)<span class="op">**</span><span class="dv">2</span> <span class="op">/</span> (m_water<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="dv">2</span>)<span class="op">**</span><span class="dv">2</span> <span class="op">*</span> x<span class="op">**</span><span class="dv">4</span></span>
-<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a>ax.loglog(x, rayleigh_ref, <span class="st">'--'</span>, linewidth<span class="op">=</span><span class="fl">1.5</span>, alpha<span class="op">=</span><span class="fl">0.6</span>, color<span class="op">=</span><span class="st">'gray'</span>, label<span class="op">=</span><span class="vs">r'Rayleigh </span><span class="kw">(</span><span class="dv">$</span><span class="vs">x</span><span class="dv">^</span><span class="vs">4</span><span class="dv">$</span><span class="kw">)</span><span class="vs">'</span>)</span>
+<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a>ax.loglog(x, rayleigh_ref, <span class="st">'--'</span>, linewidth<span class="op">=</span><span class="fl">1.5</span>, alpha<span class="op">=</span><span class="fl">0.6</span>, color<span class="op">=</span><span class="st">'gray'</span>, label<span class="op">=</span><span class="vs">r'</span><span class="dv">$</span><span class="er">\</span><span class="vs">propto x</span><span class="dv">^</span><span class="vs">4</span><span class="dv">$</span><span class="vs">'</span>)</span>
 <span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a><span class="co"># Geometric limit reference</span></span>
-<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a>ax.axhline(y<span class="op">=</span><span class="dv">2</span>, color<span class="op">=</span><span class="st">'gray'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, linewidth<span class="op">=</span><span class="fl">1.5</span>, alpha<span class="op">=</span><span class="fl">0.6</span>, label<span class="op">=</span><span class="st">'Geometric ($Q=2$)'</span>)</span>
+<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a>ax.axhline(y<span class="op">=</span><span class="dv">2</span>, color<span class="op">=</span><span class="st">'gray'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, linewidth<span class="op">=</span><span class="fl">1.5</span>, alpha<span class="op">=</span><span class="fl">0.6</span>, label<span class="op">=</span><span class="st">'$Q=2$'</span>)</span>
 <span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a>ax.fill_between(x, x<span class="op">**</span><span class="dv">4</span> <span class="op">*</span> <span class="fl">0.01</span>, <span class="dv">10</span>, where<span class="op">=</span>(x <span class="op">&lt;</span> <span class="fl">0.1</span>), alpha<span class="op">=</span><span class="fl">0.1</span>, color<span class="op">=</span><span class="st">'blue'</span>, label<span class="op">=</span><span class="st">'Rayleigh'</span>)</span>
-<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a>ax.fill_between(x, x<span class="op">**</span><span class="dv">4</span> <span class="op">*</span> <span class="fl">0.01</span>, <span class="dv">10</span>, where<span class="op">=</span>(x <span class="op">&gt;</span> <span class="dv">100</span>), alpha<span class="op">=</span><span class="fl">0.1</span>, color<span class="op">=</span><span class="st">'red'</span>, label<span class="op">=</span><span class="st">'Geometric'</span>)</span>
+<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a>ax.fill_between(x, x<span class="op">**</span><span class="dv">4</span> <span class="op">*</span> <span class="fl">0.01</span>, <span class="dv">10</span>, where<span class="op">=</span>(x <span class="op">&lt;</span> <span class="fl">0.1</span>), alpha<span class="op">=</span><span class="fl">0.1</span>, color<span class="op">=</span><span class="st">'blue'</span>)</span>
+<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a>ax.fill_between(x, x<span class="op">**</span><span class="dv">4</span> <span class="op">*</span> <span class="fl">0.01</span>, <span class="dv">10</span>, where<span class="op">=</span>(x <span class="op">&gt;</span> <span class="dv">100</span>), alpha<span class="op">=</span><span class="fl">0.1</span>, color<span class="op">=</span><span class="st">'red'</span>)</span>
 <span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="vs">r'Size parameter </span><span class="dv">$</span><span class="vs">x</span><span class="dv">$</span><span class="vs">'</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
-<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="vs">r'</span><span class="dv">$</span><span class="vs">Q_{</span><span class="ch">\t</span><span class="vs">ext{sca}}</span><span class="dv">$</span><span class="vs">'</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
-<span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a>ax.legend(loc<span class="op">=</span><span class="st">'best'</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="vs">r'Size parameter </span><span class="dv">$</span><span class="vs">x</span><span class="dv">$</span><span class="vs">'</span>)</span>
+<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="vs">r'</span><span class="dv">$</span><span class="vs">Q_{</span><span class="ch">\t</span><span class="vs">ext{sca}}</span><span class="dv">$</span><span class="vs">'</span>)</span>
+<span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a>ax.legend(loc<span class="op">=</span><span class="st">'lower right'</span>, fontsize<span class="op">=</span><span class="dv">8</span>)</span>
 <span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>, which<span class="op">=</span><span class="st">'both'</span>)</span>
 <span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="fl">1e-2</span>, <span class="fl">3e2</span>)</span>
 <span id="cb5-66"><a href="#cb5-66" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="fl">1e-3</span>, <span class="fl">1e2</span>)</span>
@@ -797,9 +797,9 @@ direction is 100% linearly polarized perpendicular to the scattering plane.</cod
 <span id="cb5-86"><a href="#cb5-86" aria-hidden="true" tabindex="-1"></a>ax.loglog(x, Q_sca_back, linewidth<span class="op">=</span><span class="fl">2.5</span>, color<span class="op">=</span><span class="st">'#e74c3c'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, label<span class="op">=</span><span class="st">'Backscattering'</span>)</span>
 <span id="cb5-87"><a href="#cb5-87" aria-hidden="true" tabindex="-1"></a>ax.fill_between(x, Q_sca_back, Q_sca_water, alpha<span class="op">=</span><span class="fl">0.2</span>, color<span class="op">=</span><span class="st">'#9b59b6'</span>, label<span class="op">=</span><span class="st">'Forward'</span>)</span>
 <span id="cb5-88"><a href="#cb5-88" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-89"><a href="#cb5-89" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="vs">r'Size parameter </span><span class="dv">$</span><span class="vs">x</span><span class="dv">$</span><span class="vs">'</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
-<span id="cb5-90"><a href="#cb5-90" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="vs">r'</span><span class="dv">$</span><span class="vs">Q_{</span><span class="ch">\t</span><span class="vs">ext{sca}}</span><span class="dv">$</span><span class="vs">'</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
-<span id="cb5-91"><a href="#cb5-91" aria-hidden="true" tabindex="-1"></a>ax.legend(loc<span class="op">=</span><span class="st">'best'</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb5-89"><a href="#cb5-89" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="vs">r'Size parameter </span><span class="dv">$</span><span class="vs">x</span><span class="dv">$</span><span class="vs">'</span>)</span>
+<span id="cb5-90"><a href="#cb5-90" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="vs">r'</span><span class="dv">$</span><span class="vs">Q_{</span><span class="ch">\t</span><span class="vs">ext{sca}}</span><span class="dv">$</span><span class="vs">'</span>)</span>
+<span id="cb5-91"><a href="#cb5-91" aria-hidden="true" tabindex="-1"></a>ax.legend(loc<span class="op">=</span><span class="st">'lower right'</span>, fontsize<span class="op">=</span><span class="dv">8</span>)</span>
 <span id="cb5-92"><a href="#cb5-92" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>, which<span class="op">=</span><span class="st">'both'</span>)</span>
 <span id="cb5-93"><a href="#cb5-93" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="fl">1e-2</span>, <span class="fl">3e2</span>)</span>
 <span id="cb5-94"><a href="#cb5-94" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="fl">1e-3</span>, <span class="fl">1e2</span>)</span>
@@ -836,7 +836,7 @@ direction is 100% linearly polarized perpendicular to the scattering plane.</cod
 </section>
 <section id="code-examples-dynamic-light-scattering-simulation" class="level2">
 <h2 class="anchored" data-anchor-id="code-examples-dynamic-light-scattering-simulation">Code Examples: Dynamic Light Scattering Simulation</h2>
-<div id="92ec0011" class="cell" data-execution_count="5">
+<div id="15a050bc" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulate DLS: intensity autocorrelation for different particle sizes</span></span>
@@ -913,32 +913,29 @@ direction is 100% linearly polarized perpendicular to the scattering plane.</cod
 <span id="cb7-72"><a href="#cb7-72" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-73"><a href="#cb7-73" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Add exponential fit line</span></span>
 <span id="cb7-74"><a href="#cb7-74" aria-hidden="true" tabindex="-1"></a>    ax.plot(tau_us, <span class="dv">1</span> <span class="op">+</span> <span class="fl">0.9</span> <span class="op">*</span> np.exp(<span class="op">-</span>data[<span class="st">'decay_rate'</span>] <span class="op">*</span> tau_us <span class="op">*</span> <span class="fl">1e-6</span>),</span>
-<span id="cb7-75"><a href="#cb7-75" aria-hidden="true" tabindex="-1"></a>            <span class="st">'k--'</span>, linewidth<span class="op">=</span><span class="fl">1.5</span>, alpha<span class="op">=</span><span class="fl">0.6</span>, label<span class="op">=</span><span class="st">'Fit'</span>)</span>
+<span id="cb7-75"><a href="#cb7-75" aria-hidden="true" tabindex="-1"></a>            <span class="st">'k--'</span>, linewidth<span class="op">=</span><span class="fl">1.5</span>, alpha<span class="op">=</span><span class="fl">0.6</span>)</span>
 <span id="cb7-76"><a href="#cb7-76" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-77"><a href="#cb7-77" aria-hidden="true" tabindex="-1"></a>    ax.set_xlabel(<span class="vs">r'</span><span class="dv">$</span><span class="ch">\t</span><span class="vs">au</span><span class="dv">$</span><span class="vs"> </span><span class="kw">(</span><span class="dv">$\m</span><span class="vs">u</span><span class="dv">$</span><span class="vs">s</span><span class="kw">)</span><span class="vs">'</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
-<span id="cb7-78"><a href="#cb7-78" aria-hidden="true" tabindex="-1"></a>    ax.set_ylabel(<span class="vs">r'</span><span class="dv">$</span><span class="vs">g_2</span><span class="kw">(</span><span class="ch">\t</span><span class="vs">au</span><span class="kw">)</span><span class="dv">$</span><span class="vs">'</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
-<span id="cb7-79"><a href="#cb7-79" aria-hidden="true" tabindex="-1"></a>    ax.text(<span class="fl">0.5</span>, <span class="fl">0.05</span>, <span class="ss">f"</span><span class="sc">{</span>key<span class="sc">}</span><span class="ss">, $D = </span><span class="sc">{</span>data[<span class="st">'D'</span>]<span class="sc">:.3e}</span><span class="ss">$ m²/s"</span>,</span>
-<span id="cb7-80"><a href="#cb7-80" aria-hidden="true" tabindex="-1"></a>            transform<span class="op">=</span>ax.transAxes, fontsize<span class="op">=</span><span class="dv">9</span>, verticalalignment<span class="op">=</span><span class="st">'bottom'</span>,</span>
-<span id="cb7-81"><a href="#cb7-81" aria-hidden="true" tabindex="-1"></a>            bbox<span class="op">=</span><span class="bu">dict</span>(boxstyle<span class="op">=</span><span class="st">'round'</span>, facecolor<span class="op">=</span><span class="st">'wheat'</span>, alpha<span class="op">=</span><span class="fl">0.3</span>))</span>
-<span id="cb7-82"><a href="#cb7-82" aria-hidden="true" tabindex="-1"></a>    ax.set_ylim([<span class="fl">0.95</span>, <span class="fl">2.0</span>])</span>
-<span id="cb7-83"><a href="#cb7-83" aria-hidden="true" tabindex="-1"></a>    ax.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
-<span id="cb7-84"><a href="#cb7-84" aria-hidden="true" tabindex="-1"></a>    ax.legend(loc<span class="op">=</span><span class="st">'upper right'</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
-<span id="cb7-85"><a href="#cb7-85" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-86"><a href="#cb7-86" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb7-87"><a href="#cb7-87" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'img/dls_simulation.png'</span>, dpi<span class="op">=</span><span class="dv">300</span>, bbox_inches<span class="op">=</span><span class="st">'tight'</span>)</span>
-<span id="cb7-88"><a href="#cb7-88" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb7-89"><a href="#cb7-89" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-90"><a href="#cb7-90" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"DLS Simulation Results:"</span>)</span>
-<span id="cb7-91"><a href="#cb7-91" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"-"</span> <span class="op">*</span> <span class="dv">70</span>)</span>
-<span id="cb7-92"><a href="#cb7-92" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> key, data <span class="kw">in</span> dls_results.items():</span>
-<span id="cb7-93"><a href="#cb7-93" aria-hidden="true" tabindex="-1"></a>    tau_90_idx <span class="op">=</span> np.argmin(np.<span class="bu">abs</span>(data[<span class="st">'g2'</span>] <span class="op">-</span> <span class="fl">1.45</span>))  <span class="co"># g2 drops to ~1.45</span></span>
-<span id="cb7-94"><a href="#cb7-94" aria-hidden="true" tabindex="-1"></a>    tau_90 <span class="op">=</span> data[<span class="st">'tau'</span>][tau_90_idx]</span>
-<span id="cb7-95"><a href="#cb7-95" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Particle size </span><span class="sc">{</span>key<span class="sc">:8s}</span><span class="ss">: Decay rate Γ = </span><span class="sc">{</span>data[<span class="st">'decay_rate'</span>]<span class="sc">:8.1e}</span><span class="ss"> s⁻¹, τ(e⁻¹) ≈ </span><span class="sc">{</span><span class="dv">1</span><span class="op">/</span>data[<span class="st">'decay_rate'</span>]<span class="op">*</span><span class="fl">1e6</span><span class="sc">:6.2f}</span><span class="ss"> μs"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-77"><a href="#cb7-77" aria-hidden="true" tabindex="-1"></a>    ax.set_xlabel(<span class="vs">r'</span><span class="dv">$</span><span class="ch">\t</span><span class="vs">au</span><span class="dv">$</span><span class="vs"> </span><span class="kw">(</span><span class="dv">$\m</span><span class="vs">u</span><span class="dv">$</span><span class="vs">s</span><span class="kw">)</span><span class="vs">'</span>)</span>
+<span id="cb7-78"><a href="#cb7-78" aria-hidden="true" tabindex="-1"></a>    ax.set_ylabel(<span class="vs">r'</span><span class="dv">$</span><span class="vs">g_2</span><span class="kw">(</span><span class="ch">\t</span><span class="vs">au</span><span class="kw">)</span><span class="dv">$</span><span class="vs">'</span>)</span>
+<span id="cb7-79"><a href="#cb7-79" aria-hidden="true" tabindex="-1"></a>    ax.set_ylim([<span class="fl">0.95</span>, <span class="fl">2.0</span>])</span>
+<span id="cb7-80"><a href="#cb7-80" aria-hidden="true" tabindex="-1"></a>    ax.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb7-81"><a href="#cb7-81" aria-hidden="true" tabindex="-1"></a>    ax.legend(loc<span class="op">=</span><span class="st">'upper right'</span>, fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb7-82"><a href="#cb7-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-83"><a href="#cb7-83" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb7-84"><a href="#cb7-84" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'img/dls_simulation.png'</span>, dpi<span class="op">=</span><span class="dv">300</span>, bbox_inches<span class="op">=</span><span class="st">'tight'</span>)</span>
+<span id="cb7-85"><a href="#cb7-85" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb7-86"><a href="#cb7-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-87"><a href="#cb7-87" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"DLS Simulation Results:"</span>)</span>
+<span id="cb7-88"><a href="#cb7-88" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"-"</span> <span class="op">*</span> <span class="dv">70</span>)</span>
+<span id="cb7-89"><a href="#cb7-89" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> key, data <span class="kw">in</span> dls_results.items():</span>
+<span id="cb7-90"><a href="#cb7-90" aria-hidden="true" tabindex="-1"></a>    tau_90_idx <span class="op">=</span> np.argmin(np.<span class="bu">abs</span>(data[<span class="st">'g2'</span>] <span class="op">-</span> <span class="fl">1.45</span>))  <span class="co"># g2 drops to ~1.45</span></span>
+<span id="cb7-91"><a href="#cb7-91" aria-hidden="true" tabindex="-1"></a>    tau_90 <span class="op">=</span> data[<span class="st">'tau'</span>][tau_90_idx]</span>
+<span id="cb7-92"><a href="#cb7-92" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Particle size </span><span class="sc">{</span>key<span class="sc">:8s}</span><span class="ss">: Decay rate Γ = </span><span class="sc">{</span>data[<span class="st">'decay_rate'</span>]<span class="sc">:8.1e}</span><span class="ss"> s⁻¹, τ(e⁻¹) ≈ </span><span class="sc">{</span><span class="dv">1</span><span class="op">/</span>data[<span class="st">'decay_rate'</span>]<span class="op">*</span><span class="fl">1e6</span><span class="sc">:6.2f}</span><span class="ss"> μs"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="01-lecture14_files/figure-html/cell-6-output-1.png" width="584" height="361" class="figure-img"></p>
+<p><img src="01-lecture14_files/figure-html/cell-6-output-1.png" width="549" height="361" class="figure-img"></p>
 <figcaption>Intensity autocorrelation function <span class="math inline">\(g_2(\tau)\)</span> for four different particle sizes (10, 50, 100, and 500 nm). Larger particles diffuse faster, resulting in faster decay of the correlation function. Each panel shows the measured autocorrelation and an exponential fit.</figcaption>
 </figure>
 </div>
@@ -955,7 +952,7 @@ Particle size 500 nm  : Decay rate Γ =  1.4e+02 s⁻¹, τ(e⁻¹) ≈ 7147.77 
 </section>
 <section id="code-examples-static-light-scattering-form-factor" class="level2">
 <h2 class="anchored" data-anchor-id="code-examples-static-light-scattering-form-factor">Code Examples: Static Light Scattering — Form Factor</h2>
-<div id="da49fc70" class="cell" data-execution_count="6">
+<div id="822d825b" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Form factor for spheres: P(q) = [3(sin(qa) - qa*cos(qa))/(qa)³]²</span></span>
@@ -998,10 +995,10 @@ Particle size 500 nm  : Decay rate Γ =  1.4e+02 s⁻¹, τ(e⁻¹) ≈ 7147.77 
 <span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>    P <span class="op">=</span> form_factor_sphere(q, r_m)</span>
 <span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>    ax.loglog(q, P, linewidth<span class="op">=</span><span class="fl">2.5</span>, label<span class="op">=</span><span class="ss">f'$a = </span><span class="sc">{</span>r_nm<span class="sc">}</span><span class="ss">$ nm'</span>, color<span class="op">=</span>color)</span>
 <span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="vs">r'</span><span class="dv">$</span><span class="vs">q</span><span class="dv">$</span><span class="vs"> </span><span class="kw">(</span><span class="vs">m</span><span class="dv">$^</span><span class="vs">{-1}</span><span class="dv">$</span><span class="kw">)</span><span class="vs">'</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
-<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="vs">r'</span><span class="dv">$</span><span class="vs">P</span><span class="kw">(</span><span class="vs">q</span><span class="kw">)</span><span class="dv">$</span><span class="vs">'</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="vs">r'</span><span class="dv">$</span><span class="vs">q</span><span class="dv">$</span><span class="vs"> </span><span class="kw">(</span><span class="vs">m</span><span class="dv">$^</span><span class="vs">{-1}</span><span class="dv">$</span><span class="kw">)</span><span class="vs">'</span>)</span>
+<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="vs">r'</span><span class="dv">$</span><span class="vs">P</span><span class="kw">(</span><span class="vs">q</span><span class="kw">)</span><span class="dv">$</span><span class="vs">'</span>)</span>
 <span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>, which<span class="op">=</span><span class="st">'both'</span>)</span>
-<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a>ax.legend(loc<span class="op">=</span><span class="st">'upper right'</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a>ax.legend(loc<span class="op">=</span><span class="st">'upper right'</span>, fontsize<span class="op">=</span><span class="dv">8</span>)</span>
 <span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a>ax.set_ylim([<span class="fl">1e-6</span>, <span class="fl">1.2</span>])</span>
 <span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a><span class="co"># Right panel: Guinier plot (ln P vs q²)</span></span>
@@ -1026,10 +1023,10 @@ Particle size 500 nm  : Decay rate Γ =  1.4e+02 s⁻¹, τ(e⁻¹) ≈ 7147.77 
 <span id="cb9-66"><a href="#cb9-66" aria-hidden="true" tabindex="-1"></a>    ax.semilogy(q_squared, p_guinier, linewidth<span class="op">=</span><span class="fl">1.5</span>, linestyle<span class="op">=</span><span class="st">'--'</span>,</span>
 <span id="cb9-67"><a href="#cb9-67" aria-hidden="true" tabindex="-1"></a>                color<span class="op">=</span>color, alpha<span class="op">=</span><span class="fl">0.6</span>)</span>
 <span id="cb9-68"><a href="#cb9-68" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-69"><a href="#cb9-69" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="vs">r'</span><span class="dv">$</span><span class="vs">q</span><span class="dv">^</span><span class="vs">2</span><span class="dv">$</span><span class="vs"> </span><span class="kw">(</span><span class="vs">m</span><span class="dv">$^</span><span class="vs">{-2}</span><span class="dv">$</span><span class="kw">)</span><span class="vs">'</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
-<span id="cb9-70"><a href="#cb9-70" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="vs">r'</span><span class="dv">$</span><span class="vs">P</span><span class="kw">(</span><span class="vs">q</span><span class="kw">)</span><span class="dv">$</span><span class="vs">'</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb9-69"><a href="#cb9-69" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="vs">r'</span><span class="dv">$</span><span class="vs">q</span><span class="dv">^</span><span class="vs">2</span><span class="dv">$</span><span class="vs"> </span><span class="kw">(</span><span class="vs">m</span><span class="dv">$^</span><span class="vs">{-2}</span><span class="dv">$</span><span class="kw">)</span><span class="vs">'</span>)</span>
+<span id="cb9-70"><a href="#cb9-70" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="vs">r'</span><span class="dv">$</span><span class="vs">P</span><span class="kw">(</span><span class="vs">q</span><span class="kw">)</span><span class="dv">$</span><span class="vs">'</span>)</span>
 <span id="cb9-71"><a href="#cb9-71" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>, which<span class="op">=</span><span class="st">'both'</span>)</span>
-<span id="cb9-72"><a href="#cb9-72" aria-hidden="true" tabindex="-1"></a>ax.legend(loc<span class="op">=</span><span class="st">'upper right'</span>, fontsize<span class="op">=</span><span class="dv">10</span>, ncol<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb9-72"><a href="#cb9-72" aria-hidden="true" tabindex="-1"></a>ax.legend(loc<span class="op">=</span><span class="st">'upper right'</span>, fontsize<span class="op">=</span><span class="dv">8</span>, ncol<span class="op">=</span><span class="dv">2</span>)</span>
 <span id="cb9-73"><a href="#cb9-73" aria-hidden="true" tabindex="-1"></a>ax.set_ylim([<span class="fl">1e-4</span>, <span class="fl">1.5</span>])</span>
 <span id="cb9-74"><a href="#cb9-74" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-75"><a href="#cb9-75" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>

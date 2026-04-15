@@ -410,7 +410,7 @@ window.Quarto = {
 <section id="exercise-1-resolution-comparison" class="level3">
 <h3 class="anchored" data-anchor-id="exercise-1-resolution-comparison">Exercise 1: Resolution Comparison</h3>
 <p>Calculate and visualize how resolution improves with NA.</p>
-<div id="48a41421" class="cell" data-execution_count="2">
+<div id="aab88b62" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Resolution as function of NA</span></span>
@@ -481,7 +481,7 @@ air             :   275.0 nm
 <section id="exercise-2-psf-widefield-vs-confocal" class="level3">
 <h3 class="anchored" data-anchor-id="exercise-2-psf-widefield-vs-confocal">Exercise 2: PSF Widefield vs Confocal</h3>
 <p>Calculate and visualize the point spread function for widefield and confocal microscopy.</p>
-<div id="3ab62ecd" class="cell" data-execution_count="3">
+<div id="18a7bd2e" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> psf_widefield(r_um, NA, wavelength_um):</span>
@@ -599,7 +599,7 @@ air             :   275.0 nm
 <span id="cb3-113"><a href="#cb3-113" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Axial FWHM: </span><span class="sc">{</span><span class="fl">0.88</span> <span class="op">*</span> wavelength_um <span class="op">/</span> NA<span class="op">**</span><span class="dv">2</span> <span class="op">/</span> <span class="fl">2.5</span><span class="sc">:.4f}</span><span class="ss"> µm (confocal)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stderr">
-<pre><code>/var/folders/t4/_9qps8wj56jc60nwkr3nrcr00000gn/T/ipykernel_79367/3694894040.py:13: RuntimeWarning:
+<pre><code>/var/folders/t4/_9qps8wj56jc60nwkr3nrcr00000gn/T/ipykernel_10100/3694894040.py:13: RuntimeWarning:
 
 invalid value encountered in divide
 </code></pre>
@@ -617,7 +617,7 @@ Axial FWHM: 0.2228 µm (confocal)</code></pre>
 <section id="exercise-3-phase-contrast-simulation" class="level3">
 <h3 class="anchored" data-anchor-id="exercise-3-phase-contrast-simulation">Exercise 3: Phase Contrast Simulation</h3>
 <p>Simulate how phase contrast converts invisible phase objects into visible intensity variations.</p>
-<div id="ad15b860" class="cell" data-execution_count="4">
+<div id="41f58966" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a phase object (transparent cell)</span></span>
@@ -711,7 +711,7 @@ Phase contrast intensity range: [0.0742, 1.9321]
 Contrast improvement: inf×</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/var/folders/t4/_9qps8wj56jc60nwkr3nrcr00000gn/T/ipykernel_79367/2246918468.py:82: RuntimeWarning:
+<pre><code>/var/folders/t4/_9qps8wj56jc60nwkr3nrcr00000gn/T/ipykernel_10100/2246918468.py:82: RuntimeWarning:
 
 divide by zero encountered in scalar divide
 </code></pre>
@@ -722,7 +722,7 @@ divide by zero encountered in scalar divide
 <section id="exercise-4-abbe-imaging-simulation" class="level3">
 <h3 class="anchored" data-anchor-id="exercise-4-abbe-imaging-simulation">Exercise 4: Abbe Imaging Simulation</h3>
 <p>Simulate diffraction-limited imaging: create an object, apply frequency filtering, and reconstruct.</p>
-<div id="62b77699" class="cell" data-execution_count="5">
+<div id="61d23eb5" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create test object: two closely spaced dots (test resolution)</span></span>
@@ -808,7 +808,7 @@ Note: Higher NA captures more high-frequency details, improving resolution</code
 <section id="exercise-5-fluorescence-photon-counting" class="level3">
 <h3 class="anchored" data-anchor-id="exercise-5-fluorescence-photon-counting">Exercise 5: Fluorescence Photon Counting</h3>
 <p>Calculate detected photons from a single fluorescent molecule.</p>
-<div id="6149ff27" class="cell" data-execution_count="6">
+<div id="b36b9a5d" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fluorescence detection parameters</span></span>

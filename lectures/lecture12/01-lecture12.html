@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -592,7 +627,90 @@ window.Quarto = {
 <section id="b-sim-frequency-domain-visualization" class="level4">
 <h4 class="anchored" data-anchor-id="b-sim-frequency-domain-visualization">5.2b SIM Frequency-Domain Visualization</h4>
 <p>The following code demonstrates how SIM extends the frequency passband by shifting copies of the object spectrum:</p>
-<div id="4e825334" class="cell" data-execution_count="2">
+<div id="31184286" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># SIM frequency-domain illustration</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">4</span>, figsize<span class="op">=</span>get_size(<span class="dv">15</span>, <span class="dv">4</span>), layout<span class="op">=</span><span class="st">'constrained'</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Parameters</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>kmax <span class="op">=</span> <span class="dv">4</span>  <span class="co"># normalized frequency units</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>dk <span class="op">=</span> <span class="fl">0.1</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>k <span class="op">=</span> np.arange(<span class="op">-</span>kmax, kmax, dk)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Object spectrum (simulated as narrow band)</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>O_k <span class="op">=</span> np.exp(<span class="op">-</span>((k <span class="op">-</span> <span class="fl">1.2</span>)<span class="op">**</span><span class="dv">2</span> <span class="op">/</span> <span class="fl">0.5</span>)) <span class="op">+</span> np.exp(<span class="op">-</span>((k <span class="op">+</span> <span class="fl">1.2</span>)<span class="op">**</span><span class="dv">2</span> <span class="op">/</span> <span class="fl">0.5</span>))</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].plot(k, O_k, <span class="st">'b-'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">'Object spectrum $</span><span class="ch">\t</span><span class="st">ilde</span><span class="sc">{O}</span><span class="st">(k)$'</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].axvline(<span class="op">-</span><span class="dv">2</span><span class="op">*</span>np.pi<span class="op">*</span><span class="fl">0.5</span>, color<span class="op">=</span><span class="st">'r'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>, linewidth<span class="op">=</span><span class="fl">1.5</span>, label<span class="op">=</span><span class="st">'OTF cutoff $</span><span class="er">\</span><span class="st">pm 2</span><span class="er">\</span><span class="st">pi </span><span class="er">\</span><span class="st">cdot </span><span class="ch">\t</span><span class="st">ext</span><span class="sc">{NA}</span><span class="st">/</span><span class="er">\</span><span class="st">lambda$'</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].axvline(<span class="dv">2</span><span class="op">*</span>np.pi<span class="op">*</span><span class="fl">0.5</span>, color<span class="op">=</span><span class="st">'r'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>, linewidth<span class="op">=</span><span class="fl">1.5</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].fill_between(k, <span class="dv">0</span>, O_k, alpha<span class="op">=</span><span class="fl">0.2</span>, color<span class="op">=</span><span class="st">'b'</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_xlabel(<span class="st">'Spatial frequency $k$ (a.u.)'</span>)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_ylabel(<span class="st">'Amplitude'</span>)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_title(<span class="st">'Object Spectrum'</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_xlim(<span class="op">-</span>kmax, kmax)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_ylim(<span class="dv">0</span>, <span class="fl">1.2</span>)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Illumination pattern in Fourier space (delta functions)</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>k_ill <span class="op">=</span> <span class="fl">1.5</span>  <span class="co"># illumination wavevector</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>I_illum_k <span class="op">=</span> np.zeros_like(k)</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>I_illum_k[np.argmin(np.<span class="bu">abs</span>(k <span class="op">-</span> <span class="dv">0</span>))] <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>I_illum_k[np.argmin(np.<span class="bu">abs</span>(k <span class="op">-</span> k_ill))] <span class="op">=</span> <span class="fl">0.5</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>I_illum_k[np.argmin(np.<span class="bu">abs</span>(k <span class="op">+</span> k_ill))] <span class="op">=</span> <span class="fl">0.5</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].bar(k[::<span class="dv">5</span>], I_illum_k[::<span class="dv">5</span>], width<span class="op">=</span><span class="fl">0.3</span>, color<span class="op">=</span><span class="st">'g'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>, label<span class="op">=</span><span class="st">'Illum. pattern: $</span><span class="er">\</span><span class="st">delta(k) + </span><span class="er">\</span><span class="st">delta(k </span><span class="er">\</span><span class="st">mp k_</span><span class="sc">{ill}</span><span class="st">)$'</span>)</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].axvline(<span class="op">-</span><span class="dv">2</span><span class="op">*</span>np.pi<span class="op">*</span><span class="fl">0.5</span>, color<span class="op">=</span><span class="st">'r'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>, linewidth<span class="op">=</span><span class="fl">1.5</span>, label<span class="op">=</span><span class="st">'OTF cutoff'</span>)</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].axvline(<span class="dv">2</span><span class="op">*</span>np.pi<span class="op">*</span><span class="fl">0.5</span>, color<span class="op">=</span><span class="st">'r'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>, linewidth<span class="op">=</span><span class="fl">1.5</span>)</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_xlabel(<span class="st">'Spatial frequency $k$ (a.u.)'</span>)</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_ylabel(<span class="st">'Amplitude'</span>)</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_title(<span class="st">'Illumination Pattern</span><span class="ch">\n</span><span class="st">(Fourier space)'</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_xlim(<span class="op">-</span>kmax, kmax)</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_ylim(<span class="dv">0</span>, <span class="fl">1.2</span>)</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Convolution in frequency space (mixing)</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>I_mixed <span class="op">=</span> np.convolve(O_k, I_illum_k, mode<span class="op">=</span><span class="st">'same'</span>) <span class="op">*</span> dk</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>].plot(k, I_mixed, <span class="st">'purple'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">'Measured $</span><span class="ch">\t</span><span class="st">ilde</span><span class="sc">{I}</span><span class="st">(k) = </span><span class="ch">\t</span><span class="st">ilde</span><span class="sc">{O}</span><span class="st"> </span><span class="er">\</span><span class="st">otimes </span><span class="ch">\t</span><span class="st">ilde</span><span class="sc">{I}</span><span class="st">_</span><span class="sc">{illum}</span><span class="st">$'</span>)</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>].axvline(<span class="op">-</span><span class="dv">2</span><span class="op">*</span>np.pi<span class="op">*</span><span class="fl">0.5</span>, color<span class="op">=</span><span class="st">'r'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>, linewidth<span class="op">=</span><span class="fl">1.5</span>, label<span class="op">=</span><span class="st">'Diffraction cutoff'</span>)</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>].axvline(<span class="dv">2</span><span class="op">*</span>np.pi<span class="op">*</span><span class="fl">0.5</span>, color<span class="op">=</span><span class="st">'r'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>, linewidth<span class="op">=</span><span class="fl">1.5</span>)</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="co"># Shade regions brought into passband</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>].axvspan(<span class="op">-</span>kmax, <span class="op">-</span><span class="dv">2</span><span class="op">*</span>np.pi<span class="op">*</span><span class="fl">0.5</span>, alpha<span class="op">=</span><span class="fl">0.1</span>, color<span class="op">=</span><span class="st">'orange'</span>, label<span class="op">=</span><span class="st">'High-freq info</span><span class="ch">\n</span><span class="st">shifted into passband'</span>)</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>].axvspan(<span class="dv">2</span><span class="op">*</span>np.pi<span class="op">*</span><span class="fl">0.5</span>, kmax, alpha<span class="op">=</span><span class="fl">0.1</span>, color<span class="op">=</span><span class="st">'orange'</span>)</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>].fill_between(k, <span class="dv">0</span>, np.<span class="bu">abs</span>(I_mixed), alpha<span class="op">=</span><span class="fl">0.2</span>, color<span class="op">=</span><span class="st">'purple'</span>)</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>].set_xlabel(<span class="st">'Spatial frequency $k$ (a.u.)'</span>)</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>].set_ylabel(<span class="st">'Amplitude'</span>)</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>].set_title(<span class="st">'SIM Result: Frequency Mixing</span><span class="ch">\n</span><span class="st">(convolution)'</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>].set_xlim(<span class="op">-</span>kmax, kmax)</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>].set_ylim(<span class="dv">0</span>, <span class="fl">1.2</span>)</span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>].grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Reconstructed spectrum (after SIM processing)</span></span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a><span class="co"># In real SIM, we extract the shifted components and reconstruct extended spectrum</span></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>O_reconstructed <span class="op">=</span> np.zeros_like(k)</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a><span class="co"># Copy central lobe</span></span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>mask_central <span class="op">=</span> np.<span class="bu">abs</span>(k) <span class="op">&lt;</span> <span class="dv">2</span><span class="op">*</span>np.pi<span class="op">*</span><span class="fl">0.5</span></span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>O_reconstructed[mask_central] <span class="op">=</span> O_k[mask_central]</span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a><span class="co"># Add high-frequency copies shifted back</span></span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>shift <span class="op">=</span> k_ill</span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>mask_high_pos <span class="op">=</span> (k <span class="op">&gt;</span> <span class="dv">2</span><span class="op">*</span>np.pi<span class="op">*</span><span class="fl">0.5</span>) <span class="op">&amp;</span> (k <span class="op">&lt;</span> <span class="dv">2</span><span class="op">*</span>np.pi<span class="op">*</span><span class="fl">0.5</span> <span class="op">+</span> <span class="dv">2</span>)</span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>mask_high_neg <span class="op">=</span> (k <span class="op">&lt;</span> <span class="op">-</span><span class="dv">2</span><span class="op">*</span>np.pi<span class="op">*</span><span class="fl">0.5</span>) <span class="op">&amp;</span> (k <span class="op">&gt;</span> <span class="op">-</span><span class="dv">2</span><span class="op">*</span>np.pi<span class="op">*</span><span class="fl">0.5</span> <span class="op">-</span> <span class="dv">2</span>)</span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a>O_reconstructed[mask_high_pos] <span class="op">+=</span> np.maximum(<span class="dv">0</span>, I_mixed[mask_high_pos])</span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>O_reconstructed[mask_high_neg] <span class="op">+=</span> np.maximum(<span class="dv">0</span>, I_mixed[mask_high_neg])</span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">3</span>].plot(k, O_k, <span class="st">'b--'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>, linewidth<span class="op">=</span><span class="fl">1.5</span>, label<span class="op">=</span><span class="st">'Original object'</span>)</span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">3</span>].plot(k, O_reconstructed, <span class="st">'orange'</span>, linewidth<span class="op">=</span><span class="fl">2.5</span>, label<span class="op">=</span><span class="st">'SIM reconstruction</span><span class="ch">\n</span><span class="st">(extended spectrum)'</span>)</span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">3</span>].axvline(<span class="op">-</span><span class="dv">2</span><span class="op">*</span>np.pi<span class="op">*</span><span class="fl">0.5</span>, color<span class="op">=</span><span class="st">'r'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>, linewidth<span class="op">=</span><span class="fl">1.5</span>, label<span class="op">=</span><span class="st">'Original OTF'</span>)</span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">3</span>].axvline(<span class="dv">2</span><span class="op">*</span>np.pi<span class="op">*</span><span class="fl">0.5</span>, color<span class="op">=</span><span class="st">'r'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>, linewidth<span class="op">=</span><span class="fl">1.5</span>)</span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">3</span>].axvline(<span class="op">-</span><span class="dv">2</span><span class="op">*</span>k_ill, color<span class="op">=</span><span class="st">'darkgreen'</span>, linestyle<span class="op">=</span><span class="st">':'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>, linewidth<span class="op">=</span><span class="fl">1.5</span>, label<span class="op">=</span><span class="st">'SIM passband</span><span class="ch">\n</span><span class="st">(~2× extension)'</span>)</span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">3</span>].axvline(<span class="dv">2</span><span class="op">*</span>k_ill, color<span class="op">=</span><span class="st">'darkgreen'</span>, linestyle<span class="op">=</span><span class="st">':'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>, linewidth<span class="op">=</span><span class="fl">1.5</span>)</span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">3</span>].fill_between(k, <span class="dv">0</span>, O_reconstructed, alpha<span class="op">=</span><span class="fl">0.2</span>, color<span class="op">=</span><span class="st">'orange'</span>)</span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">3</span>].set_xlabel(<span class="st">'Spatial frequency $k$ (a.u.)'</span>)</span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">3</span>].set_ylabel(<span class="st">'Amplitude'</span>)</span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">3</span>].set_title(<span class="st">'SIM Reconstruction</span><span class="ch">\n</span><span class="st">(2× resolution gain)'</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">3</span>].set_xlim(<span class="op">-</span>kmax, kmax)</span>
+<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">3</span>].set_ylim(<span class="dv">0</span>, <span class="fl">1.2</span>)</span>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">3</span>].grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -831,7 +949,79 @@ Final superresolved image</code></pre>
 <h2 class="anchored" data-anchor-id="sec-python">9. Python Demonstrations</h2>
 <section id="demo-1-diffraction-limit-and-two-point-resolution" class="level3">
 <h3 class="anchored" data-anchor-id="demo-1-diffraction-limit-and-two-point-resolution">Demo 1: Diffraction Limit and Two-Point Resolution</h3>
-<div id="6d4b6fbb" class="cell" data-execution_count="3">
+<div id="d4bb9313" class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Demo 1: Point-spread function and two-point resolution</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> special</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Parameters</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>wavelength <span class="op">=</span> <span class="fl">550e-9</span>  <span class="co"># 550 nm (green light)</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>NA <span class="op">=</span> <span class="fl">1.4</span>  <span class="co"># oil immersion</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>pixel_size <span class="op">=</span> <span class="fl">10e-9</span>  <span class="co"># 10 nm pixels</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co"># PSF calculation</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> airy_disk(r, wavelength, NA):</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Intensity of Airy disk as function of radial distance r."""</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    u <span class="op">=</span> np.pi <span class="op">*</span> r <span class="op">/</span> (wavelength <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> NA))</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    u <span class="op">=</span> np.atleast_1d(u)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> np.errstate(divide<span class="op">=</span><span class="st">'ignore'</span>, invalid<span class="op">=</span><span class="st">'ignore'</span>):</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>        I <span class="op">=</span> (<span class="dv">2</span> <span class="op">*</span> special.j1(u) <span class="op">/</span> u) <span class="op">**</span> <span class="dv">2</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    I[u <span class="op">==</span> <span class="dv">0</span>] <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> I</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Create 2D spatial grid</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="op">-</span><span class="fl">400e-9</span>, <span class="fl">400e-9</span>, <span class="dv">200</span>)  <span class="co"># -400 to 400 nm</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> x.copy()</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>X, Y <span class="op">=</span> np.meshgrid(x, y)</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> np.sqrt(X<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> Y<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute Airy disk</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>I <span class="op">=</span> airy_disk(r, wavelength, NA)</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Diffraction limit (Abbe)</span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>d_abbe <span class="op">=</span> wavelength <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> NA)</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot</span></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, figsize<span class="op">=</span>get_size(<span class="dv">14</span>, <span class="dv">5</span>), layout<span class="op">=</span><span class="st">'constrained'</span>)</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a><span class="co"># PSF heatmap</span></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>im <span class="op">=</span> axes[<span class="dv">0</span>].contourf(X<span class="op">*</span><span class="fl">1e9</span>, Y<span class="op">*</span><span class="fl">1e9</span>, I, levels<span class="op">=</span><span class="dv">20</span>, cmap<span class="op">=</span><span class="st">'hot'</span>)</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].axhline(d_abbe<span class="op">*</span><span class="fl">1e9</span>, color<span class="op">=</span><span class="st">'cyan'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="ss">f'd_Abbe = </span><span class="sc">{</span>d_abbe<span class="op">*</span><span class="fl">1e9</span><span class="sc">:.0f}</span><span class="ss"> nm'</span>)</span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].axvline(d_abbe<span class="op">*</span><span class="fl">1e9</span>, color<span class="op">=</span><span class="st">'cyan'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_xlabel(<span class="st">'x (nm)'</span>)</span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_ylabel(<span class="st">'y (nm)'</span>)</span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_aspect(<span class="st">'equal'</span>)</span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a><span class="co"># 1D slice</span></span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].plot(r[<span class="dv">100</span>, :]<span class="op">*</span><span class="fl">1e9</span>, I[<span class="dv">100</span>, :], <span class="st">'b-'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">'Airy disk profile'</span>)</span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].axvline(d_abbe<span class="op">*</span><span class="fl">1e9</span>, color<span class="op">=</span><span class="st">'red'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="ss">f'd_Abbe = </span><span class="sc">{</span>d_abbe<span class="op">*</span><span class="fl">1e9</span><span class="sc">:.0f}</span><span class="ss"> nm'</span>)</span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_xlabel(<span class="st">'Radial distance r (nm)'</span>)</span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_ylabel(<span class="st">'Intensity'</span>)</span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a><span class="co"># Two-point resolution</span></span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a>separation <span class="op">=</span> np.array([<span class="dv">0</span>, <span class="fl">0.5</span>, <span class="fl">1.0</span>, <span class="fl">1.5</span>, <span class="fl">2.0</span>]) <span class="op">*</span> d_abbe <span class="op">*</span> <span class="fl">1e9</span>  <span class="co"># separations relative to Abbe limit</span></span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute PSF for two points separated in x</span></span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>x_points <span class="op">=</span> np.linspace(<span class="op">-</span><span class="fl">400e-9</span>, <span class="fl">400e-9</span>, <span class="dv">300</span>)</span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a>I_point1 <span class="op">=</span> airy_disk(np.<span class="bu">abs</span>(x_points <span class="op">-</span> (<span class="op">-</span>separation[<span class="dv">3</span>]<span class="op">*</span><span class="fl">1e-9</span><span class="op">/</span><span class="dv">2</span>)), wavelength, NA)</span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a>I_point2 <span class="op">=</span> airy_disk(np.<span class="bu">abs</span>(x_points <span class="op">-</span> (separation[<span class="dv">3</span>]<span class="op">*</span><span class="fl">1e-9</span><span class="op">/</span><span class="dv">2</span>)), wavelength, NA)</span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>].plot(x_points<span class="op">*</span><span class="fl">1e9</span>, I_point1 <span class="op">+</span> I_point2, <span class="st">'b-'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="ss">f'Separation = </span><span class="sc">{</span>separation[<span class="dv">3</span>]<span class="sc">:.0f}</span><span class="ss"> nm'</span>)</span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>].set_xlabel(<span class="st">'x (nm)'</span>)</span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>].set_ylabel(<span class="st">'Total Intensity'</span>)</span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>].grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Wavelength: </span><span class="sc">{</span>wavelength<span class="op">*</span><span class="fl">1e9</span><span class="sc">:.0f}</span><span class="ss"> nm"</span>)</span>
+<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Numerical Aperture: </span><span class="sc">{</span>NA<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Abbe diffraction limit: </span><span class="sc">{</span>d_abbe<span class="op">*</span><span class="fl">1e9</span><span class="sc">:.1f}</span><span class="ss"> nm"</span>)</span>
+<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Lateral resolution (Rayleigh): ~</span><span class="sc">{</span><span class="fl">0.61</span><span class="op">*</span>wavelength<span class="op">/</span>NA<span class="op">*</span><span class="fl">1e9</span><span class="sc">:.1f}</span><span class="ss"> nm"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -850,7 +1040,115 @@ Lateral resolution (Rayleigh): ~239.6 nm</code></pre>
 </section>
 <section id="demo-2-sted-doughnut-depletion" class="level3">
 <h3 class="anchored" data-anchor-id="demo-2-sted-doughnut-depletion">Demo 2: STED — Doughnut Depletion</h3>
-<div id="568a7c84" class="cell" data-execution_count="4">
+<div id="2a616f33" class="cell" data-execution_count="4">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Demo 2: STED principle — doughnut depletion</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> special</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Parameters</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>wavelength <span class="op">=</span> <span class="fl">550e-9</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>NA <span class="op">=</span> <span class="fl">1.4</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>wavelength_STED <span class="op">=</span> <span class="fl">660e-9</span>  <span class="co"># STED wavelength (red-shifted)</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Excitation PSF (Airy disk)</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> airy_disk(r, wavelength, NA):</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    u <span class="op">=</span> np.pi <span class="op">*</span> r <span class="op">/</span> (wavelength <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> NA))</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    u <span class="op">=</span> np.atleast_1d(u)</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> np.errstate(divide<span class="op">=</span><span class="st">'ignore'</span>, invalid<span class="op">=</span><span class="st">'ignore'</span>):</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>        I <span class="op">=</span> (<span class="dv">2</span> <span class="op">*</span> special.j1(u) <span class="op">/</span> u) <span class="op">**</span> <span class="dv">2</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    I[u <span class="op">==</span> <span class="dv">0</span>] <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> I</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Doughnut PSF (radial derivative of Airy disk, or Laguerre-Gaussian approximation)</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> doughnut_beam(r, wavelength, NA):</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Doughnut beam (vortex). Intensity ~ r^2 near origin."""</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>    u <span class="op">=</span> np.pi <span class="op">*</span> r <span class="op">/</span> (wavelength <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> NA))</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>    u <span class="op">=</span> np.atleast_1d(u)</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Doughnut = (r^2) * (Airy disk)</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> np.errstate(divide<span class="op">=</span><span class="st">'ignore'</span>, invalid<span class="op">=</span><span class="st">'ignore'</span>):</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>        I <span class="op">=</span> (u <span class="op">/</span> <span class="dv">2</span>) <span class="op">**</span> <span class="dv">2</span> <span class="op">*</span> (<span class="dv">2</span> <span class="op">*</span> special.j1(u) <span class="op">/</span> u) <span class="op">**</span> <span class="dv">2</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>    I[u <span class="op">==</span> <span class="dv">0</span>] <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> I</span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Create grid</span></span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="op">-</span><span class="fl">400e-9</span>, <span class="fl">400e-9</span>, <span class="dv">250</span>)</span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> x.copy()</span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>X, Y <span class="op">=</span> np.meshgrid(x, y)</span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> np.sqrt(X<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> Y<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Excitation and STED intensity profiles</span></span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>I_exc <span class="op">=</span> airy_disk(r, wavelength, NA)</span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>I_sted <span class="op">=</span> doughnut_beam(r, wavelength_STED, NA)</span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a><span class="co"># Normalize</span></span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>I_exc <span class="op">=</span> I_exc <span class="op">/</span> I_exc.<span class="bu">max</span>()</span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>I_sted <span class="op">=</span> I_sted <span class="op">/</span> I_sted.<span class="bu">max</span>()</span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a><span class="co"># Depletion: P_on = exp(- alpha * I_sted)</span></span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a>alpha <span class="op">=</span> <span class="fl">5.0</span>  <span class="co"># saturation parameter</span></span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a>P_on <span class="op">=</span> np.exp(<span class="op">-</span>alpha <span class="op">*</span> I_sted)</span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a><span class="co"># Effective PSF = excitation × depletion</span></span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a>I_eff <span class="op">=</span> I_exc <span class="op">*</span> P_on</span>
+<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot</span></span>
+<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">3</span>, figsize<span class="op">=</span>get_size(<span class="dv">15</span>, <span class="dv">9</span>), layout<span class="op">=</span><span class="st">'constrained'</span>)</span>
+<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a><span class="co"># Excitation PSF</span></span>
+<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a>im0 <span class="op">=</span> axes[<span class="dv">0</span>, <span class="dv">0</span>].contourf(X<span class="op">*</span><span class="fl">1e9</span>, Y<span class="op">*</span><span class="fl">1e9</span>, I_exc, levels<span class="op">=</span><span class="dv">20</span>, cmap<span class="op">=</span><span class="st">'Blues'</span>)</span>
+<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>, <span class="dv">0</span>].set_xlabel(<span class="st">'x (nm)'</span>)</span>
+<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>, <span class="dv">0</span>].set_ylabel(<span class="st">'y (nm)'</span>)</span>
+<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>, <span class="dv">0</span>].set_aspect(<span class="st">'equal'</span>)</span>
+<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a><span class="co"># STED doughnut</span></span>
+<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a>im1 <span class="op">=</span> axes[<span class="dv">0</span>, <span class="dv">1</span>].contourf(X<span class="op">*</span><span class="fl">1e9</span>, Y<span class="op">*</span><span class="fl">1e9</span>, I_sted, levels<span class="op">=</span><span class="dv">20</span>, cmap<span class="op">=</span><span class="st">'Reds'</span>)</span>
+<span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>, <span class="dv">1</span>].set_xlabel(<span class="st">'x (nm)'</span>)</span>
+<span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>, <span class="dv">1</span>].set_ylabel(<span class="st">'y (nm)'</span>)</span>
+<span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>, <span class="dv">1</span>].set_aspect(<span class="st">'equal'</span>)</span>
+<span id="cb5-66"><a href="#cb5-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-67"><a href="#cb5-67" aria-hidden="true" tabindex="-1"></a><span class="co"># Depletion factor</span></span>
+<span id="cb5-68"><a href="#cb5-68" aria-hidden="true" tabindex="-1"></a>im2 <span class="op">=</span> axes[<span class="dv">0</span>, <span class="dv">2</span>].contourf(X<span class="op">*</span><span class="fl">1e9</span>, Y<span class="op">*</span><span class="fl">1e9</span>, P_on, levels<span class="op">=</span><span class="dv">20</span>, cmap<span class="op">=</span><span class="st">'Greens'</span>)</span>
+<span id="cb5-69"><a href="#cb5-69" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>, <span class="dv">2</span>].set_xlabel(<span class="st">'x (nm)'</span>)</span>
+<span id="cb5-70"><a href="#cb5-70" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>, <span class="dv">2</span>].set_ylabel(<span class="st">'y (nm)'</span>)</span>
+<span id="cb5-71"><a href="#cb5-71" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>, <span class="dv">2</span>].set_aspect(<span class="st">'equal'</span>)</span>
+<span id="cb5-72"><a href="#cb5-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-73"><a href="#cb5-73" aria-hidden="true" tabindex="-1"></a><span class="co"># Effective PSF</span></span>
+<span id="cb5-74"><a href="#cb5-74" aria-hidden="true" tabindex="-1"></a>im3 <span class="op">=</span> axes[<span class="dv">1</span>, <span class="dv">0</span>].contourf(X<span class="op">*</span><span class="fl">1e9</span>, Y<span class="op">*</span><span class="fl">1e9</span>, I_eff, levels<span class="op">=</span><span class="dv">20</span>, cmap<span class="op">=</span><span class="st">'hot'</span>)</span>
+<span id="cb5-75"><a href="#cb5-75" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>, <span class="dv">0</span>].set_xlabel(<span class="st">'x (nm)'</span>)</span>
+<span id="cb5-76"><a href="#cb5-76" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>, <span class="dv">0</span>].set_ylabel(<span class="st">'y (nm)'</span>)</span>
+<span id="cb5-77"><a href="#cb5-77" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>, <span class="dv">0</span>].set_aspect(<span class="st">'equal'</span>)</span>
+<span id="cb5-78"><a href="#cb5-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-79"><a href="#cb5-79" aria-hidden="true" tabindex="-1"></a><span class="co"># 1D profiles</span></span>
+<span id="cb5-80"><a href="#cb5-80" aria-hidden="true" tabindex="-1"></a>r_1d <span class="op">=</span> r[<span class="dv">125</span>, :]</span>
+<span id="cb5-81"><a href="#cb5-81" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>, <span class="dv">1</span>].plot(r_1d<span class="op">*</span><span class="fl">1e9</span>, I_exc[<span class="dv">125</span>, :], <span class="st">'b-'</span>, linewidth<span class="op">=</span><span class="fl">2.5</span>, label<span class="op">=</span><span class="st">'Excitation PSF'</span>)</span>
+<span id="cb5-82"><a href="#cb5-82" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>, <span class="dv">1</span>].plot(r_1d<span class="op">*</span><span class="fl">1e9</span>, I_eff[<span class="dv">125</span>, :], <span class="st">'r-'</span>, linewidth<span class="op">=</span><span class="fl">2.5</span>, label<span class="op">=</span><span class="st">'Effective PSF (STED)'</span>)</span>
+<span id="cb5-83"><a href="#cb5-83" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>, <span class="dv">1</span>].set_xlabel(<span class="st">'Radial distance (nm)'</span>)</span>
+<span id="cb5-84"><a href="#cb5-84" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>, <span class="dv">1</span>].set_ylabel(<span class="st">'Intensity'</span>)</span>
+<span id="cb5-85"><a href="#cb5-85" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>, <span class="dv">1</span>].grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb5-86"><a href="#cb5-86" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>, <span class="dv">1</span>].set_xlim(<span class="dv">0</span>, <span class="dv">300</span>)</span>
+<span id="cb5-87"><a href="#cb5-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-88"><a href="#cb5-88" aria-hidden="true" tabindex="-1"></a><span class="co"># STED saturation factor vs. resolution improvement</span></span>
+<span id="cb5-89"><a href="#cb5-89" aria-hidden="true" tabindex="-1"></a>I_sted_levels <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">50</span>)</span>
+<span id="cb5-90"><a href="#cb5-90" aria-hidden="true" tabindex="-1"></a>shrinking_factor <span class="op">=</span> <span class="dv">1</span> <span class="op">/</span> np.sqrt(<span class="dv">1</span> <span class="op">+</span> I_sted_levels)</span>
+<span id="cb5-91"><a href="#cb5-91" aria-hidden="true" tabindex="-1"></a>d_sted <span class="op">=</span> (wavelength <span class="op">/</span> (<span class="dv">2</span><span class="op">*</span>NA)) <span class="op">/</span> shrinking_factor <span class="op">*</span> <span class="fl">1e9</span>  <span class="co"># in nm</span></span>
+<span id="cb5-92"><a href="#cb5-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-93"><a href="#cb5-93" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>, <span class="dv">2</span>].plot(I_sted_levels, d_sted, <span class="st">'g-'</span>, linewidth<span class="op">=</span><span class="fl">2.5</span>)</span>
+<span id="cb5-94"><a href="#cb5-94" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>, <span class="dv">2</span>].set_xlabel(<span class="st">'$I_{</span><span class="ch">\\</span><span class="st">text</span><span class="sc">{STED}</span><span class="st">} / I_{</span><span class="ch">\\</span><span class="st">text</span><span class="sc">{sat}</span><span class="st">}$'</span>)</span>
+<span id="cb5-95"><a href="#cb5-95" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>, <span class="dv">2</span>].set_ylabel(<span class="st">'$d$ (nm)'</span>)</span>
+<span id="cb5-96"><a href="#cb5-96" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>, <span class="dv">2</span>].grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb5-97"><a href="#cb5-97" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>, <span class="dv">2</span>].axhline(wavelength<span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>NA)<span class="op">*</span><span class="fl">1e9</span>, color<span class="op">=</span><span class="st">'gray'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>)</span>
+<span id="cb5-98"><a href="#cb5-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-99"><a href="#cb5-99" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb5-100"><a href="#cb5-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-101"><a href="#cb5-101" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"STED wavelength: </span><span class="sc">{</span>wavelength_STED<span class="op">*</span><span class="fl">1e9</span><span class="sc">:.0f}</span><span class="ss"> nm"</span>)</span>
+<span id="cb5-102"><a href="#cb5-102" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Saturation parameter α: </span><span class="sc">{</span>alpha<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb5-103"><a href="#cb5-103" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Diffraction-limited resolution: </span><span class="sc">{</span>wavelength<span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>NA)<span class="op">*</span><span class="fl">1e9</span><span class="sc">:.1f}</span><span class="ss"> nm"</span>)</span>
+<span id="cb5-104"><a href="#cb5-104" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"STED resolution (α=</span><span class="sc">{</span>alpha<span class="sc">}</span><span class="ss">): </span><span class="sc">{</span>(wavelength<span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>NA)) <span class="op">/</span> np<span class="sc">.</span>sqrt(<span class="dv">1</span> <span class="op">+</span> alpha)<span class="op">*</span><span class="fl">1e9</span><span class="sc">:.1f}</span><span class="ss"> nm"</span>)</span>
+<span id="cb5-105"><a href="#cb5-105" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Resolution improvement factor: </span><span class="sc">{</span>np<span class="sc">.</span>sqrt(<span class="dv">1</span> <span class="op">+</span> alpha)<span class="sc">:.2f}</span><span class="ss">×"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -870,7 +1168,190 @@ Resolution improvement factor: 2.45×</code></pre>
 </section>
 <section id="demo-3-smlm-simulation-single-molecule-blinking-and-reconstruction" class="level3">
 <h3 class="anchored" data-anchor-id="demo-3-smlm-simulation-single-molecule-blinking-and-reconstruction">Demo 3: SMLM Simulation — Single-Molecule Blinking and Reconstruction</h3>
-<div id="a77f686d" class="cell" data-execution_count="5">
+<div id="f800f76b" class="cell" data-execution_count="5">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Demo 3: Single-molecule localization microscopy (SMLM) simulation</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> optimize</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.ndimage <span class="im">import</span> gaussian_filter</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Parameters</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>num_molecules <span class="op">=</span> <span class="dv">50</span>  <span class="co"># number of molecules in sample</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>image_size <span class="op">=</span> <span class="dv">64</span>  <span class="co"># pixels</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>pixel_size <span class="op">=</span> <span class="fl">100e-9</span>  <span class="co"># 100 nm per pixel</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>num_frames <span class="op">=</span> <span class="dv">200</span>  <span class="co"># frames to acquire</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>psf_sigma <span class="op">=</span> <span class="fl">1.5</span>  <span class="co"># PSF width in pixels</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>photons_per_molecule <span class="op">=</span> <span class="dv">800</span>  <span class="co"># photons per bright molecule</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>background_level <span class="op">=</span> <span class="dv">10</span>  <span class="co"># background photons per pixel</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Create sample: random positions</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>positions <span class="op">=</span> np.random.rand(num_molecules, <span class="dv">2</span>) <span class="op">*</span> image_size</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="co"># PSF function</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> psf_2d(y, x, y0, x0, sigma, A, bg):</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""2D Gaussian PSF."""</span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> A <span class="op">*</span> np.exp(<span class="op">-</span>((y <span class="op">-</span> y0)<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> (x <span class="op">-</span> x0)<span class="op">**</span><span class="dv">2</span>) <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> sigma<span class="op">**</span><span class="dv">2</span>)) <span class="op">+</span> bg</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate synthetic movie (stochastic on/off states)</span></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>movie <span class="op">=</span> np.zeros((num_frames, image_size, image_size))</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>active_per_frame <span class="op">=</span> np.zeros((num_frames, num_molecules), dtype<span class="op">=</span><span class="bu">bool</span>)</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> frame <span class="kw">in</span> <span class="bu">range</span>(num_frames):</span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Randomly activate ~5 molecules per frame</span></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>    active_per_frame[frame, :] <span class="op">=</span> np.random.rand(num_molecules) <span class="op">&lt;</span> <span class="dv">5</span> <span class="op">/</span> num_molecules</span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Generate image for this frame</span></span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>    img <span class="op">=</span> np.random.poisson(background_level, (image_size, image_size)).astype(<span class="bu">float</span>)</span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> mol_idx <span class="kw">in</span> <span class="bu">range</span>(num_molecules):</span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> active_per_frame[frame, mol_idx]:</span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>            y_true, x_true <span class="op">=</span> positions[mol_idx]</span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Create PSF pattern</span></span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a>            y_idx <span class="op">=</span> np.arange(image_size)</span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a>            x_idx <span class="op">=</span> np.arange(image_size)</span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a>            YY, XX <span class="op">=</span> np.meshgrid(y_idx, x_idx, indexing<span class="op">=</span><span class="st">'ij'</span>)</span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a>            psf <span class="op">=</span> psf_2d(YY, XX, y_true, x_true, psf_sigma, photons_per_molecule, <span class="dv">0</span>)</span>
+<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a>            img <span class="op">+=</span> np.random.poisson(psf)</span>
+<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a>    movie[frame] <span class="op">=</span> img</span>
+<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a><span class="co"># Localization algorithm: detect and localize molecules frame-by-frame</span></span>
+<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a><span class="co"># We use intensity-weighted centroid fitting (simple, fast, and pedagogically clear)</span></span>
+<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a>localizations <span class="op">=</span> []</span>
+<span id="cb7-53"><a href="#cb7-53" aria-hidden="true" tabindex="-1"></a>kernel_size <span class="op">=</span> <span class="dv">5</span></span>
+<span id="cb7-54"><a href="#cb7-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-55"><a href="#cb7-55" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> frame <span class="kw">in</span> <span class="bu">range</span>(num_frames):</span>
+<span id="cb7-56"><a href="#cb7-56" aria-hidden="true" tabindex="-1"></a>    img <span class="op">=</span> movie[frame]</span>
+<span id="cb7-57"><a href="#cb7-57" aria-hidden="true" tabindex="-1"></a>    threshold <span class="op">=</span> background_level <span class="op">+</span> <span class="dv">3</span> <span class="op">*</span> np.sqrt(background_level)</span>
+<span id="cb7-58"><a href="#cb7-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-59"><a href="#cb7-59" aria-hidden="true" tabindex="-1"></a>    y_range <span class="op">=</span> np.arange(kernel_size, image_size <span class="op">-</span> kernel_size)</span>
+<span id="cb7-60"><a href="#cb7-60" aria-hidden="true" tabindex="-1"></a>    x_range <span class="op">=</span> np.arange(kernel_size, image_size <span class="op">-</span> kernel_size)</span>
+<span id="cb7-61"><a href="#cb7-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-62"><a href="#cb7-62" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> y_peak <span class="kw">in</span> y_range[::<span class="dv">2</span>]:  <span class="co"># stride for speed</span></span>
+<span id="cb7-63"><a href="#cb7-63" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> x_peak <span class="kw">in</span> x_range[::<span class="dv">2</span>]:</span>
+<span id="cb7-64"><a href="#cb7-64" aria-hidden="true" tabindex="-1"></a>            local_patch <span class="op">=</span> img[y_peak<span class="op">-</span>kernel_size:y_peak<span class="op">+</span>kernel_size<span class="op">+</span><span class="dv">1</span>,</span>
+<span id="cb7-65"><a href="#cb7-65" aria-hidden="true" tabindex="-1"></a>                             x_peak<span class="op">-</span>kernel_size:x_peak<span class="op">+</span>kernel_size<span class="op">+</span><span class="dv">1</span>]</span>
+<span id="cb7-66"><a href="#cb7-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-67"><a href="#cb7-67" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> local_patch.<span class="bu">max</span>() <span class="op">&gt;</span> threshold <span class="kw">and</span> <span class="op">\</span></span>
+<span id="cb7-68"><a href="#cb7-68" aria-hidden="true" tabindex="-1"></a>               local_patch.<span class="bu">max</span>() <span class="op">==</span> img[y_peak, x_peak]:</span>
+<span id="cb7-69"><a href="#cb7-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-70"><a href="#cb7-70" aria-hidden="true" tabindex="-1"></a>                <span class="co"># Intensity-weighted centroid localization</span></span>
+<span id="cb7-71"><a href="#cb7-71" aria-hidden="true" tabindex="-1"></a>                yy_local <span class="op">=</span> np.arange(local_patch.shape[<span class="dv">0</span>])</span>
+<span id="cb7-72"><a href="#cb7-72" aria-hidden="true" tabindex="-1"></a>                xx_local <span class="op">=</span> np.arange(local_patch.shape[<span class="dv">1</span>])</span>
+<span id="cb7-73"><a href="#cb7-73" aria-hidden="true" tabindex="-1"></a>                YY_local, XX_local <span class="op">=</span> np.meshgrid(yy_local, xx_local, indexing<span class="op">=</span><span class="st">'ij'</span>)</span>
+<span id="cb7-74"><a href="#cb7-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-75"><a href="#cb7-75" aria-hidden="true" tabindex="-1"></a>                <span class="co"># Subtract background estimate</span></span>
+<span id="cb7-76"><a href="#cb7-76" aria-hidden="true" tabindex="-1"></a>                patch_bg <span class="op">=</span> np.median(local_patch)</span>
+<span id="cb7-77"><a href="#cb7-77" aria-hidden="true" tabindex="-1"></a>                patch_signal <span class="op">=</span> np.maximum(local_patch <span class="op">-</span> patch_bg, <span class="dv">0</span>)</span>
+<span id="cb7-78"><a href="#cb7-78" aria-hidden="true" tabindex="-1"></a>                total_signal <span class="op">=</span> patch_signal.<span class="bu">sum</span>()</span>
+<span id="cb7-79"><a href="#cb7-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-80"><a href="#cb7-80" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> total_signal <span class="op">&gt;</span> <span class="dv">50</span>:</span>
+<span id="cb7-81"><a href="#cb7-81" aria-hidden="true" tabindex="-1"></a>                    <span class="co"># Centroid position within patch</span></span>
+<span id="cb7-82"><a href="#cb7-82" aria-hidden="true" tabindex="-1"></a>                    y_centroid <span class="op">=</span> np.<span class="bu">sum</span>(YY_local <span class="op">*</span> patch_signal) <span class="op">/</span> total_signal</span>
+<span id="cb7-83"><a href="#cb7-83" aria-hidden="true" tabindex="-1"></a>                    x_centroid <span class="op">=</span> np.<span class="bu">sum</span>(XX_local <span class="op">*</span> patch_signal) <span class="op">/</span> total_signal</span>
+<span id="cb7-84"><a href="#cb7-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-85"><a href="#cb7-85" aria-hidden="true" tabindex="-1"></a>                    <span class="co"># Convert to global coordinates</span></span>
+<span id="cb7-86"><a href="#cb7-86" aria-hidden="true" tabindex="-1"></a>                    y_fit <span class="op">=</span> y_peak <span class="op">-</span> kernel_size <span class="op">+</span> y_centroid</span>
+<span id="cb7-87"><a href="#cb7-87" aria-hidden="true" tabindex="-1"></a>                    x_fit <span class="op">=</span> x_peak <span class="op">-</span> kernel_size <span class="op">+</span> x_centroid</span>
+<span id="cb7-88"><a href="#cb7-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-89"><a href="#cb7-89" aria-hidden="true" tabindex="-1"></a>                    <span class="co"># Estimate photon count from total signal</span></span>
+<span id="cb7-90"><a href="#cb7-90" aria-hidden="true" tabindex="-1"></a>                    N_photons <span class="op">=</span> total_signal</span>
+<span id="cb7-91"><a href="#cb7-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-92"><a href="#cb7-92" aria-hidden="true" tabindex="-1"></a>                    <span class="co"># Localization uncertainty (Thompson formula)</span></span>
+<span id="cb7-93"><a href="#cb7-93" aria-hidden="true" tabindex="-1"></a>                    sigma_loc <span class="op">=</span> psf_sigma <span class="op">*</span> pixel_size <span class="op">/</span> np.sqrt(N_photons)</span>
+<span id="cb7-94"><a href="#cb7-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-95"><a href="#cb7-95" aria-hidden="true" tabindex="-1"></a>                    localizations.append({</span>
+<span id="cb7-96"><a href="#cb7-96" aria-hidden="true" tabindex="-1"></a>                        <span class="st">'y'</span>: y_fit,</span>
+<span id="cb7-97"><a href="#cb7-97" aria-hidden="true" tabindex="-1"></a>                        <span class="st">'x'</span>: x_fit,</span>
+<span id="cb7-98"><a href="#cb7-98" aria-hidden="true" tabindex="-1"></a>                        <span class="st">'photons'</span>: N_photons,</span>
+<span id="cb7-99"><a href="#cb7-99" aria-hidden="true" tabindex="-1"></a>                        <span class="st">'sigma_loc'</span>: sigma_loc,</span>
+<span id="cb7-100"><a href="#cb7-100" aria-hidden="true" tabindex="-1"></a>                        <span class="st">'frame'</span>: frame</span>
+<span id="cb7-101"><a href="#cb7-101" aria-hidden="true" tabindex="-1"></a>                    })</span>
+<span id="cb7-102"><a href="#cb7-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-103"><a href="#cb7-103" aria-hidden="true" tabindex="-1"></a><span class="co"># Reconstruct superresolved image</span></span>
+<span id="cb7-104"><a href="#cb7-104" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="bu">len</span>(localizations) <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb7-105"><a href="#cb7-105" aria-hidden="true" tabindex="-1"></a>    loc_array <span class="op">=</span> np.array([(loc[<span class="st">'y'</span>], loc[<span class="st">'x'</span>], loc[<span class="st">'sigma_loc'</span>])</span>
+<span id="cb7-106"><a href="#cb7-106" aria-hidden="true" tabindex="-1"></a>                              <span class="cf">for</span> loc <span class="kw">in</span> localizations])</span>
+<span id="cb7-107"><a href="#cb7-107" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb7-108"><a href="#cb7-108" aria-hidden="true" tabindex="-1"></a>    loc_array <span class="op">=</span> np.zeros((<span class="dv">0</span>, <span class="dv">3</span>))</span>
+<span id="cb7-109"><a href="#cb7-109" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-110"><a href="#cb7-110" aria-hidden="true" tabindex="-1"></a>sr_image <span class="op">=</span> np.zeros((image_size, image_size))</span>
+<span id="cb7-111"><a href="#cb7-111" aria-hidden="true" tabindex="-1"></a>pixel_size_sr <span class="op">=</span> pixel_size  <span class="co"># same as detection pixel size</span></span>
+<span id="cb7-112"><a href="#cb7-112" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-113"><a href="#cb7-113" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> loc <span class="kw">in</span> loc_array:</span>
+<span id="cb7-114"><a href="#cb7-114" aria-hidden="true" tabindex="-1"></a>    y_loc, x_loc, sigma <span class="op">=</span> loc</span>
+<span id="cb7-115"><a href="#cb7-115" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-116"><a href="#cb7-116" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Paint Gaussian at this location</span></span>
+<span id="cb7-117"><a href="#cb7-117" aria-hidden="true" tabindex="-1"></a>    y_idx <span class="op">=</span> np.arange(image_size)</span>
+<span id="cb7-118"><a href="#cb7-118" aria-hidden="true" tabindex="-1"></a>    x_idx <span class="op">=</span> np.arange(image_size)</span>
+<span id="cb7-119"><a href="#cb7-119" aria-hidden="true" tabindex="-1"></a>    YY, XX <span class="op">=</span> np.meshgrid(y_idx, x_idx, indexing<span class="op">=</span><span class="st">'ij'</span>)</span>
+<span id="cb7-120"><a href="#cb7-120" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-121"><a href="#cb7-121" aria-hidden="true" tabindex="-1"></a>    gaussian <span class="op">=</span> np.exp(<span class="op">-</span>((YY <span class="op">-</span> y_loc)<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> (XX <span class="op">-</span> x_loc)<span class="op">**</span><span class="dv">2</span>) <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> sigma<span class="op">**</span><span class="dv">2</span>))</span>
+<span id="cb7-122"><a href="#cb7-122" aria-hidden="true" tabindex="-1"></a>    sr_image <span class="op">+=</span> gaussian</span>
+<span id="cb7-123"><a href="#cb7-123" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-124"><a href="#cb7-124" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot</span></span>
+<span id="cb7-125"><a href="#cb7-125" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">3</span>, figsize<span class="op">=</span>get_size(<span class="dv">15</span>, <span class="dv">9</span>), layout<span class="op">=</span><span class="st">'constrained'</span>)</span>
+<span id="cb7-126"><a href="#cb7-126" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-127"><a href="#cb7-127" aria-hidden="true" tabindex="-1"></a><span class="co"># Raw widefield image (average of first 5 frames)</span></span>
+<span id="cb7-128"><a href="#cb7-128" aria-hidden="true" tabindex="-1"></a>raw_avg <span class="op">=</span> movie[:<span class="dv">5</span>].mean(axis<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb7-129"><a href="#cb7-129" aria-hidden="true" tabindex="-1"></a>im0 <span class="op">=</span> axes[<span class="dv">0</span>, <span class="dv">0</span>].imshow(raw_avg, cmap<span class="op">=</span><span class="st">'viridis'</span>, origin<span class="op">=</span><span class="st">'lower'</span>)</span>
+<span id="cb7-130"><a href="#cb7-130" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>, <span class="dv">0</span>].set_xlabel(<span class="st">'x (pixels)'</span>)</span>
+<span id="cb7-131"><a href="#cb7-131" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>, <span class="dv">0</span>].set_ylabel(<span class="st">'y (pixels)'</span>)</span>
+<span id="cb7-132"><a href="#cb7-132" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-133"><a href="#cb7-133" aria-hidden="true" tabindex="-1"></a><span class="co"># Example single frame with bright molecules</span></span>
+<span id="cb7-134"><a href="#cb7-134" aria-hidden="true" tabindex="-1"></a>example_frame <span class="op">=</span> <span class="dv">50</span></span>
+<span id="cb7-135"><a href="#cb7-135" aria-hidden="true" tabindex="-1"></a>im1 <span class="op">=</span> axes[<span class="dv">0</span>, <span class="dv">1</span>].imshow(movie[example_frame], cmap<span class="op">=</span><span class="st">'hot'</span>, origin<span class="op">=</span><span class="st">'lower'</span>)</span>
+<span id="cb7-136"><a href="#cb7-136" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>, <span class="dv">1</span>].set_xlabel(<span class="st">'x (pixels)'</span>)</span>
+<span id="cb7-137"><a href="#cb7-137" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>, <span class="dv">1</span>].set_ylabel(<span class="st">'y (pixels)'</span>)</span>
+<span id="cb7-138"><a href="#cb7-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-139"><a href="#cb7-139" aria-hidden="true" tabindex="-1"></a><span class="co"># Histogram of localization precisions</span></span>
+<span id="cb7-140"><a href="#cb7-140" aria-hidden="true" tabindex="-1"></a>sigmas <span class="op">=</span> np.array([loc[<span class="st">'sigma_loc'</span>]<span class="op">*</span><span class="fl">1e9</span> <span class="cf">for</span> loc <span class="kw">in</span> localizations]) <span class="cf">if</span> <span class="bu">len</span>(localizations) <span class="op">&gt;</span> <span class="dv">0</span> <span class="cf">else</span> np.array([<span class="fl">0.0</span>])</span>
+<span id="cb7-141"><a href="#cb7-141" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>, <span class="dv">2</span>].hist(sigmas, bins<span class="op">=</span><span class="bu">max</span>(<span class="dv">1</span>, <span class="bu">min</span>(<span class="dv">30</span>, <span class="bu">len</span>(sigmas))), edgecolor<span class="op">=</span><span class="st">'black'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb7-142"><a href="#cb7-142" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>, <span class="dv">2</span>].set_xlabel(<span class="st">'Localization Precision (nm)'</span>)</span>
+<span id="cb7-143"><a href="#cb7-143" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>, <span class="dv">2</span>].set_ylabel(<span class="st">'Count'</span>)</span>
+<span id="cb7-144"><a href="#cb7-144" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>, <span class="dv">2</span>].grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb7-145"><a href="#cb7-145" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-146"><a href="#cb7-146" aria-hidden="true" tabindex="-1"></a><span class="co"># Scatter plot of localizations colored by frame</span></span>
+<span id="cb7-147"><a href="#cb7-147" aria-hidden="true" tabindex="-1"></a>frames <span class="op">=</span> np.array([loc[<span class="st">'frame'</span>] <span class="cf">for</span> loc <span class="kw">in</span> localizations]) <span class="cf">if</span> <span class="bu">len</span>(localizations) <span class="op">&gt;</span> <span class="dv">0</span> <span class="cf">else</span> np.array([<span class="dv">0</span>])</span>
+<span id="cb7-148"><a href="#cb7-148" aria-hidden="true" tabindex="-1"></a>scatter <span class="op">=</span> axes[<span class="dv">1</span>, <span class="dv">0</span>].scatter(loc_array[:, <span class="dv">1</span>] <span class="cf">if</span> <span class="bu">len</span>(loc_array) <span class="op">&gt;</span> <span class="dv">0</span> <span class="cf">else</span> [],</span>
+<span id="cb7-149"><a href="#cb7-149" aria-hidden="true" tabindex="-1"></a>                            loc_array[:, <span class="dv">0</span>] <span class="cf">if</span> <span class="bu">len</span>(loc_array) <span class="op">&gt;</span> <span class="dv">0</span> <span class="cf">else</span> [],</span>
+<span id="cb7-150"><a href="#cb7-150" aria-hidden="true" tabindex="-1"></a>                            c<span class="op">=</span>frames <span class="cf">if</span> <span class="bu">len</span>(loc_array) <span class="op">&gt;</span> <span class="dv">0</span> <span class="cf">else</span> [], cmap<span class="op">=</span><span class="st">'viridis'</span>, s<span class="op">=</span><span class="dv">1</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb7-151"><a href="#cb7-151" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>, <span class="dv">0</span>].set_xlabel(<span class="st">'x (pixels)'</span>)</span>
+<span id="cb7-152"><a href="#cb7-152" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>, <span class="dv">0</span>].set_ylabel(<span class="st">'y (pixels)'</span>)</span>
+<span id="cb7-153"><a href="#cb7-153" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>, <span class="dv">0</span>].set_xlim(<span class="dv">0</span>, image_size)</span>
+<span id="cb7-154"><a href="#cb7-154" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>, <span class="dv">0</span>].set_ylim(<span class="dv">0</span>, image_size)</span>
+<span id="cb7-155"><a href="#cb7-155" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>, <span class="dv">0</span>].set_aspect(<span class="st">'equal'</span>)</span>
+<span id="cb7-156"><a href="#cb7-156" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-157"><a href="#cb7-157" aria-hidden="true" tabindex="-1"></a><span class="co"># Superresolved reconstruction</span></span>
+<span id="cb7-158"><a href="#cb7-158" aria-hidden="true" tabindex="-1"></a>im_sr <span class="op">=</span> axes[<span class="dv">1</span>, <span class="dv">1</span>].imshow(sr_image, cmap<span class="op">=</span><span class="st">'hot'</span>, origin<span class="op">=</span><span class="st">'lower'</span>)</span>
+<span id="cb7-159"><a href="#cb7-159" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>, <span class="dv">1</span>].set_xlabel(<span class="st">'x (pixels)'</span>)</span>
+<span id="cb7-160"><a href="#cb7-160" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>, <span class="dv">1</span>].set_ylabel(<span class="st">'y (pixels)'</span>)</span>
+<span id="cb7-161"><a href="#cb7-161" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-162"><a href="#cb7-162" aria-hidden="true" tabindex="-1"></a><span class="co"># Comparison: widefield vs. superresolved (normalized)</span></span>
+<span id="cb7-163"><a href="#cb7-163" aria-hidden="true" tabindex="-1"></a>raw_normalized <span class="op">=</span> raw_avg <span class="op">/</span> raw_avg.<span class="bu">max</span>()</span>
+<span id="cb7-164"><a href="#cb7-164" aria-hidden="true" tabindex="-1"></a>sr_max <span class="op">=</span> sr_image.<span class="bu">max</span>() <span class="cf">if</span> sr_image.<span class="bu">max</span>() <span class="op">&gt;</span> <span class="dv">0</span> <span class="cf">else</span> <span class="fl">1.0</span></span>
+<span id="cb7-165"><a href="#cb7-165" aria-hidden="true" tabindex="-1"></a>sr_normalized <span class="op">=</span> sr_image <span class="op">/</span> sr_max</span>
+<span id="cb7-166"><a href="#cb7-166" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-167"><a href="#cb7-167" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>, <span class="dv">2</span>].plot(raw_normalized[<span class="dv">32</span>, :], <span class="st">'b-'</span>, linewidth<span class="op">=</span><span class="fl">2.5</span>, label<span class="op">=</span><span class="st">'Widefield'</span>)</span>
+<span id="cb7-168"><a href="#cb7-168" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>, <span class="dv">2</span>].plot(sr_normalized[<span class="dv">32</span>, :], <span class="st">'r-'</span>, linewidth<span class="op">=</span><span class="fl">2.5</span>, label<span class="op">=</span><span class="st">'Superresolved (SMLM)'</span>)</span>
+<span id="cb7-169"><a href="#cb7-169" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>, <span class="dv">2</span>].set_xlabel(<span class="st">'x (pixels)'</span>)</span>
+<span id="cb7-170"><a href="#cb7-170" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>, <span class="dv">2</span>].set_ylabel(<span class="st">'$I$ (norm.)'</span>)</span>
+<span id="cb7-171"><a href="#cb7-171" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>, <span class="dv">2</span>].grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb7-172"><a href="#cb7-172" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-173"><a href="#cb7-173" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb7-174"><a href="#cb7-174" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-175"><a href="#cb7-175" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Total frames acquired: </span><span class="sc">{</span>num_frames<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb7-176"><a href="#cb7-176" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Molecules in sample: </span><span class="sc">{</span>num_molecules<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb7-177"><a href="#cb7-177" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Total localizations detected: </span><span class="sc">{</span><span class="bu">len</span>(localizations)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb7-178"><a href="#cb7-178" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Average localizations per frame: </span><span class="sc">{</span><span class="bu">len</span>(localizations) <span class="op">/</span> num_frames<span class="sc">:.1f}</span><span class="ss">"</span>)</span>
+<span id="cb7-179"><a href="#cb7-179" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Mean localization precision: </span><span class="sc">{</span>sigmas<span class="sc">.</span>mean()<span class="sc">:.1f}</span><span class="ss"> nm"</span>)</span>
+<span id="cb7-180"><a href="#cb7-180" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Median localization precision: </span><span class="sc">{</span>np<span class="sc">.</span>median(sigmas)<span class="sc">:.1f}</span><span class="ss"> nm"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -891,7 +1372,111 @@ Median localization precision: 10.8 nm</code></pre>
 </section>
 <section id="demo-4-comparison-of-superresolution-methods" class="level3">
 <h3 class="anchored" data-anchor-id="demo-4-comparison-of-superresolution-methods">Demo 4: Comparison of Superresolution Methods</h3>
-<div id="51ca9057" class="cell" data-execution_count="6">
+<div id="3cb7c33a" class="cell" data-execution_count="6">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Demo 4: Superresolution methods comparison</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Data: characteristic parameters for different methods</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>methods <span class="op">=</span> [<span class="st">'Confocal</span><span class="ch">\n</span><span class="st">(Diffraction)'</span>, <span class="st">'SIM</span><span class="ch">\n</span><span class="st">(Linear)'</span>, <span class="st">'SIM</span><span class="ch">\n</span><span class="st">(Saturated)'</span>,</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>           <span class="st">'STED'</span>, <span class="st">'PALM/STORM'</span>, <span class="st">'MINFLUX'</span>]</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>resolution <span class="op">=</span> np.array([<span class="dv">200</span>, <span class="dv">100</span>, <span class="dv">50</span>, <span class="dv">25</span>, <span class="dv">15</span>, <span class="dv">5</span>])  <span class="co"># nm (lateral)</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>speed <span class="op">=</span> np.array([<span class="dv">2</span>, <span class="dv">2</span>, <span class="fl">0.5</span>, <span class="dv">2</span>, <span class="fl">0.05</span>, <span class="fl">0.2</span>])  <span class="co"># frames/s (volumetric or camera-limited)</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>phototoxicity <span class="op">=</span> np.array([<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">8</span>, <span class="fl">1.5</span>])  <span class="co"># arbitrary scale (1=low, 10=high)</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>photon_efficiency <span class="op">=</span> np.array([<span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">5</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="fl">0.1</span>])  <span class="co"># photons per molecule (relative)</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Create figure with subplots</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.figure(figsize<span class="op">=</span>get_size(<span class="dv">15</span>, <span class="dv">10</span>))</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>fig.set_layout_engine(<span class="st">'constrained'</span>)</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>gs <span class="op">=</span> fig.add_gridspec(<span class="dv">2</span>, <span class="dv">3</span>, hspace<span class="op">=</span><span class="fl">0.3</span>, wspace<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot 1: Resolution vs. Speed</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>ax1 <span class="op">=</span> fig.add_subplot(gs[<span class="dv">0</span>, <span class="dv">0</span>])</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>colors <span class="op">=</span> plt.cm.Set3(np.linspace(<span class="dv">0</span>, <span class="dv">1</span>, <span class="bu">len</span>(methods)))</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, (m, res, spd, col) <span class="kw">in</span> <span class="bu">enumerate</span>(<span class="bu">zip</span>(methods, resolution, speed, colors)):</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>    ax1.scatter(spd, res, s<span class="op">=</span><span class="dv">300</span>, alpha<span class="op">=</span><span class="fl">0.7</span>, color<span class="op">=</span>col, edgecolors<span class="op">=</span><span class="st">'black'</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>    ax1.annotate(m.replace(<span class="st">'</span><span class="ch">\n</span><span class="st">'</span>, <span class="st">' '</span>), (spd, res), xytext<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">5</span>),</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>                textcoords<span class="op">=</span><span class="st">'offset points'</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>, fontsize<span class="op">=</span><span class="dv">6</span>)</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>ax1.set_xlabel(<span class="st">'Speed (frames/s)'</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>ax1.set_ylabel(<span class="st">'Resolution (nm)'</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>ax1.set_xscale(<span class="st">'log'</span>)</span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>ax1.set_yscale(<span class="st">'log'</span>)</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>ax1.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>, which<span class="op">=</span><span class="st">'both'</span>)</span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>ax1.set_xlim(<span class="fl">0.01</span>, <span class="dv">10</span>)</span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>ax1.set_ylim(<span class="dv">3</span>, <span class="dv">300</span>)</span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot 2: Resolution vs. Phototoxicity</span></span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>ax2 <span class="op">=</span> fig.add_subplot(gs[<span class="dv">0</span>, <span class="dv">1</span>])</span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, (m, res, photo, col) <span class="kw">in</span> <span class="bu">enumerate</span>(<span class="bu">zip</span>(methods, resolution, phototoxicity, colors)):</span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>    ax2.scatter(photo, res, s<span class="op">=</span><span class="dv">300</span>, alpha<span class="op">=</span><span class="fl">0.7</span>, color<span class="op">=</span>col, edgecolors<span class="op">=</span><span class="st">'black'</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>    ax2.annotate(m.replace(<span class="st">'</span><span class="ch">\n</span><span class="st">'</span>, <span class="st">' '</span>), (photo, res), xytext<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">5</span>),</span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>                textcoords<span class="op">=</span><span class="st">'offset points'</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>, fontsize<span class="op">=</span><span class="dv">6</span>)</span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>ax2.set_xlabel(<span class="st">'Phototoxicity (Relative)'</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>ax2.set_ylabel(<span class="st">'Resolution (nm)'</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a>ax2.set_yscale(<span class="st">'log'</span>)</span>
+<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a>ax2.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a>ax2.set_xlim(<span class="dv">0</span>, <span class="dv">10</span>)</span>
+<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a>ax2.set_ylim(<span class="dv">3</span>, <span class="dv">300</span>)</span>
+<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot 3: Photon Efficiency</span></span>
+<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a>ax3 <span class="op">=</span> fig.add_subplot(gs[<span class="dv">0</span>, <span class="dv">2</span>])</span>
+<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a>bars <span class="op">=</span> ax3.barh(methods, photon_efficiency, color<span class="op">=</span>colors, edgecolor<span class="op">=</span><span class="st">'black'</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a>ax3.set_xlabel(<span class="st">'Photon Efficiency</span><span class="ch">\n</span><span class="st">(fewer photons needed = better)'</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a>ax3.set_xscale(<span class="st">'log'</span>)</span>
+<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a>ax3.invert_yaxis()</span>
+<span id="cb9-52"><a href="#cb9-52" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, (bar, eff) <span class="kw">in</span> <span class="bu">enumerate</span>(<span class="bu">zip</span>(bars, photon_efficiency)):</span>
+<span id="cb9-53"><a href="#cb9-53" aria-hidden="true" tabindex="-1"></a>    ax3.text(eff<span class="op">*</span><span class="fl">1.5</span>, i, <span class="ss">f'</span><span class="sc">{</span>eff<span class="sc">:.2f}</span><span class="ss">'</span>, va<span class="op">=</span><span class="st">'center'</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb9-54"><a href="#cb9-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-55"><a href="#cb9-55" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot 4: Multi-metric radar (simplified: resolution, speed, efficiency)</span></span>
+<span id="cb9-56"><a href="#cb9-56" aria-hidden="true" tabindex="-1"></a>ax4 <span class="op">=</span> fig.add_subplot(gs[<span class="dv">1</span>, :<span class="dv">2</span>], projection<span class="op">=</span><span class="st">'polar'</span>)</span>
+<span id="cb9-57"><a href="#cb9-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-58"><a href="#cb9-58" aria-hidden="true" tabindex="-1"></a><span class="co"># Normalize metrics to 0–1 scale</span></span>
+<span id="cb9-59"><a href="#cb9-59" aria-hidden="true" tabindex="-1"></a>res_norm <span class="op">=</span> (np.<span class="bu">max</span>(resolution) <span class="op">-</span> resolution) <span class="op">/</span> (np.<span class="bu">max</span>(resolution) <span class="op">-</span> np.<span class="bu">min</span>(resolution))</span>
+<span id="cb9-60"><a href="#cb9-60" aria-hidden="true" tabindex="-1"></a>speed_norm <span class="op">=</span> speed <span class="op">/</span> np.<span class="bu">max</span>(speed)</span>
+<span id="cb9-61"><a href="#cb9-61" aria-hidden="true" tabindex="-1"></a>photo_norm <span class="op">=</span> <span class="dv">1</span> <span class="op">-</span> (phototoxicity <span class="op">/</span> np.<span class="bu">max</span>(phototoxicity))</span>
+<span id="cb9-62"><a href="#cb9-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-63"><a href="#cb9-63" aria-hidden="true" tabindex="-1"></a>angles <span class="op">=</span> np.array([<span class="dv">0</span>, <span class="dv">2</span><span class="op">*</span>np.pi<span class="op">/</span><span class="dv">3</span>, <span class="dv">4</span><span class="op">*</span>np.pi<span class="op">/</span><span class="dv">3</span>, <span class="dv">0</span>])</span>
+<span id="cb9-64"><a href="#cb9-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-65"><a href="#cb9-65" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, (m, col) <span class="kw">in</span> <span class="bu">enumerate</span>(<span class="bu">zip</span>(methods, colors)):</span>
+<span id="cb9-66"><a href="#cb9-66" aria-hidden="true" tabindex="-1"></a>    values <span class="op">=</span> np.array([res_norm[i], speed_norm[i], photo_norm[i], res_norm[i]])</span>
+<span id="cb9-67"><a href="#cb9-67" aria-hidden="true" tabindex="-1"></a>    ax4.plot(angles, values, <span class="st">'o-'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, color<span class="op">=</span>col, label<span class="op">=</span>m.replace(<span class="st">'</span><span class="ch">\n</span><span class="st">'</span>, <span class="st">' '</span>), markersize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb9-68"><a href="#cb9-68" aria-hidden="true" tabindex="-1"></a>    ax4.fill(angles, values, alpha<span class="op">=</span><span class="fl">0.15</span>, color<span class="op">=</span>col)</span>
+<span id="cb9-69"><a href="#cb9-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-70"><a href="#cb9-70" aria-hidden="true" tabindex="-1"></a>ax4.set_xticks(angles[:<span class="op">-</span><span class="dv">1</span>])</span>
+<span id="cb9-71"><a href="#cb9-71" aria-hidden="true" tabindex="-1"></a>ax4.set_xticklabels([<span class="st">'Resolution</span><span class="ch">\n</span><span class="st">(higher=better)'</span>, <span class="st">'Speed</span><span class="ch">\n</span><span class="st">(higher=better)'</span>, <span class="st">'Low Phototox.</span><span class="ch">\n</span><span class="st">(higher=better)'</span>], fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb9-72"><a href="#cb9-72" aria-hidden="true" tabindex="-1"></a>ax4.set_ylim(<span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb9-73"><a href="#cb9-73" aria-hidden="true" tabindex="-1"></a>ax4.set_yticks([<span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.75</span>, <span class="fl">1.0</span>])</span>
+<span id="cb9-74"><a href="#cb9-74" aria-hidden="true" tabindex="-1"></a>ax4.grid(<span class="va">True</span>)</span>
+<span id="cb9-75"><a href="#cb9-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-76"><a href="#cb9-76" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot 5: Application suitability</span></span>
+<span id="cb9-77"><a href="#cb9-77" aria-hidden="true" tabindex="-1"></a>ax5 <span class="op">=</span> fig.add_subplot(gs[<span class="dv">1</span>, <span class="dv">2</span>])</span>
+<span id="cb9-78"><a href="#cb9-78" aria-hidden="true" tabindex="-1"></a>ax5.axis(<span class="st">'off'</span>)</span>
+<span id="cb9-79"><a href="#cb9-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-80"><a href="#cb9-80" aria-hidden="true" tabindex="-1"></a>applications <span class="op">=</span> [</span>
+<span id="cb9-81"><a href="#cb9-81" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Fixed samples, 2D:</span><span class="ch">\n</span><span class="st">→ PALM/STORM"</span>,</span>
+<span id="cb9-82"><a href="#cb9-82" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Live-cell, fast:</span><span class="ch">\n</span><span class="st">→ SIM, STED"</span>,</span>
+<span id="cb9-83"><a href="#cb9-83" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Ultra-precision:</span><span class="ch">\n</span><span class="st">→ MINFLUX"</span>,</span>
+<span id="cb9-84"><a href="#cb9-84" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Routine imaging:</span><span class="ch">\n</span><span class="st">→ Confocal SIM"</span>,</span>
+<span id="cb9-85"><a href="#cb9-85" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Volumetric, live:</span><span class="ch">\n</span><span class="st">→ STED"</span>,</span>
+<span id="cb9-86"><a href="#cb9-86" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb9-87"><a href="#cb9-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-88"><a href="#cb9-88" aria-hidden="true" tabindex="-1"></a>text_str <span class="op">=</span> <span class="st">"</span><span class="ch">\n\n</span><span class="st">"</span>.join(applications)</span>
+<span id="cb9-89"><a href="#cb9-89" aria-hidden="true" tabindex="-1"></a>ax5.text(<span class="fl">0.1</span>, <span class="fl">0.95</span>, text_str, transform<span class="op">=</span>ax5.transAxes,</span>
+<span id="cb9-90"><a href="#cb9-90" aria-hidden="true" tabindex="-1"></a>        verticalalignment<span class="op">=</span><span class="st">'top'</span>, fontfamily<span class="op">=</span><span class="st">'monospace'</span>,</span>
+<span id="cb9-91"><a href="#cb9-91" aria-hidden="true" tabindex="-1"></a>        bbox<span class="op">=</span><span class="bu">dict</span>(boxstyle<span class="op">=</span><span class="st">'round'</span>, facecolor<span class="op">=</span><span class="st">'wheat'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>))</span>
+<span id="cb9-92"><a href="#cb9-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-93"><a href="#cb9-93" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb9-94"><a href="#cb9-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-95"><a href="#cb9-95" aria-hidden="true" tabindex="-1"></a><span class="co"># Print summary table</span></span>
+<span id="cb9-96"><a href="#cb9-96" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">"</span> <span class="op">+</span> <span class="st">"="</span><span class="op">*</span><span class="dv">90</span>)</span>
+<span id="cb9-97"><a href="#cb9-97" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="st">'Method'</span><span class="sc">:&lt;20}</span><span class="ss"> </span><span class="sc">{</span><span class="st">'Resolution'</span><span class="sc">:&lt;15}</span><span class="ss"> </span><span class="sc">{</span><span class="st">'Speed'</span><span class="sc">:&lt;12}</span><span class="ss"> </span><span class="sc">{</span><span class="st">'Phototox'</span><span class="sc">:&lt;12}</span><span class="ss"> </span><span class="sc">{</span><span class="st">'Efficiency'</span><span class="sc">:&lt;12}</span><span class="ss">"</span>)</span>
+<span id="cb9-98"><a href="#cb9-98" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">90</span>)</span>
+<span id="cb9-99"><a href="#cb9-99" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> m, res, spd, photo, eff <span class="kw">in</span> <span class="bu">zip</span>(methods, resolution, speed, phototoxicity, photon_efficiency):</span>
+<span id="cb9-100"><a href="#cb9-100" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>m<span class="sc">.</span>replace(<span class="bu">chr</span>(<span class="dv">10</span>), <span class="st">' '</span>)<span class="sc">:&lt;20}</span><span class="ss"> </span><span class="sc">{</span>res<span class="sc">:&gt;6.0f}</span><span class="ss"> nm         </span><span class="sc">{</span>spd<span class="sc">:&gt;6.2f}</span><span class="ss"> f/s    </span><span class="sc">{</span>photo<span class="sc">:&gt;6.1f}</span><span class="ss">      </span><span class="sc">{</span>eff<span class="sc">:&gt;6.2f}</span><span class="ss">"</span>)</span>
+<span id="cb9-101"><a href="#cb9-101" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">90</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">

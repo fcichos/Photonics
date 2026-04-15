@@ -352,7 +352,7 @@ window.Quarto = {
 <p><strong>a)</strong> Calculate the effective FWHM for depletion intensities <span class="math inline">\(I/I_{\text{sat}} = 1, 10, 100\)</span>.</p>
 <p><strong>b)</strong> Plot <span class="math inline">\(d\)</span> vs.&nbsp;<span class="math inline">\(I/I_{\text{sat}}\)</span> (log-log scale) to visualize how resolution improves with depletion power.</p>
 <p><strong>c)</strong> Assume <span class="math inline">\(d_0 = 250\)</span> nm. What depletion intensity ratio is needed to achieve 50 nm resolution?</p>
-<div id="9a702d6a" class="cell" data-execution_count="2">
+<div id="a68b8017" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># STED resolution calculation</span></span>
@@ -383,7 +383,7 @@ For d = 50 nm: I/I_sat = 24.0</code></pre>
 </div>
 </div>
 <p>Now plot the full curve:</p>
-<div id="a0466fba" class="cell" data-execution_count="3">
+<div id="19f911d7" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate continuous curve for plotting</span></span>
@@ -418,7 +418,7 @@ For d = 50 nm: I/I_sat = 24.0</code></pre>
 <p><strong>a)</strong> Derive why photon shot noise leads to an uncertainty proportional to <span class="math inline">\(1/\sqrt{N}\)</span>.</p>
 <p><strong>b)</strong> For a 250 nm PSF (<span class="math inline">\(s = 250/2.355 \approx 106\)</span> nm) and pixel size <span class="math inline">\(a = 100\)</span> nm, calculate how many photons are needed for <strong>10 nm localization precision</strong>.</p>
 <p><strong>c)</strong> Modern single-molecule experiments detect <span class="math inline">\(N \approx 1000\)</span> photons. What precision is achievable?</p>
-<div id="365df59c" class="cell" data-execution_count="4">
+<div id="1b405a5e" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Thompson formula</span></span>
@@ -472,7 +472,7 @@ With N = 1000 photons:
 <li>Reconstruct the superresolution image by plotting localized positions</li>
 <li>Compare with diffraction-limited image (convolved with PSF)</li>
 </ol>
-<div id="e3fa7dbe" class="cell" data-execution_count="5">
+<div id="433ebf6e" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.ndimage <span class="im">import</span> gaussian_filter</span>
@@ -550,7 +550,7 @@ Average events per fluorophore: 5.0</code></pre>
 </div>
 </div>
 <p>Now visualize the reconstruction:</p>
-<div id="35f12d2d" class="cell" data-execution_count="6">
+<div id="f9bb9b96" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create superresolution image from localized positions</span></span>

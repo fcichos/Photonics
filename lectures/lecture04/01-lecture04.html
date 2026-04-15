@@ -137,7 +137,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Introduction to Gaussian Beams</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -259,24 +259,35 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#introduction-to-gaussian-beams" id="toc-introduction-to-gaussian-beams" class="nav-link active" data-scroll-target="#introduction-to-gaussian-beams">Introduction to Gaussian Beams</a>
-  <ul class="collapse">
-  <li><a href="#derivation-from-the-helmholtz-equation" id="toc-derivation-from-the-helmholtz-equation" class="nav-link" data-scroll-target="#derivation-from-the-helmholtz-equation">Derivation from the Helmholtz Equation</a></li>
+  <li><a href="#derivation-from-the-helmholtz-equation" id="toc-derivation-from-the-helmholtz-equation" class="nav-link active" data-scroll-target="#derivation-from-the-helmholtz-equation">Derivation from the Helmholtz Equation</a></li>
   <li><a href="#the-paraxial-approximation" id="toc-the-paraxial-approximation" class="nav-link" data-scroll-target="#the-paraxial-approximation">The Paraxial Approximation</a></li>
   <li><a href="#gaussian-beam-transformation-through-optical-systems" id="toc-gaussian-beam-transformation-through-optical-systems" class="nav-link" data-scroll-target="#gaussian-beam-transformation-through-optical-systems">Gaussian Beam Transformation Through Optical Systems</a></li>
   <li><a href="#higher-order-gaussian-modes" id="toc-higher-order-gaussian-modes" class="nav-link" data-scroll-target="#higher-order-gaussian-modes">Higher-Order Gaussian Modes</a></li>
-  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Introduction to Gaussian Beams</h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
 
-<section id="introduction-to-gaussian-beams" class="level2">
-<h2 class="anchored" data-anchor-id="introduction-to-gaussian-beams">Introduction to Gaussian Beams</h2>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
 <p>In optics and laser physics, Gaussian beams represent one of the most fundamental and important mathematical descriptions of laser light propagation. They are particularly relevant for understanding laser resonators, optical systems, and coherent light behavior. This section introduces Gaussian beams from first principles and explores their mathematical description.</p>
 <section id="derivation-from-the-helmholtz-equation" class="level3">
 <h3 class="anchored" data-anchor-id="derivation-from-the-helmholtz-equation">Derivation from the Helmholtz Equation</h3>
@@ -547,6 +558,79 @@ Figure&nbsp;5— Intensity (top row) and phase (bottom row) distributions of the
 <li><p><strong>Structured light microscopy</strong> - Coupling between SAM and OAM generates complex field patterns that improve resolution beyond the diffraction limit in specific imaging configurations.</p></li>
 </ol>
 <p>Both families of higher-order modes are important in modern optics applications, including optical manipulation, quantum information processing, and mode-division multiplexing in optical communications. They represent different orthogonal bases of the same solution space and can be transformed into each other through appropriate optical systems.</p>
+</section>
+<section id="bessel-beams" class="level4">
+<h4 class="anchored" data-anchor-id="bessel-beams">Bessel Beams</h4>
+<p>While Hermite-Gaussian and Laguerre-Gaussian modes emerge as solutions to the <strong>paraxial</strong> wave equation, Bessel beams are exact solutions of the full Helmholtz equation that possess the remarkable property of being <strong>non-diffracting</strong>: their transverse intensity profile is invariant under propagation.</p>
+<section id="derivation" class="level5">
+<h5 class="anchored" data-anchor-id="derivation">Derivation</h5>
+<p>We seek solutions to the Helmholtz equation in cylindrical coordinates <span class="math inline">\((r, \varphi, z)\)</span> by separation of variables. Writing <span class="math inline">\(U(r,\varphi,z) = R(r)\Phi(\varphi)Z(z)\)</span> and separating, the radial part must satisfy Bessel’s differential equation</p>
+<p><span class="math display">\[\frac{d^2 R}{dr^2} + \frac{1}{r}\frac{dR}{dr} + \left(k_r^2 - \frac{l^2}{r^2}\right) R = 0,\]</span></p>
+<p>whose bounded solutions are Bessel functions of the first kind <span class="math inline">\(J_l(k_r r)\)</span>. The full ideal Bessel beam of order <span class="math inline">\(l\)</span> is:</p>
+<p><span class="math display">\[U_l(r,\varphi,z) = A_0\, J_l(k_r r)\, e^{il\varphi}\, e^{ik_z z},\]</span></p>
+<p>where the transverse and longitudinal wave-vector components satisfy the constraint <span class="math inline">\(k_r^2 + k_z^2 = k^2 = (n\omega/c)^2\)</span>.</p>
+<p>Because the intensity <span class="math inline">\(I \propto |J_l(k_r r)|^2\)</span> depends only on <span class="math inline">\(r\)</span>, not on <span class="math inline">\(z\)</span>, the transverse profile is truly propagation-invariant. The cone half-angle of the associated conical wavefront is <span class="math inline">\(\theta_c = \arcsin(k_r/k)\)</span>.</p>
+</section>
+<section id="key-properties" class="level5">
+<h5 class="anchored" data-anchor-id="key-properties">Key Properties</h5>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Property</th>
+<th>Gaussian beam</th>
+<th>Bessel beam</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Diffracts?</td>
+<td>Yes (<span class="math inline">\(w \propto z\)</span>)</td>
+<td>No (ideal)</td>
+</tr>
+<tr class="even">
+<td>Finite energy?</td>
+<td>Yes</td>
+<td>No (ideal)</td>
+</tr>
+<tr class="odd">
+<td>Orbital angular momentum</td>
+<td>Only for LG modes</td>
+<td><span class="math inline">\(l\hbar\)</span> per photon</td>
+</tr>
+<tr class="even">
+<td>Self-healing</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+<tr class="odd">
+<td>Realisation</td>
+<td>Direct from laser</td>
+<td>Axicon / annular aperture</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Self-healing</strong> is a striking consequence of the conical wave structure: if an obstacle blocks the beam at one transverse location, the interfering plane waves reconstruct the pattern beyond a healing distance <span class="math inline">\(z_\text{heal} \approx r_\text{obs}/\tan\theta_c\)</span>.</p>
+<p>Ideal Bessel beams carry infinite power because <span class="math inline">\(\int_0^\infty J_l^2(k_r r)\,r\,dr\)</span> diverges. In practice, <strong>Bessel-Gaussian beams</strong> are generated by multiplying by a Gaussian envelope, giving an approximately non-diffracting beam over a finite depth of field <span class="math inline">\(z_\text{max} \approx w_0/\tan\theta_c\)</span>.</p>
+</section>
+<section id="generation-with-an-axicon" class="level5">
+<h5 class="anchored" data-anchor-id="generation-with-an-axicon">Generation with an Axicon</h5>
+<p>An <strong>axicon</strong> (conical lens with apex angle <span class="math inline">\(\alpha\)</span>) converts an incident Gaussian beam into a Bessel-Gaussian beam. A plane wave hitting the axicon acquires a radially linear phase <span class="math inline">\(\exp(-ik_r r)\)</span> with <span class="math inline">\(k_r = k(n-1)\alpha\)</span>, producing a bright on-axis line focus extending from the lens to <span class="math inline">\(z_\text{max}\)</span>. The on-axis intensity oscillates (interference between the inward-travelling cone and the outward cone) and reaches a peak at <span class="math inline">\(z_\text{max}/2\)</span>.</p>
+<div id="cell-fig-bessel-beams" class="cell" data-execution_count="7">
+<div class="cell-output cell-output-display">
+<div id="fig-bessel-beams" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-bessel-beams-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="01-lecture04_files/figure-html/fig-bessel-beams-output-1.png" width="646" height="558" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bessel-beams-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6— Bessel beams of orders <span class="math inline">\(l=0,1,2,3\)</span>. <strong>Top row:</strong> transverse intensity <span class="math inline">\(|J_l(k_r r)|^2\)</span> in the <span class="math inline">\(xy\)</span>-plane. <strong>Middle row:</strong> phase <span class="math inline">\(\arg(U_l)\)</span> showing the <span class="math inline">\(l\)</span>-fold winding. <strong>Bottom row:</strong> Propagation of the Bessel-Gaussian beam (<span class="math inline">\(l=0\)</span>) and its transverse profiles at three axial positions, illustrating near-diffraction-free propagation.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The top panels confirm that the <span class="math inline">\(l=0\)</span> Bessel beam has a bright central spot surrounded by concentric rings of decreasing amplitude, while higher-order beams have a dark vortex core (intensity zero on axis for <span class="math inline">\(l \neq 0\)</span>) and the characteristic <span class="math inline">\(l\)</span>-fold phase winding visible in the phase maps. The bottom panels show that a Bessel-Gaussian envelope maintains its transverse shape over the depth of field <span class="math inline">\(z_\text{max}\)</span>, after which the Gaussian damping causes the beam to fade.</p>
+<p>Applications of Bessel and Bessel-Gaussian beams span a wide range of modern photonics: non-contact optical manipulation of particles over long distances, laser micro-machining of deep narrow channels (the elongated focal line drills material along <span class="math inline">\(z_\text{max}\)</span>), light-sheet fluorescence microscopy (a Bessel illumination sheet provides higher axial resolution than a Gaussian sheet), and ultrafast laser filamentation in transparent media. Their orbital angular momentum variants (<span class="math inline">\(l \neq 0\)</span>) are used in optical vortex trapping and quantum information encoding.</p>
 
 
 </section>

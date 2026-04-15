@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -502,6 +537,80 @@ H_{\text{DIC}}(k) \propto k
 <h3 class="anchored" data-anchor-id="the-jablonski-diagram">4.1 The Jablonski Diagram</h3>
 <p>The foundation of fluorescence microscopy is understanding how excited molecules emit light. The <strong>Jablonski diagram</strong> (Figure <span class="citation" data-cites="fig:jablonski">@fig:jablonski</span>) illustrates the electronic states and transitions:</p>
 <div id="cell-fig:jablonski" class="cell" data-fig-height="4" data-fig-width="5.9" data-execution_count="2">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>get_size(<span class="dv">14</span>, <span class="dv">10</span>))</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Energy levels</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>S0_0 <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>S0_v <span class="op">=</span> [<span class="dv">0</span>, <span class="fl">0.3</span>, <span class="fl">0.6</span>, <span class="fl">0.9</span>, <span class="fl">1.2</span>]</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>S1_0 <span class="op">=</span> <span class="fl">3.0</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>S1_v <span class="op">=</span> [<span class="dv">0</span>, <span class="fl">0.3</span>, <span class="fl">0.6</span>, <span class="fl">0.9</span>, <span class="fl">1.2</span>]</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>T1_0 <span class="op">=</span> <span class="fl">2.5</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>T1_v <span class="op">=</span> [<span class="dv">0</span>, <span class="fl">0.3</span>, <span class="fl">0.6</span>]</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Draw S0 vibrational levels</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, v <span class="kw">in</span> <span class="bu">enumerate</span>(S0_v):</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> S0_0 <span class="op">+</span> v</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    ax.plot([<span class="dv">0</span>, <span class="fl">0.5</span>], [y, y], <span class="st">'k-'</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> i <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>        ax.text(<span class="op">-</span><span class="fl">0.3</span>, y, <span class="st">'$S_0$'</span>, ha<span class="op">=</span><span class="st">'right'</span>, va<span class="op">=</span><span class="st">'center'</span>)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Draw S1 vibrational levels</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, v <span class="kw">in</span> <span class="bu">enumerate</span>(S1_v):</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> S1_0 <span class="op">+</span> v</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    ax.plot([<span class="dv">2</span>, <span class="fl">2.5</span>], [y, y], <span class="st">'b-'</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> i <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>        ax.text(<span class="fl">1.7</span>, y, <span class="st">'$S_1$'</span>, ha<span class="op">=</span><span class="st">'right'</span>, va<span class="op">=</span><span class="st">'center'</span>)</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Draw T1 vibrational levels</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, v <span class="kw">in</span> <span class="bu">enumerate</span>(T1_v):</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> T1_0 <span class="op">+</span> v</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    ax.plot([<span class="dv">4</span>, <span class="fl">4.5</span>], [y, y], <span class="st">'r-'</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> i <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>        ax.text(<span class="fl">3.7</span>, y, <span class="st">'$T_1$'</span>, ha<span class="op">=</span><span class="st">'right'</span>, va<span class="op">=</span><span class="st">'center'</span>)</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Absorption (vertical arrow, blue)</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>ax.annotate(<span class="st">''</span>, xy<span class="op">=</span>(<span class="fl">0.25</span>, S1_0 <span class="op">+</span> <span class="fl">1.0</span>), xytext<span class="op">=</span>(<span class="fl">0.25</span>, S0_0 <span class="op">+</span> <span class="fl">0.2</span>),</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>            arrowprops<span class="op">=</span><span class="bu">dict</span>(arrowstyle<span class="op">=</span><span class="st">'&lt;-&gt;'</span>, color<span class="op">=</span><span class="st">'blue'</span>, lw<span class="op">=</span><span class="fl">2.5</span>))</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="fl">0.35</span>, (S1_0 <span class="op">+</span> <span class="fl">1.0</span> <span class="op">+</span> S0_0 <span class="op">+</span> <span class="fl">0.2</span>)<span class="op">/</span><span class="dv">2</span>, <span class="st">'Absorption</span><span class="ch">\n</span><span class="st">($</span><span class="ch">\\</span><span class="st">lambda_</span><span class="sc">{ex}</span><span class="st">$)'</span>, color<span class="op">=</span><span class="st">'blue'</span>, weight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Vibrational relaxation S1 (wavy arrow)</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>ax.plot([<span class="fl">0.8</span>, <span class="fl">1.2</span>], [S1_0 <span class="op">+</span> <span class="fl">1.0</span>, S1_0 <span class="op">+</span> <span class="fl">0.3</span>], <span class="st">'b--'</span>, linewidth<span class="op">=</span><span class="fl">1.5</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="fl">1.1</span>, S1_0 <span class="op">+</span> <span class="fl">0.7</span>, <span class="st">'Vibrational</span><span class="ch">\n</span><span class="st">relaxation'</span>, style<span class="op">=</span><span class="st">'italic'</span>, color<span class="op">=</span><span class="st">'blue'</span>)</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="co"># Intersystem crossing (curved arrow)</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>ax.annotate(<span class="st">''</span>, xy<span class="op">=</span>(<span class="fl">3.8</span>, T1_0 <span class="op">+</span> <span class="fl">0.3</span>), xytext<span class="op">=</span>(<span class="fl">2.6</span>, S1_0 <span class="op">+</span> <span class="fl">0.3</span>),</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>            arrowprops<span class="op">=</span><span class="bu">dict</span>(arrowstyle<span class="op">=</span><span class="st">'-&gt;'</span>, color<span class="op">=</span><span class="st">'purple'</span>, lw<span class="op">=</span><span class="dv">2</span>,</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>                          connectionstyle<span class="op">=</span><span class="st">"arc3,rad=0.5"</span>, linestyle<span class="op">=</span><span class="st">'dashed'</span>))</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="fl">3.0</span>, <span class="fl">2.2</span>, <span class="st">'ISC'</span>, color<span class="op">=</span><span class="st">'purple'</span>, weight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="co"># Fluorescence emission (vertical arrow, green)</span></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>ax.annotate(<span class="st">''</span>, xy<span class="op">=</span>(<span class="fl">2.25</span>, S0_0 <span class="op">+</span> <span class="fl">0.3</span>), xytext<span class="op">=</span>(<span class="fl">2.25</span>, S1_0 <span class="op">+</span> <span class="fl">0.3</span>),</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>            arrowprops<span class="op">=</span><span class="bu">dict</span>(arrowstyle<span class="op">=</span><span class="st">'&lt;-&gt;'</span>, color<span class="op">=</span><span class="st">'green'</span>, lw<span class="op">=</span><span class="fl">2.5</span>))</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="fl">2.8</span>, (S1_0 <span class="op">+</span> <span class="fl">0.3</span> <span class="op">+</span> S0_0 <span class="op">+</span> <span class="fl">0.3</span>)<span class="op">/</span><span class="dv">2</span>, <span class="st">'Fluorescence</span><span class="ch">\n</span><span class="st">emission</span><span class="ch">\n</span><span class="st">($</span><span class="ch">\\</span><span class="st">lambda_</span><span class="sc">{em}</span><span class="st">$)'</span>, color<span class="op">=</span><span class="st">'green'</span>, weight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a><span class="co"># Phosphorescence emission (vertical arrow, red)</span></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>ax.annotate(<span class="st">''</span>, xy<span class="op">=</span>(<span class="fl">4.25</span>, S0_0 <span class="op">+</span> <span class="fl">0.3</span>), xytext<span class="op">=</span>(<span class="fl">4.25</span>, T1_0 <span class="op">+</span> <span class="fl">0.3</span>),</span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>            arrowprops<span class="op">=</span><span class="bu">dict</span>(arrowstyle<span class="op">=</span><span class="st">'&lt;-&gt;'</span>, color<span class="op">=</span><span class="st">'red'</span>, lw<span class="op">=</span><span class="dv">2</span>, linestyle<span class="op">=</span><span class="st">'dashed'</span>))</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="fl">4.8</span>, (T1_0 <span class="op">+</span> <span class="fl">0.3</span> <span class="op">+</span> S0_0 <span class="op">+</span> <span class="fl">0.3</span>)<span class="op">/</span><span class="dv">2</span>, <span class="st">'Phosphorescence</span><span class="ch">\n</span><span class="st">(slow)'</span>, color<span class="op">=</span><span class="st">'red'</span>, weight<span class="op">=</span><span class="st">'bold'</span>, style<span class="op">=</span><span class="st">'italic'</span>)</span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a><span class="co"># Heat dissipation from T1</span></span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>ax.plot([<span class="fl">3.8</span>, <span class="fl">4.2</span>], [T1_0 <span class="op">+</span> <span class="fl">0.5</span>, T1_0 <span class="op">-</span> <span class="fl">0.3</span>], <span class="st">'k--'</span>, linewidth<span class="op">=</span><span class="dv">1</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="fl">4.4</span>, T1_0 <span class="op">-</span> <span class="fl">0.2</span>, <span class="st">'Heat'</span>, style<span class="op">=</span><span class="st">'italic'</span>)</span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="op">-</span><span class="fl">0.7</span>, <span class="fl">5.5</span>)</span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="op">-</span><span class="fl">0.5</span>, <span class="fl">4.5</span>)</span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Energy'</span>)</span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a>ax.set_xticks([])</span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>ax.spines[<span class="st">'bottom'</span>].set_visible(<span class="va">False</span>)</span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a>ax.spines[<span class="st">'left'</span>].set_visible(<span class="va">True</span>)</span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a>ax.set_yticks([])</span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'jablonski.png'</span>, dpi<span class="op">=</span><span class="dv">100</span>, bbox_inches<span class="op">=</span><span class="st">'tight'</span>)</span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div id="figjablonski" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
@@ -537,6 +646,77 @@ H_{\text{DIC}}(k) \propto k
 <h3 class="anchored" data-anchor-id="filter-cube-setup">4.3 Filter Cube Setup</h3>
 <p>A typical widefield fluorescence microscope uses a <strong>filter cube</strong> (Figure <span class="citation" data-cites="fig:filtercube">@fig:filtercube</span>) containing:</p>
 <div id="cell-fig:filtercube" class="cell" data-fig-height="4" data-fig-width="5.9" data-execution_count="3">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>get_size(<span class="dv">15</span>, <span class="dv">10</span>))</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Draw light path</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Excitation light path (blue)</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>ax.arrow(<span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="fl">0.8</span>, <span class="dv">0</span>, head_width<span class="op">=</span><span class="fl">0.08</span>, head_length<span class="op">=</span><span class="fl">0.1</span>, fc<span class="op">=</span><span class="st">'blue'</span>, ec<span class="op">=</span><span class="st">'blue'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="fl">0.5</span>, <span class="fl">0.65</span>, <span class="st">'Excitation</span><span class="ch">\n</span><span class="st">light'</span>, color<span class="op">=</span><span class="st">'blue'</span>, weight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Dichroic mirror (reflects excitation, transmits emission)</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Draw a tilted rectangle</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>dichroic_x <span class="op">=</span> [<span class="fl">1.3</span>, <span class="fl">1.5</span>, <span class="fl">1.45</span>, <span class="fl">1.25</span>]</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>dichroic_y <span class="op">=</span> [<span class="fl">0.3</span>, <span class="fl">0.3</span>, <span class="fl">0.7</span>, <span class="fl">0.7</span>]</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>ax.fill(dichroic_x, dichroic_y, color<span class="op">=</span><span class="st">'cyan'</span>, alpha<span class="op">=</span><span class="fl">0.6</span>, edgecolor<span class="op">=</span><span class="st">'black'</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="fl">1.45</span>, <span class="fl">0.5</span>, <span class="st">'Dichroic</span><span class="ch">\n</span><span class="st">(beamsplitter)'</span>, ha<span class="op">=</span><span class="st">'left'</span>, weight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Excitation filter (bandpass, removes long wavelengths)</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>filter_ex_x <span class="op">=</span> [<span class="fl">2.8</span>, <span class="fl">3.0</span>, <span class="fl">2.95</span>, <span class="fl">2.75</span>]</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>filter_ex_y <span class="op">=</span> [<span class="fl">0.3</span>, <span class="fl">0.3</span>, <span class="fl">0.7</span>, <span class="fl">0.7</span>]</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>ax.fill(filter_ex_x, filter_ex_y, color<span class="op">=</span><span class="st">'blue'</span>, alpha<span class="op">=</span><span class="fl">0.4</span>, edgecolor<span class="op">=</span><span class="st">'darkblue'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, linestyle<span class="op">=</span><span class="st">'--'</span>)</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="fl">2.5</span>, <span class="fl">0.5</span>, <span class="st">'Excitation</span><span class="ch">\n</span><span class="st">filter'</span>, ha<span class="op">=</span><span class="st">'right'</span>, weight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Arrow pointing toward specimen</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>ax.arrow(<span class="fl">3.1</span>, <span class="fl">0.5</span>, <span class="fl">1.2</span>, <span class="dv">0</span>, head_width<span class="op">=</span><span class="fl">0.08</span>, head_length<span class="op">=</span><span class="fl">0.1</span>, fc<span class="op">=</span><span class="st">'blue'</span>, ec<span class="op">=</span><span class="st">'blue'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="fl">3.8</span>, <span class="fl">0.3</span>, <span class="st">'To specimen'</span>, color<span class="op">=</span><span class="st">'blue'</span>, style<span class="op">=</span><span class="st">'italic'</span>)</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Specimen (emits fluorescence)</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>ax.add_patch(Circle((<span class="fl">4.8</span>, <span class="fl">0.5</span>), <span class="fl">0.25</span>, color<span class="op">=</span><span class="st">'yellow'</span>, alpha<span class="op">=</span><span class="fl">0.8</span>, edgecolor<span class="op">=</span><span class="st">'black'</span>, linewidth<span class="op">=</span><span class="dv">2</span>))</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="fl">4.8</span>, <span class="fl">0.5</span>, <span class="st">'Specimen'</span>, ha<span class="op">=</span><span class="st">'center'</span>, va<span class="op">=</span><span class="st">'center'</span>, weight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Emission light path (upward, green/red)</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>ax.arrow(<span class="fl">4.8</span>, <span class="fl">0.75</span>, <span class="dv">0</span>, <span class="fl">1.0</span>, head_width<span class="op">=</span><span class="fl">0.1</span>, head_length<span class="op">=</span><span class="fl">0.1</span>, fc<span class="op">=</span><span class="st">'green'</span>, ec<span class="op">=</span><span class="st">'green'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="fl">5.1</span>, <span class="fl">1.3</span>, <span class="st">'Emission</span><span class="ch">\n</span><span class="st">light'</span>, color<span class="op">=</span><span class="st">'green'</span>, weight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Dichroic again (now transmits emission)</span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>dichroic_ret_x <span class="op">=</span> [<span class="fl">4.6</span>, <span class="fl">4.8</span>, <span class="fl">4.75</span>, <span class="fl">4.55</span>]</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>dichroic_ret_y <span class="op">=</span> [<span class="fl">1.8</span>, <span class="fl">1.8</span>, <span class="fl">2.2</span>, <span class="fl">2.2</span>]</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>ax.fill(dichroic_ret_x, dichroic_ret_y, color<span class="op">=</span><span class="st">'cyan'</span>, alpha<span class="op">=</span><span class="fl">0.6</span>, edgecolor<span class="op">=</span><span class="st">'black'</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="fl">4.4</span>, <span class="fl">2.0</span>, <span class="st">'Dichroic</span><span class="ch">\n</span><span class="st">(transmits)'</span>, ha<span class="op">=</span><span class="st">'right'</span>, style<span class="op">=</span><span class="st">'italic'</span>)</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a><span class="co"># Emission filter (bandpass)</span></span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>filter_em_x <span class="op">=</span> [<span class="fl">4.5</span>, <span class="fl">4.7</span>, <span class="fl">4.65</span>, <span class="fl">4.45</span>]</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>filter_em_y <span class="op">=</span> [<span class="fl">2.5</span>, <span class="fl">2.5</span>, <span class="fl">2.9</span>, <span class="fl">2.9</span>]</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>ax.fill(filter_em_x, filter_em_y, color<span class="op">=</span><span class="st">'green'</span>, alpha<span class="op">=</span><span class="fl">0.4</span>, edgecolor<span class="op">=</span><span class="st">'darkgreen'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, linestyle<span class="op">=</span><span class="st">'--'</span>)</span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="fl">4.2</span>, <span class="fl">2.7</span>, <span class="st">'Emission</span><span class="ch">\n</span><span class="st">filter'</span>, ha<span class="op">=</span><span class="st">'right'</span>, weight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a><span class="co"># To detector</span></span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>ax.arrow(<span class="fl">4.8</span>, <span class="fl">2.95</span>, <span class="dv">0</span>, <span class="fl">0.6</span>, head_width<span class="op">=</span><span class="fl">0.1</span>, head_length<span class="op">=</span><span class="fl">0.1</span>, fc<span class="op">=</span><span class="st">'green'</span>, ec<span class="op">=</span><span class="st">'green'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="fl">5.1</span>, <span class="fl">3.3</span>, <span class="st">'To detector</span><span class="ch">\n</span><span class="st">(PMT or sCMOS)'</span>, color<span class="op">=</span><span class="st">'green'</span>, weight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a><span class="co"># Add wavelength labels</span></span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="fl">1.5</span>, <span class="fl">0.1</span>, <span class="st">'$</span><span class="ch">\\</span><span class="st">lambda_</span><span class="sc">{ex}</span><span class="st">$ (e.g., 488 nm)'</span>, ha<span class="op">=</span><span class="st">'center'</span>, style<span class="op">=</span><span class="st">'italic'</span>)</span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="fl">4.8</span>, <span class="fl">3.7</span>, <span class="st">'$</span><span class="ch">\\</span><span class="st">lambda_</span><span class="sc">{em}</span><span class="st">$ (e.g., 510 nm)'</span>, ha<span class="op">=</span><span class="st">'center'</span>, style<span class="op">=</span><span class="st">'italic'</span>)</span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a><span class="co"># Add filter response curves (schematic)</span></span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a><span class="co"># Excitation filter</span></span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>ax.plot([<span class="fl">2.4</span>, <span class="fl">2.5</span>, <span class="fl">2.6</span>, <span class="fl">2.7</span>, <span class="fl">2.8</span>], [<span class="fl">0.1</span>, <span class="fl">0.15</span>, <span class="fl">0.22</span>, <span class="fl">0.15</span>, <span class="fl">0.08</span>], <span class="st">'b-'</span>, linewidth<span class="op">=</span><span class="fl">1.5</span>, alpha<span class="op">=</span><span class="fl">0.6</span>)</span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a><span class="co"># Dichroic (schematic)</span></span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>ax.plot([<span class="fl">1.2</span>, <span class="fl">1.3</span>, <span class="fl">1.4</span>, <span class="fl">1.5</span>, <span class="fl">1.6</span>], [<span class="fl">0.1</span>, <span class="fl">0.15</span>, <span class="fl">0.85</span>, <span class="fl">0.85</span>, <span class="fl">0.90</span>], <span class="st">'c-'</span>, linewidth<span class="op">=</span><span class="fl">1.5</span>, alpha<span class="op">=</span><span class="fl">0.6</span>)</span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a><span class="co"># Emission filter</span></span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>ax.plot([<span class="fl">4.0</span>, <span class="fl">4.1</span>, <span class="fl">4.2</span>, <span class="fl">4.3</span>, <span class="fl">4.4</span>], [<span class="fl">3.55</span>, <span class="fl">3.6</span>, <span class="fl">3.67</span>, <span class="fl">3.6</span>, <span class="fl">3.52</span>], <span class="st">'g-'</span>, linewidth<span class="op">=</span><span class="fl">1.5</span>, alpha<span class="op">=</span><span class="fl">0.6</span>)</span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="dv">0</span>, <span class="fl">5.5</span>)</span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="dv">0</span>, <span class="dv">4</span>)</span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>ax.set_aspect(<span class="st">'equal'</span>)</span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>ax.axis(<span class="st">'off'</span>)</span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'filtercube.png'</span>, dpi<span class="op">=</span><span class="dv">100</span>, bbox_inches<span class="op">=</span><span class="st">'tight'</span>)</span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div id="figfiltercube" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
@@ -687,6 +867,123 @@ D_p = \text{(Airy units)} \times D_{\text{Airy}}
 <h3 class="anchored" data-anchor-id="the-missing-cone-in-widefield-vs.-filled-cone-in-confocal">6.6 The Missing Cone in Widefield vs.&nbsp;Filled Cone in Confocal</h3>
 <p>The following visualization demonstrates how confocal fills the missing cone problem in 3D Fourier space:</p>
 <div id="cell-fig:missingcone" class="cell" data-fig-width="15" data-execution_count="4">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Parameters</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>wavelength <span class="op">=</span> <span class="fl">0.488</span>  <span class="co"># µm (blue excitation)</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>NA <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>k_max <span class="op">=</span> <span class="fl">2.0</span> <span class="op">*</span> NA <span class="op">/</span> wavelength  <span class="co"># Maximum frequency (2NA/λ)</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Create frequency grids for kx-kz plane</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>npts <span class="op">=</span> <span class="dv">150</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>kx <span class="op">=</span> np.linspace(<span class="op">-</span>k_max <span class="op">*</span> <span class="fl">1.1</span>, k_max <span class="op">*</span> <span class="fl">1.1</span>, npts)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>kz <span class="op">=</span> np.linspace(<span class="op">-</span>k_max <span class="op">*</span> <span class="fl">1.1</span>, k_max <span class="op">*</span> <span class="fl">1.1</span>, npts)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>Kx, Kz <span class="op">=</span> np.meshgrid(kx, kz)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Pupil function: circular aperture</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>k_rho <span class="op">=</span> Kx  <span class="co"># In the kx-kz plane, the radial frequency is kx (ky=0)</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>aperture <span class="op">=</span> np.ones_like(Kx)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>aperture[np.<span class="bu">abs</span>(k_rho) <span class="op">&gt;</span> k_max] <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Simplified 3D OTF for incoherent imaging (scalar approximation)</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="co"># OTF ~ product of autocorrelation of aperture over kz</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Widefield: missing cone where kz ≠ 0 but kx, ky ≈ 0</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Approximate OTF as Gaussian-like autocorrelation</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="co"># High frequencies: good transfer; low frequencies at kz ≠ 0: poor transfer</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>otf_widefield <span class="op">=</span> np.zeros_like(Kx)</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a synthetic OTF: transfer is good within a cone, missing outside</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>cone_angle <span class="op">=</span> <span class="fl">0.4</span>  <span class="co"># Numerical aperture parameter</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(npts):</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(npts):</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>        kx_val <span class="op">=</span> kx[i]</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>        kz_val <span class="op">=</span> kz[j]</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>        k_lat <span class="op">=</span> np.<span class="bu">abs</span>(kx_val)  <span class="co"># Lateral frequency</span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>        k_axial <span class="op">=</span> np.<span class="bu">abs</span>(kz_val)  <span class="co"># Axial frequency</span></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Widefield: response depends on product of lateral frequencies and axial separation</span></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Good response at moderate frequencies; poor response at very low lateral frequencies</span></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>        <span class="co"># when axial separation is large (the "missing cone")</span></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Sigmoid-like response: peaks near maximum frequency, drops at boundary</span></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>        transfer_lat <span class="op">=</span> np.exp(<span class="op">-</span>(k_lat <span class="op">/</span> (<span class="fl">0.8</span> <span class="op">*</span> k_max))<span class="op">**</span><span class="dv">2</span>) <span class="cf">if</span> k_lat <span class="op">&lt;</span> k_max <span class="cf">else</span> <span class="dv">0</span></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Axial response: poor at low lateral frequencies with large axial separation</span></span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>        axial_damping <span class="op">=</span> <span class="fl">1.0</span> <span class="op">/</span> (<span class="fl">1.0</span> <span class="op">+</span> (k_axial <span class="op">/</span> <span class="fl">0.3</span>)<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Missing cone: weak transfer at small lateral k with large axial k</span></span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> k_lat <span class="op">&lt;</span> <span class="fl">0.2</span> <span class="op">*</span> k_max <span class="kw">and</span> k_axial <span class="op">&gt;</span> <span class="fl">0.4</span> <span class="op">*</span> k_max:</span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>            transfer_factor <span class="op">=</span> <span class="fl">0.1</span> <span class="op">*</span> axial_damping</span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> k_lat <span class="op">&lt;</span> <span class="fl">0.4</span> <span class="op">*</span> k_max <span class="kw">and</span> k_axial <span class="op">&gt;</span> <span class="fl">0.6</span> <span class="op">*</span> k_max:</span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>            transfer_factor <span class="op">=</span> <span class="fl">0.3</span> <span class="op">*</span> axial_damping</span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>            transfer_factor <span class="op">=</span> transfer_lat <span class="op">*</span> axial_damping</span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a>        otf_widefield[j, i] <span class="op">=</span> transfer_factor</span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a><span class="co"># Confocal OTF: product of illumination and detection OTFs</span></span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a><span class="co"># This fills in more of the missing cone region</span></span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a>otf_confocal <span class="op">=</span> otf_widefield<span class="op">**</span><span class="dv">2</span>  <span class="co"># Approximate product by squaring</span></span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a><span class="co"># Add restoration at low frequencies (confocal benefits)</span></span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(npts):</span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(npts):</span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a>        kx_val <span class="op">=</span> kx[i]</span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a>        kz_val <span class="op">=</span> kz[j]</span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a>        k_lat <span class="op">=</span> np.<span class="bu">abs</span>(kx_val)</span>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a>        k_axial <span class="op">=</span> np.<span class="bu">abs</span>(kz_val)</span>
+<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Confocal: pinhole provides better sectioning</span></span>
+<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Restore low frequency response near optical axis</span></span>
+<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> k_lat <span class="op">&lt;</span> <span class="fl">0.2</span> <span class="op">*</span> k_max:</span>
+<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a>            pinhole_boost <span class="op">=</span> <span class="fl">1.5</span>  <span class="co"># Confocal pinhole improves low-frequency response</span></span>
+<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a>            otf_confocal[j, i] <span class="op">*=</span> pinhole_boost</span>
+<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a><span class="co"># Normalize</span></span>
+<span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a>otf_widefield <span class="op">/=</span> otf_widefield.<span class="bu">max</span>()</span>
+<span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a>otf_confocal <span class="op">/=</span> otf_confocal.<span class="bu">max</span>()</span>
+<span id="cb3-74"><a href="#cb3-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-75"><a href="#cb3-75" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot</span></span>
+<span id="cb3-76"><a href="#cb3-76" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>get_size(<span class="dv">15</span>, <span class="dv">6</span>))</span>
+<span id="cb3-77"><a href="#cb3-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-78"><a href="#cb3-78" aria-hidden="true" tabindex="-1"></a><span class="co"># Widefield</span></span>
+<span id="cb3-79"><a href="#cb3-79" aria-hidden="true" tabindex="-1"></a>im0 <span class="op">=</span> axes[<span class="dv">0</span>].contourf(Kx, Kz, otf_widefield, levels<span class="op">=</span><span class="dv">20</span>, cmap<span class="op">=</span><span class="st">'viridis'</span>, extent<span class="op">=</span>[kx[<span class="dv">0</span>], kx[<span class="op">-</span><span class="dv">1</span>], kz[<span class="op">-</span><span class="dv">1</span>], kz[<span class="dv">0</span>]])</span>
+<span id="cb3-80"><a href="#cb3-80" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_xlabel(<span class="st">'$k_x$ (µm$^{-1}$)'</span>)</span>
+<span id="cb3-81"><a href="#cb3-81" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_ylabel(<span class="st">'$k_z$ (µm$^{-1}$)'</span>)</span>
+<span id="cb3-82"><a href="#cb3-82" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_title(<span class="st">'Widefield Fluorescence OTF</span><span class="ch">\n</span><span class="st">(Missing Cone along $k_z$ axis)'</span>)</span>
+<span id="cb3-83"><a href="#cb3-83" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_aspect(<span class="st">'equal'</span>)</span>
+<span id="cb3-84"><a href="#cb3-84" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].axhline(<span class="dv">0</span>, color<span class="op">=</span><span class="st">'white'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, linewidth<span class="op">=</span><span class="fl">0.5</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb3-85"><a href="#cb3-85" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].axvline(<span class="dv">0</span>, color<span class="op">=</span><span class="st">'white'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, linewidth<span class="op">=</span><span class="fl">0.5</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb3-86"><a href="#cb3-86" aria-hidden="true" tabindex="-1"></a><span class="co"># Annotate missing cone</span></span>
+<span id="cb3-87"><a href="#cb3-87" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].annotate(<span class="st">'Missing cone</span><span class="ch">\n</span><span class="st">(poor sectioning)'</span>, xy<span class="op">=</span>(<span class="dv">0</span>, <span class="fl">0.8</span>), xytext<span class="op">=</span>(<span class="fl">0.4</span>, <span class="fl">1.2</span>),</span>
+<span id="cb3-88"><a href="#cb3-88" aria-hidden="true" tabindex="-1"></a>                arrowprops<span class="op">=</span><span class="bu">dict</span>(arrowstyle<span class="op">=</span><span class="st">'-&gt;'</span>, color<span class="op">=</span><span class="st">'white'</span>, lw<span class="op">=</span><span class="fl">1.5</span>),</span>
+<span id="cb3-89"><a href="#cb3-89" aria-hidden="true" tabindex="-1"></a>                color<span class="op">=</span><span class="st">'white'</span>, fontsize<span class="op">=</span><span class="dv">9</span>, weight<span class="op">=</span><span class="st">'bold'</span>,</span>
+<span id="cb3-90"><a href="#cb3-90" aria-hidden="true" tabindex="-1"></a>                bbox<span class="op">=</span><span class="bu">dict</span>(boxstyle<span class="op">=</span><span class="st">'round'</span>, facecolor<span class="op">=</span><span class="st">'black'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>))</span>
+<span id="cb3-91"><a href="#cb3-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-92"><a href="#cb3-92" aria-hidden="true" tabindex="-1"></a><span class="co"># Confocal</span></span>
+<span id="cb3-93"><a href="#cb3-93" aria-hidden="true" tabindex="-1"></a>im1 <span class="op">=</span> axes[<span class="dv">1</span>].contourf(Kx, Kz, otf_confocal, levels<span class="op">=</span><span class="dv">20</span>, cmap<span class="op">=</span><span class="st">'viridis'</span>, extent<span class="op">=</span>[kx[<span class="dv">0</span>], kx[<span class="op">-</span><span class="dv">1</span>], kz[<span class="op">-</span><span class="dv">1</span>], kz[<span class="dv">0</span>]])</span>
+<span id="cb3-94"><a href="#cb3-94" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_xlabel(<span class="st">'$k_x$ (µm$^{-1}$)'</span>)</span>
+<span id="cb3-95"><a href="#cb3-95" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_ylabel(<span class="st">'$k_z$ (µm$^{-1}$)'</span>)</span>
+<span id="cb3-96"><a href="#cb3-96" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_title(<span class="st">'Confocal CLSM OTF</span><span class="ch">\n</span><span class="st">(Missing Cone Filled by Pinhole)'</span>)</span>
+<span id="cb3-97"><a href="#cb3-97" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_aspect(<span class="st">'equal'</span>)</span>
+<span id="cb3-98"><a href="#cb3-98" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].axhline(<span class="dv">0</span>, color<span class="op">=</span><span class="st">'white'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, linewidth<span class="op">=</span><span class="fl">0.5</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb3-99"><a href="#cb3-99" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].axvline(<span class="dv">0</span>, color<span class="op">=</span><span class="st">'white'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, linewidth<span class="op">=</span><span class="fl">0.5</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb3-100"><a href="#cb3-100" aria-hidden="true" tabindex="-1"></a><span class="co"># Annotate improved response</span></span>
+<span id="cb3-101"><a href="#cb3-101" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].annotate(<span class="st">'Improved</span><span class="ch">\n</span><span class="st">low-frequency</span><span class="ch">\n</span><span class="st">response'</span>, xy<span class="op">=</span>(<span class="dv">0</span>, <span class="fl">0.8</span>), xytext<span class="op">=</span>(<span class="fl">0.4</span>, <span class="fl">1.2</span>),</span>
+<span id="cb3-102"><a href="#cb3-102" aria-hidden="true" tabindex="-1"></a>                arrowprops<span class="op">=</span><span class="bu">dict</span>(arrowstyle<span class="op">=</span><span class="st">'-&gt;'</span>, color<span class="op">=</span><span class="st">'white'</span>, lw<span class="op">=</span><span class="fl">1.5</span>),</span>
+<span id="cb3-103"><a href="#cb3-103" aria-hidden="true" tabindex="-1"></a>                color<span class="op">=</span><span class="st">'white'</span>, fontsize<span class="op">=</span><span class="dv">9</span>, weight<span class="op">=</span><span class="st">'bold'</span>,</span>
+<span id="cb3-104"><a href="#cb3-104" aria-hidden="true" tabindex="-1"></a>                bbox<span class="op">=</span><span class="bu">dict</span>(boxstyle<span class="op">=</span><span class="st">'round'</span>, facecolor<span class="op">=</span><span class="st">'black'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>))</span>
+<span id="cb3-105"><a href="#cb3-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-106"><a href="#cb3-106" aria-hidden="true" tabindex="-1"></a>fig.set_layout_engine(<span class="st">'constrained'</span>)</span>
+<span id="cb3-107"><a href="#cb3-107" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'missing_cone.png'</span>, dpi<span class="op">=</span><span class="dv">100</span>, bbox_inches<span class="op">=</span><span class="st">'tight'</span>)</span>
+<span id="cb3-108"><a href="#cb3-108" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb3-109"><a href="#cb3-109" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-110"><a href="#cb3-110" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Missing Cone Analysis:"</span>)</span>
+<span id="cb3-111"><a href="#cb3-111" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Maximum frequency: k_max = 2NA/λ = </span><span class="sc">{</span>k_max<span class="sc">:.2f}</span><span class="ss"> µm⁻¹"</span>)</span>
+<span id="cb3-112"><a href="#cb3-112" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Widefield max OTF: </span><span class="sc">{</span>otf_widefield<span class="sc">.</span><span class="bu">max</span>()<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
+<span id="cb3-113"><a href="#cb3-113" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Confocal max OTF: </span><span class="sc">{</span>otf_confocal<span class="sc">.</span><span class="bu">max</span>()<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
+<span id="cb3-114"><a href="#cb3-114" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Low-frequency (|k| &lt; 0.2k_max) response improvement: </span><span class="sc">{</span>otf_confocal[<span class="dv">75</span>, <span class="dv">75</span>] <span class="op">/</span> otf_widefield[<span class="dv">75</span>, <span class="dv">75</span>]<span class="sc">:.2f}</span><span class="ss">×"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div id="figmissingcone" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
@@ -811,6 +1108,62 @@ Low-frequency (|k| &lt; 0.2k_max) response improvement: 1.00×</code></pre>
 <h3 class="anchored" data-anchor-id="phase-object-simulation">9.1 Phase Object Simulation</h3>
 <p>Let’s simulate how a phase object (e.g., a cell with density variations) appears in phase contrast microscopy:</p>
 <div id="cell-fig:phaseobject" class="cell" data-fig-height="3.5" data-fig-width="5.9" data-execution_count="5">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a synthetic phase object (e.g., cells)</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">256</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, N)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, N)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>X, Y <span class="op">=</span> np.meshgrid(x, y)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Create multiple Gaussian "cells" with different phase values</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>phi_object <span class="op">=</span> np.zeros_like(X)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Cell 1: strong phase (high refractive index)</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>phi_object <span class="op">+=</span> <span class="fl">0.8</span> <span class="op">*</span> np.exp(<span class="op">-</span>((X <span class="op">-</span> <span class="dv">2</span>)<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> (Y <span class="op">-</span> <span class="dv">2</span>)<span class="op">**</span><span class="dv">2</span>) <span class="op">/</span> <span class="fl">0.5</span>)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Cell 2: weak phase</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>phi_object <span class="op">+=</span> <span class="fl">0.4</span> <span class="op">*</span> np.exp(<span class="op">-</span>((X <span class="op">+</span> <span class="fl">1.5</span>)<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> (Y <span class="op">+</span> <span class="fl">1.5</span>)<span class="op">**</span><span class="dv">2</span>) <span class="op">/</span> <span class="fl">0.7</span>)</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Cell 3: moderate phase</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>phi_object <span class="op">+=</span> <span class="fl">0.6</span> <span class="op">*</span> np.exp(<span class="op">-</span>((X <span class="op">-</span> <span class="dv">1</span>)<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> (Y <span class="op">+</span> <span class="dv">2</span>)<span class="op">**</span><span class="dv">2</span>) <span class="op">/</span> <span class="fl">0.4</span>)</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Cytoplasm with fine structures</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>phi_object <span class="op">+=</span> <span class="fl">0.2</span> <span class="op">*</span> np.sin(<span class="dv">3</span><span class="op">*</span>X) <span class="op">*</span> np.cos(<span class="dv">3</span><span class="op">*</span>Y) <span class="op">*</span> np.exp(<span class="op">-</span>(X<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> Y<span class="op">**</span><span class="dv">2</span>)<span class="op">/</span><span class="dv">8</span>)</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Brightfield image (phase object is invisible)</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>I_brightfield <span class="op">=</span> np.ones_like(X)  <span class="co"># Constant intensity</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Phase contrast simulation: I ∝ 1 + 2φ (positive contrast)</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Zero-order phase shift by λ/4 and amplitude reduction by β=0.1</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>I_phasecontrast <span class="op">=</span> <span class="dv">1</span> <span class="op">+</span> <span class="dv">2</span> <span class="op">*</span> phi_object</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulate some Gaussian noise</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>I_brightfield <span class="op">+=</span> <span class="fl">0.01</span> <span class="op">*</span> np.random.randn(<span class="op">*</span>X.shape)</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>I_phasecontrast <span class="op">+=</span> <span class="fl">0.01</span> <span class="op">*</span> np.random.randn(<span class="op">*</span>X.shape)</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot</span></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, figsize<span class="op">=</span>get_size(<span class="dv">15</span>, <span class="fl">5.5</span>))</span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Phase distribution</span></span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>im0 <span class="op">=</span> axes[<span class="dv">0</span>].imshow(phi_object, cmap<span class="op">=</span><span class="st">'viridis'</span>, extent<span class="op">=</span>[<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>])</span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_xlabel(<span class="st">'x (µm)'</span>)</span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_ylabel(<span class="st">'y (µm)'</span>)</span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_aspect(<span class="st">'equal'</span>)</span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a><span class="co"># Brightfield (invisible)</span></span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>im1 <span class="op">=</span> axes[<span class="dv">1</span>].imshow(I_brightfield, cmap<span class="op">=</span><span class="st">'gray'</span>, extent<span class="op">=</span>[<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>])</span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_xlabel(<span class="st">'x (µm)'</span>)</span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_aspect(<span class="st">'equal'</span>)</span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a><span class="co"># Phase contrast</span></span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a>im2 <span class="op">=</span> axes[<span class="dv">2</span>].imshow(np.clip(I_phasecontrast, <span class="dv">0</span>, <span class="dv">2</span>), cmap<span class="op">=</span><span class="st">'gray'</span>, extent<span class="op">=</span>[<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>])</span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>].set_xlabel(<span class="st">'x (µm)'</span>)</span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>].set_aspect(<span class="st">'equal'</span>)</span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>fig.set_layout_engine(<span class="st">'constrained'</span>)</span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'phaseobject.png'</span>, dpi<span class="op">=</span><span class="dv">100</span>, bbox_inches<span class="op">=</span><span class="st">'tight'</span>)</span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Phase contrast image intensities: min=</span><span class="sc">{</span>I_phasecontrast<span class="sc">.</span><span class="bu">min</span>()<span class="sc">:.3f}</span><span class="ss">, max=</span><span class="sc">{</span>I_phasecontrast<span class="sc">.</span><span class="bu">max</span>()<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
+<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Contrast range: </span><span class="sc">{</span>I_phasecontrast<span class="sc">.</span><span class="bu">max</span>() <span class="op">-</span> I_phasecontrast<span class="sc">.</span><span class="bu">min</span>()<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div id="figphaseobject" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
@@ -820,8 +1173,8 @@ Low-frequency (|k| &lt; 0.2k_max) response improvement: 1.00×</code></pre>
 </div>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Phase contrast image intensities: min=0.618, max=2.574
-Contrast range: 1.956</code></pre>
+<pre><code>Phase contrast image intensities: min=0.606, max=2.586
+Contrast range: 1.981</code></pre>
 </div>
 </div>
 </section>
@@ -829,6 +1182,75 @@ Contrast range: 1.956</code></pre>
 <h3 class="anchored" data-anchor-id="zernike-phase-contrast-in-fourier-space">9.2 Zernike Phase Contrast in Fourier Space</h3>
 <p>Now let’s visualize how the phase ring in the back focal plane converts phase to amplitude:</p>
 <div id="cell-fig:zernike" class="cell" data-fig-height="3.5" data-fig-width="5.9" data-execution_count="6">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use the same phase object</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>N_fft <span class="op">=</span> <span class="dv">256</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>phi_object_fft <span class="op">=</span> phi_object.copy()</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute Fourier transform (field, not intensity)</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>field_object <span class="op">=</span> np.exp(<span class="ot">1j</span> <span class="op">*</span> phi_object_fft)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>field_fft <span class="op">=</span> np.fft.fft2(field_object)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>field_fft_shifted <span class="op">=</span> np.fft.fftshift(field_fft)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Magnitude of Fourier transform</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>mag_fft <span class="op">=</span> np.<span class="bu">abs</span>(field_fft_shifted)</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>mag_fft_log <span class="op">=</span> np.log1p(mag_fft)</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Create phase plate mask</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Zero-order at center</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>center <span class="op">=</span> N_fft <span class="op">//</span> <span class="dv">2</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>radius_zeroorder <span class="op">=</span> <span class="dv">5</span>  <span class="co"># pixels</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>y_plate, x_plate <span class="op">=</span> np.ogrid[<span class="op">-</span>center:N_fft<span class="op">-</span>center, <span class="op">-</span>center:N_fft<span class="op">-</span>center]</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>r_plate <span class="op">=</span> np.sqrt(x_plate<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> y_plate<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>phase_ring <span class="op">=</span> np.ones_like(r_plate, dtype<span class="op">=</span><span class="bu">complex</span>)</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply phase shift and amplitude reduction to zero-order</span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>phase_ring[r_plate <span class="op">&lt;</span> radius_zeroorder] <span class="op">=</span> <span class="fl">0.1</span> <span class="op">*</span> np.exp(<span class="ot">1j</span> <span class="op">*</span> np.pi<span class="op">/</span><span class="dv">2</span>)</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply phase plate</span></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>field_fft_phaseplate <span class="op">=</span> field_fft_shifted <span class="op">*</span> phase_ring</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Inverse Fourier transform</span></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>field_image <span class="op">=</span> np.fft.ifft2(np.fft.ifftshift(field_fft_phaseplate))</span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>I_phasecontrast_fourier <span class="op">=</span> np.<span class="bu">abs</span>(field_image)<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot</span></span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, figsize<span class="op">=</span>get_size(<span class="dv">15</span>, <span class="dv">5</span>))</span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a><span class="co"># Fourier magnitude (log scale)</span></span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>im0 <span class="op">=</span> axes[<span class="dv">0</span>].imshow(mag_fft_log, cmap<span class="op">=</span><span class="st">'hot'</span>, extent<span class="op">=</span>[<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>])</span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>circle <span class="op">=</span> plt.Circle((<span class="dv">0</span>, <span class="dv">0</span>), radius_zeroorder <span class="op">*</span> <span class="dv">5</span> <span class="op">/</span> N_fft,</span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>                     fill<span class="op">=</span><span class="va">False</span>, edgecolor<span class="op">=</span><span class="st">'cyan'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, linestyle<span class="op">=</span><span class="st">'--'</span>)</span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].add_patch(circle)</span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_xlabel(<span class="st">'$u$'</span>)</span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_ylabel(<span class="st">'$v$'</span>)</span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_aspect(<span class="st">'equal'</span>)</span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_xlim(<span class="op">-</span><span class="fl">1.5</span>, <span class="fl">1.5</span>)</span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_ylim(<span class="op">-</span><span class="fl">1.5</span>, <span class="fl">1.5</span>)</span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a><span class="co"># Phase ring (visualization)</span></span>
+<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a>phase_ring_vis <span class="op">=</span> np.zeros_like(r_plate)</span>
+<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a>phase_ring_vis[r_plate <span class="op">&lt;</span> radius_zeroorder] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a>im1 <span class="op">=</span> axes[<span class="dv">1</span>].imshow(phase_ring_vis, cmap<span class="op">=</span><span class="st">'RdYlBu'</span>, extent<span class="op">=</span>[<span class="op">-</span><span class="fl">1.5</span>, <span class="fl">1.5</span>, <span class="op">-</span><span class="fl">1.5</span>, <span class="fl">1.5</span>])</span>
+<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a>circle2 <span class="op">=</span> plt.Circle((<span class="dv">0</span>, <span class="dv">0</span>), radius_zeroorder <span class="op">/</span> N_fft <span class="op">*</span> <span class="dv">3</span>,</span>
+<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a>                      fill<span class="op">=</span><span class="va">True</span>, facecolor<span class="op">=</span><span class="st">'cyan'</span>, alpha<span class="op">=</span><span class="fl">0.3</span>, edgecolor<span class="op">=</span><span class="st">'cyan'</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].add_patch(circle2)</span>
+<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_xlabel(<span class="st">'$u$'</span>)</span>
+<span id="cb7-53"><a href="#cb7-53" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_ylabel(<span class="st">'$v$'</span>)</span>
+<span id="cb7-54"><a href="#cb7-54" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_aspect(<span class="st">'equal'</span>)</span>
+<span id="cb7-55"><a href="#cb7-55" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_xlim(<span class="op">-</span><span class="fl">1.5</span>, <span class="fl">1.5</span>)</span>
+<span id="cb7-56"><a href="#cb7-56" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_ylim(<span class="op">-</span><span class="fl">1.5</span>, <span class="fl">1.5</span>)</span>
+<span id="cb7-57"><a href="#cb7-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-58"><a href="#cb7-58" aria-hidden="true" tabindex="-1"></a><span class="co"># Phase contrast result</span></span>
+<span id="cb7-59"><a href="#cb7-59" aria-hidden="true" tabindex="-1"></a>im2 <span class="op">=</span> axes[<span class="dv">2</span>].imshow(np.clip(I_phasecontrast_fourier <span class="op">/</span> I_phasecontrast_fourier.<span class="bu">max</span>(), <span class="dv">0</span>, <span class="dv">1</span>),</span>
+<span id="cb7-60"><a href="#cb7-60" aria-hidden="true" tabindex="-1"></a>                     cmap<span class="op">=</span><span class="st">'gray'</span>, extent<span class="op">=</span>[<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>])</span>
+<span id="cb7-61"><a href="#cb7-61" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>].set_xlabel(<span class="st">'x (µm)'</span>)</span>
+<span id="cb7-62"><a href="#cb7-62" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>].set_aspect(<span class="st">'equal'</span>)</span>
+<span id="cb7-63"><a href="#cb7-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-64"><a href="#cb7-64" aria-hidden="true" tabindex="-1"></a>fig.set_layout_engine(<span class="st">'constrained'</span>)</span>
+<span id="cb7-65"><a href="#cb7-65" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'zernike.png'</span>, dpi<span class="op">=</span><span class="dv">100</span>, bbox_inches<span class="op">=</span><span class="st">'tight'</span>)</span>
+<span id="cb7-66"><a href="#cb7-66" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div id="figzernike" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
@@ -843,6 +1265,76 @@ Contrast range: 1.956</code></pre>
 <h3 class="anchored" data-anchor-id="confocal-vs.-widefield-psf">9.3 Confocal vs.&nbsp;Widefield PSF</h3>
 <p>Finally, let’s compare the 3D point spread functions of confocal and widefield microscopy:</p>
 <div id="cell-fig:psf" class="cell" data-fig-height="4" data-fig-width="5.9" data-execution_count="7">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Parameters</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>wavelength <span class="op">=</span> <span class="fl">0.5</span>  <span class="co"># µm</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>NA <span class="op">=</span> <span class="fl">0.9</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>pixel_size <span class="op">=</span> <span class="fl">0.05</span>  <span class="co"># µm</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Axial distance (z-axis), relative to focal plane</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>z_max <span class="op">=</span> <span class="fl">2.0</span>  <span class="co"># µm</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> np.linspace(<span class="op">-</span>z_max, z_max, <span class="dv">200</span>)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Normalized axial PSF (Airy pattern along axis)</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co"># PSF ∝ sinc²(π z / z_Rayleigh)</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>z_Rayleigh <span class="op">=</span> wavelength <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> NA<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>psf_widefield <span class="op">=</span> np.sinc(np.pi <span class="op">*</span> z <span class="op">/</span> z_Rayleigh)<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Confocal PSF = (widefield)² (product of illumination and detection)</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>psf_confocal <span class="op">=</span> psf_widefield<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Normalize</span></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>psf_widefield <span class="op">/=</span> psf_widefield.<span class="bu">max</span>()</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>psf_confocal <span class="op">/=</span> psf_confocal.<span class="bu">max</span>()</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot</span></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>get_size(<span class="dv">14</span>, <span class="dv">8</span>))</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>ax.fill_between(z, psf_widefield, alpha<span class="op">=</span><span class="fl">0.4</span>, color<span class="op">=</span><span class="st">'blue'</span>, label<span class="op">=</span><span class="st">'Widefield'</span>)</span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>ax.plot(z, psf_widefield, <span class="st">'b-'</span>, linewidth<span class="op">=</span><span class="fl">2.5</span>, label<span class="op">=</span><span class="st">'Widefield'</span>)</span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>ax.fill_between(z, psf_confocal, alpha<span class="op">=</span><span class="fl">0.4</span>, color<span class="op">=</span><span class="st">'red'</span>, label<span class="op">=</span><span class="st">'Confocal'</span>)</span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>ax.plot(z, psf_confocal, <span class="st">'r-'</span>, linewidth<span class="op">=</span><span class="fl">2.5</span>, label<span class="op">=</span><span class="st">'Confocal'</span>)</span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Mark FWHM</span></span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Widefield FWHM</span></span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>idx_half_wf <span class="op">=</span> np.where(psf_widefield <span class="op">&gt;=</span> <span class="fl">0.5</span>)[<span class="dv">0</span>]</span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="bu">len</span>(idx_half_wf) <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>    z_fwhm_wf <span class="op">=</span> z[idx_half_wf[<span class="op">-</span><span class="dv">1</span>]] <span class="op">-</span> z[idx_half_wf[<span class="dv">0</span>]]</span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>    z_center_wf <span class="op">=</span> (z[idx_half_wf[<span class="op">-</span><span class="dv">1</span>]] <span class="op">+</span> z[idx_half_wf[<span class="dv">0</span>]]) <span class="op">/</span> <span class="dv">2</span></span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a>    ax.plot([z[idx_half_wf[<span class="dv">0</span>]], z[idx_half_wf[<span class="op">-</span><span class="dv">1</span>]]], [<span class="fl">0.5</span>, <span class="fl">0.5</span>], <span class="st">'b-'</span>, linewidth<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a>    ax.text(z_center_wf, <span class="fl">0.55</span>, <span class="ss">f'FWHM = </span><span class="sc">{</span>z_fwhm_wf<span class="sc">:.2f}</span><span class="ss"> µm'</span>, ha<span class="op">=</span><span class="st">'center'</span>, color<span class="op">=</span><span class="st">'blue'</span>, weight<span class="op">=</span><span class="st">'bold'</span>,</span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a>            bbox<span class="op">=</span><span class="bu">dict</span>(boxstyle<span class="op">=</span><span class="st">'round'</span>, facecolor<span class="op">=</span><span class="st">'lightblue'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>))</span>
+<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a><span class="co"># Confocal FWHM</span></span>
+<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a>idx_half_conf <span class="op">=</span> np.where(psf_confocal <span class="op">&gt;=</span> <span class="fl">0.5</span>)[<span class="dv">0</span>]</span>
+<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="bu">len</span>(idx_half_conf) <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a>    z_fwhm_conf <span class="op">=</span> z[idx_half_conf[<span class="op">-</span><span class="dv">1</span>]] <span class="op">-</span> z[idx_half_conf[<span class="dv">0</span>]]</span>
+<span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a>    z_center_conf <span class="op">=</span> (z[idx_half_conf[<span class="op">-</span><span class="dv">1</span>]] <span class="op">+</span> z[idx_half_conf[<span class="dv">0</span>]]) <span class="op">/</span> <span class="dv">2</span></span>
+<span id="cb8-46"><a href="#cb8-46" aria-hidden="true" tabindex="-1"></a>    ax.plot([z[idx_half_conf[<span class="dv">0</span>]], z[idx_half_conf[<span class="op">-</span><span class="dv">1</span>]]], [<span class="fl">0.5</span>, <span class="fl">0.5</span>], <span class="st">'r-'</span>, linewidth<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb8-47"><a href="#cb8-47" aria-hidden="true" tabindex="-1"></a>    ax.text(z_center_conf, <span class="fl">0.38</span>, <span class="ss">f'FWHM = </span><span class="sc">{</span>z_fwhm_conf<span class="sc">:.2f}</span><span class="ss"> µm'</span>, ha<span class="op">=</span><span class="st">'center'</span>, color<span class="op">=</span><span class="st">'red'</span>, weight<span class="op">=</span><span class="st">'bold'</span>,</span>
+<span id="cb8-48"><a href="#cb8-48" aria-hidden="true" tabindex="-1"></a>            bbox<span class="op">=</span><span class="bu">dict</span>(boxstyle<span class="op">=</span><span class="st">'round'</span>, facecolor<span class="op">=</span><span class="st">'lightcoral'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>))</span>
+<span id="cb8-49"><a href="#cb8-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-50"><a href="#cb8-50" aria-hidden="true" tabindex="-1"></a><span class="co"># Add horizontal line at FWHM</span></span>
+<span id="cb8-51"><a href="#cb8-51" aria-hidden="true" tabindex="-1"></a>ax.axhline(<span class="fl">0.5</span>, color<span class="op">=</span><span class="st">'gray'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, linewidth<span class="op">=</span><span class="dv">1</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb8-52"><a href="#cb8-52" aria-hidden="true" tabindex="-1"></a>ax.text(z_max <span class="op">-</span> <span class="fl">0.2</span>, <span class="fl">0.5</span>, <span class="st">'Half max'</span>, style<span class="op">=</span><span class="st">'italic'</span>, color<span class="op">=</span><span class="st">'gray'</span>)</span>
+<span id="cb8-53"><a href="#cb8-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-54"><a href="#cb8-54" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Axial distance, $z$ (µm)'</span>)</span>
+<span id="cb8-55"><a href="#cb8-55" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Intensity'</span>)</span>
+<span id="cb8-56"><a href="#cb8-56" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="op">-</span>z_max, z_max)</span>
+<span id="cb8-57"><a href="#cb8-57" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="dv">0</span>, <span class="fl">1.1</span>)</span>
+<span id="cb8-58"><a href="#cb8-58" aria-hidden="true" tabindex="-1"></a>ax.legend(fontsize<span class="op">=</span><span class="dv">8</span>, loc<span class="op">=</span><span class="st">'upper right'</span>, framealpha<span class="op">=</span><span class="fl">0.95</span>)</span>
+<span id="cb8-59"><a href="#cb8-59" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb8-60"><a href="#cb8-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-61"><a href="#cb8-61" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb8-62"><a href="#cb8-62" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'psf_comparison.png'</span>, dpi<span class="op">=</span><span class="dv">100</span>, bbox_inches<span class="op">=</span><span class="st">'tight'</span>)</span>
+<span id="cb8-63"><a href="#cb8-63" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb8-64"><a href="#cb8-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-65"><a href="#cb8-65" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Widefield axial FWHM: </span><span class="sc">{</span>z_Rayleigh<span class="sc">:.3f}</span><span class="ss"> µm"</span>)</span>
+<span id="cb8-66"><a href="#cb8-66" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Confocal axial FWHM (approx.): </span><span class="sc">{</span>z_Rayleigh <span class="op">/</span> np<span class="sc">.</span>sqrt(<span class="dv">2</span>)<span class="sc">:.3f}</span><span class="ss"> µm"</span>)</span>
+<span id="cb8-67"><a href="#cb8-67" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Resolution improvement factor: </span><span class="sc">{</span>z_Rayleigh <span class="op">/</span> (z_Rayleigh <span class="op">/</span> np.sqrt(<span class="dv">2</span>))<span class="sc">:.2f}</span><span class="ss">×"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div id="figpsf" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">

@@ -404,7 +404,7 @@ window.Quarto = {
 <section id="exercise-1-aperture-diffraction-patterns" class="level3">
 <h3 class="anchored" data-anchor-id="exercise-1-aperture-diffraction-patterns">Exercise 1: Aperture Diffraction Patterns</h3>
 <p>Simulate diffraction from rectangular and circular apertures using the Fourier transform.</p>
-<div id="e97d02ce" class="cell" data-execution_count="2">
+<div id="de0f67f5" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a simple aperture in the spatial domain</span></span>
@@ -471,7 +471,7 @@ Central intensity (circ): 6.15e+07</code></pre>
 <section id="exercise-2-airy-disk-resolution" class="level3">
 <h3 class="anchored" data-anchor-id="exercise-2-airy-disk-resolution">Exercise 2: Airy Disk &amp; Resolution</h3>
 <p>Calculate and plot the Airy pattern for optical imaging.</p>
-<div id="afe2fb8b" class="cell" data-execution_count="3">
+<div id="1c9c6936" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Airy pattern: intensity of circular aperture in far field</span></span>
@@ -542,6 +542,12 @@ Central intensity (circ): 6.15e+07</code></pre>
 <span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Rayleigh resolution limit = </span><span class="sc">{</span>rayleigh_limit<span class="op">*</span><span class="fl">1e6</span><span class="sc">:.3f}</span><span class="ss"> µm"</span>)</span>
 <span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"First minimum at x ≈ 3.83 (normalized coordinate)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+<div class="cell-output cell-output-stderr">
+<pre><code>/var/folders/t4/_9qps8wj56jc60nwkr3nrcr00000gn/T/ipykernel_10081/2119980280.py:11: RuntimeWarning:
+
+invalid value encountered in divide
+</code></pre>
+</div>
 <div class="cell-output cell-output-stdout">
 <pre><code>NA = 0.65
 Wavelength = 0.500 µm
@@ -549,19 +555,13 @@ Airy disk radius = 0.469 µm
 Rayleigh resolution limit = 0.469 µm
 First minimum at x ≈ 3.83 (normalized coordinate)</code></pre>
 </div>
-<div class="cell-output cell-output-stderr">
-<pre><code>/var/folders/t4/_9qps8wj56jc60nwkr3nrcr00000gn/T/ipykernel_79330/2119980280.py:11: RuntimeWarning:
-
-invalid value encountered in divide
-</code></pre>
-</div>
 </div>
 <hr>
 </section>
 <section id="exercise-3-double-slit-pattern" class="level3">
 <h3 class="anchored" data-anchor-id="exercise-3-double-slit-pattern">Exercise 3: Double-Slit Pattern</h3>
 <p>Simulate the combined effect of single-slit diffraction and two-slit interference.</p>
-<div id="d6952a89" class="cell" data-execution_count="4">
+<div id="f75e350c" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> double_slit_pattern(theta, slit_width, slit_separation, wavelength):</span>
@@ -640,7 +640,7 @@ Diffraction envelope (first minimum) at ≈ 0.363°</code></pre>
 <section id="exercise-4-spatial-filtering-in-fourier-domain" class="level3">
 <h3 class="anchored" data-anchor-id="exercise-4-spatial-filtering-in-fourier-domain">Exercise 4: Spatial Filtering in Fourier Domain</h3>
 <p>Demonstrate low-pass, high-pass, and notch filtering on a test image.</p>
-<div id="2ee079c9" class="cell" data-execution_count="5">
+<div id="d88f6fe0" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a test image with multiple features</span></span>
@@ -743,7 +743,7 @@ Notch: removes specific spatial frequencies (e.g., periodic artifacts)</code></p
 <section id="exercise-5-4f-spatial-filter-system" class="level3">
 <h3 class="anchored" data-anchor-id="exercise-5-4f-spatial-filter-system">Exercise 5: 4f Spatial Filter System</h3>
 <p>Simulate a 4f imaging system with an adjustable spatial filter.</p>
-<div id="7a956730" class="cell" data-execution_count="6">
+<div id="aecb2d1b" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create input image with text-like pattern</span></span>

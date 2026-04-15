@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -302,6 +337,89 @@ window.Quarto = {
 <p><span class="math display">\[\theta_i = \theta_r\]</span></p>
 <p>where <span class="math inline">\(\theta_i\)</span> is the angle of incidence and <span class="math inline">\(\theta_r\)</span> is the angle of reflection, both measured from the normal to the surface.</p>
 <div id="cell-fig-fermat-reflection" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calculate_path_length(x, start, end):</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Calculate the total path length from start to point x to end"""</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    d1 <span class="op">=</span> np.sqrt((x <span class="op">-</span> start[<span class="dv">0</span>])<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> (start[<span class="dv">1</span>])<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    d2 <span class="op">=</span> np.sqrt((end[<span class="dv">0</span>] <span class="op">-</span> x)<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> (end[<span class="dv">1</span>])<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> d1 <span class="op">+</span> d2</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Set up the figure</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>get_size(<span class="dv">15</span>, <span class="dv">10</span>))</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Define start and end points</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>start_point <span class="op">=</span> (<span class="op">-</span><span class="dv">4</span>, <span class="dv">3</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>end_point <span class="op">=</span> (<span class="dv">4</span>, <span class="dv">3</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># X positions for different possible paths</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>x_positions <span class="op">=</span> np.linspace(<span class="op">-</span><span class="fl">3.5</span>, <span class="fl">3.5</span>, <span class="dv">15</span>)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate path lengths</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>path_lengths <span class="op">=</span> [calculate_path_length(x, start_point, end_point) <span class="cf">for</span> x <span class="kw">in</span> x_positions]</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Find the minimum path (Fermat's principle)</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>min_index <span class="op">=</span> np.argmin(path_lengths)</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>min_x <span class="op">=</span> x_positions[min_index]</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the horizontal line (interface)</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>ax.axhline(y<span class="op">=</span><span class="dv">0</span>, color<span class="op">=</span><span class="st">'black'</span>, linestyle<span class="op">=</span><span class="st">'-'</span>, linewidth<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot all possible paths</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, x <span class="kw">in</span> <span class="bu">enumerate</span>(x_positions):</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> i <span class="op">==</span> min_index:</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>        <span class="cf">continue</span>  <span class="co"># Skip the minimum path for now</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Create path</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>    verts <span class="op">=</span> [</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>        start_point,</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>        (x, <span class="dv">0</span>),</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>        end_point</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>    ]</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>    codes <span class="op">=</span> [</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>        Path.MOVETO,</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>        Path.LINETO,</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>        Path.LINETO</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>    ]</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>    path <span class="op">=</span> Path(verts, codes)</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>    patch <span class="op">=</span> patches.PathPatch(path, facecolor<span class="op">=</span><span class="st">'none'</span>, edgecolor<span class="op">=</span><span class="st">'gray'</span>,</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>                             linestyle<span class="op">=</span><span class="st">'--'</span>, lw<span class="op">=</span><span class="fl">0.5</span>,alpha<span class="op">=</span><span class="fl">0.65</span>)</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>    ax.add_patch(patch)</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the minimum path (Fermat's Principle)</span></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>verts <span class="op">=</span> [</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>    start_point,</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>    (min_x, <span class="dv">0</span>),</span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>    end_point</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>codes <span class="op">=</span> [</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>    Path.MOVETO,</span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>    Path.LINETO,</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>    Path.LINETO</span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>path <span class="op">=</span> Path(verts, codes)</span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>patch <span class="op">=</span> patches.PathPatch(path, facecolor<span class="op">=</span><span class="st">'none'</span>, edgecolor<span class="op">=</span><span class="st">'red'</span>,</span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>                         linestyle<span class="op">=</span><span class="st">'-'</span>)</span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>ax.add_patch(patch)</span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a><span class="co"># Add dots for the points</span></span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>ax.plot(start_point[<span class="dv">0</span>], start_point[<span class="dv">1</span>], <span class="st">'bo'</span>, label<span class="op">=</span><span class="st">'start point'</span>)</span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a>ax.plot(end_point[<span class="dv">0</span>], end_point[<span class="dv">1</span>], <span class="st">'go'</span>,  label<span class="op">=</span><span class="st">'end point'</span>)</span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a>ax.plot(min_x, <span class="dv">0</span>, <span class="st">'ro'</span>,  label<span class="op">=</span><span class="st">'reflection Point'</span>)</span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a><span class="co"># Set labels and title</span></span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'x-position'</span>)</span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'y-position'</span>)</span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="op">-</span><span class="fl">0.7</span>, <span class="op">-</span><span class="dv">1</span>, <span class="st">"mirror"</span>)</span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a><span class="co"># Set plot limits and legend</span></span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>)</span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="op">-</span><span class="dv">4</span>, <span class="dv">4</span>)</span>
+<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a>ax.set_aspect(<span class="st">'equal'</span>)</span>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a>ax.legend()</span>
+<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div id="fig-fermat-reflection" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -351,6 +469,113 @@ Reflection Law Derivation
 <p><span class="math display">\[n_1\sin\theta_1 = n_2\sin\theta_2\]</span></p>
 <p>where <span class="math inline">\(\theta_1\)</span> and <span class="math inline">\(\theta_2\)</span> are the angles of incidence and refraction, respectively.</p>
 <div id="cell-fig-fermat-refraction" class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calculate_optical_path(x, start, end, n1, n2):</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Calculate the total optical path length from start to point x to end"""</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    d1 <span class="op">=</span> n1 <span class="op">*</span> np.sqrt((x <span class="op">-</span> start[<span class="dv">0</span>])<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> (start[<span class="dv">1</span>])<span class="op">**</span><span class="dv">2</span>)  <span class="co"># Optical path in medium 1</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    d2 <span class="op">=</span> n2 <span class="op">*</span> np.sqrt((end[<span class="dv">0</span>] <span class="op">-</span> x)<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> (end[<span class="dv">1</span>])<span class="op">**</span><span class="dv">2</span>)      <span class="co"># Optical path in medium 2</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> d1 <span class="op">+</span> d2</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Set up the figure</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>get_size(<span class="dv">15</span>, <span class="dv">10</span>))</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Define start and end points</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>start_point <span class="op">=</span> (<span class="op">-</span><span class="dv">4</span>, <span class="dv">3</span>)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>end_point <span class="op">=</span> (<span class="dv">4</span>, <span class="op">-</span><span class="dv">3</span>)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Define refractive indices</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>n1 <span class="op">=</span> <span class="fl">1.0</span>  <span class="co"># Medium 1 (above interface)</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>n2 <span class="op">=</span> <span class="fl">1.5</span>  <span class="co"># Medium 2 (below interface)</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="co"># X positions for different possible paths</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>x_positions <span class="op">=</span> np.linspace(<span class="op">-</span><span class="fl">3.5</span>, <span class="fl">3.5</span>, <span class="dv">15</span>)</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate optical path lengths</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>optical_paths <span class="op">=</span> [calculate_optical_path(x, start_point, end_point, n1, n2) <span class="cf">for</span> x <span class="kw">in</span> x_positions]</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Find the minimum path (Fermat's principle)</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>min_index <span class="op">=</span> np.argmin(optical_paths)</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>min_x <span class="op">=</span> x_positions[min_index]</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the horizontal line (interface)</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>ax.axhline(y<span class="op">=</span><span class="dv">0</span>, color<span class="op">=</span><span class="st">'black'</span>, linestyle<span class="op">=</span><span class="st">'-'</span>, linewidth<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot all possible paths</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, x <span class="kw">in</span> <span class="bu">enumerate</span>(x_positions):</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> i <span class="op">==</span> min_index:</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>        <span class="cf">continue</span>  <span class="co"># Skip the minimum path for now</span></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Create path</span></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>    verts <span class="op">=</span> [</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>        start_point,</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>        (x, <span class="dv">0</span>),</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>        end_point</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>    ]</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>    codes <span class="op">=</span> [</span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>        Path.MOVETO,</span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>        Path.LINETO,</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>        Path.LINETO</span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>    ]</span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>    path <span class="op">=</span> Path(verts, codes)</span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>    patch <span class="op">=</span> patches.PathPatch(path, facecolor<span class="op">=</span><span class="st">'none'</span>, edgecolor<span class="op">=</span><span class="st">'gray'</span>,</span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>                             linestyle<span class="op">=</span><span class="st">'--'</span>, lw<span class="op">=</span><span class="fl">0.5</span>, alpha<span class="op">=</span><span class="fl">0.65</span>)</span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>    ax.add_patch(patch)</span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the minimum path (Fermat's Principle)</span></span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>verts <span class="op">=</span> [</span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>    start_point,</span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>    (min_x, <span class="dv">0</span>),</span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>    end_point</span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>codes <span class="op">=</span> [</span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>    Path.MOVETO,</span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>    Path.LINETO,</span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>    Path.LINETO</span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>path <span class="op">=</span> Path(verts, codes)</span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>patch <span class="op">=</span> patches.PathPatch(path, facecolor<span class="op">=</span><span class="st">'none'</span>, edgecolor<span class="op">=</span><span class="st">'red'</span>,</span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>                         linestyle<span class="op">=</span><span class="st">'-'</span>, lw<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>ax.add_patch(patch)</span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a><span class="co"># Add dots for the points</span></span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a>ax.plot(start_point[<span class="dv">0</span>], start_point[<span class="dv">1</span>], <span class="st">'bo'</span>, label<span class="op">=</span><span class="st">'start'</span>)</span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a>ax.plot(end_point[<span class="dv">0</span>], end_point[<span class="dv">1</span>], <span class="st">'go'</span>, label<span class="op">=</span><span class="st">'end'</span>)</span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a>ax.plot(min_x, <span class="dv">0</span>, <span class="st">'ro'</span>, label<span class="op">=</span><span class="st">'refraction'</span>)</span>
+<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate and draw angles</span></span>
+<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a><span class="co"># Incident ray</span></span>
+<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a>dx1 <span class="op">=</span> min_x <span class="op">-</span> start_point[<span class="dv">0</span>]</span>
+<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a>dy1 <span class="op">=</span> <span class="dv">0</span> <span class="op">-</span> start_point[<span class="dv">1</span>]</span>
+<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a>incident_angle <span class="op">=</span> np.arctan2(<span class="op">-</span>dy1, dx1)</span>
+<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a>theta1 <span class="op">=</span> np.pi<span class="op">/</span><span class="dv">2</span> <span class="op">-</span> incident_angle</span>
+<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a><span class="co"># Refracted ray</span></span>
+<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a>dx2 <span class="op">=</span> end_point[<span class="dv">0</span>] <span class="op">-</span> min_x</span>
+<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a>dy2 <span class="op">=</span> end_point[<span class="dv">1</span>] <span class="op">-</span> <span class="dv">0</span></span>
+<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a>refracted_angle <span class="op">=</span> np.arctan2(dy2, dx2)</span>
+<span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a>theta2 <span class="op">=</span> np.pi<span class="op">/</span><span class="dv">2</span> <span class="op">+</span> refracted_angle</span>
+<span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a><span class="co"># Draw angle arcs</span></span>
+<span id="cb2-87"><a href="#cb2-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-88"><a href="#cb2-88" aria-hidden="true" tabindex="-1"></a><span class="co"># Add angle labels</span></span>
+<span id="cb2-89"><a href="#cb2-89" aria-hidden="true" tabindex="-1"></a>ax.text(min_x <span class="op">+</span> <span class="fl">0.3</span>, <span class="fl">0.3</span>, <span class="vs">r'</span><span class="dv">$</span><span class="ch">\t</span><span class="vs">heta_1</span><span class="dv">$</span><span class="vs">'</span>, color<span class="op">=</span><span class="st">'blue'</span>)</span>
+<span id="cb2-90"><a href="#cb2-90" aria-hidden="true" tabindex="-1"></a>ax.text(min_x <span class="op">-</span> <span class="fl">0.5</span>, <span class="op">-</span><span class="fl">0.3</span>, <span class="vs">r'</span><span class="dv">$</span><span class="ch">\t</span><span class="vs">heta_2</span><span class="dv">$</span><span class="vs">'</span>, color<span class="op">=</span><span class="st">'green'</span>)</span>
+<span id="cb2-91"><a href="#cb2-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-92"><a href="#cb2-92" aria-hidden="true" tabindex="-1"></a><span class="co"># Set labels and title</span></span>
+<span id="cb2-93"><a href="#cb2-93" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'x-position'</span>)</span>
+<span id="cb2-94"><a href="#cb2-94" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'y-position'</span>)</span>
+<span id="cb2-95"><a href="#cb2-95" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="op">-</span><span class="dv">3</span>, <span class="fl">0.5</span>, <span class="ss">f"n₁ = </span><span class="sc">{</span>n1<span class="sc">}</span><span class="ss">"</span>, color<span class="op">=</span><span class="st">'blue'</span>)</span>
+<span id="cb2-96"><a href="#cb2-96" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="op">-</span><span class="dv">3</span>, <span class="op">-</span><span class="fl">0.5</span>, <span class="ss">f"n₂ = </span><span class="sc">{</span>n2<span class="sc">}</span><span class="ss">"</span>, color<span class="op">=</span><span class="st">'green'</span>)</span>
+<span id="cb2-97"><a href="#cb2-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-98"><a href="#cb2-98" aria-hidden="true" tabindex="-1"></a><span class="co"># Set plot limits and legend</span></span>
+<span id="cb2-99"><a href="#cb2-99" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>)</span>
+<span id="cb2-100"><a href="#cb2-100" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="op">-</span><span class="dv">4</span>, <span class="dv">4</span>)</span>
+<span id="cb2-101"><a href="#cb2-101" aria-hidden="true" tabindex="-1"></a>ax.set_aspect(<span class="st">'equal'</span>)</span>
+<span id="cb2-102"><a href="#cb2-102" aria-hidden="true" tabindex="-1"></a>ax.legend()</span>
+<span id="cb2-103"><a href="#cb2-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-104"><a href="#cb2-104" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div id="fig-fermat-refraction" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -398,6 +623,43 @@ Refraction Law Derivation
 </div>
 </div>
 <div id="cell-fig-snells-combinations" class="cell" data-execution_count="4">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> snell(n1, n2, theta1):</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    sin_theta2 <span class="op">=</span> n1 <span class="op">*</span> np.sin(theta1) <span class="op">/</span> n2</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    theta2 <span class="op">=</span> np.arcsin(np.clip(sin_theta2, <span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>))</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    theta2[sin_theta2 <span class="op">&gt;</span> <span class="dv">1</span>] <span class="op">=</span> np.nan</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> theta2</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">4</span>, <span class="dv">4</span>))</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>theta1 <span class="op">=</span> np.linspace(<span class="dv">0</span>, np.pi<span class="op">/</span><span class="dv">2</span>, <span class="dv">1000</span>)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>theta2_1_to_1_5 <span class="op">=</span> snell(<span class="fl">1.0</span>, <span class="fl">1.5</span>, theta1)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>theta2_1_5_to_1 <span class="op">=</span> snell(<span class="fl">1.5</span>, <span class="fl">1.0</span>, theta1)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>theta2_1_to_1 <span class="op">=</span> snell(<span class="fl">1.0</span>, <span class="fl">1.0</span>, theta1)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>ax.plot(np.degrees(theta1), np.degrees(theta2_1_to_1_5), color<span class="op">=</span><span class="st">'blue'</span>)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>ax.plot(np.degrees(theta1), np.degrees(theta2_1_5_to_1), color<span class="op">=</span><span class="st">'red'</span>)</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>ax.plot(np.degrees(theta1), np.degrees(theta2_1_to_1), color<span class="op">=</span><span class="st">'green'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>)</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="vs">r'</span><span class="dv">$</span><span class="ch">\t</span><span class="vs">heta_1</span><span class="dv">$</span><span class="vs"> </span><span class="pp">[°]</span><span class="vs">'</span>)</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="vs">r'</span><span class="dv">$</span><span class="ch">\t</span><span class="vs">heta_2</span><span class="dv">$</span><span class="vs"> </span><span class="pp">[°]</span><span class="vs">'</span>)</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="dv">0</span>, <span class="dv">90</span>)</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="dv">0</span>, <span class="dv">90</span>)</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>ax.plot([<span class="dv">0</span>, <span class="dv">90</span>], [<span class="dv">0</span>, <span class="dv">90</span>], color<span class="op">=</span><span class="st">'gray'</span>, linestyle<span class="op">=</span><span class="st">':'</span>, label<span class="op">=</span><span class="st">'y=x'</span>)</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>ax.annotate(<span class="vs">r'</span><span class="dv">$</span><span class="ch">\f</span><span class="vs">rac{n_2}{n_1}=1</span><span class="dv">.</span><span class="vs">5</span><span class="dv">$</span><span class="vs">'</span>, xy<span class="op">=</span>(<span class="dv">60</span>, <span class="dv">35</span>), xytext<span class="op">=</span>(<span class="dv">50</span>, <span class="dv">20</span>),</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>            arrowprops<span class="op">=</span><span class="bu">dict</span>(arrowstyle<span class="op">=</span><span class="st">'-&gt;'</span>), color<span class="op">=</span><span class="st">'blue'</span>)</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>ax.annotate(<span class="vs">r'</span><span class="dv">$</span><span class="ch">\f</span><span class="vs">rac{n_1}{n_2}=1</span><span class="dv">.</span><span class="vs">5</span><span class="dv">$</span><span class="vs">'</span>, xy<span class="op">=</span>(<span class="dv">30</span>, <span class="dv">50</span>), xytext<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">70</span>),</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>            arrowprops<span class="op">=</span><span class="bu">dict</span>(arrowstyle<span class="op">=</span><span class="st">'-&gt;'</span>), color<span class="op">=</span><span class="st">'red'</span>)</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>ax.annotate(<span class="vs">r'</span><span class="dv">$</span><span class="ch">\f</span><span class="vs">rac{n_2}{n_1}=1</span><span class="dv">$</span><span class="vs">'</span>, xy<span class="op">=</span>(<span class="dv">45</span>, <span class="dv">45</span>), xytext<span class="op">=</span>(<span class="dv">65</span>, <span class="dv">50</span>),</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>            arrowprops<span class="op">=</span><span class="bu">dict</span>(arrowstyle<span class="op">=</span><span class="st">'-&gt;'</span>), color<span class="op">=</span><span class="st">'green'</span>)</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div id="fig-snells-combinations" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -537,6 +799,67 @@ SELFOC Gradient Index Lens
 <p><span class="math display">\[r(z) = r_0 \cos(\alpha z) + \frac{\theta_0}{\alpha} \sin(\alpha z)\]</span></p>
 <p>where <span class="math inline">\(r_0\)</span> is the initial radial position and <span class="math inline">\(\theta_0\)</span> is the initial angle of the ray with respect to the fiber axis.</p>
 <div id="cell-fig-selfoc" class="cell" data-execution_count="5">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Parameters</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>n0 <span class="op">=</span> <span class="fl">1.5</span>  <span class="co"># Central refractive index</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>alpha <span class="op">=</span> <span class="fl">0.3</span>  <span class="co"># Gradient constant (mm^-1)</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>length <span class="op">=</span> <span class="dv">30</span>  <span class="co"># Length of fiber (mm)</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>radius <span class="op">=</span> <span class="fl">1.5</span>  <span class="co"># Radius of fiber (mm)</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a grid for visualization</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> np.linspace(<span class="dv">0</span>, length, <span class="dv">300</span>)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>r_grid <span class="op">=</span> np.linspace(<span class="dv">0</span>, radius, <span class="dv">100</span>)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>Z, R <span class="op">=</span> np.meshgrid(z, r_grid)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate refractive index at each point</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> n0 <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> <span class="fl">0.5</span> <span class="op">*</span> (alpha <span class="op">*</span> R)<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize ray paths</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>r0_values <span class="op">=</span> [<span class="fl">0.6</span>, <span class="fl">1.0</span>, <span class="fl">1.4</span>]  <span class="co"># Initial radial positions</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>theta0_values <span class="op">=</span> [<span class="dv">0</span>, <span class="fl">0.2</span>, <span class="op">-</span><span class="fl">0.2</span>]    <span class="co"># Initial angles (all parallel to axis)</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot setup</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>fig, (ax1, ax2) <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>get_size(<span class="dv">15</span>, <span class="dv">5</span>), gridspec_kw<span class="op">=</span>{<span class="st">'width_ratios'</span>: [<span class="dv">3</span>, <span class="dv">1</span>]})</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the refractive index profile in the first subplot</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>cmap <span class="op">=</span> plt.cm.viridis</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>extent <span class="op">=</span> [<span class="dv">0</span>, length, <span class="op">-</span>radius, radius]</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>im <span class="op">=</span> ax1.imshow(np.vstack((N[::<span class="op">-</span><span class="dv">1</span>], N)), extent<span class="op">=</span>extent,</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>               aspect<span class="op">=</span><span class="st">'auto'</span>, cmap<span class="op">=</span>cmap, origin<span class="op">=</span><span class="st">'lower'</span>,alpha<span class="op">=</span><span class="fl">0.2</span>)</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>fig.colorbar(im, ax<span class="op">=</span>ax1, label<span class="op">=</span><span class="st">'n(y)'</span>, shrink<span class="op">=</span><span class="fl">0.8</span>, pad<span class="op">=</span><span class="fl">0.02</span>)</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot ray paths</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> r0, theta0 <span class="kw">in</span> <span class="bu">zip</span>(r0_values, theta0_values):</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Calculate ray path</span></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>    r <span class="op">=</span> r0 <span class="op">*</span> np.cos(alpha <span class="op">*</span> z) <span class="op">+</span> (theta0<span class="op">/</span>alpha) <span class="op">*</span> np.sin(alpha <span class="op">*</span> z)</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Plot ray path</span></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>    ax1.plot(z, r, <span class="st">'r-'</span>)</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>    ax1.plot(z, <span class="op">-</span>r, <span class="st">'r-'</span>)  <span class="co"># Symmetric ray below axis</span></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a><span class="co"># Add labels and title for first subplot</span></span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>ax1.set_xlabel(<span class="st">'z [mm]'</span>)</span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>ax1.set_ylabel(<span class="st">'y [mm]'</span>)</span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a><span class="co"># For the right subplot, plot r-position vs refractive index</span></span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a finer array of radial positions for a smooth curve</span></span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>r_positions <span class="op">=</span> np.linspace(<span class="dv">0</span>, radius, <span class="dv">100</span>)</span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate refractive index at each radial position</span></span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>n_profile <span class="op">=</span> n0 <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> <span class="fl">0.5</span> <span class="op">*</span> (alpha <span class="op">*</span> r_positions)<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the refractive index profile</span></span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>ax2.plot( n_profile,r_positions, <span class="st">'k-'</span>)</span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>ax2.plot( n_profile,<span class="op">-</span>r_positions, <span class="st">'k-'</span>)</span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a><span class="co"># Set labels for the index profile subplot</span></span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a>ax2.set_xlabel(<span class="st">'y [mm]'</span>)</span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a>ax2.set_ylabel(<span class="st">'n(y)'</span>)</span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div id="fig-selfoc" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -579,6 +902,104 @@ Figure&nbsp;6— Ray-path inside a SELFOC gradient index optical fiber.
 </ul>
 <p>While the mathematical form resembles Newton’s equation for particle motion, the analogy must be carefully interpreted: unlike particles that accelerate toward lower potential energy, light rays curve toward regions of higher refractive index.</p>
 <div id="cell-fig-f-equals-ma" class="cell" data-execution_count="6">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Parameters</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>n0 <span class="op">=</span> <span class="fl">1.5</span>  <span class="co"># Base refractive index (center value)</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>n_min <span class="op">=</span> <span class="fl">1.0</span>  <span class="co"># Minimum refractive index (at edges)</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>x_range <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">100</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>y_range <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">100</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>X, Y <span class="op">=</span> np.meshgrid(x_range, y_range)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate radial distance from center</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>R <span class="op">=</span> np.sqrt(X<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> Y<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Max radius in our plot</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>R_max <span class="op">=</span> <span class="dv">5</span><span class="op">*</span>np.sqrt(<span class="dv">2</span>)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a refractive index profile that decreases with radius</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="co"># but never goes below n_min</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>gradient_strength <span class="op">=</span> (n0 <span class="op">-</span> n_min)<span class="op">/</span>R_max  <span class="co"># Calculate appropriate gradient strength</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> n0 <span class="op">-</span> gradient_strength <span class="op">*</span> R  <span class="co"># Linear decrease with radius</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Set up the figure</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>get_size(<span class="dv">12</span>, <span class="dv">10</span>))</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the refractive index as a contour plot</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>contour <span class="op">=</span> ax.contourf(X, Y, n, <span class="dv">20</span>, cmap<span class="op">=</span><span class="st">'viridis'</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>cbar <span class="op">=</span> fig.colorbar(contour, ax<span class="op">=</span>ax, label<span class="op">=</span><span class="st">'Refractive Index'</span>, shrink<span class="op">=</span><span class="fl">0.8</span>, pad<span class="op">=</span><span class="fl">0.02</span>)</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate and plot some ray trajectories</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a><span class="co"># We'll simulate the paths by numerical integration</span></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> ray_path(r0, v0, steps<span class="op">=</span><span class="dv">1000</span>, dt<span class="op">=</span><span class="fl">0.05</span>):</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Simulate a ray path through the medium"""</span></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>    r <span class="op">=</span> np.zeros((steps, <span class="dv">2</span>))</span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>    v <span class="op">=</span> np.zeros((steps, <span class="dv">2</span>))</span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>    r[<span class="dv">0</span>] <span class="op">=</span> r0</span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>    v[<span class="dv">0</span>] <span class="op">=</span> v0 <span class="op">/</span> np.linalg.norm(v0)  <span class="co"># Normalize velocity</span></span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, steps):</span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Get position</span></span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>        x, y <span class="op">=</span> r[i<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="bu">abs</span>(x) <span class="op">&gt;=</span> <span class="dv">5</span> <span class="kw">or</span> <span class="bu">abs</span>(y) <span class="op">&gt;=</span> <span class="dv">5</span>:</span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> r[:i]</span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Approximate gradient of n at this point</span></span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>        eps <span class="op">=</span> <span class="fl">0.01</span></span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>        nx_plus <span class="op">=</span> n0 <span class="op">-</span> gradient_strength <span class="op">*</span> np.sqrt((x<span class="op">+</span>eps)<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> y<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a>        nx_minus <span class="op">=</span> n0 <span class="op">-</span> gradient_strength <span class="op">*</span> np.sqrt((x<span class="op">-</span>eps)<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> y<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>        ny_plus <span class="op">=</span> n0 <span class="op">-</span> gradient_strength <span class="op">*</span> np.sqrt(x<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> (y<span class="op">+</span>eps)<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a>        ny_minus <span class="op">=</span> n0 <span class="op">-</span> gradient_strength <span class="op">*</span> np.sqrt(x<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> (y<span class="op">-</span>eps)<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>        grad_n_x <span class="op">=</span> (nx_plus <span class="op">-</span> nx_minus) <span class="op">/</span> (<span class="dv">2</span><span class="op">*</span>eps)</span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a>        grad_n_y <span class="op">=</span> (ny_plus <span class="op">-</span> ny_minus) <span class="op">/</span> (<span class="dv">2</span><span class="op">*</span>eps)</span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a>        grad_n <span class="op">=</span> np.array([grad_n_x, grad_n_y])</span>
+<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Current n value</span></span>
+<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a>        current_n <span class="op">=</span> n0 <span class="op">-</span> gradient_strength <span class="op">*</span> np.sqrt(x<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> y<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Calculate the perpendicular component of gradient</span></span>
+<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a>        t <span class="op">=</span> v[i<span class="op">-</span><span class="dv">1</span>] <span class="op">/</span> np.linalg.norm(v[i<span class="op">-</span><span class="dv">1</span>])  <span class="co"># Tangent vector (normalized velocity)</span></span>
+<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a>        grad_n_parallel <span class="op">=</span> np.dot(grad_n, t) <span class="op">*</span> t  <span class="co"># Component along ray direction</span></span>
+<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a>        grad_n_perp <span class="op">=</span> grad_n <span class="op">-</span> grad_n_parallel  <span class="co"># Perpendicular component</span></span>
+<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Update velocity - rays bend toward higher refractive index</span></span>
+<span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a>        a <span class="op">=</span> grad_n_perp <span class="op">/</span> current_n</span>
+<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a>        v[i] <span class="op">=</span> v[i<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> a <span class="op">*</span> dt</span>
+<span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a>        v[i] <span class="op">=</span> v[i] <span class="op">/</span> np.linalg.norm(v[i])  <span class="co"># Ensure unit speed</span></span>
+<span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Update position</span></span>
+<span id="cb5-66"><a href="#cb5-66" aria-hidden="true" tabindex="-1"></a>        r[i] <span class="op">=</span> r[i<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> v[i] <span class="op">*</span> dt</span>
+<span id="cb5-67"><a href="#cb5-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-68"><a href="#cb5-68" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> r</span>
+<span id="cb5-69"><a href="#cb5-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-70"><a href="#cb5-70" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate several ray paths</span></span>
+<span id="cb5-71"><a href="#cb5-71" aria-hidden="true" tabindex="-1"></a>start_positions <span class="op">=</span> [</span>
+<span id="cb5-72"><a href="#cb5-72" aria-hidden="true" tabindex="-1"></a>    [<span class="op">-</span><span class="dv">4</span>, <span class="fl">2.5</span>], [<span class="op">-</span><span class="dv">4</span>, <span class="fl">1.5</span>], [<span class="op">-</span><span class="dv">4</span>, <span class="fl">0.5</span>],</span>
+<span id="cb5-73"><a href="#cb5-73" aria-hidden="true" tabindex="-1"></a>    [<span class="op">-</span><span class="dv">4</span>, <span class="op">-</span><span class="fl">0.5</span>], [<span class="op">-</span><span class="dv">4</span>, <span class="op">-</span><span class="fl">1.5</span>], [<span class="op">-</span><span class="dv">4</span>, <span class="op">-</span><span class="fl">2.5</span>]</span>
+<span id="cb5-74"><a href="#cb5-74" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb5-75"><a href="#cb5-75" aria-hidden="true" tabindex="-1"></a>paths <span class="op">=</span> []</span>
+<span id="cb5-76"><a href="#cb5-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-77"><a href="#cb5-77" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> start_pos <span class="kw">in</span> start_positions:</span>
+<span id="cb5-78"><a href="#cb5-78" aria-hidden="true" tabindex="-1"></a>    path <span class="op">=</span> ray_path(start_pos, [<span class="dv">1</span>, <span class="dv">0</span>], steps<span class="op">=</span><span class="dv">500</span>)</span>
+<span id="cb5-79"><a href="#cb5-79" aria-hidden="true" tabindex="-1"></a>    paths.append(path)</span>
+<span id="cb5-80"><a href="#cb5-80" aria-hidden="true" tabindex="-1"></a>    ax.plot(path[:, <span class="dv">0</span>], path[:, <span class="dv">1</span>], <span class="st">'r-'</span>, linewidth<span class="op">=</span><span class="fl">1.5</span>)</span>
+<span id="cb5-81"><a href="#cb5-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-82"><a href="#cb5-82" aria-hidden="true" tabindex="-1"></a><span class="co"># Add start points</span></span>
+<span id="cb5-83"><a href="#cb5-83" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> pos <span class="kw">in</span> start_positions:</span>
+<span id="cb5-84"><a href="#cb5-84" aria-hidden="true" tabindex="-1"></a>    ax.plot(pos[<span class="dv">0</span>], pos[<span class="dv">1</span>], <span class="st">'ro'</span>)</span>
+<span id="cb5-85"><a href="#cb5-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-86"><a href="#cb5-86" aria-hidden="true" tabindex="-1"></a><span class="co"># Add axis labels</span></span>
+<span id="cb5-87"><a href="#cb5-87" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'x position'</span>)</span>
+<span id="cb5-88"><a href="#cb5-88" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'y position'</span>)</span>
+<span id="cb5-89"><a href="#cb5-89" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>)</span>
+<span id="cb5-90"><a href="#cb5-90" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>)</span>
+<span id="cb5-91"><a href="#cb5-91" aria-hidden="true" tabindex="-1"></a>ax.set_aspect(<span class="st">'equal'</span>)</span>
+<span id="cb5-92"><a href="#cb5-92" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb5-93"><a href="#cb5-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-94"><a href="#cb5-94" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb5-95"><a href="#cb5-95" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div id="fig-f-equals-ma" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -590,6 +1011,29 @@ Figure&nbsp;7— F=ma optics - Light rays (red) following paths toward regions o
 </figcaption>
 </figure>
 </div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Optical Forces and Tweezers
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Ray optics is not only useful for tracing light through instruments; it also predicts the <strong>mechanical forces</strong> that light exerts on matter. When a ray crosses the interface of a dielectric particle, refraction changes its direction and therefore its momentum. By Newton’s third law, the particle receives an equal and opposite momentum kick. Summing these kicks over all rays in a focused beam yields a net radiation pressure force that can trap and manipulate microscopic objects – this is the principle behind <strong>optical tweezers</strong>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/tweezers_ray_optics.png" class="img-fluid figure-img" style="width:45.0%"></p>
+<figcaption>Ray optics picture of a focused beam interacting with a dielectric sphere. The refraction of each ray imparts a net gradient force pulling the sphere toward the beam focus. (Image: <a href="http://opticaltweezers.org/software/otgo-optical-tweezers-geometrical-optics/">opticaltweezers.org</a>)</figcaption>
+</figure>
+</div>
+<p>In the geometrical optics limit (particle size much larger than the wavelength), forces and torques on particles of arbitrary shape can be computed by ray tracing. The MATLAB toolbox <strong>OTGO</strong> provides source code and worked examples for standard traps, elongated particles, the windmill effect, and Kramers transitions between two traps <span class="citation" data-cites="callegari2014">[@callegari2014]</span>.</p>
+<blockquote class="blockquote">
+<p>A. Callegari, M. Mijalkov, A. B. Gokokz, and G. Volpe, “Computational toolbox for optical tweezers in geometrical optics,” <em>J. Opt. Soc. Am. B</em> <strong>32</strong>, B11 (2015). <a href="https://arxiv.org/pdf/1402.5439">arXiv:1402.5439</a></p>
+</blockquote>
 </div>
 </div>
 </section>
@@ -620,7 +1064,7 @@ Figure&nbsp;8— Refraction at a curved surface.
 <p><span class="math display">\[\theta_2=\frac{n_2-n_1}{n_2 R}y -\frac{n_1}{n_2}\theta_1\]</span></p>
 <p>This linear relationship between input (<span class="math inline">\(y\)</span>, <span class="math inline">\(\theta_1\)</span>) and output (<span class="math inline">\(\theta_2\)</span>) parameters is a hallmark of paraxial optics.</p>
 <div id="paraxial-approximation" class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -629,7 +1073,7 @@ Paraxial Approximation
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>The paraxial approximation is a fundamental simplification in optics that assumes all angles are small. This allows us to use linear approximations for trigonometric functions, significantly simplifying calculations while maintaining accuracy for most practical scenarios involving lenses.</p>
 <p>To visualize the validity of this approximation, let’s examine two plots:</p>
@@ -643,7 +1087,40 @@ Paraxial Approximation
 <li>The error increases rapidly for larger angles, indicating the limitations of the paraxial approximation.</li>
 </ol>
 <p>In most optical systems, especially those involving lenses, the angles of incident and refracted rays are typically small enough for this approximation to be valid. However, it’s important to be aware of its limitations when dealing with wide-angle optical systems or scenarios where precision is critical.</p>
-<div id="b2e95cea" class="cell" data-execution_count="7">
+<div id="ae9a59c5" class="cell" data-execution_count="7">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the range of angles (in radians)</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>theta <span class="op">=</span> np.linspace(<span class="dv">0</span>, np.pi<span class="op">/</span><span class="dv">2</span>, <span class="dv">1000</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate sin(theta) and theta (linear approximation)</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>sin_theta <span class="op">=</span> np.sin(theta)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>linear_approx <span class="op">=</span> theta</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the absolute error</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>error <span class="op">=</span> np.<span class="bu">abs</span>(sin_theta <span class="op">-</span> linear_approx)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the plot with two subplots side by side</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>fig, (ax1, ax2) <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="fl">7.5</span>, <span class="dv">4</span>))</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot sin(theta) and theta on the first subplot</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>ax1.plot(theta, sin_theta, label<span class="op">=</span><span class="st">'sin(θ)'</span>, color<span class="op">=</span><span class="st">'blue'</span>)</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>ax1.plot(theta, linear_approx, label<span class="op">=</span><span class="st">'θ'</span>, color<span class="op">=</span><span class="st">'red'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>)</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>ax1.set_xlabel(<span class="vs">r'</span><span class="dv">$</span><span class="ch">\t</span><span class="vs">heta</span><span class="dv">$</span><span class="vs"> </span><span class="pp">[rad]</span><span class="vs">'</span>)</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>ax1.set_ylabel(<span class="vs">r'</span><span class="dv">$\s</span><span class="vs">in</span><span class="kw">(</span><span class="vs">x</span><span class="kw">)</span><span class="vs">,x</span><span class="dv">$</span><span class="vs">'</span>)</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>ax1.legend()</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the error on the second subplot</span></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>ax2.plot(theta, error, label<span class="op">=</span><span class="st">'Absolute Error'</span>, color<span class="op">=</span><span class="st">'green'</span>)</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>ax2.set_xlabel(<span class="vs">r'</span><span class="dv">$</span><span class="ch">\t</span><span class="vs">heta</span><span class="dv">$</span><span class="vs"> </span><span class="pp">[rad]</span><span class="vs">'</span>)</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>ax2.set_ylabel(<span class="st">'|sin(θ) - θ|'</span>)</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>ax2.legend()</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Adjust the layout and display the plot</span></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -835,79 +1312,7 @@ Magnification of a Lens
 </tr>
 </tbody>
 </table>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Matrix Optics
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-10" class="callout-10-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>The above derived equations for a single spherical surface yield a linear relation between the input variables <span class="math inline">\(y_1\)</span> and <span class="math inline">\(\theta_1\)</span> and the output variables <span class="math inline">\(y_2\)</span> and <span class="math inline">\(\theta_2\)</span>. The linear relation yields a great opportunity to express optical elements in terms of linear transformations (matrices). This is the basis of <strong>matrix optics</strong>. The matrix representation of a lens is given by</p>
-<p><span class="math display">\[\begin{pmatrix} y_2 \\ \theta_2 \end{pmatrix} = \begin{pmatrix} 1 &amp; 0 \\ -\frac{1}{f} &amp; 1 \end{pmatrix} \begin{pmatrix} y_1 \\ \theta_1 \end{pmatrix}\]</span></p>
-<p>where the matrix is called the <strong>ABCD matrix</strong> of the lens. Due to the linearization of Snells law w can write down more generally</p>
-<p><span class="math display">\[\begin{pmatrix} y_2 \\
-\theta_2 \end{pmatrix} = \begin{pmatrix} A &amp; B \\ C &amp; D \end{pmatrix} \begin{pmatrix} y_1 \\ \theta_1 \end{pmatrix}\]</span></p>
-<p>and one can obtain a Matrix for all types of optical elements such as free space of dustance <span class="math inline">\(d\)</span>.</p>
-<p><span class="math display">\[\begin{bmatrix}
-A &amp; B\\
-C &amp; D
-\end{bmatrix}
-=
-\begin{bmatrix}
-1 &amp; d\\
-0 &amp; 1
-\end{bmatrix}
-\]</span></p>
-<p>Here are some useful matrices for optical elements:</p>
-<p><span class="math display">\[
-\mathbf{M}=\left[\begin{array}{ll}
-1 &amp; d \\
-0 &amp; 1
-\end{array}\right] \tag{Free space}
-\]</span></p>
-<p><span class="math display">\[
-\mathbf{M}=\left[\begin{array}{cc}
-1 &amp; 0 \\
-0 &amp; \frac{n_1}{n_2}
-\end{array}\right] \tag{Planar interface}
-\]</span></p>
-<p><span class="math display">\[
-\mathbf{M}=\left[\begin{array}{cc}
-1 &amp; 0 \\
--\frac{\left(n_2-n_1\right)}{n_2 R} &amp; \frac{n_1}{n_2}
-\end{array}\right] \tag{Spherical Boundary}
-\]</span></p>
-<p><span class="math display">\[
-\mathbf{M}=\left[\begin{array}{cc}
-1 &amp; 0 \\
--\frac{1}{f} &amp; 1
-\end{array}\right] \tag{Tin Lens}
-\]</span></p>
-<p>If we have now a system of optical elements, we can multiply the matrices of the individual elements to obtain the matrix of the whole system.</p>
-<p><span class="math display">\[
-\rightarrow \mathrm{M}_1 \rightarrow \mathrm{M}_2 \rightarrow \mathrm{M}_N \rightarrow \mathrm{M}=\mathbf{M}_N \ldots \mathrm{M}_2 \mathbf{M}_1 \text {. }
-\]</span></p>
-<p>This is a very powerful tool to analyze optical systems.</p>
-</div>
-</div>
-</div>
-<!-- ## Wave Optics (20 minutes)-->
-<!-- ## Wave Optics (20 minutes)
-- Wave equation derivation
-- Harmonic waves and their properties
-- Wave parameters: wavelength, frequency, amplitude
-- Superposition principle
-- Interference phenomena
-  - Constructive and destructive interference
-  - Young's double-slit experiment
-- Wave optics applications
-- Eikonal Theory and its applications
--->
+<p>The linear relations derived above for spherical surfaces form the basis for a systematic matrix approach to optical system design, which we develop in the next section on Matrix Optics.</p>
 </section>
 </section>
 </section>
@@ -915,6 +1320,100 @@ C &amp; D
 <h2 class="anchored" data-anchor-id="fermats-principle-for-spherical-surfaces">Fermat’s Principle for Spherical Surfaces</h2>
 <p>The power of Fermat’s principle becomes particularly evident when applied to spherical refracting surfaces. Consider a spherical boundary of radius <span class="math inline">\(R\)</span> between two media with refractive indices <span class="math inline">\(n_1\)</span> and <span class="math inline">\(n_2\)</span>. According to Fermat’s principle, light will follow the path that minimizes the total optical path length.</p>
 <div id="cell-fig-fermat-spherical" class="cell" data-execution_count="8">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib.patches <span class="im">import</span> Arc, Wedge</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.patches <span class="im">as</span> patches</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Set up the figure</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>get_size(<span class="dv">15</span>, <span class="dv">10</span>))</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Parameters</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>R <span class="op">=</span> <span class="dv">3</span>  <span class="co"># Radius of the spherical surface</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>n1 <span class="op">=</span> <span class="fl">1.0</span>  <span class="co"># Refractive index of first medium</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>n2 <span class="op">=</span> <span class="fl">1.5</span>  <span class="co"># Refractive index of second medium</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>arc_angle <span class="op">=</span> <span class="dv">100</span>  <span class="co"># Arc angle in degrees</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>center_x <span class="op">=</span> <span class="dv">3</span>  <span class="co"># Center of arc is to the right of the boundary</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the center of the sphere</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>center <span class="op">=</span> (center_x, <span class="dv">0</span>)</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate arc angles in radians</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>start_angle <span class="op">=</span> <span class="dv">180</span> <span class="op">-</span> arc_angle<span class="op">/</span><span class="dv">2</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>end_angle <span class="op">=</span> <span class="dv">180</span> <span class="op">+</span> arc_angle<span class="op">/</span><span class="dv">2</span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Draw the spherical surface as an arc</span></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>arc <span class="op">=</span> Arc(center, <span class="dv">2</span><span class="op">*</span>R, <span class="dv">2</span><span class="op">*</span>R, theta1<span class="op">=</span>start_angle, theta2<span class="op">=</span>end_angle,</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>          color<span class="op">=</span><span class="st">'black'</span>, linewidth<span class="op">=</span><span class="fl">1.5</span>)</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>ax.add_patch(arc)</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the x-coordinate of the leftmost point of the arc</span></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>boundary_x <span class="op">=</span> center_x <span class="op">-</span> R <span class="op">*</span> np.cos(np.radians(<span class="dv">90</span> <span class="op">-</span> arc_angle<span class="op">/</span><span class="dv">2</span>))</span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Draw the media boundary</span></span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>ax.fill_between([<span class="op">-</span><span class="dv">8</span>, boundary_x], [<span class="op">-</span><span class="dv">8</span>, <span class="op">-</span><span class="dv">8</span>], [<span class="dv">8</span>, <span class="dv">8</span>], color<span class="op">=</span><span class="st">'lightblue'</span>, alpha<span class="op">=</span><span class="fl">0.2</span>)</span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>ax.fill_between([boundary_x, <span class="dv">12</span>], [<span class="op">-</span><span class="dv">8</span>, <span class="op">-</span><span class="dv">8</span>], [<span class="dv">8</span>, <span class="dv">8</span>], color<span class="op">=</span><span class="st">'lightgreen'</span>, alpha<span class="op">=</span><span class="fl">0.2</span>)</span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>ax.axvline(x<span class="op">=</span>boundary_x, color<span class="op">=</span><span class="st">'black'</span>, linestyle<span class="op">=</span><span class="st">'-'</span>, linewidth<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a><span class="co"># Add labels for the media</span></span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>ax.text(boundary_x<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>, <span class="ss">f"n₁ = </span><span class="sc">{</span>n1<span class="sc">}</span><span class="ss">"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>ax.text(boundary_x<span class="op">+</span><span class="dv">2</span>, <span class="dv">3</span>, <span class="ss">f"n₂ = </span><span class="sc">{</span>n2<span class="sc">}</span><span class="ss">"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a><span class="co"># Mark object and image points</span></span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a>object_point <span class="op">=</span> (boundary_x<span class="op">-</span><span class="dv">3</span>, <span class="dv">0</span>)</span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a>image_point <span class="op">=</span> (center_x<span class="op">+</span><span class="dv">6</span>, <span class="dv">0</span>)</span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a>ax.plot(object_point[<span class="dv">0</span>], object_point[<span class="dv">1</span>], <span class="st">'bo'</span>, markersize<span class="op">=</span><span class="dv">8</span>, label<span class="op">=</span><span class="st">'Object (A)'</span>)</span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a>ax.plot(image_point[<span class="dv">0</span>], image_point[<span class="dv">1</span>], <span class="st">'ro'</span>, markersize<span class="op">=</span><span class="dv">8</span>, label<span class="op">=</span><span class="st">'Image (B)'</span>)</span>
+<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate different potential paths along the arc</span></span>
+<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a>theta_rad <span class="op">=</span> np.linspace(np.radians(start_angle), np.radians(end_angle), <span class="dv">15</span>)</span>
+<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a>paths <span class="op">=</span> []</span>
+<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a>optical_lengths <span class="op">=</span> []</span>
+<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> theta <span class="kw">in</span> theta_rad:</span>
+<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Position on the arc</span></span>
+<span id="cb7-53"><a href="#cb7-53" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> center_x <span class="op">+</span> R <span class="op">*</span> np.cos(theta)</span>
+<span id="cb7-54"><a href="#cb7-54" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> R <span class="op">*</span> np.sin(theta)</span>
+<span id="cb7-55"><a href="#cb7-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-56"><a href="#cb7-56" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Calculate distances</span></span>
+<span id="cb7-57"><a href="#cb7-57" aria-hidden="true" tabindex="-1"></a>    d1 <span class="op">=</span> np.sqrt((x <span class="op">-</span> object_point[<span class="dv">0</span>])<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> (y <span class="op">-</span> object_point[<span class="dv">1</span>])<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb7-58"><a href="#cb7-58" aria-hidden="true" tabindex="-1"></a>    d2 <span class="op">=</span> np.sqrt((x <span class="op">-</span> image_point[<span class="dv">0</span>])<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> (y <span class="op">-</span> image_point[<span class="dv">1</span>])<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb7-59"><a href="#cb7-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-60"><a href="#cb7-60" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Calculate optical path length</span></span>
+<span id="cb7-61"><a href="#cb7-61" aria-hidden="true" tabindex="-1"></a>    optical_length <span class="op">=</span> n1 <span class="op">*</span> d1 <span class="op">+</span> n2 <span class="op">*</span> d2</span>
+<span id="cb7-62"><a href="#cb7-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-63"><a href="#cb7-63" aria-hidden="true" tabindex="-1"></a>    paths.append((x, y))</span>
+<span id="cb7-64"><a href="#cb7-64" aria-hidden="true" tabindex="-1"></a>    optical_lengths.append(optical_length)</span>
+<span id="cb7-65"><a href="#cb7-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-66"><a href="#cb7-66" aria-hidden="true" tabindex="-1"></a><span class="co"># Find the minimum optical path</span></span>
+<span id="cb7-67"><a href="#cb7-67" aria-hidden="true" tabindex="-1"></a>min_index <span class="op">=</span> np.argmin(optical_lengths)</span>
+<span id="cb7-68"><a href="#cb7-68" aria-hidden="true" tabindex="-1"></a>min_path <span class="op">=</span> paths[min_index]</span>
+<span id="cb7-69"><a href="#cb7-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-70"><a href="#cb7-70" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot all potential paths</span></span>
+<span id="cb7-71"><a href="#cb7-71" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, (x, y) <span class="kw">in</span> <span class="bu">enumerate</span>(paths):</span>
+<span id="cb7-72"><a href="#cb7-72" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> i <span class="op">==</span> min_index:</span>
+<span id="cb7-73"><a href="#cb7-73" aria-hidden="true" tabindex="-1"></a>        <span class="cf">continue</span></span>
+<span id="cb7-74"><a href="#cb7-74" aria-hidden="true" tabindex="-1"></a>    ax.plot([object_point[<span class="dv">0</span>], x, image_point[<span class="dv">0</span>]], [object_point[<span class="dv">1</span>], y, image_point[<span class="dv">1</span>]],</span>
+<span id="cb7-75"><a href="#cb7-75" aria-hidden="true" tabindex="-1"></a>             <span class="st">'gray'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>, linewidth<span class="op">=</span><span class="fl">0.8</span>)</span>
+<span id="cb7-76"><a href="#cb7-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-77"><a href="#cb7-77" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the path of minimum optical length (Fermat's principle)</span></span>
+<span id="cb7-78"><a href="#cb7-78" aria-hidden="true" tabindex="-1"></a>ax.plot([object_point[<span class="dv">0</span>], min_path[<span class="dv">0</span>], image_point[<span class="dv">0</span>]], [object_point[<span class="dv">1</span>], min_path[<span class="dv">1</span>], image_point[<span class="dv">1</span>]],</span>
+<span id="cb7-79"><a href="#cb7-79" aria-hidden="true" tabindex="-1"></a>         <span class="st">'red'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">'Minimum optical path'</span>)</span>
+<span id="cb7-80"><a href="#cb7-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-81"><a href="#cb7-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-82"><a href="#cb7-82" aria-hidden="true" tabindex="-1"></a><span class="co"># Set up the main plot</span></span>
+<span id="cb7-83"><a href="#cb7-83" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="op">-</span><span class="dv">4</span>, <span class="dv">12</span>)</span>
+<span id="cb7-84"><a href="#cb7-84" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="op">-</span><span class="dv">4</span>, <span class="dv">4</span>)</span>
+<span id="cb7-85"><a href="#cb7-85" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Position'</span>)</span>
+<span id="cb7-86"><a href="#cb7-86" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Height'</span>)</span>
+<span id="cb7-87"><a href="#cb7-87" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb7-88"><a href="#cb7-88" aria-hidden="true" tabindex="-1"></a>ax.axhline(y<span class="op">=</span><span class="dv">0</span>, color<span class="op">=</span><span class="st">'gray'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb7-89"><a href="#cb7-89" aria-hidden="true" tabindex="-1"></a>ax.legend(loc<span class="op">=</span><span class="st">'lower right'</span>)</span>
+<span id="cb7-90"><a href="#cb7-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-91"><a href="#cb7-91" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div id="fig-fermat-spherical" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">

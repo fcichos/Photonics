@@ -299,6 +299,7 @@ window.Quarto = {
   <li><a href="#refraction-at-spherical-surfaces" id="toc-refraction-at-spherical-surfaces" class="nav-link active" data-scroll-target="#refraction-at-spherical-surfaces">Refraction at Spherical Surfaces</a></li>
   <li><a href="#matrix-optics" id="toc-matrix-optics" class="nav-link" data-scroll-target="#matrix-optics">Matrix Optics</a></li>
   <li><a href="#multifocal-imaging" id="toc-multifocal-imaging" class="nav-link" data-scroll-target="#multifocal-imaging">Multifocal Imaging</a></li>
+  <li><a href="#application-autofocus-by-beam-displacement" id="toc-application-autofocus-by-beam-displacement" class="nav-link" data-scroll-target="#application-autofocus-by-beam-displacement">Application: Autofocus by Beam Displacement</a></li>
   </ul>
 </nav>
     </div>
@@ -560,7 +561,7 @@ Figure&nbsp;2— Example of a practical paraxial cloak. (a)–(c) A hand is cloa
 \end{array}\right]
 \]</span></p>
 <p>Which perfectly mimics free space propagation, creating the optical cloaking effect.</p>
-<div id="1382b223" class="cell" data-execution_count="2">
+<div id="c912b798" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example of optical cloaking with four lenses using raytracing</span></span>
@@ -625,7 +626,7 @@ Figure&nbsp;3— The multifocal adapter. (a) Composition of the multifocal imagi
 </figure>
 </div>
 <p>In the simplest configuration of an objective lens and a tube lens, the light first travels from the object to the objective lens in free space for a distance <span class="math inline">\(s\)</span>, which is represented by</p>
-<div id="9685de3f" class="cell" data-execution_count="4">
+<div id="cc615b64" class="cell" data-execution_count="4">
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="4">
 <p><span class="math display">\[
 M_1=\left[\begin{matrix}1 &amp; s\\0 &amp; 1\end{matrix}\right]
@@ -633,7 +634,7 @@ M_1=\left[\begin{matrix}1 &amp; s\\0 &amp; 1\end{matrix}\right]
 </div>
 </div>
 <p>Then it is passing the objective lens with</p>
-<div id="384646db" class="cell" data-execution_count="5">
+<div id="030217db" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="5">
 <p><span class="math display">\[
 M_2=\left[\begin{matrix}1 &amp; 0\\- \frac{1}{f_{1}} &amp; 1\end{matrix}\right]
@@ -641,7 +642,7 @@ M_2=\left[\begin{matrix}1 &amp; 0\\- \frac{1}{f_{1}} &amp; 1\end{matrix}\right]
 </div>
 </div>
 <p>traveling further through free space with distance <span class="math inline">\(d\)</span></p>
-<div id="a4f1c12f" class="cell" data-execution_count="6">
+<div id="653a9787" class="cell" data-execution_count="6">
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="6">
 <p><span class="math display">\[
 M_3=\left[\begin{matrix}1 &amp; d\\0 &amp; 1\end{matrix}\right]
@@ -649,7 +650,7 @@ M_3=\left[\begin{matrix}1 &amp; d\\0 &amp; 1\end{matrix}\right]
 </div>
 </div>
 <p>and then hitting the tube lens with</p>
-<div id="d315e97a" class="cell" data-execution_count="7">
+<div id="2bdc2585" class="cell" data-execution_count="7">
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="7">
 <p><span class="math display">\[
 M_4=\left[\begin{matrix}1 &amp; 0\\- \frac{1}{\Delta_{ft} + f_{t}} &amp; 1\end{matrix}\right]
@@ -657,19 +658,19 @@ M_4=\left[\begin{matrix}1 &amp; 0\\- \frac{1}{\Delta_{ft} + f_{t}} &amp; 1\end{m
 </div>
 </div>
 <p>where <span class="math inline">\(\Delta_ft\)</span> is a parameter modifying the original tube lens focal distance <span class="math inline">\(f_t\)</span>. Finally, the light will propagate to the detector at distance <span class="math inline">\(f_t\)</span> from the tube lens</p>
-<div id="01a26d0c" class="cell" data-execution_count="8">
+<div id="d9e464f4" class="cell" data-execution_count="8">
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="8">
 <p><span class="math display">\[
 M_s=\left[\begin{matrix}1 &amp; f_{t}\\0 &amp; 1\end{matrix}\right]
 \]</span></p>
 </div>
 </div>
-<p>gicing for the whole system:</p>
+<p>giving for the whole system:</p>
 <p><span class="math display">\[
 M_t=M_4 M_3 M_2 M_1
 \]</span></p>
 <p>The final matrix has again 4 parameters <span class="math inline">\(A,B,C\)</span> and <span class="math inline">\(D\)</span>. For sharp imaging the parameter <span class="math inline">\(B\)</span> of the system must be equal to zero, as the outgoing light should be independent of the incoming angle. This is achieved</p>
-<div id="aab7cda2" class="cell" data-execution_count="9">
+<div id="47b584d6" class="cell" data-execution_count="9">
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="9">
 <p><span class="math display">\[\delta s=\frac{f_{1} \left(\Delta_{ft} d + \Delta_{ft} f_{t} + f_{t}^{2}\right)}{\Delta_{ft} d - \Delta_{ft} f_{1} + \Delta_{ft} f_{t} + f_{t}^{2}}-s_0
 \]</span></p>
@@ -683,7 +684,7 @@ M_t=M_4 M_3 M_2 M_1
 <img src="01-lecture02_files/figure-html/fig-shift-output-1.png" width="565" height="447" class="figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-shift-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;4— Plot of the solution with specific parameter values
+Figure&nbsp;4— Required object-plane shift <span class="math inline">\(\delta s\)</span> (in µm) to restore sharp imaging (<span class="math inline">\(B=0\)</span>) as a function of tube-lens focal-length detuning <span class="math inline">\(\Delta_{ft}\)</span> for a two-lens microscope with objective focal length <span class="math inline">\(f_1 = 0.18\,\text{cm}\)</span>, nominal tube-lens focal length <span class="math inline">\(f_t = 18\,\text{cm}\)</span>, and objective-to-tube-lens separation <span class="math inline">\(d = 20\,\text{cm}\)</span>. A positive detuning of the tube lens forces the object to be moved closer to the objective to re-establish the imaging condition.
 </figcaption>
 </figure>
 </div>
@@ -722,8 +723,110 @@ The B Parameter
 </div>
 </div>
 </div>
+</section>
+<section id="application-autofocus-by-beam-displacement" class="level3">
+<h3 class="anchored" data-anchor-id="application-autofocus-by-beam-displacement">Application: Autofocus by Beam Displacement</h3>
+<p>Modern microscopes often incorporate a reflection-based autofocus system. The idea is elegant: an auxiliary light beam, launched <strong>off-axis but parallel</strong> to the optical axis, is coupled into the infinity space between objective and tube lens via a beam splitter. This beam travels through the objective, reflects off a refractive-index boundary near the sample plane (e.g.&nbsp;the cover-glass surface), returns through the objective, and is detected on the camera. A shift of the reflecting surface along the optical axis produces a measurable <strong>lateral displacement</strong> of the return beam on the detector, providing a focus-error signal without any mechanical scanning.</p>
+<p>We can analyse this system entirely with the ABCD matrix formalism using the same parameters as before.</p>
+<section id="unfolded-round-trip" class="level4">
+<h4 class="anchored" data-anchor-id="unfolded-round-trip">Unfolded Round-Trip</h4>
+<p>Because the reflector is flat and perpendicular to the optical axis, the round-trip can be “unfolded” into a single straight optical path. The beam starts at the beam-splitter position (distance <span class="math inline">\(d\)</span> from the objective), propagates to the objective, passes through it, travels a distance <span class="math inline">\(s\)</span> to the reflecting surface, continues (unfolded) another distance <span class="math inline">\(s\)</span> back through the objective, traverses the infinity space back to the tube lens, and finally propagates to the camera.</p>
+<p>The complete matrix for this path is</p>
+<p><span class="math display">\[
+M_\mathrm{AF} = \underbrace{M_\mathrm{camera}}_{\text{tube lens}\to\text{detector}}\;\underbrace{M_\mathrm{return}}_{\text{sample}\to\text{BS}}\;\underbrace{M_\mathrm{forward}}_{\text{BS}\to\text{sample}}
+\]</span></p>
+<p>with the three blocks</p>
+<p><span class="math display">\[
+M_\mathrm{forward} = \begin{pmatrix}1 &amp; s\\0 &amp; 1\end{pmatrix}\begin{pmatrix}1 &amp; 0\\-1/f_1 &amp; 1\end{pmatrix}\begin{pmatrix}1 &amp; d\\0 &amp; 1\end{pmatrix}, \qquad
+M_\mathrm{return} = \begin{pmatrix}1 &amp; d\\0 &amp; 1\end{pmatrix}\begin{pmatrix}1 &amp; 0\\-1/f_1 &amp; 1\end{pmatrix}\begin{pmatrix}1 &amp; s\\0 &amp; 1\end{pmatrix}
+\]</span></p>
+<p><span class="math display">\[
+M_\mathrm{camera} = \begin{pmatrix}1 &amp; f_t\\0 &amp; 1\end{pmatrix}\begin{pmatrix}1 &amp; 0\\-1/f_t &amp; 1\end{pmatrix}
+\]</span></p>
+<p>The input ray is <span class="math inline">\((y_\mathrm{in},\,\theta_\mathrm{in}) = (h,\,0)\)</span>, i.e.&nbsp;off-axis by height <span class="math inline">\(h\)</span>, but parallel to the axis. The lateral position on the camera is then simply <span class="math inline">\(y_\mathrm{cam} = A_\mathrm{AF}\, h\)</span>, where <span class="math inline">\(A_\mathrm{AF}\)</span> is the (1,1) element of <span class="math inline">\(M_\mathrm{AF}\)</span>.</p>
+<div id="cell-fig-autofocus-schematic" class="cell" data-execution_count="11">
+<div class="cell-output cell-output-display">
+<div id="fig-autofocus-schematic" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-autofocus-schematic-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="01-lecture02_files/figure-html/fig-autofocus-schematic-output-1.png" width="661" height="184" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-autofocus-schematic-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5— Schematic of the reflection-based autofocus beam path. An off-axis beam (blue) enters the infinity space via a beam splitter, is focused by the objective onto the reflecting surface, and returns (red/orange) through the objective and tube lens to the camera. When the reflector is displaced by <span class="math inline">\(\delta z\)</span> from the focal plane (dashed), the return beam arrives at a shifted lateral position <span class="math inline">\(\Delta y\)</span> on the detector.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div id="0b1f6ad2" class="cell" data-execution_count="13">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="13">
+<p>The full system matrix is</p>
+<p><span class="math display">\[
+M_\mathrm{AF} = \left[\begin{matrix}\frac{2 f_{t} \left(- f_{1} + s\right)}{f_{1}^{2}} &amp; \frac{f_{t} \left(- d \left(f_{1} - s\right) - f_{1} s - \left(d - f_{1}\right) \left(f_{1} - s\right)\right)}{f_{1}^{2}}\\\frac{d f_{1} - f_{1} f_{t} + f_{t} s - s \left(d - f_{1}\right) + \left(f_{1} - s\right) \left(d - f_{1} - f_{t}\right)}{f_{1}^{2} f_{t}} &amp; \frac{\left(d - f_{1}\right) \left(d f_{1} - f_{1} f_{t} + f_{t} s - s \left(d - f_{1}\right)\right) + \left(d \left(f_{1} - s\right) + f_{1} s\right) \left(d - f_{1} - f_{t}\right)}{f_{1}^{2} f_{t}}\end{matrix}\right]
+\]</span></p>
+</div>
+</div>
+<p>The detector-plane position of the return beam is</p>
+<p><span class="math display">\[
+y_\mathrm{cam}(s) = A_\mathrm{AF}(s)\cdot h
+\]</span></p>
+<p>and the autofocus signal, i.e.&nbsp;the <strong>lateral displacement</strong> relative to the in-focus position <span class="math inline">\(s_0 = f_1\)</span>, is</p>
+<p><span class="math display">\[
+\Delta y(s) = y_\mathrm{cam}(s) - y_\mathrm{cam}(f_1).
+\]</span></p>
+<div id="f5d9cfc2" class="cell" data-execution_count="14">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="14">
+<p>At perfect focus (<span class="math inline">\(s = f_1\)</span>) the A element simplifies to</p>
+<p><span class="math display">\[
+A_\mathrm{AF}(f_1) = 0
+\]</span></p>
+</div>
+</div>
+</section>
+<section id="numerical-example" class="level4">
+<h4 class="anchored" data-anchor-id="numerical-example">Numerical Example</h4>
+<p>We use the same microscope parameters as for the focal-shift calculation: <span class="math inline">\(f_1 = 0.18\;\text{cm}\)</span> (100× objective), <span class="math inline">\(f_t = 18\;\text{cm}\)</span>, <span class="math inline">\(d = 20\;\text{cm}\)</span>, and an input beam height <span class="math inline">\(h = 0.5\;\text{cm}\)</span>.</p>
+<div id="cell-fig-autofocus" class="cell" data-execution_count="15">
+<div class="cell-output cell-output-display">
+<div id="fig-autofocus" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-autofocus-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="01-lecture02_files/figure-html/fig-autofocus-output-1.png" width="694" height="448" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-autofocus-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6— Reflection-based autofocus: lateral beam displacement <span class="math inline">\(\Delta y\)</span> on the camera as a function of the defocus <span class="math inline">\(\delta z = s - f_1\)</span>. Parameters: <span class="math inline">\(f_1 = 0.18\,\text{cm}\)</span> (100× objective), <span class="math inline">\(f_t = 18\,\text{cm}\)</span>, <span class="math inline">\(d = 20\,\text{cm}\)</span>, <span class="math inline">\(h = 0.1\,\text{cm}\)</span>. The linear slope provides a sensitive focus-error signal whose sign indicates the direction of the defocus.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The plot confirms that the lateral beam displacement on the camera is a perfectly <strong>linear</strong> function of the defocus, a direct consequence of the ABCD matrix element <span class="math inline">\(A_\mathrm{AF} = 2 f_t\,(s - f_1)/f_1^2\)</span>. The sensitivity is set by the slope</p>
+<p><span class="math display">\[
+\frac{\Delta y}{\delta z} = \frac{2\,M\,h}{f_1}
+\]</span></p>
+<p>where <span class="math inline">\(M = f_t/f_1\)</span> is the magnification of the objective–tube-lens pair. For a 100× objective with <span class="math inline">\(h = 1\;\text{mm}\)</span>, this gives <span class="math inline">\({\sim}\,111\;\text{µm}/\text{µm}\)</span>. A sample displacement of just 1 µm produces a beam shift of over 100 µm on the camera, easily detectable with a position-sensitive detector or a split photodiode.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Practical Autofocus Implementation
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In a real microscope autofocus system (such as the Nikon Perfect Focus or Olympus Z-drift compensator):</p>
+<ul>
+<li>The auxiliary beam uses an <strong>infrared LED</strong> (<span class="math inline">\(\lambda \approx 870\;\text{nm}\)</span>) to avoid interfering with fluorescence imaging.</li>
+<li>A <strong>split photodiode</strong> or <strong>quadrant detector</strong> measures the lateral displacement and feeds back to a piezo z-stage in a closed-loop control.</li>
+<li>The reflecting interface is typically the <strong>cover-glass–medium boundary</strong> or a dedicated reference surface.</li>
+<li>The system operates continuously, correcting thermal drift and mechanical vibrations at rates of several hundred Hz.</li>
+</ul>
+</div>
+</div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

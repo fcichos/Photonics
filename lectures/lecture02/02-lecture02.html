@@ -526,29 +526,11 @@ From Wavefronts to Rays
 \]</span></p>
 <p>which governs how the amplitude <span class="math inline">\(A(\mathbf{r})\)</span> evolves along rays — it encodes energy conservation in the ray picture.</p>
 <div id="cell-fig-eikonal" class="cell" data-execution_count="2">
-<div class="cell-output cell-output-stderr">
-<pre><code>/var/folders/t4/_9qps8wj56jc60nwkr3nrcr00000gn/T/ipykernel_8899/1668930378.py:60: DeprecationWarning:
-
-Conversion of an array with ndim &gt; 0 to a scalar is deprecated, and will error in future. Ensure you extract a single element from your array before performing this operation. (Deprecated NumPy 1.25.)
-
-/var/folders/t4/_9qps8wj56jc60nwkr3nrcr00000gn/T/ipykernel_8899/1668930378.py:70: DeprecationWarning:
-
-Conversion of an array with ndim &gt; 0 to a scalar is deprecated, and will error in future. Ensure you extract a single element from your array before performing this operation. (Deprecated NumPy 1.25.)
-
-/var/folders/t4/_9qps8wj56jc60nwkr3nrcr00000gn/T/ipykernel_8899/1668930378.py:71: DeprecationWarning:
-
-Conversion of an array with ndim &gt; 0 to a scalar is deprecated, and will error in future. Ensure you extract a single element from your array before performing this operation. (Deprecated NumPy 1.25.)
-
-/var/folders/t4/_9qps8wj56jc60nwkr3nrcr00000gn/T/ipykernel_8899/1668930378.py:72: DeprecationWarning:
-
-Conversion of an array with ndim &gt; 0 to a scalar is deprecated, and will error in future. Ensure you extract a single element from your array before performing this operation. (Deprecated NumPy 1.25.)
-</code></pre>
-</div>
 <div class="cell-output cell-output-display">
 <div id="fig-eikonal" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-eikonal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="02-lecture02_files/figure-html/fig-eikonal-output-2.png" width="803" height="336" class="figure-img">
+<img src="02-lecture02_files/figure-html/fig-eikonal-output-1.png" width="803" height="336" class="figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-eikonal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;4— Eikonal approximation: a Gaussian refractive index profile <span class="math inline">\(n(\mathbf{r})\)</span> bends wavefronts and rays. Left: wavefronts (contours of constant <span class="math inline">\(S\)</span>) distorted by the index variation. Right: ray paths computed from <span class="math inline">\(\nabla S\)</span>, curving toward higher <span class="math inline">\(n\)</span> — exactly as predicted by Fermat’s principle.
@@ -591,35 +573,35 @@ k_{0z}\\
 <div id="cell-fig-plane" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plane_wave(k,omega,r,t):</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span>(np.exp(<span class="ot">1j</span><span class="op">*</span>(np.dot(k,r)<span class="op">-</span>omega<span class="op">*</span>t)))</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>wavelength<span class="op">=</span><span class="fl">532e-9</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>k0<span class="op">=</span><span class="dv">2</span><span class="op">*</span>np.pi<span class="op">/</span>wavelength</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>c<span class="op">=</span><span class="dv">299792458</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>omega0<span class="op">=</span>k0<span class="op">*</span>c</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>vec<span class="op">=</span>np.array([<span class="fl">0.0</span>,<span class="fl">0.</span>,<span class="fl">1.</span>])</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>vec<span class="op">=</span>vec<span class="op">/</span>np.sqrt(np.dot(vec,vec))</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>k<span class="op">=</span>k0<span class="op">*</span>vec</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>x<span class="op">=</span>np.linspace(<span class="op">-</span><span class="fl">2.5e-6</span>,<span class="fl">2.5e-6</span>,<span class="dv">300</span>)</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>z<span class="op">=</span>np.linspace(<span class="dv">0</span>,<span class="fl">5e-6</span>,<span class="dv">300</span>)</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>X,Z<span class="op">=</span>np.meshgrid(x,z)</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>r<span class="op">=</span>np.array([X,<span class="dv">0</span>,Z],dtype<span class="op">=</span><span class="bu">object</span>)</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>get_size(<span class="dv">6</span>,<span class="dv">6</span>))</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>field<span class="op">=</span>plane_wave(k,omega0,r,<span class="dv">0</span>)</span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>extent <span class="op">=</span> np.<span class="bu">min</span>(z)<span class="op">*</span><span class="fl">1e6</span>, np.<span class="bu">max</span>(z)<span class="op">*</span><span class="fl">1e6</span>,np.<span class="bu">min</span>(x)<span class="op">*</span><span class="fl">1e6</span>, np.<span class="bu">max</span>(x)<span class="op">*</span><span class="fl">1e6</span></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>plt.imshow(np.real(field.transpose()),extent<span class="op">=</span>extent,vmin<span class="op">=-</span><span class="dv">1</span>,vmax<span class="op">=</span><span class="dv">1</span>,cmap<span class="op">=</span><span class="st">'seismic'</span>)</span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'z-position [µm]'</span>)</span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'x-position [µm]'</span>)</span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plane_wave(k,omega,r,t):</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span>(np.exp(<span class="ot">1j</span><span class="op">*</span>(np.dot(k,r)<span class="op">-</span>omega<span class="op">*</span>t)))</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>wavelength<span class="op">=</span><span class="fl">532e-9</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>k0<span class="op">=</span><span class="dv">2</span><span class="op">*</span>np.pi<span class="op">/</span>wavelength</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>c<span class="op">=</span><span class="dv">299792458</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>omega0<span class="op">=</span>k0<span class="op">*</span>c</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>vec<span class="op">=</span>np.array([<span class="fl">0.0</span>,<span class="fl">0.</span>,<span class="fl">1.</span>])</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>vec<span class="op">=</span>vec<span class="op">/</span>np.sqrt(np.dot(vec,vec))</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>k<span class="op">=</span>k0<span class="op">*</span>vec</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>x<span class="op">=</span>np.linspace(<span class="op">-</span><span class="fl">2.5e-6</span>,<span class="fl">2.5e-6</span>,<span class="dv">300</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>z<span class="op">=</span>np.linspace(<span class="dv">0</span>,<span class="fl">5e-6</span>,<span class="dv">300</span>)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>X,Z<span class="op">=</span>np.meshgrid(x,z)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>r<span class="op">=</span>np.array([X,<span class="dv">0</span>,Z],dtype<span class="op">=</span><span class="bu">object</span>)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>get_size(<span class="dv">6</span>,<span class="dv">6</span>))</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>field<span class="op">=</span>plane_wave(k,omega0,r,<span class="dv">0</span>)</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>extent <span class="op">=</span> np.<span class="bu">min</span>(z)<span class="op">*</span><span class="fl">1e6</span>, np.<span class="bu">max</span>(z)<span class="op">*</span><span class="fl">1e6</span>,np.<span class="bu">min</span>(x)<span class="op">*</span><span class="fl">1e6</span>, np.<span class="bu">max</span>(x)<span class="op">*</span><span class="fl">1e6</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>plt.imshow(np.real(field.transpose()),extent<span class="op">=</span>extent,vmin<span class="op">=-</span><span class="dv">1</span>,vmax<span class="op">=</span><span class="dv">1</span>,cmap<span class="op">=</span><span class="st">'seismic'</span>)</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'z-position [µm]'</span>)</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'x-position [µm]'</span>)</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div id="fig-plane" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -718,57 +700,57 @@ k_1\sin(\theta_1)=k_2\sin(\theta_2)
 <p>which means that the component of the wavevector parallel to the interface is conserved. If the wavevector has constant length then the wavevector incident at different angles is between a point on a circle and the origin in the diagram below. The circle corresponds to an isofrequency surface.</p>
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>theta_upper <span class="op">=</span> np.linspace(<span class="dv">0</span>, np.pi, <span class="dv">100</span>)  <span class="co"># Upper half circle</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>theta_lower <span class="op">=</span> np.linspace(np.pi, <span class="dv">2</span><span class="op">*</span>np.pi, <span class="dv">100</span>)  <span class="co"># Lower half circle</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Radii for the circles</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>r1 <span class="op">=</span> <span class="fl">1.51</span>  <span class="co"># Radius for upper half circle</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>r2 <span class="op">=</span> <span class="fl">1.01</span>  <span class="co"># Radius for lower half circle</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>x_upper <span class="op">=</span> r1 <span class="op">*</span> np.cos(theta_upper)</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>y_upper <span class="op">=</span> r1 <span class="op">*</span> np.sin(theta_upper)</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>x_lower <span class="op">=</span> r2 <span class="op">*</span> np.cos(theta_lower)</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>y_lower <span class="op">=</span> r2 <span class="op">*</span> np.sin(theta_lower)</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the plot</span></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>get_size(<span class="dv">4</span>, <span class="dv">3</span>),dpi<span class="op">=</span><span class="dv">150</span>)</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>plt.plot(x_upper, y_upper, <span class="st">'b-'</span>, label<span class="op">=</span><span class="ss">f'Upper radius = </span><span class="sc">{</span>r1<span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>plt.plot(x_lower, y_lower, <span class="st">'r-'</span>, label<span class="op">=</span><span class="ss">f'Lower radius = </span><span class="sc">{</span>r2<span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Add arrow</span></span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate arrow start point (on the upper circle at 135 degrees)</span></span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>arrow_start_x <span class="op">=</span> r1 <span class="op">*</span> np.cos(<span class="dv">3</span><span class="op">*</span>np.pi<span class="op">/</span><span class="fl">4.2</span>)  <span class="co"># 135 degrees in radians</span></span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>arrow_start_y <span class="op">=</span> r1 <span class="op">*</span> np.sin(<span class="dv">3</span><span class="op">*</span>np.pi<span class="op">/</span><span class="fl">4.2</span>)</span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Add arrow to origin (0,0)</span></span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>plt.arrow(arrow_start_x, arrow_start_y, <span class="op">-</span>arrow_start_x, <span class="op">-</span>arrow_start_y,</span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>          head_width<span class="op">=</span><span class="fl">0.1</span>, head_length<span class="op">=</span><span class="fl">0.2</span>, fc<span class="op">=</span><span class="st">'b'</span>, ec<span class="op">=</span><span class="st">'b'</span>,</span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>          length_includes_head<span class="op">=</span><span class="va">True</span>, label<span class="op">=</span><span class="st">'45° arrow'</span>)</span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>dy<span class="op">=</span>np.sqrt(r2<span class="op">**</span><span class="dv">2</span><span class="op">-</span>arrow_start_x<span class="op">**</span><span class="dv">2</span>)</span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>plt.arrow(<span class="dv">0</span>, <span class="dv">0</span>, <span class="op">-</span>arrow_start_x, <span class="op">-</span>dy,</span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>          head_width<span class="op">=</span><span class="fl">0.1</span>, head_length<span class="op">=</span><span class="fl">0.2</span>, fc<span class="op">=</span><span class="st">'r'</span>, ec<span class="op">=</span><span class="st">'r'</span>,</span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>          length_includes_head<span class="op">=</span><span class="va">True</span>, label<span class="op">=</span><span class="st">'45° arrow'</span>)</span>
-<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>plt.axhline(y<span class="op">=</span><span class="dv">0</span>, color<span class="op">=</span><span class="st">'k'</span>, linestyle<span class="op">=</span><span class="st">'-'</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
-<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>plt.axvline(x<span class="op">=</span><span class="dv">0</span>, color<span class="op">=</span><span class="st">'k'</span>, linestyle<span class="op">=</span><span class="st">'-'</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
-<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>plt.axvline(x<span class="op">=-</span>arrow_start_x, color<span class="op">=</span><span class="st">'k'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>,lw<span class="op">=</span><span class="fl">0.5</span>)</span>
-<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>plt.axvline(x<span class="op">=</span>arrow_start_x, color<span class="op">=</span><span class="st">'k'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, lw<span class="op">=</span><span class="fl">0.5</span>)</span>
-<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>plt.axis(<span class="st">'square'</span>)</span>
-<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
-<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="vs">r'</span><span class="dv">$</span><span class="vs">k_x/k_0</span><span class="dv">$</span><span class="vs">'</span>)</span>
-<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="vs">r'</span><span class="dv">$</span><span class="vs">k_y/k_0</span><span class="dv">$</span><span class="vs">'</span>)</span>
-<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>plt.xlim(<span class="op">-</span><span class="dv">2</span>,<span class="dv">2</span> )</span>
-<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="op">-</span><span class="dv">2</span>,<span class="dv">2</span> )</span>
-<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the plot</span></span>
-<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>theta_upper <span class="op">=</span> np.linspace(<span class="dv">0</span>, np.pi, <span class="dv">100</span>)  <span class="co"># Upper half circle</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>theta_lower <span class="op">=</span> np.linspace(np.pi, <span class="dv">2</span><span class="op">*</span>np.pi, <span class="dv">100</span>)  <span class="co"># Lower half circle</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Radii for the circles</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>r1 <span class="op">=</span> <span class="fl">1.51</span>  <span class="co"># Radius for upper half circle</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>r2 <span class="op">=</span> <span class="fl">1.01</span>  <span class="co"># Radius for lower half circle</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>x_upper <span class="op">=</span> r1 <span class="op">*</span> np.cos(theta_upper)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>y_upper <span class="op">=</span> r1 <span class="op">*</span> np.sin(theta_upper)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>x_lower <span class="op">=</span> r2 <span class="op">*</span> np.cos(theta_lower)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>y_lower <span class="op">=</span> r2 <span class="op">*</span> np.sin(theta_lower)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the plot</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>get_size(<span class="dv">4</span>, <span class="dv">3</span>),dpi<span class="op">=</span><span class="dv">150</span>)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>plt.plot(x_upper, y_upper, <span class="st">'b-'</span>, label<span class="op">=</span><span class="ss">f'Upper radius = </span><span class="sc">{</span>r1<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>plt.plot(x_lower, y_lower, <span class="st">'r-'</span>, label<span class="op">=</span><span class="ss">f'Lower radius = </span><span class="sc">{</span>r2<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Add arrow</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate arrow start point (on the upper circle at 135 degrees)</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>arrow_start_x <span class="op">=</span> r1 <span class="op">*</span> np.cos(<span class="dv">3</span><span class="op">*</span>np.pi<span class="op">/</span><span class="fl">4.2</span>)  <span class="co"># 135 degrees in radians</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>arrow_start_y <span class="op">=</span> r1 <span class="op">*</span> np.sin(<span class="dv">3</span><span class="op">*</span>np.pi<span class="op">/</span><span class="fl">4.2</span>)</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Add arrow to origin (0,0)</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>plt.arrow(arrow_start_x, arrow_start_y, <span class="op">-</span>arrow_start_x, <span class="op">-</span>arrow_start_y,</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>          head_width<span class="op">=</span><span class="fl">0.1</span>, head_length<span class="op">=</span><span class="fl">0.2</span>, fc<span class="op">=</span><span class="st">'b'</span>, ec<span class="op">=</span><span class="st">'b'</span>,</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>          length_includes_head<span class="op">=</span><span class="va">True</span>, label<span class="op">=</span><span class="st">'45° arrow'</span>)</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>dy<span class="op">=</span>np.sqrt(r2<span class="op">**</span><span class="dv">2</span><span class="op">-</span>arrow_start_x<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>plt.arrow(<span class="dv">0</span>, <span class="dv">0</span>, <span class="op">-</span>arrow_start_x, <span class="op">-</span>dy,</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>          head_width<span class="op">=</span><span class="fl">0.1</span>, head_length<span class="op">=</span><span class="fl">0.2</span>, fc<span class="op">=</span><span class="st">'r'</span>, ec<span class="op">=</span><span class="st">'r'</span>,</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>          length_includes_head<span class="op">=</span><span class="va">True</span>, label<span class="op">=</span><span class="st">'45° arrow'</span>)</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>plt.axhline(y<span class="op">=</span><span class="dv">0</span>, color<span class="op">=</span><span class="st">'k'</span>, linestyle<span class="op">=</span><span class="st">'-'</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>plt.axvline(x<span class="op">=</span><span class="dv">0</span>, color<span class="op">=</span><span class="st">'k'</span>, linestyle<span class="op">=</span><span class="st">'-'</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>plt.axvline(x<span class="op">=-</span>arrow_start_x, color<span class="op">=</span><span class="st">'k'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>,lw<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>plt.axvline(x<span class="op">=</span>arrow_start_x, color<span class="op">=</span><span class="st">'k'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, lw<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>plt.axis(<span class="st">'square'</span>)</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="vs">r'</span><span class="dv">$</span><span class="vs">k_x/k_0</span><span class="dv">$</span><span class="vs">'</span>)</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="vs">r'</span><span class="dv">$</span><span class="vs">k_y/k_0</span><span class="dv">$</span><span class="vs">'</span>)</span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>plt.xlim(<span class="op">-</span><span class="dv">2</span>,<span class="dv">2</span> )</span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="op">-</span><span class="dv">2</span>,<span class="dv">2</span> )</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the plot</span></span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="quarto-layout-panel" data-column-width-middle="20%" data-column-width-left="40%" data-layout-ncol="3" data-column-width-right="20%">
+<div class="quarto-layout-panel" data-column-width-left="40%" data-layout-ncol="3" data-column-width-right="20%" data-column-width-middle="20%">
 <div class="quarto-layout-row">
-<div id="680e96a6" class="cell quarto-layout-cell" data-execution_count="4" style="flex-basis: 33.3%;justify-content: flex-start;">
+<div id="d9b6015b" class="cell quarto-layout-cell" data-execution_count="4" style="flex-basis: 33.3%;justify-content: flex-start;">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -820,35 +802,35 @@ Important
 <div id="cell-fig-sphere" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> spherical_wave(k,omega,r,r0,t):</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    k<span class="op">=</span>np.linalg.norm(k)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    d<span class="op">=</span>np.linalg.norm(r<span class="op">-</span>r0)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span>( np.exp(<span class="ot">1j</span><span class="op">*</span>(k<span class="op">*</span>d<span class="op">-</span>omega<span class="op">*</span>t))<span class="op">/</span>d)</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>get_size(<span class="dv">5</span>,<span class="dv">5</span>),dpi<span class="op">=</span><span class="dv">150</span>)</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>x<span class="op">=</span>np.linspace(<span class="op">-</span><span class="fl">5e-6</span>,<span class="fl">5e-6</span>,<span class="dv">300</span>)</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>z<span class="op">=</span>np.linspace(<span class="op">-</span><span class="fl">5e-6</span>,<span class="fl">5e-6</span>,<span class="dv">300</span>)</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>X,Z<span class="op">=</span>np.meshgrid(x,z)</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>r<span class="op">=</span>np.array([X,<span class="dv">0</span>,Z],dtype<span class="op">=</span><span class="bu">object</span>)</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>wavelength<span class="op">=</span><span class="fl">532e-9</span></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>k0<span class="op">=</span><span class="dv">2</span><span class="op">*</span>np.pi<span class="op">/</span>wavelength</span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>c<span class="op">=</span><span class="dv">299792458</span></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>omega0<span class="op">=</span>k0<span class="op">*</span>c</span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>k<span class="op">=</span>k0<span class="op">*</span>np.array([<span class="dv">0</span>,<span class="dv">0</span>,<span class="fl">1.</span>])</span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>r0<span class="op">=</span>np.array([<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>])</span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>field<span class="op">=</span>spherical_wave(k,omega0,r,r0,<span class="dv">0</span>)</span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>extent <span class="op">=</span> np.<span class="bu">min</span>(z)<span class="op">*</span><span class="fl">1e6</span>, np.<span class="bu">max</span>(z)<span class="op">*</span><span class="fl">1e6</span>,np.<span class="bu">min</span>(x)<span class="op">*</span><span class="fl">1e6</span>, np.<span class="bu">max</span>(x)<span class="op">*</span><span class="fl">1e6</span></span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>plt.imshow(np.real(field.transpose()),extent<span class="op">=</span>extent,vmin<span class="op">=-</span><span class="fl">5e6</span>,vmax<span class="op">=</span><span class="fl">5e6</span>,cmap<span class="op">=</span><span class="st">'seismic'</span>)</span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'z [µm]'</span>)</span>
-<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'x [µm]'</span>)</span>
-<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> spherical_wave(k,omega,r,r0,t):</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    k<span class="op">=</span>np.linalg.norm(k)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    d<span class="op">=</span>np.linalg.norm(r<span class="op">-</span>r0)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span>( np.exp(<span class="ot">1j</span><span class="op">*</span>(k<span class="op">*</span>d<span class="op">-</span>omega<span class="op">*</span>t))<span class="op">/</span>d)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>get_size(<span class="dv">5</span>,<span class="dv">5</span>),dpi<span class="op">=</span><span class="dv">150</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>x<span class="op">=</span>np.linspace(<span class="op">-</span><span class="fl">5e-6</span>,<span class="fl">5e-6</span>,<span class="dv">300</span>)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>z<span class="op">=</span>np.linspace(<span class="op">-</span><span class="fl">5e-6</span>,<span class="fl">5e-6</span>,<span class="dv">300</span>)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>X,Z<span class="op">=</span>np.meshgrid(x,z)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>r<span class="op">=</span>np.array([X,<span class="dv">0</span>,Z],dtype<span class="op">=</span><span class="bu">object</span>)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>wavelength<span class="op">=</span><span class="fl">532e-9</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>k0<span class="op">=</span><span class="dv">2</span><span class="op">*</span>np.pi<span class="op">/</span>wavelength</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>c<span class="op">=</span><span class="dv">299792458</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>omega0<span class="op">=</span>k0<span class="op">*</span>c</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>k<span class="op">=</span>k0<span class="op">*</span>np.array([<span class="dv">0</span>,<span class="dv">0</span>,<span class="fl">1.</span>])</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>r0<span class="op">=</span>np.array([<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>])</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>field<span class="op">=</span>spherical_wave(k,omega0,r,r0,<span class="dv">0</span>)</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>extent <span class="op">=</span> np.<span class="bu">min</span>(z)<span class="op">*</span><span class="fl">1e6</span>, np.<span class="bu">max</span>(z)<span class="op">*</span><span class="fl">1e6</span>,np.<span class="bu">min</span>(x)<span class="op">*</span><span class="fl">1e6</span>, np.<span class="bu">max</span>(x)<span class="op">*</span><span class="fl">1e6</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>plt.imshow(np.real(field.transpose()),extent<span class="op">=</span>extent,vmin<span class="op">=-</span><span class="fl">5e6</span>,vmax<span class="op">=</span><span class="fl">5e6</span>,cmap<span class="op">=</span><span class="st">'seismic'</span>)</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'z [µm]'</span>)</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'x [µm]'</span>)</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div id="fig-sphere" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">

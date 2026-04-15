@@ -342,7 +342,7 @@ window.Quarto = {
 <p>Use the following optical constants for gold at 532 nm: <span class="math display">\[\varepsilon_{\text{gold}} = -4.6 + 2.4i\]</span></p>
 <p><strong>b)</strong> Compare the scattering cross-section with the geometric cross-section <span class="math inline">\(\sigma_{\text{geom}} = \pi a^2\)</span>. What is the scattering efficiency <span class="math inline">\(Q_{\text{sca}} = \sigma_{\text{sca}} / \sigma_{\text{geom}}\)</span>?</p>
 <p><strong>c)</strong> Discuss: does a 20 nm gold particle scatter or absorb more at 532 nm? (Hint: check if the imaginary part of ε dominates.)</p>
-<div id="d06ba72a" class="cell" data-execution_count="2">
+<div id="4ebc9065" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Rayleigh scattering calculation</span></span>
@@ -428,7 +428,7 @@ Absorption:
 <p><strong>b)</strong> For <strong>backscattering detection</strong> (θ = 173°) with λ = 632 nm (He-Ne laser) and water refractive index <span class="math inline">\(n = 1.33\)</span>, calculate the scattering wavevector <span class="math inline">\(q\)</span> and decay rate <span class="math inline">\(\Gamma\)</span>.</p>
 <p><strong>c)</strong> Calculate the characteristic decay time <span class="math inline">\(\tau_c = 1/\Gamma\)</span> (autocorrelation lifetime).</p>
 <p><strong>d)</strong> Plot the expected autocorrelation function <span class="math inline">\(g_2(\tau)\)</span> with <span class="math inline">\(\beta = 0.05\)</span>.</p>
-<div id="28f412be" class="cell" data-execution_count="3">
+<div id="dd26ee35" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Physical constants</span></span>
@@ -490,7 +490,7 @@ Part c) Decay rate and lifetime:
 </div>
 </div>
 <p>Now plot the autocorrelation function:</p>
-<div id="f27c452b" class="cell" data-execution_count="4">
+<div id="497a6218" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot g2(tau)</span></span>
@@ -528,7 +528,7 @@ Part c) Decay rate and lifetime:
 <p>Use <span class="math inline">\(\kappa_{\text{water}} = 0.6\)</span> W/(m·K).</p>
 <p><strong>b)</strong> The refractive index of water changes with temperature: <span class="math inline">\(\partial n / \partial T = -1.0 \times 10^{-4}\)</span> K⁻¹. Calculate the refractive index change at the particle surface.</p>
 <p><strong>c)</strong> This refractive index perturbation can be detected via a <strong>photothermal lens</strong> effect. Why would a photothermal microscope measure a phase shift (or absorption change) when scanning over a nanoparticle?</p>
-<div id="0a62ba80" class="cell" data-execution_count="5">
+<div id="79be6dbd" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Photothermal temperature rise</span></span>
@@ -601,7 +601,7 @@ Part c) Photothermal detection:
 <li>Compute the intensity autocorrelation function <span class="math inline">\(g_2(\tau)\)</span> from the scattered intensity</li>
 <li>Fit an exponential decay to extract the diffusion coefficient</li>
 </ol>
-<div id="969f8117" class="cell" data-execution_count="6">
+<div id="fd948436" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># DLS simulation parameters</span></span>
@@ -675,7 +675,7 @@ Autocorrelation computed for 200 lags</code></pre>
 </div>
 </div>
 <p>Now plot and fit:</p>
-<div id="956bfe18" class="cell" data-execution_count="7">
+<div id="5b045164" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit exponential decay: g2 = 1 + β·exp(-2·Γ·τ)</span></span>
@@ -715,19 +715,21 @@ Autocorrelation computed for 200 lags</code></pre>
 <pre><code>Fit results:
   Γ_true = 3.418e-15 s⁻¹
   Γ_fit  = 3.418e-15 s⁻¹
-  β_fit  = -0.0000
-
-Figure saved to img/dls_simulation.png</code></pre>
+  β_fit  = -0.0000</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/var/folders/t4/_9qps8wj56jc60nwkr3nrcr00000gn/T/ipykernel_79435/1644749267.py:8: OptimizeWarning:
+<pre><code>/var/folders/t4/_9qps8wj56jc60nwkr3nrcr00000gn/T/ipykernel_10136/1644749267.py:8: OptimizeWarning:
 
 Covariance of the parameters could not be estimated
 
-/var/folders/t4/_9qps8wj56jc60nwkr3nrcr00000gn/T/ipykernel_79435/1644749267.py:30: UserWarning:
+/var/folders/t4/_9qps8wj56jc60nwkr3nrcr00000gn/T/ipykernel_10136/1644749267.py:30: UserWarning:
 
 Data has no positive values, and therefore cannot be log-scaled.
 </code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Figure saved to img/dls_simulation.png</code></pre>
 </div>
 </div>
 <hr>
@@ -745,44 +747,44 @@ Data has no positive values, and therefore cannot be log-scaled.
 <p>With lock-in detection and bandwidth <span class="math inline">\(B_{\text{LPF}} = 1\)</span> Hz (from the low-pass filter), the noise is reduced by a factor <span class="math inline">\(\sqrt{f_0 / (2 B_{\text{LPF}})}\)</span> (Wiener-Khinchin theorem).</p>
 <p>Calculate the SNR improvement factor.</p>
 <p><strong>c)</strong> Why does lock-in detection not help if the noise is at the same frequency as the signal (e.g., 50 Hz power line noise modulating the signal)?</p>
-<div id="72955698" class="cell" data-execution_count="8">
+<div id="ca5546b6" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Lock-in detection analysis</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>A_signal <span class="op">=</span> <span class="dv">10</span>  <span class="co"># mV</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>f_0 <span class="op">=</span> <span class="dv">1000</span>  <span class="co"># Hz, modulation frequency</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>sigma_noise <span class="op">=</span> <span class="dv">100</span>  <span class="co"># mV, noise amplitude</span></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>B_lpf <span class="op">=</span> <span class="dv">1</span>  <span class="co"># Hz, low-pass filter bandwidth</span></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Lock-in Detection Analysis"</span>)</span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span> <span class="op">*</span> <span class="dv">50</span>)</span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Signal amplitude: A = </span><span class="sc">{</span>A_signal<span class="sc">}</span><span class="ss"> mV"</span>)</span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Modulation frequency: f_0 = </span><span class="sc">{</span>f_0<span class="sc">}</span><span class="ss"> Hz"</span>)</span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Noise amplitude: σ = </span><span class="sc">{</span>sigma_noise<span class="sc">}</span><span class="ss"> mV"</span>)</span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"LPF bandwidth: B = </span><span class="sc">{</span>B_lpf<span class="sc">}</span><span class="ss"> Hz"</span>)</span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Part b): SNR improvement</span></span>
-<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>SNR_direct <span class="op">=</span> A_signal <span class="op">/</span> sigma_noise</span>
-<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Part b) SNR without lock-in:"</span>)</span>
-<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  SNR_direct = A / σ = </span><span class="sc">{</span>SNR_direct<span class="sc">:.4f}</span><span class="ss"> (</span><span class="sc">{</span><span class="dv">10</span><span class="op">*</span>np<span class="sc">.</span>log10(SNR_direct)<span class="sc">:.1f}</span><span class="ss"> dB)"</span>)</span>
-<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a><span class="co"># With lock-in: noise reduced by sqrt(f_0 / (2*B))</span></span>
-<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>noise_reduction_factor <span class="op">=</span> np.sqrt(f_0 <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> B_lpf))</span>
-<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>SNR_lockin <span class="op">=</span> SNR_direct <span class="op">*</span> noise_reduction_factor</span>
-<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">With lock-in (B = </span><span class="sc">{</span>B_lpf<span class="sc">}</span><span class="ss"> Hz):"</span>)</span>
-<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Noise reduction factor = √(f_0 / (2B)) = </span><span class="sc">{</span>noise_reduction_factor<span class="sc">:.1f}</span><span class="ss">"</span>)</span>
-<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  SNR_lock-in = </span><span class="sc">{</span>SNR_lockin<span class="sc">:.2f}</span><span class="ss"> (</span><span class="sc">{</span><span class="dv">10</span><span class="op">*</span>np<span class="sc">.</span>log10(SNR_lockin)<span class="sc">:.1f}</span><span class="ss"> dB)"</span>)</span>
-<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Improvement = </span><span class="sc">{</span>noise_reduction_factor<span class="sc">:.1f}</span><span class="ss">×"</span>)</span>
-<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Part c): explanation</span></span>
-<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Part c) Noise at signal frequency:"</span>)</span>
-<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  If noise is at the SAME frequency as the signal (e.g., both at 1 kHz),"</span>)</span>
-<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  then lock-in cannot distinguish them. Both will pass through the"</span>)</span>
-<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  multiplication and low-pass filtering step together."</span>)</span>
-<span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Lock-in ONLY rejects noise at OTHER frequencies (off-resonance noise)."</span>)</span>
-<span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  This is why modulation frequency should be chosen away from"</span>)</span>
-<span id="cb14-35"><a href="#cb14-35" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  common noise sources (50/60 Hz, harmonics, thermal noise, 1/f noise)."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Lock-in detection analysis</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>A_signal <span class="op">=</span> <span class="dv">10</span>  <span class="co"># mV</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>f_0 <span class="op">=</span> <span class="dv">1000</span>  <span class="co"># Hz, modulation frequency</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>sigma_noise <span class="op">=</span> <span class="dv">100</span>  <span class="co"># mV, noise amplitude</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>B_lpf <span class="op">=</span> <span class="dv">1</span>  <span class="co"># Hz, low-pass filter bandwidth</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Lock-in Detection Analysis"</span>)</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span> <span class="op">*</span> <span class="dv">50</span>)</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Signal amplitude: A = </span><span class="sc">{</span>A_signal<span class="sc">}</span><span class="ss"> mV"</span>)</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Modulation frequency: f_0 = </span><span class="sc">{</span>f_0<span class="sc">}</span><span class="ss"> Hz"</span>)</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Noise amplitude: σ = </span><span class="sc">{</span>sigma_noise<span class="sc">}</span><span class="ss"> mV"</span>)</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"LPF bandwidth: B = </span><span class="sc">{</span>B_lpf<span class="sc">}</span><span class="ss"> Hz"</span>)</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Part b): SNR improvement</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>SNR_direct <span class="op">=</span> A_signal <span class="op">/</span> sigma_noise</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Part b) SNR without lock-in:"</span>)</span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  SNR_direct = A / σ = </span><span class="sc">{</span>SNR_direct<span class="sc">:.4f}</span><span class="ss"> (</span><span class="sc">{</span><span class="dv">10</span><span class="op">*</span>np<span class="sc">.</span>log10(SNR_direct)<span class="sc">:.1f}</span><span class="ss"> dB)"</span>)</span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a><span class="co"># With lock-in: noise reduced by sqrt(f_0 / (2*B))</span></span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>noise_reduction_factor <span class="op">=</span> np.sqrt(f_0 <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> B_lpf))</span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>SNR_lockin <span class="op">=</span> SNR_direct <span class="op">*</span> noise_reduction_factor</span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">With lock-in (B = </span><span class="sc">{</span>B_lpf<span class="sc">}</span><span class="ss"> Hz):"</span>)</span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Noise reduction factor = √(f_0 / (2B)) = </span><span class="sc">{</span>noise_reduction_factor<span class="sc">:.1f}</span><span class="ss">"</span>)</span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  SNR_lock-in = </span><span class="sc">{</span>SNR_lockin<span class="sc">:.2f}</span><span class="ss"> (</span><span class="sc">{</span><span class="dv">10</span><span class="op">*</span>np<span class="sc">.</span>log10(SNR_lockin)<span class="sc">:.1f}</span><span class="ss"> dB)"</span>)</span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Improvement = </span><span class="sc">{</span>noise_reduction_factor<span class="sc">:.1f}</span><span class="ss">×"</span>)</span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Part c): explanation</span></span>
+<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Part c) Noise at signal frequency:"</span>)</span>
+<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  If noise is at the SAME frequency as the signal (e.g., both at 1 kHz),"</span>)</span>
+<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  then lock-in cannot distinguish them. Both will pass through the"</span>)</span>
+<span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  multiplication and low-pass filtering step together."</span>)</span>
+<span id="cb15-33"><a href="#cb15-33" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Lock-in ONLY rejects noise at OTHER frequencies (off-resonance noise)."</span>)</span>
+<span id="cb15-34"><a href="#cb15-34" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  This is why modulation frequency should be chosen away from"</span>)</span>
+<span id="cb15-35"><a href="#cb15-35" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  common noise sources (50/60 Hz, harmonics, thermal noise, 1/f noise)."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Lock-in Detection Analysis
@@ -826,42 +828,42 @@ Part c) Noise at signal frequency:
 <p><strong>Solution:</strong></p>
 <p><strong>(a)</strong> The acoustic wave creates a time-varying strain in the crystal, which modulates the refractive index periodically. This acts as a traveling diffracting grating. Light satisfying the Bragg condition is diffracted into a first-order beam.</p>
 <p><strong>(b)</strong> Calculation:</p>
-<div id="d2ff2469" class="cell" data-execution_count="9">
+<div id="fc0604bb" class="cell" data-execution_count="9">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># AOM Bragg angle calculation</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>v_s <span class="op">=</span> <span class="dv">600</span>  <span class="co"># m/s, sound speed in TeO2</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>f_acoustic <span class="op">=</span> <span class="fl">80e6</span>  <span class="co"># Hz, acoustic frequency</span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>wavelength_opt <span class="op">=</span> <span class="fl">532e-9</span>  <span class="co"># m, optical wavelength</span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> <span class="dv">1</span>  <span class="co"># first order</span></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Acousto-Optic Modulator (AOM)"</span>)</span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span> <span class="op">*</span> <span class="dv">50</span>)</span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Sound speed (TeO₂): v_s = </span><span class="sc">{</span>v_s<span class="sc">}</span><span class="ss"> m/s"</span>)</span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Acoustic frequency: f = </span><span class="sc">{</span>f_acoustic<span class="op">/</span><span class="fl">1e6</span><span class="sc">:.0f}</span><span class="ss"> MHz"</span>)</span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Optical wavelength: λ = </span><span class="sc">{</span>wavelength_opt<span class="op">*</span><span class="fl">1e9</span><span class="sc">:.0f}</span><span class="ss"> nm"</span>)</span>
-<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Diffraction order: m = </span><span class="sc">{</span>m<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Acoustic wavelength</span></span>
-<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> v_s <span class="op">/</span> f_acoustic</span>
-<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Acoustic wavelength:"</span>)</span>
-<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Λ = v_s / f = </span><span class="sc">{</span>d<span class="op">*</span><span class="fl">1e6</span><span class="sc">:.3f}</span><span class="ss"> µm = </span><span class="sc">{</span>d<span class="op">*</span><span class="fl">1e9</span><span class="sc">:.1f}</span><span class="ss"> nm"</span>)</span>
-<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Bragg angle from 2·Λ·sin(θ_B) = m·λ</span></span>
-<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>sin_theta_B <span class="op">=</span> (m <span class="op">*</span> wavelength_opt) <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> d)</span>
-<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>theta_B <span class="op">=</span> np.degrees(np.arcsin(sin_theta_B))</span>
-<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Bragg angle:"</span>)</span>
-<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  2·Λ·sin(θ_B) = m·λ"</span>)</span>
-<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  sin(θ_B) = m·λ / (2·Λ) = </span><span class="sc">{</span>sin_theta_B<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
-<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  θ_B = </span><span class="sc">{</span>theta_B<span class="sc">:.2f}</span><span class="ss">°"</span>)</span>
-<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Part c) AOM in photothermal microscopy:"</span>)</span>
-<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  - AOMs allow rapid ON/OFF switching (MHz speeds)"</span>)</span>
-<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  - Can modulate pump power without mechanical shutters"</span>)</span>
-<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  - Enable lock-in detection at the modulation frequency"</span>)</span>
-<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  - Reduce phototoxicity (pulsed excitation)"</span>)</span>
-<span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  - Improve signal-to-noise via frequency-selective detection"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># AOM Bragg angle calculation</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>v_s <span class="op">=</span> <span class="dv">600</span>  <span class="co"># m/s, sound speed in TeO2</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>f_acoustic <span class="op">=</span> <span class="fl">80e6</span>  <span class="co"># Hz, acoustic frequency</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>wavelength_opt <span class="op">=</span> <span class="fl">532e-9</span>  <span class="co"># m, optical wavelength</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> <span class="dv">1</span>  <span class="co"># first order</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Acousto-Optic Modulator (AOM)"</span>)</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span> <span class="op">*</span> <span class="dv">50</span>)</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Sound speed (TeO₂): v_s = </span><span class="sc">{</span>v_s<span class="sc">}</span><span class="ss"> m/s"</span>)</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Acoustic frequency: f = </span><span class="sc">{</span>f_acoustic<span class="op">/</span><span class="fl">1e6</span><span class="sc">:.0f}</span><span class="ss"> MHz"</span>)</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Optical wavelength: λ = </span><span class="sc">{</span>wavelength_opt<span class="op">*</span><span class="fl">1e9</span><span class="sc">:.0f}</span><span class="ss"> nm"</span>)</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Diffraction order: m = </span><span class="sc">{</span>m<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Acoustic wavelength</span></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> v_s <span class="op">/</span> f_acoustic</span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Acoustic wavelength:"</span>)</span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Λ = v_s / f = </span><span class="sc">{</span>d<span class="op">*</span><span class="fl">1e6</span><span class="sc">:.3f}</span><span class="ss"> µm = </span><span class="sc">{</span>d<span class="op">*</span><span class="fl">1e9</span><span class="sc">:.1f}</span><span class="ss"> nm"</span>)</span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Bragg angle from 2·Λ·sin(θ_B) = m·λ</span></span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>sin_theta_B <span class="op">=</span> (m <span class="op">*</span> wavelength_opt) <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> d)</span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>theta_B <span class="op">=</span> np.degrees(np.arcsin(sin_theta_B))</span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Bragg angle:"</span>)</span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  2·Λ·sin(θ_B) = m·λ"</span>)</span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  sin(θ_B) = m·λ / (2·Λ) = </span><span class="sc">{</span>sin_theta_B<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  θ_B = </span><span class="sc">{</span>theta_B<span class="sc">:.2f}</span><span class="ss">°"</span>)</span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Part c) AOM in photothermal microscopy:"</span>)</span>
+<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  - AOMs allow rapid ON/OFF switching (MHz speeds)"</span>)</span>
+<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  - Can modulate pump power without mechanical shutters"</span>)</span>
+<span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  - Enable lock-in detection at the modulation frequency"</span>)</span>
+<span id="cb17-32"><a href="#cb17-32" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  - Reduce phototoxicity (pulsed excitation)"</span>)</span>
+<span id="cb17-33"><a href="#cb17-33" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  - Improve signal-to-noise via frequency-selective detection"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Acousto-Optic Modulator (AOM)

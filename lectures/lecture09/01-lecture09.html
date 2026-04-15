@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -671,6 +706,80 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="example-1-abbe-imaging-simulation">Example 1: Abbe Imaging Simulation</h3>
 <p>We’ll simulate the double Fourier transform process: object → Fourier transform → filtering → inverse transform.</p>
 <div id="cell-fig-abbe-imaging" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a simple object: parallel lines</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>size <span class="op">=</span> <span class="dv">256</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">20</span>, <span class="dv">20</span>, size)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">20</span>, <span class="dv">20</span>, size)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>X, Y <span class="op">=</span> np.meshgrid(x, y)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Object: three vertical lines</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>line_spacing <span class="op">=</span> <span class="dv">8</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>object_img <span class="op">=</span> (np.<span class="bu">abs</span>(X <span class="op">%</span> line_spacing <span class="op">-</span> line_spacing<span class="op">/</span><span class="dv">2</span>) <span class="op">&lt;</span> <span class="fl">1.0</span>).astype(<span class="bu">float</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>object_img <span class="op">+=</span> <span class="fl">0.3</span> <span class="op">*</span> (np.<span class="bu">abs</span>(Y <span class="op">-</span> <span class="dv">5</span>) <span class="op">&lt;</span> <span class="dv">2</span>).astype(<span class="bu">float</span>)  <span class="co"># Add horizontal line</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>object_img <span class="op">=</span> np.clip(object_img, <span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute Fourier transform</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>object_ft <span class="op">=</span> np.fft.fftshift(np.fft.fft2(object_img))</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>object_spectrum <span class="op">=</span> np.<span class="bu">abs</span>(object_ft)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Create circular aperture (NA filter)</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co"># NA = 0.4 corresponds to cutoff frequency</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>cutoff <span class="op">=</span> <span class="bu">int</span>(size <span class="op">*</span> <span class="fl">0.15</span>)  <span class="co"># NA relative to image size</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>U, V <span class="op">=</span> np.meshgrid(np.linspace(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, size), np.linspace(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, size))</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>aperture <span class="op">=</span> (U<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> V<span class="op">**</span><span class="dv">2</span> <span class="op">&lt;=</span> <span class="fl">0.15</span><span class="op">**</span><span class="dv">2</span>).astype(<span class="bu">float</span>)</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply filter</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>filtered_spectrum <span class="op">=</span> object_ft <span class="op">*</span> aperture</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Reconstruct image via inverse Fourier transform</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>reconstructed_img <span class="op">=</span> np.<span class="bu">abs</span>(np.fft.ifft2(np.fft.ifftshift(filtered_spectrum)))</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>reconstructed_img <span class="op">/=</span> reconstructed_img.<span class="bu">max</span>()</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Create figure with subplots</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">2</span>, figsize<span class="op">=</span>get_size(<span class="dv">14</span>, <span class="dv">12</span>))</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Object</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> axes[<span class="dv">0</span>, <span class="dv">0</span>]</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>ax.imshow(object_img, cmap<span class="op">=</span><span class="st">'gray'</span>, extent<span class="op">=</span>[<span class="op">-</span><span class="dv">20</span>, <span class="dv">20</span>, <span class="op">-</span><span class="dv">20</span>, <span class="dv">20</span>], origin<span class="op">=</span><span class="st">'lower'</span>)</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'x (μm)'</span>)</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'y (μm)'</span>)</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>ax.set_aspect(<span class="st">'equal'</span>)</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="co"># Fourier spectrum (log scale for visibility)</span></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> axes[<span class="dv">0</span>, <span class="dv">1</span>]</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>spectrum_log <span class="op">=</span> np.log1p(object_spectrum)</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>im <span class="op">=</span> ax.imshow(spectrum_log, cmap<span class="op">=</span><span class="st">'hot'</span>, extent<span class="op">=</span>[<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>], origin<span class="op">=</span><span class="st">'lower'</span>)</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>circle <span class="op">=</span> plt.Circle((<span class="dv">0</span>, <span class="dv">0</span>), <span class="fl">0.15</span>, fill<span class="op">=</span><span class="va">False</span>, edgecolor<span class="op">=</span><span class="st">'cyan'</span>, linewidth<span class="op">=</span><span class="fl">1.5</span>, linestyle<span class="op">=</span><span class="st">'--'</span>)</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>ax.add_patch(circle)</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'u (norm.)'</span>)</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'v (norm.)'</span>)</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>ax.set_aspect(<span class="st">'equal'</span>)</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="co"># Filtered spectrum</span></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> axes[<span class="dv">1</span>, <span class="dv">0</span>]</span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>filtered_spectrum_display <span class="op">=</span> np.log1p(np.<span class="bu">abs</span>(filtered_spectrum))</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>im <span class="op">=</span> ax.imshow(filtered_spectrum_display, cmap<span class="op">=</span><span class="st">'hot'</span>, extent<span class="op">=</span>[<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>], origin<span class="op">=</span><span class="st">'lower'</span>)</span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>circle <span class="op">=</span> plt.Circle((<span class="dv">0</span>, <span class="dv">0</span>), <span class="fl">0.15</span>, fill<span class="op">=</span><span class="va">False</span>, edgecolor<span class="op">=</span><span class="st">'cyan'</span>, linewidth<span class="op">=</span><span class="fl">1.5</span>)</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>ax.add_patch(circle)</span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'u (norm.)'</span>)</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'v (norm.)'</span>)</span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>ax.set_aspect(<span class="st">'equal'</span>)</span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a><span class="co"># Reconstructed image</span></span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> axes[<span class="dv">1</span>, <span class="dv">1</span>]</span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>ax.imshow(reconstructed_img, cmap<span class="op">=</span><span class="st">'gray'</span>, extent<span class="op">=</span>[<span class="op">-</span><span class="dv">20</span>, <span class="dv">20</span>, <span class="op">-</span><span class="dv">20</span>, <span class="dv">20</span>], origin<span class="op">=</span><span class="st">'lower'</span>)</span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'x (μm)'</span>)</span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'y (μm)'</span>)</span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>ax.set_aspect(<span class="st">'equal'</span>)</span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a>fig.set_layout_engine(<span class="st">'constrained'</span>)</span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'img/abbe_imaging.png'</span>, dpi<span class="op">=</span><span class="dv">150</span>, bbox_inches<span class="op">=</span><span class="st">'tight'</span>)</span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"High-frequency details are lost due to the finite NA of the objective."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div id="fig-abbe-imaging" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -691,6 +800,72 @@ Figure&nbsp;1— Abbe’s double Fourier transform theory of imaging. (a) Object
 <section id="example-2-effect-of-numerical-aperture-on-resolution" class="level3">
 <h3 class="anchored" data-anchor-id="example-2-effect-of-numerical-aperture-on-resolution">Example 2: Effect of Numerical Aperture on Resolution</h3>
 <div id="cell-fig-na-resolution" class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create object: Ronchi grating with varying frequencies</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>size <span class="op">=</span> <span class="dv">256</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">10</span>, <span class="dv">10</span>, size)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>X, Y <span class="op">=</span> np.meshgrid(x, x)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Multi-frequency grating</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>object_grating <span class="op">=</span> (np.sin(<span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> <span class="dv">3</span> <span class="op">*</span> X) <span class="op">+</span> <span class="dv">1</span>) <span class="op">/</span> <span class="dv">2</span>  <span class="co"># 3 lines/10 μm</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>object_grating <span class="op">+=</span> <span class="fl">0.5</span> <span class="op">*</span> (np.sin(<span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> <span class="dv">6</span> <span class="op">*</span> X) <span class="op">+</span> <span class="dv">1</span>) <span class="op">/</span> <span class="dv">2</span>  <span class="co"># 6 lines/10 μm</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>object_grating <span class="op">+=</span> <span class="fl">0.3</span> <span class="op">*</span> (np.sin(<span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> <span class="dv">12</span> <span class="op">*</span> X) <span class="op">+</span> <span class="dv">1</span>) <span class="op">/</span> <span class="dv">2</span>  <span class="co"># 12 lines/10 μm</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>object_grating <span class="op">/=</span> <span class="fl">2.8</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>object_grating <span class="op">=</span> np.clip(object_grating, <span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Different NA values</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>na_values <span class="op">=</span> [<span class="fl">0.2</span>, <span class="fl">0.4</span>, <span class="fl">0.6</span>, <span class="fl">1.0</span>, <span class="fl">1.4</span>]</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>images_na <span class="op">=</span> []</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>U, V <span class="op">=</span> np.meshgrid(np.linspace(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, size), np.linspace(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, size))</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>object_ft <span class="op">=</span> np.fft.fftshift(np.fft.fft2(object_grating))</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> na <span class="kw">in</span> na_values:</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    aperture <span class="op">=</span> (U<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> V<span class="op">**</span><span class="dv">2</span> <span class="op">&lt;=</span> (na <span class="op">*</span> <span class="fl">0.15</span>)<span class="op">**</span><span class="dv">2</span>).astype(<span class="bu">float</span>)</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    filtered_ft <span class="op">=</span> object_ft <span class="op">*</span> aperture</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    img <span class="op">=</span> np.<span class="bu">abs</span>(np.fft.ifft2(np.fft.ifftshift(filtered_ft)))</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>    images_na.append(img <span class="op">/</span> img.<span class="bu">max</span>())</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Create figure</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">3</span>, figsize<span class="op">=</span>get_size(<span class="dv">15</span>, <span class="dv">10</span>))</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Top row: object and NA = 0.2</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> axes[<span class="dv">0</span>, <span class="dv">0</span>]</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>ax.imshow(object_grating, cmap<span class="op">=</span><span class="st">'gray'</span>, extent<span class="op">=</span>[<span class="op">-</span><span class="dv">10</span>, <span class="dv">10</span>, <span class="op">-</span><span class="dv">10</span>, <span class="dv">10</span>], origin<span class="op">=</span><span class="st">'lower'</span>)</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'x (μm)'</span>)</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'y (μm)'</span>)</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>ax.set_aspect(<span class="st">'equal'</span>)</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, na <span class="kw">in</span> <span class="bu">enumerate</span>(na_values):</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>    row <span class="op">=</span> (i <span class="op">+</span> <span class="dv">1</span>) <span class="op">//</span> <span class="dv">3</span></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>    col <span class="op">=</span> (i <span class="op">+</span> <span class="dv">1</span>) <span class="op">%</span> <span class="dv">3</span></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> row <span class="op">&gt;=</span> <span class="dv">2</span>:</span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>        <span class="cf">break</span></span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>    ax <span class="op">=</span> axes[row, col]</span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>    ax.imshow(images_na[i], cmap<span class="op">=</span><span class="st">'gray'</span>, extent<span class="op">=</span>[<span class="op">-</span><span class="dv">10</span>, <span class="dv">10</span>, <span class="op">-</span><span class="dv">10</span>, <span class="dv">10</span>], origin<span class="op">=</span><span class="st">'lower'</span>)</span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>    ax.set_xlabel(<span class="st">'x (μm)'</span>)</span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>    ax.set_ylabel(<span class="st">'y (μm)'</span>)</span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>    ax.set_aspect(<span class="st">'equal'</span>)</span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a><span class="co"># Bottom row: intensity profile at different NAs</span></span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> axes[<span class="dv">1</span>, <span class="dv">2</span>]</span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>y_center <span class="op">=</span> size <span class="op">//</span> <span class="dv">2</span></span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, na <span class="kw">in</span> <span class="bu">enumerate</span>(na_values):</span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>    intensity_line <span class="op">=</span> images_na[i][y_center, :]</span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a>    ax.plot(x, intensity_line, label<span class="op">=</span><span class="ss">f'NA = </span><span class="sc">{</span>na<span class="sc">:.1f}</span><span class="ss">'</span>, linewidth<span class="op">=</span><span class="fl">1.5</span>)</span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'x (μm)'</span>)</span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Intensity'</span>)</span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>ax.legend(fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a>ax.set_xlim([<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>])</span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'img/na_resolution.png'</span>, dpi<span class="op">=</span><span class="dv">150</span>, bbox_inches<span class="op">=</span><span class="st">'tight'</span>)</span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Higher NA resolves finer details. Resolution: d = 0.61λ/NA"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div id="fig-na-resolution" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -711,6 +886,99 @@ Figure&nbsp;2— Effect of numerical aperture on resolution. Top row: object (hi
 <section id="example-3-darkfield-filtering-simulation" class="level3">
 <h3 class="anchored" data-anchor-id="example-3-darkfield-filtering-simulation">Example 3: Darkfield Filtering Simulation</h3>
 <div id="cell-fig-darkfield-filtering" class="cell" data-execution_count="4">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a phase object: transparent structures</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>size <span class="op">=</span> <span class="dv">256</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">20</span>, <span class="dv">20</span>, size)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>X, Y <span class="op">=</span> np.meshgrid(x, x)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Phase object: two transparent circles with different refractive indices</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>phase_obj <span class="op">=</span> np.zeros_like(X)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>phase_obj <span class="op">+=</span> <span class="fl">0.5</span> <span class="op">*</span> np.exp(<span class="op">-</span>((X <span class="op">-</span> <span class="dv">8</span>)<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> (Y <span class="op">-</span> <span class="dv">8</span>)<span class="op">**</span><span class="dv">2</span>) <span class="op">/</span> <span class="dv">20</span>)  <span class="co"># Circle 1</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>phase_obj <span class="op">+=</span> <span class="fl">0.3</span> <span class="op">*</span> np.exp(<span class="op">-</span>((X <span class="op">+</span> <span class="dv">8</span>)<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> (Y <span class="op">+</span> <span class="dv">8</span>)<span class="op">**</span><span class="dv">2</span>) <span class="op">/</span> <span class="dv">15</span>)  <span class="co"># Circle 2</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co"># In brightfield (intensity only), phase objects don't contribute to contrast</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="co"># But for simulation, we'll work with the complex field</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>E0 <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>E_transmitted <span class="op">=</span> E0 <span class="op">*</span> np.exp(<span class="ot">1j</span> <span class="op">*</span> <span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> phase_obj <span class="op">/</span> np.pi)</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute Fourier transform</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>field_ft <span class="op">=</span> np.fft.fftshift(np.fft.fft2(E_transmitted))</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>spectrum <span class="op">=</span> np.<span class="bu">abs</span>(field_ft)<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Brightfield image (just intensity)</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>brightfield_img <span class="op">=</span> np.<span class="bu">abs</span>(E_transmitted)<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Darkfield: block low frequencies (central stop)</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>U, V <span class="op">=</span> np.meshgrid(np.linspace(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, size), np.linspace(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, size))</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>darkfield_filter <span class="op">=</span> (U<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> V<span class="op">**</span><span class="dv">2</span> <span class="op">&gt;</span> <span class="fl">0.08</span><span class="op">**</span><span class="dv">2</span>).astype(<span class="bu">float</span>)  <span class="co"># High-pass</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>darkfield_filter <span class="op">*=</span> (U<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> V<span class="op">**</span><span class="dv">2</span> <span class="op">&lt;=</span> <span class="fl">0.35</span><span class="op">**</span><span class="dv">2</span>).astype(<span class="bu">float</span>)  <span class="co"># Within objective aperture</span></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Reconstruct darkfield image</span></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>field_ft_filtered <span class="op">=</span> field_ft <span class="op">*</span> darkfield_filter</span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>field_darkfield <span class="op">=</span> np.fft.ifft2(np.fft.ifftshift(field_ft_filtered))</span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>darkfield_img <span class="op">=</span> np.<span class="bu">abs</span>(field_darkfield)<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>darkfield_img <span class="op">/=</span> darkfield_img.<span class="bu">max</span>()</span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a><span class="co"># Create figure</span></span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">3</span>, figsize<span class="op">=</span>get_size(<span class="dv">15</span>, <span class="dv">10</span>))</span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Phase object</span></span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> axes[<span class="dv">0</span>, <span class="dv">0</span>]</span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>im <span class="op">=</span> ax.imshow(phase_obj, cmap<span class="op">=</span><span class="st">'viridis'</span>, extent<span class="op">=</span>[<span class="op">-</span><span class="dv">20</span>, <span class="dv">20</span>, <span class="op">-</span><span class="dv">20</span>, <span class="dv">20</span>], origin<span class="op">=</span><span class="st">'lower'</span>)</span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'x (μm)'</span>)</span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'y (μm)'</span>)</span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>ax.set_aspect(<span class="st">'equal'</span>)</span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a><span class="co"># Brightfield image</span></span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> axes[<span class="dv">0</span>, <span class="dv">1</span>]</span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a>ax.imshow(brightfield_img, cmap<span class="op">=</span><span class="st">'gray'</span>, extent<span class="op">=</span>[<span class="op">-</span><span class="dv">20</span>, <span class="dv">20</span>, <span class="op">-</span><span class="dv">20</span>, <span class="dv">20</span>], origin<span class="op">=</span><span class="st">'lower'</span>)</span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'x (μm)'</span>)</span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'y (μm)'</span>)</span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a>ax.set_aspect(<span class="st">'equal'</span>)</span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a><span class="co"># Fourier spectrum</span></span>
+<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> axes[<span class="dv">0</span>, <span class="dv">2</span>]</span>
+<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a>spectrum_log <span class="op">=</span> np.log1p(spectrum)</span>
+<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a>im <span class="op">=</span> ax.imshow(spectrum_log, cmap<span class="op">=</span><span class="st">'hot'</span>, extent<span class="op">=</span>[<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>], origin<span class="op">=</span><span class="st">'lower'</span>)</span>
+<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'u (norm.)'</span>)</span>
+<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'v (norm.)'</span>)</span>
+<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a>ax.set_aspect(<span class="st">'equal'</span>)</span>
+<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a><span class="co"># Darkfield filter visualization</span></span>
+<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> axes[<span class="dv">1</span>, <span class="dv">0</span>]</span>
+<span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a>im <span class="op">=</span> ax.imshow(darkfield_filter, cmap<span class="op">=</span><span class="st">'RdYlGn'</span>, extent<span class="op">=</span>[<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>], origin<span class="op">=</span><span class="st">'lower'</span>)</span>
+<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a>circle_inner <span class="op">=</span> plt.Circle((<span class="dv">0</span>, <span class="dv">0</span>), <span class="fl">0.08</span>, fill<span class="op">=</span><span class="va">False</span>, edgecolor<span class="op">=</span><span class="st">'red'</span>, linewidth<span class="op">=</span><span class="fl">1.5</span>, linestyle<span class="op">=</span><span class="st">'--'</span>)</span>
+<span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a>circle_outer <span class="op">=</span> plt.Circle((<span class="dv">0</span>, <span class="dv">0</span>), <span class="fl">0.35</span>, fill<span class="op">=</span><span class="va">False</span>, edgecolor<span class="op">=</span><span class="st">'blue'</span>, linewidth<span class="op">=</span><span class="fl">1.5</span>, linestyle<span class="op">=</span><span class="st">'--'</span>)</span>
+<span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a>ax.add_patch(circle_inner)</span>
+<span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a>ax.add_patch(circle_outer)</span>
+<span id="cb5-66"><a href="#cb5-66" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'u (norm.)'</span>)</span>
+<span id="cb5-67"><a href="#cb5-67" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'v (norm.)'</span>)</span>
+<span id="cb5-68"><a href="#cb5-68" aria-hidden="true" tabindex="-1"></a>ax.set_aspect(<span class="st">'equal'</span>)</span>
+<span id="cb5-69"><a href="#cb5-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-70"><a href="#cb5-70" aria-hidden="true" tabindex="-1"></a><span class="co"># Darkfield image</span></span>
+<span id="cb5-71"><a href="#cb5-71" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> axes[<span class="dv">1</span>, <span class="dv">1</span>]</span>
+<span id="cb5-72"><a href="#cb5-72" aria-hidden="true" tabindex="-1"></a>ax.imshow(darkfield_img, cmap<span class="op">=</span><span class="st">'gray'</span>, extent<span class="op">=</span>[<span class="op">-</span><span class="dv">20</span>, <span class="dv">20</span>, <span class="op">-</span><span class="dv">20</span>, <span class="dv">20</span>], origin<span class="op">=</span><span class="st">'lower'</span>)</span>
+<span id="cb5-73"><a href="#cb5-73" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'x (μm)'</span>)</span>
+<span id="cb5-74"><a href="#cb5-74" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'y (μm)'</span>)</span>
+<span id="cb5-75"><a href="#cb5-75" aria-hidden="true" tabindex="-1"></a>ax.set_aspect(<span class="st">'equal'</span>)</span>
+<span id="cb5-76"><a href="#cb5-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-77"><a href="#cb5-77" aria-hidden="true" tabindex="-1"></a><span class="co"># Intensity profiles comparison</span></span>
+<span id="cb5-78"><a href="#cb5-78" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> axes[<span class="dv">1</span>, <span class="dv">2</span>]</span>
+<span id="cb5-79"><a href="#cb5-79" aria-hidden="true" tabindex="-1"></a>y_center <span class="op">=</span> size <span class="op">//</span> <span class="dv">2</span></span>
+<span id="cb5-80"><a href="#cb5-80" aria-hidden="true" tabindex="-1"></a>ax.plot(x, brightfield_img[y_center, :], label<span class="op">=</span><span class="st">'Brightfield'</span>, linewidth<span class="op">=</span><span class="fl">1.5</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb5-81"><a href="#cb5-81" aria-hidden="true" tabindex="-1"></a>ax.plot(x, darkfield_img[y_center, :], label<span class="op">=</span><span class="st">'Darkfield'</span>, linewidth<span class="op">=</span><span class="fl">1.5</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb5-82"><a href="#cb5-82" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'x (μm)'</span>)</span>
+<span id="cb5-83"><a href="#cb5-83" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'$I$ (norm.)'</span>)</span>
+<span id="cb5-84"><a href="#cb5-84" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb5-85"><a href="#cb5-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-86"><a href="#cb5-86" aria-hidden="true" tabindex="-1"></a>fig.set_layout_engine(<span class="st">'constrained'</span>)</span>
+<span id="cb5-87"><a href="#cb5-87" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'img/darkfield_filtering.png'</span>, dpi<span class="op">=</span><span class="dv">150</span>, bbox_inches<span class="op">=</span><span class="st">'tight'</span>)</span>
+<span id="cb5-88"><a href="#cb5-88" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb5-89"><a href="#cb5-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-90"><a href="#cb5-90" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Darkfield converts phase information into intensity contrast by blocking DC light!"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div id="fig-darkfield-filtering" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -731,11 +999,176 @@ Figure&nbsp;3— Darkfield microscopy as high-pass filtering in Fourier space. (
 <section id="example-4-resolution-and-airy-patterns" class="level3">
 <h3 class="anchored" data-anchor-id="example-4-resolution-and-airy-patterns">Example 4: Resolution and Airy Patterns</h3>
 <div id="cell-fig-resolution-airy" class="cell" data-execution_count="5">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define Airy pattern</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> airy_pattern(r, k):</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Normalized Airy pattern: PSF of a circular aperture."""</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Avoid division by zero</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    r_safe <span class="op">=</span> np.where(r <span class="op">&lt;</span> <span class="fl">1e-10</span>, <span class="fl">1e-10</span>, r)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    airy <span class="op">=</span> (<span class="dv">2</span> <span class="op">*</span> special.j1(k <span class="op">*</span> r_safe) <span class="op">/</span> (k <span class="op">*</span> r_safe))<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    airy[r <span class="op">&lt;</span> <span class="fl">1e-10</span>] <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> airy</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Parameters</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>na <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>wavelength <span class="op">=</span> <span class="fl">0.55</span>  <span class="co"># μm</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>k <span class="op">=</span> np.pi <span class="op">*</span> na <span class="op">/</span> wavelength</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Create spatial grid</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>size <span class="op">=</span> <span class="dv">256</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, size)</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, size)</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>X, Y <span class="op">=</span> np.meshgrid(x, y)</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>R <span class="op">=</span> np.sqrt(X<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> Y<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a><span class="co"># PSF</span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>psf <span class="op">=</span> airy_pattern(R, k)</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Rayleigh limit</span></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>rayleigh <span class="op">=</span> <span class="fl">0.61</span> <span class="op">*</span> wavelength <span class="op">/</span> na</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Two point sources at different separations</span></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>source1_pos <span class="op">=</span> np.array([<span class="dv">0</span>, <span class="dv">0</span>])</span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Case 1: Just resolved (Rayleigh limit)</span></span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>source2_pos_resolved <span class="op">=</span> np.array([rayleigh, <span class="dv">0</span>])</span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>r1 <span class="op">=</span> np.sqrt((X <span class="op">-</span> source1_pos[<span class="dv">0</span>])<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> (Y <span class="op">-</span> source1_pos[<span class="dv">1</span>])<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>r2 <span class="op">=</span> np.sqrt((X <span class="op">-</span> source2_pos_resolved[<span class="dv">0</span>])<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> (Y <span class="op">-</span> source2_pos_resolved[<span class="dv">1</span>])<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>image_resolved <span class="op">=</span> airy_pattern(r1, k) <span class="op">+</span> airy_pattern(r2, k)</span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Case 2: Unresolved (half Rayleigh limit)</span></span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>source2_pos_unresolved <span class="op">=</span> np.array([rayleigh <span class="op">*</span> <span class="fl">0.5</span>, <span class="dv">0</span>])</span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a>r1 <span class="op">=</span> np.sqrt((X <span class="op">-</span> source1_pos[<span class="dv">0</span>])<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> (Y <span class="op">-</span> source1_pos[<span class="dv">1</span>])<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a>r2 <span class="op">=</span> np.sqrt((X <span class="op">-</span> source2_pos_unresolved[<span class="dv">0</span>])<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> (Y <span class="op">-</span> source2_pos_unresolved[<span class="dv">1</span>])<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a>image_unresolved <span class="op">=</span> airy_pattern(r1, k) <span class="op">+</span> airy_pattern(r2, k)</span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a><span class="co"># Create figure</span></span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.figure(figsize<span class="op">=</span>get_size(<span class="dv">15</span>, <span class="dv">11</span>))</span>
+<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a>gs <span class="op">=</span> GridSpec(<span class="dv">3</span>, <span class="dv">3</span>, figure<span class="op">=</span>fig)</span>
+<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a><span class="co"># PSF (1D profile)</span></span>
+<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> fig.add_subplot(gs[<span class="dv">0</span>, <span class="dv">0</span>])</span>
+<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a>x_plot <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">100</span>)</span>
+<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a>R_plot <span class="op">=</span> np.<span class="bu">abs</span>(x_plot)</span>
+<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a>psf_1d <span class="op">=</span> airy_pattern(R_plot, k)</span>
+<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a>ax.plot(x_plot, psf_1d, linewidth<span class="op">=</span><span class="fl">1.5</span>, color<span class="op">=</span><span class="st">'blue'</span>)</span>
+<span id="cb7-53"><a href="#cb7-53" aria-hidden="true" tabindex="-1"></a>ax.fill_between(x_plot, psf_1d, alpha<span class="op">=</span><span class="fl">0.3</span>, color<span class="op">=</span><span class="st">'blue'</span>)</span>
+<span id="cb7-54"><a href="#cb7-54" aria-hidden="true" tabindex="-1"></a>ax.axvline(x<span class="op">=</span>rayleigh, color<span class="op">=</span><span class="st">'red'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, linewidth<span class="op">=</span><span class="dv">1</span>, label<span class="op">=</span><span class="ss">f'Rayleigh = </span><span class="sc">{</span>rayleigh<span class="sc">:.3f}</span><span class="ss"> μm'</span>)</span>
+<span id="cb7-55"><a href="#cb7-55" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'r (μm)'</span>)</span>
+<span id="cb7-56"><a href="#cb7-56" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Intensity'</span>)</span>
+<span id="cb7-57"><a href="#cb7-57" aria-hidden="true" tabindex="-1"></a>ax.legend(fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb7-58"><a href="#cb7-58" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb7-59"><a href="#cb7-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-60"><a href="#cb7-60" aria-hidden="true" tabindex="-1"></a><span class="co"># PSF 2D</span></span>
+<span id="cb7-61"><a href="#cb7-61" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> fig.add_subplot(gs[<span class="dv">0</span>, <span class="dv">1</span>])</span>
+<span id="cb7-62"><a href="#cb7-62" aria-hidden="true" tabindex="-1"></a>im <span class="op">=</span> ax.imshow(psf, cmap<span class="op">=</span><span class="st">'hot'</span>, extent<span class="op">=</span>[<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>], origin<span class="op">=</span><span class="st">'lower'</span>, norm<span class="op">=</span>Normalize(vmin<span class="op">=</span><span class="dv">0</span>, vmax<span class="op">=</span><span class="dv">1</span>))</span>
+<span id="cb7-63"><a href="#cb7-63" aria-hidden="true" tabindex="-1"></a>circle <span class="op">=</span> plt.Circle((<span class="dv">0</span>, <span class="dv">0</span>), rayleigh, fill<span class="op">=</span><span class="va">False</span>, edgecolor<span class="op">=</span><span class="st">'cyan'</span>, linewidth<span class="op">=</span><span class="dv">1</span>, linestyle<span class="op">=</span><span class="st">'--'</span>)</span>
+<span id="cb7-64"><a href="#cb7-64" aria-hidden="true" tabindex="-1"></a>ax.add_patch(circle)</span>
+<span id="cb7-65"><a href="#cb7-65" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'x (μm)'</span>)</span>
+<span id="cb7-66"><a href="#cb7-66" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'y (μm)'</span>)</span>
+<span id="cb7-67"><a href="#cb7-67" aria-hidden="true" tabindex="-1"></a>ax.set_aspect(<span class="st">'equal'</span>)</span>
+<span id="cb7-68"><a href="#cb7-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-69"><a href="#cb7-69" aria-hidden="true" tabindex="-1"></a><span class="co"># NA effect</span></span>
+<span id="cb7-70"><a href="#cb7-70" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> fig.add_subplot(gs[<span class="dv">0</span>, <span class="dv">2</span>])</span>
+<span id="cb7-71"><a href="#cb7-71" aria-hidden="true" tabindex="-1"></a>na_vals <span class="op">=</span> np.array([<span class="fl">0.5</span>, <span class="fl">0.75</span>, <span class="fl">1.0</span>, <span class="fl">1.4</span>])</span>
+<span id="cb7-72"><a href="#cb7-72" aria-hidden="true" tabindex="-1"></a>rayleigh_vals <span class="op">=</span> <span class="fl">0.61</span> <span class="op">*</span> wavelength <span class="op">/</span> na_vals</span>
+<span id="cb7-73"><a href="#cb7-73" aria-hidden="true" tabindex="-1"></a>ax.plot(na_vals, rayleigh_vals, <span class="st">'o-'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, markersize<span class="op">=</span><span class="dv">8</span>, color<span class="op">=</span><span class="st">'darkblue'</span>)</span>
+<span id="cb7-74"><a href="#cb7-74" aria-hidden="true" tabindex="-1"></a>ax.fill_between(na_vals, rayleigh_vals, alpha<span class="op">=</span><span class="fl">0.2</span>, color<span class="op">=</span><span class="st">'darkblue'</span>)</span>
+<span id="cb7-75"><a href="#cb7-75" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Numerical Aperture'</span>)</span>
+<span id="cb7-76"><a href="#cb7-76" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Rayleigh limit d (μm)'</span>)</span>
+<span id="cb7-77"><a href="#cb7-77" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb7-78"><a href="#cb7-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-79"><a href="#cb7-79" aria-hidden="true" tabindex="-1"></a><span class="co"># Two sources: just resolved</span></span>
+<span id="cb7-80"><a href="#cb7-80" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> fig.add_subplot(gs[<span class="dv">1</span>, <span class="dv">0</span>])</span>
+<span id="cb7-81"><a href="#cb7-81" aria-hidden="true" tabindex="-1"></a>im <span class="op">=</span> ax.imshow(image_resolved, cmap<span class="op">=</span><span class="st">'hot'</span>, extent<span class="op">=</span>[<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>], origin<span class="op">=</span><span class="st">'lower'</span>)</span>
+<span id="cb7-82"><a href="#cb7-82" aria-hidden="true" tabindex="-1"></a>ax.plot(<span class="dv">0</span>, <span class="dv">0</span>, <span class="st">'c+'</span>, markersize<span class="op">=</span><span class="dv">15</span>, markeredgewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">'Source 1'</span>)</span>
+<span id="cb7-83"><a href="#cb7-83" aria-hidden="true" tabindex="-1"></a>ax.plot(rayleigh, <span class="dv">0</span>, <span class="st">'c+'</span>, markersize<span class="op">=</span><span class="dv">15</span>, markeredgewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">'Source 2'</span>)</span>
+<span id="cb7-84"><a href="#cb7-84" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'x (μm)'</span>)</span>
+<span id="cb7-85"><a href="#cb7-85" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'y (μm)'</span>)</span>
+<span id="cb7-86"><a href="#cb7-86" aria-hidden="true" tabindex="-1"></a>ax.set_aspect(<span class="st">'equal'</span>)</span>
+<span id="cb7-87"><a href="#cb7-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-88"><a href="#cb7-88" aria-hidden="true" tabindex="-1"></a><span class="co"># Two sources: unresolved</span></span>
+<span id="cb7-89"><a href="#cb7-89" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> fig.add_subplot(gs[<span class="dv">1</span>, <span class="dv">1</span>])</span>
+<span id="cb7-90"><a href="#cb7-90" aria-hidden="true" tabindex="-1"></a>im <span class="op">=</span> ax.imshow(image_unresolved, cmap<span class="op">=</span><span class="st">'hot'</span>, extent<span class="op">=</span>[<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>], origin<span class="op">=</span><span class="st">'lower'</span>)</span>
+<span id="cb7-91"><a href="#cb7-91" aria-hidden="true" tabindex="-1"></a>ax.plot(<span class="dv">0</span>, <span class="dv">0</span>, <span class="st">'c+'</span>, markersize<span class="op">=</span><span class="dv">15</span>, markeredgewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb7-92"><a href="#cb7-92" aria-hidden="true" tabindex="-1"></a>ax.plot(rayleigh <span class="op">*</span> <span class="fl">0.5</span>, <span class="dv">0</span>, <span class="st">'c+'</span>, markersize<span class="op">=</span><span class="dv">15</span>, markeredgewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb7-93"><a href="#cb7-93" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'x (μm)'</span>)</span>
+<span id="cb7-94"><a href="#cb7-94" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'y (μm)'</span>)</span>
+<span id="cb7-95"><a href="#cb7-95" aria-hidden="true" tabindex="-1"></a>ax.set_aspect(<span class="st">'equal'</span>)</span>
+<span id="cb7-96"><a href="#cb7-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-97"><a href="#cb7-97" aria-hidden="true" tabindex="-1"></a><span class="co"># Intensity profiles</span></span>
+<span id="cb7-98"><a href="#cb7-98" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> fig.add_subplot(gs[<span class="dv">1</span>, <span class="dv">2</span>])</span>
+<span id="cb7-99"><a href="#cb7-99" aria-hidden="true" tabindex="-1"></a>x_line <span class="op">=</span> x</span>
+<span id="cb7-100"><a href="#cb7-100" aria-hidden="true" tabindex="-1"></a>intensity_resolved <span class="op">=</span> image_resolved[size <span class="op">//</span> <span class="dv">2</span>, :]</span>
+<span id="cb7-101"><a href="#cb7-101" aria-hidden="true" tabindex="-1"></a>intensity_unresolved <span class="op">=</span> image_unresolved[size <span class="op">//</span> <span class="dv">2</span>, :]</span>
+<span id="cb7-102"><a href="#cb7-102" aria-hidden="true" tabindex="-1"></a>ax.plot(x_line, intensity_resolved, linewidth<span class="op">=</span><span class="fl">1.5</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb7-103"><a href="#cb7-103" aria-hidden="true" tabindex="-1"></a>ax.plot(x_line, intensity_unresolved, linewidth<span class="op">=</span><span class="fl">1.5</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb7-104"><a href="#cb7-104" aria-hidden="true" tabindex="-1"></a>ax.axvline(x<span class="op">=</span><span class="dv">0</span>, color<span class="op">=</span><span class="st">'red'</span>, linestyle<span class="op">=</span><span class="st">':'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb7-105"><a href="#cb7-105" aria-hidden="true" tabindex="-1"></a>ax.axvline(x<span class="op">=</span>rayleigh, color<span class="op">=</span><span class="st">'red'</span>, linestyle<span class="op">=</span><span class="st">':'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb7-106"><a href="#cb7-106" aria-hidden="true" tabindex="-1"></a>ax.axvline(x<span class="op">=</span>rayleigh <span class="op">*</span> <span class="fl">0.5</span>, color<span class="op">=</span><span class="st">'orange'</span>, linestyle<span class="op">=</span><span class="st">':'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb7-107"><a href="#cb7-107" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'x (μm)'</span>)</span>
+<span id="cb7-108"><a href="#cb7-108" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Intensity'</span>)</span>
+<span id="cb7-109"><a href="#cb7-109" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb7-110"><a href="#cb7-110" aria-hidden="true" tabindex="-1"></a>ax.set_xlim([<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>])</span>
+<span id="cb7-111"><a href="#cb7-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-112"><a href="#cb7-112" aria-hidden="true" tabindex="-1"></a><span class="co"># Resolving power vs wavelength</span></span>
+<span id="cb7-113"><a href="#cb7-113" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> fig.add_subplot(gs[<span class="dv">2</span>, <span class="dv">0</span>])</span>
+<span id="cb7-114"><a href="#cb7-114" aria-hidden="true" tabindex="-1"></a>wavelengths <span class="op">=</span> np.linspace(<span class="fl">0.3</span>, <span class="fl">0.9</span>, <span class="dv">100</span>)</span>
+<span id="cb7-115"><a href="#cb7-115" aria-hidden="true" tabindex="-1"></a>rayleigh_vals <span class="op">=</span> <span class="fl">0.61</span> <span class="op">*</span> wavelengths <span class="op">/</span> <span class="fl">1.0</span></span>
+<span id="cb7-116"><a href="#cb7-116" aria-hidden="true" tabindex="-1"></a>ax.fill_between(wavelengths, rayleigh_vals, alpha<span class="op">=</span><span class="fl">0.3</span>, color<span class="op">=</span><span class="st">'purple'</span>)</span>
+<span id="cb7-117"><a href="#cb7-117" aria-hidden="true" tabindex="-1"></a>ax.plot(wavelengths, rayleigh_vals, linewidth<span class="op">=</span><span class="dv">2</span>, color<span class="op">=</span><span class="st">'purple'</span>)</span>
+<span id="cb7-118"><a href="#cb7-118" aria-hidden="true" tabindex="-1"></a>ax.axvline(x<span class="op">=</span><span class="fl">0.55</span>, color<span class="op">=</span><span class="st">'red'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, label<span class="op">=</span><span class="st">'Visible (550 nm)'</span>)</span>
+<span id="cb7-119"><a href="#cb7-119" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Wavelength (μm)'</span>)</span>
+<span id="cb7-120"><a href="#cb7-120" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Rayleigh limit (μm)'</span>)</span>
+<span id="cb7-121"><a href="#cb7-121" aria-hidden="true" tabindex="-1"></a>ax.legend(fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb7-122"><a href="#cb7-122" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb7-123"><a href="#cb7-123" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-124"><a href="#cb7-124" aria-hidden="true" tabindex="-1"></a><span class="co"># Summary table</span></span>
+<span id="cb7-125"><a href="#cb7-125" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> fig.add_subplot(gs[<span class="dv">2</span>, <span class="dv">1</span>:])</span>
+<span id="cb7-126"><a href="#cb7-126" aria-hidden="true" tabindex="-1"></a>ax.axis(<span class="st">'off'</span>)</span>
+<span id="cb7-127"><a href="#cb7-127" aria-hidden="true" tabindex="-1"></a>summary_text <span class="op">=</span> <span class="ss">f"""</span></span>
+<span id="cb7-128"><a href="#cb7-128" aria-hidden="true" tabindex="-1"></a><span class="ss">RESOLUTION LIMITS AND PRACTICAL VALUES</span></span>
+<span id="cb7-129"><a href="#cb7-129" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-130"><a href="#cb7-130" aria-hidden="true" tabindex="-1"></a><span class="ss">Rayleigh Criterion:  d = 0.61 λ / NA</span></span>
+<span id="cb7-131"><a href="#cb7-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-132"><a href="#cb7-132" aria-hidden="true" tabindex="-1"></a><span class="ss">For visible light (λ = 550 nm):</span></span>
+<span id="cb7-133"><a href="#cb7-133" aria-hidden="true" tabindex="-1"></a><span class="ss">  • Air objective (NA = 0.95):     d ≈ 360 nm</span></span>
+<span id="cb7-134"><a href="#cb7-134" aria-hidden="true" tabindex="-1"></a><span class="ss">  • Oil objective (NA = 1.4):        d ≈ 240 nm</span></span>
+<span id="cb7-135"><a href="#cb7-135" aria-hidden="true" tabindex="-1"></a><span class="ss">  • Water objective (NA = 1.2):      d ≈ 280 nm</span></span>
+<span id="cb7-136"><a href="#cb7-136" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-137"><a href="#cb7-137" aria-hidden="true" tabindex="-1"></a><span class="ss">Depth of Field:      DOF ≈ 0.88 λ / NA²</span></span>
+<span id="cb7-138"><a href="#cb7-138" aria-hidden="true" tabindex="-1"></a><span class="ss">  • NA = 1.0:         DOF ≈ 0.5 μm</span></span>
+<span id="cb7-139"><a href="#cb7-139" aria-hidden="true" tabindex="-1"></a><span class="ss">  • NA = 1.4:         DOF ≈ 0.25 μm</span></span>
+<span id="cb7-140"><a href="#cb7-140" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-141"><a href="#cb7-141" aria-hidden="true" tabindex="-1"></a><span class="ss">Useful Magnification:  M_useful = 500–1000 × NA</span></span>
+<span id="cb7-142"><a href="#cb7-142" aria-hidden="true" tabindex="-1"></a><span class="ss">  • NA = 1.0:         M = 500–1000×</span></span>
+<span id="cb7-143"><a href="#cb7-143" aria-hidden="true" tabindex="-1"></a><span class="ss">  • NA = 1.4:         M = 700–1400×</span></span>
+<span id="cb7-144"><a href="#cb7-144" aria-hidden="true" tabindex="-1"></a><span class="ss">"""</span></span>
+<span id="cb7-145"><a href="#cb7-145" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="fl">0.1</span>, <span class="fl">0.5</span>, summary_text, family<span class="op">=</span><span class="st">'monospace'</span>,</span>
+<span id="cb7-146"><a href="#cb7-146" aria-hidden="true" tabindex="-1"></a>        verticalalignment<span class="op">=</span><span class="st">'center'</span>, bbox<span class="op">=</span><span class="bu">dict</span>(boxstyle<span class="op">=</span><span class="st">'round'</span>, facecolor<span class="op">=</span><span class="st">'wheat'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>))</span>
+<span id="cb7-147"><a href="#cb7-147" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-148"><a href="#cb7-148" aria-hidden="true" tabindex="-1"></a>fig.set_layout_engine(<span class="st">'constrained'</span>)</span>
+<span id="cb7-149"><a href="#cb7-149" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'img/resolution_airy.png'</span>, dpi<span class="op">=</span><span class="dv">150</span>, bbox_inches<span class="op">=</span><span class="st">'tight'</span>)</span>
+<span id="cb7-150"><a href="#cb7-150" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb7-151"><a href="#cb7-151" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-152"><a href="#cb7-152" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Rayleigh criterion for NA = </span><span class="sc">{</span>na<span class="sc">}</span><span class="ss">: d = </span><span class="sc">{</span>rayleigh<span class="sc">:.3f}</span><span class="ss"> μm"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>/var/folders/t4/_9qps8wj56jc60nwkr3nrcr00000gn/T/ipykernel_11904/1430197535.py:149: UserWarning:
+
+constrained_layout not applied because axes sizes collapsed to zero.  Try making figure larger or Axes decorations smaller.
+
+/Users/fci/python_default_env/.venv/lib/python3.13/site-packages/IPython/core/pylabtools.py:170: UserWarning:
+
+constrained_layout not applied because axes sizes collapsed to zero.  Try making figure larger or Axes decorations smaller.
+</code></pre>
+</div>
 <div class="cell-output cell-output-display">
 <div id="fig-resolution-airy" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-resolution-airy-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="01-lecture09_files/figure-html/fig-resolution-airy-output-1.png" width="731" height="450" class="figure-img">
+<img src="01-lecture09_files/figure-html/fig-resolution-airy-output-2.png" width="731" height="450" class="figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-resolution-airy-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;4— Resolution limit and Airy patterns. (a) PSF cross-section at NA = 1.0 with Rayleigh distance marked. (b) 2D PSF (hot colormap: intensity). (c) NA vs.&nbsp;Rayleigh limit. (d) Two sources at the Rayleigh limit (hot colormap: intensity, cyan crosses mark source positions). (e) Two unresolved sources. (f) Intensity profiles (blue: at Rayleigh limit, orange: unresolved). (g) Rayleigh limit vs.&nbsp;wavelength.
@@ -751,11 +1184,161 @@ Figure&nbsp;4— Resolution limit and Airy patterns. (a) PSF cross-section at NA
 <section id="example-5-optical-transfer-function-otf-for-incoherent-imaging" class="level3">
 <h3 class="anchored" data-anchor-id="example-5-optical-transfer-function-otf-for-incoherent-imaging">Example 5: Optical Transfer Function (OTF) for Incoherent Imaging</h3>
 <div id="cell-fig-otf" class="cell" data-execution_count="6">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute OTF for a circular aperture</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compute_otf_circular(k, na, wavelength):</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co">    Optical Transfer Function for a circular aperture (incoherent imaging).</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co">    OTF is the autocorrelation of the pupil function.</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co">    For a circular uniform pupil:</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co">    OTF(k) = (2/π) * [arccos(k/2k_max) - (k/2k_max)*sqrt(1 - (k/2k_max)²)]</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co">    where k is spatial frequency, k_max = NA/λ</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    k_max <span class="op">=</span> na <span class="op">/</span> wavelength</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    k_normalized <span class="op">=</span> k <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> k_max)</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Avoid division by zero and out-of-range arccos</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>    k_normalized <span class="op">=</span> np.clip(k_normalized, <span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>    otf <span class="op">=</span> np.where(k <span class="op">&lt;=</span> <span class="dv">2</span> <span class="op">*</span> k_max,</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>                   (<span class="dv">2</span> <span class="op">/</span> np.pi) <span class="op">*</span> (np.arccos(k_normalized) <span class="op">-</span></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>                                  k_normalized <span class="op">*</span> np.sqrt(<span class="dv">1</span> <span class="op">-</span> k_normalized<span class="op">**</span><span class="dv">2</span>)),</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>                   <span class="dv">0</span>)</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> otf, k_max</span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Parameters</span></span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>wavelength <span class="op">=</span> <span class="fl">0.55</span>  <span class="co"># μm (green light)</span></span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>na_values <span class="op">=</span> np.array([<span class="fl">0.3</span>, <span class="fl">0.6</span>, <span class="fl">1.0</span>, <span class="fl">1.4</span>])</span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Spatial frequency range</span></span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>k <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">3</span>, <span class="dv">300</span>) <span class="op">/</span> wavelength  <span class="co"># in units of 1/μm</span></span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute OTF for each NA</span></span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, figsize<span class="op">=</span>get_size(<span class="dv">15</span>, <span class="dv">5</span>))</span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot 1: OTF profiles at different NA</span></span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> axes[<span class="dv">0</span>]</span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> na <span class="kw">in</span> na_values:</span>
+<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a>    otf, k_max <span class="op">=</span> compute_otf_circular(k, na, wavelength)</span>
+<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a>    ax.plot(k <span class="op">*</span> wavelength, otf, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="ss">f'NA = </span><span class="sc">{</span>na<span class="sc">:.1f}</span><span class="ss">'</span>, marker<span class="op">=</span><span class="st">'o'</span>, markersize<span class="op">=</span><span class="dv">3</span>, markevery<span class="op">=</span><span class="dv">15</span>)</span>
+<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Mark cutoff frequency</span></span>
+<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a>    k_c <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> na <span class="op">/</span> wavelength</span>
+<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a>    ax.axvline(x<span class="op">=</span>k_c, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.4</span>, linewidth<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-43"><a href="#cb10-43" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Spatial frequency $k$ (in units of $</span><span class="er">\</span><span class="st">lambda^{-1}$)'</span>)</span>
+<span id="cb10-44"><a href="#cb10-44" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'OTF($k$)'</span>)</span>
+<span id="cb10-45"><a href="#cb10-45" aria-hidden="true" tabindex="-1"></a>ax.set_xlim([<span class="dv">0</span>, <span class="dv">3</span>])</span>
+<span id="cb10-46"><a href="#cb10-46" aria-hidden="true" tabindex="-1"></a>ax.set_ylim([<span class="dv">0</span>, <span class="fl">1.05</span>])</span>
+<span id="cb10-47"><a href="#cb10-47" aria-hidden="true" tabindex="-1"></a>ax.legend(fontsize<span class="op">=</span><span class="dv">9</span>)</span>
+<span id="cb10-48"><a href="#cb10-48" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb10-49"><a href="#cb10-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-50"><a href="#cb10-50" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot 2: Coherent vs. Incoherent cutoff</span></span>
+<span id="cb10-51"><a href="#cb10-51" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> axes[<span class="dv">1</span>]</span>
+<span id="cb10-52"><a href="#cb10-52" aria-hidden="true" tabindex="-1"></a>na_range <span class="op">=</span> np.linspace(<span class="fl">0.2</span>, <span class="fl">1.6</span>, <span class="dv">50</span>)</span>
+<span id="cb10-53"><a href="#cb10-53" aria-hidden="true" tabindex="-1"></a>k_c_coherent <span class="op">=</span> na_range <span class="op">/</span> wavelength</span>
+<span id="cb10-54"><a href="#cb10-54" aria-hidden="true" tabindex="-1"></a>k_c_incoherent <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> na_range <span class="op">/</span> wavelength</span>
+<span id="cb10-55"><a href="#cb10-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-56"><a href="#cb10-56" aria-hidden="true" tabindex="-1"></a>ax.plot(na_range, k_c_incoherent <span class="op">*</span> wavelength, <span class="st">'b-'</span>, linewidth<span class="op">=</span><span class="fl">2.5</span>, label<span class="op">=</span><span class="st">'Incoherent (OTF)'</span>)</span>
+<span id="cb10-57"><a href="#cb10-57" aria-hidden="true" tabindex="-1"></a>ax.plot(na_range, k_c_coherent <span class="op">*</span> wavelength, <span class="st">'r--'</span>, linewidth<span class="op">=</span><span class="fl">2.5</span>, label<span class="op">=</span><span class="st">'Coherent (CTF)'</span>)</span>
+<span id="cb10-58"><a href="#cb10-58" aria-hidden="true" tabindex="-1"></a>ax.fill_between(na_range, k_c_coherent <span class="op">*</span> wavelength, k_c_incoherent <span class="op">*</span> wavelength,</span>
+<span id="cb10-59"><a href="#cb10-59" aria-hidden="true" tabindex="-1"></a>                alpha<span class="op">=</span><span class="fl">0.2</span>, color<span class="op">=</span><span class="st">'blue'</span>, label<span class="op">=</span><span class="st">'2× resolution gain'</span>)</span>
+<span id="cb10-60"><a href="#cb10-60" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Numerical Aperture'</span>)</span>
+<span id="cb10-61"><a href="#cb10-61" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Cutoff frequency $k_c$ ($</span><span class="er">\</span><span class="st">lambda^{-1}$)'</span>)</span>
+<span id="cb10-62"><a href="#cb10-62" aria-hidden="true" tabindex="-1"></a>ax.legend(fontsize<span class="op">=</span><span class="dv">9</span>)</span>
+<span id="cb10-63"><a href="#cb10-63" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb10-64"><a href="#cb10-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-65"><a href="#cb10-65" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot 3: Modulation transfer function (contrast preservation)</span></span>
+<span id="cb10-66"><a href="#cb10-66" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> axes[<span class="dv">2</span>]</span>
+<span id="cb10-67"><a href="#cb10-67" aria-hidden="true" tabindex="-1"></a>na_ref <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb10-68"><a href="#cb10-68" aria-hidden="true" tabindex="-1"></a>otf, k_max <span class="op">=</span> compute_otf_circular(k, na_ref, wavelength)</span>
+<span id="cb10-69"><a href="#cb10-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-70"><a href="#cb10-70" aria-hidden="true" tabindex="-1"></a>ax.fill_between(k <span class="op">*</span> wavelength, <span class="dv">0</span>, otf, alpha<span class="op">=</span><span class="fl">0.3</span>, color<span class="op">=</span><span class="st">'steelblue'</span>, label<span class="op">=</span><span class="st">'Passband'</span>)</span>
+<span id="cb10-71"><a href="#cb10-71" aria-hidden="true" tabindex="-1"></a>ax.plot(k <span class="op">*</span> wavelength, otf, <span class="st">'steelblue'</span>, linewidth<span class="op">=</span><span class="fl">2.5</span>)</span>
+<span id="cb10-72"><a href="#cb10-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-73"><a href="#cb10-73" aria-hidden="true" tabindex="-1"></a><span class="co"># Add annotations</span></span>
+<span id="cb10-74"><a href="#cb10-74" aria-hidden="true" tabindex="-1"></a>k_c_ref <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> na_ref <span class="op">/</span> wavelength</span>
+<span id="cb10-75"><a href="#cb10-75" aria-hidden="true" tabindex="-1"></a>ax.axvline(x<span class="op">=</span>k_c_ref, color<span class="op">=</span><span class="st">'red'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="ss">f'Cutoff at NA=</span><span class="sc">{</span>na_ref<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb10-76"><a href="#cb10-76" aria-hidden="true" tabindex="-1"></a>ax.text(k_c_ref <span class="op">+</span> <span class="fl">0.1</span>, <span class="fl">0.5</span>, <span class="ss">f'$k_c = 2 </span><span class="ch">\\</span><span class="ss">times </span><span class="ch">\\</span><span class="ss">text</span><span class="ch">{{</span><span class="ss">NA</span><span class="ch">}}</span><span class="ss">/</span><span class="ch">\\</span><span class="ss">lambda$'</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb10-77"><a href="#cb10-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-78"><a href="#cb10-78" aria-hidden="true" tabindex="-1"></a><span class="co"># Mark some key frequencies</span></span>
+<span id="cb10-79"><a href="#cb10-79" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> frac <span class="kw">in</span> [<span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.75</span>, <span class="fl">1.0</span>]:</span>
+<span id="cb10-80"><a href="#cb10-80" aria-hidden="true" tabindex="-1"></a>    k_test <span class="op">=</span> frac <span class="op">*</span> k_c_ref</span>
+<span id="cb10-81"><a href="#cb10-81" aria-hidden="true" tabindex="-1"></a>    otf_val <span class="op">=</span> compute_otf_circular(np.array([k_test]), na_ref, wavelength)[<span class="dv">0</span>][<span class="dv">0</span>]</span>
+<span id="cb10-82"><a href="#cb10-82" aria-hidden="true" tabindex="-1"></a>    ax.plot(k_test, otf_val, <span class="st">'ro'</span>, markersize<span class="op">=</span><span class="dv">6</span>)</span>
+<span id="cb10-83"><a href="#cb10-83" aria-hidden="true" tabindex="-1"></a>    ax.text(k_test <span class="op">+</span> <span class="fl">0.05</span>, otf_val <span class="op">+</span> <span class="fl">0.05</span>, <span class="ss">f'</span><span class="sc">{</span>frac<span class="sc">:.0%}</span><span class="ss">'</span>, fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb10-84"><a href="#cb10-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-85"><a href="#cb10-85" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Spatial frequency $k$ ($</span><span class="er">\</span><span class="st">lambda^{-1}$)'</span>)</span>
+<span id="cb10-86"><a href="#cb10-86" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'$|H_{</span><span class="ch">\\</span><span class="st">text</span><span class="sc">{OTF}</span><span class="st">}(k)|$ (Modulation)'</span>)</span>
+<span id="cb10-87"><a href="#cb10-87" aria-hidden="true" tabindex="-1"></a>ax.set_xlim([<span class="dv">0</span>, <span class="dv">3</span>])</span>
+<span id="cb10-88"><a href="#cb10-88" aria-hidden="true" tabindex="-1"></a>ax.set_ylim([<span class="dv">0</span>, <span class="fl">1.1</span>])</span>
+<span id="cb10-89"><a href="#cb10-89" aria-hidden="true" tabindex="-1"></a>ax.legend(fontsize<span class="op">=</span><span class="dv">9</span>)</span>
+<span id="cb10-90"><a href="#cb10-90" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb10-91"><a href="#cb10-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-92"><a href="#cb10-92" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb10-93"><a href="#cb10-93" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'img/otf.png'</span>, dpi<span class="op">=</span><span class="dv">150</span>, bbox_inches<span class="op">=</span><span class="st">'tight'</span>)</span>
+<span id="cb10-94"><a href="#cb10-94" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb10-95"><a href="#cb10-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-96"><a href="#cb10-96" aria-hidden="true" tabindex="-1"></a><span class="co"># Print summary table</span></span>
+<span id="cb10-97"><a href="#cb10-97" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span> <span class="op">*</span> <span class="dv">70</span>)</span>
+<span id="cb10-98"><a href="#cb10-98" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"OPTICAL TRANSFER FUNCTION (OTF) SUMMARY"</span>)</span>
+<span id="cb10-99"><a href="#cb10-99" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span> <span class="op">*</span> <span class="dv">70</span>)</span>
+<span id="cb10-100"><a href="#cb10-100" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">For wavelength λ = </span><span class="sc">{</span>wavelength<span class="sc">}</span><span class="ss"> μm (green light):</span><span class="ch">\n</span><span class="ss">"</span>)</span>
+<span id="cb10-101"><a href="#cb10-101" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"NA    | CTF Cutoff (NA/λ) | OTF Cutoff (2NA/λ) | Resolution Gain"</span>)</span>
+<span id="cb10-102"><a href="#cb10-102" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"-"</span> <span class="op">*</span> <span class="dv">70</span>)</span>
+<span id="cb10-103"><a href="#cb10-103" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> na <span class="kw">in</span> na_values:</span>
+<span id="cb10-104"><a href="#cb10-104" aria-hidden="true" tabindex="-1"></a>    ctf_cutoff <span class="op">=</span> na <span class="op">/</span> wavelength</span>
+<span id="cb10-105"><a href="#cb10-105" aria-hidden="true" tabindex="-1"></a>    otf_cutoff <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> na <span class="op">/</span> wavelength</span>
+<span id="cb10-106"><a href="#cb10-106" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>na<span class="sc">:.1f}</span><span class="ss">  | </span><span class="sc">{</span>ctf_cutoff<span class="sc">:8.2f}</span><span class="ss"> μm⁻¹       | </span><span class="sc">{</span>otf_cutoff<span class="sc">:9.2f}</span><span class="ss"> μm⁻¹      | 2× (incoherent wins)"</span>)</span>
+<span id="cb10-107"><a href="#cb10-107" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Key insight: Incoherent imaging can resolve details at twice the"</span>)</span>
+<span id="cb10-108"><a href="#cb10-108" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"frequency compared to coherent imaging with the same NA!"</span>)</span>
+<span id="cb10-109"><a href="#cb10-109" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span> <span class="op">*</span> <span class="dv">70</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>&lt;&gt;:43: SyntaxWarning:
+
+invalid escape sequence '\l'
+
+&lt;&gt;:61: SyntaxWarning:
+
+invalid escape sequence '\l'
+
+&lt;&gt;:85: SyntaxWarning:
+
+invalid escape sequence '\l'
+
+&lt;&gt;:43: SyntaxWarning:
+
+invalid escape sequence '\l'
+
+&lt;&gt;:61: SyntaxWarning:
+
+invalid escape sequence '\l'
+
+&lt;&gt;:85: SyntaxWarning:
+
+invalid escape sequence '\l'
+
+/var/folders/t4/_9qps8wj56jc60nwkr3nrcr00000gn/T/ipykernel_11904/228192196.py:43: SyntaxWarning:
+
+invalid escape sequence '\l'
+
+/var/folders/t4/_9qps8wj56jc60nwkr3nrcr00000gn/T/ipykernel_11904/228192196.py:61: SyntaxWarning:
+
+invalid escape sequence '\l'
+
+/var/folders/t4/_9qps8wj56jc60nwkr3nrcr00000gn/T/ipykernel_11904/228192196.py:85: SyntaxWarning:
+
+invalid escape sequence '\l'
+</code></pre>
+</div>
 <div class="cell-output cell-output-display">
 <div id="fig-otf" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-otf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="01-lecture09_files/figure-html/fig-otf-output-1.png" width="526" height="171" class="figure-img">
+<img src="01-lecture09_files/figure-html/fig-otf-output-2.png" width="526" height="171" class="figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-otf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;5— Optical Transfer Function (OTF) for incoherent imaging at different NA values. (a) OTF profiles showing how higher NA extends the passband to higher spatial frequencies. (b) Comparison of coherent (CTF) vs.&nbsp;incoherent (OTF) cutoff frequencies. (c) How OTF modulates contrast as a function of spatial frequency.

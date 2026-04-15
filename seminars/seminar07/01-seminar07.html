@@ -343,7 +343,7 @@ window.Quarto = {
 <p><strong>a)</strong> A <strong>1 µm polystyrene bead</strong> in an optical trap has stiffness <span class="math inline">\(\kappa = 10\)</span> pN/µm. Calculate the position variance <span class="math inline">\(\langle x^2 \rangle\)</span> at room temperature (T = 300 K).</p>
 <p><strong>b)</strong> What is the typical position fluctuation (standard deviation) in nm?</p>
 <p><strong>c)</strong> Why does a stiffer trap lead to smaller positional variance? Explain physically.</p>
-<div id="75487a6b" class="cell" data-execution_count="2">
+<div id="ede3b5e3" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Optical trap stiffness and equipartition</span></span>
@@ -428,7 +428,7 @@ Part c) Dependence on trap stiffness:
 <p><span class="math display">\[\kappa (x - x_0) = -D_T \frac{\partial T}{\partial x}\]</span></p>
 <p>where <span class="math inline">\(x_0\)</span> is the trap equilibrium without temperature gradient. If <span class="math inline">\(\kappa = 10\)</span> pN/µm, estimate the trap displacement <span class="math inline">\(\Delta x\)</span>.</p>
 <p><strong>c)</strong> How would you use this effect to propel a microswimmer toward a target?</p>
-<div id="0d9fa6d5" class="cell" data-execution_count="3">
+<div id="fdf3b4eb" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Thermophoresis calculation</span></span>
@@ -526,7 +526,7 @@ Part c) Thermophoretic guidance:
 <p><strong>a)</strong> Show that at short times (<span class="math inline">\(t \ll \tau_r\)</span>), active motion gives <span class="math inline">\(\langle r^2 \rangle \approx v^2 t^2\)</span> (ballistic motion).</p>
 <p><strong>b)</strong> Show that at long times (<span class="math inline">\(t \gg \tau_r\)</span>), both Brownian and active particles give <span class="math inline">\(\langle r^2 \rangle \approx v_{\text{eff}}^2 \tau_r \cdot t\)</span> (diffusive motion).</p>
 <p><strong>c)</strong> Plot both MSD curves on a log-log scale to illustrate the crossover from ballistic to diffusive behavior.</p>
-<div id="b80d6a09" class="cell" data-execution_count="4">
+<div id="f5ea63cc" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># MSD for Brownian vs. active motion</span></span>
@@ -626,7 +626,7 @@ Part b) Long-time limit (t ≫ τ_r):
 <p><strong>Problem Statement:</strong></p>
 <p>Simulate 2D trajectories for: 1. <strong>Passive Brownian particle</strong>: random walk with diffusion coefficient <span class="math inline">\(D\)</span> 2. <strong>Active Brownian particle</strong>: constant-speed swimmer with rotational diffusion</p>
 <p>Compare the trajectories and extract MSD to verify scaling laws.</p>
-<div id="bdd0dcb1" class="cell" data-execution_count="5">
+<div id="9b1882b4" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.optimize <span class="im">import</span> curve_fit</span>
@@ -685,7 +685,7 @@ Trajectories simulated.</code></pre>
 </div>
 </div>
 <p>Now compute and plot MSD:</p>
-<div id="57158733" class="cell" data-execution_count="6">
+<div id="966f6baa" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute MSD for each trajectory</span></span>
@@ -784,11 +784,11 @@ Trajectories simulated.</code></pre>
 Fit results:
   Brownian:
     D_true = 1.00 µm²/s
-    D_fit  = 0.96 µm²/s
+    D_fit  = 0.68 µm²/s
 
   Active:
-    v_true    = 5.00 µm/s,  v_fit    = 3.37 µm/s
-    τ_r_true  = 1.00 s,  τ_r_fit  = 4.32 s
+    v_true    = 5.00 µm/s,  v_fit    = 6.85 µm/s
+    τ_r_true  = 1.00 s,  τ_r_fit  = 0.71 s
 
 Figure saved to img/brownian_active_simulation.png</code></pre>
 </div>
@@ -801,7 +801,7 @@ Figure saved to img/brownian_active_simulation.png</code></pre>
 <p>A <strong>microswimmer</strong> with orientation <span class="math inline">\(\theta\)</span> undergoes rotational diffusion. The propulsion laser can be switched ON only when the swimmer’s orientation is close to a target direction <span class="math inline">\(\theta_{\text{target}}\)</span>.</p>
 <p>Implement a simple feedback control strategy: - <strong>IF</strong> <span class="math inline">\(|\theta - \theta_{\text{target}}| &lt; \theta_{\text{threshold}}\)</span>: laser is ON, particle swims at speed <span class="math inline">\(v\)</span> - <strong>ELSE</strong>: laser is OFF, particle only drifts with Brownian motion</p>
 <p>Simulate this strategy and show that the particle navigates toward and orbits the target.</p>
-<div id="897ea8d9" class="cell" data-execution_count="7">
+<div id="9a252518" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Photon nudging simulation</span></span>
@@ -908,9 +908,9 @@ Simulation time: 20.0 s
 Figure saved to img/photon_nudging.png
 
 Results:
-  Laser ON fraction: 13.7%
-  Average net speed: 17.94 µm/s
-  Final distance from origin: 8.27 µm</code></pre>
+  Laser ON fraction: 0.0%
+  Average net speed: 17.72 µm/s
+  Final distance from origin: 11.83 µm</code></pre>
 </div>
 </div>
 <hr>
@@ -919,7 +919,7 @@ Results:
 <h2 class="anchored" data-anchor-id="problem-6-course-review-summary-of-key-formulas">Problem 6: Course Review — Summary of Key Formulas</h2>
 <p><strong>Problem Statement:</strong></p>
 <p>Create a comprehensive reference table of the most important formulas and results from the entire course. Organize by topic.</p>
-<div id="007126b2" class="cell" data-execution_count="8">
+<div id="c61e0cbe" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create summary table</span></span>

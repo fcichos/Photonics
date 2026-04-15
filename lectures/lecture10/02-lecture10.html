@@ -602,7 +602,7 @@ n(\omega)=1+\frac{Nq^2}{2\epsilon_0 m}\frac{(\omega_0^2-\omega^2)-i\sigma\omega}
 <p>The real part <span class="math inline">\(n_r(\omega)\)</span> controls the phase velocity and refraction, while the imaginary part <span class="math inline">\(\kappa(\omega)\)</span> determines absorption according to the Beer-Lambert law: <span class="math inline">\(I \propto e^{-2\omega\kappa z/c}\)</span>. These components can be written as: <span class="math display">\[n_r(\omega) = 1 + A\frac{(\omega_0^2-\omega^2)}{(\omega_0^2-\omega^2)^2+\omega^2\sigma^2}\]</span></p>
 <p><span class="math display">\[\kappa(\omega) = A\frac{\sigma\omega}{(\omega_0^2-\omega^2)^2+\omega^2\sigma^2}\]</span></p>
 <p>where <span class="math inline">\(A=\frac{Nq^2}{2\epsilon_0 m}\)</span> is a constant that depends on the material’s atomic properties.</p>
-<div id="59ea7d0f" class="cell" data-execution_count="3">
+<div id="9bc06ff9" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">1</span>  <span class="co"># Number density</span></span>
@@ -931,7 +931,7 @@ Figure&nbsp;4— Magnitude and phase of Fresnel reflection coefficients for air-
 <p>The following code calculates these coefficients for various angles of incidence:</p>
 <!--
 
-::: {#84710a71 .cell execution_count=5}
+::: {#eea10577 .cell execution_count=5}
 ``` {.python .cell-code code-fold="true"}
 def fresnel_coefficients(n1, n2, theta_i, polarization='s'):
     """Calculate Fresnel reflection and transmission coefficients"""
