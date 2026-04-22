@@ -520,38 +520,42 @@ Figure&nbsp;1— Example of a practical paraxial cloak. (a)–(c) A hand is cloa
 <li>First pair (lenses 1 and 2): A beam compressor</li>
 <li>Second pair (lenses 3 and 4): A beam expander</li>
 </ul>
-<p>For the beam compressor, with lenses at their combined focal length apart:</p>
+<p>For the beam compressor (large lens <span class="math inline">\(f_1\)</span> first, small lens <span class="math inline">\(f_2\)</span> second), the two lenses must be separated by <span class="math inline">\(f_1+f_2\)</span> to form a telescope. Multiplying the three matrices — lens, free space, lens — gives:</p>
 <p><span class="math display">\[
 \mathbf{M}_{comp} = \left[\begin{array}{cc}
--\frac{f_1}{f_2} &amp; 0 \\
+-\frac{f_2}{f_1} &amp; f_1+f_2 \\
+0 &amp; -\frac{f_1}{f_2}
+\end{array}\right]
+\]</span></p>
+<p>The <span class="math inline">\(A\)</span> element <span class="math inline">\(-f_2/f_1 &lt; 1\)</span> compresses the beam height; the <span class="math inline">\(D\)</span> element <span class="math inline">\(-f_1/f_2\)</span> increases the angle. Crucially, <span class="math inline">\(B = f_1+f_2 \neq 0\)</span>: the compressor is not equivalent to free space on its own.</p>
+<p>The beam expander is the compressor in reverse (<span class="math inline">\(f_3 = f_2\)</span> first, <span class="math inline">\(f_4 = f_1\)</span> second, separation <span class="math inline">\(f_3+f_4 = f_1+f_2\)</span>):</p>
+<p><span class="math display">\[
+\mathbf{M}_{exp} = \left[\begin{array}{cc}
+-\frac{f_1}{f_2} &amp; f_1+f_2 \\
 0 &amp; -\frac{f_2}{f_1}
 \end{array}\right]
 \]</span></p>
-<p>Similarly, for the beam expander:</p>
+<p>Now place a free-space gap <span class="math inline">\(d_0\)</span> between the two pairs. The full system matrix is <span class="math inline">\(\mathbf{M}_{exp}\cdot\mathbf{M}_{d_0}\cdot\mathbf{M}_{comp}\)</span>, which works out to:</p>
 <p><span class="math display">\[
-\mathbf{M}_{exp} = \left[\begin{array}{cc}
--\frac{f_3}{f_4} &amp; 0 \\
-0 &amp; -\frac{f_4}{f_3}
-\end{array}\right]
-\]</span></p>
-<p>The combined system matrix is:</p>
-<p><span class="math display">\[
-\mathbf{M}_{total} = \mathbf{M}_{exp} \times \mathbf{M}_{comp} = \left[\begin{array}{cc}
-\frac{f_1}{f_2} \times \frac{f_3}{f_4} &amp; 0 \\
-0 &amp; \frac{f_2}{f_1} \times \frac{f_4}{f_3}
-\end{array}\right]
-\]</span></p>
-<p>For perfect cloaking, we need: - <span class="math inline">\(\frac{f_1}{f_2} \times \frac{f_3}{f_4} = 1\)</span> - <span class="math inline">\(\frac{f_2}{f_1} \times \frac{f_4}{f_3} = 1\)</span></p>
-<p>This is satisfied when <span class="math inline">\(f_1 = f_4\)</span> and <span class="math inline">\(f_2 = f_3\)</span>.</p>
-<p>With the lenses properly spaced and an additional free space distance <span class="math inline">\(d_0\)</span> between the two pairs, the complete system matrix becomes:</p>
-<p><span class="math display">\[
-\mathbf{M}_{cloaking} = \left[\begin{array}{cc}
-1 &amp; d_0 \\
+\mathbf{M}_{total} = \left[\begin{array}{cc}
+1 &amp; d_0\!\left(\dfrac{f_1}{f_2}\right)^{\!2} - \dfrac{2f_1(f_1+f_2)}{f_2} \\
 0 &amp; 1
 \end{array}\right]
 \]</span></p>
-<p>Which perfectly mimics free space propagation, creating the optical cloaking effect.</p>
-<div id="8a320197" class="cell" data-execution_count="2">
+<p>This is exactly the free-space matrix with effective length <span class="math inline">\(d_{\mathrm{eff}}\)</span>, provided:</p>
+<p><span class="math display">\[
+d_{\mathrm{eff}} = d_0\!\left(\frac{f_1}{f_2}\right)^{\!2} - \frac{2f_1(f_1+f_2)}{f_2} &gt; 0
+\quad\Longrightarrow\quad
+d_0 &gt; \frac{2f_2(f_1+f_2)}{f_1}
+\]</span></p>
+<p>For <span class="math inline">\(f_1=200\,\mathrm{mm}\)</span>, <span class="math inline">\(f_2=75\,\mathrm{mm}\)</span>: <span class="math inline">\(d_{0,\min} \approx 206\,\mathrm{mm}\)</span>. The cloaking region <span class="math inline">\(d_{\mathrm{eff}}\)</span> is the space between the two inner lenses that an object can occupy while remaining invisible — any ray traversing it exits the system as if it had traveled <span class="math inline">\(d_{\mathrm{eff}}\)</span> of free space.</p>
+<p><span class="math display">\[
+\mathbf{M}_{cloaking} = \left[\begin{array}{cc}
+1 &amp; d_{\mathrm{eff}} \\
+0 &amp; 1
+\end{array}\right]
+\]</span></p>
+<div id="059cfac4" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example of optical cloaking with four lenses using raytracing</span></span>
@@ -569,30 +573,30 @@ Figure&nbsp;1— Example of a practical paraxial cloak. (a)–(c) A hand is cloa
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Add the four lenses with proper spacing</span></span>
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>path.append(Space(d<span class="op">=</span><span class="dv">100</span>))  <span class="co"># Initial space before first lens</span></span>
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>path.append(Lens(f<span class="op">=</span>f1, label<span class="op">=</span><span class="ss">f"f₁=</span><span class="sc">{</span>f1<span class="sc">}</span><span class="ss">mm"</span>))</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>path.append(Space(d<span class="op">=</span>f1<span class="op">+</span>f2))  <span class="co"># Distance between lens 1 and 2</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>path.append(Space(d<span class="op">=</span>f1<span class="op">+</span>f2))  <span class="co"># Distance between lens 1 and 2 (compressor)</span></span>
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>path.append(Lens(f<span class="op">=</span>f2, label<span class="op">=</span><span class="ss">f"f₂=</span><span class="sc">{</span>f2<span class="sc">}</span><span class="ss">mm"</span>))</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>path.append(Space(d<span class="op">=</span><span class="dv">100</span>))  <span class="co"># Distance between lens pairs (d₀)</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>path.append(Space(d<span class="op">=</span><span class="dv">100</span>))  <span class="co"># Gap d₀ between lens pairs</span></span>
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>path.append(Lens(f<span class="op">=</span>f3, label<span class="op">=</span><span class="ss">f"f₃=</span><span class="sc">{</span>f3<span class="sc">}</span><span class="ss">mm"</span>))</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>path.append(Space(d<span class="op">=</span>f3<span class="op">+</span>f4))  <span class="co"># Distance between lens 3 and 4</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>path.append(Space(d<span class="op">=</span>f3<span class="op">+</span>f4))  <span class="co"># Distance between lens 3 and 4 (expander)</span></span>
 <span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>path.append(Lens(f<span class="op">=</span>f4, label<span class="op">=</span><span class="ss">f"f₄=</span><span class="sc">{</span>f4<span class="sc">}</span><span class="ss">mm"</span>))</span>
 <span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>path.append(Space(d<span class="op">=</span><span class="dv">100</span>))  <span class="co"># Final space after last lens</span></span>
 <span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the ray path with custom figure size</span></span>
 <span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>path.display(raysList<span class="op">=</span>[</span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    [Ray(y<span class="op">=</span><span class="dv">5</span>, theta<span class="op">=</span><span class="dv">0</span>)],</span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    [Ray(y<span class="op">=-</span><span class="dv">5</span>, theta<span class="op">=</span><span class="dv">0</span>)]</span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>], interactive<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>path.display(</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    raysList<span class="op">=</span>[</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>        [Ray(y<span class="op">=</span><span class="dv">5</span>, theta<span class="op">=</span><span class="dv">0</span>)],</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>        [Ray(y<span class="op">=-</span><span class="dv">5</span>, theta<span class="op">=</span><span class="dv">0</span>)]</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    ],</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>    interactive<span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    limitObjectToFieldOfView<span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>    onlyPrincipalAndAxialRays<span class="op">=</span><span class="va">False</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-stderr">
-<pre><code>BeginnerHint [in figure.py]: Infinite field of view: cannot use limitObjectToFieldOfView=True. The object height is instead set to the default value of 10.0.
-BeginnerHint [in imagingpath.py]: Field of view is infinite. You can pass useObject=True to use the finite objectHeight.
-BeginnerHint [in figure.py]: No aperture stop in the system: cannot use onlyPrincipalAndAxialRays=True since they are not defined. Showing the default ObjectRays instead. </code></pre>
-</div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="01-lecture02_files/figure-html/cell-3-output-2.png" width="850" height="589" class="figure-img"></p>
+<p><img src="01-lecture02_files/figure-html/cell-3-output-1.png" width="850" height="589" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -616,40 +620,40 @@ Figure&nbsp;2— The multifocal adapter. (a) Composition of the multifocal imagi
 </figure>
 </div>
 <p>In the simplest configuration of an objective lens and a tube lens, the light first travels from the object to the objective lens in free space for a distance <span class="math inline">\(s\)</span>, which is represented by</p>
-<div id="1f9e6645" class="cell" data-execution_count="4">
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="4">
+<div id="b27233e0" class="cell" data-execution_count="4">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="49">
 <p><span class="math display">\[
 M_1=\left[\begin{matrix}1 &amp; s\\0 &amp; 1\end{matrix}\right]
 \]</span></p>
 </div>
 </div>
 <p>Then it is passing the objective lens with</p>
-<div id="f55f8084" class="cell" data-execution_count="5">
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="5">
+<div id="902b4bfb" class="cell" data-execution_count="5">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="50">
 <p><span class="math display">\[
 M_2=\left[\begin{matrix}1 &amp; 0\\- \frac{1}{f_{1}} &amp; 1\end{matrix}\right]
 \]</span></p>
 </div>
 </div>
 <p>traveling further through free space with distance <span class="math inline">\(d\)</span></p>
-<div id="8a4662a9" class="cell" data-execution_count="6">
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="6">
+<div id="5dceeeeb" class="cell" data-execution_count="6">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="51">
 <p><span class="math display">\[
 M_3=\left[\begin{matrix}1 &amp; d\\0 &amp; 1\end{matrix}\right]
 \]</span></p>
 </div>
 </div>
 <p>and then hitting the tube lens with</p>
-<div id="87cf3367" class="cell" data-execution_count="7">
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="7">
+<div id="345f7a3c" class="cell" data-execution_count="7">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="52">
 <p><span class="math display">\[
 M_4=\left[\begin{matrix}1 &amp; 0\\- \frac{1}{\Delta_{ft} + f_{t}} &amp; 1\end{matrix}\right]
 \]</span></p>
 </div>
 </div>
 <p>where <span class="math inline">\(\Delta_ft\)</span> is a parameter modifying the original tube lens focal distance <span class="math inline">\(f_t\)</span>. Finally, the light will propagate to the detector at distance <span class="math inline">\(f_t\)</span> from the tube lens</p>
-<div id="e322dce0" class="cell" data-execution_count="8">
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="8">
+<div id="ca947398" class="cell" data-execution_count="8">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="53">
 <p><span class="math display">\[
 M_s=\left[\begin{matrix}1 &amp; f_{t}\\0 &amp; 1\end{matrix}\right]
 \]</span></p>
@@ -660,8 +664,8 @@ M_s=\left[\begin{matrix}1 &amp; f_{t}\\0 &amp; 1\end{matrix}\right]
 M_t=M_4 M_3 M_2 M_1
 \]</span></p>
 <p>The final matrix has again 4 parameters <span class="math inline">\(A,B,C\)</span> and <span class="math inline">\(D\)</span>. For sharp imaging the parameter <span class="math inline">\(B\)</span> of the system must be equal to zero, as the outgoing light should be independent of the incoming angle. This is achieved</p>
-<div id="a7b72a8d" class="cell" data-execution_count="9">
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="9">
+<div id="5850803c" class="cell" data-execution_count="9">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="54">
 <p><span class="math display">\[\delta s=\frac{f_{1} \left(\Delta_{ft} d + \Delta_{ft} f_{t} + f_{t}^{2}\right)}{\Delta_{ft} d - \Delta_{ft} f_{1} + \Delta_{ft} f_{t} + f_{t}^{2}}-s_0
 \]</span></p>
 </div>
@@ -748,8 +752,8 @@ Figure&nbsp;4— Schematic of the reflection-based autofocus beam path. An off-a
 </div>
 </div>
 </div>
-<div id="498afd99" class="cell" data-execution_count="13">
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="13">
+<div id="787c8eb2" class="cell" data-execution_count="13">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="58">
 <p>The full system matrix is</p>
 <p><span class="math display">\[
 M_\mathrm{AF} = \left[\begin{matrix}\frac{2 f_{t} \left(- f_{1} + s\right)}{f_{1}^{2}} &amp; \frac{f_{t} \left(- d \left(f_{1} - s\right) - f_{1} s - \left(d - f_{1}\right) \left(f_{1} - s\right)\right)}{f_{1}^{2}}\\\frac{d f_{1} - f_{1} f_{t} + f_{t} s - s \left(d - f_{1}\right) + \left(f_{1} - s\right) \left(d - f_{1} - f_{t}\right)}{f_{1}^{2} f_{t}} &amp; \frac{\left(d - f_{1}\right) \left(d f_{1} - f_{1} f_{t} + f_{t} s - s \left(d - f_{1}\right)\right) + \left(d \left(f_{1} - s\right) + f_{1} s\right) \left(d - f_{1} - f_{t}\right)}{f_{1}^{2} f_{t}}\end{matrix}\right]
@@ -764,8 +768,8 @@ y_\mathrm{cam}(s) = A_\mathrm{AF}(s)\cdot h
 <p><span class="math display">\[
 \Delta y(s) = y_\mathrm{cam}(s) - y_\mathrm{cam}(f_1).
 \]</span></p>
-<div id="1d25c97a" class="cell" data-execution_count="14">
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="14">
+<div id="02824844" class="cell" data-execution_count="14">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="59">
 <p>At perfect focus (<span class="math inline">\(s = f_1\)</span>) the A element simplifies to</p>
 <p><span class="math display">\[
 A_\mathrm{AF}(f_1) = 0
