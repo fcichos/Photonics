@@ -65,6 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
+<link href="../../lectures/lecture03/01-lecture03.html" rel="next">
 <link href="../../lectures/lecture02/01-lecture02.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -173,7 +174,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">PART I: FOUNDATIONS</li><li class="breadcrumb-item"><a href="../../lectures/lecture01/introduction.html">Lecture 1 — Introduction, Ray Optics &amp; Wave Optics</a></li><li class="breadcrumb-item"><a href="../../lectures/lecture02/02-lecture02.html">Wave Optics</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">PART I: FOUNDATIONS</li><li class="breadcrumb-item"><a href="../../lectures/lecture02/01-lecture02.html">Lecture 2 — Matrix Optics, Wave Optics, Interference</a></li><li class="breadcrumb-item"><a href="../../lectures/lecture02/02-lecture02.html">Wave Optics</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -269,6 +270,17 @@ window.Quarto = {
  <span class="menu-text">Ray Optics</span></a>
   </div>
 </li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Lecture 2 — Matrix Optics, Wave Optics, Interference</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../lectures/lecture02/01-lecture02.html" class="sidebar-item-text sidebar-link">
@@ -279,6 +291,12 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="../../lectures/lecture02/02-lecture02.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Wave Optics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture03/01-lecture03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Interference &amp; Coherence</span></a>
   </div>
 </li>
       </ul>
@@ -299,21 +317,29 @@ window.Quarto = {
   <li><a href="#postulates-of-wave-optics" id="toc-postulates-of-wave-optics" class="nav-link" data-scroll-target="#postulates-of-wave-optics">Postulates of Wave Optics</a>
   <ul class="collapse">
   <li><a href="#wave-equation" id="toc-wave-equation" class="nav-link" data-scroll-target="#wave-equation">Wave equation</a></li>
-  <li><a href="#monochromatic-wave" id="toc-monochromatic-wave" class="nav-link" data-scroll-target="#monochromatic-wave">Monochromatic Wave</a></li>
-  <li><a href="#the-eikonal-equation-connecting-wave-optics-to-ray-optics" id="toc-the-eikonal-equation-connecting-wave-optics-to-ray-optics" class="nav-link" data-scroll-target="#the-eikonal-equation-connecting-wave-optics-to-ray-optics">The Eikonal Equation — Connecting Wave Optics to Ray Optics</a></li>
   </ul></li>
+  <li><a href="#monochromatic-waves" id="toc-monochromatic-waves" class="nav-link" data-scroll-target="#monochromatic-waves">Monochromatic Waves</a>
+  <ul class="collapse">
+  <li><a href="#complex-amplitude" id="toc-complex-amplitude" class="nav-link" data-scroll-target="#complex-amplitude">Complex Amplitude</a></li>
+  <li><a href="#intensity-of-waves" id="toc-intensity-of-waves" class="nav-link" data-scroll-target="#intensity-of-waves">Intensity of Waves</a></li>
+  <li><a href="#wavefronts" id="toc-wavefronts" class="nav-link" data-scroll-target="#wavefronts">Wavefronts</a></li>
+  </ul></li>
+  <li><a href="#the-eikonal-equation-connecting-wave-optics-to-ray-optics" id="toc-the-eikonal-equation-connecting-wave-optics-to-ray-optics" class="nav-link" data-scroll-target="#the-eikonal-equation-connecting-wave-optics-to-ray-optics">The Eikonal Equation — Connecting Wave Optics to Ray Optics</a></li>
   <li><a href="#plane-waves" id="toc-plane-waves" class="nav-link" data-scroll-target="#plane-waves">Plane Waves</a></li>
   <li><a href="#dispersion-relation" id="toc-dispersion-relation" class="nav-link" data-scroll-target="#dispersion-relation">Dispersion Relation</a></li>
   <li><a href="#propagation-in-a-medium" id="toc-propagation-in-a-medium" class="nav-link" data-scroll-target="#propagation-in-a-medium">Propagation in a Medium</a></li>
   <li><a href="#snells-law" id="toc-snells-law" class="nav-link" data-scroll-target="#snells-law">Snells Law</a></li>
+  <li><a href="#evanescent-waves" id="toc-evanescent-waves" class="nav-link" data-scroll-target="#evanescent-waves">Evanescent Waves</a></li>
+  <li><a href="#isofrequency-surfaces" id="toc-isofrequency-surfaces" class="nav-link" data-scroll-target="#isofrequency-surfaces">Isofrequency Surfaces</a></li>
   <li><a href="#spherical-waves" id="toc-spherical-waves" class="nav-link" data-scroll-target="#spherical-waves">Spherical Waves</a></li>
+  <li><a href="#paraboloidal-waves" id="toc-paraboloidal-waves" class="nav-link" data-scroll-target="#paraboloidal-waves">Paraboloidal Waves</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">PART I: FOUNDATIONS</li><li class="breadcrumb-item"><a href="../../lectures/lecture01/introduction.html">Lecture 1 — Introduction, Ray Optics &amp; Wave Optics</a></li><li class="breadcrumb-item"><a href="../../lectures/lecture02/02-lecture02.html">Wave Optics</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">PART I: FOUNDATIONS</li><li class="breadcrumb-item"><a href="../../lectures/lecture02/01-lecture02.html">Lecture 2 — Matrix Optics, Wave Optics, Interference</a></li><li class="breadcrumb-item"><a href="../../lectures/lecture02/02-lecture02.html">Wave Optics</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Theories for light</h1>
 </div>
@@ -383,8 +409,9 @@ u(\mathbf{r},t)=a_1u_1(\mathbf{r},t)+a_2u_2(\mathbf{r},t)
 \]</span></p>
 <p>is also a solution, where <span class="math inline">\(a_1\)</span> and <span class="math inline">\(a_2\)</span> are arbitrary constants.</p>
 </section>
-<section id="monochromatic-wave" class="level3">
-<h3 class="anchored" data-anchor-id="monochromatic-wave">Monochromatic Wave</h3>
+</section>
+<section id="monochromatic-waves" class="level2">
+<h2 class="anchored" data-anchor-id="monochromatic-waves">Monochromatic Waves</h2>
 <p>A monochromatic wave consists of a single frequency <span class="math inline">\(\omega\)</span>. By definition, such a wave must be infinite in time and free from phase disturbances (such as sudden jumps). The mathematical expression for a monochromatic wave is:</p>
 <p><span class="math display">\[u(\mathbf{r},t)=a(\mathbf{r})\cos(\omega t + \phi(\mathbf{r}))\]</span></p>
 <p>where:</p>
@@ -403,8 +430,8 @@ Figure&nbsp;2— Representation of a wavefunction over time (constant position) 
 </figcaption>
 </figure>
 </div>
-<section id="complex-amplitude" class="level4">
-<h4 class="anchored" data-anchor-id="complex-amplitude">Complex Amplitude</h4>
+<section id="complex-amplitude" class="level3">
+<h3 class="anchored" data-anchor-id="complex-amplitude">Complex Amplitude</h3>
 <p>The wave can be represented in complex form as:</p>
 <p><span class="math display">\[
 U(\mathbf{r},t)=a(\mathbf{r})e^{i\phi(\mathbf{r})}e^{i\omega t}
@@ -455,8 +482,8 @@ U(\mathbf{r})=a(\mathbf{r})e^{i\phi(\mathbf{r})}
 <p><span class="math display">\[\nabla^2 U(\mathbf{r}) + k^2U(\mathbf{r}) = 0\]</span></p>
 <p>where <span class="math inline">\(k = \omega/c\)</span> is the wave number. This equation describes the spatial behavior of monochromatic waves.</p>
 </section>
-<section id="intensity-of-waves" class="level4">
-<h4 class="anchored" data-anchor-id="intensity-of-waves">Intensity of Waves</h4>
+<section id="intensity-of-waves" class="level3">
+<h3 class="anchored" data-anchor-id="intensity-of-waves">Intensity of Waves</h3>
 <p>The intensity of a wave at position <span class="math inline">\(\mathbf{r}\)</span> and time <span class="math inline">\(t\)</span> is defined as:</p>
 <p><span class="math display">\[
 I(\mathbf{r},t)=2\langle u^2(\mathbf{r},t)\rangle
@@ -472,8 +499,8 @@ I(\mathbf{r})=|U(\mathbf{r})|^2
 \]</span></p>
 <p>Thus the physical quantity forming the spatial and temporal oscillation of the wavefunction is also providing the intensity of the wave when its magnitude is squared. This is a fundamental property of wavefunctions and for example not the case when temperature oscillates in space and time in a medium.</p>
 </section>
-<section id="wavefronts" class="level4">
-<h4 class="anchored" data-anchor-id="wavefronts">Wavefronts</h4>
+<section id="wavefronts" class="level3">
+<h3 class="anchored" data-anchor-id="wavefronts">Wavefronts</h3>
 <p>Wavefronts are surfaces in space where the phase is constant:</p>
 <p><span class="math display">\[
 \phi(\mathbf{r})=\text{const}
@@ -490,8 +517,8 @@ I(\mathbf{r})=|U(\mathbf{r})|^2
 <p>This vector <span class="math inline">\(\mathbf{n}\)</span> is always perpendicular to the wavefront surface and points in the direction of wave propagation. The evolution of these wavefronts in time provides important information about the wave’s propagation characteristics.</p>
 </section>
 </section>
-<section id="the-eikonal-equation-connecting-wave-optics-to-ray-optics" class="level3">
-<h3 class="anchored" data-anchor-id="the-eikonal-equation-connecting-wave-optics-to-ray-optics">The Eikonal Equation — Connecting Wave Optics to Ray Optics</h3>
+<section id="the-eikonal-equation-connecting-wave-optics-to-ray-optics" class="level2">
+<h2 class="anchored" data-anchor-id="the-eikonal-equation-connecting-wave-optics-to-ray-optics">The Eikonal Equation — Connecting Wave Optics to Ray Optics</h2>
 <p>The concept of wavefronts provides a natural bridge between wave optics and ray optics through the <strong>Eikonal approximation</strong>. Consider a monochromatic wave in an inhomogeneous medium with spatially varying refractive index <span class="math inline">\(n(\mathbf{r})\)</span>. We write the complex amplitude as:</p>
 <p><span class="math display">\[
 U(\mathbf{r}) = A(\mathbf{r})\, e^{i k_0 S(\mathbf{r})}
@@ -501,6 +528,94 @@ U(\mathbf{r}) = A(\mathbf{r})\, e^{i k_0 S(\mathbf{r})}
 <p><span id="eq-eikonal"><span class="math display">\[
 |\nabla S|^2 = n^2(\mathbf{r})
 \tag{1}\]</span></span></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Detailed derivation of the Eikonal equation
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>Starting point: the Helmholtz equation</strong></p>
+<p>For a monochromatic wave in an inhomogeneous medium the complex amplitude <span class="math inline">\(U(\mathbf{r})\)</span> satisfies</p>
+<p><span class="math display">\[
+\nabla^2 U + k_0^2\, n^2(\mathbf{r})\, U = 0, \qquad k_0 = \frac{2\pi}{\lambda_0}.
+\]</span></p>
+<p><strong>Eikonal ansatz</strong></p>
+<p>We write</p>
+<p><span class="math display">\[
+U(\mathbf{r}) = A(\mathbf{r})\,e^{i k_0 S(\mathbf{r})},
+\]</span></p>
+<p>where <span class="math inline">\(A(\mathbf{r})\)</span> is a real, slowly varying amplitude and <span class="math inline">\(S(\mathbf{r})\)</span> is the real-valued eikonal.</p>
+<p><strong>Computing the Laplacian</strong></p>
+<p>Using the product rule twice, with <span class="math inline">\(\psi \equiv e^{i k_0 S}\)</span>:</p>
+<p><span class="math display">\[
+\nabla U = \bigl(\nabla A + i k_0 A\,\nabla S\bigr)\,e^{i k_0 S}.
+\]</span></p>
+<p>Differentiating once more:</p>
+<p><span class="math display">\[
+\nabla^2 U = \Bigl[\nabla^2 A + 2i k_0 \,\nabla A \cdot \nabla S + i k_0 A\,\nabla^2 S - k_0^2 A\,|\nabla S|^2\Bigr]\,e^{i k_0 S}.
+\]</span></p>
+<p><strong>Substituting into the Helmholtz equation</strong></p>
+<p>Dividing through by <span class="math inline">\(e^{i k_0 S}\)</span> gives</p>
+<p><span class="math display">\[
+\nabla^2 A + 2i k_0 \,\nabla A \cdot \nabla S + i k_0 A\,\nabla^2 S - k_0^2 A\,|\nabla S|^2 + k_0^2 n^2 A = 0.
+\]</span></p>
+<p><strong>Sorting by powers of <span class="math inline">\(k_0\)</span></strong></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Order</th>
+<th>Real part</th>
+<th>Imaginary part</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(k_0^2\)</span></td>
+<td><span class="math inline">\(A\bigl(n^2 - |\nabla S|^2\bigr) = 0\)</span></td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(k_0^1\)</span></td>
+<td>—</td>
+<td><span class="math inline">\(2\,\nabla A \cdot \nabla S + A\,\nabla^2 S = 0\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(k_0^0\)</span></td>
+<td><span class="math inline">\(\nabla^2 A = 0\)</span></td>
+<td>(negligible for <span class="math inline">\(k_0\to\infty\)</span>)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Leading order — the Eikonal equation</strong></p>
+<p>The <span class="math inline">\(k_0^2\)</span> term (dominant for <span class="math inline">\(k_0 \gg 1\)</span>, i.e.&nbsp;short wavelengths) requires</p>
+<p><span class="math display">\[
+\boxed{|\nabla S|^2 = n^2(\mathbf{r}).}
+\]</span></p>
+<p>This is valid whenever <span class="math inline">\(A\)</span> varies on length scales much larger than <span class="math inline">\(\lambda_0\)</span>, so that <span class="math inline">\(\nabla^2 A / k_0^2 \ll n^2 A\)</span>.</p>
+<p><strong>Next order — the transport equation</strong></p>
+<p>The <span class="math inline">\(k_0^1\)</span> imaginary terms give</p>
+<p><span class="math display">\[
+2\,\nabla A \cdot \nabla S + A\,\nabla^2 S = 0,
+\]</span></p>
+<p>which can be rewritten as <span class="math inline">\(\nabla \cdot (A^2\,\nabla S) = 0\)</span>. This is a continuity equation: <span class="math inline">\(A^2\,\nabla S\)</span> is the ray-optical intensity flux, so energy is conserved along ray tubes.</p>
+<p><strong>Why the Eikonal equation matters</strong></p>
+<p>The Eikonal equation is important for several reasons:</p>
+<ul>
+<li><strong>Foundation of geometrical optics.</strong> All ray-tracing rules – straight rays in homogeneous media, Snell’s law at interfaces, focusing by lenses – follow from <span class="math inline">\(|\nabla S|^2 = n^2\)</span> without any additional assumptions.</li>
+<li><strong>Short-wavelength limit of wave optics.</strong> The derivation shows explicitly that ray optics is valid when <span class="math inline">\(\lambda_0 \to 0\)</span>, in exact analogy with how classical mechanics emerges from quantum mechanics when <span class="math inline">\(\hbar \to 0\)</span>.</li>
+<li><strong>Formal identity with Hamilton-Jacobi mechanics.</strong> With the substitution <span class="math inline">\(n \leftrightarrow \sqrt{2m(E-V)}/\hbar\)</span>, the Eikonal equation becomes Hamilton’s principal equation. This deep structural link underlies the wave-particle duality in both optics and quantum theory.</li>
+<li><strong>Ray direction from the phase.</strong> Because <span class="math inline">\(\nabla S\)</span> is perpendicular to the wavefronts and points along the rays, the eikonal <span class="math inline">\(S\)</span> encodes the full ray geometry of the field. Every specific wave solution (plane wave, spherical wave, Gaussian beam) can be classified and understood by computing its eikonal.</li>
+<li><strong>Design of optical instruments.</strong> Aberration theory, anti-reflection coatings, and gradient-index (GRIN) lens design are all formulated in terms of the eikonal and its deviations from an ideal reference surface.</li>
+</ul>
+</div>
+</div>
+</div>
 <p>This is the fundamental equation of geometrical optics, written in the language of wave optics. It tells us that the gradient of the Eikonal (i.e., the local direction and “speed” of wavefront propagation) is determined by the refractive index.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -541,7 +656,6 @@ Figure&nbsp;4— Eikonal approximation: a Gaussian refractive index profile <spa
 </div>
 <p>The Eikonal equation reveals that ray optics is the <strong>short-wavelength limit</strong> of wave optics — analogous to how classical mechanics emerges from quantum mechanics when <span class="math inline">\(\hbar \to 0\)</span>. In both cases, the phase of the wavefunction determines the classical trajectory. This analogy runs deep: the Eikonal equation <span class="math inline">\(|\nabla S|^2 = n^2\)</span> is formally identical to the Hamilton–Jacobi equation of classical mechanics, with <span class="math inline">\(S\)</span> playing the role of Hamilton’s characteristic function and <span class="math inline">\(n(\mathbf{r})\)</span> acting as a potential.</p>
 </section>
-</section>
 <section id="plane-waves" class="level2">
 <h2 class="anchored" data-anchor-id="plane-waves">Plane Waves</h2>
 <p>A plane wave represents a fundamental solution of the homogeneous wave equation. In its complex form, it is expressed as:</p>
@@ -554,9 +668,14 @@ U(\mathbf{r},t)=Ae^{-i\mathbf{k}\cdot \mathbf{r}}e^{i\omega t}
 <li>The second exponential term contains the temporal phase</li>
 <li><span class="math inline">\(A\)</span> is the (potentially complex) amplitude of the plane wave</li>
 </ul>
+<p><strong>Eikonal of a plane wave.</strong> Comparing with the Eikonal ansatz <span class="math inline">\(U = A\,e^{ik_0 S}\)</span>, we identify</p>
+<p><span class="math display">\[
+S(\mathbf{r}) = -\hat{\mathbf{k}}\cdot\mathbf{r},
+\]</span></p>
+<p>where <span class="math inline">\(\hat{\mathbf{k}} = \mathbf{k}/k = \mathbf{k}/(nk_0)\)</span> is the unit propagation direction. Then <span class="math inline">\(\nabla S = -\hat{\mathbf{k}}\)</span>, which is a constant vector, so <span class="math inline">\(|\nabla S|^2 = 1 = n^2/n^2\)</span>. In a homogeneous medium of index <span class="math inline">\(n\)</span> we have <span class="math inline">\(k = nk_0\)</span> and the Eikonal equation (<a href="#eq-eikonal" class="quarto-xref">Equation&nbsp;1</a>) is satisfied identically. The rays, defined as curves along <span class="math inline">\(\nabla S\)</span>, are the straight lines parallel to <span class="math inline">\(\mathbf{k}\)</span> – exactly what geometrical optics demands for a uniform medium.</p>
 <p>The wavefront of a plane wave is defined by:</p>
 <p><span class="math display">\[\mathbf{k}\cdot \mathbf{r}=2\pi q + \text{arg}(A)\]</span></p>
-<p>where <span class="math inline">\(1\)</span> is an integer. It just means that the projection of the position vector <span class="math inline">\(\mathbf{r}\)</span> onto the wavevector <span class="math inline">\(\mathbf{k}\)</span> is a multiple of <span class="math inline">\(2\pi\)</span>. This equation describes a plane perpendicular to the wavevector <span class="math inline">\(\mathbf{k}\)</span>. Adjacent wavefronts are separated by the wavelength <span class="math inline">\(\lambda=2\pi/k\)</span>, where <span class="math inline">\(k\)</span> represents the spatial frequency of the wave oscillation.</p>
+<p>where <span class="math inline">\(q\)</span> is an integer. It just means that the projection of the position vector <span class="math inline">\(\mathbf{r}\)</span> onto the wavevector <span class="math inline">\(\mathbf{k}\)</span> is a multiple of <span class="math inline">\(2\pi\)</span>. This equation describes a plane perpendicular to the wavevector <span class="math inline">\(\mathbf{k}\)</span>. Adjacent wavefronts are separated by the wavelength <span class="math inline">\(\lambda=2\pi/k\)</span>, where <span class="math inline">\(k\)</span> represents the spatial frequency of the wave oscillation.</p>
 <p>The spatial component of the plane wave is given by:</p>
 <p><span class="math display">\[\begin{equation}
 U(\mathbf{r})=Ae^{-i\mathbf{k}\cdot \mathbf{r}}
@@ -748,9 +867,9 @@ k_1\sin(\theta_1)=k_2\sin(\theta_2)
 <span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the plot</span></span>
 <span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="quarto-layout-panel" data-column-width-middle="20%" data-column-width-right="20%" data-layout-ncol="3" data-column-width-left="40%">
+<div class="quarto-layout-panel" data-column-width-middle="20%" data-layout-ncol="3" data-column-width-right="20%" data-column-width-left="40%">
 <div class="quarto-layout-row">
-<div id="d9b6015b" class="cell quarto-layout-cell" data-execution_count="4" style="flex-basis: 33.3%;justify-content: flex-start;">
+<div id="90d27f6c" class="cell quarto-layout-cell" data-execution_count="4" style="flex-basis: 33.3%;justify-content: flex-start;">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -778,7 +897,29 @@ k_1\sin(\theta_1)=k_2\sin(\theta_2)
 </div>
 </div>
 </div>
-<p>Isofrequency surfaces can have non-spherical shape. In anisotropic media, they can be ellipsoids. In photonic crystals, i.e.&nbsp;crystals with a periodic structure on the scale of the wavelength, they can have a more complex shape.</p>
+</section>
+<section id="evanescent-waves" class="level2">
+<h2 class="anchored" data-anchor-id="evanescent-waves">Evanescent Waves</h2>
+<p>Snell’s law in the form <span class="math inline">\(k_{1,\parallel}=k_{2,\parallel}\)</span> conserves the parallel component of the wavevector across an interface. But the magnitude of the wavevector is fixed by the dispersion relation in each medium: <span class="math inline">\(|\mathbf{k}_1|=n_1 k_0\)</span> on one side, <span class="math inline">\(|\mathbf{k}_2|=n_2 k_0\)</span> on the other. What happens when the incident parallel component exceeds what the second medium can support?</p>
+<p>If light enters a thinner medium (<span class="math inline">\(n_2 &lt; n_1\)</span>), then for large enough angles of incidence the parallel component <span class="math inline">\(k_{1,\parallel}=n_1 k_0 \sin\theta_1\)</span> can exceed the entire magnitude <span class="math inline">\(n_2 k_0\)</span> of the wavevector in medium 2. In the k-space diagram above, this corresponds to the vertical dashed line falling outside the red circle: there is no real point on the smaller isofrequency surface to land on. The dispersion relation on that side still demands</p>
+<p><span class="math display">\[
+k_{2,\parallel}^2 + k_{2,z}^2 = n_2^2 k_0^2
+\]</span></p>
+<p>so if <span class="math inline">\(k_{2,\parallel}^2 &gt; n_2^2 k_0^2\)</span>, the perpendicular component must satisfy <span class="math inline">\(k_{2,z}^2&lt;0\)</span>. The only way out is an imaginary perpendicular component <span class="math inline">\(k_{2,z}=-i\kappa\)</span> with</p>
+<p><span class="math display">\[
+\kappa=\sqrt{k_{2,\parallel}^2 - n_2^2 k_0^2}
+\]</span></p>
+<p>Substituting this into the plane-wave form gives</p>
+<p><span class="math display">\[
+U(\mathbf{r}) = A \, e^{-\kappa z}\, e^{-i\mathbf{k}_{2,\parallel}\cdot\mathbf{r}_\parallel}\, e^{i\omega t}
+\]</span></p>
+<p>This is an <strong>evanescent wave</strong>. It still oscillates along the interface with the same parallel spatial frequency as the incident wave, but its amplitude decays exponentially into the second medium on a length scale <span class="math inline">\(1/\kappa\)</span>. Although no net energy propagates away from the interface, the field does penetrate medium 2, which is why placing a second interface within a few decay lengths frustrates total internal reflection and recovers propagation on the far side. The same imaginary-<span class="math inline">\(k_z\)</span> condition applies generally: whenever a transverse spatial frequency exceeds the wavenumber <span class="math inline">\(k\)</span>, the corresponding component is bound near the region where it was created rather than propagating as a travelling wave.</p>
+</section>
+<section id="isofrequency-surfaces" class="level2">
+<h2 class="anchored" data-anchor-id="isofrequency-surfaces">Isofrequency Surfaces</h2>
+<p>The k-space diagram used for Snell’s law is a specific instance of a more general construction. The set of all wavevectors consistent with a fixed frequency <span class="math inline">\(\omega\)</span> forms the <strong>isofrequency surface</strong> (IFS) of the medium. For a homogeneous isotropic medium, the dispersion relation <span class="math inline">\(|\mathbf{k}|=nk_0\)</span> makes the IFS a sphere of radius <span class="math inline">\(nk_0\)</span>, or a circle in the 2D slice drawn above, and propagation is allowed equally in all directions.</p>
+<p>The shape of the IFS is a statement about the medium, not about the wave. In anisotropic media such as birefringent crystals, the refractive index depends on direction and the IFS deforms into an ellipsoid (generally a pair of them, one per polarization). In photonic crystals, which are periodic refractive-index structures on the scale of the wavelength like the sample shown above, the IFS can take complex shapes with flat regions, sharp corners, and forbidden directions (gaps). At a given <span class="math inline">\(\omega\)</span>, only the <span class="math inline">\(\mathbf{k}\)</span>-vectors lying on the IFS correspond to propagating modes; anything else is evanescent in the sense just discussed.</p>
+<p>Refraction at an interface between any two media can be read off geometrically by matching the parallel component of <span class="math inline">\(\mathbf{k}\)</span> between the two IFS, which is the same construction we used for Snell’s law, now valid for arbitrary materials. This k-space view, that at fixed <span class="math inline">\(\omega\)</span> only certain directions are allowed, is the geometric core of how we will later decompose arbitrary fields into their constituent plane-wave components.</p>
 </section>
 <section id="spherical-waves" class="level2">
 <h2 class="anchored" data-anchor-id="spherical-waves">Spherical Waves</h2>
@@ -786,6 +927,11 @@ k_1\sin(\theta_1)=k_2\sin(\theta_2)
 <p><span class="math display">\[\begin{equation}
 U=\frac{A}{|\mathbf{r}-\mathbf{r}_0|}e^{-ik|\mathbf{r}-\mathbf{r}_0|} e^{i\omega t}
 \end{equation}\]</span></p>
+<p><strong>Eikonal of a spherical wave.</strong> Writing <span class="math inline">\(r = |\mathbf{r}-\mathbf{r}_0|\)</span> and comparing with the Eikonal ansatz, the eikonal is</p>
+<p><span class="math display">\[
+S(\mathbf{r}) = -r = -|\mathbf{r}-\mathbf{r}_0|,
+\]</span></p>
+<p>so <span class="math inline">\(\nabla S = -\hat{\mathbf{r}}\)</span> (the outward radial unit vector) and <span class="math inline">\(|\nabla S|^2 = 1 = n^2\)</span> (in vacuum). The Eikonal equation (<a href="#eq-eikonal" class="quarto-xref">Equation&nbsp;1</a>) is satisfied, and the rays – curves along <span class="math inline">\(\nabla S\)</span> – are radial straight lines emanating from the source, exactly the picture of geometrical optics for a point source. The <span class="math inline">\(1/r\)</span> decay of the amplitude is not put in by hand; it follows from the transport equation <span class="math inline">\(\nabla\cdot(A^2\,\nabla S)=0\)</span>, which enforces that the total power through any spherical shell remains constant.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -846,6 +992,20 @@ Figure&nbsp;6— Spherical wave propagation. The wave is emitted from the origin
 </div>
 </div>
 <p>Note: The direction of wave propagation can be reversed by changing the sign of the wavenumber <span class="math inline">\(k\)</span>.</p>
+</section>
+<section id="paraboloidal-waves" class="level2">
+<h2 class="anchored" data-anchor-id="paraboloidal-waves">Paraboloidal Waves</h2>
+<p>Many photonics problems involve light that travels mostly in one direction and stays close to an axis. In this paraxial regime, a spherical wave is awkward to work with: its <span class="math inline">\(1/|\mathbf{r}-\mathbf{r}_0|\)</span> envelope and its exact distance in the phase make calculations cumbersome. Expanding the distance around the axis simplifies both.</p>
+<p>Consider a spherical wave emitted from the origin and observed at a point <span class="math inline">\((x,y,z)\)</span> with <span class="math inline">\(\rho=\sqrt{x^2+y^2}\ll z\)</span>. The source-to-observation distance can be expanded as</p>
+<p><span class="math display">\[
+r = \sqrt{x^2+y^2+z^2} = z\sqrt{1+\frac{\rho^2}{z^2}} \approx z + \frac{\rho^2}{2z}
+\]</span></p>
+<p>This is the <strong>Fresnel approximation</strong>. In the amplitude <span class="math inline">\(1/r\)</span> we can safely replace <span class="math inline">\(r\)</span> by <span class="math inline">\(z\)</span>, since the correction is small. In the phase, however, the quadratic term <span class="math inline">\(k\rho^2/(2z)\)</span> must be kept: it is multiplied by the large number <span class="math inline">\(k\)</span>, and a small error in distance translates into a large error in phase. Inserting this expansion into the spherical wave yields a <strong>paraboloidal wave</strong>:</p>
+<p><span class="math display">\[
+U(\mathbf{r}) \approx \frac{A}{z}\, e^{-ikz}\, e^{-ik\rho^2/(2z)}\, e^{i\omega t}
+\]</span></p>
+<p>Its wavefronts are paraboloids rather than spheres, and the transverse phase grows quadratically with distance from the axis. Equivalently, it is a plane wave dressed with a quadratic phase curvature.</p>
+<p>The paraboloidal wave is the paraxial limit of a spherical wave, and it will reappear in later chapters as the propagation kernel that carries a paraxial field from one transverse plane to another.</p>
 
 
 </section>
@@ -1257,6 +1417,9 @@ Figure&nbsp;6— Spherical wave propagation. The wave is emitted from the origin
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="../../lectures/lecture03/01-lecture03.html" class="pagination-link" aria-label="Interference &amp; Coherence">
+        <span class="nav-page-text">Interference &amp; Coherence</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->
