@@ -1,0 +1,1240 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.34">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>lecture05 – Photonics</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../lectures/lecture06/01-lecture06.html" rel="next">
+<link href="../../lectures/lecture05/lecture05-supplements.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-9344fb9851b4da3cab95007ef9d770dc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../assets/css/styles.css">
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Photonics</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../../index.html" aria-current="page"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">PART III: FOURIER OPTICS &amp; MICROSCOPY</li><li class="breadcrumb-item"><a href="../../lectures/lecture05/02-lecture05.html">Lecture 8 — Fourier Optics: Image Formation</a></li><li class="breadcrumb-item"><a href="../../lectures/lecture05/02-lecture05.html">Image Formation and Resolution</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="../../index.html" class="sidebar-logo-link">
+      <img src="../../assets/images/mona_logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home</span></a>
+  </div>
+</li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Course Info</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-info/intructors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Instructor</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-info/schedule.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Schedule</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-info/resources.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Ressources</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-info/seminars.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Seminars</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-info/exam.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exams</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">PART I: FOUNDATIONS</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Lecture 1 — Introduction, Ray Optics &amp; Wave Optics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture01/introduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture01/01-lecture01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Ray Optics</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Lecture 2 — Matrix Optics, Wave Optics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture02/01-lecture02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Matrix Optics</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Lecture 3 — Wave Optics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture02/02-lecture02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wave Optics</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Lecture 4 — Interference</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture03/01-lecture03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Interference &amp; Coherence</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text">Lecture 5 — Interference &amp; Beams</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture04/01-lecture04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Gaussian Beams</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
+ <span class="menu-text">PART III: FOURIER OPTICS &amp; MICROSCOPY</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true">
+ <span class="menu-text">Lecture 7 — Fourier Optics: Foundations</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture05/01-lecture05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Fourier Optics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture05/lecture05-supplements.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Supplements</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true">
+ <span class="menu-text">Lecture 8 — Fourier Optics: Image Formation</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture05/02-lecture05.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Image Formation and Resolution</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true">
+ <span class="menu-text">Lecture 9 — Fourier Optics: Applications</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture06/01-lecture06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Spatial Frequency Applications</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#sec-lens-ft" id="toc-sec-lens-ft" class="nav-link active" data-scroll-target="#sec-lens-ft">The Lens as a Fourier Transformer</a></li>
+  <li><a href="#sec-4f" id="toc-sec-4f" class="nav-link" data-scroll-target="#sec-4f">Spatial Filtering and the 4f System</a></li>
+  <li><a href="#sec-psf-otf" id="toc-sec-psf-otf" class="nav-link" data-scroll-target="#sec-psf-otf">Point Spread Function, Optical Transfer Function, and Resolution</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">PART III: FOURIER OPTICS &amp; MICROSCOPY</li><li class="breadcrumb-item"><a href="../../lectures/lecture05/02-lecture05.html">Lecture 8 — Fourier Optics: Image Formation</a></li><li class="breadcrumb-item"><a href="../../lectures/lecture05/02-lecture05.html">Image Formation and Resolution</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Image Formation and Resolution</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>The previous lecture established that any field at a plane <span class="math inline">\(z=0\)</span> can be decomposed into plane waves via its Fourier transform, and that free-space propagation multiplies each component by the transfer function <span class="math inline">\(H(\nu_x,\nu_y;z) = e^{ik_z z}\)</span>. Here we apply this framework to the two central problems of optical imaging: how a lens performs an exact Fourier transform (enabling controlled spatial filtering), and how the finite aperture of any real system limits resolution through the point spread function and optical transfer function.</p>
+<section id="sec-lens-ft" class="level3">
+<h3 class="anchored" data-anchor-id="sec-lens-ft">The Lens as a Fourier Transformer</h3>
+<p>The Fraunhofer result requires propagation distances <span class="math inline">\(z \gg \pi a^2/\lambda\)</span> that are often impractically large. A thin lens solves this problem elegantly: it performs an <strong>exact</strong> Fourier transform at the finite distance of its focal length <span class="math inline">\(f\)</span>, with no approximation beyond the thin-lens and paraxial assumptions.</p>
+<p><strong>Derivation.</strong> Place an object with transmission <span class="math inline">\(t(x',y')\)</span> in the front focal plane (at <span class="math inline">\(z=-f\)</span>, i.e.&nbsp;a distance <span class="math inline">\(f\)</span> in front of the lens). For unit-amplitude plane-wave illumination the field just behind the object is <span class="math inline">\(U(x',y',{-f}) = t(x',y')\)</span>. Propagating this field by Fresnel from <span class="math inline">\(z=-f\)</span> to the lens at <span class="math inline">\(z=0\)</span>, multiplying by the lens phase factor <span class="math inline">\(e^{-ik(x^2+y^2)/2f}\)</span>, and propagating a second Fresnel step from <span class="math inline">\(z=0\)</span> to the back focal plane at <span class="math inline">\(z=+f\)</span>, the two quadratic phase factors — one from the Fresnel propagation and one from the lens — cancel exactly. The result is:</p>
+<p><span class="math display">\[U_\text{back}(x,y) = \frac{e^{i2kf}}{i\lambda f}\,\hat{t}\!\left(\nu_x = \frac{x}{\lambda f},\;\nu_y = \frac{y}{\lambda f}\right)\]</span></p>
+<p>The intensity at the back focal plane is therefore:</p>
+<p><span class="math display">\[I_\text{back}(x,y) \propto \left|\hat{t}\!\left(\frac{x}{\lambda f},\frac{y}{\lambda f}\right)\right|^2\]</span></p>
+<p>The back focal plane of a lens is the <strong>Fourier plane</strong> of its front focal plane. The spatial scale in the Fourier plane is <span class="math inline">\(\lambda f\)</span>: a high focal-length lens stretches the Fourier pattern across a larger area, while a short focal-length lens compresses it.</p>
+<div id="cell-fig-lens-ft" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">512</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>x_obj <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, N)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>y_obj <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, N)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>X_obj, Y_obj <span class="op">=</span> np.meshgrid(x_obj, y_obj)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Double slit object</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>slit_hw <span class="op">=</span> <span class="fl">0.04</span>   <span class="co"># slit half-width</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>sep     <span class="op">=</span> <span class="fl">0.30</span>   <span class="co"># slit centre separation</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>obj <span class="op">=</span> np.zeros((N, N))</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>obj[(np.<span class="bu">abs</span>(X_obj <span class="op">-</span> sep<span class="op">/</span><span class="dv">2</span>) <span class="op">&lt;</span> slit_hw) <span class="op">&amp;</span> (np.<span class="bu">abs</span>(Y_obj) <span class="op">&lt;</span> <span class="fl">0.4</span>)] <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>obj[(np.<span class="bu">abs</span>(X_obj <span class="op">+</span> sep<span class="op">/</span><span class="dv">2</span>) <span class="op">&lt;</span> slit_hw) <span class="op">&amp;</span> (np.<span class="bu">abs</span>(Y_obj) <span class="op">&lt;</span> <span class="fl">0.4</span>)] <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Fourier transform -&gt; field at back focal plane (ignoring constant phase prefactor)</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>obj_ft <span class="op">=</span> np.fft.fftshift(np.fft.fft2(np.fft.ifftshift(obj)))</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>I_focal <span class="op">=</span> np.<span class="bu">abs</span>(obj_ft)<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.figure(figsize<span class="op">=</span>get_size(<span class="dv">12</span>, <span class="dv">10</span>))</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>gs <span class="op">=</span> gridspec.GridSpec(<span class="dv">2</span>, <span class="dv">2</span>, figure<span class="op">=</span>fig)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>ax0 <span class="op">=</span> fig.add_subplot(gs[<span class="dv">0</span>, <span class="dv">0</span>])</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>ax1 <span class="op">=</span> fig.add_subplot(gs[<span class="dv">0</span>, <span class="dv">1</span>])</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>ax2 <span class="op">=</span> fig.add_subplot(gs[<span class="dv">1</span>, :])</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>ax0.imshow(obj, cmap<span class="op">=</span><span class="st">'gray'</span>, extent<span class="op">=</span>[<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>], origin<span class="op">=</span><span class="st">'lower'</span>)</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>ax0.set_title(<span class="st">'(a) Object (double slit)'</span>)</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>ax0.set_xlabel(<span class="st">'x'</span>)</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>ax0.set_ylabel(<span class="st">'y'</span>)</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>vmax <span class="op">=</span> np.percentile(I_focal, <span class="fl">99.8</span>)</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>ax1.imshow(I_focal, cmap<span class="op">=</span><span class="st">'inferno'</span>, origin<span class="op">=</span><span class="st">'lower'</span>, vmax<span class="op">=</span>vmax)</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>ax1.set_title(<span class="st">'(b) Intensity at back focal plane'</span>)</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>ax1.set_xlabel(<span class="vs">r'</span><span class="dv">$</span><span class="ch">\n</span><span class="vs">u_x</span><span class="dv">$</span><span class="vs"> </span><span class="kw">(</span><span class="vs">pixels </span><span class="dv">$</span><span class="er">\</span><span class="vs">propto x/</span><span class="er">\</span><span class="vs">lambda f</span><span class="dv">$</span><span class="kw">)</span><span class="vs">'</span>)</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>ax1.set_ylabel(<span class="vs">r'</span><span class="dv">$</span><span class="ch">\n</span><span class="vs">u_y</span><span class="dv">$</span><span class="vs"> </span><span class="kw">(</span><span class="vs">pixels </span><span class="dv">$</span><span class="er">\</span><span class="vs">propto y/</span><span class="er">\</span><span class="vs">lambda f</span><span class="dv">$</span><span class="kw">)</span><span class="vs">'</span>)</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>mid <span class="op">=</span> N <span class="op">//</span> <span class="dv">2</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>ax2.plot(I_focal[mid, :] <span class="op">/</span> I_focal[mid, :].<span class="bu">max</span>())</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>ax2.set_xlabel(<span class="vs">r'pixel index </span><span class="kw">(</span><span class="dv">$</span><span class="er">\</span><span class="vs">propto </span><span class="ch">\n</span><span class="vs">u_x</span><span class="dv">$</span><span class="kw">)</span><span class="vs">'</span>)</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>ax2.set_ylabel(<span class="st">'intensity (norm.)'</span>)</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>ax2.set_title(<span class="st">'(c) Cross-section through Fourier plane'</span>)</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>ax2.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-lens-ft" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-lens-ft-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="02-lecture05_files/figure-html/fig-lens-ft-output-1.png" width="703" height="569" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-lens-ft-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1— A thin lens performs a spatial Fourier transform. (a) Test object: a double slit. (b) Intensity at the back focal plane <span class="math inline">\(\propto|\hat{t}(\nu_x,\nu_y)|^2\)</span>, computed as the squared magnitude of the 2D FFT. The <span class="math inline">\(\cos^2\)</span> interference fringes from the slit separation appear inside a sinc² envelope from the finite slit width. (c) Horizontal cross-section through the Fourier plane.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="sec-4f" class="level3">
+<h3 class="anchored" data-anchor-id="sec-4f">Spatial Filtering and the 4f System</h3>
+<p>The lens-FT result leads immediately to a practical optical processor: the <strong>4f system</strong>. Two lenses, each of focal length <span class="math inline">\(f\)</span>, are placed coaxially with their focal planes coinciding at the midpoint. The object sits one focal length in front of lens 1; the image forms one focal length behind lens 2. The system spans a total length of <span class="math inline">\(4f\)</span>.</p>
+<p>The shared focal plane between the two lenses is the <strong>Fourier plane</strong>. Because lens 1 performs the FT there, the field at the Fourier plane is <span class="math inline">\(\propto\hat{t}(\nu_x,\nu_y)\)</span>. Lens 2 then performs an inverse FT back to the image plane. In the absence of any modification:</p>
+<p><span class="math display">\[U_\text{image}(x,y) \propto \mathcal{F}^{-1}\{\hat{t}(\nu_x,\nu_y)\} = t(-x,-y)\]</span></p>
+<p>The system produces an inverted (but otherwise perfect) image of the object.</p>
+<p><strong>Spatial filtering</strong> is performed by inserting a mask <span class="math inline">\(H(\nu_x,\nu_y)\)</span> in the Fourier plane. The output becomes:</p>
+<p><span class="math display">\[U_\text{out}(x,y) \propto \mathcal{F}^{-1}\{H(\nu_x,\nu_y)\cdot\hat{t}(\nu_x,\nu_y)\} = h(x,y)*t(-x,-y)\]</span></p>
+<p>where <span class="math inline">\(h = \mathcal{F}^{-1}\{H\}\)</span> is the impulse response of the filter. Common filters include:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 24%">
+<col style="width: 51%">
+<col style="width: 24%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Filter</th>
+<th><span class="math inline">\(H(\nu_x,\nu_y)\)</span></th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Low-pass</td>
+<td><span class="math inline">\(1\)</span> if <span class="math inline">\(\nu_r &lt; \nu_c\)</span>, else <span class="math inline">\(0\)</span></td>
+<td>Blurring, noise suppression</td>
+</tr>
+<tr class="even">
+<td>High-pass</td>
+<td><span class="math inline">\(0\)</span> if <span class="math inline">\(\nu_r &lt; \nu_c\)</span>, else <span class="math inline">\(1\)</span></td>
+<td>Edge enhancement</td>
+</tr>
+<tr class="odd">
+<td>Phase-contrast</td>
+<td><span class="math inline">\(e^{i\pi/2}\)</span> at <span class="math inline">\(\nu_r \approx 0\)</span></td>
+<td>Phase-object contrast (Zernike)</td>
+</tr>
+<tr class="even">
+<td>Dark-field</td>
+<td><span class="math inline">\(0\)</span> at <span class="math inline">\(\nu_r = 0\)</span>, else <span class="math inline">\(1\)</span></td>
+<td>Block direct beam, reveal scattering</td>
+</tr>
+</tbody>
+</table>
+<p>The last two rows foreshadow the contrast techniques covered in the microscopy lectures.</p>
+<div id="cell-fig-4f" class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">512</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>x4 <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, N)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>X4, Y4 <span class="op">=</span> np.meshgrid(x4, x4)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>R4 <span class="op">=</span> np.sqrt(X4<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> Y4<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Object: disk with superimposed grating</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>disk <span class="op">=</span> (R4 <span class="op">&lt;</span> <span class="fl">0.35</span>).astype(<span class="bu">float</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>grating <span class="op">=</span> <span class="fl">0.5</span> <span class="op">*</span> np.cos(<span class="dv">2</span><span class="op">*</span>np.pi<span class="op">*</span><span class="dv">20</span><span class="op">*</span>X4)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>obj4 <span class="op">=</span> disk <span class="op">*</span> (<span class="fl">0.5</span> <span class="op">+</span> grating)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Fourier transform</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>ft4 <span class="op">=</span> np.fft.fftshift(np.fft.fft2(obj4))</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>fx4 <span class="op">=</span> np.fft.fftshift(np.fft.fftfreq(N))</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>FX4, FY4 <span class="op">=</span> np.meshgrid(fx4, fx4)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>FR4 <span class="op">=</span> np.sqrt(FX4<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> FY4<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Filters</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>nu_c <span class="op">=</span> <span class="fl">0.03</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>mask_lp <span class="op">=</span> (FR4 <span class="op">&lt;</span> nu_c).astype(<span class="bu">float</span>)</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>mask_hp <span class="op">=</span> (FR4 <span class="op">&gt;=</span> nu_c).astype(<span class="bu">float</span>)</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Filtered images via inverse FFT</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>img_lp <span class="op">=</span> np.real(np.fft.ifft2(np.fft.ifftshift(ft4 <span class="op">*</span> mask_lp)))</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>img_hp <span class="op">=</span> np.real(np.fft.ifft2(np.fft.ifftshift(ft4 <span class="op">*</span> mask_hp)))</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">2</span>, figsize<span class="op">=</span>get_size(<span class="dv">12</span>, <span class="dv">10</span>))</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>, <span class="dv">0</span>].imshow(obj4, cmap<span class="op">=</span><span class="st">'gray'</span>, origin<span class="op">=</span><span class="st">'lower'</span>, extent<span class="op">=</span>[<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>],</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>                   interpolation<span class="op">=</span><span class="st">'none'</span>)</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>, <span class="dv">0</span>].set_title(<span class="st">'(a) Object'</span>)</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>, <span class="dv">0</span>].set_xlabel(<span class="st">'x'</span>)</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>, <span class="dv">1</span>].imshow(np.log(np.<span class="bu">abs</span>(ft4) <span class="op">+</span> <span class="dv">1</span>), cmap<span class="op">=</span><span class="st">'viridis'</span>, origin<span class="op">=</span><span class="st">'lower'</span>)</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>, <span class="dv">1</span>].set_title(<span class="st">'(b) Fourier plane'</span>)</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>, <span class="dv">1</span>].set_xlabel(<span class="vs">r'</span><span class="dv">$</span><span class="ch">\n</span><span class="vs">u_x</span><span class="dv">$</span><span class="vs"> </span><span class="kw">(</span><span class="vs">pixels</span><span class="kw">)</span><span class="vs">'</span>)</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>theta_c <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">2</span><span class="op">*</span>np.pi, <span class="dv">300</span>)</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>, <span class="dv">1</span>].plot(N<span class="op">/</span><span class="dv">2</span> <span class="op">+</span> nu_c<span class="op">*</span>N<span class="op">*</span>np.cos(theta_c), N<span class="op">/</span><span class="dv">2</span> <span class="op">+</span> nu_c<span class="op">*</span>N<span class="op">*</span>np.sin(theta_c),</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>             <span class="st">'r--'</span>, lw<span class="op">=</span><span class="dv">1</span>, label<span class="op">=</span><span class="vs">fr'</span><span class="dv">$</span><span class="ch">\n</span><span class="vs">u_c=</span><span class="sc">{</span>nu_c<span class="sc">}</span><span class="dv">$</span><span class="vs">'</span>)</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>, <span class="dv">0</span>].imshow(img_lp, cmap<span class="op">=</span><span class="st">'gray'</span>, origin<span class="op">=</span><span class="st">'lower'</span>, extent<span class="op">=</span>[<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>])</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>, <span class="dv">0</span>].set_title(<span class="st">'(c) Low-pass filtered'</span>)</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>, <span class="dv">0</span>].set_xlabel(<span class="st">'x'</span>)</span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>, <span class="dv">1</span>].imshow(img_hp, cmap<span class="op">=</span><span class="st">'gray'</span>, origin<span class="op">=</span><span class="st">'lower'</span>, extent<span class="op">=</span>[<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>])</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>, <span class="dv">1</span>].set_title(<span class="st">'(d) High-pass filtered'</span>)</span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>, <span class="dv">1</span>].set_xlabel(<span class="st">'x'</span>)</span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-4f" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-4f-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="02-lecture05_files/figure-html/fig-4f-output-1.png" width="603" height="571" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-4f-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2— 4f spatial filtering demonstration. (a) Test object: a disk with a superimposed high-frequency grating. (b) Fourier plane spectrum; the dashed circle marks the low-pass cutoff <span class="math inline">\(\nu_c\)</span>. (c) Low-pass filtered image: the grating is removed, leaving a smooth disk. (d) High-pass filtered image: only the edges and fine texture survive.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The low-pass filter transmits only <span class="math inline">\(\nu_r &lt; \nu_c\)</span>, smoothing the image by removing the high-frequency grating. The high-pass filter does the opposite: it blocks the DC and low-frequency components, leaving only sharp edges and fine texture. The disk boundary becomes a bright ring because it is where the high spatial frequencies are concentrated. This edge-enhancement is the basis of darkfield microscopy; the phase-contrast variant — shifting only the DC component by <span class="math inline">\(\pi/2\)</span> — is the Zernike technique developed in the microscopy lectures.</p>
+</section>
+<section id="sec-psf-otf" class="level3">
+<h3 class="anchored" data-anchor-id="sec-psf-otf">Point Spread Function, Optical Transfer Function, and Resolution</h3>
+<p>The 4f filtering framework provides the natural language for characterising the imaging performance of any optical system.</p>
+<section id="point-spread-function" class="level4">
+<h4 class="anchored" data-anchor-id="point-spread-function">Point Spread Function</h4>
+<p>The <strong>point spread function</strong> (PSF) <span class="math inline">\(h(x,y)\)</span> is the image formed by the system of a single point source located at the origin of the object plane. In the Fourier framework it is the inverse Fourier transform of the system’s transfer function <span class="math inline">\(H(\nu_x,\nu_y)\)</span>:</p>
+<p><span class="math display">\[h(x,y) = \mathcal{F}^{-1}\{H(\nu_x,\nu_y)\}\]</span></p>
+<p>For a diffraction-limited system with a circular pupil of radius <span class="math inline">\(R\)</span> (numerical aperture <span class="math inline">\(\mathrm{NA} = n\sin\theta_\mathrm{max}\)</span>), the transfer function is a disk of radius <span class="math inline">\(\nu_\mathrm{max} = \mathrm{NA}/\lambda\)</span> and the PSF is the <strong>Airy pattern</strong>:</p>
+<p><span class="math display">\[h(r) \propto \left[\frac{2J_1(\pi D r/\lambda f)}{\pi D r/\lambda f}\right]^2\]</span></p>
+<p>where <span class="math inline">\(D = 2R\)</span> is the pupil diameter, <span class="math inline">\(f\)</span> is the focal length, and <span class="math inline">\(r = \sqrt{x^2+y^2}\)</span>. The first zero of the Airy pattern falls at <span class="math inline">\(r_\mathrm{Airy} = 1.22\,\lambda f/D\)</span>, which is the <strong>Rayleigh resolution criterion</strong>: two point sources are just resolved when the peak of one coincides with the first zero of the other, giving a minimum resolvable distance</p>
+<p><span class="math display">\[\delta r_\mathrm{Rayleigh} = \frac{0.61\,\lambda}{\mathrm{NA}}\]</span></p>
+<p>The <strong>Abbe diffraction limit</strong> arrives at the same scale from a different argument — the finest grating whose first diffraction order still enters the objective has period <span class="math inline">\(d_\mathrm{min} = \lambda/2\,\mathrm{NA}\)</span> — giving</p>
+<p><span class="math display">\[\delta r_\mathrm{Abbe} = \frac{\lambda}{2\,\mathrm{NA}}\]</span></p>
+<p>The two criteria agree to within a factor of <span class="math inline">\(\approx 1.2\)</span> and both establish that no standard far-field optical system can resolve features finer than roughly <span class="math inline">\(\lambda / (2\,\mathrm{NA})\)</span>.</p>
+</section>
+<section id="image-formation-as-convolution" class="level4">
+<h4 class="anchored" data-anchor-id="image-formation-as-convolution">Image Formation as Convolution</h4>
+<p>Because the PSF is the impulse response of the imaging system, any linear, shift-invariant system maps an extended object <span class="math inline">\(f(x,y)\)</span> to an image <span class="math inline">\(g(x,y)\)</span> by convolution:</p>
+<p><span class="math display">\[g(x,y) = h(x,y) * f(x,y) = \iint h(x-x',\, y-y')\,f(x',y')\,dx'\,dy'\]</span></p>
+<p>The object is treated as a superposition of point sources; each contributes a shifted, weighted copy of the PSF, and the total image is their sum.</p>
+<p>By the convolution theorem, the same operation is a pointwise product in the frequency domain:</p>
+<p><span class="math display">\[\hat{G}(\nu_x,\nu_y) = H(\nu_x,\nu_y)\cdot\hat{F}(\nu_x,\nu_y)\]</span></p>
+<p>The function <span class="math inline">\(H(\nu_x,\nu_y)\)</span> here is the <strong>optical transfer function</strong> (OTF). Its magnitude <span class="math inline">\(|H|\)</span> is the <strong>modulation transfer function</strong> (MTF): it equals 1 at low frequencies, rolls off, and reaches zero at the diffraction cut-off <span class="math inline">\(\nu_\mathrm{max} = D/(\lambda f)\)</span>. The system therefore acts as a low-pass filter – spatial frequencies beyond <span class="math inline">\(\nu_\mathrm{max}\)</span> are completely suppressed and the corresponding fine detail is lost from the image.</p>
+<p><a href="#fig-convolution" class="quarto-xref">Figure&nbsp;3</a> makes this concrete by tracing each step in both domains side by side. The left column shows the spatial domain directly: object <span class="math inline">\(f\)</span>, PSF <span class="math inline">\(h\)</span>, and image <span class="math inline">\(g = f * h\)</span>. The right column shows the same steps in the frequency domain: spectrum <span class="math inline">\(|\hat{F}|\)</span>, MTF <span class="math inline">\(|H|\)</span>, and their pointwise product <span class="math inline">\(|\hat{F}| \cdot |H|\)</span>. The inverse transform of that product recovers the image. The key is panel (f): the sinc-like object spectrum is truncated wherever the MTF reaches zero (dotted lines at <span class="math inline">\(\pm\nu_\mathrm{max}\)</span>). The spatial consequence of this truncation is visible in panel (e) – the sharp edges of the rectangular object are rounded in the image because the high-frequency components that encode those edges have been removed.</p>
+<div id="cell-fig-convolution" class="cell" data-execution_count="4">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>N   <span class="op">=</span> <span class="dv">2048</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>L   <span class="op">=</span> <span class="fl">20.0</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>x   <span class="op">=</span> np.linspace(<span class="op">-</span>L<span class="op">/</span><span class="dv">2</span>, L<span class="op">/</span><span class="dv">2</span>, N)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>dx  <span class="op">=</span> x[<span class="dv">1</span>] <span class="op">-</span> x[<span class="dv">0</span>]</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Object: centred rectangular bar of width W = 4 λf/D</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>W   <span class="op">=</span> <span class="fl">4.0</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>obj <span class="op">=</span> (np.<span class="bu">abs</span>(x) <span class="op">&lt;</span> W<span class="op">/</span><span class="dv">2</span>).astype(<span class="bu">float</span>)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co"># PSF: 1-D Airy profile, (2J₁(πx)/(πx))², first zero at x = 1.22</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>u   <span class="op">=</span> np.pi <span class="op">*</span> x</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>psf <span class="op">=</span> (<span class="dv">2</span> <span class="op">*</span> j1(u) <span class="op">/</span> u)<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>psf <span class="op">/=</span> psf.<span class="bu">sum</span>() <span class="op">*</span> dx             <span class="co"># area-normalise</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="co"># FFTs</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>nu     <span class="op">=</span> np.fft.fftshift(np.fft.fftfreq(N, dx))</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>OBJ_FT <span class="op">=</span> np.fft.fft(np.fft.ifftshift(obj))</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>PSF_FT <span class="op">=</span> np.fft.fft(np.fft.ifftshift(psf)) <span class="op">*</span> dx   <span class="co"># H(0) → 1</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>IMG_FT <span class="op">=</span> OBJ_FT <span class="op">*</span> PSF_FT</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>img <span class="op">=</span> np.fft.fftshift(np.fft.ifft(IMG_FT)).real</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>img <span class="op">/=</span> img.<span class="bu">max</span>()</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>A_obj <span class="op">=</span> np.<span class="bu">abs</span>(np.fft.fftshift(OBJ_FT)) <span class="op">*</span> dx<span class="op">;</span>  A_obj <span class="op">/=</span> A_obj.<span class="bu">max</span>()</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>A_psf <span class="op">=</span> np.<span class="bu">abs</span>(np.fft.fftshift(PSF_FT))<span class="op">;</span>        A_psf <span class="op">/=</span> A_psf.<span class="bu">max</span>()</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>A_img <span class="op">=</span> A_obj <span class="op">*</span> A_psf                            <span class="co"># product; max ≈ 1 at ν = 0</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">3</span>, <span class="dv">2</span>, figsize<span class="op">=</span>get_size(<span class="dv">11</span>, <span class="dv">14</span>))</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>xl_sp <span class="op">=</span> (<span class="op">-</span><span class="dv">7</span>, <span class="dv">7</span>)</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>xl_fr <span class="op">=</span> (<span class="op">-</span><span class="dv">2</span>, <span class="dv">2</span>)</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a><span class="co"># (a) Object</span></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> axes[<span class="dv">0</span>, <span class="dv">0</span>]</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>ax.plot(x, obj, <span class="st">'C0'</span>, lw<span class="op">=</span><span class="fl">1.5</span>)</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="op">*</span>xl_sp)<span class="op">;</span> ax.set_ylim(<span class="op">-</span><span class="fl">0.15</span>, <span class="fl">1.35</span>)</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="vs">r'</span><span class="kw">(</span><span class="vs">a</span><span class="kw">)</span><span class="vs"> Object </span><span class="dv">$</span><span class="vs">f</span><span class="kw">(</span><span class="vs">x</span><span class="kw">)</span><span class="dv">$</span><span class="vs">'</span>)</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="vs">r'</span><span class="dv">$</span><span class="vs">x</span><span class="ch">\;</span><span class="pp">[</span><span class="er">\</span><span class="pp">lambda f/D]</span><span class="dv">$</span><span class="vs">'</span>)<span class="op">;</span> ax.set_ylabel(<span class="st">'amplitude'</span>)</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a><span class="co"># (b) Object spectrum</span></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> axes[<span class="dv">0</span>, <span class="dv">1</span>]</span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>ax.plot(nu, A_obj, <span class="st">'C0'</span>, lw<span class="op">=</span><span class="fl">1.5</span>)</span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>ax.axvline(<span class="op">-</span><span class="dv">1</span>, color<span class="op">=</span><span class="st">'k'</span>, ls<span class="op">=</span><span class="st">':'</span>, lw<span class="op">=</span><span class="fl">0.7</span>)<span class="op">;</span> ax.axvline(<span class="op">+</span><span class="dv">1</span>, color<span class="op">=</span><span class="st">'k'</span>, ls<span class="op">=</span><span class="st">':'</span>, lw<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="op">*</span>xl_fr)<span class="op">;</span> ax.set_ylim(<span class="op">-</span><span class="fl">0.05</span>, <span class="fl">1.15</span>)</span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="vs">r'</span><span class="kw">(</span><span class="vs">b</span><span class="kw">)</span><span class="vs"> Object spectrum </span><span class="dv">$</span><span class="cf">|</span><span class="er">\</span><span class="vs">hat{F}</span><span class="kw">(</span><span class="ch">\n</span><span class="vs">u</span><span class="kw">)</span><span class="cf">|</span><span class="dv">$</span><span class="vs">'</span>)</span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="vs">r'</span><span class="dv">$</span><span class="ch">\n</span><span class="vs">u</span><span class="ch">\;</span><span class="pp">[D/</span><span class="er">\</span><span class="pp">lambda f]</span><span class="dv">$</span><span class="vs">'</span>)<span class="op">;</span> ax.set_ylabel(<span class="st">'norm. amplitude'</span>)</span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a><span class="co"># (c) PSF</span></span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> axes[<span class="dv">1</span>, <span class="dv">0</span>]</span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>ax.plot(x, psf <span class="op">/</span> psf.<span class="bu">max</span>(), <span class="st">'C1'</span>, lw<span class="op">=</span><span class="fl">1.5</span>)</span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>ax.axvline(<span class="op">-</span><span class="fl">1.22</span>, color<span class="op">=</span><span class="st">'gray'</span>, ls<span class="op">=</span><span class="st">':'</span>, lw<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>ax.axvline(<span class="op">+</span><span class="fl">1.22</span>, color<span class="op">=</span><span class="st">'gray'</span>, ls<span class="op">=</span><span class="st">':'</span>, lw<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="fl">1.35</span>, <span class="fl">0.12</span>, <span class="vs">r'</span><span class="dv">$</span><span class="vs">1</span><span class="dv">.</span><span class="vs">22</span><span class="dv">$</span><span class="vs">'</span>, fontsize<span class="op">=</span><span class="dv">7</span>, color<span class="op">=</span><span class="st">'gray'</span>)</span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="op">*</span>xl_sp)<span class="op">;</span> ax.set_ylim(<span class="op">-</span><span class="fl">0.15</span>, <span class="fl">1.35</span>)</span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="vs">r'</span><span class="kw">(</span><span class="vs">c</span><span class="kw">)</span><span class="vs"> PSF </span><span class="dv">$</span><span class="vs">h</span><span class="kw">(</span><span class="vs">x</span><span class="kw">)</span><span class="dv">$</span><span class="vs">'</span>)</span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="vs">r'</span><span class="dv">$</span><span class="vs">x</span><span class="ch">\;</span><span class="pp">[</span><span class="er">\</span><span class="pp">lambda f/D]</span><span class="dv">$</span><span class="vs">'</span>)<span class="op">;</span> ax.set_ylabel(<span class="st">'amplitude'</span>)</span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a><span class="co"># (d) MTF</span></span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> axes[<span class="dv">1</span>, <span class="dv">1</span>]</span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a>ax.plot(nu, A_psf, <span class="st">'C1'</span>, lw<span class="op">=</span><span class="fl">1.5</span>)</span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a>ax.fill_between(nu, <span class="dv">0</span>, A_psf, where<span class="op">=</span>np.<span class="bu">abs</span>(nu) <span class="op">&lt;=</span> <span class="dv">1</span>, alpha<span class="op">=</span><span class="fl">0.15</span>, color<span class="op">=</span><span class="st">'C1'</span>)</span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a>ax.axvline(<span class="op">-</span><span class="dv">1</span>, color<span class="op">=</span><span class="st">'k'</span>, ls<span class="op">=</span><span class="st">':'</span>, lw<span class="op">=</span><span class="fl">0.7</span>)<span class="op">;</span> ax.axvline(<span class="op">+</span><span class="dv">1</span>, color<span class="op">=</span><span class="st">'k'</span>, ls<span class="op">=</span><span class="st">':'</span>, lw<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="fl">1.04</span>, <span class="fl">0.52</span>, <span class="vs">r'</span><span class="dv">$</span><span class="ch">\n</span><span class="vs">u_</span><span class="dv">\m</span><span class="vs">athrm{max}</span><span class="dv">$</span><span class="vs">'</span>, fontsize<span class="op">=</span><span class="dv">7</span>)</span>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="op">*</span>xl_fr)<span class="op">;</span> ax.set_ylim(<span class="op">-</span><span class="fl">0.05</span>, <span class="fl">1.15</span>)</span>
+<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="vs">r'</span><span class="kw">(</span><span class="vs">d</span><span class="kw">)</span><span class="vs"> MTF </span><span class="dv">$</span><span class="cf">|</span><span class="vs">H</span><span class="kw">(</span><span class="ch">\n</span><span class="vs">u</span><span class="kw">)</span><span class="cf">|</span><span class="dv">$</span><span class="vs"> = FT of PSF'</span>)</span>
+<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="vs">r'</span><span class="dv">$</span><span class="ch">\n</span><span class="vs">u</span><span class="ch">\;</span><span class="pp">[D/</span><span class="er">\</span><span class="pp">lambda f]</span><span class="dv">$</span><span class="vs">'</span>)<span class="op">;</span> ax.set_ylabel(<span class="st">'norm. amplitude'</span>)</span>
+<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a><span class="co"># (e) Image</span></span>
+<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> axes[<span class="dv">2</span>, <span class="dv">1</span>]</span>
+<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a>ax.plot(x, obj, <span class="st">'C0'</span>, lw<span class="op">=</span><span class="fl">1.0</span>, ls<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.35</span>, label<span class="op">=</span><span class="st">'object $f$'</span>)</span>
+<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a>ax.plot(x, img, <span class="st">'C2'</span>, lw<span class="op">=</span><span class="fl">1.5</span>, label<span class="op">=</span><span class="vs">r'image </span><span class="dv">$</span><span class="vs">g = </span><span class="dv">\m</span><span class="vs">athcal{F}</span><span class="dv">^</span><span class="vs">{-1}</span><span class="ch">\{</span><span class="er">\</span><span class="vs">hat{F}H</span><span class="ch">\}</span><span class="dv">$</span><span class="vs">'</span>)</span>
+<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="op">*</span>xl_sp)<span class="op">;</span> ax.set_ylim(<span class="op">-</span><span class="fl">0.15</span>, <span class="fl">1.35</span>)</span>
+<span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="vs">r'</span><span class="kw">(</span><span class="vs">f</span><span class="kw">)</span><span class="vs"> Image </span><span class="dv">$</span><span class="vs">g</span><span class="kw">(</span><span class="vs">x</span><span class="kw">)</span><span class="dv">$</span><span class="vs"> = IFFT of </span><span class="kw">(</span><span class="vs">e</span><span class="kw">)</span><span class="vs">'</span>)</span>
+<span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="vs">r'</span><span class="dv">$</span><span class="vs">x</span><span class="ch">\;</span><span class="pp">[</span><span class="er">\</span><span class="pp">lambda f/D]</span><span class="dv">$</span><span class="vs">'</span>)<span class="op">;</span> ax.set_ylabel(<span class="st">'amplitude'</span>)</span>
+<span id="cb3-74"><a href="#cb3-74" aria-hidden="true" tabindex="-1"></a><span class="co">#ax.legend(fontsize=7, loc='upper right')</span></span>
+<span id="cb3-75"><a href="#cb3-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-76"><a href="#cb3-76" aria-hidden="true" tabindex="-1"></a><span class="co"># (f) Product</span></span>
+<span id="cb3-77"><a href="#cb3-77" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> axes[<span class="dv">2</span>, <span class="dv">0</span>]</span>
+<span id="cb3-78"><a href="#cb3-78" aria-hidden="true" tabindex="-1"></a>ax.plot(nu, A_obj, <span class="st">'C0'</span>, lw<span class="op">=</span><span class="fl">1.0</span>, alpha<span class="op">=</span><span class="fl">0.35</span>, label<span class="op">=</span><span class="vs">r'</span><span class="dv">$</span><span class="cf">|</span><span class="er">\</span><span class="vs">hat{F}</span><span class="kw">(</span><span class="ch">\n</span><span class="vs">u</span><span class="kw">)</span><span class="cf">|</span><span class="dv">$</span><span class="vs">'</span>)</span>
+<span id="cb3-79"><a href="#cb3-79" aria-hidden="true" tabindex="-1"></a>ax.plot(nu, A_psf, <span class="st">'C1'</span>, lw<span class="op">=</span><span class="fl">1.0</span>, alpha<span class="op">=</span><span class="fl">0.35</span>, label<span class="op">=</span><span class="vs">r'</span><span class="dv">$</span><span class="cf">|</span><span class="vs">H</span><span class="kw">(</span><span class="ch">\n</span><span class="vs">u</span><span class="kw">)</span><span class="cf">|</span><span class="dv">$</span><span class="vs">'</span>)</span>
+<span id="cb3-80"><a href="#cb3-80" aria-hidden="true" tabindex="-1"></a>ax.plot(nu, A_img, <span class="st">'C2'</span>, lw<span class="op">=</span><span class="fl">1.5</span>,              label<span class="op">=</span><span class="vs">r'</span><span class="dv">$</span><span class="cf">|</span><span class="er">\</span><span class="vs">hat{F}</span><span class="cf">|</span><span class="er">\</span><span class="vs">cdot</span><span class="cf">|</span><span class="vs">H</span><span class="cf">|</span><span class="dv">$</span><span class="vs">'</span>)</span>
+<span id="cb3-81"><a href="#cb3-81" aria-hidden="true" tabindex="-1"></a>ax.axvline(<span class="op">-</span><span class="dv">1</span>, color<span class="op">=</span><span class="st">'k'</span>, ls<span class="op">=</span><span class="st">':'</span>, lw<span class="op">=</span><span class="fl">0.7</span>)<span class="op">;</span> ax.axvline(<span class="op">+</span><span class="dv">1</span>, color<span class="op">=</span><span class="st">'k'</span>, ls<span class="op">=</span><span class="st">':'</span>, lw<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb3-82"><a href="#cb3-82" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="op">*</span>xl_fr)<span class="op">;</span> ax.set_ylim(<span class="op">-</span><span class="fl">0.05</span>, <span class="fl">1.15</span>)</span>
+<span id="cb3-83"><a href="#cb3-83" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="vs">r'</span><span class="kw">(</span><span class="vs">e</span><span class="kw">)</span><span class="vs"> Product </span><span class="dv">$</span><span class="cf">|</span><span class="er">\</span><span class="vs">hat{F}</span><span class="kw">(</span><span class="ch">\n</span><span class="vs">u</span><span class="kw">)</span><span class="cf">|</span><span class="er">\</span><span class="vs">cdot</span><span class="cf">|</span><span class="vs">H</span><span class="kw">(</span><span class="ch">\n</span><span class="vs">u</span><span class="kw">)</span><span class="cf">|</span><span class="dv">$</span><span class="vs">'</span>)</span>
+<span id="cb3-84"><a href="#cb3-84" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="vs">r'</span><span class="dv">$</span><span class="ch">\n</span><span class="vs">u</span><span class="ch">\;</span><span class="pp">[D/</span><span class="er">\</span><span class="pp">lambda f]</span><span class="dv">$</span><span class="vs">'</span>)<span class="op">;</span> ax.set_ylabel(<span class="st">'norm. amplitude'</span>)</span>
+<span id="cb3-85"><a href="#cb3-85" aria-hidden="true" tabindex="-1"></a><span class="co">#ax.legend(fontsize=7)</span></span>
+<span id="cb3-86"><a href="#cb3-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-87"><a href="#cb3-87" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ax <span class="kw">in</span> axes.flat:</span>
+<span id="cb3-88"><a href="#cb3-88" aria-hidden="true" tabindex="-1"></a>    ax.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.2</span>)</span>
+<span id="cb3-89"><a href="#cb3-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-90"><a href="#cb3-90" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb3-91"><a href="#cb3-91" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-convolution" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-convolution-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="02-lecture05_files/figure-html/fig-convolution-output-1.png" width="622" height="805" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-convolution-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3— Image formation as convolution, shown in two equivalent representations. <strong>Left column (spatial domain):</strong> (a) rectangular-bar object <span class="math inline">\(f(x)\)</span>, (c) PSF <span class="math inline">\(h(x)\)</span> (1-D Airy profile, first zero at <span class="math inline">\(1.22\,\lambda f/D\)</span>), (e) image <span class="math inline">\(g(x) = \mathcal{F}^{-1}\{\hat{F}\cdot H\}\)</span> with the original object shown dashed for comparison – the sharp edges are rounded because their high-frequency content is removed. <strong>Right column (frequency domain):</strong> (b) object spectrum <span class="math inline">\(|\hat{F}(\nu)|\)</span> (sinc-like, zeros every <span class="math inline">\(0.25\,D/\lambda f\)</span>), (d) MTF <span class="math inline">\(|H(\nu)|\)</span> with shaded passband ending at the diffraction cut-off <span class="math inline">\(\nu_\mathrm{max} = D/(\lambda f)\)</span> (dotted), (f) the product <span class="math inline">\(|\hat{F}|\cdot|H|\)</span> = image spectrum; components beyond <span class="math inline">\(\nu_\mathrm{max}\)</span> are suppressed to zero.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="coherent-vs.-incoherent-imaging" class="level4">
+<h4 class="anchored" data-anchor-id="coherent-vs.-incoherent-imaging">Coherent vs.&nbsp;Incoherent Imaging</h4>
+<p>The convolution rule above comes in two distinct forms depending on whether the illumination is <strong>coherent</strong> (laser, single spatial mode) or <strong>incoherent</strong> (LED, thermal source, fluorescence).</p>
+<p><strong>Coherent imaging</strong> — the complex amplitude is the relevant quantity. The image amplitude is the convolution of the object amplitude with the coherent PSF:</p>
+<p><span class="math display">\[U_\mathrm{image}(x,y) = h(x,y) * U_\mathrm{object}(x,y)\]</span></p>
+<p>The system’s transfer function acts directly on complex amplitudes, and the OTF is the pupil function itself (top-hat up to <span class="math inline">\(\nu_\mathrm{max}\)</span>, zero beyond). Phase of the object is preserved and contributes to image contrast.</p>
+<p><strong>Incoherent imaging</strong> — intensities add (no phase relationship between source points). The image intensity is the convolution of the object intensity with the incoherent PSF:</p>
+<p><span class="math display">\[I_\mathrm{image}(x,y) = |h(x,y)|^2 * I_\mathrm{object}(x,y)\]</span></p>
+<p>The incoherent OTF is the <strong>autocorrelation</strong> of the pupil function, which extends to twice the coherent cut-off (<span class="math inline">\(2\nu_\mathrm{max}\)</span>) but with reduced contrast at high frequencies. Despite the wider bandwidth, incoherent systems do not always produce sharper images than coherent systems — the MTF rolloff and the absence of phase contrast mean the two regimes are suited to different tasks.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Property</th>
+<th>Coherent</th>
+<th>Incoherent</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Superposition</td>
+<td>Amplitudes</td>
+<td>Intensities</td>
+</tr>
+<tr class="even">
+<td>PSF</td>
+<td><span class="math inline">\(h(x,y)\)</span> (complex)</td>
+<td><span class="math inline">\(|h(x,y)|^2\)</span> (real, positive)</td>
+</tr>
+<tr class="odd">
+<td>OTF</td>
+<td>Pupil function</td>
+<td>Autocorrelation of pupil</td>
+</tr>
+<tr class="even">
+<td>Bandwidth</td>
+<td><span class="math inline">\(\nu_\mathrm{max}\)</span></td>
+<td><span class="math inline">\(2\nu_\mathrm{max}\)</span></td>
+</tr>
+<tr class="odd">
+<td>Phase sensitivity</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+<tr class="even">
+<td>Typical source</td>
+<td>Laser, SLM</td>
+<td>LED, fluorescence, white light</td>
+</tr>
+</tbody>
+</table>
+<p>Fluorescence microscopy is inherently incoherent (each fluorophore emits independently), which is one reason it achieves clean, artefact-free images. Coherent systems such as holographic or interferometric microscopes recover phase and thus reveal refractive-index variations invisible to incoherent methods. The superresolution techniques discussed in later lectures (STED, STORM, SIM) each exploit specific aspects of this coherent/incoherent distinction.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/fcichos\.github\.io\/Photonics\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../lectures/lecture05/lecture05-supplements.html" class="pagination-link" aria-label="Supplements">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Supplements</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../lectures/lecture06/01-lecture06.html" class="pagination-link" aria-label="Spatial Frequency Applications">
+        <span class="nav-page-text">Spatial Frequency Applications</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

@@ -20,41 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -65,6 +30,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
+<link href="../../lectures/lecture05/02-lecture05.html" rel="next">
+<link href="../../lectures/lecture05/01-lecture05.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -172,7 +139,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Supplementary Materials: Fourier Optics</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">PART III: FOURIER OPTICS &amp; MICROSCOPY</li><li class="breadcrumb-item"><a href="../../lectures/lecture05/01-lecture05.html">Lecture 7 — Fourier Optics: Foundations</a></li><li class="breadcrumb-item"><a href="../../lectures/lecture05/lecture05-supplements.html">Supplements</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -273,7 +240,7 @@ window.Quarto = {
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text">Lecture 2 — Matrix Optics, Wave Optics, Interference</span></a>
+ <span class="menu-text">Lecture 2 — Matrix Optics, Wave Optics</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -285,16 +252,123 @@ window.Quarto = {
  <span class="menu-text">Matrix Optics</span></a>
   </div>
 </li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Lecture 3 — Wave Optics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../lectures/lecture02/02-lecture02.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Wave Optics</span></a>
   </div>
 </li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Lecture 4 — Interference</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../lectures/lecture03/01-lecture03.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Interference &amp; Coherence</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text">Lecture 5 — Interference &amp; Beams</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture04/01-lecture04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Gaussian Beams</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
+ <span class="menu-text">PART III: FOURIER OPTICS &amp; MICROSCOPY</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true">
+ <span class="menu-text">Lecture 7 — Fourier Optics: Foundations</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture05/01-lecture05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Fourier Optics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture05/lecture05-supplements.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Supplements</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true">
+ <span class="menu-text">Lecture 8 — Fourier Optics: Image Formation</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture05/02-lecture05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Image Formation and Resolution</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true">
+ <span class="menu-text">Lecture 9 — Fourier Optics: Applications</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture06/01-lecture06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Spatial Frequency Applications</span></a>
   </div>
 </li>
       </ul>
@@ -323,7 +397,7 @@ window.Quarto = {
   <li><a href="#angular-spectrum-visualizations" id="toc-angular-spectrum-visualizations" class="nav-link" data-scroll-target="#angular-spectrum-visualizations">3. Angular Spectrum Visualizations</a>
   <ul class="collapse">
   <li><a href="#conceptual-visualization" id="toc-conceptual-visualization" class="nav-link" data-scroll-target="#conceptual-visualization">3.1 Conceptual Visualization</a></li>
-  <li><a href="#interactive-visualization-code" id="toc-interactive-visualization-code" class="nav-link" data-scroll-target="#interactive-visualization-code">3.2 Interactive Visualization Code</a></li>
+  <li><a href="#interactive-visualization" id="toc-interactive-visualization" class="nav-link" data-scroll-target="#interactive-visualization">3.2 Interactive Visualization</a></li>
   <li><a href="#physical-interpretation" id="toc-physical-interpretation" class="nav-link" data-scroll-target="#physical-interpretation">3.3 Physical Interpretation</a></li>
   </ul></li>
   </ul>
@@ -336,7 +410,7 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">PART III: FOURIER OPTICS &amp; MICROSCOPY</li><li class="breadcrumb-item"><a href="../../lectures/lecture05/01-lecture05.html">Lecture 7 — Fourier Optics: Foundations</a></li><li class="breadcrumb-item"><a href="../../lectures/lecture05/lecture05-supplements.html">Supplements</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Supplementary Materials: Fourier Optics</h1>
 <p class="subtitle lead">Additional examples, review, and visualizations</p>
@@ -504,80 +578,178 @@ window.Quarto = {
 <li><p><strong>Evanescent Waves</strong>: Spatial frequencies beyond <span class="math inline">\(1/\lambda\)</span> correspond to evanescent waves that decay exponentially away from the source.</p></li>
 </ol>
 </section>
-<section id="interactive-visualization-code" class="level3">
-<h3 class="anchored" data-anchor-id="interactive-visualization-code">3.2 Interactive Visualization Code</h3>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib.widgets <span class="im">import</span> Slider</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Setup the figure</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">8</span>))</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>ax1 <span class="op">=</span> fig.add_subplot(<span class="dv">211</span>)  <span class="co"># Field at z=0</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>ax2 <span class="op">=</span> fig.add_subplot(<span class="dv">212</span>)  <span class="co"># Propagated field</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Parameters</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>Nx <span class="op">=</span> <span class="dv">512</span>  <span class="co"># Number of spatial points</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> <span class="fl">10e-3</span>  <span class="co"># Size of window in meters</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>dx <span class="op">=</span> L<span class="op">/</span>Nx  <span class="co"># Spatial step size</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="op">-</span>L<span class="op">/</span><span class="dv">2</span>, L<span class="op">/</span><span class="dv">2</span>, Nx)  <span class="co"># Spatial coordinates</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>kx <span class="op">=</span> <span class="dv">2</span><span class="op">*</span>np.pi<span class="op">*</span>np.fft.fftshift(np.fft.fftfreq(Nx, dx))  <span class="co"># Spatial frequencies</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>wavelength <span class="op">=</span> <span class="fl">633e-9</span>  <span class="co"># Wavelength in meters</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>k0 <span class="op">=</span> <span class="dv">2</span><span class="op">*</span>np.pi<span class="op">/</span>wavelength  <span class="co"># Wavenumber</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Initial field at z=0 (Gaussian beam)</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>w0 <span class="op">=</span> <span class="fl">0.5e-3</span>  <span class="co"># Beam waist</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>initial_field <span class="op">=</span> np.exp(<span class="op">-</span>(x<span class="op">**</span><span class="dv">2</span>)<span class="op">/</span>(w0<span class="op">**</span><span class="dv">2</span>))</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate Angular Spectrum</span></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>angular_spectrum <span class="op">=</span> np.fft.fftshift(np.fft.fft(initial_field))</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to propagate the field</span></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> propagate_field(z):</span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Propagation phase factor</span></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>    kz <span class="op">=</span> np.sqrt(k0<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> kx<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="ot">0j</span>)  <span class="co"># +0j to ensure complex sqrt</span></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Set evanescent waves where kx &gt; k0</span></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>    kz[np.<span class="bu">abs</span>(kx) <span class="op">&gt;</span> k0] <span class="op">=</span> <span class="ot">1j</span><span class="op">*</span>np.sqrt(kx[np.<span class="bu">abs</span>(kx) <span class="op">&gt;</span> k0]<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> k0<span class="op">**</span><span class="dv">2</span>)</span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    propagator <span class="op">=</span> np.exp(<span class="ot">1j</span><span class="op">*</span>kz<span class="op">*</span>z)</span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Apply propagator to angular spectrum</span></span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>    propagated_spectrum <span class="op">=</span> angular_spectrum <span class="op">*</span> propagator</span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Inverse transform to get propagated field</span></span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>    propagated_field <span class="op">=</span> np.fft.ifft(np.fft.ifftshift(propagated_spectrum))</span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> propagated_field</span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="co"># Initial plot</span></span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>z_init <span class="op">=</span> <span class="fl">0.1</span>  <span class="co"># Initial propagation distance</span></span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>propagated_field <span class="op">=</span> propagate_field(z_init)</span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot initial field</span></span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>line1, <span class="op">=</span> ax1.plot(x<span class="op">*</span><span class="fl">1e3</span>, np.<span class="bu">abs</span>(initial_field)<span class="op">**</span><span class="dv">2</span>)</span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>ax1.set_title(<span class="st">'Initial Intensity at z=0'</span>)</span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>ax1.set_xlabel(<span class="st">'Position (mm)'</span>)</span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>ax1.set_ylabel(<span class="st">'Intensity'</span>)</span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot propagated field</span></span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>line2, <span class="op">=</span> ax2.plot(x<span class="op">*</span><span class="fl">1e3</span>, np.<span class="bu">abs</span>(propagated_field)<span class="op">**</span><span class="dv">2</span>)</span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>ax2.set_title(<span class="ss">f'Propagated Intensity at z=</span><span class="sc">{</span>z_init<span class="op">*</span><span class="fl">1e2</span><span class="sc">:.1f}</span><span class="ss"> cm'</span>)</span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>ax2.set_xlabel(<span class="st">'Position (mm)'</span>)</span>
-<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>ax2.set_ylabel(<span class="st">'Intensity'</span>)</span>
-<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a><span class="co"># Add slider for propagation distance</span></span>
-<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>axz <span class="op">=</span> plt.axes([<span class="fl">0.2</span>, <span class="fl">0.02</span>, <span class="fl">0.65</span>, <span class="fl">0.03</span>])</span>
-<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>z_slider <span class="op">=</span> Slider(axz, <span class="st">'z (cm)'</span>, <span class="dv">0</span>, <span class="dv">50</span>, valinit<span class="op">=</span>z_init<span class="op">*</span><span class="fl">1e2</span>)</span>
-<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a><span class="co"># Update function for slider</span></span>
-<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> update(val):</span>
-<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>    z <span class="op">=</span> z_slider.val <span class="op">*</span> <span class="fl">1e-2</span>  <span class="co"># Convert cm to m</span></span>
-<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>    propagated_field <span class="op">=</span> propagate_field(z)</span>
-<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a>    line2.set_ydata(np.<span class="bu">abs</span>(propagated_field)<span class="op">**</span><span class="dv">2</span>)</span>
-<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>    ax2.set_title(<span class="ss">f'Propagated Intensity at z=</span><span class="sc">{</span>z<span class="op">*</span><span class="fl">1e2</span><span class="sc">:.1f}</span><span class="ss"> cm'</span>)</span>
-<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a>    fig.canvas.draw_idle()</span>
-<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a>z_slider.on_changed(update)</span>
-<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a>plt.subplots_adjust(bottom<span class="op">=</span><span class="fl">0.15</span>)  <span class="co"># Make room for slider</span></span>
-<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="interactive-visualization" class="level3">
+<h3 class="anchored" data-anchor-id="interactive-visualization">3.2 Interactive Visualization</h3>
+<p>The widget below shows a Gaussian beam (<span class="math inline">\(w_0 = 0.5\,\text{mm}\)</span>, <span class="math inline">\(\lambda = 633\,\text{nm}\)</span>, Rayleigh range <span class="math inline">\(z_R \approx 124\,\text{cm}\)</span>) propagated via the exact angular spectrum method. Drag the slider to change the propagation distance and observe the beam broadening due to diffraction.</p>
+<div id="asp-wrap" style="font-family: Arial, sans-serif; margin: 1em 0;">
+  <div style="margin-bottom: 8px; font-size: 14px;">
+    <strong>z =</strong>
+    <span id="asp-z-label" style="font-weight: bold; color: #2a7;">10 cm</span>
+     
+    <input type="range" id="asp-z-slider" min="0" max="400" value="10" step="2" style="width: 480px; vertical-align: middle; accent-color: steelblue;">
+     <span style="font-size: 12px; color: #888;">0 – 400 cm</span>
+  </div>
+  <svg id="asp-svg"></svg>
+</div>
+
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script>
+(function () {
+
+// ── In-place Cooley-Tukey FFT ─────────────────────────────────────────
+function fft(re, im) {
+  const n = re.length;
+  for (let i = 1, j = 0; i < n; i++) {
+    let bit = n >> 1;
+    for (; j & bit; bit >>= 1) j ^= bit;
+    j ^= bit;
+    if (i < j) {
+      [re[i], re[j]] = [re[j], re[i]];
+      [im[i], im[j]] = [im[j], im[i]];
+    }
+  }
+  for (let s = 2; s <= n; s <<= 1) {
+    const half = s >> 1;
+    const ang  = -Math.PI / half;
+    const wr = Math.cos(ang), wi = Math.sin(ang);
+    for (let k = 0; k < n; k += s) {
+      let cr = 1, ci = 0;
+      for (let j = 0; j < half; j++) {
+        const p = k + j, q = p + half;
+        const tr = re[q]*cr - im[q]*ci, ti = re[q]*ci + im[q]*cr;
+        re[q] = re[p] - tr; im[q] = im[p] - ti;
+        re[p] += tr;        im[p] += ti;
+        const ncr = cr*wr - ci*wi;
+        ci = cr*wi + ci*wr; cr = ncr;
+      }
+    }
+  }
+}
+
+function ifft(re, im) {
+  const n = re.length;
+  for (let i = 0; i < n; i++) im[i] = -im[i];
+  fft(re, im);
+  for (let i = 0; i < n; i++) { re[i] /= n; im[i] /= -n; }
+}
+
+// fftshift = ifftshift for even N: swap halves
+function shift(src) {
+  const n = src.length, h = n >> 1, dst = new Float64Array(n);
+  for (let i = 0; i < n; i++) dst[i] = src[(i + h) % n];
+  return dst;
+}
+
+// ── Physical parameters ───────────────────────────────────────────────
+const N   = 256;
+const L   = 10e-3;           // spatial window: 10 mm
+const dx  = L / N;
+const lam = 633e-9;          // wavelength: 633 nm
+const k0  = 2 * Math.PI / lam;
+const w0  = 0.5e-3;          // beam waist: 0.5 mm
+
+// Grids
+const xArr  = Array.from({length: N}, (_, i) => (-L/2 + i*dx) * 1e3);  // mm
+const dkx   = 2 * Math.PI / L;
+const kxU   = Float64Array.from({length: N}, (_, i) => (i < N>>1 ? i : i-N) * dkx);
+const kxS   = shift(kxU);                                                 // shifted kx
+const nuArr = Array.from(kxS, k => k / (2*Math.PI) * 1e-3);             // cycles/mm
+
+// ── Initial Gaussian field ─────────────────────────────────────────────
+const f0Re = Float64Array.from({length: N}, (_, i) => {
+  const xi = -L/2 + i*dx; return Math.exp(-xi*xi / (w0*w0));
+});
+const f0Im = new Float64Array(N);
+const I0   = Array.from(f0Re, v => v*v);
+const I0max = Math.max(...I0);
+
+// ── Angular spectrum (FFT + fftshift) ─────────────────────────────────
+const aspRe = f0Re.slice(), aspIm = f0Im.slice();
+fft(aspRe, aspIm);
+const aspReS = shift(aspRe), aspImS = shift(aspIm);
+const aspPow = Float64Array.from({length: N}, (_, i) => aspReS[i]**2 + aspImS[i]**2);
+const aspMax = Math.max(...aspPow);
+
+// ── Propagation: multiply shifted spectrum by H, ifftshift, IFFT ──────
+function propagate(z_m) {
+  const pRe = aspReS.slice(), pIm = aspImS.slice();
+  for (let i = 0; i < N; i++) {
+    const kz2 = k0*k0 - kxS[i]*kxS[i];
+    if (kz2 >= 0) {
+      const ph = Math.sqrt(kz2) * z_m;
+      const c = Math.cos(ph), s = Math.sin(ph);
+      const r = pRe[i]*c - pIm[i]*s;
+      pIm[i]  = pRe[i]*s + pIm[i]*c;
+      pRe[i]  = r;
+    } else {
+      const d = Math.exp(-Math.sqrt(-kz2) * z_m);
+      pRe[i] *= d; pIm[i] *= d;
+    }
+  }
+  const ur = shift(pRe), ui = shift(pIm);   // ifftshift
+  ifft(ur, ui);
+  let mx = 0;
+  const I = new Float64Array(N);
+  for (let i = 0; i < N; i++) {
+    I[i] = ur[i]**2 + ui[i]**2;
+    if (I[i] > mx) mx = I[i];
+  }
+  return Array.from(I, v => v / mx);
+}
+
+// ── D3 layout ─────────────────────────────────────────────────────────
+const ML = 58, MR = 12, MT = 34, MB = 40, PH = 90, GAP = 14;
+const W   = 600, IW = W - ML - MR;
+const rowH = MT + PH + MB;
+const svgH = 3 * rowH + 2 * GAP;
+
+const svg = d3.select("#asp-svg").attr("width", W).attr("height", svgH);
+
+function panel(row, title, xSc, xData, xlabel, ys, color) {
+  const dy = row * (rowH + GAP) + MT;
+  const g  = svg.append("g").attr("transform", `translate(${ML},${dy})`);
+  const yS = d3.scaleLinear().domain([0, 1.05]).range([PH, 0]);
+
+  g.append("text").attr("x", IW/2).attr("y", -10)
+   .attr("text-anchor","middle").attr("font-size","12px").attr("fill","#333")
+   .text(title);
+  g.append("g").attr("transform",`translate(0,${PH})`)
+   .call(d3.axisBottom(xSc).ticks(6).tickSize(3));
+  g.append("g").call(d3.axisLeft(yS).ticks(3).tickFormat(d3.format(".1f")).tickSize(3));
+  g.append("text").attr("x",IW/2).attr("y",PH+30)
+   .attr("text-anchor","middle").attr("font-size","11px").attr("fill","#555")
+   .text(xlabel);
+  g.append("text").attr("transform","rotate(-90)")
+   .attr("x",-PH/2).attr("y",-46)
+   .attr("text-anchor","middle").attr("font-size","11px").attr("fill","#555")
+   .text("norm. intensity");
+
+  const lineG = d3.line().x((_,i) => xSc(xData[i])).y(d => yS(d));
+  const path  = g.append("path").attr("fill","none")
+    .attr("stroke",color).attr("stroke-width",1.5).attr("d",lineG(ys));
+
+  return { path, lineG };
+}
+
+const xSc  = d3.scaleLinear().domain([xArr[0],  xArr[N-1]]).range([0, IW]);
+const nuSc = d3.scaleLinear().domain([nuArr[0], nuArr[N-1]]).range([0, IW]);
+
+panel(0, "Initial intensity  |U(x, 0)|²",
+      xSc,  xArr,   "x  (mm)",             Array.from(I0, v => v/I0max), "steelblue");
+panel(1, "Angular spectrum  |Û(νₓ)|²",
+      nuSc, nuArr, "νₓ  (cycles / mm)", Array.from(aspPow, v => v/aspMax), "darkorange");
+const p2 = panel(2, "Propagated intensity  |U(x, z)|²",
+      xSc,  xArr,   "x  (mm)",             propagate(0.1), "seagreen");
+
+// ── Slider ─────────────────────────────────────────────────────────────
+document.getElementById("asp-z-slider").addEventListener("input", function () {
+  const z_cm = +this.value;
+  document.getElementById("asp-z-label").textContent = z_cm + " cm";
+  p2.path.attr("d", p2.lineG(propagate(z_cm * 1e-2)));
+});
+
+})();
+</script>
 </section>
 <section id="physical-interpretation" class="level3">
 <h3 class="anchored" data-anchor-id="physical-interpretation">3.3 Physical Interpretation</h3>
@@ -999,6 +1171,18 @@ window.Quarto = {
     }
   });
   </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../lectures/lecture05/01-lecture05.html" class="pagination-link" aria-label="Introduction to Fourier Optics">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Introduction to Fourier Optics</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../lectures/lecture05/02-lecture05.html" class="pagination-link" aria-label="Image Formation and Resolution">
+        <span class="nav-page-text">Image Formation and Resolution</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
 
 
