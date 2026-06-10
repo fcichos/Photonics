@@ -343,7 +343,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
- <span class="menu-text">PART III: FOURIER OPTICS &amp; MICROSCOPY</span></a>
+ <span class="menu-text">PART II: FOURIER OPTICS &amp; MICROSCOPY</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -352,7 +352,7 @@ window.Quarto = {
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true">
- <span class="menu-text">Lecture 7 — Fourier Optics: Foundations</span></a>
+ <span class="menu-text">Lecture 6 — Fourier Optics: Foundations</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -375,7 +375,7 @@ window.Quarto = {
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true">
- <span class="menu-text">Lecture 8 — Fourier Optics: Image Formation</span></a>
+ <span class="menu-text">Lecture 7 — Fourier Optics: Image Formation</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -385,6 +385,46 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="../../lectures/lecture05/02-lecture05.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Image Formation and Resolution</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true">
+ <span class="menu-text">Lecture 8 — Fourier Optics: Applications</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture06/01-lecture06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Spatial Frequency Applications</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="true">
+ <span class="menu-text">Lecture 9 — Microscopy I: Brightfield, Darkfield &amp; Phase Contrast</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture09/01-lecture09.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Brightfield &amp; Darkfield</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture09/02-lecture09.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Phase Contrast &amp; DIC</span></a>
   </div>
 </li>
       </ul>
@@ -709,7 +749,7 @@ n(\omega)=1+\frac{Nq^2}{2\epsilon_0 m}\frac{(\omega_0^2-\omega^2)-i\sigma\omega}
 <p>The real part <span class="math inline">\(n_r(\omega)\)</span> controls the phase velocity and refraction, while the imaginary part <span class="math inline">\(\kappa(\omega)\)</span> determines absorption according to the Beer-Lambert law: <span class="math inline">\(I \propto e^{-2\omega\kappa z/c}\)</span>. These components can be written as: <span class="math display">\[n_r(\omega) = 1 + A\frac{(\omega_0^2-\omega^2)}{(\omega_0^2-\omega^2)^2+\omega^2\sigma^2}\]</span></p>
 <p><span class="math display">\[\kappa(\omega) = A\frac{\sigma\omega}{(\omega_0^2-\omega^2)^2+\omega^2\sigma^2}\]</span></p>
 <p>where <span class="math inline">\(A=\frac{Nq^2}{2\epsilon_0 m}\)</span> is a constant that depends on the material’s atomic properties.</p>
-<div id="a6b2ce1e" class="cell" data-execution_count="3">
+<div id="a1e8a512" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">1</span>  <span class="co"># Number density</span></span>
@@ -1038,7 +1078,7 @@ Figure&nbsp;4— Magnitude and phase of Fresnel reflection coefficients for air-
 <p>The following code calculates these coefficients for various angles of incidence:</p>
 <!--
 
-::: {#31c4bef7 .cell execution_count=5}
+::: {#80cb32bb .cell execution_count=5}
 ``` {.python .cell-code code-fold="true"}
 def fresnel_coefficients(n1, n2, theta_i, polarization='s'):
     """Calculate Fresnel reflection and transmission coefficients"""
