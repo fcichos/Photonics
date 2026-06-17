@@ -20,41 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -65,6 +30,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
+<link href="../../lectures/lecture12/01-lecture12.html" rel="next">
+<link href="../../lectures/lecture09/02-lecture09.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -172,7 +139,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Confocal Microscopy &amp; Wavefront Control</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Current Lecture</li><li class="breadcrumb-item"><a href="../../lectures/lecture09/03-lecture09.html">Lecture 10 — Fluorescence, Confocal and Superresolution</a></li><li class="breadcrumb-item"><a href="../../lectures/lecture09/03-lecture09.html">Confocal &amp; Wavefront Control</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -241,7 +208,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">PART I: FOUNDATIONS</span></a>
+ <span class="menu-text">Current Lecture</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -250,171 +217,12 @@ window.Quarto = {
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">Lecture 1 — Introduction, Ray Optics &amp; Wave Optics</span></a>
+ <span class="menu-text">Lecture 9 — Brightfield, Darkfield &amp; Phase Contrast</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../lectures/lecture01/introduction.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Introduction</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../lectures/lecture01/01-lecture01.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Ray Optics</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text">Lecture 2 — Matrix Optics, Wave Optics</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../lectures/lecture02/01-lecture02.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Matrix Optics</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
- <span class="menu-text">Lecture 3 — Wave Optics</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../lectures/lecture02/02-lecture02.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Wave Optics</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
- <span class="menu-text">Lecture 4 — Interference</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../lectures/lecture03/01-lecture03.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Interference &amp; Coherence</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
- <span class="menu-text">Lecture 5 — Interference &amp; Beams</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../lectures/lecture04/01-lecture04.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Gaussian Beams</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
- <span class="menu-text">PART II: FOURIER OPTICS &amp; MICROSCOPY</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true">
- <span class="menu-text">Lecture 6 — Fourier Optics: Foundations</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth2 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../lectures/lecture05/01-lecture05.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Introduction to Fourier Optics</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../lectures/lecture05/lecture05-supplements.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Supplements</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true">
- <span class="menu-text">Lecture 7 — Fourier Optics: Image Formation</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth2 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../lectures/lecture05/02-lecture05.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Image Formation and Resolution</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true">
- <span class="menu-text">Lecture 8 — Fourier Optics: Applications</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth2 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../lectures/lecture06/01-lecture06.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Spatial Frequency Applications</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="true">
- <span class="menu-text">Lecture 9 — Microscopy I: Brightfield, Darkfield &amp; Phase Contrast</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../lectures/lecture09/01-lecture09.html" class="sidebar-item-text sidebar-link">
@@ -425,6 +233,64 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="../../lectures/lecture09/02-lecture09.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Phase Contrast &amp; DIC</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Lecture 10 — Fluorescence, Confocal and Superresolution</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture09/03-lecture09.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Confocal &amp; Wavefront Control</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture12/01-lecture12.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Superresolution Microscopy</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Lecture 11 — Polarization &amp; Anisotropic Media</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture07/01-lecture07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Polarization &amp; Jones Calculus</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture11/anisotropic_media.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Anisotropic Materials</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture08/01-lecture08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Nonlinear Optics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture07/02-lecture07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Electro-Optics &amp; Acousto-Optics</span></a>
   </div>
 </li>
       </ul>
@@ -450,64 +316,13 @@ window.Quarto = {
   <li><a href="#fast-beam-scanning" id="toc-fast-beam-scanning" class="nav-link" data-scroll-target="#fast-beam-scanning">Fast Beam Scanning</a></li>
   <li><a href="#two-photon-excitation" id="toc-two-photon-excitation" class="nav-link" data-scroll-target="#two-photon-excitation">Two-Photon Excitation</a></li>
   </ul></li>
-  <li><a href="#aberrations-and-the-pupil-function" id="toc-aberrations-and-the-pupil-function" class="nav-link" data-scroll-target="#aberrations-and-the-pupil-function">Aberrations and the Pupil Function</a>
-  <ul class="collapse">
-  <li><a href="#the-general-pupil-function" id="toc-the-general-pupil-function" class="nav-link" data-scroll-target="#the-general-pupil-function">The General Pupil Function</a></li>
-  <li><a href="#how-aberrations-degrade-the-otf" id="toc-how-aberrations-degrade-the-otf" class="nav-link" data-scroll-target="#how-aberrations-degrade-the-otf">How Aberrations Degrade the OTF</a></li>
-  <li><a href="#the-strehl-ratio-a-quantitative-measure" id="toc-the-strehl-ratio-a-quantitative-measure" class="nav-link" data-scroll-target="#the-strehl-ratio-a-quantitative-measure">The Strehl Ratio: A Quantitative Measure</a>
-  <ul class="collapse">
-  <li><a href="#example-spherical-aberration-from-cover-slip-mismatch" id="toc-example-spherical-aberration-from-cover-slip-mismatch" class="nav-link" data-scroll-target="#example-spherical-aberration-from-cover-slip-mismatch">Example: Spherical Aberration from Cover Slip Mismatch</a></li>
-  </ul></li>
-  </ul></li>
-  <li><a href="#zernike-polynomials-the-natural-pupil-plane-basis" id="toc-zernike-polynomials-the-natural-pupil-plane-basis" class="nav-link" data-scroll-target="#zernike-polynomials-the-natural-pupil-plane-basis">Zernike Polynomials: The Natural Pupil-Plane Basis</a>
-  <ul class="collapse">
-  <li><a href="#why-zernike" id="toc-why-zernike" class="nav-link" data-scroll-target="#why-zernike">Why Zernike?</a>
-  <ul class="collapse">
-  <li><a href="#orthonormality" id="toc-orthonormality" class="nav-link" data-scroll-target="#orthonormality">Orthonormality</a></li>
-  </ul></li>
-  <li><a href="#low-order-zernike-modes-and-physical-meaning" id="toc-low-order-zernike-modes-and-physical-meaning" class="nav-link" data-scroll-target="#low-order-zernike-modes-and-physical-meaning">Low-Order Zernike Modes and Physical Meaning</a></li>
-  </ul></li>
-  <li><a href="#zernike-visualization-and-aberration-impact" id="toc-zernike-visualization-and-aberration-impact" class="nav-link" data-scroll-target="#zernike-visualization-and-aberration-impact">Zernike Visualization and Aberration Impact</a></li>
-  <li><a href="#impact-of-aberrations-on-psf-and-otf" id="toc-impact-of-aberrations-on-psf-and-otf" class="nav-link" data-scroll-target="#impact-of-aberrations-on-psf-and-otf">Impact of Aberrations on PSF and OTF</a></li>
-  <li><a href="#wavefront-sensing-the-shack-hartmann-sensor" id="toc-wavefront-sensing-the-shack-hartmann-sensor" class="nav-link" data-scroll-target="#wavefront-sensing-the-shack-hartmann-sensor">Wavefront Sensing: The Shack-Hartmann Sensor</a>
-  <ul class="collapse">
-  <li><a href="#principle-from-wavefront-slope-to-phase" id="toc-principle-from-wavefront-slope-to-phase" class="nav-link" data-scroll-target="#principle-from-wavefront-slope-to-phase">Principle: From Wavefront Slope to Phase</a></li>
-  <li><a href="#fourier-space-perspective-connection-to-slope-and-frequency" id="toc-fourier-space-perspective-connection-to-slope-and-frequency" class="nav-link" data-scroll-target="#fourier-space-perspective-connection-to-slope-and-frequency">Fourier-Space Perspective: Connection to Slope and Frequency</a></li>
-  <li><a href="#reconstruction-algorithm" id="toc-reconstruction-algorithm" class="nav-link" data-scroll-target="#reconstruction-algorithm">Reconstruction Algorithm</a></li>
-  </ul></li>
-  <li><a href="#adaptive-optics-for-microscopy" id="toc-adaptive-optics-for-microscopy" class="nav-link" data-scroll-target="#adaptive-optics-for-microscopy">Adaptive Optics for Microscopy</a>
-  <ul class="collapse">
-  <li><a href="#wavefront-correction-devices" id="toc-wavefront-correction-devices" class="nav-link" data-scroll-target="#wavefront-correction-devices">Wavefront Correction Devices</a>
-  <ul class="collapse">
-  <li><a href="#spatial-light-modulators-slms" id="toc-spatial-light-modulators-slms" class="nav-link" data-scroll-target="#spatial-light-modulators-slms">Spatial Light Modulators (SLMs)</a></li>
-  <li><a href="#deformable-mirrors" id="toc-deformable-mirrors" class="nav-link" data-scroll-target="#deformable-mirrors">Deformable Mirrors</a></li>
-  </ul></li>
-  <li><a href="#sensorless-adaptive-optics" id="toc-sensorless-adaptive-optics" class="nav-link" data-scroll-target="#sensorless-adaptive-optics">Sensorless Adaptive Optics</a></li>
-  </ul></li>
-  <li><a href="#application-deep-tissue-confocal-imaging-with-adaptive-optics" id="toc-application-deep-tissue-confocal-imaging-with-adaptive-optics" class="nav-link" data-scroll-target="#application-deep-tissue-confocal-imaging-with-adaptive-optics">Application: Deep-Tissue Confocal Imaging with Adaptive Optics</a>
-  <ul class="collapse">
-  <li><a href="#the-problem-spherical-aberration-at-depth" id="toc-the-problem-spherical-aberration-at-depth" class="nav-link" data-scroll-target="#the-problem-spherical-aberration-at-depth">The Problem: Spherical Aberration at Depth</a></li>
-  <li><a href="#adaptive-correction-strategy" id="toc-adaptive-correction-strategy" class="nav-link" data-scroll-target="#adaptive-correction-strategy">Adaptive Correction Strategy</a></li>
-  </ul></li>
-  <li><a href="#fourier-optics-thread-summary-table" id="toc-fourier-optics-thread-summary-table" class="nav-link" data-scroll-target="#fourier-optics-thread-summary-table">Fourier Optics Thread: Summary Table</a></li>
-  <li><a href="#experimental-connections" id="toc-experimental-connections" class="nav-link" data-scroll-target="#experimental-connections">Experimental Connections</a>
-  <ul class="collapse">
-  <li><a href="#building-a-simple-confocal-path" id="toc-building-a-simple-confocal-path" class="nav-link" data-scroll-target="#building-a-simple-confocal-path">Building a Simple Confocal Path</a></li>
-  <li><a href="#measuring-zernike-aberrations-with-a-hartmann-sensor" id="toc-measuring-zernike-aberrations-with-a-hartmann-sensor" class="nav-link" data-scroll-target="#measuring-zernike-aberrations-with-a-hartmann-sensor">Measuring Zernike Aberrations with a Hartmann Sensor</a></li>
-  <li><a href="#adaptive-optics-in-practice-slm-based-correction" id="toc-adaptive-optics-in-practice-slm-based-correction" class="nav-link" data-scroll-target="#adaptive-optics-in-practice-slm-based-correction">Adaptive Optics in Practice: SLM-Based Correction</a></li>
-  </ul></li>
-  <li><a href="#summary-fourier-optics-in-microscopy" id="toc-summary-fourier-optics-in-microscopy" class="nav-link" data-scroll-target="#summary-fourier-optics-in-microscopy">Summary: Fourier Optics in Microscopy</a>
-  <ul class="collapse">
-  <li><a href="#key-concepts-revisited" id="toc-key-concepts-revisited" class="nav-link" data-scroll-target="#key-concepts-revisited">Key Concepts Revisited</a></li>
-  </ul></li>
-  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading">Further Reading</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Current Lecture</li><li class="breadcrumb-item"><a href="../../lectures/lecture09/03-lecture09.html">Lecture 10 — Fluorescence, Confocal and Superresolution</a></li><li class="breadcrumb-item"><a href="../../lectures/lecture09/03-lecture09.html">Confocal &amp; Wavefront Control</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Confocal Microscopy &amp; Wavefront Control</h1>
 </div>
@@ -644,527 +459,517 @@ Practical tips for confocal
 <section id="two-photon-excitation" class="level2">
 <h2 class="anchored" data-anchor-id="two-photon-excitation">Two-Photon Excitation</h2>
 <p>Two-photon excitation reaches the same sectioning by a different route. Instead of a pinhole it uses a fluorophore that must absorb <strong>two</strong> infrared photons simultaneously to reach the excited state. Because the rate of this process scales as the square of the intensity, appreciable excitation happens only at the bright focus and essentially nowhere else; out-of-focus fluorophores are never excited, so there is nothing to reject and no pinhole is needed. The squared intensity dependence narrows the effective excitation PSF just as the product PSF does in confocal, giving comparable sectioning. The decisive advantage is that the long infrared wavelength (700 to 1000 nm) scatters far less in tissue, so two-photon microscopy reaches several times deeper into living samples, which is why it dominates intravital and neuroscience imaging.</p>
-<hr>
-</section>
-</section>
-<section id="aberrations-and-the-pupil-function" class="level1">
-<h1>Aberrations and the Pupil Function</h1>
-<section id="the-general-pupil-function" class="level2">
-<h2 class="anchored" data-anchor-id="the-general-pupil-function">The General Pupil Function</h2>
-<p>We now recognize that the pupil function is not always ideal. The <strong>general form</strong> is: <span class="math display">\[P(\rho, \theta) = A(\rho) \, e^{i W(\rho, \theta)}\]</span></p>
-<p>where: - <span class="math inline">\(A(\rho)\)</span> is the <strong>aperture function</strong> (amplitude; typically = 1 inside the pupil, 0 outside) - <span class="math inline">\(W(\rho, \theta)\)</span> is the <strong>wavefront error</strong> (in units of length, or often in units of wavelength) - <span class="math inline">\((\rho, \theta)\)</span> are polar coordinates in the pupil plane</p>
-<p><strong>Physical sources of wavefront error:</strong> 1. <strong>Cover slip mismatch</strong>: Incorrect cover slip thickness introduces spherical aberration 2. <strong>Refractive index mismatch</strong>: Specimen immersion medium differs from design medium (water vs.&nbsp;oil) 3. <strong>Misalignment</strong>: Objective not perpendicular to specimen plane → coma 4. <strong>Field curvature</strong>: Aberration increases toward the edge of the field 5. <strong>Lens defects</strong>: Manufacturing imperfections in optical coatings or surfaces</p>
-</section>
-<section id="how-aberrations-degrade-the-otf" class="level2">
-<h2 class="anchored" data-anchor-id="how-aberrations-degrade-the-otf">How Aberrations Degrade the OTF</h2>
-<p>The <strong>aberrated OTF</strong> is: <span class="math display">\[\text{OTF}_\text{aberr}(\mathbf{k}) \propto \left| \mathcal{F}\left\{ P(\mathbf{r}) \right\}(\mathbf{k}) \right|^2 = \left| \int e^{i W(\mathbf{r})} e^{i \mathbf{k} \cdot \mathbf{r}} d^2\mathbf{r} \right|^2\]</span></p>
-<p><strong>Key observation:</strong> Even small wavefront errors reduce the contrast of the OTF, especially at high spatial frequencies. The effect is multiplicative: if <span class="math inline">\(W \ll 1\)</span> rad, the OTF scales approximately as: <span class="math display">\[\text{OTF}_\text{aberr} \approx \text{OTF}_\text{ideal} \cdot \exp(-\sigma_W^2 / 2)\]</span></p>
-<p>where <span class="math inline">\(\sigma_W^2 = \langle W^2 \rangle\)</span> is the variance of the wavefront error.</p>
-</section>
-<section id="the-strehl-ratio-a-quantitative-measure" class="level2">
-<h2 class="anchored" data-anchor-id="the-strehl-ratio-a-quantitative-measure">The Strehl Ratio: A Quantitative Measure</h2>
-<p>The <strong>Strehl ratio</strong> <span class="math inline">\(S\)</span> measures the reduction in peak intensity of the PSF due to aberrations: <span class="math display">\[S = \frac{\max(\text{PSF}_\text{aberr})}{\max(\text{PSF}_\text{ideal})} = \left| \langle e^{i W} \rangle \right|^2\]</span></p>
-<p>where the angle brackets denote averaging over the pupil.</p>
-<p>For small aberrations (Maréchal approximation): <span class="math display">\[S \approx e^{-\sigma_W^2} \approx 1 - \sigma_W^2\]</span></p>
-<p><strong>Rule of thumb:</strong> - <span class="math inline">\(S &gt; 0.8\)</span> (good): system diffraction-limited - <span class="math inline">\(S = 0.5\)</span>–0.8: noticeable degradation - <span class="math inline">\(S &lt; 0.5\)</span>: severe, visible loss of resolution</p>
-<p><strong>Wavelength dependence:</strong> Aberrations are always expressed relative to <span class="math inline">\(\lambda\)</span>. A fixed defocus (e.g., 1 μm) is worse for shorter wavelengths (where it corresponds to more wavelengths) and negligible for longer wavelengths.</p>
-<section id="example-spherical-aberration-from-cover-slip-mismatch" class="level3">
-<h3 class="anchored" data-anchor-id="example-spherical-aberration-from-cover-slip-mismatch">Example: Spherical Aberration from Cover Slip Mismatch</h3>
-<p>A typical case: specimen imaged through a 170 μm cover slip with water immersion (<span class="math inline">\(n = 1.33\)</span>), but objective designed for oil (<span class="math inline">\(n = 1.515\)</span>).</p>
-<p>The aberration magnitude is roughly: <span class="math display">\[W_\text{sph} \sim (n_\text{oil} - n_\text{water}) \cdot t / \text{NA}^2\]</span></p>
-<p>where <span class="math inline">\(t\)</span> is the mismatch. For <span class="math inline">\(\Delta n \sim 0.2\)</span>, <span class="math inline">\(t \sim 10\)</span> μm, <span class="math inline">\(\text{NA} = 1.4\)</span>: <span class="math display">\[W_\text{sph} \sim 1 \text{ μm} \sim 3 \text{ wavelengths at } 488 \text{ nm}\]</span></p>
-<p>This causes a dramatic loss of contrast and axial resolution—a major problem in deep-tissue imaging.</p>
-<hr>
-</section>
-</section>
-</section>
-<section id="zernike-polynomials-the-natural-pupil-plane-basis" class="level1">
-<h1>Zernike Polynomials: The Natural Pupil-Plane Basis</h1>
-<section id="why-zernike" class="level2">
-<h2 class="anchored" data-anchor-id="why-zernike">Why Zernike?</h2>
-<p>Circular apertures (objectives) naturally admit an <strong>orthonormal basis of functions</strong>: the <strong>Zernike polynomials</strong>. These are defined on the unit disk and indexed by two integers: - <span class="math inline">\(n\)</span> = radial order (polynomial degree) - <span class="math inline">\(m\)</span> = azimuthal order (angular frequency)</p>
-<section id="orthonormality" class="level3">
-<h3 class="anchored" data-anchor-id="orthonormality">Orthonormality</h3>
-<p>The Zernike polynomials <span class="math inline">\(Z_n^m(\rho, \theta)\)</span> satisfy: <span class="math display">\[\int_0^{2\pi} \int_0^1 Z_n^m(\rho, \theta) \, Z_{n'}^{m'}(\rho, \theta) \, \rho \, d\rho \, d\theta = \delta_{nn'} \delta_{mm'}\]</span></p>
-<p>This makes them ideal for decomposing any wavefront error on a circular pupil: <span class="math display">\[W(\rho, \theta) = \sum_{n,m} c_{n,m} \, Z_n^m(\rho, \theta)\]</span></p>
-<p>The coefficients <span class="math inline">\(c_{n,m}\)</span> directly represent the “strength” of each aberration mode.</p>
-</section>
-</section>
-<section id="low-order-zernike-modes-and-physical-meaning" class="level2">
-<h2 class="anchored" data-anchor-id="low-order-zernike-modes-and-physical-meaning">Low-Order Zernike Modes and Physical Meaning</h2>
-<p>The first 15 Zernike modes are shown below with their conventional names (using Noll indexing):</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 33%">
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Mode</th>
-<th><span class="math inline">\(n\)</span></th>
-<th><span class="math inline">\(m\)</span></th>
-<th>Name</th>
-<th>Physical Meaning</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>Piston</td>
-<td>Uniform phase shift (no effect)</td>
-</tr>
-<tr class="even">
-<td>2–3</td>
-<td>1</td>
-<td>±1</td>
-<td>Tip/Tilt</td>
-<td>Linear phase; equivalent to beam pointing error</td>
-</tr>
-<tr class="odd">
-<td>4</td>
-<td>2</td>
-<td>0</td>
-<td>Defocus</td>
-<td>Quadratic wavefront; changes focal plane</td>
-</tr>
-<tr class="even">
-<td>5–6</td>
-<td>2</td>
-<td>±2</td>
-<td>Astigmatism</td>
-<td>Cylindrical lens effect; different focus in <span class="math inline">\(x\)</span>, <span class="math inline">\(y\)</span></td>
-</tr>
-<tr class="odd">
-<td>7–8</td>
-<td>3</td>
-<td>±1</td>
-<td>Coma</td>
-<td>Asymmetric aberration from misalignment</td>
-</tr>
-<tr class="even">
-<td>9–10</td>
-<td>3</td>
-<td>±3</td>
-<td>Trefoil</td>
-<td>Three-fold asymmetry</td>
-</tr>
-<tr class="odd">
-<td>11</td>
-<td>4</td>
-<td>0</td>
-<td>Spherical Aberration</td>
-<td>Paraxial and marginal rays focus differently</td>
-</tr>
-<tr class="even">
-<td>12–13</td>
-<td>4</td>
-<td>±2</td>
-<td>Secondary Astigmatism</td>
-<td>Higher-order version of astigmatism</td>
-</tr>
-<tr class="odd">
-<td>14–15</td>
-<td>4</td>
-<td>±4</td>
-<td>Quatrefoil</td>
-<td>Four-fold asymmetry</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Physical importance:</strong> - <strong>Piston</strong> (mode 1): Just a global phase shift; doesn’t affect intensity (image-forming modes start at 2) - <strong>Tip/Tilt</strong> (modes 2–3): Beam walk; can be corrected by an AOM - <strong>Defocus</strong> (mode 4): Most common aberration; easily corrected by z-stage adjustment - <strong>Astigmatism</strong> (modes 5–6): Common in high-NA systems; requires SLM or deformable mirror to correct - <strong>Coma</strong> (modes 7–8): Signature of misalignment; usually fixed mechanically - <strong>Spherical aberration</strong> (mode 11): Depth-dependent; increases with depth in scattering tissue; adaptive optics gold standard target</p>
-<hr>
-</section>
-</section>
-<section id="zernike-visualization-and-aberration-impact" class="level1">
-<h1>Zernike Visualization and Aberration Impact</h1>
-<div id="cell-fig-zernike" class="cell" data-execution_count="6">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> zernike_radial(n, m, rho):</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (n <span class="op">-</span> m) <span class="op">%</span> <span class="dv">2</span> <span class="op">!=</span> <span class="dv">0</span>:</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> np.zeros_like(rho)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    out <span class="op">=</span> np.zeros_like(rho, dtype<span class="op">=</span><span class="bu">float</span>)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>((n <span class="op">-</span> m)<span class="op">//</span><span class="dv">2</span> <span class="op">+</span> <span class="dv">1</span>):</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>        c <span class="op">=</span> ((<span class="op">-</span><span class="dv">1</span>)<span class="op">**</span>k <span class="op">*</span> math.factorial(n <span class="op">-</span> k) <span class="op">/</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>             (math.factorial(k) <span class="op">*</span> math.factorial((n <span class="op">+</span> m)<span class="op">//</span><span class="dv">2</span> <span class="op">-</span> k) <span class="op">*</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>              math.factorial((n <span class="op">-</span> m)<span class="op">//</span><span class="dv">2</span> <span class="op">-</span> k)))</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>        out <span class="op">+=</span> c <span class="op">*</span> rho<span class="op">**</span>(n <span class="op">-</span> <span class="dv">2</span><span class="op">*</span>k)</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> out</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> zernike_mode(n, m, rho, theta):</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    rad <span class="op">=</span> zernike_radial(n, <span class="bu">abs</span>(m), rho)</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> m <span class="op">&lt;</span> <span class="dv">0</span>:</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> rad <span class="op">*</span> np.sin(<span class="bu">abs</span>(m)<span class="op">*</span>theta)</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> m <span class="op">&gt;</span> <span class="dv">0</span>:</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> rad <span class="op">*</span> np.cos(m<span class="op">*</span>theta)</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> rad</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>noll_modes <span class="op">=</span> [(<span class="dv">0</span>,<span class="dv">0</span>), (<span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>), (<span class="dv">1</span>,<span class="dv">1</span>), (<span class="dv">2</span>,<span class="dv">0</span>), (<span class="dv">2</span>,<span class="op">-</span><span class="dv">2</span>), (<span class="dv">2</span>,<span class="dv">2</span>), (<span class="dv">3</span>,<span class="op">-</span><span class="dv">1</span>), (<span class="dv">3</span>,<span class="dv">1</span>),</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>              (<span class="dv">3</span>,<span class="op">-</span><span class="dv">3</span>), (<span class="dv">3</span>,<span class="dv">3</span>), (<span class="dv">4</span>,<span class="dv">0</span>), (<span class="dv">4</span>,<span class="op">-</span><span class="dv">2</span>), (<span class="dv">4</span>,<span class="dv">2</span>), (<span class="dv">4</span>,<span class="op">-</span><span class="dv">4</span>), (<span class="dv">4</span>,<span class="dv">4</span>)]</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>names <span class="op">=</span> [<span class="st">'piston'</span>, <span class="st">'tip'</span>, <span class="st">'tilt'</span>, <span class="st">'defocus'</span>, <span class="st">'astigmatism'</span>, <span class="st">'astigmatism 45°'</span>,</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>         <span class="st">'coma'</span>, <span class="st">'coma 90°'</span>, <span class="st">'trefoil'</span>, <span class="st">'trefoil 30°'</span>, <span class="st">'spherical'</span>,</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>         <span class="st">'sec. astig.'</span>, <span class="st">'sec. astig. 45°'</span>, <span class="st">'quatrefoil'</span>, <span class="st">'quatrefoil 22°'</span>]</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Cartesian pupil grid; mask outside the unit disk so each mode is a real disk</span></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> <span class="dv">200</span></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>xx <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, g)</span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>Xg, Yg <span class="op">=</span> np.meshgrid(xx, xx)</span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>Rg, Tg <span class="op">=</span> np.sqrt(Xg<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> Yg<span class="op">**</span><span class="dv">2</span>), np.arctan2(Yg, Xg)</span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>inside <span class="op">=</span> Rg <span class="op">&lt;=</span> <span class="fl">1.0</span></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">3</span>, <span class="dv">5</span>, figsize<span class="op">=</span>get_size(<span class="dv">17</span>, <span class="fl">10.8</span>), layout<span class="op">=</span><span class="st">'constrained'</span>)</span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> idx, ((n, m), name) <span class="kw">in</span> <span class="bu">enumerate</span>(<span class="bu">zip</span>(noll_modes, names)):</span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>    ax <span class="op">=</span> axes.flat[idx]</span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>    Z <span class="op">=</span> zernike_mode(n, m, Rg, Tg)</span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>    peak <span class="op">=</span> np.nanmax(np.<span class="bu">abs</span>(np.where(inside, Z, np.nan)))</span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>    Z <span class="op">=</span> np.where(inside, Z<span class="op">/</span>(peak <span class="cf">if</span> peak <span class="op">&gt;</span> <span class="dv">0</span> <span class="cf">else</span> <span class="fl">1.0</span>), np.nan)</span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>    im <span class="op">=</span> ax.imshow(Z, extent<span class="op">=</span>[<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>], origin<span class="op">=</span><span class="st">'lower'</span>, cmap<span class="op">=</span><span class="st">'RdBu_r'</span>,</span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>                   vmin<span class="op">=-</span><span class="dv">1</span>, vmax<span class="op">=</span><span class="dv">1</span>, interpolation<span class="op">=</span><span class="st">'bilinear'</span>)</span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>    ax.add_patch(plt.Circle((<span class="dv">0</span>, <span class="dv">0</span>), <span class="dv">1</span>, fill<span class="op">=</span><span class="va">False</span>, ec<span class="op">=</span><span class="st">'0.3'</span>, lw<span class="op">=</span><span class="fl">0.8</span>))</span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>    ax.set_title(<span class="ss">f'</span><span class="sc">{</span>idx<span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="ss">. </span><span class="sc">{</span>name<span class="sc">}</span><span class="ss">'</span>, fontsize<span class="op">=</span><span class="fl">8.5</span>)</span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>    ax.set_xticks([])<span class="op">;</span> ax.set_yticks([])<span class="op">;</span> ax.set_aspect(<span class="st">'equal'</span>)</span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>    ax.set_xlim(<span class="op">-</span><span class="fl">1.12</span>, <span class="fl">1.12</span>)<span class="op">;</span> ax.set_ylim(<span class="op">-</span><span class="fl">1.12</span>, <span class="fl">1.12</span>)</span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> sp <span class="kw">in</span> ax.spines.values():</span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>        sp.set_visible(<span class="va">False</span>)</span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>cb <span class="op">=</span> fig.colorbar(im, ax<span class="op">=</span>axes, fraction<span class="op">=</span><span class="fl">0.02</span>, pad<span class="op">=</span><span class="fl">0.01</span>, ticks<span class="op">=</span>[<span class="op">-</span><span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>])</span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>cb.set_label(<span class="st">'normalized phase'</span>)</span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'img/zernike_modes.png'</span>, dpi<span class="op">=</span><span class="dv">150</span>, bbox_inches<span class="op">=</span><span class="st">'tight'</span>)</span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-display">
-<div id="fig-zernike" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-zernike-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="03-lecture09_files/figure-html/fig-zernike-output-1.png" width="654" height="417" class="figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-zernike-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5.1— The first fifteen Zernike modes (Noll ordering), the natural basis for aberrations on a circular pupil. Each disk is the phase pattern <span class="math inline">\(Z_n^m(\rho,\theta)\)</span> over the pupil, with colour from −1 (blue) through 0 (white) to +1 (red) after normalising each mode to its own peak. Piston (1) is a uniform offset that does not affect the image; tip and tilt (2, 3) are linear ramps that just shift it; defocus (4) is parabolic; astigmatism (5, 6), coma (7, 8) and spherical aberration (11) are the low-order aberrations that dominate real microscopes.
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<hr>
-</section>
-<section id="impact-of-aberrations-on-psf-and-otf" class="level1">
-<h1>Impact of Aberrations on PSF and OTF</h1>
-<p>To understand how aberrations degrade imaging performance, we now visualize the effect on PSF and OTF for realistic aberration magnitudes.</p>
-<div id="cell-fig-aberration-impact" class="cell" data-execution_count="7">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cartesian pupil grid (correct for an FFT-based PSF; a polar grid would be wrong)</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib.colors <span class="im">import</span> PowerNorm</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>nP <span class="op">=</span> <span class="dv">128</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>pu <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, nP)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>PX, PY <span class="op">=</span> np.meshgrid(pu, pu)</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>PR, PT <span class="op">=</span> np.sqrt(PX<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> PY<span class="op">**</span><span class="dv">2</span>), np.arctan2(PY, PX)</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>ap <span class="op">=</span> (PR <span class="op">&lt;=</span> <span class="fl">1.0</span>).astype(<span class="bu">float</span>)</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># wavefront error W in waves; amplitudes chosen for instructive Strehl values</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>cases <span class="op">=</span> [(<span class="st">'ideal'</span>,     np.zeros_like(PR)),</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>         (<span class="st">'spherical'</span>, <span class="fl">0.25</span><span class="op">*</span>(<span class="dv">6</span><span class="op">*</span>PR<span class="op">**</span><span class="dv">4</span> <span class="op">-</span> <span class="dv">6</span><span class="op">*</span>PR<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="dv">1</span>)),   <span class="co"># Z(4,0)</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>         (<span class="st">'coma'</span>,      <span class="fl">0.30</span><span class="op">*</span>(<span class="dv">3</span><span class="op">*</span>PR<span class="op">**</span><span class="dv">3</span> <span class="op">-</span> <span class="dv">2</span><span class="op">*</span>PR)<span class="op">*</span>np.cos(PT))]  <span class="co"># Z(3,1)</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>pad <span class="op">=</span> <span class="dv">512</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>sft <span class="op">=</span> (pad <span class="op">-</span> nP)<span class="op">//</span><span class="dv">2</span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> psf_of(W):</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    P <span class="op">=</span> np.zeros((pad, pad), <span class="bu">complex</span>)</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    P[sft:sft<span class="op">+</span>nP, sft:sft<span class="op">+</span>nP] <span class="op">=</span> ap<span class="op">*</span>np.exp(<span class="ot">1j</span><span class="op">*</span><span class="dv">2</span><span class="op">*</span>np.pi<span class="op">*</span>W)</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.<span class="bu">abs</span>(fftshift(fft2(ifftshift(P))))<span class="op">**</span><span class="dv">2</span></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>psfs <span class="op">=</span> [psf_of(W) <span class="cf">for</span> _, W <span class="kw">in</span> cases]</span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>peak0 <span class="op">=</span> psfs[<span class="dv">0</span>].<span class="bu">max</span>()                      <span class="co"># ideal peak sets the Strehl reference</span></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.figure(figsize<span class="op">=</span>get_size(<span class="dv">17</span>, <span class="fl">14.5</span>), layout<span class="op">=</span><span class="st">'constrained'</span>)</span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>gs <span class="op">=</span> fig.add_gridspec(<span class="dv">3</span>, <span class="dv">3</span>, height_ratios<span class="op">=</span>[<span class="fl">1.0</span>, <span class="fl">1.0</span>, <span class="fl">1.25</span>])</span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>c, cr <span class="op">=</span> pad<span class="op">//</span><span class="dv">2</span>, <span class="dv">26</span></span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>pup_axes <span class="op">=</span> []</span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> j, (lab, W) <span class="kw">in</span> <span class="bu">enumerate</span>(cases):</span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>    strehl <span class="op">=</span> psfs[j].<span class="bu">max</span>()<span class="op">/</span>peak0</span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>    axp <span class="op">=</span> fig.add_subplot(gs[<span class="dv">0</span>, j])<span class="op">;</span> pup_axes.append(axp)</span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>    imp <span class="op">=</span> axp.imshow(np.where(PR <span class="op">&lt;=</span> <span class="dv">1</span>, W, np.nan), extent<span class="op">=</span>[<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>], origin<span class="op">=</span><span class="st">'lower'</span>,</span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>                     cmap<span class="op">=</span><span class="st">'RdBu_r'</span>, vmin<span class="op">=-</span><span class="fl">0.35</span>, vmax<span class="op">=</span><span class="fl">0.35</span>)</span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>    axp.add_patch(plt.Circle((<span class="dv">0</span>, <span class="dv">0</span>), <span class="dv">1</span>, fill<span class="op">=</span><span class="va">False</span>, ec<span class="op">=</span><span class="st">'0.3'</span>, lw<span class="op">=</span><span class="fl">0.8</span>))</span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>    axp.set_title(lab, fontsize<span class="op">=</span><span class="dv">11</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>    axp.set_xticks([])<span class="op">;</span> axp.set_yticks([])<span class="op">;</span> axp.set_aspect(<span class="st">'equal'</span>)</span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>    axp.set_xlim(<span class="op">-</span><span class="fl">1.1</span>, <span class="fl">1.1</span>)<span class="op">;</span> axp.set_ylim(<span class="op">-</span><span class="fl">1.1</span>, <span class="fl">1.1</span>)</span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> s <span class="kw">in</span> axp.spines.values():</span>
-<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>        s.set_visible(<span class="va">False</span>)</span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> j <span class="op">==</span> <span class="dv">0</span>:</span>
-<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>        axp.text(<span class="op">-</span><span class="fl">0.16</span>, <span class="fl">0.5</span>, <span class="st">'pupil phase'</span>, transform<span class="op">=</span>axp.transAxes,</span>
-<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>                 rotation<span class="op">=</span><span class="dv">90</span>, va<span class="op">=</span><span class="st">'center'</span>, ha<span class="op">=</span><span class="st">'center'</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
-<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>    axs <span class="op">=</span> fig.add_subplot(gs[<span class="dv">1</span>, j])</span>
-<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>    axs.imshow(psfs[j][c<span class="op">-</span>cr:c<span class="op">+</span>cr, c<span class="op">-</span>cr:c<span class="op">+</span>cr]<span class="op">/</span>peak0, extent<span class="op">=</span>[<span class="op">-</span>cr, cr, <span class="op">-</span>cr, cr],</span>
-<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>               origin<span class="op">=</span><span class="st">'lower'</span>, cmap<span class="op">=</span><span class="st">'inferno'</span>, norm<span class="op">=</span>PowerNorm(<span class="fl">0.45</span>, vmin<span class="op">=</span><span class="dv">0</span>, vmax<span class="op">=</span><span class="dv">1</span>))</span>
-<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>    axs.set_xticks([])<span class="op">;</span> axs.set_yticks([])<span class="op">;</span> axs.set_aspect(<span class="st">'equal'</span>)</span>
-<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>    axs.text(<span class="fl">0.05</span>, <span class="fl">0.94</span>, <span class="ss">f'Strehl </span><span class="sc">{</span>strehl<span class="sc">:.2f}</span><span class="ss">'</span>, transform<span class="op">=</span>axs.transAxes,</span>
-<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>             color<span class="op">=</span><span class="st">'w'</span>, fontsize<span class="op">=</span><span class="dv">10</span>, va<span class="op">=</span><span class="st">'top'</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
-<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> j <span class="op">==</span> <span class="dv">0</span>:</span>
-<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>        axs.text(<span class="op">-</span><span class="fl">0.16</span>, <span class="fl">0.5</span>, <span class="st">'focal-plane PSF'</span>, transform<span class="op">=</span>axs.transAxes,</span>
-<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>                 rotation<span class="op">=</span><span class="dv">90</span>, va<span class="op">=</span><span class="st">'center'</span>, ha<span class="op">=</span><span class="st">'center'</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
-<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>cbp <span class="op">=</span> fig.colorbar(imp, ax<span class="op">=</span>pup_axes, location<span class="op">=</span><span class="st">'right'</span>, fraction<span class="op">=</span><span class="fl">0.02</span>, pad<span class="op">=</span><span class="fl">0.01</span>,</span>
-<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>                   ticks<span class="op">=</span>[<span class="op">-</span><span class="fl">0.3</span>, <span class="dv">0</span>, <span class="fl">0.3</span>])</span>
-<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>cbp.set_label(<span class="st">'wavefront (waves)'</span>)</span>
-<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>axm <span class="op">=</span> fig.add_subplot(gs[<span class="dv">2</span>, :])</span>
-<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (lab, W), psf, col <span class="kw">in</span> <span class="bu">zip</span>(cases, psfs, [<span class="st">'k'</span>, <span class="st">'C0'</span>, <span class="st">'C3'</span>]):</span>
-<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>    otf <span class="op">=</span> np.<span class="bu">abs</span>(fftshift(fft2(ifftshift(psf))))</span>
-<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>    otf <span class="op">=</span> otf<span class="op">/</span>otf.<span class="bu">max</span>()</span>
-<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>    line <span class="op">=</span> otf[pad<span class="op">//</span><span class="dv">2</span>, pad<span class="op">//</span><span class="dv">2</span>:]</span>
-<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>    f <span class="op">=</span> np.arange(line.size)<span class="op">/</span>nP            <span class="co"># cutoff at f = 1</span></span>
-<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>    axm.plot(f, line, color<span class="op">=</span>col, lw<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span>lab)</span>
-<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>axm.set_xlim(<span class="dv">0</span>, <span class="fl">1.0</span>)<span class="op">;</span> axm.set_ylim(<span class="dv">0</span>, <span class="fl">1.02</span>)</span>
-<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>axm.set_xlabel(<span class="vs">r'spatial frequency </span><span class="kw">(</span><span class="vs">units of the incoherent cutoff </span><span class="dv">$</span><span class="vs">2</span><span class="ch">\,</span><span class="dv">\m</span><span class="vs">athrm{NA}/</span><span class="er">\</span><span class="vs">lambda</span><span class="dv">$</span><span class="kw">)</span><span class="vs">'</span>)</span>
-<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a>axm.set_ylabel(<span class="st">'MTF'</span>)</span>
-<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a>axm.legend(frameon<span class="op">=</span><span class="va">False</span>, loc<span class="op">=</span><span class="st">'upper right'</span>)</span>
-<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a>axm.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
-<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'img/aberration_impact.png'</span>, dpi<span class="op">=</span><span class="dv">150</span>, bbox_inches<span class="op">=</span><span class="st">'tight'</span>)</span>
-<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-display">
-<div id="fig-aberration-impact" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-aberration-impact-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="03-lecture09_files/figure-html/fig-aberration-impact-output-1.png" width="654" height="559" class="figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-aberration-impact-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;6.1— How an aberrated pupil degrades the image, for an ideal pupil, a moderate spherical aberration, and a moderate coma. Top row: the pupil phase across the disk in waves (RdBu colormap, shared colour scale on the right). Middle row: the resulting focal-plane PSF on a common brightness scale (inferno); the Strehl ratio, the peak intensity relative to the ideal PSF, is printed on each. Spherical aberration spreads energy into a symmetric halo, while coma smears the spot to one side. Bottom: the radial modulation transfer function (MTF) of the three cases; both aberrations lower the contrast transferred at every spatial frequency, most severely near the cutoff <span class="math inline">\(2\,\mathrm{NA}/\lambda\)</span>.
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<hr>
-</section>
-<section id="wavefront-sensing-the-shack-hartmann-sensor" class="level1">
-<h1>Wavefront Sensing: The Shack-Hartmann Sensor</h1>
-<p>To correct aberrations, we must first <strong>measure</strong> them. The most common wavefront sensing technique is the <strong>Shack-Hartmann sensor</strong>.</p>
-<section id="principle-from-wavefront-slope-to-phase" class="level2">
-<h2 class="anchored" data-anchor-id="principle-from-wavefront-slope-to-phase">Principle: From Wavefront Slope to Phase</h2>
-<p>A Shack-Hartmann sensor comprises a <strong>microlens array</strong> (typically 10×10 to 40×40 lenslets) placed at the pupil plane, with a detector at the focal plane.</p>
-<p><strong>Key insight:</strong> Each lenslet measures the <strong>local slope</strong> of the wavefront: <span class="math display">\[\frac{\partial W}{\partial x} \bigg|_{(\rho,\theta)} = \text{slope in } x \text{ direction}\]</span></p>
-<p>The <strong>centroid shift</strong> of the focused spot from each lenslet is proportional to the local slope. By measuring all lenslet spots, we reconstruct the 2D slope field: <span class="math display">\[\nabla W = \left( \frac{\partial W}{\partial x}, \frac{\partial W}{\partial y} \right)\]</span></p>
-<p>Then we <strong>integrate</strong> to recover the phase <span class="math inline">\(W(\mathbf{r})\)</span>. <a href="#fig-shack-hartmann" class="quarto-xref">Figure&nbsp;7.1</a> shows the idea: a flat wavefront makes a regular grid of spots, while an aberrated wavefront displaces each spot in proportion to the local slope seen by its lenslet.</p>
-<div id="cell-fig-shack-hartmann" class="cell" data-execution_count="8">
-<div class="cell-output cell-output-display">
-<div id="fig-shack-hartmann" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-shack-hartmann-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="03-lecture09_files/figure-html/fig-shack-hartmann-output-1.png" width="659" height="276" class="figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-shack-hartmann-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;7.1— The Shack-Hartmann wavefront sensor. A microlens array samples the wavefront and each lenslet focuses its patch to a spot on the detector. (a) A flat (reference) wavefront produces a regular grid of spots, one on each lenslet axis (dashed lines). (b) An aberrated wavefront has a different local tilt at each lenslet, so every spot shifts away from its reference position (open circles) by an amount proportional to the local slope ∂W/∂y (arrows). Measuring all the shifts gives the slope field, and integrating it reconstructs the wavefront W.
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="fourier-space-perspective-connection-to-slope-and-frequency" class="level2">
-<h2 class="anchored" data-anchor-id="fourier-space-perspective-connection-to-slope-and-frequency">Fourier-Space Perspective: Connection to Slope and Frequency</h2>
-<p>In Fourier space, taking a spatial derivative is equivalent to multiplication by <span class="math inline">\(i \mathbf{k}\)</span>: <span class="math display">\[\mathcal{F}\left\{ \frac{\partial W}{\partial x} \right\}(\mathbf{k}) = i k_x \, \widetilde{W}(\mathbf{k})\]</span></p>
-<p>The Shack-Hartmann measurement is thus a <strong>high-pass filter</strong> on the phase: it emphasizes high-frequency ripples and is blind to low-frequency (piston, tip, tilt) modes.</p>
-<p>This is <strong>identical to the mathematical principle</strong> of <strong>Differential Interference Contrast (DIC)</strong> microscopy, where a pair of orthogonal Wollaston prisms create an interference between light that is spatially shifted by ~<span class="math inline">\(\lambda/2\)</span>. Both techniques exploit <strong>spatial derivatives</strong> in the Fourier domain.</p>
-</section>
-<section id="reconstruction-algorithm" class="level2">
-<h2 class="anchored" data-anchor-id="reconstruction-algorithm">Reconstruction Algorithm</h2>
-<p>Once slopes are measured: 1. Compute <span class="math inline">\(\nabla W\)</span> at all lenslet positions (from spot centroid displacements) 2. Reconstruct <span class="math inline">\(W(\mathbf{r})\)</span> by <strong>least-squares integration</strong> (Zonal method): <span class="math display">\[W(\mathbf{r}) = \arg \min \sum_{\text{grid points}} \left| \nabla W_\text{meas}(\mathbf{r}) - \nabla W_\text{recon}(\mathbf{r}) \right|^2\]</span> 3. Decompose into Zernike modes to identify which aberrations are present 4. Send correction signal to deformable mirror or SLM</p>
-<hr>
-</section>
-</section>
-<section id="adaptive-optics-for-microscopy" class="level1">
-<h1>Adaptive Optics for Microscopy</h1>
-<p>Adaptive optics closes the loop. A wavefront sensor measures the aberration, a controller computes the phase that would cancel it, and a correction device imposes that phase on the pupil, flattening the wavefront. Repeating this many times per second keeps the system diffraction-limited even as the aberration drifts. <a href="#fig-ao-loop" class="quarto-xref">Figure&nbsp;8.1</a> shows the loop.</p>
-<div id="cell-fig-ao-loop" class="cell" data-execution_count="9">
-<div class="cell-output cell-output-display">
-<div id="fig-ao-loop" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-ao-loop-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="03-lecture09_files/figure-html/fig-ao-loop-output-1.png" width="654" height="295" class="figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ao-loop-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;8.1— The adaptive-optics control loop. The incoming aberrated wavefront first reflects off the correction device (a deformable mirror or SLM in the pupil plane). A beam splitter sends most of the light to the science camera and a fraction to the wavefront sensor, which measures the residual aberration. A controller converts that measurement into the conjugate phase and drives the correction device, closing the loop so that the wavefront reaching the camera is flat.
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<section id="wavefront-correction-devices" class="level2">
-<h2 class="anchored" data-anchor-id="wavefront-correction-devices">Wavefront Correction Devices</h2>
-<p>The phase is imposed by one of two complementary devices, contrasted in <a href="#fig-correctors" class="quarto-xref">Figure&nbsp;8.2</a>. A <strong>deformable mirror</strong> bends a continuous reflective surface with a modest number of actuators; it is fast, highly reflective, and handles large, low-order aberrations, but its few actuators limit the spatial detail it can represent. A <strong>spatial light modulator</strong> uses a dense array of liquid-crystal pixels, each imposing a programmable phase; it can render arbitrary high-order patterns and entire holograms, at the cost of being phase-only, wavelength-sensitive, and somewhat lossy.</p>
-<div id="cell-fig-correctors" class="cell" data-execution_count="10">
-<div class="cell-output cell-output-display">
-<div id="fig-correctors" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-correctors-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="03-lecture09_files/figure-html/fig-correctors-output-1.png" width="654" height="268" class="figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-correctors-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;8.2— The two wavefront-correction devices. (a) A deformable mirror: a continuous reflective membrane pushed from behind by a modest number of actuators (gray pistons), so a flat incoming wavefront leaves with a smooth, shaped phase. It is fast and efficient but, with only tens of actuators, limited to low-order aberrations. (b) A spatial light modulator: a dense array of liquid-crystal pixels, each imposing a programmable phase between 0 and 2π (cyclic colormap), able to render arbitrary high-order patterns but phase-only and pixelated.
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<section id="spatial-light-modulators-slms" class="level3">
-<h3 class="anchored" data-anchor-id="spatial-light-modulators-slms">Spatial Light Modulators (SLMs)</h3>
-<p><strong>Liquid-Crystal SLMs</strong> apply a spatially varying phase shift to the incident beam: <span class="math display">\[\Delta \phi(\mathbf{r}) = \frac{2\pi \Delta n(\mathbf{r}) \, d}{\lambda}\]</span></p>
-<p>where <span class="math inline">\(\Delta n\)</span> is the liquid-crystal birefringence (controlled electrically, 0–1 V) and <span class="math inline">\(d\)</span> is the cell thickness.</p>
-<p><strong>Advantages:</strong> - Arbitrary phase patterns (Zernike modes, holograms, custom aberration correction) - Reconfigurable in real time (frame rate: 60–1000 Hz) - Compact; can be placed at pupil plane or in Fourier plane</p>
-<p><strong>MoNa lab connection:</strong> SLMs are used for: - <strong>Beam shaping:</strong> Creating flat-top or Bessel beams - <strong>Holographic optical trapping:</strong> Generating multiple foci for particle manipulation - <strong>Aberration correction:</strong> Real-time feedback to flatten wavefront</p>
-<p><strong>Limitations:</strong> - Phase-only (cannot modulate amplitude in traditional LC-SLMs) - Pixelation limits high-frequency content - Efficiency ~70–90% (residual diffraction orders)</p>
-</section>
-<section id="deformable-mirrors" class="level3">
-<h3 class="anchored" data-anchor-id="deformable-mirrors">Deformable Mirrors</h3>
-<p><strong>Membrane or Piezo Mirrors</strong> physically deform a mirror surface to introduce a desired phase shift: <span class="math display">\[\Delta \phi = \frac{2 \times \text{surface deflection}}{\lambda} \times 2\pi\]</span></p>
-<p>(Factor of 2 because light reflects, doubling the optical path.)</p>
-<p><strong>Advantages:</strong> - Higher reflectance (&gt;95%) - Can correct large aberrations (many waves) - Continuous surface (no pixelation)</p>
-<p><strong>Disadvantages:</strong> - Limited to low-order corrections (typically &lt;50 actuators → low-order Zernike only) - Slower response time (ms)</p>
-<p><strong>Choice:</strong> - <strong>SLM</strong>: Fast correction, arbitrary modes, lab demonstration - <strong>Deformable mirror</strong>: High-NA systems, deep-tissue imaging where many aberration modes matter</p>
-</section>
-</section>
-<section id="sensorless-adaptive-optics" class="level2">
-<h2 class="anchored" data-anchor-id="sensorless-adaptive-optics">Sensorless Adaptive Optics</h2>
-<p>When a wavefront sensor is unavailable or impractical, we use <strong>sensorless AO</strong>: directly optimize an <strong>image quality metric</strong> (e.g., intensity variance, maximum intensity, or a deconvolution cost function) by <strong>iteratively adjusting Zernike coefficients</strong>.</p>
-<p><strong>Algorithm:</strong> 1. Start with <span class="math inline">\(W = 0\)</span> (flat wavefront) 2. Vary Zernike coefficient <span class="math inline">\(c_{n,m}\)</span> (e.g., defocus) and measure the quality metric 3. Move in the direction that improves metric 4. Repeat for all low-order modes 5. Refine with finer steps until convergence</p>
-<p><strong>Speed:</strong> 1–10 seconds per correction (much slower than sensor-based, but requires no extra hardware)</p>
-<p><strong>Best for:</strong> Deep-tissue imaging, where aberrations increase with depth and drift slowly over time.</p>
-<hr>
-</section>
-</section>
-<section id="application-deep-tissue-confocal-imaging-with-adaptive-optics" class="level1">
-<h1>Application: Deep-Tissue Confocal Imaging with Adaptive Optics</h1>
-<section id="the-problem-spherical-aberration-at-depth" class="level2">
-<h2 class="anchored" data-anchor-id="the-problem-spherical-aberration-at-depth">The Problem: Spherical Aberration at Depth</h2>
-<p>In thick, scattering tissue (e.g., brain, muscle), refractive index variations accumulate as light propagates. A homogeneous spherical aberration develops due to mismatched refractive indices (tissue ≠ design medium).</p>
-<p><strong>Effect:</strong> - PSF degrades: side lobes increase, peak intensity drops (Strehl → 0.3–0.5) - Axial resolution worsens dramatically - Image contrast collapses within 50–100 μm depth</p>
-</section>
-<section id="adaptive-correction-strategy" class="level2">
-<h2 class="anchored" data-anchor-id="adaptive-correction-strategy">Adaptive Correction Strategy</h2>
-<ol type="1">
-<li><strong>Measure</strong> the wavefront using Shack-Hartmann (either on a guide star or back-reflected from deep structures)</li>
-<li><strong>Decompose</strong> into Zernike modes: typically spherical aberration dominates (mode 11), with secondary astigmatism (modes 12–13)</li>
-<li><strong>Correct</strong> using an SLM or deformable mirror in the pupil plane</li>
-<li><strong>Iterate</strong> as you move deeper: aberration increases slowly; re-correct every 10–20 μm</li>
-</ol>
-<p><strong>Result:</strong> Confocal PSF remains ~1 μm lateral, ~2–3 μm axial, even at 200 μm depth.</p>
-<p><strong>Without AO:</strong> PSF broadens to 2–3 μm lateral, 10–15 μm axial at the same depth.</p>
-<hr>
-</section>
-</section>
-<section id="fourier-optics-thread-summary-table" class="level1">
-<h1>Fourier Optics Thread: Summary Table</h1>
-<p>All concepts in this lecture are connected through the <strong>pupil function</strong> and its Fourier properties:</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 60%">
-<col style="width: 20%">
-<col style="width: 20%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Concept</th>
-<th>Pupil-Plane Representation</th>
-<th>Fourier-Space Meaning</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>Confocal detection</strong></td>
-<td>Product of two apertures</td>
-<td>OTF is convolution of two OTFs → higher contrast</td>
-</tr>
-<tr class="even">
-<td><strong>Aberrations</strong></td>
-<td><span class="math inline">\(P = A \exp(iW)\)</span> with <span class="math inline">\(W \neq 0\)</span></td>
-<td>OTF is autocorrelation of aberrated pupil → lower contrast</td>
-</tr>
-<tr class="odd">
-<td><strong>Zernike modes</strong></td>
-<td>Basis expansion: <span class="math inline">\(W = \sum c_{n,m} Z_n^m\)</span></td>
-<td>Orthonormal set on unit disk; separates aberration types</td>
-</tr>
-<tr class="even">
-<td><strong>Wavefront slope</strong></td>
-<td><span class="math inline">\(\nabla W(\mathbf{r})\)</span></td>
-<td>Multiplication by <span class="math inline">\(i\mathbf{k}\)</span> in Fourier space; same as DIC</td>
-</tr>
-<tr class="odd">
-<td><strong>SLM correction</strong></td>
-<td>Modulate <span class="math inline">\(P\)</span> with <span class="math inline">\(\exp(i\Delta\phi_\text{SLM})\)</span></td>
-<td>Alter OTF by changing pupil; directly improve high-freq contrast</td>
-</tr>
-<tr class="even">
-<td><strong>Shack-Hartmann</strong></td>
-<td>Measure local slopes via lenslet array</td>
-<td>High-pass filtered wavefront measurement; insensitive to piston/tip/tilt</td>
-</tr>
-</tbody>
-</table>
-<hr>
-</section>
-<section id="experimental-connections" class="level1">
-<h1>Experimental Connections</h1>
-<section id="building-a-simple-confocal-path" class="level2">
-<h2 class="anchored" data-anchor-id="building-a-simple-confocal-path">Building a Simple Confocal Path</h2>
-<p>A teaching-lab confocal microscope can be built from: 1. <strong>Laser source</strong> (e.g., 488 nm diode laser, 5 mW) 2. <strong>Dichroic mirror</strong> to combine excitation and collection paths 3. <strong>Objective lens</strong> (40× or 60×, high NA) 4. <strong>Pinhole</strong> (adjustable aperture, ~20–50 μm diameter) 5. <strong>PMT or avalanche photodiode</strong> for point detection</p>
-<p><strong>Procedure:</strong> - Align laser to objective back aperture - Focus on fluorescent sample (e.g., beads, labeled cells) - Mechanically or acousto-optically scan the beam - Adjust pinhole diameter to observe trade-off: signal vs.&nbsp;contrast</p>
-<p><strong>Key observation:</strong> As you <strong>close the pinhole</strong>, out-of-focus haze disappears, but signal drops. The optimal point is ~0.5–1.0 Airy unit (AU).</p>
-</section>
-<section id="measuring-zernike-aberrations-with-a-hartmann-sensor" class="level2">
-<h2 class="anchored" data-anchor-id="measuring-zernike-aberrations-with-a-hartmann-sensor">Measuring Zernike Aberrations with a Hartmann Sensor</h2>
-<p>A <strong>Hartmann test</strong> requires: 1. <strong>Collimated beam</strong> through the microscope objective (reverse direction) 2. <strong>Microlens array</strong> (40×40, ~300 μm focal length; can use printed diffractive element) 3. <strong>CCD camera</strong> at focal distance 4. <strong>Software</strong> to find lenslet spot centroids and compute slopes</p>
-<p><strong>Steps:</strong> - Acquire reference image (flat wavefront) - Acquire test image (with aberrations present) - Compute difference in centroid positions - Integrate slopes → recover phase map - Decompose into Zernike modes</p>
-<p><strong>Observation:</strong> You will see predominantly <strong>defocus</strong> and <strong>spherical aberration</strong>. Remove mechanical defects (tilted objective), and astigmatism typically vanishes.</p>
-</section>
-<section id="adaptive-optics-in-practice-slm-based-correction" class="level2">
-<h2 class="anchored" data-anchor-id="adaptive-optics-in-practice-slm-based-correction">Adaptive Optics in Practice: SLM-Based Correction</h2>
-<p>With an <strong>SLM at the pupil plane</strong>: 1. Apply an initial correction pattern (e.g., measured aberration phase) 2. Image the specimen; compute a quality metric (e.g., Laplacian variance) 3. Slightly perturb one Zernike coefficient; re-measure metric 4. Move in direction of improvement; repeat 5. Cycle through 5–10 low-order Zernike modes</p>
-<p><strong>Result:</strong> PSF sharpness visibly improves; axial sectioning becomes tighter; high-freq contrast recovers.</p>
-<hr>
-</section>
-</section>
-<section id="summary-fourier-optics-in-microscopy" class="level1">
-<h1>Summary: Fourier Optics in Microscopy</h1>
-<section id="key-concepts-revisited" class="level2">
-<h2 class="anchored" data-anchor-id="key-concepts-revisited">Key Concepts Revisited</h2>
-<ol type="1">
-<li><p><strong>Confocal microscopy</strong> uses the <strong>product of two PSFs</strong> (illumination × detection) to improve OTF, particularly at high spatial frequencies</p></li>
-<li><p><strong>Aberrations modify the pupil function</strong> <span class="math inline">\(P = A \exp(iW)\)</span>; even small wavefront errors degrade OTF and reduce Strehl ratio</p></li>
-<li><p><strong>Zernike polynomials</strong> provide an orthonormal basis on the unit disk; low-order modes (defocus, astigmatism, coma, spherical) account for most real-world aberrations</p></li>
-<li><p><strong>Wavefront sensing</strong> (Shack-Hartmann) measures the gradient of the phase field—a Fourier operation (<span class="math inline">\(\nabla W \leftrightarrow i\mathbf{k} \widetilde{W}\)</span>)—and reconstructs the full phase by integration</p></li>
-<li><p><strong>Adaptive optics</strong> uses <strong>SLMs or deformable mirrors</strong> to correct measured aberrations, restoring diffraction-limited PSF even in aberrating media (thick tissue)</p></li>
-<li><p><strong>SLMs and AOMs</strong> are essential tools in modern microscopy and in the MoNa lab for beam shaping, holographic manipulation, and real-time wavefront control</p></li>
-</ol>
-<p>All of these phenomena have a unified Fourier-optics interpretation: the <strong>pupil function</strong> is the master object that controls resolution, contrast, and aberration behavior.</p>
-<hr>
-</section>
-</section>
-<section id="further-reading" class="level1">
-<h1>Further Reading</h1>
-<p>The following resources expand on the topics in this lecture:</p>
-<ul>
-<li><strong><a href="../../resources/resources.html#sec-mertz">Mertz (2019)</a></strong> — <em>Introduction to Optical Microscopy</em>, Chapters 2–4. Comprehensive treatment of confocal imaging and the OTF framework.</li>
-<li><strong><a href="../../resources/resources.html#sec-goodman">Goodman (2017)</a></strong>, Ch. 6–7 — Fourier optics foundations and propagation through optical systems.</li>
-<li><strong><a href="../../resources/resources.html#sec-born">Born &amp; Wolf (1999)</a></strong>, Ch. 8 — Aberrations, Zernike polynomials, and the theory of optical systems.</li>
-<li><strong><a href="../../resources/resources.html#sec-tyson">Tyson (2015)</a></strong> — <em>Principles of Adaptive Optics</em>, 3rd ed.&nbsp;Standard reference for wavefront sensing and correction.</li>
-<li><strong>Booth, M.J., et al.&nbsp;(2021)</strong> — “Adaptive optics in microscopy.” <em>Phil. Trans. R. Soc. A</em> <strong>379</strong>, 20200110. Review of AO in biomedical imaging.</li>
-<li><strong>Shack, R.V. &amp; Platt, B.C. (1971)</strong> — “Production and use of a lenticular Hartmann screen.” <em>J. Opt. Soc. Am.</em> <strong>61</strong>, 656–660. Foundational Shack-Hartmann paper.</li>
-</ul>
-<hr>
-<p><em>Lecture 10: Confocal Microscopy &amp; Wavefront Control — Introduction to Photonics</em></p>
+<!-----
+
+# Aberrations and the Pupil Function
+
+## The General Pupil Function
+
+We now recognize that the pupil function is not always ideal. The **general form** is:
+$$P(\rho, \theta) = A(\rho) \, e^{i W(\rho, \theta)}$$
+
+where:
+- $A(\rho)$ is the **aperture function** (amplitude; typically = 1 inside the pupil, 0 outside)
+- $W(\rho, \theta)$ is the **wavefront error** (in units of length, or often in units of wavelength)
+- $(\rho, \theta)$ are polar coordinates in the pupil plane
+
+**Physical sources of wavefront error:**
+1. **Cover slip mismatch**: Incorrect cover slip thickness introduces spherical aberration
+2. **Refractive index mismatch**: Specimen immersion medium differs from design medium (water vs. oil)
+3. **Misalignment**: Objective not perpendicular to specimen plane → coma
+4. **Field curvature**: Aberration increases toward the edge of the field
+5. **Lens defects**: Manufacturing imperfections in optical coatings or surfaces
+
+## How Aberrations Degrade the OTF
+
+The **aberrated OTF** is:
+$$\text{OTF}_\text{aberr}(\mathbf{k}) \propto \left| \mathcal{F}\left\{ P(\mathbf{r}) \right\}(\mathbf{k}) \right|^2 = \left| \int e^{i W(\mathbf{r})} e^{i \mathbf{k} \cdot \mathbf{r}} d^2\mathbf{r} \right|^2$$
+
+**Key observation:** Even small wavefront errors reduce the contrast of the OTF, especially at high spatial frequencies. The effect is multiplicative: if $W \ll 1$ rad, the OTF scales approximately as:
+$$\text{OTF}_\text{aberr} \approx \text{OTF}_\text{ideal} \cdot \exp(-\sigma_W^2 / 2)$$
+
+where $\sigma_W^2 = \langle W^2 \rangle$ is the variance of the wavefront error.
+
+## The Strehl Ratio: A Quantitative Measure
+
+The **Strehl ratio** $S$ measures the reduction in peak intensity of the PSF due to aberrations:
+$$S = \frac{\max(\text{PSF}_\text{aberr})}{\max(\text{PSF}_\text{ideal})} = \left| \langle e^{i W} \rangle \right|^2$$
+
+where the angle brackets denote averaging over the pupil.
+
+For small aberrations (Maréchal approximation):
+$$S \approx e^{-\sigma_W^2} \approx 1 - \sigma_W^2$$
+
+**Rule of thumb:**
+- $S > 0.8$ (good): system diffraction-limited
+- $S = 0.5$–0.8: noticeable degradation
+- $S < 0.5$: severe, visible loss of resolution
+
+**Wavelength dependence:** Aberrations are always expressed relative to $\lambda$. A fixed defocus (e.g., 1 μm) is worse for shorter wavelengths (where it corresponds to more wavelengths) and negligible for longer wavelengths.
+
+### Example: Spherical Aberration from Cover Slip Mismatch
+
+A typical case: specimen imaged through a 170 μm cover slip with water immersion ($n = 1.33$), but objective designed for oil ($n = 1.515$).
+
+The aberration magnitude is roughly:
+$$W_\text{sph} \sim (n_\text{oil} - n_\text{water}) \cdot t / \text{NA}^2$$
+
+where $t$ is the mismatch. For $\Delta n \sim 0.2$, $t \sim 10$ μm, $\text{NA} = 1.4$:
+$$W_\text{sph} \sim 1 \text{ μm} \sim 3 \text{ wavelengths at } 488 \text{ nm}$$
+
+This causes a dramatic loss of contrast and axial resolution—a major problem in deep-tissue imaging.
+
+---
+
+# Zernike Polynomials: The Natural Pupil-Plane Basis
+
+## Why Zernike?
+
+Circular apertures (objectives) naturally admit an **orthonormal basis of functions**: the **Zernike polynomials**. These are defined on the unit disk and indexed by two integers:
+- $n$ = radial order (polynomial degree)
+- $m$ = azimuthal order (angular frequency)
+
+### Orthonormality
+
+The Zernike polynomials $Z_n^m(\rho, \theta)$ satisfy:
+$$\int_0^{2\pi} \int_0^1 Z_n^m(\rho, \theta) \, Z_{n'}^{m'}(\rho, \theta) \, \rho \, d\rho \, d\theta = \delta_{nn'} \delta_{mm'}$$
+
+This makes them ideal for decomposing any wavefront error on a circular pupil:
+$$W(\rho, \theta) = \sum_{n,m} c_{n,m} \, Z_n^m(\rho, \theta)$$
+
+The coefficients $c_{n,m}$ directly represent the "strength" of each aberration mode.
+
+## Low-Order Zernike Modes and Physical Meaning
+
+The first 15 Zernike modes are shown below with their conventional names (using Noll indexing):
+
+| Mode | $n$ | $m$ | Name | Physical Meaning |
+|------|---|---|---|---|
+| 1 | 0 | 0 | Piston | Uniform phase shift (no effect) |
+| 2–3 | 1 | ±1 | Tip/Tilt | Linear phase; equivalent to beam pointing error |
+| 4 | 2 | 0 | Defocus | Quadratic wavefront; changes focal plane |
+| 5–6 | 2 | ±2 | Astigmatism | Cylindrical lens effect; different focus in $x$, $y$ |
+| 7–8 | 3 | ±1 | Coma | Asymmetric aberration from misalignment |
+| 9–10 | 3 | ±3 | Trefoil | Three-fold asymmetry |
+| 11 | 4 | 0 | Spherical Aberration | Paraxial and marginal rays focus differently |
+| 12–13 | 4 | ±2 | Secondary Astigmatism | Higher-order version of astigmatism |
+| 14–15 | 4 | ±4 | Quatrefoil | Four-fold asymmetry |
+
+**Physical importance:**
+- **Piston** (mode 1): Just a global phase shift; doesn't affect intensity (image-forming modes start at 2)
+- **Tip/Tilt** (modes 2–3): Beam walk; can be corrected by an AOM
+- **Defocus** (mode 4): Most common aberration; easily corrected by z-stage adjustment
+- **Astigmatism** (modes 5–6): Common in high-NA systems; requires SLM or deformable mirror to correct
+- **Coma** (modes 7–8): Signature of misalignment; usually fixed mechanically
+- **Spherical aberration** (mode 11): Depth-dependent; increases with depth in scattering tissue; adaptive optics gold standard target
+
+---
+
+# Zernike Visualization and Aberration Impact
+
+::: {#cell-fig-zernike .cell execution_count=6}
+``` {.python .cell-code}
+def zernike_radial(n, m, rho):
+    if (n - m) % 2 != 0:
+        return np.zeros_like(rho)
+    out = np.zeros_like(rho, dtype=float)
+    for k in range((n - m)//2 + 1):
+        c = ((-1)**k * math.factorial(n - k) /
+             (math.factorial(k) * math.factorial((n + m)//2 - k) *
+              math.factorial((n - m)//2 - k)))
+        out += c * rho**(n - 2*k)
+    return out
+
+def zernike_mode(n, m, rho, theta):
+    rad = zernike_radial(n, abs(m), rho)
+    if m < 0:
+        return rad * np.sin(abs(m)*theta)
+    if m > 0:
+        return rad * np.cos(m*theta)
+    return rad
+
+noll_modes = [(0,0), (1,-1), (1,1), (2,0), (2,-2), (2,2), (3,-1), (3,1),
+              (3,-3), (3,3), (4,0), (4,-2), (4,2), (4,-4), (4,4)]
+names = ['piston', 'tip', 'tilt', 'defocus', 'astigmatism', 'astigmatism 45°',
+         'coma', 'coma 90°', 'trefoil', 'trefoil 30°', 'spherical',
+         'sec. astig.', 'sec. astig. 45°', 'quatrefoil', 'quatrefoil 22°']
+
+# Cartesian pupil grid; mask outside the unit disk so each mode is a real disk
+g = 200
+xx = np.linspace(-1, 1, g)
+Xg, Yg = np.meshgrid(xx, xx)
+Rg, Tg = np.sqrt(Xg**2 + Yg**2), np.arctan2(Yg, Xg)
+inside = Rg <= 1.0
+
+fig, axes = plt.subplots(3, 5, figsize=get_size(17, 10.8), layout='constrained')
+for idx, ((n, m), name) in enumerate(zip(noll_modes, names)):
+    ax = axes.flat[idx]
+    Z = zernike_mode(n, m, Rg, Tg)
+    peak = np.nanmax(np.abs(np.where(inside, Z, np.nan)))
+    Z = np.where(inside, Z/(peak if peak > 0 else 1.0), np.nan)
+    im = ax.imshow(Z, extent=[-1, 1, -1, 1], origin='lower', cmap='RdBu_r',
+                   vmin=-1, vmax=1, interpolation='bilinear')
+    ax.add_patch(plt.Circle((0, 0), 1, fill=False, ec='0.3', lw=0.8))
+    ax.set_title(f'{idx+1}. {name}', fontsize=8.5)
+    ax.set_xticks([]); ax.set_yticks([]); ax.set_aspect('equal')
+    ax.set_xlim(-1.12, 1.12); ax.set_ylim(-1.12, 1.12)
+    for sp in ax.spines.values():
+        sp.set_visible(False)
+
+cb = fig.colorbar(im, ax=axes, fraction=0.02, pad=0.01, ticks=[-1, 0, 1])
+cb.set_label('normalized phase')
+plt.savefig('img/zernike_modes.png', dpi=150, bbox_inches='tight')
+plt.show()
+```
+
+::: {.cell-output .cell-output-display}
+![The first fifteen Zernike modes (Noll ordering), the natural basis for aberrations on a circular pupil. Each disk is the phase pattern $Z_n^m(\rho,\theta)$ over the pupil, with colour from −1 (blue) through 0 (white) to +1 (red) after normalising each mode to its own peak. Piston (1) is a uniform offset that does not affect the image; tip and tilt (2, 3) are linear ramps that just shift it; defocus (4) is parabolic; astigmatism (5, 6), coma (7, 8) and spherical aberration (11) are the low-order aberrations that dominate real microscopes.](03-lecture09_files/figure-html/fig-zernike-output-1.png){#fig-zernike width=654 height=417}
+:::
+:::
 
 
+---
+
+# Impact of Aberrations on PSF and OTF
+
+To understand how aberrations degrade imaging performance, we now visualize the effect on PSF and OTF for realistic aberration magnitudes.
+
+::: {#cell-fig-aberration-impact .cell execution_count=7}
+``` {.python .cell-code}
+# Cartesian pupil grid (correct for an FFT-based PSF; a polar grid would be wrong)
+from matplotlib.colors import PowerNorm
+nP = 128
+pu = np.linspace(-1, 1, nP)
+PX, PY = np.meshgrid(pu, pu)
+PR, PT = np.sqrt(PX**2 + PY**2), np.arctan2(PY, PX)
+ap = (PR <= 1.0).astype(float)
+
+# wavefront error W in waves; amplitudes chosen for instructive Strehl values
+cases = [('ideal',     np.zeros_like(PR)),
+         ('spherical', 0.25*(6*PR**4 - 6*PR**2 + 1)),   # Z(4,0)
+         ('coma',      0.30*(3*PR**3 - 2*PR)*np.cos(PT))]  # Z(3,1)
+
+pad = 512
+sft = (pad - nP)//2
+def psf_of(W):
+    P = np.zeros((pad, pad), complex)
+    P[sft:sft+nP, sft:sft+nP] = ap*np.exp(1j*2*np.pi*W)
+    return np.abs(fftshift(fft2(ifftshift(P))))**2
+
+psfs = [psf_of(W) for _, W in cases]
+peak0 = psfs[0].max()                      # ideal peak sets the Strehl reference
+
+fig = plt.figure(figsize=get_size(17, 14.5), layout='constrained')
+gs = fig.add_gridspec(3, 3, height_ratios=[1.0, 1.0, 1.25])
+
+c, cr = pad//2, 26
+pup_axes = []
+for j, (lab, W) in enumerate(cases):
+    strehl = psfs[j].max()/peak0
+
+    axp = fig.add_subplot(gs[0, j]); pup_axes.append(axp)
+    imp = axp.imshow(np.where(PR <= 1, W, np.nan), extent=[-1, 1, -1, 1], origin='lower',
+                     cmap='RdBu_r', vmin=-0.35, vmax=0.35)
+    axp.add_patch(plt.Circle((0, 0), 1, fill=False, ec='0.3', lw=0.8))
+    axp.set_title(lab, fontsize=11, fontweight='bold')
+    axp.set_xticks([]); axp.set_yticks([]); axp.set_aspect('equal')
+    axp.set_xlim(-1.1, 1.1); axp.set_ylim(-1.1, 1.1)
+    for s in axp.spines.values():
+        s.set_visible(False)
+    if j == 0:
+        axp.text(-0.16, 0.5, 'pupil phase', transform=axp.transAxes,
+                 rotation=90, va='center', ha='center', fontsize=10)
+
+    axs = fig.add_subplot(gs[1, j])
+    axs.imshow(psfs[j][c-cr:c+cr, c-cr:c+cr]/peak0, extent=[-cr, cr, -cr, cr],
+               origin='lower', cmap='inferno', norm=PowerNorm(0.45, vmin=0, vmax=1))
+    axs.set_xticks([]); axs.set_yticks([]); axs.set_aspect('equal')
+    axs.text(0.05, 0.94, f'Strehl {strehl:.2f}', transform=axs.transAxes,
+             color='w', fontsize=10, va='top', fontweight='bold')
+    if j == 0:
+        axs.text(-0.16, 0.5, 'focal-plane PSF', transform=axs.transAxes,
+                 rotation=90, va='center', ha='center', fontsize=10)
+
+cbp = fig.colorbar(imp, ax=pup_axes, location='right', fraction=0.02, pad=0.01,
+                   ticks=[-0.3, 0, 0.3])
+cbp.set_label('wavefront (waves)')
+
+axm = fig.add_subplot(gs[2, :])
+for (lab, W), psf, col in zip(cases, psfs, ['k', 'C0', 'C3']):
+    otf = np.abs(fftshift(fft2(ifftshift(psf))))
+    otf = otf/otf.max()
+    line = otf[pad//2, pad//2:]
+    f = np.arange(line.size)/nP            # cutoff at f = 1
+    axm.plot(f, line, color=col, lw=2, label=lab)
+axm.set_xlim(0, 1.0); axm.set_ylim(0, 1.02)
+axm.set_xlabel(r'spatial frequency (units of the incoherent cutoff $2\,\mathrm{NA}/\lambda$)')
+axm.set_ylabel('MTF')
+axm.legend(frameon=False, loc='upper right')
+axm.grid(True, alpha=0.3)
+plt.savefig('img/aberration_impact.png', dpi=150, bbox_inches='tight')
+plt.show()
+```
+
+::: {.cell-output .cell-output-display}
+![How an aberrated pupil degrades the image, for an ideal pupil, a moderate spherical aberration, and a moderate coma. Top row: the pupil phase across the disk in waves (RdBu colormap, shared colour scale on the right). Middle row: the resulting focal-plane PSF on a common brightness scale (inferno); the Strehl ratio, the peak intensity relative to the ideal PSF, is printed on each. Spherical aberration spreads energy into a symmetric halo, while coma smears the spot to one side. Bottom: the radial modulation transfer function (MTF) of the three cases; both aberrations lower the contrast transferred at every spatial frequency, most severely near the cutoff $2\,\mathrm{NA}/\lambda$.](03-lecture09_files/figure-html/fig-aberration-impact-output-1.png){#fig-aberration-impact width=654 height=559}
+:::
+:::
+
+
+---
+
+# Wavefront Sensing: The Shack-Hartmann Sensor
+
+To correct aberrations, we must first **measure** them. The most common wavefront sensing technique is the **Shack-Hartmann sensor**.
+
+## Principle: From Wavefront Slope to Phase
+
+A Shack-Hartmann sensor comprises a **microlens array** (typically 10×10 to 40×40 lenslets) placed at the pupil plane, with a detector at the focal plane.
+
+**Key insight:** Each lenslet measures the **local slope** of the wavefront:
+$$\frac{\partial W}{\partial x} \bigg|_{(\rho,\theta)} = \text{slope in } x \text{ direction}$$
+
+The **centroid shift** of the focused spot from each lenslet is proportional to the local slope. By measuring all lenslet spots, we reconstruct the 2D slope field:
+$$\nabla W = \left( \frac{\partial W}{\partial x}, \frac{\partial W}{\partial y} \right)$$
+
+Then we **integrate** to recover the phase $W(\mathbf{r})$. @fig-shack-hartmann shows the idea: a flat wavefront makes a regular grid of spots, while an aberrated wavefront displaces each spot in proportion to the local slope seen by its lenslet.
+
+::: {#cell-fig-shack-hartmann .cell execution_count=8}
+
+::: {.cell-output .cell-output-display}
+![The Shack-Hartmann wavefront sensor. A microlens array samples the wavefront and each lenslet focuses its patch to a spot on the detector. (a) A flat (reference) wavefront produces a regular grid of spots, one on each lenslet axis (dashed lines). (b) An aberrated wavefront has a different local tilt at each lenslet, so every spot shifts away from its reference position (open circles) by an amount proportional to the local slope ∂W/∂y (arrows). Measuring all the shifts gives the slope field, and integrating it reconstructs the wavefront W.](03-lecture09_files/figure-html/fig-shack-hartmann-output-1.png){#fig-shack-hartmann width=659 height=276}
+:::
+:::
+
+
+## Fourier-Space Perspective: Connection to Slope and Frequency
+
+In Fourier space, taking a spatial derivative is equivalent to multiplication by $i \mathbf{k}$:
+$$\mathcal{F}\left\{ \frac{\partial W}{\partial x} \right\}(\mathbf{k}) = i k_x \, \widetilde{W}(\mathbf{k})$$
+
+The Shack-Hartmann measurement is thus a **high-pass filter** on the phase: it emphasizes high-frequency ripples and is blind to low-frequency (piston, tip, tilt) modes.
+
+This is **identical to the mathematical principle** of **Differential Interference Contrast (DIC)** microscopy, where a pair of orthogonal Wollaston prisms create an interference between light that is spatially shifted by ~$\lambda/2$. Both techniques exploit **spatial derivatives** in the Fourier domain.
+
+## Reconstruction Algorithm
+
+Once slopes are measured:
+1. Compute $\nabla W$ at all lenslet positions (from spot centroid displacements)
+2. Reconstruct $W(\mathbf{r})$ by **least-squares integration** (Zonal method):
+   $$W(\mathbf{r}) = \arg \min \sum_{\text{grid points}} \left| \nabla W_\text{meas}(\mathbf{r}) - \nabla W_\text{recon}(\mathbf{r}) \right|^2$$
+3. Decompose into Zernike modes to identify which aberrations are present
+4. Send correction signal to deformable mirror or SLM
+
+---
+
+# Adaptive Optics for Microscopy
+
+Adaptive optics closes the loop. A wavefront sensor measures the aberration, a controller computes the phase that would cancel it, and a correction device imposes that phase on the pupil, flattening the wavefront. Repeating this many times per second keeps the system diffraction-limited even as the aberration drifts. @fig-ao-loop shows the loop.
+
+::: {#cell-fig-ao-loop .cell execution_count=9}
+
+::: {.cell-output .cell-output-display}
+![The adaptive-optics control loop. The incoming aberrated wavefront first reflects off the correction device (a deformable mirror or SLM in the pupil plane). A beam splitter sends most of the light to the science camera and a fraction to the wavefront sensor, which measures the residual aberration. A controller converts that measurement into the conjugate phase and drives the correction device, closing the loop so that the wavefront reaching the camera is flat.](03-lecture09_files/figure-html/fig-ao-loop-output-1.png){#fig-ao-loop width=654 height=295}
+:::
+:::
+
+
+## Wavefront Correction Devices
+
+The phase is imposed by one of two complementary devices, contrasted in @fig-correctors. A **deformable mirror** bends a continuous reflective surface with a modest number of actuators; it is fast, highly reflective, and handles large, low-order aberrations, but its few actuators limit the spatial detail it can represent. A **spatial light modulator** uses a dense array of liquid-crystal pixels, each imposing a programmable phase; it can render arbitrary high-order patterns and entire holograms, at the cost of being phase-only, wavelength-sensitive, and somewhat lossy.
+
+::: {#cell-fig-correctors .cell execution_count=10}
+
+::: {.cell-output .cell-output-display}
+![The two wavefront-correction devices. (a) A deformable mirror: a continuous reflective membrane pushed from behind by a modest number of actuators (gray pistons), so a flat incoming wavefront leaves with a smooth, shaped phase. It is fast and efficient but, with only tens of actuators, limited to low-order aberrations. (b) A spatial light modulator: a dense array of liquid-crystal pixels, each imposing a programmable phase between 0 and 2π (cyclic colormap), able to render arbitrary high-order patterns but phase-only and pixelated.](03-lecture09_files/figure-html/fig-correctors-output-1.png){#fig-correctors width=654 height=268}
+:::
+:::
+
+
+### Spatial Light Modulators (SLMs)
+
+**Liquid-Crystal SLMs** apply a spatially varying phase shift to the incident beam:
+$$\Delta \phi(\mathbf{r}) = \frac{2\pi \Delta n(\mathbf{r}) \, d}{\lambda}$$
+
+where $\Delta n$ is the liquid-crystal birefringence (controlled electrically, 0–1 V) and $d$ is the cell thickness.
+
+**Advantages:**
+- Arbitrary phase patterns (Zernike modes, holograms, custom aberration correction)
+- Reconfigurable in real time (frame rate: 60–1000 Hz)
+- Compact; can be placed at pupil plane or in Fourier plane
+
+**MoNa lab connection:** SLMs are used for:
+- **Beam shaping:** Creating flat-top or Bessel beams
+- **Holographic optical trapping:** Generating multiple foci for particle manipulation
+- **Aberration correction:** Real-time feedback to flatten wavefront
+
+**Limitations:**
+- Phase-only (cannot modulate amplitude in traditional LC-SLMs)
+- Pixelation limits high-frequency content
+- Efficiency ~70–90% (residual diffraction orders)
+
+### Deformable Mirrors
+
+**Membrane or Piezo Mirrors** physically deform a mirror surface to introduce a desired phase shift:
+$$\Delta \phi = \frac{2 \times \text{surface deflection}}{\lambda} \times 2\pi$$
+
+(Factor of 2 because light reflects, doubling the optical path.)
+
+**Advantages:**
+- Higher reflectance (>95%)
+- Can correct large aberrations (many waves)
+- Continuous surface (no pixelation)
+
+**Disadvantages:**
+- Limited to low-order corrections (typically <50 actuators → low-order Zernike only)
+- Slower response time (ms)
+
+**Choice:**
+- **SLM**: Fast correction, arbitrary modes, lab demonstration
+- **Deformable mirror**: High-NA systems, deep-tissue imaging where many aberration modes matter
+
+## Sensorless Adaptive Optics
+
+When a wavefront sensor is unavailable or impractical, we use **sensorless AO**: directly optimize an **image quality metric** (e.g., intensity variance, maximum intensity, or a deconvolution cost function) by **iteratively adjusting Zernike coefficients**.
+
+**Algorithm:**
+1. Start with $W = 0$ (flat wavefront)
+2. Vary Zernike coefficient $c_{n,m}$ (e.g., defocus) and measure the quality metric
+3. Move in the direction that improves metric
+4. Repeat for all low-order modes
+5. Refine with finer steps until convergence
+
+**Speed:** 1–10 seconds per correction (much slower than sensor-based, but requires no extra hardware)
+
+**Best for:** Deep-tissue imaging, where aberrations increase with depth and drift slowly over time.
+
+---
+
+# Application: Deep-Tissue Confocal Imaging with Adaptive Optics
+
+## The Problem: Spherical Aberration at Depth
+
+In thick, scattering tissue (e.g., brain, muscle), refractive index variations accumulate as light propagates. A homogeneous spherical aberration develops due to mismatched refractive indices (tissue ≠ design medium).
+
+**Effect:**
+- PSF degrades: side lobes increase, peak intensity drops (Strehl → 0.3–0.5)
+- Axial resolution worsens dramatically
+- Image contrast collapses within 50–100 μm depth
+
+## Adaptive Correction Strategy
+
+1. **Measure** the wavefront using Shack-Hartmann (either on a guide star or back-reflected from deep structures)
+2. **Decompose** into Zernike modes: typically spherical aberration dominates (mode 11), with secondary astigmatism (modes 12–13)
+3. **Correct** using an SLM or deformable mirror in the pupil plane
+4. **Iterate** as you move deeper: aberration increases slowly; re-correct every 10–20 μm
+
+**Result:** Confocal PSF remains ~1 μm lateral, ~2–3 μm axial, even at 200 μm depth.
+
+**Without AO:** PSF broadens to 2–3 μm lateral, 10–15 μm axial at the same depth.
+
+---
+
+# Fourier Optics Thread: Summary Table
+
+All concepts in this lecture are connected through the **pupil function** and its Fourier properties:
+
+| Concept | Pupil-Plane Representation | Fourier-Space Meaning |
+|---------|---|---|
+| **Confocal detection** | Product of two apertures | OTF is convolution of two OTFs → higher contrast |
+| **Aberrations** | $P = A \exp(iW)$ with $W \neq 0$ | OTF is autocorrelation of aberrated pupil → lower contrast |
+| **Zernike modes** | Basis expansion: $W = \sum c_{n,m} Z_n^m$ | Orthonormal set on unit disk; separates aberration types |
+| **Wavefront slope** | $\nabla W(\mathbf{r})$ | Multiplication by $i\mathbf{k}$ in Fourier space; same as DIC |
+| **SLM correction** | Modulate $P$ with $\exp(i\Delta\phi_\text{SLM})$ | Alter OTF by changing pupil; directly improve high-freq contrast |
+| **Shack-Hartmann** | Measure local slopes via lenslet array | High-pass filtered wavefront measurement; insensitive to piston/tip/tilt |
+
+---
+
+# Experimental Connections
+
+## Building a Simple Confocal Path
+
+A teaching-lab confocal microscope can be built from:
+1. **Laser source** (e.g., 488 nm diode laser, 5 mW)
+2. **Dichroic mirror** to combine excitation and collection paths
+3. **Objective lens** (40× or 60×, high NA)
+4. **Pinhole** (adjustable aperture, ~20–50 μm diameter)
+5. **PMT or avalanche photodiode** for point detection
+
+**Procedure:**
+- Align laser to objective back aperture
+- Focus on fluorescent sample (e.g., beads, labeled cells)
+- Mechanically or acousto-optically scan the beam
+- Adjust pinhole diameter to observe trade-off: signal vs. contrast
+
+**Key observation:** As you **close the pinhole**, out-of-focus haze disappears, but signal drops. The optimal point is ~0.5–1.0 Airy unit (AU).
+
+## Measuring Zernike Aberrations with a Hartmann Sensor
+
+A **Hartmann test** requires:
+1. **Collimated beam** through the microscope objective (reverse direction)
+2. **Microlens array** (40×40, ~300 μm focal length; can use printed diffractive element)
+3. **CCD camera** at focal distance
+4. **Software** to find lenslet spot centroids and compute slopes
+
+**Steps:**
+- Acquire reference image (flat wavefront)
+- Acquire test image (with aberrations present)
+- Compute difference in centroid positions
+- Integrate slopes → recover phase map
+- Decompose into Zernike modes
+
+**Observation:** You will see predominantly **defocus** and **spherical aberration**. Remove mechanical defects (tilted objective), and astigmatism typically vanishes.
+
+## Adaptive Optics in Practice: SLM-Based Correction
+
+With an **SLM at the pupil plane**:
+1. Apply an initial correction pattern (e.g., measured aberration phase)
+2. Image the specimen; compute a quality metric (e.g., Laplacian variance)
+3. Slightly perturb one Zernike coefficient; re-measure metric
+4. Move in direction of improvement; repeat
+5. Cycle through 5–10 low-order Zernike modes
+
+**Result:** PSF sharpness visibly improves; axial sectioning becomes tighter; high-freq contrast recovers.
+
+---
+
+# Summary: Fourier Optics in Microscopy
+
+## Key Concepts Revisited
+
+1. **Confocal microscopy** uses the **product of two PSFs** (illumination × detection) to improve OTF, particularly at high spatial frequencies
+
+2. **Aberrations modify the pupil function** $P = A \exp(iW)$; even small wavefront errors degrade OTF and reduce Strehl ratio
+
+3. **Zernike polynomials** provide an orthonormal basis on the unit disk; low-order modes (defocus, astigmatism, coma, spherical) account for most real-world aberrations
+
+4. **Wavefront sensing** (Shack-Hartmann) measures the gradient of the phase field—a Fourier operation ($\nabla W \leftrightarrow i\mathbf{k} \widetilde{W}$)—and reconstructs the full phase by integration
+
+5. **Adaptive optics** uses **SLMs or deformable mirrors** to correct measured aberrations, restoring diffraction-limited PSF even in aberrating media (thick tissue)
+
+6. **SLMs and AOMs** are essential tools in modern microscopy and in the MoNa lab for beam shaping, holographic manipulation, and real-time wavefront control
+
+All of these phenomena have a unified Fourier-optics interpretation: the **pupil function** is the master object that controls resolution, contrast, and aberration behavior.
+
+---
+
+# Further Reading
+
+The following resources expand on the topics in this lecture:
+
+- **[Mertz (2019)](../../resources/resources.qmd#sec-mertz)** — *Introduction to Optical Microscopy*, Chapters 2–4. Comprehensive treatment of confocal imaging and the OTF framework.
+- **[Goodman (2017)](../../resources/resources.qmd#sec-goodman)**, Ch. 6–7 — Fourier optics foundations and propagation through optical systems.
+- **[Born & Wolf (1999)](../../resources/resources.qmd#sec-born)**, Ch. 8 — Aberrations, Zernike polynomials, and the theory of optical systems.
+- **[Tyson (2015)](../../resources/resources.qmd#sec-tyson)** — *Principles of Adaptive Optics*, 3rd ed. Standard reference for wavefront sensing and correction.
+- **Booth, M.J., et al. (2021)** — "Adaptive optics in microscopy." *Phil. Trans. R. Soc. A* **379**, 20200110. Review of AO in biomedical imaging.
+- **Shack, R.V. & Platt, B.C. (1971)** — "Production and use of a lenticular Hartmann screen." *J. Opt. Soc. Am.* **61**, 656–660. Foundational Shack-Hartmann paper.
+
+---
+
+*Lecture 10: Confocal Microscopy & Wavefront Control — Introduction to Photonics*-->
+
+
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -1567,6 +1372,18 @@ Figure&nbsp;8.2— The two wavefront-correction devices. (a) A deformable mirror
     }
   });
   </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../lectures/lecture09/02-lecture09.html" class="pagination-link" aria-label="Phase Contrast &amp; DIC">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Phase Contrast &amp; DIC</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../lectures/lecture12/01-lecture12.html" class="pagination-link" aria-label="Superresolution Microscopy">
+        <span class="nav-page-text">Superresolution Microscopy</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
 
 
